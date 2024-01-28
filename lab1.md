@@ -1,4 +1,4 @@
-# Web Application Development
+# Lab 1: Web Application Development
 
 ## Overview
 
@@ -6,7 +6,7 @@ In this lab assignment, you will develop a simple web application using Python a
 
 ## Task 1: Python Web Application
 
-**To achieve a grade of 6/10**, follow these steps:
+**6 Points:**
 
 1. Create `app_python` Folder:
    - Create a folder named `app_python` to contain your Python web application files.
@@ -20,19 +20,30 @@ In this lab assignment, you will develop a simple web application using Python a
 
 ## Task 2: Well Decorated Description
 
-**To earn an additional 4 points**, follow these steps:
+**4 Points:**
 
 1. Update `PYTHON.md`:
-   - Update the `PYTHON.md` file and describe all the best practices you applied to your web application.
+   - Describe best practices applied in the web application.
    - Explain how you followed coding standards, implemented testing, and ensured code quality.
 
-2. Create `README.md`:
-   - Create a `README.md` file in the `app_python` folder.
-   - Use a Markdown template to describe your Python web application.
+2. Create `README.md` in `app_python` folder:
+   - Use a Markdown template to document the Python web application.
+
+3. Ensure:
+   - Maintain a clean `.gitignore` file.
+   - Use a concise `requirements.txt` file for required dependencies.
+
+### List of Requirements
+
+- MSK Time timezone set up
+- 2 PRs created
+- README includes Overview
+- Nice Markdown decoration
+- Local installation details in README
 
 ## Bonus Task: Additional Web Application
 
-**To earn an additional 2.5 points:**
+**2.5 Points:**
 
 1. Create `app_*` Folder:
    - Create a folder named `app_*` in the main project directory, replacing `*` with a programming language of your choice (other than Python).
@@ -47,7 +58,7 @@ In this lab assignment, you will develop a simple web application using Python a
 
 ### Guidelines
 
-- Use proper Markdown formatting and structure for the documentation files.
+- Use proper Markdown formatting and structure for the documentation files. We will use [online one](https://dlaa.me/markdownlint/) to check your `.md` files.
 - Organize the files within the lab folder using appropriate naming conventions.
 - Create a PR from your fork to the master branch of this repository and from your fork's branch to your fork's master branch with your completed lab assignment.
 

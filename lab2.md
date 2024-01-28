@@ -1,4 +1,4 @@
-# Containerization Lab - Docker
+# Lab 2: Containerization - Docker
 
 ## Overview
 
@@ -6,7 +6,7 @@ In this lab assignment, you will learn to containerize applications using Docker
 
 ## Task 1: Dockerize Your Application
 
-**To achieve a grade of 6/10**, follow these steps:
+**6 Points:**
 
 1. Create a `Dockerfile`:
    - Inside the `app_python` folder, craft a `Dockerfile` for your application.
@@ -26,7 +26,7 @@ In this lab assignment, you will learn to containerize applications using Docker
 
 ## Task 2: Docker Best Practices
 
-**To earn an additional 4 points**, follow these steps:
+**4 Points:**
 
 1. Enhance your docker image by implementing [Docker Security Best Practices](https://sysdig.com/blog/dockerfile-best-practices/).
    - No root user inside, or you will get no points at all.
@@ -42,10 +42,18 @@ In this lab assignment, you will learn to containerize applications using Docker
      - How to build?
      - How to pull?
      - How to run?
-  
+
+### List of Requirements
+
+- Rootless container.
+- Use COPY, but only specific files.
+- Layer sanity.
+- Use `.dockerignore`.
+- Use a precise version of your base image and language, example `python:3-alpine3.15`.
+
 ## Bonus Task: Multi-Stage Builds Exploration
 
-**To earn an additional 2.5 points:**
+**2.5 Points:**
 
 1. Dockerize Previous App:
    - Craft a `Dockerfile` for the application from the prior lab.
