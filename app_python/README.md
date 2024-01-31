@@ -14,11 +14,11 @@ Open the index page at `/` and web server built with Python will generate a stat
 
 ## Local Setup
 
-0. This application uses [type hints](https://docs.python.org/3/library/typing.html) and Flask, therefore, **Python 3.8** or newer is required.
+_Step 0_. This application uses [type hints](https://docs.python.org/3/library/typing.html) and Flask, therefore, **Python 3.8** or newer is required.
 
-1. Open the `app_python` directory and run commands below from there.
+_Step 1_. Open the `app_python` directory and run commands below from there.
 
-2. Create and activate virtual environment:
+_Step 2_. Create and activate virtual environment:
 
 ```sh
 # Create
@@ -31,16 +31,16 @@ source ./venv/bin/activate
 source ./venv/bin/activate.fish
 ```
 
-3. Install requirements:
+_Step 3_. Install requirements:
 
 ```sh
 pip install -r requirements.txt
 ```
 
-4. Run web-application:
+_Step 4_. Run web-application:
 
 ```sh
 python -m flask --app app/main:app run --port=8000
 ```
 
-5. Go to http://localhost:8000 in the browser, you should see the current time in Moscow.
+_Step 5_. Go to [localhost:8000](http://localhost:8000) in the browser, you should see the current time in Moscow.
