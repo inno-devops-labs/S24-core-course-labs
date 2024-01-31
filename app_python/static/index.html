@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Moscow Time</title>
+</head>
+<body>
+Current time is <span id="time">loading...</span>
+</body>
+<script defer>
+    const timeElement = document.getElementById("time")
+
+    setInterval(() => {
+        fetch('/api/time?' + new URLSearchParams({
+            tz: 'Europe/Moscow',
+        })).then(res => res.json()).then(res => {
+            timeElement.textContent = res.time
+        }).catch(alert)
+    }, 1000)
+</script>
+</html>
