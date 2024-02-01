@@ -32,4 +32,20 @@ This simple [Python app](/app_python/)  used to display current Moscow (UTC-3) t
 - Run `` python  app.py`` inside ``app_python`` folder.
 - Go to ``http://127.0.0.1:5000/``.
 
+### 5. Docker
+
+#### 5.1. Containerization process
+
+This Dockerfile containerizes a Python Flask application, ensuring security, efficiency, and ease of deployment. 
+
+It utilizes a specific version of the Python slim image (Python 3.9) to minimize the image size. A non-root user, `appuser`, is created to run the application, enhancing security by limiting privileges. The application files (`requirements.txt`, `app.py`) are copied into the `/app` directory, along with the templates for the Flask application. Dependencies are installed using `pip`, and port 5000 is exposed to allow external access to the Flask application. 
+
+Additionally, a logging directory is created within the container to store application logs. Finally, the Flask application (`app.py`) is set to run automatically when the container launches. 
+#### 5.2. How to build?
+`docker build -t my-python-app .`
+#### 5.3.  How to pull?
+`docker pull username/my-python-app`
+#### 5.4. How to run?
+`docker run -p 5000:5000 my-python-app`
+
           
