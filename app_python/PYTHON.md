@@ -1,3 +1,5 @@
+# Overview of best practices & framework choice
+
 ## Best practices
 
 - Type hints to help maintain the app
@@ -9,6 +11,6 @@
 
 I chose [FastAPI](https://fastapi.tiangolo.com/) because the following:
 
-- It's blazing [fast](https://fastapi.tiangolo.com/#performance)
 - It's fast and simple to code
 - It's widely [used](https://fastapi.tiangolo.com/#opinions) in industry
+- It's blazing [fast](https://fastapi.tiangolo.com/#performance)
