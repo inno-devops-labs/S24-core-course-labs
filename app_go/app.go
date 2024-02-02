@@ -18,7 +18,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	io.Copy(w, resp.Body)
 }
 
-// main function that set ups handlers
+// main function that set ups http handlers
 func main() {
     http.HandleFunc("/", handler)
 	fmt.Println("Starting server at :8080")

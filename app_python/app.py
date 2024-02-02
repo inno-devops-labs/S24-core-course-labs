@@ -5,8 +5,9 @@ import logging
 from flask import Flask, render_template
 import pytz
 
-
 app = Flask(__name__)
+
+
 logging.basicConfig(
     level=logging.INFO,
     filename="record.log",
@@ -27,6 +28,10 @@ def show_time():
         logging.error("Exception %s", exception)
         return render_template("exception.html")
 
+@app.route('/health')
+def health_check():
+    return "OK", 200
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5001)
