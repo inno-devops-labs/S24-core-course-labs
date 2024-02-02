@@ -1,10 +1,16 @@
-from typing import Any
+"""
+This file provides utility decorators for caching results
+of calls to python functions.
+"""
+
+from typing import Any, Callable
 from time import time
 from functools import wraps
 from threading import Lock
 
 
-def cache_for(timeout_ms: int) -> Any:
+def cache_for(timeout_ms: int) -> \
+        Callable[[Callable[Any, Any]], Callable[Any, Any]]:
     """
     Decorator to cache runs of a function for the given time
     period. All arguments and keyword arguments given to the
@@ -18,13 +24,13 @@ def cache_for(timeout_ms: int) -> Any:
 
     timeout_s = timeout_ms / 1000
 
-    def decorator(func):
+    def decorator(func: Callable[Any, Any]) -> Callable[Any, Any]:
         cached_result = {}
         expires_at = {}
         cache_lock = Lock()
 
         @wraps(func)
-        def decorated(*args, **kwargs):
+        def decorated(*args, **kwargs) -> Any:
             # Note: args and kwargs are assumed hashable, just like
             # the standard library (`funtools.lru_cache`) does
             frozen_args = tuple(args)
