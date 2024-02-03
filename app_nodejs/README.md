@@ -14,3 +14,23 @@ This simple web application built with NodeJS displays the current time in Mosco
   - `index.js`: NodeJS application code.
   - `views/`: EJS views.
   - `package.json`: NodeJS app description and dependencies.
+
+## Docker
+
+### Build the Docker Image
+
+```bash
+docker build -t node-world-clock-app .
+```
+
+### Pull the Docker Image
+
+```bash
+docker pull evsey/node-world-clock-app:latest
+```
+
+### Run the Docker Image
+
+```bash
+docker run -p 3000:3000 evsey/node-world-clock-app
+```

@@ -14,3 +14,23 @@ This simple Python web application built with Flask displays the current time in
   - `main.py`: Flask application.
   - `templates/`: HTML templates.
   - `requirements.txt`: Python app requirements.
+
+## Docker
+
+### Build the Docker Image
+
+```bash
+docker build -t flask-moscow-time-app .
+```
+
+### Pull the Docker Image
+
+```bash
+docker pull evsey/flask-moscow-time-app:latest
+```
+
+### Run the Docker Image
+
+```bash
+docker run -p 5000:5000 evsey/flask-moscow-time-app
+```

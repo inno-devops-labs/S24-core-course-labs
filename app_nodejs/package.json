@@ -4,10 +4,14 @@
   "description": "Node.js web application to display current time in different cities",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node ./dist/index.js",
+    "build": "rollup -c rollup.config.mjs"
   },
   "dependencies": {
     "express": "^4.17.1",
     "ejs": "^3.1.6"
+  },
+  "devDependencies": {
+    "rollup": "^3.20.2"
   }
 }
