@@ -1,15 +1,10 @@
 from flask import Flask
-from app_utils import return_time, return_index
+from app_python.app_utils import return_time
 
 app = Flask(__name__)
 
 
 @app.route("/")
-def index():
-    return return_index()
-
-
-@app.route("/show")
 def show_time():
     return return_time("Europe/Moscow")
 

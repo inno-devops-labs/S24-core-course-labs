@@ -1,16 +1,7 @@
-from datetime import datetime
-from flask import url_for
 import pytz
 
-
-def return_index() -> str:
-    return f"""
-    <h1>Index Page</h1>
-    Available routes:
-    <ul>
-    <li><a href={url_for('show_time')}>Show Moscow Time</a></li>
-    </ul>
-    """
+from datetime import datetime
+from flask import url_for
 
 
 def return_time(timezone: str = "Europe/Moscow") -> str:
