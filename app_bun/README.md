@@ -2,7 +2,15 @@
 
 This is a simple web application that displays the current time in Moscow. The application is developed using typescript and Bun is used as the runtime.
 
+## Table of Contents
+
 - [Bun App](#bun-app)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+    - [Requirements](#requirements)
+    - [Installation Steps](#installation-steps)
+  - [Development](#development)
+
 
 ## Installation
 
