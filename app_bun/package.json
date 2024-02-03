@@ -1,0 +1,16 @@
+{
+  "name": "app_bun",
+  "module": "entry.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/intl": "^1.2.2",
+    "intl": "^1.2.5",
+    "prettier": "^3.2.4"
+  }
+}
