@@ -11,7 +11,6 @@ This is a simple web application that displays the current time in Moscow. The a
     - [Installation Steps](#installation-steps)
   - [Development](#development)
 
-
 ## Installation
 
 ### Requirements
