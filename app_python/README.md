@@ -51,6 +51,8 @@ flask run
 
 The application will be available at [localhost:5000](http://localhost:5000/)
 
+![Screenshot](https://i.postimg.cc/XYVk7s95/image.png)
+
 ## Development
 
 Contributions are not accepted at the moment as this is just a lab assignment. You can fork the repository for your own use.
