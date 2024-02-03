@@ -22,3 +22,5 @@ For this project, I picked Flask. For Python, I think there are 3 goto solution-
 - Tests are written for every utility function using `unittest` module.
 - Docstrings are maintained for every function, module and class.
 - Pre-commit hooks are used to run `black`, `mypy`, `pylint` and `unittest` before every commit.
+
+![Screenshot](https://i.postimg.cc/sD97G5cR/image.png)
