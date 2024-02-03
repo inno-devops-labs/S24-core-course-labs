@@ -20,3 +20,5 @@ For the bonus task, I have picked Bun. Bun is a runtime for Javascript. I picked
 - Tests are written for every utility function using `bun:test` inside `app.test.ts`
 - Documentation is maintained for all the functions and modules.
 - Pre-commit hooks are used to run tests and prettifier before commiting the code.
+  
+![Screenshot](https://i.postimg.cc/sD97G5cR/image.png)
