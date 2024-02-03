@@ -20,4 +20,5 @@ For this project, I picked Flask. For Python, I think there are 3 goto solution-
 - To ensure static typing, `mypy` was used
 - To ensure better code quality, `pylint` was used
 - Tests are written for every utility function using `unittest` module.
+- Docstrings are maintained for every function, module and class.
 - Pre-commit hooks are used to run `black`, `mypy`, `pylint` and `unittest` before every commit.
