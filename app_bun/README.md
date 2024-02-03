@@ -4,7 +4,6 @@ This is a simple web application that displays the current time in Moscow. The a
 
 - [Bun App](#bun-app)
 
-
 ## Installation
 
 ### Requirements
@@ -12,13 +11,15 @@ This is a simple web application that displays the current time in Moscow. The a
 - Bun v1.0.0 or higher
 
 ### Installation Steps
-- Clone this branch to  your local machine
+
+- Clone this branch to your local machine
 
 ```bash
 git clone git@github.com:pptx704/S24-devops-labs -b lab1
 ```
 
 - Navigate to the `app_bun` folder
+
 ```bash
 cd app_bun
 ```
@@ -31,7 +32,7 @@ bun install
 
 - Build the application and run it
 
-```
+```bash
 bun build ./entry.ts --outdir ./out
 bun run ./out/entry.js
 ```
