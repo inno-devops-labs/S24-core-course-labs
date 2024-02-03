@@ -13,27 +13,27 @@ implementation of a simple, yet practical, Python web application following best
 
 ## Local Installation
 
-1. **Clone the repository:**
+### Clone the repository
 
 ```bash
 git clone https://github.com/VanyaKo/S24-core-course-labs/tree/main
 cd app_python
 ```
 
-2. **Set up a virtual environment:**
+### Set up a virtual environment
 
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 ```
 
-3. **Install dependencies:**
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. **Run the application:**
+### Run the application
 
 ```bash
 python app.py
