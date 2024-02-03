@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Moscow time checker</title>
+</head>
+<body>
+    <h1 style="text-align: center">Welcome to the Moscow time checker</h1>
+    <h2 style="text-align: center">In Moscow now</h2>
+    <div class="window">
+        <p id="moscow_time" style="text-align: center"></p>
+        <script>
+           async function fetchTime() {
+            try {
+                const response = await fetch('/api/time');
+                if (response.ok) {
+                    const json = await response.json();
+                    document.getElementById("moscow_time").innerText = json['time'];
+                }
+            } catch (error) {
+                console.error('Error fetching time:', error);
+            }
+        }
+        fetchTime()
+        setInterval(fetchTime, 1000)
+        </script>
+    </div>
+</body>
+</html>
