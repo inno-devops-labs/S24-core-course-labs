@@ -1,6 +1,9 @@
+// Purpose: This file contains the utility functions that are used in the app_bun.
+
 import {} from "intl";
 
-export function returnTime(timezone = "Europe/Moscow") {
+// Purpose: This function returns the current time in the specified timezone.
+export function returnTime(timezone: string = "Europe/Moscow") {
   const currentTime = returnTzTime(timezone);
 
   return `<div>
@@ -9,7 +12,8 @@ export function returnTime(timezone = "Europe/Moscow") {
     `;
 }
 
-export function returnTzTime(timezone = "Europe/Moscow") {
+// Purpose: This function returns the current time in the specified timezone.
+export function returnTzTime(timezone: string) {
   const date = new Date();
   const options: Intl.DateTimeFormatOptions = {
     timeZone: timezone,

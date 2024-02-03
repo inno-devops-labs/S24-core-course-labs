@@ -1,0 +1,22 @@
+# Project Description
+
+## Framework Selection
+
+For the bonus task, I have picked Bun. Bun is a runtime for Javascript. I picked it instead of Node because Bun comes with preinstalled batteries (i.e. web server, testing, typescript support etc.). It is also faster than Node.
+
+## Best Practices Followed
+
+- Application routes and logics are separated into different modules.
+- Typescript is used to ensure static typing.
+- Prettifier is used to ensure unified coding styles.
+- Unittests are maintained for the application.
+- Linter is used to ensure better code quality.
+- `package.json` to keep track of necessary packages.
+
+## Ensuring Best Practices, Testing and Code Quality
+
+- To have an unified coding styles, `prettier` was used
+- To ensure better code quality, linter specs was defined in `tsconfig.json`
+- Tests are written for every utility function using `bun:test` inside `app.test.ts`
+- Documentation is maintained for all the functions and modules.
+- Pre-commit hooks are used to run tests and prettifier before commiting the code.
