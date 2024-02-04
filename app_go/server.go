@@ -1,30 +1,30 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"time"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"net/http"
+	"time"
 )
 
-func main()  {
-	server := gin.Default()
+func main() {
+	server := gin.Default() // Create server and upload index.html
 	server.LoadHTMLFiles("index.html")
-	
-	server.GET("/", func(c *gin.Context) {
-		c.HTML(
+
+	server.GET("/", func(ctx *gin.Context) { // Return index.html
+		ctx.HTML(
 			http.StatusOK,
 			"index.html",
 			gin.H{},
 		)
 	})
 
-	server.GET("/time", func(c *gin.Context){
-		loc, _ := time.LoadLocation("Europe/Moscow")
-		now := time.Now().In(loc)
-		c.JSON(200, gin.H{
-			"time": fmt.Sprintf("%2d:%2d:%2d", now.Hour(), now.Minute(), now.Second()),
+	server.GET("/time", func(ctx *gin.Context) { // Return current Moscow time in format HH:MM:SS
+		location, _ := time.LoadLocation("Europe/Moscow")
+		time := time.Now().In(location)
+		ctx.JSON(200, gin.H{
+			"time": fmt.Sprintf("%.2d:%.2d:%.2d", time.Hour(), time.Minute(), time.Second()),
 		})
 	})
-	server.Run()
+	server.Run() // Run server
 }

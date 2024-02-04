@@ -4,18 +4,24 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 import pytz
 
-server = FastAPI()
+server = FastAPI() # Create server
 
 
-@server.get('/')
+@server.get('/') 
 def root():
-    return HTMLResponse(open('index.html').read())
+    """
+        Returns index.html after requesting root path ( example.com/ ).
+    """
+    return HTMLResponse(open('index.html').read()) # Return index.html
 
 
 @server.get('/time')
 def time():
-    msk_tz = pytz.timezone('Europe/Moscow')
-    time = datetime.now(msk_tz)
+    """
+        Returns current Moscow time in JSON format.
+    """
+    msk_tz = pytz.timezone('Europe/Moscow') # Get Moscow timezone
+    time = datetime.now(msk_tz) # Get current time in Moscow
     return {
-        'time': time.strftime("%H:%M:%S")
+        'time': time.strftime("%H:%M:%S")  # Return current Moscow Time in format HH:MM:SS
     }

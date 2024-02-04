@@ -1,7 +1,7 @@
 <html>
     <script>
         window.onload = function(){
-            fetch("http://localhost:8080/time")
+            fetch("/time")
             .then((response) => response.json())
             .then((data) => document.getElementById("time-table").innerHTML = data.time);
         }
