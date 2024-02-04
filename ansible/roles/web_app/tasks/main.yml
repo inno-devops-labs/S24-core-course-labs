@@ -1,0 +1,41 @@
+---
+# tasks file for roles/web_app
+- name: Ensure the compose directory exists
+  ansible.builtin.file:  # Use ansible.builtin.file for core modules
+    path: "{{ansible_env.HOME}}/{{ image_name | basename }}"  # Use ansible_env.HOME for dynamic home directory path
+    state: directory
+  register: compose_dir
+
+- name: Temporarily stop any existing containers
+  community.docker.docker_compose_v2:
+    project_src: "{{ compose_dir.path }}"
+    state: stopped
+  ignore_errors: true  # Ignore errors to allow playbook to continue even if stopping containers failed
+
+- name: Generate docker-compose.yml from template
+  ansible.builtin.template:  # Use ansible.builtin.template for core modules
+    src: docker-compose.yml.j2
+    dest: "{{ compose_dir.path }}/docker-compose.yml"
+  vars:  # Directly define vars that are used only in this task
+    image_full: "{{ image_name }}:{{ image_tag }}"
+    publish_ports: "{{ publish_ports }}"  # Removed redundant definition, directly passed
+  when: not wipe  # Only render template if not wiping
+
+- name: Deploy or Remove Application using Docker Compose
+  community.docker.docker_compose_v2:
+    project_src: "{{ compose_dir.path }}"
+    state: "{{ 'absent' if wipe else 'present' }}"  # Simplified ternary expression
+    pull: always  # Always pull to ensure the latest image is used when deploying
+
+- name: Remove Docker image if wiping
+  community.docker.docker_image:
+    name: "{{ image_name }}"
+    tag: "{{ image_tag }}"
+    state: absent  # Ensure the image is removed only when wiping
+  when: wipe
+
+- name: Clean up the compose directory if wiping
+  ansible.builtin.file:  # Use ansible.builtin.file for core modules
+    path: "{{ compose_dir.path }}"
+    state: absent  # Remove the directory when wiping
+  when: wipe

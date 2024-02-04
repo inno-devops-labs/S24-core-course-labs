@@ -1,0 +1,7 @@
+# templates/docker-compose.yml.j2
+version: '3'
+services:
+  web_app:
+    image: "{{ your_image_name }}:{{ your_image_tag }}"
+    ports:
+      - "8080:8080"

@@ -1,0 +1,7 @@
+---
+# defaults file for roles/web_app
+image_name: "rmoll/moscow_time_web_app"
+image_tag: "latest"
+publish_ports:
+ - "8080:8080"
+wipe: false

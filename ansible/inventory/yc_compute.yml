@@ -1,0 +1,5 @@
+yandex_cloud:
+  hosts:
+    devops_vm:
+      ansible_host: 158.160.127.168
+      ansible_user: ubuntu

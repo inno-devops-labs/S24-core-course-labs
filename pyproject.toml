@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "s24-devops-labs"
+version = "0.1.0"
+description = ""
+authors = ["Roman Molochkov <molochkov2017@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.2"
+pytz = "^2024.1"
+yandexcloud = "^0.262.0"
+yandex = "^0.0.2"
+google = "^3.0.0"
+ansible = "^9.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
