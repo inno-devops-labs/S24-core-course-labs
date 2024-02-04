@@ -17,5 +17,5 @@ def fetch_time():
 @app.get("/")
 def read_root(request: fastapi.Request):
     return templates.TemplateResponse(
-        request=request, name="time.html"
+            request=request, name="time.html", context={"time": fetch_time()}
     )
