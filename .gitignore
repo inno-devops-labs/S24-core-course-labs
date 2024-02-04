@@ -1,0 +1,10 @@
+# Virtual environment and caches
+myenv
+__pycache__
+*.pyc
+
+# MacOS system files
+.DS_Store
+
+# IDEA files
+.idea
