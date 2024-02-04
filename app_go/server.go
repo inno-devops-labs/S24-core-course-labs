@@ -26,5 +26,8 @@ func main() {
 			"time": fmt.Sprintf("%.2d:%.2d:%.2d", time.Hour(), time.Minute(), time.Second()),
 		})
 	})
-	server.Run() // Run server
+	err := server.Run() // Run server
+	if err != nil {
+		fmt.Printf("Failed to run server. Error %s", err)
+	}
 }
