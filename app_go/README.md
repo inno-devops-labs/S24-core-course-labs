@@ -24,7 +24,7 @@ In `RFC3339`
 
 # Usage
 
-1. Run the application using `go run main.go`.
+1. Run the application using `go build -o main cmd/app/* && ./main`.
 2. Access the application at http://localhost:8080.
 
 # Tests
