@@ -1,4 +1,4 @@
-name: RuFF
+name: Linters
 on: push
 jobs:
   ruff:
@@ -18,3 +18,6 @@ jobs:
 
       - name: Go-lint
         uses: golangci/golangci-lint-action@v3
+        with:
+          version: v1.54
+          working-directory: app_go
