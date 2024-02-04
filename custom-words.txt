@@ -1,7 +1,10 @@
-alertmanager
+actix
 Anson
+blazingly
+chrono
 clippy
 cxnrn
+datetime
 devcontainers
 Dockerization
 docstring
@@ -20,6 +23,8 @@ Promtail
 pycache
 pytest
 pytz
+rustfmt
+serde
 Snyk
 Snyk
 statefulset
