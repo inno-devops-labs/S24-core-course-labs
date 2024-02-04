@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moscow Time</title>
+    <script>
+        function updateTime() {
+            const moscowTimeOffset = 3;
+            let now = new Date(new Date().getTime() + moscowTimeOffset * 3600 * 1000);
+            document.getElementById('time').innerHTML = now.toUTCString().replace(" GMT", "");
+        }
+        setInterval(updateTime, 1000);
+    </script>
+</head>
+<body onload="updateTime()">
+    <h1>The current time in Moscow is: <span id="time">{{ time_in_moscow }}</span></h1>
+</body>
+</html>
