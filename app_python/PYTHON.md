@@ -16,5 +16,6 @@
 
 **Testing:** The application has been tested to ensure that the displayed time updates upon page refreshing. While the specific testing approach is not mentioned in the provided code, it is important to implement unit tests or integration tests to verify the functionality of the application.
 
-**Code Quality:** Following coding standards, modular organization, and code readability practices contribute to maintaining code quality. Pylint was used, code has been rated at 8.89/10
+**Code Quality:** Following coding standards, modular organization, and code readability practices contribute to maintaining code quality. Pylint was used, code has been rated at 10/10
+
 

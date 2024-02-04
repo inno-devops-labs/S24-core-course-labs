@@ -1,8 +1,6 @@
 """
 This is a Python web application that displays the current time in Moscow.
 """
-
-from datetime import datetime
 from flask import Flask, render_template
 from flask_moment import Moment
 
