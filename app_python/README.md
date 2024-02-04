@@ -28,7 +28,7 @@ This is a simple Flask web application that displays the current time in Moscow.
 2. Run the application:
 
     ```bash
-    python app.py
+    python app_python/app.py
     ```
 
 3. Open the web browser and navigate to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to see the current time in
@@ -45,7 +45,7 @@ This is a simple Flask web application that displays the current time in Moscow.
 2. Run the tests:
 
     ```bash
-    pytest
+    python app_python/tests/unit/test_moscow_time.py
     ```
 
 ## Author
