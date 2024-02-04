@@ -5,9 +5,10 @@ import zoneinfo
 
 app = FastAPI()
 
-# returns root page with current Moscow time
+
 async def get_root_page() -> str:
-    moscow_time = datetime.now(zoneinfo.ZoneInfo("Europe/Moscow")).strftime("%Y-%m-%d %H:%M:%S")
+    moscow_time = datetime.now(zoneinfo.ZoneInfo(
+        "Europe/Moscow")).strftime("%Y-%m-%d %H:%M:%S")
     html_content = f"""
     <html>
         <head>

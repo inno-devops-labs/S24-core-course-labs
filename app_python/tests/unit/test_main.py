@@ -5,6 +5,7 @@ from ...main import app
 
 client = TestClient(app)
 
+
 def test_read_main():
     response = client.get("/")
 
@@ -24,4 +25,3 @@ def test_read_main():
 
     assert moscow_time_prev != moscow_time_new
     assert "Current Moscow Time" in response.text
-
