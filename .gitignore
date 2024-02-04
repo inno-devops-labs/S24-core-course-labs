@@ -1,0 +1,4 @@
+app_python/venv/
+.idea
+.vscode
+.DS_Store
