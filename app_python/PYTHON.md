@@ -9,7 +9,7 @@ I used `Flask` framework for this task because:
 * it has a massive user base among the tech community;
 * it is lightweight and flexible.
 
-### Best practices applied:
+### Best practices applied
 
 * The code is formatted using `autopep8` formatter and is following `PEP8` standards;
 * all dependencies are installed using `venv` to avoid installation of Python packages globally;
