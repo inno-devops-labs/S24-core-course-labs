@@ -23,4 +23,4 @@ Unit tests are written using `pytest` testing framework
 
 All unit tests are located in `tests/unit` folder
 
-On every `push` and `pull_request` gh action runs Pytest with various python versions and operating systems
+On every `push` and `pull_request` gh action runs Pytest and flake8 with various python versions
