@@ -19,4 +19,4 @@ To start the server, run from `app_python` folder:
     go run server.go
 ```
 
-    
+Afterwards, this application will be available on `localhost:8080/`
