@@ -1,0 +1,64 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.15
+    hooks:
+      - id: ruff
+        args: [ --fix ]
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: check-added-large-files
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        types: [python]
+        always_run: true
+
+  - repo: https://github.com/streetsidesoftware/cspell-cli
+    rev: v8.3.0
+    hooks:
+      - id: cspell
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.39.0
+    hooks:
+      - id: markdownlint
+        exclude: 'lab.*'
+
+  - repo: local
+    hooks:
+      - id: cargo-test
+        name: Cargo test
+        entry: sh -c "cd app_rust && cargo test"
+        language: system
+        types: [rust]
+        always_run: true
+
+  - repo: local
+    hooks:
+      - id: rust-clippy
+        name: Cargo clippy
+        entry: sh -c "cd app_rust && cargo clippy"
+        language: system
+        types: [rust]
+        always_run: true
+
+  - repo: local
+    hooks:
+      - id: rust-fmt
+        name: Cargo fmt
+        entry: sh -c "cd app_rust && cargo fmt"
+        language: system
+        types: [rust]
+        always_run: true
