@@ -17,13 +17,13 @@ A simple ToDo List web application built with Node.js and Express.
    git clone -b lab01 https://github.com/bruteforceboy/S24-core-course-labs/
 2. Navigate to the project directory:
    ```bash 
-   cd app_javascript
+   cd S24-core-course-labs/app_javascript/
 3. Install dependencies:
    ```bash 
    npm install 
 4. Run the application: 
    ```bash 
-   npm start 
+   node app.js
    ```
    ![alt text](image.png)
 5. Running tests: 
