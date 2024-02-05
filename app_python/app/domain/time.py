@@ -23,8 +23,8 @@ class TimeManager:
         self._dump_format = config.dump_format
         self._timezone = config.timezone
 
-    async def time(self) -> datetime.datetime:
+    async def datetime(self) -> datetime.datetime:
         return datetime.datetime.now(tz=self._timezone)  # type: ignore
 
-    async def str_time(self) -> str:
-        return (await self.time()).strftime(self._dump_format)
+    async def str_datetime(self) -> str:
+        return (await self.datetime()).strftime(self._dump_format)
