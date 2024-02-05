@@ -4,13 +4,11 @@ FROM python:3.10-alpine3.19 as common-base
 # Define working directory for docker
 WORKDIR /code
 
-# Create a user and give user rights to work with required directories
-RUN adduser -D myuser && chown -R myuser /code
+# Create a user
+RUN adduser -D myuser
 
-RUN mkdir /install && chown -R myuser /install
-
-# Change docker user
-USER myuser
+# Make the directory
+RUN mkdir /install
 
 # Add to the path the bin of new user
 ENV PATH="$PATH:/home/myuser/.local/bin"
@@ -36,7 +34,9 @@ FROM common-base
 COPY --from=builder /install /usr/local
 
 # Copy the the app to the working directory
-COPY . /code/app_python
+COPY ./main.py /code/app_python/main.py
 
+# Change docker user
+USER myuser
 # Define entrypoint
 ENTRYPOINT ["uvicorn", "app_python.main:app", "--host", "0.0.0.0", "--port", "80"]

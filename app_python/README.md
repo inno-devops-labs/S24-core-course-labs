@@ -90,3 +90,35 @@ uvicorn app_python.main:app
 <!-- MARKDOWN LINKS & IMAGES -->
 [FastAPI]: https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi
 [FastAPI-url]: https://fastapi.tiangolo.com/
+
+## Docker
+
+### Build
+
+To build the container use the following command
+
+```bash
+docker build -t <NAME_OF_AN_IMAGE> app_python/
+```
+
+### Pull
+
+To pull an image from dockerhub use
+
+```bash
+docker pull zaqbez39me/s24-devops-labs:latest
+```
+
+### Run
+
+To run an application use
+
+```bash
+docker run -d --name <NAME_OF_CONTAINER> -p <PORT>:80 <NAME_OF_AN_IMAGE>
+```
+
+For example,
+
+```bash
+docker run -d --name fastapi-moscow-time -p 80:80 zaqbez39me/s24-devops-labs:latest
+```
