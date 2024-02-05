@@ -2,6 +2,8 @@
 
 This is a simple web application that displays the current time in Moscow. The application is developed using Python and Flask framework.
 
+![Screenshot](https://i.postimg.cc/XYVk7s95/image.png)
+
 ## Table of Contents
 
 - [Python App](#python-app)
@@ -9,6 +11,7 @@ This is a simple web application that displays the current time in Moscow. The a
   - [Installation](#installation)
     - [Requirements](#requirements)
     - [Installation Steps](#installation-steps)
+    - [Docker](#docker)
   - [Development](#development)
     - [Notes](#notes)
 
@@ -54,7 +57,29 @@ flask run
 
 The application will be available at [localhost:5000](http://localhost:5000/)
 
-![Screenshot](https://i.postimg.cc/XYVk7s95/image.png)
+### Docker
+
+It is possible to either build the Docker image from the Dockerfile or pull the image from the Docker Hub.
+
+To build the image, use the following command:
+
+```bash
+docker build -t app_python . # Build the image
+```
+
+To pull the image from the Docker Hub, use the following command:
+
+```bash
+docker pull pptx704/app_python:latest # Pull the image
+```
+
+After building or pulling the image, the container can be run with the following command:
+
+```bash
+docker run -p 5000:5000 app_python
+```
+
+The application will be available at [localhost:5000](http://localhost:5000/)
 
 ## Development
 
