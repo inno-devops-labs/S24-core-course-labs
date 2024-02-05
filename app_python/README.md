@@ -11,9 +11,12 @@ This Python web application displays the current time in Moscow.
 
 ## How to Run the Program
 
-1. **Install Dependencies:**
+1. **Clone Repository:** 
+   ```bash 
+   git clone -b lab01 https://github.com/bruteforceboy/S24-core-course-labs/
+2. **Install Dependencies:**
 
-   Ensure you have Python installed on your machine. You can install project dependencies using the following command:
+   Ensure you have Python installed on your machine. You can install project dependencies using the following command, under `/app_python`:
    ```bash
    pip install -r requirements.txt
 2. **Running the Flask Application:** 
