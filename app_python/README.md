@@ -1,8 +1,32 @@
-- This is the readme file for the python web application that shows moscow time. To run it, you need to first check requirements.txt and download necessary packages. 
-- To run the program in Microsoft, Linux or MacOS, run the comment below on terminal:
-```bash
-    python3 app.py
-```
-- Then you can open the website by entering http://127.0.0.1:5000
+# Moscow Time Web App 🌍🕒
 
-- (Note: You need to be in appropriate path.)
+Welcome to the Moscow Time Web Application! This Python-based web app elegantly displays the current Moscow time. Before running the application, make sure to check and install the required packages listed in `requirements.txt`.
+
+## How to Run
+
+Follow these simple steps to get the Moscow Time Web App up and running on your Microsoft, Linux, or MacOS system:
+
+1. **Check Requirements:**
+   Before diving in, ensure you have all the necessary packages installed. You can quickly install them by running the following command in your terminal:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2. **Run the Program:**
+   Once the requirements are set, fire up the application by running the following command in your terminal:
+
+    ```bash
+    python3 app.py
+    ```
+
+3. **Access the Website:**
+   After successfully running the program, open your preferred web browser and enter the following URL:
+
+    ```
+    http://127.0.0.1:5000
+    ```
+
+   Voila! You're now in sync with Moscow time.
+
+**Note:** Ensure you are in the correct path before running the application to experience Moscow time seamlessly. Enjoy your time-traveling journey! ⏰✨
