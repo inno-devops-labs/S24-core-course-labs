@@ -22,7 +22,6 @@ h1 {
     color: #007bff;
 }
 
-/* Optional: Add some responsive styling for smaller screens */
 @media (max-width: 600px) {
     h1 {
         font-size: 20px;
