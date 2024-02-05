@@ -32,6 +32,7 @@ The project was developed using Python's Flask framework because it is lightweig
 
 - Unit tests, in the `tests` folder and specifically in `test_flask_app.py`.
 - Ensures proper functionality.
+\
 ![unit testing image](image-2.png)
 
 ## Testing Structure:
