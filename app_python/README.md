@@ -16,7 +16,7 @@ This Python web application displays the current time in Moscow.
    Ensure you have Python installed on your machine. You can install project dependencies using the following command:
    ```bash
    pip install -r requirements.txt
-2. **Run the Flask Application:** 
+2. **Running the Flask Application:** 
 
 	Navigate to /app_python and execute the following commands:
    ```bash
@@ -25,9 +25,10 @@ This Python web application displays the current time in Moscow.
    flask run
    ```
    Can be displayed by visiting [localhost:5000](127.0.0.1/5000)
+   \
    ![alt text](image-1.png)
 
-3. **Run Unit Tests:**
+3. **Running Unit Tests:**
 
 	Navigate to /app_python and execute the following command:
    ```bash
