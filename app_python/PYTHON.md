@@ -6,7 +6,7 @@
 
 - The project follows a modular structure to enhance maintainability.
 - Each component, such as routes, templates, and static files, is organized into separate directories.
-
+- As for the naming convention, 'lower_with_under' and 4 spaces as indentation has used.  
 ### 2. PEP 8 Compliance
 
 - The Python code adheres to PEP 8 coding standards for readability and consistency. VS Code has been used.
@@ -27,10 +27,13 @@ There are no automated tests, however it is assured that program is working via 
 
 ## README.md in app_python Folder
 
+Proper readme file has provided.
+
 ### Project Overview
 
 Provide a brief overview of the Python web application, its purpose, and features.
-This app developed on Python3 and html. We used Flask framework as our web application. Its purpose is showing the time in Moscow, Russia. It is not dependent on the devices' timezone, It always shows the Moscow time and update itself automatically every second. For more readibility we used styling.  
+This app developed on Python3 and html. We used Flask framework as our web application. Its purpose is showing the time in Moscow, Russia. It is not dependent on the devices' timezone, It always shows the Moscow time and update itself automatically every second. For more readibility we used styling. 
+ 
 ### Installation
 Download the file, then run python file by 
 ```bash
