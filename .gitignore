@@ -1,0 +1,35 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+ENV/
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.bak
+
+# Compiled Python files
+*.pyc
+
+# Dependencies
+/.venv
+/vendor/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
