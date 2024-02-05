@@ -26,6 +26,8 @@ Also, some of tools also run during pre-commit phase.
 
 ### Testing
 
+There are 2 main classes of tests: unit + service. You run all together with `make tests`.
+
 
 ### Develop process
 
