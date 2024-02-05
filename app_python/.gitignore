@@ -1,0 +1,26 @@
+# Exclude Python bytecode files
+*.pyc
+__pycache__/
+
+# Exclude environment-specific files
+.env
+
+# Exclude generated files and directories
+*.pyo
+*.pyc
+*.pyd
+__pycache__/
+
+# Exclude system files
+.DS_Store
+Thumbs.db
+
+# Exclude virtual environment
+venv/
+
+# Exclude any compiled Python files
+*.pyc
+*.pyo
+
+# Exclude local environment files
+.python-version
