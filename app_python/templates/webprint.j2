@@ -1,0 +1,8 @@
+{% extends "base.j2" %}
+{% block title %}WebPrint{% endblock %}
+{% block content %}
+<div class="paper container">
+    <h1>{{title or "Here is WebPrint!"}}</h1>
+    <p class="text-lead">{{text}}</p>
+</div>
+{% endblock %}
