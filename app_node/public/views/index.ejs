@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Random Pokemon Info</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Pokemon Information</h1>
+        <h2>Name: <%= pokemonData.name %></h2>
+        <img src="<%= pokemonData.sprites.front_default %>" alt="<%= pokemonData.name %>">
+        <p>Height: <%= pokemonData.height %> decimetres</p>
+        <p>Weight: <%= pokemonData.weight %> hectograms</p>
+        <p>Types: <%= pokemonData.types.map(type => type.type.name).join(', ') %></p>
+        <p>Abilities: <%= pokemonData.abilities.map(ability => ability.ability.name).join(', ') %></p>
+    </div>
+</body>
+</html>
