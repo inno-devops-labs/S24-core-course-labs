@@ -1,25 +1,4 @@
 # Lab 1
-### Overview
-This the Python web application that displays the current time in Moscow. This web application is based on FastAPI 
-and ntplib for correct time ensurance.
-### Local installation details
-#### Prerequisites
-For local installation you should ensure that you have installed the python 3.10+ on your system.
-#### Installation
-First, you should install the virtualenv for you project and activate it.
-```bash
-python -m venv venv
-source venv/bin/activate
-```
-Second, install the requirements for the project using following command:
-```bash
-pip install -r requirements.txt
-```
-Third, run the project using following command:
-```bash
-uvicorn app_python.main:app
-```
-
 
 ### Framework choice
 
