@@ -1,3 +1,7 @@
+"""
+Web app setup
+"""
+
 import typing as t
 
 from app.api.time import router as time_router
@@ -8,6 +12,7 @@ from fastapi import FastAPI
 def create_start_app_handler(
     app: FastAPI
 ) -> t.Callable[[], t.Coroutine[None, None, None]]:
+    """On startup event function"""
     async def start_app() -> None:
         time_manager_config = TimeManagerConfig()
 
@@ -18,6 +23,7 @@ def create_start_app_handler(
 
 
 def get_application() -> FastAPI:
+    """Get FastAPI web application"""
     application = FastAPI(
         title='DevOps Labs',
         version='1.0',
