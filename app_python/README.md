@@ -34,4 +34,4 @@ Contributions to enhance the functionality of the application are welcome. To co
 
 ## License
 
-The project is licensed under an MIT license. This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
+The project is licensed under an [MIT license](LICENSE). This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
