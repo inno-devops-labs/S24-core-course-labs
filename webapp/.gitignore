@@ -1,0 +1,43 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Caches
+*.cache/
+
+# Logs
+*.log
+
+# Local development settings
+*.env
+
+# Database files
+db.sqlite3
+
+# Static files
+/static/
+
+# Media files
+/media/
+
+# Virtual environment
+venv/
+.env/
+
+# Compiled Python bytecode
+*.pyc
+
+# macOS
+.DS_Store
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# Temporary files
+*.swp
+*.swo
+*~
+*.bak
