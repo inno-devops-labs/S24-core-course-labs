@@ -31,7 +31,5 @@ The project structure is as follows:
     ```bash
     python3 app.py
     ```
-   
-
 
 5. Access the application in your web browser at `http://127.0.0.1:5000/`.

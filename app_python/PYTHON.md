@@ -9,10 +9,9 @@ I chose to use the Flask framework for this Python web application for the follo
 - **Suitability**: For a simple web application like displaying the current time in Moscow, Flask provides all the necessary features without unnecessary complexity.
 
 ## Additional Notes
+
 - The application displays the current time in Moscow by utilizing the `pytz` library to handle time zones.
 - The code follows best practices and coding standards recommended for Flask applications.
-
-# Best Practices and Code Quality in the Python Web Application
 
 ## Best Practices Applied
 
