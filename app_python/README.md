@@ -14,14 +14,18 @@ This Python web application displays the current time in Moscow.
 1. **Clone Repository:** 
    ```bash 
    git clone -b lab01 https://github.com/bruteforceboy/S24-core-course-labs/
-2. **Install Dependencies:**
 
-   Ensure you have Python installed on your machine. You can install project dependencies using the following command, under `S24-core-course-labs/app_python`:
+2. Navigate to the project directory:
+   ```bash 
+   cd S24-core-course-labs/app_python/
+3. **Install Dependencies:**
+
+   Ensure you have Python installed on your machine. You can install project dependencies using the following command:
    ```bash
    pip install -r requirements.txt
-2. **Running the Flask Application:** 
+4. **Running the Flask Application:** 
 
-	Navigate to `S24-core-course-labs/app_python` and execute the following commands:
+	Execute the following commands:
    ```bash
    export FLASK_APP=app.routes	
    export FLASK_ENV=development
@@ -31,8 +35,8 @@ This Python web application displays the current time in Moscow.
    \
    ![alt text](image-1.png)
 
-3. **Running Unit Tests:**
+5. **Running Unit Tests:**
 
-	Navigate to `S24-core-course-labs/app_python` and execute the following command:
+   Execute the following command:
    ```bash
 	python3 -m unittest tests.test_flask_app.FlaskAppTest
