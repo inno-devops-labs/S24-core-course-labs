@@ -2,10 +2,6 @@
 
 This is a Python web application built using the Flask framework to display the current time in Moscow.
 
-## Structure
-
-The project structure is as follows:
-
 ## Usage
 
 1. Clone the repository:
