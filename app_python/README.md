@@ -18,7 +18,7 @@ This Python web application displays the current time in Moscow.
    pip install -r requirements.txt
 2. **Running the Flask Application:** 
 
-	Navigate to /app_python and execute the following commands:
+	Navigate to `/app_python` and execute the following commands:
    ```bash
    export FLASK_APP=app.routes	
    export FLASK_ENV=development
@@ -30,6 +30,6 @@ This Python web application displays the current time in Moscow.
 
 3. **Running Unit Tests:**
 
-	Navigate to /app_python and execute the following command:
+	Navigate to `/app_python` and execute the following command:
    ```bash
 	python3 -m unittest tests.test_flask_app.FlaskAppTest
