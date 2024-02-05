@@ -1,0 +1,16 @@
+flake8==7.0.0
+pylint==3.0.3
+isort==5.13.2
+refurb==1.28.0
+pyright==1.1.349
+
+pydantic==2.6.0
+pydantic-settings==2.1.0
+fastapi==0.109.1
+pytz==2024.1
+
+uvicorn==0.27.0.post1
+
+pytest==8.0.0
+
+pre-commit==3.6.0
