@@ -35,7 +35,7 @@ Provide a brief overview of the Python web application, its purpose, and feature
 This app developed on Python3 and html. We used Flask framework as our web application. Its purpose is showing the time in Moscow, Russia. It is not dependent on the devices' timezone, It always shows the Moscow time and update itself automatically every second. For more readibility we used styling. 
  
 ### Installation
-Download the file, then run python file by 
+Download the folder, then run python file by 
 ```bash
 python3 app.py
 ```
