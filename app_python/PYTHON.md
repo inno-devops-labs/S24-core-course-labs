@@ -27,7 +27,7 @@ There are no automated tests, however it is assured that program is working via 
 
 ## README.md in app_python Folder
 
-Proper readme file has provided.
+Proper readme file has provided with all information needed.
 
 ### Project Overview
 
