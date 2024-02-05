@@ -7,14 +7,13 @@ run:
 	. venv/bin/activate; bash start.sh
 
 test:
-	. venv/bin/activate; pytest -W ignore::DeprecationWarning
+	. venv/bin/activate; PYTHONPATH=. pytest tests -W ignore::DeprecationWarning
 
 format:
 	( \
 		. venv/bin/activate; \
 		flake8 app; \
 		pylint app; \
-		pylint tests; \
 		isort app; \
 		refurb app; \
 	)
