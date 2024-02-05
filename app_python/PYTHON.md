@@ -14,10 +14,10 @@
     3. proper variables names;
     4. proper documentation: I wrote documentation for all functions;
     5. virtual environment usage;
-    6. testing: I implemented several [tests](https://github.com/SokolOFFF/S24-DevOps/blob/lab01/app_python/PYTHON.md#testing) to test the whole app;
+    6. testing: I implemented several [tests](https://github.com/SokolOFFF/S24-Devops-core-course-labs/blob/lab01/app_python/PYTHON.md#testing) to test the whole app;
     7. proper project structure: `src/` for codes, `tests/` for test;
     8. use of `requirements.txt` and `.gitignore` files in the development;
-    9. [linter](https://github.com/SokolOFFF/S24-DevOps/blob/lab01/app_python/PYTHON.md#linter) usage;
+    9. [linter](https://github.com/SokolOFFF/S24-Devops-core-course-labs/blob/lab01/app_python/PYTHON.md#linter) usage;
     10. proper commits names.
 
 * ## Testing
