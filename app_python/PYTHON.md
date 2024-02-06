@@ -26,3 +26,9 @@ framework creates API documentation automatically from code.
 2. Additional information of API inside code
 (`tags` in `APIRouter`, `response_model` in `API`, etc.).
 This information allows `FastAPI` to describe API documentation.
+
+### Testing
+
+Testing performed by using `pytest` and `pytest-time` for `time.sleep()`.
+Test is written in a way that time requested from webapp two times
+with 10 seconds pause. Then compare time after pause with calculated predicted time.
