@@ -1,0 +1,6 @@
+.idea
+mvnw
+mvnw.cmd
+metrics.iml
+target
+src/main/resources/mailing.properties
