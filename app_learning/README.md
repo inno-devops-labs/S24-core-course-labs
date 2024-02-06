@@ -28,7 +28,7 @@ Clone the repository and build the project:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Ejedavy/llime-learning.git
+git clone https://github.com/Ejedavy/S24-core-course-labs.git
 
 # Navigate to the project directory
 cd S24-core-course-labs && cd app_learning
