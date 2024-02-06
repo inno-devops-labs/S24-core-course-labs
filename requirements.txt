@@ -1,0 +1,4 @@
+pytz~=2023.3.post1
+Flask~=3.0.1
+pytest~=8.0.0
+pylint~=3.0.3
