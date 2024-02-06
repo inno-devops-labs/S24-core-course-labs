@@ -20,3 +20,31 @@ To start the server, run from `app_python` folder:
 ```
 
 Afterwards, this application will be available on `localhost:8080/`
+
+## Docker
+
+This application can be containerized with docker.
+
+### Build or Pull
+
+You can build a container by running:
+
+```bash
+docker build -t <TAG> app_python/
+```
+
+Or you can pull existing container from Docker Hub:
+
+```bash
+docker pull ramprin/devops:go
+```
+
+### Run
+
+In order to run container use the following command:
+
+```bash
+docker run -p 80:8080 ramprin/devops:go
+```
+
+After this, your application will be available on <http://localhost>
