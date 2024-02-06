@@ -64,13 +64,13 @@ It is possible to either build the Docker image from the Dockerfile or pull the 
 To build the image, use the following command:
 
 ```bash
-docker build -t app_python . # Build the image
+docker build -t app_python .
 ```
 
 To pull the image from the Docker Hub, use the following command:
 
 ```bash
-docker pull pptx704/app_python:latest # Pull the image
+docker pull pptx704/app_python:latest
 ```
 
 After building or pulling the image, the container can be run with the following command:
