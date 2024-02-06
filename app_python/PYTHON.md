@@ -53,7 +53,7 @@ While testing is not demonstrated in the provided code, it was done manually.
 The code includes docstrings and comments to provide explanations for functions, classes, and any non-obvious code sections. This helps improve code readability and assists others in understanding the purpose and logic of the code. Additionally, providing instructions for setup and usage in a README file or inline comments is considered a best practice.
 
 ### Code writing standard
-The code was written according to PEP8 standard. Code received 90% quality [on this service](https://www.pythonchecker.com/) 
+The code was written according to PEP8 standard. Code received 84% quality [on this service](https://www.pythonchecker.com/) 
 
 ### Git Ignore
 The code does not include a `.gitignore` file, but it's a good practice to use one to exclude unnecessary files from version control.

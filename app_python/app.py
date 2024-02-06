@@ -28,7 +28,7 @@ import logging
 app = Flask(__name__)
 
 # Configure logging
-logging.basicConfig(filename = 'app.log', level = logging.DEBUG)
+logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
 
 @app.route('/')
@@ -46,7 +46,7 @@ def display_moscow_time():
 
         # Set the timezone to Moscow
         moscow_tz = pytz.timezone('Europe/Moscow')
-        moscow_time = utc_now.replace(tzinfo = pytz.utc).astimezone(moscow_tz)
+        moscow_time = utc_now.replace(tzinfo=pytz.utc).astimezone(moscow_tz)
 
         # Format the time as a string
         formatted_time = moscow_time.strftime('%Y-%m-%d %H:%M:%S')
@@ -55,7 +55,7 @@ def display_moscow_time():
         logging.info('Moscow time retrieved successfully.')
 
         # Render the template with the formatted time
-        return render_template('index.html', moscow_time = formatted_time)
+        return render_template('index.html', moscow_time=formatted_time)
 
     except Exception as e:
         # Log the error if an exception occurs
@@ -64,4 +64,4 @@ def display_moscow_time():
 
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug=True)
