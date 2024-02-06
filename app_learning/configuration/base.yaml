@@ -1,0 +1,12 @@
+application:
+  port: 8000
+  host: 0.0.0.0
+  service_name: "neauralearn"
+  exporter_url: "http://localhost:7281"
+database:
+  host: "127.0.0.1"
+  port: 5432
+  username: "postgres"
+  password: "password"
+  database_name: "neuralearn"
+  require_ssl: false

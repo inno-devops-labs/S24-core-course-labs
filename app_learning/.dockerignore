@@ -1,0 +1,13 @@
+.env
+.dockerignore
+spec.yaml
+target/
+deploy/
+tests/
+Dockerfile
+scripts/
+migrations/
+databases/
+qwdata/
+grafana-storage/
+postgres.yaml

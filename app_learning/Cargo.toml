@@ -1,0 +1,41 @@
+[package]
+name = "learning-rust"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+path = "src/main.rs"
+name = "learning-rust"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+log = "0.4.20"
+actix-web = "4"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+serde = "1.0.115"
+config = { version = "0.13", default-features = false, features = ["yaml"] }
+sqlx = { version = "0.7", default-features = false, features = ["runtime-tokio-rustls", "macros", "postgres", "uuid", "chrono", "migrate"] }
+uuid = { version = "1", features = ["serde", "v4"] }
+chrono = { version = "0.4.22", default-features = false, features = ["clock", "serde"] }
+tracing = { version = "0.1.19", features = ["log"] }
+tracing-subscriber = { version = "0.3", features = ["registry", "env-filter"] }
+tracing-bunyan-formatter = "0.3.1"
+tracing-log = "0.1.1"
+serde_json = "1.0"
+serde-aux = "4"
+tracing-actix-web = "0.7"
+tracing-opentelemetry = "0.19.0"
+secrecy = { version = "0.8", features = ["serde"] }
+opentelemetry = { version = "0.19.0", default-features = false, features = ["trace", "rt-tokio"] }
+opentelemetry-otlp = { version = "0.12.0", features = ["reqwest-client", "reqwest-rustls", "http-proto"] }
+opentelemetry-semantic-conventions = "0.11.0"
+
+
+
+[dev-dependencies]
+reqwest = { version = "0.11", features = ["json"] }
+once_cell = "1.7.2"
