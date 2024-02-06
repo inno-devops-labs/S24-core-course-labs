@@ -56,5 +56,4 @@ The code includes docstrings and comments to provide explanations for functions,
 The code was written according to PEP8 standard. Code received 84% quality [on this service](https://www.pythonchecker.com/) 
 
 ### Git Ignore
-The code does not include a `.gitignore` file, but it's a good practice to use one to exclude unnecessary files from version control.
-
+The code includes a `.gitignore` file, it's a good practice to use one to exclude unnecessary files from version control.
