@@ -22,8 +22,6 @@ app.get('/', (req, res) => {
     }
 });
 
-// your routes here
-
 app.listen(port, function () {
     console.log(`Server is running on port ${port}`);
 });
