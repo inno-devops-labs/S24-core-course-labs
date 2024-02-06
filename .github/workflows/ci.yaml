@@ -53,6 +53,7 @@ jobs:
         run: |
           cargo sqlx prepare --workspace --check
       - name: Run tests
+        if: steps.filter.outputs.changes == 'true'
         run: cargo test
 
   fmt:
