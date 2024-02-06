@@ -2,6 +2,8 @@
 
 This is a simple web application that displays the current time in Moscow. The application is developed using typescript and Bun is used as the runtime.
 
+![Screenshot](https://i.postimg.cc/XYVk7s95/image.png)
+
 ## Table of Contents
 
 - [Bun App](#bun-app)
@@ -9,6 +11,7 @@ This is a simple web application that displays the current time in Moscow. The a
   - [Installation](#installation)
     - [Requirements](#requirements)
     - [Installation Steps](#installation-steps)
+    - [Docker](#docker)
   - [Development](#development)
 
 ## Installation
@@ -42,6 +45,30 @@ bun install
 ```bash
 bun build ./entry.ts --outdir ./out
 bun run ./out/entry.js
+```
+
+The application will be available at [localhost:3000](http://localhost:3000/)
+
+### Docker
+
+It is possible to either build the Docker image from the Dockerfile or pull the image from the Docker Hub.
+
+To build the image, use the following command:
+
+```bash
+docker build -t app_bun .
+```
+
+To pull the image from the Docker Hub, use the following command:
+
+```bash
+docker pull pptx704/app_bun:latest
+```
+
+After building or pulling the image, the container can be run with the following command:
+
+```bash
+docker run -p 3000:3000 app_bun
 ```
 
 The application will be available at [localhost:3000](http://localhost:3000/)
