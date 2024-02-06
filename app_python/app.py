@@ -21,7 +21,7 @@ Note:
 """
 
 from flask import Flask, render_template
-from datetime import datetime, timedelta
+from datetime import datetime
 import pytz
 import logging
 
