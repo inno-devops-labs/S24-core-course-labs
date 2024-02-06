@@ -1,0 +1,35 @@
+.container {
+    color: whitesmoke;
+    border: 3px solid rgba(252, 193, 255, 0.75);
+    background: #1f1f1f;
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    width: 40%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.time {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 27px;
+    position: relative;
+    vertical-align:middle;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #222;
+}
+
+.galaxy-wrapper {
+  background-blend-mode: overlay;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}

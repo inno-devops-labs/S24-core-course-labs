@@ -1,0 +1,38 @@
+## Overview
+Minimalistic Python web application that shows current Moscow time
+![](https://i.imgur.com/MLmOJsR.png)
+## Installation Instructions
+
+### Installation
+1. Clone the source code from this GitHub repository (ensure using the correct branch `lab1`):
+    ```sh
+    $ git clone -b lab1 https://github.com/sabonlise/S24-core-course-labs
+    ```
+2. Create new virtual environment:
+    ```sh
+    $ cd app_python
+    $ python -m venv venv
+    ```
+3. Active the virtual environment:
+    ```sh
+    $ source venv/bin/activate
+    ```
+4. Install required Python packages from `requirements.txt`:
+   ```sh
+   (venv) $ pip install -r requirements.txt
+   ```
+
+
+### Running the Application
+Serve the Flask application:
+```sh
+(venv) $ flask --app app run
+```
+Navigate to `http://127.0.0.1:5000` in your favorite web browser to access the service
+
+
+## Testing
+You can run the tests with the following command:
+```sh
+(venv) $ python -m pytest -v
+```
