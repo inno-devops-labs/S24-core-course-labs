@@ -24,4 +24,4 @@ With permission of professor, the app testing was done by manually checking and 
 
 ## Code quality
 
-Code formatting was done using `Black` formatter, which assured the quality.
+Code formatting was done using `Black` formatter, which assured the readability. The code quality was assured by using the best practices desribed above, the fault tolerance is achieved by the error handling.
