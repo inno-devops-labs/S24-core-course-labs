@@ -1,0 +1,6 @@
+ktor:
+  application:
+    modules:
+      - time.moscow.ApplicationKt.module
+  deployment:
+    port: 8000

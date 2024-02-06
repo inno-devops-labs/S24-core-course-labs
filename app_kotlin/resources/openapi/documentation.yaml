@@ -1,0 +1,8 @@
+openapi: "3.0.3"
+info:
+  title: "app_kotlin API"
+  description: "app_kotlin API"
+  version: "1.0.0"
+servers:
+- url: "https://app_kotlin"
+paths: {}
