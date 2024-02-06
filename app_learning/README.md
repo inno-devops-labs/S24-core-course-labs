@@ -53,11 +53,18 @@ Run the program with:
 cargo run
 ```
 
+[![Local Host Application](https://i.postimg.cc/3N7xYPhg/image.png)](https://postimg.cc/k61myYB4)
+
 Run tests with:
 
 ```bash
 cargo test
 ```
+
+## Observability and Logging
+[![QuickWit](https://i.postimg.cc/C5VCH645/image.png)](https://postimg.cc/ygvS7jtC)
+[![Jaegar](https://i.postimg.cc/9X6X1HTJ/image.png)](https://postimg.cc/vDvdHj0V)
+[![Grafana](https://i.postimg.cc/63KLCmc3/image.png)](https://postimg.cc/FfPL4G25)
 
 ## Contributing
 
