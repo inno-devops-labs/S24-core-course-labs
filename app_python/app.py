@@ -8,7 +8,7 @@ app = Flask(__name__)
 def template():
     return render_template(
         'index.html', 
-        time=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=3))).strftime('%d.%m.%y %H:%M')
+        time=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=3))).strftime('%d.%m.%y %H:%M:%S')
     )
 
 if __name__ == '__main__':
