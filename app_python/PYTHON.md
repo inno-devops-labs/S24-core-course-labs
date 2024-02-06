@@ -25,6 +25,7 @@ The project was developed using Python's Flask framework because it is lightweig
 ## Documentation:
 
 - A comprehensive `README.md` that contains instructions on running the project.
+- The `README.md` also contains images. 
 
 # Testing and Code Quality:
 
