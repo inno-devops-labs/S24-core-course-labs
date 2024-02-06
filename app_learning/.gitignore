@@ -1,0 +1,8 @@
+/target
+.idea
+tags
+*.log
+/databases
+qwdata/
+grafana-storage/
+postgres.yaml

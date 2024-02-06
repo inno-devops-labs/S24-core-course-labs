@@ -1,0 +1,5 @@
+application:
+  host: 0.0.0.0
+  exporter_url: "http://localhost:7281"
+database:
+  require_ssl: true

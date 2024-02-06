@@ -1,0 +1,55 @@
+
+# docker-compose.yaml
+version: '3'
+
+networks:
+  tracing:
+    driver: bridge
+
+services:
+  quickwit:
+    image: quickwit/quickwit:latest
+    networks:
+      - tracing
+    command: run
+    restart: always
+    environment:
+      QW_ENABLE_OTLP_ENDPOINT: true 
+      QW_ENABLE_JAEGER_ENDPOINT: true 
+      QW_ENABLE_GRAFANA_ENDPOINT: true
+    ports:
+      - '7280:7280'
+      - '7281:7281'
+    volumes:
+      - ./qwdata:/quickwit/qwdata
+
+  jaeger:
+    image: jaegertracing/jaeger-query:latest
+    networks:
+      - tracing
+    restart: always
+    depends_on:
+      - quickwit
+    environment:
+      SPAN_STORAGE_TYPE: 'grpc-plugin'
+      GRPC_STORAGE_SERVER: 'quickwit:7281'
+    ports:
+      - '16686:16686'
+
+  grafana:
+    image: grafana/grafana-enterprise:latest
+    networks:
+      - tracing
+    restart: always
+    user: root
+    depends_on:
+      - quickwit
+    environment:
+      GF_INSTALL_PLUGINS: 'quickwit-quickwit-datasource'
+      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: 'quickwit-quickwit-datasource'
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./grafana-storage:/var/lib/grafana
+
+
