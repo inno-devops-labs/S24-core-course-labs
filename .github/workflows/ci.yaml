@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: app_busted
+        working-directory: app_rust
     services:
       postgres:
         image: postgres:14
@@ -29,8 +29,8 @@ jobs:
         id: filter
         with:
           filters: |
-            app_busted:
-              - 'app_busted/**'
+            app_rust:
+              - 'app_rust/**'
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
         with:
@@ -61,15 +61,15 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: app_busted
+        working-directory: app_rust
     steps:
       - uses: actions/checkout@v3
       - uses: dorny/paths-filter@v2
         id: filter
         with:
           filters: |
-            app_busted:
-              - 'app_busted/**'
+            app_rust:
+              - 'app_rust/**'
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
@@ -82,7 +82,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: app_busted
+        working-directory: app_rust
     services:
       postgres:
         image: postgres:14
@@ -98,8 +98,8 @@ jobs:
         id: filter
         with:
           filters: |
-            app_busted:
-              - 'app_busted/**'
+            app_rust:
+              - 'app_rust/**'
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
@@ -128,7 +128,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: app_busted
+        working-directory: app_rust
     services:
       postgres:
         image: postgres:14
@@ -145,8 +145,8 @@ jobs:
         id: filter
         with:
           filters: |
-            app_busted:
-              - 'app_busted/**'
+            app_rust:
+              - 'app_rust/**'
       - uses: dtolnay/rust-toolchain@stable
       - name: Install libpq
         if: steps.filter.outputs.changes == 'true'
