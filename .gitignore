@@ -1,0 +1,4 @@
+# Created by pytest automatically.
+app_python/.pytest_cache
+app_python/.env
+.idea
