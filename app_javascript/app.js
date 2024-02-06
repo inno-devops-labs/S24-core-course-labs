@@ -5,7 +5,6 @@ const path = require('path');
 
 const ejs = require('ejs');
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
