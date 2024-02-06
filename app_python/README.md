@@ -44,3 +44,9 @@ To enter the application page just open in your browser
 ```bash
 http://127.0.0.1:5000
 ```
+
+## File Structure
+
+- `PYTHON.md`: Contains the breif explanation of best practicies.
+- `requirenments.txt`: Contains all dependencies
+- `time_zone.py`: Contains python code with Flask server and timezone of Moscow getting.
