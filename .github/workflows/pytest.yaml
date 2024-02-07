@@ -1,5 +1,8 @@
 name: Pytest
-on: push
+on:
+  push:
+    paths:
+      - 'app_python/*'
 jobs:
     testing:
         runs-on: ubuntu-latest
@@ -22,3 +25,11 @@ jobs:
               run: |    
                 cd app_python
                 pytest .
+
+            - name: Docker Login
+              run: |
+                docker login --username {{secrets.DOCKER_USERNAME}} --password {{secrets.DOCKER_PASSWORD}}
+            
+            - name: Build & Push
+              run: |
+                docker build -t ramprin/devops:python ./app_python/ && docker push ramprin/devops:python
