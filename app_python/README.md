@@ -53,4 +53,3 @@ After this, your application will be available on <http://localhost>
 
 ![example workflow](https://github.com/RamPrin/DevOps-S24/actions/workflows/pytest.yaml/badge.svg)
 
-Added GitHub Actions Workflows

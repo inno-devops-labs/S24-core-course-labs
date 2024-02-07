@@ -10,8 +10,9 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
               with:
-                sparce-checkout: 'app_python/'
-          
+                sparse-checkout: 'app_python/'
+                sparse-checkout-cone-mode: false
+
             - name: Install Python
               uses: actions/setup-python@v4
               with:
