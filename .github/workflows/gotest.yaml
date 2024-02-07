@@ -25,6 +25,9 @@ jobs:
               run: |
                 docker login --username {{secrets.DOCKER_USERNAME}} --password {{secrets.DOCKER_PASSWORD}}
             
-            - name: Build & Push
-              run: |
-                docker build -t ramprin/devops:go ./app_go/ && docker push ramprin/devops:go
+            - name: Run Snyk to check for vulnerabilities
+              uses: snyk/actions/node@master
+              env:
+                SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+              with:
+                  command: monitor

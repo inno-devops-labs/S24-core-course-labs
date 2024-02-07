@@ -9,7 +9,8 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v3
-            
+              with:
+                working-directory: ./app_python
             - name: Install Python
               uses: actions/setup-python@v4
               with:
@@ -17,13 +18,11 @@ jobs:
 
             - name: Install dependencies with pytest
               run: |
-                cd app_python
                 pip install -r requirements.txt
                 pip install pytest
             
             - name: Pytest
               run: |    
-                cd app_python
                 pytest .
 
             - name: Docker Login
@@ -32,4 +31,11 @@ jobs:
             
             - name: Build & Push
               run: |
-                docker build -t ramprin/devops:python ./app_python/ && docker push ramprin/devops:python
+                docker build -t ramprin/devops:python ./ && docker push ramprin/devops:python
+
+            - name: Snyk
+              uses: snyk/actions/node@master
+              env:
+                SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+              with:
+                command: monitor
