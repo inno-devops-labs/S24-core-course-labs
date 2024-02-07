@@ -9,5 +9,3 @@ I decided to use Vue Framework because it utilizes a virtual DOM, promotes the c
 ### Coding Standards
 
 - Use ESLint to enforce coding standards
-
-### Unit tests
