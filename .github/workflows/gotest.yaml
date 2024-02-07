@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'app_go/*'
+  workflow_dispatch:
 jobs:
     testing:
         runs-on: ubuntu-latest
@@ -24,10 +25,23 @@ jobs:
             - name: Docker Login
               run: |
                 docker login --username {{secrets.DOCKER_USERNAME}} --password {{secrets.DOCKER_PASSWORD}}
-            
-            - name: Run Snyk to check for vulnerabilities
-              uses: snyk/actions/node@master
-              env:
-                SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-              with:
-                  command: monitor
+    syk: 
+      runs-on: ubuntu-latest
+      steps:
+        - name: Chekcout
+          uses: actions/checkout@v3
+          with:
+            sparse-checkout: 'app_go/'
+            sparse-checkout-cone-mode: false
+
+        - name: Move Files
+          run:
+            mv ./app_go/* ./
+            rm -rf ./app_go
+
+        - name: Run Snyk to check for vulnerabilities
+          uses: snyk/actions/node@master
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          with:
+              command: monitor

@@ -3,15 +3,13 @@ on:
   push:
     paths:
       - 'app_python/*'
+  workflow_dispatch:
 jobs:
     testing:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v3
-              with:
-                sparse-checkout: 'app_python/'
-                sparse-checkout-cone-mode: false
 
             - name: Install Python
               uses: actions/setup-python@v4
@@ -19,11 +17,13 @@ jobs:
                 python-version: '3.11.5'
 
             - name: Install dependencies with pytest
+              working-directory: ./app_python
               run: |
                 pip install -r requirements.txt
                 pip install pytest
             
             - name: Pytest
+              working-directory: ./app_python
               run: |    
                 pytest .
 
@@ -35,9 +35,23 @@ jobs:
               run: |
                 docker build -t ramprin/devops:python ./app_python && docker push ramprin/devops:python
 
-            - name: Snyk
-              uses: snyk/actions/node@master
-              env:
-                SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-              with:
-                command: monitor
+    snyk:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Chekcout
+          uses: actions/checkout@v3
+          with:
+            sparse-checkout: 'app_python/'
+            sparse-checkout-cone-mode: false
+
+        - name: Move Files
+          run:
+            mv ./app_python/* ./
+            rm -rf ./app_python/
+
+        - name: Run Snyk to check for vulnerabilities
+          uses: snyk/actions/node@master
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          with:
+              command: monitor
