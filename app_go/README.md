@@ -48,3 +48,6 @@ docker run -p 80:8080 ramprin/devops:go
 ```
 
 After this, your application will be available on <http://localhost>
+
+## CI
+![example workflow](https://github.com/RamPrin/DevOps-S24/actions/workflows/gotest.yml/badge.svg)
