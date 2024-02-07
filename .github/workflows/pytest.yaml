@@ -10,7 +10,8 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
               with:
-                working-directory: ./app_python
+                sparce-checkout: 'app_python/'
+          
             - name: Install Python
               uses: actions/setup-python@v4
               with:
@@ -31,7 +32,7 @@ jobs:
             
             - name: Build & Push
               run: |
-                docker build -t ramprin/devops:python ./ && docker push ramprin/devops:python
+                docker build -t ramprin/devops:python ./app_python && docker push ramprin/devops:python
 
             - name: Snyk
               uses: snyk/actions/node@master
