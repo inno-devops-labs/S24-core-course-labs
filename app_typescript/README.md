@@ -1,4 +1,5 @@
 # Vite React Moscow Time Web Application
+![tests](https://github.com/slry/S24-core-course-labs/actions/workflows/typescript_tests.yml/badge.svg?branch=lab1)
 
 ## Overview
 Simple App that shows current Moscow Time

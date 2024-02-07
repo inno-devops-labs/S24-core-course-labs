@@ -8,25 +8,20 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: "12"
+          node-version: 18
 
-      # Install required deps for action
       - name: Install Dependencies
-        run: |
-          cd app_typescript
-          npm install
+        working-directory: ./app_typescript
+        run: npm ci
 
       - name: Run the ESLint
-        run: |
-          cd app_typescript
-          npm run lint
+        working-directory: ./app_typescript
+        run: npm run lint
 
-      # Finally, run our tests
       - name: Run the tests
-        run: |
-          cd app_typescript
-          npm run test
+        working-directory: ./app_typescript
+        run: npm run test
