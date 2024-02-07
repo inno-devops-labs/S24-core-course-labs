@@ -13,10 +13,7 @@ jobs:
                 go-version: '1.21'
                 cache: false
 
-            - name: Enter directory
+            - name: Test
               run: |
                 cd app_go
-
-            - name: Test
-              run: |    
-                go test .
+                go install && go test .
