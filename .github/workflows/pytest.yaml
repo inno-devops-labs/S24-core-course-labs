@@ -44,10 +44,11 @@ jobs:
             sparse-checkout: 'app_python/'
             sparse-checkout-cone-mode: false
 
-        - name: Move Files
+        - name: Move Files & Install dependencies
           run: |
             mv ./app_python/* ./
             rm -rf ./app_python/
+            pip install -r requirements.txt
 
         - name: Run Snyk to check for vulnerabilities
           uses: snyk/actions/node@master
