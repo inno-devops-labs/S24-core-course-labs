@@ -12,7 +12,7 @@ def root():
     """
         Returns index.html after requesting root path ( example.com/ ).
     """
-    return HTMLResponse(open('index.html').read()) # Return index.html
+    return HTMLResponse(open('index.html').read(), media_type="text/html") # Return index.html
 
 
 @server.get('/time')

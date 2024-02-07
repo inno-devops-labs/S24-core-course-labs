@@ -1,0 +1,25 @@
+name: Pytest
+on: push
+jobs:
+    testing:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            
+            - name: Install Python
+              uses: actions/setup-python@v4
+              with:
+                python-version: '3.11.5'
+
+            - name: Enter directory
+              run: |
+                cd app_python
+
+            - name: Install dependencies with pytest
+              run: |
+                pip install -r requirements.txt && pip install pytest
+            
+            - name: Pytest
+              run: |    
+                pytest .
