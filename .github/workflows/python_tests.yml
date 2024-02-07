@@ -1,4 +1,4 @@
-name: tests and linting 
+name: Pytest & flake8
 
 on:
   push:
