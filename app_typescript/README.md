@@ -4,7 +4,7 @@
 This application serves the current time in my hometown Aktobe,Kazakhstan using Node.js and TypeScript.
 
 ## Features
-- Real-time display of Moscow time.
+- Real-time display of Aktobe time.
 - Responsive client-side updates.
 
 ## Installation
