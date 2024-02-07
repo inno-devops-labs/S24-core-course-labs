@@ -13,7 +13,7 @@ This is a Python web application built using the Flask framework to display the 
 1. Clone the repository:
 
 ```
-git clone https://github.com/RoukayaZaki/S24-core-course-labs/blob/main/
+git clone https://github.com/RoukayaZaki/S24-core-course-labs/tree/lab01
 ```
 
 2. Install dependencies:
