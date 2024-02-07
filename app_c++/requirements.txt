@@ -1,0 +1,8 @@
+Header Files:
+
+<iostream>: Standard C++ input/output stream library
+<ctime>: C library to work with time and date information
+"./cpp-httplib/httplib.h": The httplib library header file
+
+Libraries:
+There are no external libraries needed for compilation in this code snippet
