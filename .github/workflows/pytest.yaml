@@ -12,14 +12,13 @@ jobs:
               with:
                 python-version: '3.11.5'
 
-            - name: Enter directory
-              run: |
-                cd app_python
-
             - name: Install dependencies with pytest
               run: |
-                pip install -r requirements.txt && pip install pytest
+                cd app_python
+                pip install -r requirements.txt
+                pip install pytest
             
             - name: Pytest
               run: |    
+                cd app_python
                 pytest .
