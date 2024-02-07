@@ -1,8 +1,14 @@
-# Web App That Shows Time
+# Web App That Shows Time In Moscow
 
 ## Docs
 
 Can be accessed while running: `/docs`
+
+>> Get `/api/v1/time`
+>
+> Returns current time in Moscow in the following json format:
+>
+> `{ "time": "07:41:56.120960" }`
 
 ## How to run
 

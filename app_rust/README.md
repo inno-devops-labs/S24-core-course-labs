@@ -29,3 +29,11 @@
 ```shell
 cargo run
 ```
+
+## Testing
+
+Execute tests:
+
+```shell
+cargo test
+```
