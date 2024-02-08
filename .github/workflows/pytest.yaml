@@ -44,6 +44,11 @@ jobs:
             sparse-checkout: 'app_python/'
             sparse-checkout-cone-mode: false
 
+        - name: Install python
+          uses: actions/install-python@v4
+          with:
+            python-version: "3.11.5"
+
         - name: Move Files & Install dependencies
           run: |
             mv ./app_python/* ./
