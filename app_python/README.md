@@ -18,10 +18,10 @@ Before launching application install `requirements.txt` using `pip`:
 To start the server, run from `app_python` folder:
 
 ```bash
-    go run server.go
+    uvicorn --host <HOST> --port <PORT> server:server
 ```
 
-Afterwards, this application will be available on `localhost:8080/`
+Afterwards, this application will be available on `<host>:<port>/`
 
 ## Docker
 
@@ -38,7 +38,7 @@ docker build -t <TAG> app_python/
 Or you can pull existing container from Docker Hub:
 
 ```bash
-docker pull ramprin/devops:go
+docker pull ramprin/devops_py:latest
 ```
 
 ### Run
@@ -46,7 +46,7 @@ docker pull ramprin/devops:go
 In order to run container use the following command:
 
 ```bash
-docker run -p 80:8080 ramprin/devops:go
+docker run -p 80:8080 ramprin/devops_py:latest
 ```
 
 After this, your application will be available on <http://localhost>
