@@ -1,5 +1,7 @@
 # Time Table Web App
 
+![example workflow](https://github.com/RamPrin/DevOps-S24/actions/workflows/pytest.yaml/badge.svg)
+
 Simple web application written in go which shows the time in Moscow on each page reload.
 
 ## Prerequisites
@@ -49,8 +51,28 @@ docker run -p 80:8080 ramprin/devops:go
 
 After this, your application will be available on <http://localhost>
 
-## CI
+## Unit Tests
 
-![example workflow](https://github.com/RamPrin/DevOps-S24/actions/workflows/pytest.yaml/badge.svg)
+The app contains some unit tests which can be started from `app_python` folder:
+
+```bash
+    pytest -rP .
+```
+
+Folder `test` contains 2 unit tests: 
+- `test_root()`: check, whether root path returns a result
+- `test_time()`: check if the time path retruns a valid time
+
+## CI workflow
+
+In `./github/workflows` folder you can find two workflows:
+
+`ruff.yaml`- Linter workflow which checks if the code is properly formatted
+
+`pytest.yaml`- This workflow has 3 stages:
+    - Pytest: runs unit tests
+    - Snyk: uses [snyk](https://snyk.io/) to check on vulnerabilities
+    - Docker: builds the image and push it to the repository    
+
 
 
