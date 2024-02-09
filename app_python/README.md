@@ -52,3 +52,5 @@ After this, your application will be available on <http://localhost>
 ## CI
 
 ![example workflow](https://github.com/RamPrin/DevOps-S24/actions/workflows/pytest.yaml/badge.svg)
+
+

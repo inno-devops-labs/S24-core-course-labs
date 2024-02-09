@@ -17,31 +17,35 @@ jobs:
                 go-version: '1.21'
                 cache: false
 
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v3
+
+            - name: Install snyk
+              run: |
+                curl --compressed https://static.snyk.io/cli/latest/snyk-linux -o snyk
+                chmod +x ./snyk
+                mv ./snyk /usr/local/bin/
+                snyk auth ${{ secrets.SNYK_TOKEN }}
+
             - name: Test
               run: |
                 cd app_go
                 go install && go test .
 
+            - name: Run snyk
+              working-directory: ./app_go
+              run: |
+                snyk test
+
             - name: Docker Login
               run: |
-                docker login --username {{secrets.DOCKER_USERNAME}} --password {{secrets.DOCKER_PASSWORD}}
-    syk: 
-      runs-on: ubuntu-latest
-      steps:
-        - name: Chekcout
-          uses: actions/checkout@v3
-          with:
-            sparse-checkout: 'app_go/'
-            sparse-checkout-cone-mode: false
+                docker login --username ${{secrets.DOCKER_USERNAME}} --password ${{secrets.DOCKER_PASSWORD}}
 
-        - name: Move Files
-          run:
-            mv ./app_go/* ./
-            rm -rf ./app_go
-
-        - name: Run Snyk to check for vulnerabilities
-          uses: snyk/actions/node@master
-          env:
-            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-          with:
-              command: monitor
+            - name: Build and push
+              uses: docker/build-push-action@v5
+              with:
+                context: app_go/
+                push: true
+                tags: ramprin/devops_go:latest
+                cache-from: type=gha
+                cache-to: type=gha,mode=max

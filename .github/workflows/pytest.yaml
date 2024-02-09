@@ -22,43 +22,36 @@ jobs:
                 pip install -r requirements.txt
                 pip install pytest
             
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v3
+
+            - name: Install snyk
+              run: |
+                curl --compressed https://static.snyk.io/cli/latest/snyk-linux -o snyk
+                chmod +x ./snyk
+                mv ./snyk /usr/local/bin/
+                snyk auth ${{ secrets.SNYK_TOKEN }}
+
             - name: Pytest
               working-directory: ./app_python
               run: |    
                 pytest .
 
+            - name: Run snyk
+              working-directory: ./app_python
+              run: |
+                snyk test
+
             - name: Docker Login
               run: |
-                docker login --username {{secrets.DOCKER_USERNAME}} --password {{secrets.DOCKER_PASSWORD}}
+                docker login --username ${{secrets.DOCKER_USERNAME}} --password ${{secrets.DOCKER_PASSWORD}}
             
-            - name: Build & Push
-              run: |
-                docker build -t ramprin/devops:python ./app_python && docker push ramprin/devops:python
-
-    snyk:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Chekcout
-          uses: actions/checkout@v3
-          with:
-            sparse-checkout: 'app_python/'
-            sparse-checkout-cone-mode: false
-
-        - name: Install python
-          uses: actions/install-python@v4
-          with:
-            python-version: "3.11.5"
-
-        - name: Move Files & Install dependencies
-          run: |
-            mv ./app_python/* ./
-            rm -rf ./app_python/
-            pip install -r requirements.txt
-
-        - name: Run Snyk to check for vulnerabilities
-          uses: snyk/actions/node@master
-          env:
-            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-          with:
-            command: test
-            args: --file=requirements.txt --command=python3
+            - name: Build and push
+              uses: docker/build-push-action@v5
+              with:
+                context: app_python/
+                push: true
+                tags: ramprin/devops_py:latest
+                cache-from: type=registry,ref=ramprin/devops:buildcache
+                cache-to: type=registry,ref=ramprin/devops:buildcache,mode=max
+                
