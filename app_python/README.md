@@ -59,7 +59,8 @@ The app contains some unit tests which can be started from `app_python` folder:
     pytest -rP .
 ```
 
-Folder `test` contains 2 unit tests: 
+Folder `test` contains 2 unit tests:
+
 - `test_root()`: check, whether root path returns a result
 - `test_time()`: check if the time path retruns a valid time
 
@@ -70,6 +71,7 @@ In `./github/workflows` folder you can find two workflows:
 `ruff.yaml`- Linter workflow which checks if the code is properly formatted
 
 `pytest.yaml`- This workflow has 3 stages:
-    - Pytest: runs unit tests
-    - Snyk: uses [snyk](https://snyk.io/) to check on vulnerabilities
-    - Docker: builds the image and push it to the repository    
+
+- Pytest: runs unit tests
+- Snyk: uses [snyk](https://snyk.io/) to check for vulnerabilities
+- Docker: builds the image and push it to the repository

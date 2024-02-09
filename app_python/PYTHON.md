@@ -23,12 +23,12 @@ As a result, application shows time on every page refresh:
 ![Start Page](assets/pic0.png)
 ![Reload Page](assets/pic1.png)
 
-
 ## Unit Tests
 
 I've integrated two unit tests:
 
 `test_root()` checks, whether root path returns a result:
+
 ```python
 def test_root():
     response: HTMLResponse = client.get("/")
@@ -36,6 +36,7 @@ def test_root():
 ```
 
 `test_time()` check if the time path retruns a valid time:
+
 ```python
 def test_time():
     response = client.get("/time")
@@ -44,5 +45,3 @@ def test_time():
     assert 'time' in data.keys(), "No time field"
     assert re.match(r'[0-2][0-9]:[0-5][0-9]:[0-5][0-9]', data['time']), "Invalid time format"
 ```
-## CI
-
