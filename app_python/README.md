@@ -73,6 +73,3 @@ In `./github/workflows` folder you can find two workflows:
     - Pytest: runs unit tests
     - Snyk: uses [snyk](https://snyk.io/) to check on vulnerabilities
     - Docker: builds the image and push it to the repository    
-
-
-

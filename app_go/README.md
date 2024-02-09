@@ -1,5 +1,7 @@
 # Time Table Web App
 
+![example workflow](https://github.com/RamPrin/DevOps-S24/actions/workflows/gotest.yaml/badge.svg)
+
 Simple web application written in Go which shows the time in Moscow on each page reload.
 
 ## Prerequisites
@@ -50,5 +52,5 @@ After this, your application will be available on <http://localhost>
 
 ## CI
 
-![example workflow](https://github.com/RamPrin/DevOps-S24/actions/workflows/gotest.yaml/badge.svg)
+
 
