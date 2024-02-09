@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func main() {
+func setupRouter() *gin.Engine {
 	server := gin.Default() // Create server and upload index.html
 	server.LoadHTMLFiles("index.html")
 
@@ -26,6 +26,12 @@ func main() {
 			"time": fmt.Sprintf("%.2d:%.2d:%.2d", time.Hour(), time.Minute(), time.Second()),
 		})
 	})
+
+	return server
+}
+
+func main() {
+	server := setupRouter()
 	err := server.Run() // Run server
 	if err != nil {
 		fmt.Printf("Failed to run server. Error %s", err)
