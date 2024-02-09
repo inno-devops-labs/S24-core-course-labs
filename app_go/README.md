@@ -1,19 +1,18 @@
 # Time Table Web App
 
-Simple web application written in go which shows the time in Moscow on each page reload.
+Simple web application written in Go which shows the time in Moscow on each page reload.
 
 ## Prerequisites
 
-Before launching application install `requirements.txt` using `pip`:
+Before launching application install dependencies with:
 
 ```bash
-    pip install -r requirements.txt
-
+    go install
 ```
 
 ## Starting the app
 
-To start the server, run from `app_python` folder:
+To start the server, run from `app_go` folder:
 
 ```bash
     go run server.go
@@ -30,13 +29,13 @@ This application can be containerized with docker.
 You can build a container by running:
 
 ```bash
-docker build -t <TAG> app_python/
+docker build -t <TAG> app_go/
 ```
 
 Or you can pull existing container from Docker Hub:
 
 ```bash
-docker pull ramprin/devops:go
+docker pull ramprin/devops_go:latest
 ```
 
 ### Run
@@ -44,7 +43,7 @@ docker pull ramprin/devops:go
 In order to run container use the following command:
 
 ```bash
-docker run -p 80:8080 ramprin/devops:go
+docker run -p 80:8080 ramprin/devops_go:latest
 ```
 
 After this, your application will be available on <http://localhost>
