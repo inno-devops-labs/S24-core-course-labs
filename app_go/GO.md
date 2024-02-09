@@ -9,7 +9,7 @@ It's pretty easy and fast framework for simple web applications.
 
 In order to ensure code quality I've integrated `Golang-Lint Github Action` into github repository.
 
-## Readability:
+## Readability
 
 - The code were written in the most consise way with proper naming conventions.
 - It was properly commented.
