@@ -28,3 +28,34 @@ Run following command to test the application:
 ```
 python3 test.py
 ```
+
+## Docker
+
+### Containerized Application
+This application is containerized using Docker for easy deployment and portability. The Docker image contains all the necessary dependencies to run the Python application.
+
+### Instructions for Execution
+
+#### Build Docker Image
+To build the Docker image for this application, follow these steps:
+```
+bash
+docker build -t devops-app .
+```
+
+#### Pull Docker Image
+To pull the Docker image from Docker Hub, run the following command:
+```
+bash
+docker pull blinikar/devops-app
+```
+
+#### Run Docker Container
+To run the Docker container with the application, use the following command:
+```
+bash
+docker run -d -p 5000:5000 devops-app
+```
+
+The application will be accessible at http://localhost:5000.
+
