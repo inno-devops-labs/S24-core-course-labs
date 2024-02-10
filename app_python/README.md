@@ -22,7 +22,8 @@ To test the application one should just run `pytest` command in `app_python` fol
 To build a Docker image do the following:
 * change directory to `app_python`;
 * build the image as following:<br>
-```docker build -t IMAGE_NAME .```<br>
+```docker build -t IMAGE_NAME .```<be>
+
 To run on local do the following:<br>
 ```docker run -dp 8080:8080 --name CONTAINER_NAME IMAGE_NAME```<br>
 After this, the app will be available on `http://127.0.0.1:8080/`.
@@ -32,7 +33,8 @@ To download and run the image from Docker Hub do the following:
 * pull the image (you can ignore `TAG_NAME` if you want to pull the `latest` image):<br>
 ```docker pull sokolofff/app_python:TAG_NAME```<br>
 * run container:<br>
-```docker run -dp 8080:8080 --name CONTAINER_NAME sokolofff/app_python:TAG_NAME```<br>
+```docker run -dp 8080:8080 --name CONTAINER_NAME sokolofff/app_python:TAG_NAME```<be>
+
 After this, the app will be available on `http://127.0.0.1:8080/`.
 
 ## Quality checking 
