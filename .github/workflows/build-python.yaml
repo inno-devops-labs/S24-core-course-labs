@@ -9,7 +9,8 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
 
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +31,8 @@ jobs:
         continue-on-error: true
   
   security:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -40,21 +42,27 @@ jobs:
       - run: pip install -r requirements.txt
         working-directory: app_python
 
-      # Download and install Snyk
-      - name: Download and cache Snyk binary
+      # Cache Snyk
+      - name: Cache Snyk binary
         id: cache-snyk
-        run: |
-          curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
-          chmod +x snyk-linux
-          echo "::set-output name=path::snyk-linux"
-        working-directory: app_python 
-      - uses: actions/cache@v3
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-snyk
         with:
-          path: ${{ steps.cache-snyk.outputs.path }}
+          path: app_python/snyk-linux
           key: ${{ runner.os }}-snyk-${{ hashFiles('app_python/snyk-linux') }}
           restore-keys: |
             ${{ runner.os }}-snyk-
-      
+            ${{ runner.os }}-
+
+      # Download Snyk
+      - name: Download Snyk binary
+        if: steps.cache-snyk.outputs.cache-hit != 'true'
+        run: |
+          curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
+          chmod +x snyk-linux
+        working-directory: app_python
+
       # Run Snyk
       - name: Run Snyk
         run: ./snyk-linux test --severity-threshold=high
@@ -63,7 +71,8 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   docker:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
     needs:
       - security
       - build
