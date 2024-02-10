@@ -30,6 +30,28 @@ localhost:5000/` to view the application.
    python tests/app_test.py
    ```
 
+## Docker
+
+1. To build the Docker image run the following command in the terminal from the `app_python` directory with Dockerfile present:
+
+   ```bash
+   docker build -t my-flask-app .
+   ```
+
+2. To run the Docker image:
+
+   ```bash
+   docker run -p 5000:5000 my-flask-app
+   ```
+
+3. Alternatively, you can pull the Docker image from my [dockerhub repository](https://hub.docker.com/repository/docker/ozurexus/my-flask-app) using the following commands:
+
+   ```bash
+   docker login
+   docker pull ozurexus/my-flask-app
+   docker run -p 5000:5000 ozurexus/my-flask-app
+   ```
+
 ## Stack
 
 - Python
