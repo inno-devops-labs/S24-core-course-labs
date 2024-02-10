@@ -15,7 +15,7 @@ This is a simple web application that displays the current time in Moscow. The a
     - [Installation Steps](#installation-steps)
     - [Docker](#docker)
   - [Development](#development)
-    - [Testing](#testing)
+    - [Unit Tests](#unit-tests)
     - [CI Workflow](#ci-workflow)
 
 ## Installation
@@ -83,7 +83,7 @@ The application will be available at [localhost:3000](http://localhost:3000/)
 
 Contributions are not accepted at the moment as this is just a lab assignment. You can fork the repository for your own use.
 
-### Testing
+### Unit Tests
 
 Unit tests are maintained in the `test.py` file. To run the tests, use the following command:
 
