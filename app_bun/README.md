@@ -16,6 +16,7 @@ This is a simple web application that displays the current time in Moscow. The a
     - [Docker](#docker)
   - [Development](#development)
     - [Testing](#testing)
+    - [CI Workflow](#ci-workflow)
 
 ## Installation
 
@@ -95,3 +96,15 @@ To check the code coverage, use the following command:
 ```bash
 bun test --coverage
 ```
+
+### CI Workflow
+
+A CI workflow is maintained in the `.github/workflows/build-bun.yaml` file. This workflow lints and tests the application, checks code vulnerability using SNYK, and builds and pushes docker image. Workflow is triggered only if the there is a change in the `app_bun` directory or the workflow file itself.
+
+The CI workflow contains 3 jobs. Each job has a specific set of tasks to perform:
+
+- Build: This job lints and tests the application
+- Security: This job checks code vulnerability using SNYK
+- Docker: This job builds and pushes the docker image to the Docker Hub. The job is carried out only if the previous jobs are successful.
+
+More details about the CI workflow can be found in the [CI.md](CI.md) file.

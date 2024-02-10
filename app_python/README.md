@@ -105,24 +105,12 @@ coverage report
 
 ### CI Workflow
 
-A CI workflow is maintained in the `.github/workflows/build-python.yaml` file. This workflow lints and tests the application. Workflow is triggered only if the there is a change in the `app_python` directory or the workflow file itself.
+A CI workflow is maintained in the `.github/workflows/build-python.yaml` file. This workflow lints and tests the application, checks code vulnerability using SNYK, and builds and pushes docker image. Workflow is triggered only if the there is a change in the `app_python` directory or the workflow file itself.
 
-The CI workflow contains only one job which is essentially divided into 4 parts but in general there are 11 steps:
+The CI workflow contains 3 jobs. Each job has a specific set of tasks to perform:
 
-- Initialize
-   1. Checkout
-   2. Set up Python
-   3. Install dependencies
-- Code Quality
-   1. Linting using `pylint`
-   2. Running tests using `unittest`
-- Security
-   1. Download and install `snyk`
-   2. Run `snyk` to check for vulnerabilities
-- Publish to Docker Hub
-   3. Set up QEMU
-   4. Set up Docker Buildx
-   5. Login to Docker Hub
-   6. Build and push the Docker image
+- Build: This job lints and tests the application
+- Security: This job checks code vulnerability using SNYK
+- Docker: This job builds and pushes the docker image to the Docker Hub. The job is carried out only if the previous jobs are successful.
 
 More details about the CI workflow can be found in the [CI.md](CI.md) file.

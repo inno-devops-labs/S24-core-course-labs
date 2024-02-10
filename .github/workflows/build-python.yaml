@@ -13,6 +13,7 @@ jobs:
     timeout-minutes: 5
 
     steps:
+      # Checkout the repository and install dependencies
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
@@ -33,7 +34,9 @@ jobs:
   security:
     runs-on: ubuntu-22.04
     timeout-minutes: 5
+    
     steps:
+      # Checkout the repository and install dependencies
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
@@ -71,14 +74,19 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   docker:
+
     runs-on: ubuntu-22.04
     timeout-minutes: 5
+    
     needs:
       - security
       - build
     if: ${{ needs.security.result == 'success' && needs.build.result == 'success'}}
+    
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v4
+      
       # Set up QEMU
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3

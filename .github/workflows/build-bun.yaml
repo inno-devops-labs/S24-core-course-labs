@@ -11,7 +11,9 @@ jobs:
 
     runs-on: ubuntu-22.04
     timeout-minutes: 5
+
     steps:
+      # Checkout and set up Bun
       - uses: actions/checkout@v4
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
@@ -35,15 +37,18 @@ jobs:
         continue-on-error: true
 
   security:
+    
     runs-on: ubuntu-22.04
     timeout-minutes: 5
+
     steps:
+      # Checkout and set up Bun
       - uses: actions/checkout@v4
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: 1.0.11
-      - run: bun install
+      - run: bun install # Installation is cached by default
         working-directory: app_bun
 
       # Cache Snyk
@@ -75,6 +80,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   docker:
+
     runs-on: ubuntu-22.04
     timeout-minutes: 5
 
@@ -82,13 +88,15 @@ jobs:
       - security
       - build
     if: ${{ needs.security.result == 'success'  && needs.build.result == 'success'}}
+    
     steps:
+      # Checkout and set up Bun
       - uses: actions/checkout@v4
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: 1.0.11
-      - run: bun install
+      - run: bun install # Installation is required to get .lockb file
         working-directory: app_bun
 
       
