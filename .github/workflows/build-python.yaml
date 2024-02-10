@@ -20,14 +20,14 @@ jobs:
       - run: pip install -r requirements.txt
         working-directory: app_python
       
+      # Testing using unittest
+      - name: Run tests
+        run: python -m unittest app_python/test.py
+
       # Linting using Pylint
       - name: Linter
         run: pylint app_python
         continue-on-error: true
-      
-      # Testing using unittest
-      - name: Run tests
-        run: python -m unittest app_python/test.py
   
   security:
     runs-on: ubuntu-latest
@@ -41,11 +41,19 @@ jobs:
         working-directory: app_python
 
       # Download and install Snyk
-      - name: Download and install Snyk
+      - name: Download and cache Snyk binary
+        id: cache-snyk
         run: |
           curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
           chmod +x snyk-linux
+          echo "::set-output name=path::snyk-linux"
         working-directory: app_python 
+      - uses: actions/cache@v3
+        with:
+          path: ${{ steps.cache-snyk.outputs.path }}
+          key: ${{ runner.os }}-snyk-${{ hashFiles('app_python/snyk-linux') }}
+          restore-keys: |
+            ${{ runner.os }}-snyk-
       
       # Run Snyk
       - name: Run Snyk
