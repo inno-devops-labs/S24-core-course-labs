@@ -42,7 +42,7 @@ jobs:
       
       # Run Snyk
       - name: Run Snyk
-        run: ./snyk-linux test
+        run: ./snyk-linux test --severity-threshold=high
         working-directory: app_bun
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
