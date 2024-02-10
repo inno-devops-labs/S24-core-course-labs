@@ -2,7 +2,7 @@
 # see all versions at https://hub.docker.com/r/oven/bun/tags
 FROM oven/bun:1 as base
 
-LABEL version="1.0" description="This is a simple flask app" maintainer="pptx704"
+LABEL description="This is a simple flask app" maintainer="pptx704"
 
 WORKDIR /app/app_bun
 RUN adduser --disabled-password --gecos "" newuser && chown -R newuser /app/app_bun
