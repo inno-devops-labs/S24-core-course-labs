@@ -53,11 +53,16 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_bun:latest
 
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
+      # Download and install Snyk
+      - name: Download and install Snyk
+        run: |
+          curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
+          chmod +x snyk-linux
+        working-directory: app_python
+      
+      # Run Snyk
+      - name: Run Snyk
+        run: ./snyk-linux test
+        working-directory: app_bun
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
