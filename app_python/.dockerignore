@@ -1,3 +1,5 @@
-.gitignore
+.pytest_cache
+venv
+.pre-commit-config.yaml
 *.md
 tests
