@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'app_bun/**'
+      - '.github/workflows/build-bun.yaml'
 
 jobs:
   build:
@@ -51,3 +52,12 @@ jobs:
           context: app_bun
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_bun:latest
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
