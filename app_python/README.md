@@ -13,7 +13,7 @@ This is a simple web application that displays the current time in Moscow. The a
     - [Installation Steps](#installation-steps)
     - [Docker](#docker)
   - [Development](#development)
-    - [Notes](#notes)
+    - [Testing](#testing)
 
 ## Installation
 
@@ -85,6 +85,17 @@ The application will be available at [localhost:5000](http://localhost:5000/)
 
 Contributions are not accepted at the moment as this is just a lab assignment. You can fork the repository for your own use.
 
-### Notes
+### Testing
 
-The application uses several pre-commit hooks. Make sure that your system has `pylint`, `black` and `mypy` installed. Or alternatively, you can commit with the virtual environment activated. To skip the pre-commit hooks, use the `--no-verify` flag with the `git commit` command.
+Unit tests are maintained in the `test.py` file. To run the tests, use the following command:
+
+```bash
+python -m unittest app_python/test.py # Make sure that you are in the parent directory of app_python
+```
+
+To check the code coverage, use the following command:
+
+```bash
+coverage run -m unittest app_python/test.py
+coverage report
+```
