@@ -36,8 +36,6 @@ jobs:
 
   security:
     runs-on: ubuntu-latest
-    needs: build
-    if : ${{ needs.build.result == 'success' }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Bun
@@ -63,10 +61,20 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
-    needs: security
-    if: ${{ needs.security.result == 'success' }}
+    needs:
+      - security
+      - build
+    if: ${{ needs.security.result == 'success'  && needs.build.result == 'success'}}
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.0.11
+      - run: bun install
+        working-directory: app_bun
+
+      
       # Set up QEMU
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
