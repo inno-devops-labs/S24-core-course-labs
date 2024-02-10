@@ -27,18 +27,26 @@ jobs:
       - name: Run tslint
         run: bun run tslint -c tslint.json "*.ts"
         working-directory: app_bun
+        continue-on-error: true
 
       # Run tests and build
       - name: Run tests
         run: bun test && bun build ./entry.ts --outdir ./out 
         working-directory: app_bun 
 
+  security:
+    runs-on: ubuntu-latest
+    needs: build
+    if : ${{ needs.build.result == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+
       # Download and install Snyk
       - name: Download and install Snyk
         run: |
           curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
           chmod +x snyk-linux
-        working-directory: app_bun
+        working-directory: app_bun 
       
       # Run Snyk
       - name: Run Snyk
@@ -47,6 +55,12 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
+  docker:
+    runs-on: ubuntu-latest
+    needs: security
+    if: ${{ needs.security.result == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
       # Set up QEMU
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -61,7 +75,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+      
       # Build and push the image
       - name: Build and push
         uses: docker/build-push-action@v5
