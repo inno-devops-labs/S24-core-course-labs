@@ -31,7 +31,3 @@ class TestAppUtils(unittest.TestCase):
         It checks if the current Moscow time is in the current time string.
         """
         self.assertIn(return_tz_time("Europe/Moscow"), return_time())
-
-
-if __name__ == "__main__":
-    unittest.main()

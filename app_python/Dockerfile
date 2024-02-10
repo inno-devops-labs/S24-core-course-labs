@@ -16,7 +16,10 @@ COPY requirements.txt ./app_python/requirements.txt
 RUN pip install -r ./app_python/requirements.txt --no-cache-dir --user
 
 # Copy python files
-COPY __init__.py app_utils.py app.py ./app_python/
+COPY __init__.py app_utils.py app.py test.py ./app_python/
+
+# Test the app
+RUN python -m unittest app_python/test.py
 
 # Bind gunicon to port 5000 with 4 workers
 CMD ["gunicorn", "app_python.app:app", "-w 4", "-b 0.0.0.0:5000"]

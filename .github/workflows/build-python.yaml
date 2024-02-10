@@ -1,0 +1,28 @@
+name: Python app
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        # This is the version of the action for setting up Python, not the Python version.
+        uses: actions/setup-python@v4
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.8'
+      # You can test your matrix by printing the current Python version
+      - name: Dependencies
+        run: cd app_python && pip install -r requirements.txt
+      
+      # Linting using Pylint
+      - name: Linter
+        run: pylint app_python
+      
+      # Testing using unittest
+      - name: Run tests
+        run: python -m unittest app_python/test.py
