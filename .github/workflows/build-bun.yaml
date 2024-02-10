@@ -1,0 +1,30 @@
+name: Bun app
+
+on:
+  push:
+    paths:
+      - 'app_bun/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.0.11
+          
+      # Install dependencies
+      - name: Install dependencies
+        run: cd app_bun && bun install
+
+      # Run tslint
+      - name: Run tslint
+        run: cd app_bun && bun run tslint -c tslint.json "*.ts"
+      
+      # Run tests and build
+      - name: Run tests
+        run: cd app_bun && bun test && bun build ./entry.ts --outdir ./out 
