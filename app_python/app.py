@@ -14,7 +14,3 @@ def show_time():
     Index page. Shows the current time in Moscow.
     """
     return return_time("Europe/Moscow")
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
