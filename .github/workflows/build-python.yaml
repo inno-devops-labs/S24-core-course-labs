@@ -55,17 +55,14 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest
 
-  # Security check
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+      # Download and install Snyk
       - name: Download and install Snyk
         run: |
           curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
           chmod +x snyk-linux
         working-directory: app_python
-
+      
+      # Run Snyk
       - name: Run Snyk
         run: ./snyk-linux test
         working-directory: app_python
