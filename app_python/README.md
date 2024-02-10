@@ -42,10 +42,11 @@ It utilizes a specific version of the Python slim image (Python 3.9) to minimize
 
 Additionally, a logging directory is created within the container to store application logs. Finally, the Flask application (`app.py`) is set to run automatically when the container launches. 
 #### 5.2. How to build?
-`docker build -t my-python-app .`
+`docker build -t lab2 .`
 #### 5.3.  How to pull?
-`docker pull username/my-python-app`
+`docker pull furryowolord/lab2`
 #### 5.4. How to run?
-`docker run -p 5000:5000 my-python-app`
+`cd .\app_python\`
+`docker run -p 5000:5000 furryowolord/lab2`
 
           
