@@ -1,6 +1,6 @@
 FROM python:3.9.18-alpine3.19@sha256:7e53de21917d6793787bc67483838360404bb2fd70d9c3e38ccc243790c323b2
 
-LABEL description="This is a simple flask app" maintainer="pptx704"
+LABEL description="This is a simple flask app" maintainer="pptx704" 
 
 WORKDIR /app
 
