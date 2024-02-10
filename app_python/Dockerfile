@@ -1,6 +1,6 @@
 FROM python:3.8-alpine
 
-LABEL description="This is a simple flask app" maintainer="pptx704" 
+LABEL description="This is a simple flask app" maintainer="pptx704"
 
 WORKDIR /app
 
