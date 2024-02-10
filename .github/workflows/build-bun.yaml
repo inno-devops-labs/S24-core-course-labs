@@ -20,15 +20,32 @@ jobs:
           
       # Install dependencies
       - name: Install dependencies
-        run: cd app_bun && bun install
+        run: bun install
+        working-directory: app_bun
 
       # Run tslint
       - name: Run tslint
-        run: cd app_bun && bun run tslint -c tslint.json "*.ts"
-      
+        run: bun run tslint -c tslint.json "*.ts"
+        working-directory: app_bun
+
       # Run tests and build
       - name: Run tests
-        run: cd app_bun && bun test && bun build ./entry.ts --outdir ./out 
+        run: bun test && bun build ./entry.ts --outdir ./out 
+        working-directory: app_bun 
+
+      # Download and install Snyk
+      - name: Download and install Snyk
+        run: |
+          curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
+          chmod +x snyk-linux
+        working-directory: app_bun
+      
+      # Run Snyk
+      - name: Run Snyk
+        run: ./snyk-linux test
+        working-directory: app_bun
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       # Set up QEMU
       - name: Set up QEMU
@@ -44,7 +61,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
+
       # Build and push the image
       - name: Build and push
         uses: docker/build-push-action@v5
@@ -52,17 +69,3 @@ jobs:
           context: app_bun
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_bun:latest
-
-      # Download and install Snyk
-      - name: Download and install Snyk
-        run: |
-          curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
-          chmod +x snyk-linux
-        working-directory: app_python
-      
-      # Run Snyk
-      - name: Run Snyk
-        run: ./snyk-linux test
-        working-directory: app_bun
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
