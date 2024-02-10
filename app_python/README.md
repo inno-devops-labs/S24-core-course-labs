@@ -8,6 +8,15 @@ Moscow.
 Ensure you have [Python](https://www.python.org/) installed on your system. This
 project uses [Poetry](https://python-poetry.org/) for dependency management.
 
+## Running in Docker
+
+To run the application in a Docker container, use the following commands:
+
+```bash
+docker pull fedorivn/simple-web-app:python-1.0.0
+docker run --name app -d -p 8000:80 fedorivn/simple-web-app:python-1.0.0
+```
+
 ## Installation
 
 Clone the repository and navigate to the project directory. Install the
@@ -17,7 +26,7 @@ dependencies using Poetry:
 poetry install
 ```
 
-## Running the Application
+## Running the Application Locally
 
 Start the application using the following command:
 
@@ -41,6 +50,14 @@ $ curl http://127.0.0.1:8000
 {"current_time":"2024-01-31 14:16:05"}
 ```
 
+## Building the Docker Image
+
+To build the Docker image, use the following command:
+
+```bash
+docker build -t simple-web-app .
+```
+
 ## Testing
 
 This project uses [pytest](https://docs.pytest.org/en/7.4.x/) for testing. It's
@@ -50,6 +67,3 @@ the tests using the following command:
 ```bash
 poetry run pytest
 ```
-
-This version provides a bit more context and instructions, making it easier for
-new users or contributors to understand and use your project.
