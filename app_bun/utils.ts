@@ -1,7 +1,6 @@
 // Purpose: This file contains the utility functions that are used in the app_bun.
 
-import { DateTimeFormat } from "intl";
-import type { DateTimeFormatOptions } from "intl";
+import { } from "intl";
 
 // Purpose: This function returns the current time in the specified timezone.
 export function returnTime(timezone: string = "Europe/Moscow") {
@@ -16,10 +15,10 @@ export function returnTime(timezone: string = "Europe/Moscow") {
 // Purpose: This function returns the current time in the specified timezone.
 export function returnTzTime(timezone: string) {
   const date = new Date();
-  const options: DateTimeFormatOptions = {
+  const options: Intl.DateTimeFormatOptions = {
     timeZone: timezone,
     hour: "numeric",
     minute: "numeric",
   };
-  return new DateTimeFormat("en-US", options).format(date);
+  return new Intl.DateTimeFormat("en-US", options).format(date);
 }
