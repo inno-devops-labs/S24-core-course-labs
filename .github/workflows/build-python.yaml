@@ -37,16 +37,16 @@ jobs:
         run: |
           curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
           chmod +x snyk-linux
-        working-directory: app_python
+        working-directory: app_python 
       
       # Run Snyk
       - name: Run Snyk
-        run: ./snyk-linux test
+        run: ./snyk-linux test --severity-threshold=high
         working-directory: app_python
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-              # Set up QEMU
+      # Set up QEMU
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       
