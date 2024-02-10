@@ -1,5 +1,7 @@
 # Bun App
 
+![Bun](https://github.com/pptx704/S24-devops-labs/actions/workflows/build-bun.yaml/badge.svg)
+
 This is a simple web application that displays the current time in Moscow. The application is developed using typescript and Bun is used as the runtime.
 
 ![Screenshot](https://i.postimg.cc/XYVk7s95/image.png)
