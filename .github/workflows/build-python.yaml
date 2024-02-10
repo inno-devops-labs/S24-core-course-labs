@@ -65,8 +65,9 @@ jobs:
           curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
           chmod +x snyk-linux
         working-directory: app_python
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
       - name: Run Snyk
         run: ./snyk-linux test
         working-directory: app_python
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
