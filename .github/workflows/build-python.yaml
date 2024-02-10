@@ -60,6 +60,7 @@ jobs:
     needs: security
     if: ${{ needs.security.result == 'success' }}
     steps:
+      - uses: actions/checkout@v4
       # Set up QEMU
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
