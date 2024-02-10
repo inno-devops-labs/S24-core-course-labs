@@ -31,8 +31,6 @@ jobs:
   
   security:
     runs-on: ubuntu-latest
-    needs: build
-    if : ${{ needs.build.result == 'success' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -58,8 +56,10 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
-    needs: security
-    if: ${{ needs.security.result == 'success' }}
+    needs:
+      - security
+      - build
+    if: ${{ needs.security.result == 'success' && needs.build.result == 'success'}}
     steps:
       - uses: actions/checkout@v4
       # Set up QEMU
