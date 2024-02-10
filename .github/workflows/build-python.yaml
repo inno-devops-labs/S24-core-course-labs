@@ -59,8 +59,14 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python-3.8@master
+      - uses: actions/checkout@v4
+      - name: Download and install Snyk
+        run: |
+          curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
+          chmod +x snyk-linux
+        working-directory: app_python
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Run Snyk
+        run: ./snyk-linux test
+        working-directory: app_python
