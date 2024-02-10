@@ -32,7 +32,21 @@ jobs:
       - name: Run tests
         run: python -m unittest app_python/test.py
 
-      # Set up QEMU
+      # Download and install Snyk
+      - name: Download and install Snyk
+        run: |
+          curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
+          chmod +x snyk-linux
+        working-directory: app_python
+      
+      # Run Snyk
+      - name: Run Snyk
+        run: ./snyk-linux test
+        working-directory: app_python
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+              # Set up QEMU
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       
@@ -54,17 +68,3 @@ jobs:
           context: app_python
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest
-
-      # Download and install Snyk
-      - name: Download and install Snyk
-        run: |
-          curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
-          chmod +x snyk-linux
-        working-directory: app_python
-      
-      # Run Snyk
-      - name: Run Snyk
-        run: ./snyk-linux test
-        working-directory: app_python
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
