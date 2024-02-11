@@ -20,19 +20,19 @@ If everything goes well, you will see startup logs with message`Starting worker 
 
 ```bash
 cd app_python
-docker build -t tufra/moscow-time-app .
+docker build -t tufra/moscow-time-app-python .
 ```
 
 ### How to pull
 
 ```bash
-docker image pull tufra/moscow-time-app-python
+docker image pull tufra/moscow-time-app-python:0.0.1
 ```
 
 ### How to run
 
 ```bash
-docker run -p 80:8080 -t tufra/moscow-time-app-python
+docker run -p 80:8080 -t tufra/moscow-time-app-python:0.0.1
 ```
 
 Now you can see moscow time at `localhost`
