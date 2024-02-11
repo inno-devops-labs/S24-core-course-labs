@@ -20,3 +20,21 @@ Additionaly you can run unittests by command:
 ```bash
 ./gradlew test
 ```
+
+### Running with docker
+
+You may use already built image:
+
+```bash
+docker pull pgrammer/app_kotlin
+docker run -p 8080:8080 pgrammer/app_kotlin
+```
+
+Or build it yourself:
+
+```bash
+docker build -t app_kotlin .
+docker run -p 8080:8080 app_kotlin
+```
+
+Now you can see Moscow time at http://localhost:8080
