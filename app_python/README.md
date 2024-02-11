@@ -132,7 +132,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- CONTACT -->
 ## Contact
 
-Anatoliy Shvarts - a.shvarts@innopolis.university
+Zavrazhnov Egor - e.zavrazhnov@innopolis.university
 
 Project Link: [https://github.com/SHREDDING8/S24-core-course-labs](https://github.com/SHREDDING8/S24-core-course-labs)
 
