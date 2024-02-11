@@ -6,6 +6,22 @@ init:
 run:
 	. venv/bin/activate; bash start.sh
 
+docker-run:
+	docker run -p 8000:8000 --rm -ti devops-lab-02-python
+
+docker-build:
+	docker build . -t devops-lab-02-python
+
+docker-pull:
+	docker pull adarika/devops-lab-02-python
+
+docker-pull-run: docker-pull
+	docker run -p 8000:8000 --rm -ti adarika/devops-lab-02-python
+
+docker-push:
+	docker tag devops-lab-02-python  adarika/devops-lab-02-python
+	docker push adarika/devops-lab-02-python
+
 test:
 	. venv/bin/activate; PYTHONPATH=. pytest tests -W ignore::DeprecationWarning
 

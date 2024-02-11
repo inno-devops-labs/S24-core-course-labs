@@ -19,3 +19,16 @@ To run tests use `make test` or `pytest tests` command.
 ### Following code style
 
 Format features (linters + codebase style) can be run via `make format`, and static typecheck with `make typecheck` commands.
+
+
+## Docker
+
+> Make sure you have installed Docker on your machine, check if docker deamon is running.
+
+To pull image from Docker Hub use make command `make docker-pull` or write in terminal `docker pull adarika/devops-lab-02-python`, to run it use `make docker-pull-run`
+
+To build image from  Dockerfile in directory use make command `make docker-build` or write in terminal `docker build . -t devops-lab-02-python`
+
+To run image builded locally use make command `make docker-run` or write in terminal `docker run -p 8000:8000 --rm -ti devops-lab-02-python`
+
+To push local builded image to Docker Hub use make command `make docker-push`
