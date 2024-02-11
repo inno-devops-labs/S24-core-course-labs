@@ -90,6 +90,26 @@ Required software:
 pytest tests/
 ```
 
+### Docker
+
+* How to build
+
+```shell
+docker build -t server-app .
+```
+
+* How to pull
+
+```shell
+docker pull shredding228/server_app:latest 
+```
+
+* How to run
+
+```shell
+docker run -d -p 8080:8080 --name app_python server-app:latest 
+```
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
