@@ -30,7 +30,7 @@ ENV VIRTUAL_ENV=/app/.venv
 ENV PATH="${VIRTUAL_ENV}/bin:$PATH"
 ENV USER=uvicorn
 
-RUN adduser -D ${USER} && chown -R ${USER} /app
+RUN adduser -D ${USER}
 
 COPY --from=builder /app/.venv ${VIRTUAL_ENV}
 COPY main.py main.py
