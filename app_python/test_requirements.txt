@@ -1,0 +1,5 @@
+freezegun==1.4.0
+httpx==0.26.0
+pytest==8.0.0
+flake8==7.0.0
+
