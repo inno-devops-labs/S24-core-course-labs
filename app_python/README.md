@@ -41,6 +41,44 @@ Follow these steps to set up the project locally:
 
 5. Open a web browser and go to `http://127.0.0.1:5000/` to view the application.
 
+### Deployment via docker
+
+1. To build image locally use the following command from app_python dir:
+
+    ```bash
+    docker build . --tag app_python
+    ```
+
+2. To verify the image is built run:
+
+    ```bash
+    docker images
+    ```
+
+    You will get something like:
+    ```console
+    REPOSITORY   TAG       IMAGE ID       CREATED              SIZE
+    app_python   latest    87d2f7f96999   About a minute ago   1.03GB
+    ```
+
+3. You can also pull the image from dockerhub:
+
+    ```bash
+    docker pull happystove/app_python:1.0
+    ```
+
+4. To run:
+    
+    ```bash
+    docker run app_python
+    ```
+
+    Or if you use dockerhub:
+
+    ```bash
+    docker run happystove/app_python:1.0
+    ```
+
 ## Files Overview
 
 - `app.py`: Contains the Flask application code, including route definitions and the function to retrieve Moscow time.
