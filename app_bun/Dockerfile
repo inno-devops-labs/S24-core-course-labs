@@ -2,7 +2,7 @@
 # see all versions at https://hub.docker.com/r/oven/bun/tags
 FROM oven/bun:1@sha256:ce1b800a070f3a11330a344801d49980854de2e346e344e793d472e71c18581d as base
 
-LABEL description="This is a simple flask app" maintainer="pptx704"
+LABEL description="This is a simple bun app" maintainer="pptx704"
 
 WORKDIR /app/app_bun
 RUN adduser --disabled-password --gecos "" newuser && chown -R newuser /app/app_bun
