@@ -1,0 +1,12 @@
+.git
+.gitignore
+
+**cache
+__pycache__
+
+venv/
+
+**.md
+.pre-commit-vonfig.yaml
+
+tests/
