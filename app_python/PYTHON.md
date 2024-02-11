@@ -1,4 +1,4 @@
-## Best practices & Framework choice
+# Best practices & Framework choice
 
 - This app is written using Flask framework because it is easy and convenient. The project is not hard, that is why Flask was chosen.
 - Coding standards & Code quality
