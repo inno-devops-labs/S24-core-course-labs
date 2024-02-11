@@ -6,8 +6,11 @@
 - [Date and Time in Moscow](#date-and-time-in-moscow)
   - [Table of Content](#table-of-content)
   - [Overview](#overview)
-  - [Running in Docker](#running-in-docker)
-  - [Running Locally](#running-locally)
+  - [Running](#running)
+    - [Using Docker](#using-docker)
+    - [Using Docker](#using-docker)
+    - [Using Docker Compose](#using-docker-compose)
+    - [Locally](#locally)
 <!--toc:end-->
 
 ## Overview
@@ -18,24 +21,37 @@ timezone of the environment it is run on.
 Application is written in Scala using ZIO, Tapir and Vert.x, see [SCALA.md](./SCALA.md) for
 more details
 
-## Running in Docker
+## Running
 
-Requirements:
+### Using Docker
 
-- `Docker`
-- `Docker Compose`
+### Using Docker
 
-You need to simply run
+You may use already built image:
 
-```bash
+```sh
+docker pull skril/moscow-time:scala
+docker run -p 8080:8080 skril/moscow-time:scala
+```
+
+Or build it yourself:
+
+```sh
+docker build -t moscow-time .
+docker run -p 8080:8080 moscow-time
+```
+
+Now an app can be accessed at http://localhost:8080
+
+### Using Docker Compose
+
+The simplest way to run the app is to:
+
+```sh
 docker compose up
 ```
 
-Upon building, it will run tests, and then you will be able to run container.
-
-Application can be accessed on http://localhost:8080/
-
-## Running Locally
+### Locally
 
 Requirements:
 
