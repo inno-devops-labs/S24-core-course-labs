@@ -33,3 +33,13 @@ python app.py
 ```
 
 Visit http://127.0.0.1:5000/ in your browser to view the work of the application.
+
+## Docker
+
+### Build
+
+To get and run the Docker image, use the following commands:
+
+```bash
+docker pull Dudukk/devops:latest .
+docker run -p 5000:5000 Dudukk/devops:latest .
