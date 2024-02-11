@@ -1,6 +1,6 @@
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
-FROM oven/bun:1 as base
+FROM oven/bun:1@sha256:ce1b800a070f3a11330a344801d49980854de2e346e344e793d472e71c18581d as base
 
 LABEL description="This is a simple flask app" maintainer="pptx704"
 
