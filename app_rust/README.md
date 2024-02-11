@@ -12,7 +12,16 @@ current time in Moscow.
 [rust]: https://www.rust-lang.org/tools/install
 [cargo]: https://doc.rust-lang.org/cargo/getting-started/installation.html
 
-## Running the Application
+## Running in Docker
+
+To run the application in a Docker container, use the following commands:
+
+```bash
+docker pull fedorivn/simple-web-app:rust-1.0.0
+docker run --name app -d -p 8000:80 fedorivn/simple-web-app:rust-1.0.0
+```
+
+## Running Locally
 
 Start the application using the following command:
 
@@ -26,6 +35,14 @@ browser or using a tool like curl. For example:
 ```bash
 $ curl http://127.0.0.1:8001
 {"current_time":"2024-01-31 14:16:05"}
+```
+
+## Building the Docker Image
+
+To build the Docker image, use the following command:
+
+```bash
+docker build -t simple-web-app:rust .
 ```
 
 ## Testing

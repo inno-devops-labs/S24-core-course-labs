@@ -55,7 +55,7 @@ async fn moscow_time() -> impl Responder {
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| App::new().service(moscow_time))
-        .bind(("127.0.0.1", 8001))?
+        .bind(("0.0.0.0", 80))?
         .run()
         .await
 }
