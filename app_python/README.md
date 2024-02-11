@@ -26,7 +26,7 @@ dependencies using Poetry:
 poetry install
 ```
 
-## Running the Application Locally
+## Running Locally
 
 Start the application using the following command:
 
@@ -55,7 +55,7 @@ $ curl http://127.0.0.1:8000
 To build the Docker image, use the following command:
 
 ```bash
-docker build -t simple-web-app .
+docker build -t simple-web-app:python .
 ```
 
 ## Testing
