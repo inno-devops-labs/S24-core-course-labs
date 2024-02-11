@@ -1,0 +1,6 @@
+# for now no real need in this file, but this may be useful to exclude right now
+.gitignore
+DOCKER.md
+Dockerfile
+PYTHON.md
+README.md

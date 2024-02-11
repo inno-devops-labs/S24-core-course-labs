@@ -13,4 +13,4 @@ def current_time_in_moscow():
 
 
 if __name__ == "__main__":
-    bottle.run(app, host="localhost", port=8080)
+    bottle.run(app, host="0.0.0.0", port=8080)
