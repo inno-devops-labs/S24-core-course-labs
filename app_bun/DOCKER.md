@@ -10,6 +10,7 @@ The Dockerfile is based on the official `oven/bun:1` image. The application is i
 
 ## Best practices followed
 
+- Specific sha256 was used along with precise tag to keep the build stable.
 - Security practices were followed to reduce the attack surface
 - Image size was kept as small as possible
 - Added metadata to the image and linter was used to ensure the Dockerfile is written properly
