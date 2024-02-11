@@ -1,0 +1,4 @@
+*.md
+.gradle
+build
+gradlew.bat

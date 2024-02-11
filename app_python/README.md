@@ -20,3 +20,21 @@ Additionaly you can run unittests by command:
 ```bash
 python test.py
 ```
+
+### Running with docker
+
+You may use already built image:
+
+```bash
+docker pull pgrammer/app_python
+docker run -p 5000:5000 pgrammer/app_python
+```
+
+Or build it yourself:
+
+```bash
+docker build -t app_python .
+docker run -p 5000:5000 app_python
+```
+
+Now you can see Moscow time at http://localhost:5000
