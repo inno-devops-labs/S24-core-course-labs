@@ -21,7 +21,9 @@
 				"GitHub.copilot",
 				"GitHub.copilot-chat",
 				"DavidAnson.vscode-markdownlint",
-				"exiasr.hadolint"
+				"exiasr.hadolint",
+				"GitHub.vscode-github-actions",
+				"kennylong.kubernetes-yaml-formatter"
 			]
 		}
 	},

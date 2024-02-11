@@ -1,0 +1,112 @@
+name: Python CI
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "app_python/**"
+      - ".github/workflows/python.yaml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "app_python/**"
+      - ".github/workflows/python.yaml"
+
+  # workflow_dispatch:
+
+# todo: specify commit hash versions
+env:
+  IMAGE_NAME: simple-web-app
+  IMAGE_TAG: python-${{ github.sha }}
+
+defaults:
+  run:
+    working-directory: app_python
+
+jobs:
+  lint:
+    name: Lint with Ruff
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      
+      - name: Run Ruff
+        uses: chartboost/ruff-action@v1
+    
+  test:
+    name: Test with Pytest
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "poetry"
+
+      - name: Install dependencies
+        run: |
+          poetry install
+
+      - name: Run tests
+        run: |
+          poetry run pytest
+
+  security:
+    name: Analyze Security Vulnerabilities
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run Snyk
+        # I use python 3.12, but there is an action only for python 3.10
+        uses: snyk/actions/python-3.10@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args:
+            --sarif-file-output=snyk.sarif
+            --package-manager=poetry
+            --file=app_python/poetry.lock
+            --skip-unresolved
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
+
+  push-to-registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: app_python
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
