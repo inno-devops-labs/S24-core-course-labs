@@ -36,3 +36,21 @@ You can run the tests with the following command:
 ```sh
 (venv) $ python -m pytest -v
 ```
+
+## Docker
+You can also build this application with Docker
+### Building the Image
+```sh
+$ docker build -t moscow-time-webapp .
+```
+
+### Pulling the Image
+```sh
+$ docker pull soralin/moscow-time-webapp
+```
+
+### Running the Image
+```sh
+$ docker run -d -p 8080:5000 soralin/moscow-time-webapp
+```
+The app will now be available at `http://localhost:8080`
