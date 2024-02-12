@@ -1,4 +1,4 @@
-FROM python:3.12-alpine as base
+FROM python:3.12-alpine3.19 as base
 
 LABEL org.opencontainers.image.created="2021-10-10T00:00:00Z" \
     org.opencontainers.image.authors="Fedor Ivanov <ivnfedor@gmail.com>" \
