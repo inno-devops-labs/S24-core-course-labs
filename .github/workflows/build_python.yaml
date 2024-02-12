@@ -9,8 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     timeout-minutes: 20
-    permissions:
-      contents: read
     steps:
       - uses: actions/checkout@v4
 
@@ -40,7 +38,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --sarif-file-output=snyk.sarif
+          args: --sarif-file-output=snyk.sarif --file=app_python/requirements.txt --package-manager=pip
 
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
@@ -51,8 +49,6 @@ jobs:
   docker:
     runs-on: ubuntu-22.04
     timeout-minutes: 20
-    permissions:
-      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -72,4 +68,4 @@ jobs:
           context: app_python
           file: app_python/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow-time-app-python:${{ env.GITHUB_SHA }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow-time-app-python:${{ env.COMMIT_SHA }}
