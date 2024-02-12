@@ -38,3 +38,25 @@ The application logs requests, returned values and errors in `app.log` file.
 
 ## Error handling
 If an error occurs, the app will return a 500 status code and log an error.
+
+## Docker
+
+To build an image, run the following command in `app_python` directory of the project:
+
+```bash
+docker build -t moscow-time-app .
+```
+
+Alternatively, you can pull the image from `dockerhub`:
+
+```bash
+docker pull damirafliatonov/moscow-time-app:latest
+```
+
+To run the image, run the following command:
+
+```bash
+docker run -p 8000:8000 moscow-time-app
+```
+
+After that, the application will be accessible at `http://localhost:8000/` in the web browser.

@@ -5,8 +5,9 @@ from datetime import datetime
 import pytz
 import uvicorn
 import logging
+import sys
 
-logging.basicConfig(filename="app.log", level=logging.INFO)
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -33,4 +34,4 @@ def moscow_time(request: Request):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
