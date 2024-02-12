@@ -48,6 +48,8 @@ http://127.0.0.1:5000
 
 
 ## Environment Setup with Docker
+For easier portability and deployment this app_python was been Dockerized. Its really simple to use docker package on the different platforms.
+
 ```bash
 # Navigate to the cloned Git repository folder with the source code of the tool
 cd DevOps
