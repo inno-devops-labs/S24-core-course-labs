@@ -6,5 +6,9 @@
     "chai": "^4.4.1",
     "chai-http": "^4.4.0",
     "mocha": "^10.2.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "ejs": "^3.1.6"
   }
 }

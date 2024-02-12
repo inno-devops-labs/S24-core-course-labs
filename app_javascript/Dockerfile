@@ -1,0 +1,29 @@
+# Using the official Node.js image as the base image
+FROM node:alpine
+
+# Add a new group and user
+RUN addgroup mygroup && adduser -S -G mygroup myuser
+
+# Switch to the new user
+USER myuser
+
+# Set the working directory in the container
+WORKDIR /home/myuser
+
+# Copy package.json and package-lock.json to the working directory
+COPY --chown=myuser:mygroup package*.json ./
+
+# Install dependencies
+RUN npm install --quiet --no-cache
+
+# Copy the rest of the application
+COPY . .
+
+# Expose port 3000
+EXPOSE 3000
+
+LABEL maintainer="c.ogbonna@innopolis.university"
+LABEL description="Docker image for js app."
+
+# Run the app
+CMD ["node", "app.js"]
