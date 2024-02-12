@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"time"
+	_ "time/tzdata"
 )
 
 func mskTimeHandler(w http.ResponseWriter, r *http.Request) {
@@ -25,7 +26,7 @@ func main() {
 
 	fmt.Println("Server listening on port 8080...")
 	fmt.Println("http://localhost:8080/msk_timezone")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	if err := http.ListenAndServe("0.0.0.0:8080", nil); err != nil {
 		log.Fatal(err)
 	}
 }
