@@ -9,7 +9,7 @@ from ntplib import NTPClient
 from sanic import Sanic
 from sanic_ext import render
 
-from config import AppConfig
+from app_python.app.config import AppConfig
 
 app = Sanic("MoscowTime", config=AppConfig())
 
@@ -56,6 +56,10 @@ async def index_handle(request):
         context={'moscow_time': moscow_time.ctime()},
         app=app,
     )
+
+
+def get_app():
+    return app
 
 
 if __name__ == '__main__':
