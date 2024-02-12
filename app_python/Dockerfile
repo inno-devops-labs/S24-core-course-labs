@@ -2,8 +2,12 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+RUN useradd -d /app fastapi && chown -R fastapi:fastapi /app
+
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
+
+USER fastapi
 
 COPY . .
 
