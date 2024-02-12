@@ -56,3 +56,16 @@ cargo test
 
 This command will run all the tests in the project and display the results in
 the terminal.
+
+## Continuous Integration (CI)
+
+The project uses a robust Continuous Integration:
+
+1. Linting with `cargo fmt` & `cargo clippy`
+2. Build & Testing with `cargo test`
+3. Push to Docker Hub
+
+The CI process is automated using GitHub Actions and leverages the best
+practices described in [Best Practices][ci].
+
+[ci]: ../app_python/CI.md

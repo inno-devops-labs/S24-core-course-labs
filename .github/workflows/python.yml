@@ -32,10 +32,10 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
-      
+
       - name: Run Ruff
         uses: chartboost/ruff-action@a0f145b45582104dca8b32dc6dad55ac12b426a5
-    
+
   test:
     name: Test with Pytest
     runs-on: ubuntu-22.04
@@ -110,4 +110,3 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-

@@ -39,7 +39,7 @@ practices to my web application:
 These practices help in maintaining clean and readable code, improving code
 quickly develop APIs.
 
-## Testing
+## Unit Testing
 
 Since Actix Web provides tools to perform integration tests against your
 applications and unit test tools for custom extractors and middleware. I have

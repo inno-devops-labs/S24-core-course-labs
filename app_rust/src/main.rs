@@ -63,7 +63,6 @@ async fn main() -> std::io::Result<()> {
 #[cfg(test)]
 mod tests {
     use actix_web::{http::header::ContentType, test, App};
-    use serde_json;
 
     use super::*;
 
