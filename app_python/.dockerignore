@@ -1,0 +1,7 @@
+__pycache__
+.venv
+.gitignore
+
+PYTHON.md
+README.md
+DOCKER.md
