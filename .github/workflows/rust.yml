@@ -44,6 +44,8 @@ jobs:
       - name: Install Rust toolchain
         run: rustup component add clippy
       - uses: Swatinem/rust-cache@158274163087d4d4d49dfcc6a39806493e413240
+        with:
+          workspaces: app_rust
       - name: Clippy
         run: cargo clippy --workspace --all-targets --all-features --locked -- -D warnings
 
@@ -56,6 +58,8 @@ jobs:
       - name: Install Rust toolchain
         run: rustup show
       - uses: Swatinem/rust-cache@158274163087d4d4d49dfcc6a39806493e413240
+        with:
+          workspaces: app_rust
       - name: Run tests
         run: cargo test --all-features
 
