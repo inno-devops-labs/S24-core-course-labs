@@ -38,3 +38,19 @@ To run the tests:
 
 ```bash
 mvn test
+```
+## Docker
+Building the Docker Image
+ ```bash
+    docker build -t <image name> .
+```
+Pulling the docker Image
+ ```bash
+    docker pull djhovi/my-java-app:latest
+
+```
+Running the docker Image
+ ```bash
+    docker run -p8080:8080 djhovi/my-java-app:latest
+
+```

@@ -42,6 +42,6 @@ Pulling the docker Image
 ```
 Running the docker Image
  ```bash
-    docker  docker run -p5000:5000 djhovi/my-flask-app:latest
+    docker run -p5000:5000 djhovi/my-flask-app:latest
 
 ```
