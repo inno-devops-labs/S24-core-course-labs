@@ -64,7 +64,7 @@ This Python web application displays the current time in Moscow.
    ```bash 
    docker pull cogbonna/app_python_image
    ```
-2. **Running the image [localhost:5000](127.0.0.1/5000)**
+2. **Running the image at [localhost:5000](127.0.0.1/5000)**
    ```bash 
    docker run -dp 0.0.0.0:5000:5000 cogbonna/app_python_image
    ```
