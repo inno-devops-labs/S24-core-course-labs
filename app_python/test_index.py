@@ -1,23 +1,20 @@
 import time
+import requests
 
-from fastapi.testclient import TestClient
-
-from .app import app
-
-client = TestClient(app)
+INDEX_URL = "http://127.0.0.1:8000"
 
 def test_status():
-    response = client.get("/")
-    assert response.status_code == 200
+    resp = requests.get(INDEX_URL)
+    assert resp.status_code == 200
 
 
-def test_time_changes():
-    resp = client.get("/")
+def test_text_changes():
+    resp = requests.get(INDEX_URL)
     text1 = resp.text
 
     time.sleep(3)
 
-    resp = client.get('/')
+    resp = requests.get(INDEX_URL)
     text2 = resp.text
 
     assert text1 != text2

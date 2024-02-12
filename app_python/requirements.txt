@@ -3,4 +3,4 @@ uvicorn[standard]
 pytz
 
 pytest
-httpx
+requests
