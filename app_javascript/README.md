@@ -38,3 +38,25 @@ The application writes the logs into console
 
 ## Error handling
 If an error occurs, the app will log an error.
+
+## Docker
+
+To build an image, run the following command in `app_javascrpit` directory of the project:
+
+```bash
+docker build -t moscow-time-app-js .
+```
+
+Alternatively, you can pull the image from `dockerhub`:
+
+```bash
+docker pull damirafliatonov/moscow-time-app-js:latest
+```
+
+To run the image, run the following command:
+
+```bash
+docker run -p 3000:3000 moscow-time-app-js
+```
+
+After that, the application will be accessible at `http://localhost:3000/` in the web browser.

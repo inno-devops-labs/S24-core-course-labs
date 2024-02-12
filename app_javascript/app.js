@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const path = require('path');
 
 const ejs = require('ejs');
 
-app.set('views', path.join(__dirname, 'views'));
+const path = require('path');
+const isPkg = typeof process.pkg !== 'undefined';
+const basePath = isPkg ? path.join(path.dirname(process.execPath)) : __dirname;
+
+app.set('views', path.join(basePath, 'views'));
 app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
 
@@ -23,4 +26,9 @@ app.get('/', (req, res) => {
 
 app.listen(port, function () {
     console.log(`Server is running on port ${port}`);
+});
+
+process.on('SIGINT', function() {
+    console.log("\nGracefully shutting down from SIGINT (Ctrl+C)");
+    process.exit();
 });
