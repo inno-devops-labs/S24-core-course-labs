@@ -17,3 +17,24 @@ This is simple web application that displays the current time in Moscow. To deve
 Run the application using the following command
 
 `flutter run -d chrome`
+
+## Docker
+
+### Build
+```
+docker build -t app-dart .
+```
+
+### Pull
+
+```
+docker pull alyonaart/app-dart:latest
+```
+
+### Run
+
+```
+docker run -d --name dart_container -p 8080:80 app-dart
+```
+
+The application will be accessible at http://127.0.0.1:8080
