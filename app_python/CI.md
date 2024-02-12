@@ -26,7 +26,8 @@ steps:
   - name: Checkout code
     uses: actions/checkout@v2 # trusted action
   - name: Setup Node.js
-    uses: actions/setup-node@210279a4c04a9b63dde5d0c8d8b31e8e8c5a1f23 # pinned to a SHA
+    # pinned to a SHA
+    uses: actions/setup-node@210279a4c04a9b63dde5d0c8d8b31e8e8c5a1f23
 ```
 
 ## 3. Pin Test Runners to Version
@@ -47,7 +48,7 @@ when multiple commits are pushed in quick succession. This saves resources and
 time.
 
 ```yaml
-concurrency: 
+concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 ```
