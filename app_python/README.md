@@ -92,6 +92,14 @@ Follow these steps to set up the project locally:
 
 Once the Flask application is running locally, open a web browser and navigate to `http://127.0.0.1:5000/` to view the application. The main page will display the current time in Moscow, which will be updated every time the page is refreshed.
 
+## Unit Tests
+
+- `test_index_route`: Checking the main sections for html.
+- `test_get_moscow_time_format`: Checking the format of the returned time.
+- `test_index_template_rendering`: It mocks the returned time, and then sends it to the html page, check that this time is displayed.
+
+You can read about the implemented best practices at [PYTHON.md](PYTHON.md).
+
 ## License
 
 [License information, if applicable]
