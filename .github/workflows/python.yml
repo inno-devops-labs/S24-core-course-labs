@@ -14,7 +14,8 @@ on:
 
 env:
   IMAGE_NAME: simple-web-app
-  IMAGE_TAG: python-${{ github.sha }}
+  # Use the branch name for the image tag
+  IMAGE_TAG: python-${{ github.head_ref || github.ref_name }} 
 
 defaults:
   run:

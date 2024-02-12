@@ -14,7 +14,7 @@ on:
 
 env:
   IMAGE_NAME: simple-web-app
-  IMAGE_TAG: rust-${{ github.sha }}
+  IMAGE_TAG: rust-${{ github.head_ref || github.ref_name }}
 
 defaults:
   run:
