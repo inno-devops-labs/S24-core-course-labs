@@ -51,7 +51,7 @@ docker pull blbr13/app-flask:lab2
 2. Run the Docker Container:
 
 ```bash
-docker run app-flask
+docker run -d -p 5000:5000 app-flask
 ```
 
 > After successfully building or pulling the Docker image and running the container, you can access the Flask application by navigating to http://localhost:5000 in your web browser.
