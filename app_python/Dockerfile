@@ -7,11 +7,8 @@ RUN adduser -h /app -D fastapi && chown -R fastapi:fastapi /app
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY main.py .
-
-FROM base AS final
+COPY main.py ./
 
 EXPOSE 8000
-
 USER fastapi
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
