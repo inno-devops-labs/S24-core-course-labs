@@ -13,7 +13,7 @@ To install the application, you will need to have Python and pip installed on yo
 ```bash
 cd app_python
 pip install -r requirements.txt
-python app.py
+python main.py
 ```
 
 ### Testing
