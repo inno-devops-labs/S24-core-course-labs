@@ -11,6 +11,12 @@ FROM openjdk:17
 
 WORKDIR /app
 
-COPY --from=build /app/target/spring-boot-docker.jar ./
+COPY --from=build  /app/target/spring-boot-docker.jar ./
+
+RUN adduser app_user
+
+RUN rm /bin/sh /bin/bash
+
+USER app_user:app_user
 
 ENTRYPOINT ["java", "-jar", "spring-boot-docker.jar"]

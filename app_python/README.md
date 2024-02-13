@@ -40,3 +40,19 @@ You can configure the app setting the following env variables:
 * `TIMEZONE` - timezone of the time returned (default - 'Europe/Moscow')
 * `DATETIME_FORMAT` - Python format datetime returned by the app (default - '%Y-%m-%d %H:%M:%S %z')
 
+## Docker
+Here how you can: 
+* build and push the image 
+  ```bash
+  docker build -t moscow_time .
+  docker image tag moscow_time fk12344321/moscow-time:v1.0.0
+  docker push fk12344321/moscow-time:v1.0.0
+  ```
+* pull the image
+  ```bash 
+  docker pull fk12344321/moscow-time:v1.0.0
+  ```
+* run the image
+  ```bash
+  docker run fk12344321/moscow-time:v1.0.0
+  ```

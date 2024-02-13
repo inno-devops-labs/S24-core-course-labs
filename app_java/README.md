@@ -35,3 +35,19 @@ docker run -p 8081:8081 ats
   **body:** {"alias": "threat-receiver-alias", "content": "your content"}
   **description:** sends an anonimized threat to an existing receiver 
 
+## Docker
+Here how you can:
+* build and push the image
+  ```bash
+  docker build -t anon_threats .
+  docker image tag anon_threats fk12344321/anon_threats:v1.0.0
+  docker push fk12344321/anon_threats:v1.0.0
+  ```
+* pull the image
+  ```bash 
+  docker pull fk12344321/anon_threats:v1.0.0
+  ```
+* run the image
+  ```bash
+  docker run fk12344321/anon_threats:v1.0.0
+  ```
