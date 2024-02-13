@@ -37,18 +37,18 @@ pub fn create_log_file(file_name: Option<String>) -> Result<File, std::io::Error
     Ok(file)
 }
 
-pub fn get_subscriber(env: &str, name: &str, exporter_url: &str) -> impl Subscriber + Send + Sync {
-    let tracer = create_trace(exporter_url, name);
-    let file = create_log_file(None).expect("Failed to create a file for logging");
+pub fn get_subscriber(env: &str, name: &str, _exporter_url: &str) -> impl Subscriber + Send + Sync {
+    //let tracer = create_trace(exporter_url, name);
+    let _file = create_log_file(None).expect("Failed to create a file for logging");
     let env_filter = EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new(env));
-    let formatting_layer = BunyanFormattingLayer::new(name.into(), file);
-    let tracing_layer = tracing_opentelemetry::layer().with_tracer(tracer);
+    //let formatting_layer = BunyanFormattingLayer::new(name.into(), file);
+    //let tracing_layer = tracing_opentelemetry::layer().with_tracer(tracer);
     let formatting_layer_std_out = BunyanFormattingLayer::new(name.into(), std::io::stdout);
 
-    global::set_text_map_propagator(TraceContextPropagator::new());
+    //global::set_text_map_propagator(TraceContextPropagator::new());
     Registry::default()
         .with(env_filter)
-        .with(tracing_layer)
+        //.with(tracing_layer)
         .with(JsonStorageLayer)
         .with(formatting_layer_std_out)
 }

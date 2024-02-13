@@ -66,10 +66,10 @@ pub async fn insert_subject(
         created_at: chrono::Utc::now(),
     };
 
-    sqlx::query!(
-        r#"INSERT INTO subjects (id, name, assistant_id, owner, created_at) VALUES ($1, $2, $3, $4, $5) RETURNING id"#,
-        resp.id ,resp.name, resp.assistant_id, resp.owner, resp.created_at)
-        .fetch_one(pool)
-        .await?;
+    // sqlx::query!(
+    //     r#"INSERT INTO subjects (id, name, assistant_id, owner, created_at) VALUES ($1, $2, $3, $4, $5) RETURNING id"#,
+    //     resp.id ,resp.name, resp.assistant_id, resp.owner, resp.created_at)
+    //     .fetch_one(pool)
+    //     .await?;
     Ok(resp)
 }

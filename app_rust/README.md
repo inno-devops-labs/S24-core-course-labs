@@ -61,6 +61,33 @@ Run tests with:
 cargo test
 ```
 
+
+### Docker
+
+This repository contains a Dockerfile which you can build the image from or you could pull the image from docker hub.
+
+To build the image, use the following command:
+
+```bash
+docker build -t app_rust .
+```
+
+To pull the image from the Docker Hub, use the following command:
+
+```bash
+docker pull ejedavid/app_rust:latest
+```
+
+After building or pulling the image, the container can be run with the following command:
+
+
+```bash
+docker run -p 8000:8000 app_run
+```
+
+The application will be available at [localhost:8000](http://localhost:8000/)
+
+
 ## Contributing
 
 Contributions to this service are welcome!

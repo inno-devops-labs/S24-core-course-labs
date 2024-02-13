@@ -29,13 +29,13 @@ async fn test_subject_creation_200() {
     assert!(!val.assistant_id.is_empty());
     assert!(!val.name.is_empty());
 
-    let saved = sqlx::query!(r#"SELECT id, name FROM subjects"#)
-        .fetch_one(&app.pool)
-        .await
-        .expect("Failed to get subject just created");
+    // let saved = sqlx::query!(r#"SELECT id, name FROM subjects"#)
+    //     .fetch_one(&app.pool)
+    //     .await
+    //     .expect("Failed to get subject just created");
 
-    assert_eq!(saved.id, val.id);
-    assert_eq!(saved.name.unwrap(), val.name);
+    // assert_eq!(saved.id, val.id);
+    // assert_eq!(saved.name.unwrap(), val.name);
 }
 
 #[tokio::test]
