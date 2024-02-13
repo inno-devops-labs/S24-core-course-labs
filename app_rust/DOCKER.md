@@ -10,4 +10,4 @@
 4. Only specific files are copied
 5. App files are not writable (only read + execute or just read)
 6. Docker ignore file for target and specific markdown files (Files that are not needed to execute app)
-7. Multistage build is used (docker image decreased for almost 90%)
+7. Multistage build is used (docker image decreased by almost 90%)
