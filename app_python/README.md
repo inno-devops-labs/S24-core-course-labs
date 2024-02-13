@@ -56,6 +56,35 @@ This Python web application is built using the Flask framework to display the cu
 1. Flask
 2. pytz
 
+##🚀 Dockerized Application
+####1. Build the Docker Image
+To build the Docker image for this application locally, use the following commands:
+```
+# Build the Docker image
+docker build -t flask-moscow-app .
+```
+
+Alternatively, you can pull the Docker image from Docker Hub:
+```
+# Pull the Docker image from Docker Hub
+docker pull nytakoe115/flask-moscow-app
+```
+
+####2. Run the Docker Container
+Once you have the Docker image, run the Docker container with the following command:
+```
+# Run the Docker container
+docker run -p 4000:80 flask-moscow-app
+```
+If you pulled the image from Docker Hub, use the following command:
+```
+# Run the Docker container
+docker run -p 4000:80 nytakoe115/flask-moscow-app
+```
+
+####3. Access the Web Application
+Open your web browser and navigate to http://localhost:4000 to view the Moscow Time web application.
+
 ## 📚 Acknowledgments
 
 1. [Flask](https://flask.palletsprojects.com/)
