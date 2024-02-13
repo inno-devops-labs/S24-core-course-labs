@@ -44,3 +44,31 @@ python -m flask --app app/main:app run --port=8000
 ```
 
 _Step 5_. Go to [localhost:8000](http://localhost:8000) in the browser, you should see the current time in Moscow.
+
+## Docker
+
+### Building image
+
+To build image, use the following command (substitute `x.y.z` with the actual version):
+
+```sh
+docker build -t devops-simple-app:x.y.z .
+```
+
+### Pulling image from Docker Hub
+
+Docker image is available on Docker Hub, to pull it use the following command:
+
+```sh
+docker pull evermake/devops-simple-app:latest
+```
+
+### Running container
+
+To run the container, use the following command:
+
+```sh
+docker run -p 8000:8000 evermake/devops-simple-app
+```
+
+App will be available at [localhost:8000](http://localhost:8000).

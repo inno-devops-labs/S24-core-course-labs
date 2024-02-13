@@ -37,3 +37,31 @@ pnpm run build
 ```
 
 Production build will be in `public` directory.
+
+## Docker
+
+### Building image
+
+To build image, use the following command (substitute `x.y.z` with the actual version):
+
+```sh
+docker build -t devops-visual-sorts:x.y.z .
+```
+
+### Pulling image from Docker Hub
+
+Docker image is available on Docker Hub, to pull it use the following command:
+
+```sh
+docker pull evermake/devops-visual-sorts:latest
+```
+
+### Running container
+
+To run the container, use the following command:
+
+```sh
+docker run -p 8000:8000 evermake/devops-visual-sorts
+```
+
+App will be available at [localhost:8000](http://localhost:8000).
