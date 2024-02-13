@@ -23,3 +23,28 @@ To run unit test use the following command:
 ```bash
 pytest
 ```
+
+# Docker
+
+1. **How to build**
+You need to be in `app_python` folder to be able to use the following command:
+```bash
+docker build -t app .
+```
+This command links image with the tag `app`, that can be used to call it easier further.
+
+2. **How to run**
+If you want to run container using `app` image builded locally:
+```bash
+docker run -d -p 5001:5001 app
+```
+
+If you want to pull image from the DockerHub do the following:
+- Pull the image using this command:
+   ```bash 
+   docker pull vikono/devops:lab2
+   ```
+- Then run it:
+   ```bash
+   docker run -d -p 5001:5001 vikono/devops:lab2
+   ```
