@@ -34,7 +34,7 @@ USER appuser
 ```bash
 EXPOSE 3000
 ```
-**Practice** :Exposing only the necessary port (3000) for the Flask application follows the security best practice of minimizing the container's attack surface. It also provides clear documentation about which port the container expects to communicate on.
+**Practice** :Exposing only the necessary port (3000) for the NodeJs application follows the security best practice of minimizing the container's attack surface. It also provides clear documentation about which port the container expects to communicate on.
 ## Clean, Specific Startup Command
 ```bash
 CMD [ "node", "app.js" ]
