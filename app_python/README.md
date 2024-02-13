@@ -30,3 +30,22 @@ This project is a simple web application built using Flask, a Python web framewo
 4. Open a web browser and navigate to **`http://127.0.0.1:5000/`**
 5. Observe the real-time display of the current time in Moscow (GMT+3)
 6. Refresh the page to get the current time
+
+🐳 Docker:
+
+To run the application in a Docker container, follow these steps:
+
+1. Build Docker Image:
+**`docker build -t flask-app .`**
+
+2. Run Docker Container:
+To run the Docker container, execute the following command:
+**`docker run -p 5000:5000 devops-lab`**
+
+3. Pull Docker Image:
+**`docker pull nikzor/flask-app`**
+
+3. Run Docker Container:
+**`docker run -d -p 5000:5000 flask-app`**
+
+Access the application at **`http://127.0.0.1:5000/`** in your web browser.
