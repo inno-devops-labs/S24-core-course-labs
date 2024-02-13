@@ -2,7 +2,7 @@
 
 The application is showing the current Moscow time that updates upon page reload.
 
-# How to run
+## How to run
 1. Install all requirements from requirements.txt using the following command (either inside venv or in global env):
    ```bash
    pip install -r requirements.txt
@@ -12,7 +12,7 @@ The application is showing the current Moscow time that updates upon page reload
    python api/main.py
    ```
 
-# Testing
+## Testing
 Unit and manual testing are used to ensure corectness of the application. 
 
 Manual testing scenario was to refresh the page and check time is changed.
@@ -24,27 +24,27 @@ To run unit test use the following command:
 pytest
 ```
 
-# Docker
+## Docker
 
-1. **How to build**
-You need to be in `app_python` folder to be able to use the following command:
-```bash
-docker build -t app .
-```
-This command links image with the tag `app`, that can be used to call it easier further.
-
-2. **How to run**
-If you want to run container using `app` image builded locally:
-```bash
-docker run -d -p 5001:5001 app
-```
-
-If you want to pull image from the DockerHub do the following:
-- Pull the image using this command:
-   ```bash 
-   docker pull vikono/devops:lab2
-   ```
-- Then run it:
+1. **How to build**  
+   You need to be in `app_python` folder to be able to use the following command:
    ```bash
-   docker run -d -p 5001:5001 vikono/devops:lab2
+   docker build -t app .
    ```
+   This command links image with the tag `app`, that can be used to call it easier further.
+
+2. **How to run**  
+   If you want to run container using `app` image builded locally:
+   ```bash
+   docker run -d -p 5001:5001 app
+   ```
+
+   If you want to pull image from the DockerHub do the following:
+   - Pull the image using this command:
+      ```bash 
+      docker pull vikono/devops:lab2
+      ```
+   - Then run it:
+      ```bash
+      docker run -d -p 5001:5001 vikono/devops:lab2
+      ```
