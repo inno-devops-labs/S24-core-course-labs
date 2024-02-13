@@ -1,7 +1,6 @@
 from datetime import datetime
 
 import pytz
-import uvicorn
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.templating import Jinja2Templates
 
@@ -16,7 +15,3 @@ async def msc_time_root(request: Request):
         return templates.TemplateResponse("index.html", {"request": request, "current_time": moscow_time})
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)

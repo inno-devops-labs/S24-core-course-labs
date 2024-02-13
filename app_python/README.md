@@ -25,3 +25,31 @@ For now you have to refresh the browser page manually to update the time.
 ## Template
 
 A small `index.html` template is used to better visualize the current time in Moscow in the browser.
+
+## Docker
+
+### How to build
+
+To build the Docker image, move to the app_python directory:
+```bash
+cd .\app_python\
+```
+
+and execute the following command to create a docker image:
+
+```bash
+docker build -t monykekker/my_app .
+```
+
+### How to pull?
+You can pull already existing image using this command:
+```bash
+docker pull monykekker/my_app:latest
+```
+
+### How to run?
+To run the Docker container, execute the following command:
+```bash
+docker run -p 8000:8000 monykekker/my_app
+```
+Then go to the [localhost:8000](http://localhost:8000/) to see Moscow time.
