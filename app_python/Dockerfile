@@ -8,17 +8,15 @@ ENV APP_HOME /app_python
 WORKDIR $APP_HOME
 
 # Copy only necessary files and directories
-COPY requirements.txt app.py $APP_HOME
+COPY requirements.txt app.py $APP_HOME/
 COPY templates/ $APP_HOME/templates/
 
-# Change the ownership of the application files to root and remove write permissions
-USER root
-# Install dependencies
-RUN pip3 install --no-cache-dir -r requirements.txt
-RUN chmod -R a-w+x+r $APP_HOME
+# Create a non-root user and remove write permissions for the group and others
+RUN adduser --disabled-password appuser && chmod -R a-w+x+r $APP_HOME
 
-# Create a non-root user and switch to it
-USER nobody
+# Switch to the non-root user and install the dependencies
+USER appuser
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Expose port 5000
 EXPOSE 5000
