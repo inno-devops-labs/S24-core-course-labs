@@ -26,4 +26,4 @@ Or pull image via `docker pull adarika/devops-lab-02-python`
 
 9. Layer ordering also important because of caching system, so firstly I have added layers with setup-like purpose and dependencies that will be changed rarely, secondly is the entrypoint file and only then I have copied my source code.
 
-10. Docker linter was used for checking Dockerfile (https://hadolint.github.io/hadolint/)
+10. Docker linter was used for checking Dockerfile (https://hadolint.github.io/hadolint/) + IDE extension (VSCode Docker by Microsoft)

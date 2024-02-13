@@ -19,3 +19,15 @@ Of course, you can use `cargo run` but only from `app_rust/app/`.
 ### Tests
 
 To run tests use `make test` or you can use `cargo test` from `app_rust/app/` folder.
+
+## Docker
+
+> Make sure you have installed Docker on your machine, check if docker deamon is running.
+
+- To pull image from Docker Hub use make command `make docker-pull` or write in terminal `docker pull adarika/devops-lab-02-rust`, to run it use `make docker-pull-run`
+
+- To build image from  Dockerfile in directory use make command `make docker-build` or write in terminal `docker build . -t devops-lab-02-rust`
+
+- To run image builded locally use make command `make docker-run` or write in terminal `docker run -p 8000:8000 --rm -ti devops-lab-02-rust`
+
+- To push local builded image to Docker Hub use make command `make docker-push`
