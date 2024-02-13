@@ -13,7 +13,7 @@
 - The Dockerfile copies the `requirements.txt` file into the container's `/app/app_python` directory to better manage dependencies. This approach facilitates efficient caching and dependency resolution. Dependencies are installed using `pip install -r ./app_python/requirements.txt --no-cache-dir --user` with options to prevent caching of downloaded packages and to install them in the user's local directory.
 
 ### 5. Application File Copying
-- Only relevant application file/folders are copied into the container. This includes the Flask application code, ensuring that all necessary components are present within the container.
+- Only relevant application files are copied into the container. This includes the Flask application code, ensuring that all necessary components are present within the container.
 
 ### 6. Port Exposure
 - The Dockerfile exposes port 5000, the standard port for Flask applications to serve HTTP requests. This allows external access to the application running within the container.

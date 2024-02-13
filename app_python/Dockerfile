@@ -14,10 +14,13 @@ COPY requirements.txt ./app_python/requirements.txt
 # Install dependencies
 RUN pip install -r ./app_python/requirements.txt --no-cache-dir --user
 
-# Copy relevant folders 
-COPY app ./app
-COPY tests ./tests
-COPY static ./static
+# Copy only relevant files
+COPY app/__init__.py ./app/__init__.py 
+COPY app/routes.py ./app/routes.py 
+COPY app/templates/index.html ./app/templates/index.html 
+COPY static/style.css ./static/style.css 
+COPY tests/__init__.py ./tests/__init__.py
+COPY tests/test_flask_app.py ./tests/test_flask_app.py  
 
 # Expose port 5000
 EXPOSE 5000
