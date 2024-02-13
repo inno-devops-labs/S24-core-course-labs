@@ -36,7 +36,7 @@ This Python web application displays the current time in Moscow.
    ```
    Can be displayed by visiting [localhost:5000](127.0.0.1/5000)
    \
-   ![alt text](image-1.png)
+   ![alt text](./md_screenshots/image-1.png)
 
 5. **Running Unit Tests:**
 
