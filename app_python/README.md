@@ -15,6 +15,32 @@ This is a Python-based web application that displays the current time in Moscow.
 4. Create a virtual environment (optional but recommended).
 5. Install the required dependencies by running the command: `pip install -r requirements.txt`.
 
+## Docker
+
+### Building the Docker Image
+
+To build the Docker image for this application, execute the following command:
+
+    docker build -t devops-py-app-image .
+
+### Pulling the Docker Image
+
+If you prefer not to build the image locally, you can pull it from Docker Hub. Use the following command:
+
+    docker pull hugowea123/devops-labs-py:correct
+
+### Running the Docker Image
+
+To run the Docker image built locally, use the following command:
+
+    docker run -p 5000:5000 devops-py-app-image
+
+To run the Docker image pulled from public Hub, use the following command:
+
+    docker run -p 5000:5000 hugowea123/devops-labs-py:correct
+
+Once the container is running, you can access the application by opening a web browser and navigating to `http://localhost:5000`.
+
 ## Usage
 
 1. Run the application by executing the command: `python app.py`.
