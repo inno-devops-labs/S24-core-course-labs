@@ -3,7 +3,6 @@ from fastapi.responses import HTMLResponse
 from datetime import datetime
 import zoneinfo
 
-# app entry
 app = FastAPI()
 
 
