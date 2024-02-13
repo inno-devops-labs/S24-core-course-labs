@@ -48,3 +48,27 @@ Follow these steps to set up the application locally:
 - `PYTHON.md`: Describes best practices, coding standards, and testing approaches applied.
 - `README.md`: Overview of the application.
 - `.flake8`: Config for flake8 linter to run flake8 for whole project
+
+## Docker
+
+The application has been containerized using Docker. Follow the steps below to build, pull, and run the containerized application.
+
+### How to build?
+
+To build the Docker image, run the following command:
+```docker build -t my_app .```
+
+
+### How to pull?
+
+To pull the pre-built Docker image from the Docker Hub, run the following command:
+```docker pull levgo/devopslab```
+
+
+### How to run?
+
+To run the containerized application, execute the following command:
+```docker run -p 5000:5000 my_app```
+
+
+After running the above command, you can access the application at http://localhost:5000.
