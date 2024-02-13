@@ -1,4 +1,4 @@
-FROM python:3.10.1-alpine
+FROM python:3.10.1-alpine3.15
 LABEL authors="Ilnur"
 
 # Creating user to switch from root after
