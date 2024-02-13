@@ -1,6 +1,9 @@
 FROM python:3.10.1-alpine3.15
 LABEL authors="Ilnur"
 
+# Exposing port for app
+EXPOSE 5000
+
 # Creating user to switch from root after
 RUN adduser -D myuser
 
@@ -22,9 +25,6 @@ COPY api/v1/time/views.py /app_data/api/v1/time/views.py
 
 # Change to read-only
 RUN chmod -R 555 /app_data
-
-# Exposing port for app
-EXPOSE 5000
 
 # Changing user
 USER myuser
