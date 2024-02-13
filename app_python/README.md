@@ -31,3 +31,33 @@ To run the tests:
 ```bash
 pytest
 ```
+
+## Docker
+
+This application can also be containerized using Docker. Follow the instructions below to build, pull, and run the Docker container.
+
+### How to build
+
+To build the Docker image locally, navigate to the project directory and run:
+
+```bash
+docker build -t dianatomiya/devops:p_v1.0 .
+```
+
+### How to pull
+
+You can also pull the Docker image directly from Docker Hub using:
+
+```bash
+docker pull dianatomiya/devops:p_v1.0
+```
+
+### How to run
+
+Once you have the Docker image, you can run the container using:
+
+```bash
+docker run -p 80:80 dianatomiya/devops:p_v1.0
+```
+
+This will run the container, exposing port 80 on your local machine. You can then access the application in your web browser at <http://localhost>.
