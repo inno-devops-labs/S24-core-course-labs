@@ -5,7 +5,7 @@ import pytz
 
 def get_current_moscow_time() -> datetime:
     moscow_tz = pytz.timezone("Europe/Moscow")
-    return moscow_tz.localize(datetime.now())
+    return datetime.now(moscow_tz)
 
 
 def get_human_readable_time(dt: datetime) -> str:
