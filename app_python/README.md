@@ -30,3 +30,37 @@ This is a Python web application built with Flask to display the current time in
    python app.py
 
 3. Open your web browser and navigate to `http://127.0.0.1:5000/` to view the application.
+
+## Docker
+
+- The containerized application uses a minimal Python 3.8-slim base image and follows Docker best practices. The
+  application is configured to run as a non-root user, and it exposes port 5000. The necessary dependencies are
+  installed, and the application files are copied into the container. The entry point is set to run the app.py Python
+  script.
+
+### Docker Instructions:
+
+1. Build Docker Image:
+
+    - Run the following command to build the Docker image:
+
+    ```bash
+   docker build -t devops-lab app_python
+
+2. Run Docker Container:
+
+    - To run the Docker container, execute the following command:
+
+   ```bash
+   docker run -p 5000:5000 devops-lab
+
+3. Pull Docker Image (Optional)
+
+    - To pull the image instead of building locally, run:
+
+   ```bash
+   docker pull exemplerie/devops-lab
+
+4. Access the Application:
+
+    - Once the container is running, open a web browser and navigate to http://localhost:5000 to access the application.
