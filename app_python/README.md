@@ -34,3 +34,36 @@ pip install -r app_python/requirements.txt
 # Run the application
 python app_python/app.py
 ```
+## Docker Containerization
+
+### Building the Docker Image
+
+To build the Docker image locally, execute the following command in the root directory of the project:
+
+```bash
+docker build -t your_username/app_python .
+```
+
+Replace `your_username` with your Docker Hub username. This command will create a Docker image with the tag latest.
+
+### Pulling the Docker Image
+
+To pull the image from docker hub, you can use the following command:
+
+```bash
+docker pull your_username/app_python:latest
+```
+
+### Running the Docker Image
+To run the Docker container and start the application, use the following command:
+
+```bash
+docker run -p 5000:5000 your_username/app_python:latest
+```
+
+<n><n>
+Please note that you must have docker installed on your device to be able to run the previous commands.
+
+
+
+

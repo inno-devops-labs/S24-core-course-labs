@@ -11,17 +11,44 @@ The Moscow Time Web Application is a simple JavaScript-based web application tha
 
 ## Framework and Technologies
 
-The application is built using the following technologies:
-
-- HTML: Standard markup language for web page structure.
-- CSS: Stylesheet language for styling and layout.
-- JavaScript: Core scripting language for dynamic functionality.
+The application is built using Javascript programming language and using express framework.
 
 The decision to avoid additional frameworks was made to keep the application lightweight and easily understandable for developers of all experience levels.
 
 ## Installation and Usage
 
 1. Clone or download the repository to your local machine.
-2. Open the `index.html` file in a web browser.
-3. The web page will display the current time in Moscow.
-4. Customize or extend the application as needed for your use case.
+2. Install Node.js on your system
+3. Run the server using the command ```node app.js```
+4. Open a web browser and visit `http://localhost:3000/` to access the application.
+5. The web page will display the current time in Moscow.
+
+
+## Docker Containerization
+
+### Building the Docker Image
+
+To build the Docker image locally, execute the following command in the root directory of the project:
+
+```bash
+docker build -t your_username/app_js .
+```
+
+Replace `your_username` with your Docker Hub username. This command will create a Docker image with the tag latest.
+
+### Pulling the Docker Image
+
+To pull the image from docker hub, you can use the following command:
+
+```bash
+docker pull your_username/app_js:latest
+```
+
+### Running the Docker Image
+To run the Docker container and start the application, use the following command:
+
+```bash
+docker run -p 3000:3000 your_username/app_js:latest
+```
+<n><n>
+Please note that you must have docker installed on your device to be able to run the previous commands.
