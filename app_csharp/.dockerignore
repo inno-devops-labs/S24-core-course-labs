@@ -1,0 +1,18 @@
+# VCS
+.git
+
+# C#
+**/bin/
+**/obj/
+**/out/
+
+# IDE
+.idea
+
+# Generally not-needed files
+Dockerfile*
+**/*.trx
+**/*.md
+**/*.ps1
+**/*.cmd
+**/*.sh

@@ -1,0 +1,17 @@
+# VCS
+.git
+
+# Python
+__pycache__
+venv
+
+# IDE
+.idea
+
+# Generally not-needed files
+Dockerfile*
+**/*.trx
+**/*.md
+**/*.ps1
+**/*.cmd
+**/*.sh
