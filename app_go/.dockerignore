@@ -1,0 +1,15 @@
+# Ignore editor-specific files
+.vscode/
+.idea/
+
+# Ignore build artifacts and dependencies
+*.exe
+*.o
+*.a
+*.out
+*.test
+vendor/
+
+# Ignore Docker-specific files and directories
+.dockerignore
+Dockerfile
