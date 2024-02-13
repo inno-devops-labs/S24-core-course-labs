@@ -1,5 +1,6 @@
 # Vite React Moscow Time Web Application
 ![tests](https://github.com/slry/S24-core-course-labs/actions/workflows/typescript_tests.yml/badge.svg?branch=lab1)
+![docker](https://github.com/slry/S24-core-course-labs/actions/workflows/docker_build_typescript.yml/badge.svg?branch=lab2)
 
 ## Overview
 Simple App that shows current Moscow Time
@@ -27,3 +28,15 @@ npm run dev
 ```
 
 Go to http://127.0.0.1:5173
+
+## Usage Docker
+- Pull image
+```bash
+docker pull slry/typescript_moscow_time
+```
+- Run Container
+```bash
+docker run -p 8080:8080 slry/typescript_moscow_time
+```
+
+Go to http://127.0.0.1:8080
