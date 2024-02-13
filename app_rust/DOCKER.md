@@ -23,3 +23,7 @@ This Dockerfile is designed to build a Rust backend application, focusing on hel
 - Non-Root Execution: The application runs as a non-root user (myuser), following security best practices to mitigate potential risks.
 - Dependency Caching: By separating dependency compilation from application building, the Dockerfile optimizes build times and leverages Docker layer caching effectively.
 - Clean-Up Steps: Includes clean-up commands to remove unnecessary package lists and temporary files, ensuring the final image is as lean as possible.
+- The `latest` tag is used when publishing the image to prevent the accidental deployment of outdated versions.
+- No credentials were included in the application and Dockerfile
+- No ports were exposed in the Dockerfile
+- Only important files were COPIED to the working directory
