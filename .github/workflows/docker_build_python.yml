@@ -5,6 +5,7 @@ on:
     paths:
       - 'app_python/requirements.txt'
       - 'app_python/app/**'
+      - 'app_python/Dockerfile'
 
 
 jobs:
