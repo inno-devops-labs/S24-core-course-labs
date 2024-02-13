@@ -1,30 +1,21 @@
-# Python Web Application
+## Docker
 
-This is a Python web application that displays the current time in Moscow.
+This application can be containerized using Docker. Follow the instructions below to build, pull, and run the Docker image.
 
-## Overview
+### Requirements
 
-The Python web application uses the Flask framework to create a simple web page that shows the current time in Moscow. It consists of a single route that renders an HTML template to display the time.
+- Rootless container environment
+- Docker installed
 
-## Installation
+### Build
 
-1. Clone the repository:
-```git clone <https://github.com/Darverda/DevOps_labs>```
+To build the Docker image, navigate to the project directory and run the following command:
+```docker build -t darverda/app . ```
 
-2. Install the required dependencies:
-```pip install -r requirements.txt```
+### Pull
+If you prefer to pull the pre-built Docker image from a registry, you can use the following command:
+```docker pull darverda/app:latest ```
 
-## Usage
-
-1. Run the application:
-```python app.py```
-
-2. Open a web browser and navigate to `http://localhost:5000` to see the current time in Moscow.
-
-## Contributing
-
-Contributions are welcome! If you find any issues or have suggestions for improvements, please create a pull request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+### Run
+To run the Docker container, use the following command:
+```docker run -p 5000:5000 --name app darverda/app:latest```
