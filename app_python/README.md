@@ -29,3 +29,25 @@ requests to `localhost:8080` to fetch the current Moscow time.
 ======== Running on http://0.0.0.0:8080 ========
 (Press CTRL+C to quit)
 ```
+
+## Docker
+
+You can also use a Docker container with this app. If you want to build a new
+image for this app, run
+
+```bash
+docker build -t devops .
+```
+
+Alternatively, you can pull an already-built image from Docker Hub. Download it
+by running
+
+```bash
+docker pull snejugal/devops-lab2
+```
+
+Once you obtain the image, run it using
+
+```bash
+docker run --rm -p 8080:8080 snejugal/devops-lab2
+```
