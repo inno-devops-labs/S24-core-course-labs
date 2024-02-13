@@ -7,6 +7,6 @@ __pycache__
 venv/
 
 **.md
-.pre-commit-vonfig.yaml
+.pre-commit-config.yaml
 
 tests/
