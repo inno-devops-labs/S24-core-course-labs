@@ -1,0 +1,27 @@
+name: Jest & ESLint
+on:
+  push:
+    paths:
+      - 'app_typescript/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        working-directory: ./app_typescript
+        run: npm ci
+
+      - name: Run the ESLint
+        working-directory: ./app_typescript
+        run: npm run lint
+
+      - name: Run the tests
+        working-directory: ./app_typescript
+        run: npm run test
