@@ -4,7 +4,11 @@ Author: Dmitrii Alekhin (d.alekhin@innopolis.university)
 """
 
 from datetime import datetime, timezone, timedelta
+from os import environ
 from flask import Flask, render_template
+
+HOST = environ.get("HOST", "0.0.0.0")
+PORT = int(environ.get("PORT", "8080"))
 
 app = Flask(__name__)
 
@@ -20,4 +24,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host=HOST, port=PORT, debug=False)
