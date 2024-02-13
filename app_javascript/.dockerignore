@@ -1,0 +1,22 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore npm-debug.log file
+npm-debug.log
+
+# Ignore yarn lock file
+yarn.lock
+
+# Ignore .git directory
+.git/
+
+# Ignore .vscode directory
+.vscode/
+
+# Ignore editor-specific files
+*.sublime-workspace
+*.sublime-project
+.DS_Store
+
+# Ignore environment-specific files
+.env
