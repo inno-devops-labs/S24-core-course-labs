@@ -37,7 +37,7 @@ jobs:
           password: ${{secrets.DOCKERHUB_PASSWORD}}
 
       - name: Build and push
-        uses: docker/build-and-push-action@v5
+        uses: docker/build-push-action@v5
         with:
           context: ./app_typescript
           push: true
