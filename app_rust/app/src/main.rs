@@ -9,6 +9,8 @@ pub mod tests;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    println!("running on http://0.0.0.0:8000 (Press CTRL+C to quit)");
+
     let counter = web::Data::new(
         state::AppState {
             counter: Mutex::new(0),
