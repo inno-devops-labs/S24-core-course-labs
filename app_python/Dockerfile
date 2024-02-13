@@ -1,5 +1,5 @@
 # Common base for all the stages
-FROM python:3.10-alpine3.19 as common-base
+FROM python:3.10-alpine3.19@sha256:8fc9419f65880c3f7a127f6243962b3bdee6543ecbd3d6188cacdf3c52e35dca as common-base
 
 # Define working directory for docker
 WORKDIR /code
