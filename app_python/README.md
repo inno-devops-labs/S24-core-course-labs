@@ -44,10 +44,55 @@ app_python/
 ├── app.py # Main application file
 ├── templates/ # HTML templates
 │ └── index.html # Main HTML template
+├── static/ # Styles, scripts and etc
+│ └── script.js
+│ └── styles.css
 ├── .gitignore # Git ignore file
+├── .dockerignore # Ignore files during building Docker container
+├── Dockerfile # Dockerfile itself :D
 └── requirements.txt # Required dependencies
 ```
 
+## Docker
+
+### Build
+
+(You can skip this section and just pull imafge from Docker Hub - `docker pull fatm1nd/devops-lab-container`)
+
+Build app in root repo directory:
+
+```
+docker build -t devops-lab-container ./app_python/
+```
+
+and also you can tag your image (for adding to registry):
+```
+docker tag devops-lab-container fatm1nd/devops-lab-container
+```
+
+
+### Pull
+
+You can also pull image from Docker Hub registry (but you can `run` it and it would pull automatically)
+
+```
+docker pull fatm1nd/devops-lab-container
+```
+
+### Run
+
+You can run application with specific parameters:
+
+```
+docker run -p 5001:5000 devops-lab-container
+```
+
+Also you could run built image from Docker Hub:
+```
+docker run -p 5001:5000 fatm1nd/devops-lab-container
+```
+
+After that your applications would be available on https://localhost:5001
 
 ## Contributions
 
