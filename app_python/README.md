@@ -39,3 +39,23 @@ Then the app accept GET requests on ```/```, which returns the OK status code wi
 - `README.md`: Is current file, which is overview of the app.
 - `env.test`: Example of env variables
 - `.flake8`: Config for flake8 linter
+
+## Docker
+
+Docker must be installed and daemon is running.
+
+### build (yourself) and run:
+```
+docker build -t devops-lab-02 .
+docker run -p 8080:8080 --rm -ti devops-lab-02
+```
+
+### or
+
+### pull the image and run it:
+```
+docker pull bulatok4/devops-lab-02 
+docker run -p 8080:8080 --rm -ti bulatok4/devops-lab-02
+```
+
+

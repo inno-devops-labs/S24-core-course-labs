@@ -20,7 +20,7 @@ func main() {
 	// Setting up the server
 	addr := os.Getenv("ADDR")
 	if addr == "" {
-		addr = "127.0.0.1:8080"
+		addr = "0.0.0.0:8080"
 	}
 
 	// Starting the server

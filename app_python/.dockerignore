@@ -1,0 +1,8 @@
+.git
+.gitignore
+**cache
+.pytest_cache
+.flake8
+venv/
+*.md
+__pycache__

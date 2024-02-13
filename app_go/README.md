@@ -38,3 +38,19 @@ In `RFC3339`
 4. `go.mod`: Specifies the required dependencies.
 5. `README.md`: Provides an overview of the application and installation instructions.
 6. `GO.md`: Describes best practices, coding standards, and testing approaches applied
+
+Docker must be installed and daemon is running.
+
+### build (yourself) and run:
+```
+docker build -t devops-lab-02-go .
+docker run -p 8080:8080 --rm -ti devops-lab-02-go
+```
+
+### or
+
+### pull the image and run it:
+```
+docker pull bulatok4/devops-lab-02-go 
+docker run -p 8080:8080 --rm -ti bulatok4/devops-lab-02-go
+```
