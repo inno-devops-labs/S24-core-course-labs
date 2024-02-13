@@ -24,7 +24,26 @@ python3 install -r requirements.txt
 ```
 python3 main.py
 ```
+## Deploy with Docker
 
+1. Clone the git repo
+
+```
+git clone https://github.com/Bavpnet/S24-core-course-labs
+cd app_python
+```
+
+2. Pull Docker image from the Docker Hub
+
+```
+docker pull bavpnet/app_python
+```
+
+3. Run Docker image
+
+```
+docker run bavpnet/app_python
+```
 ## Testing
 
 You can test the application using the following command
