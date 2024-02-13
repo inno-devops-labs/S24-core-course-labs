@@ -1,4 +1,5 @@
 import datetime
+import os
 from zoneinfo import ZoneInfo
 from flask import Flask
 
@@ -10,5 +11,6 @@ def index():
     return datetime.datetime.now(time_zone).strftime("%H:%M:%S")
 
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
     from waitress import serve
-    serve(app)
+    serve(app, port=port)
