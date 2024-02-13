@@ -16,8 +16,10 @@ COPY --chown=myuser:mygroup package*.json ./
 # Install dependencies
 RUN npm install --quiet --no-cache
 
-# Copy the rest of the application
-COPY . .
+# Copy relevant files/folders
+COPY app.js .
+COPY views ./views
+COPY test ./test
 
 # Expose port 3000
 EXPOSE 3000

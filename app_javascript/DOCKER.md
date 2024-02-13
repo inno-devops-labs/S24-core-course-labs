@@ -16,7 +16,7 @@
 - Dependencies are installed using `npm install --quiet --no-cache`. The `--quiet` flag suppresses unnecessary output, while `--no-cache` avoids caching of downloaded packages, enhancing efficiency and reproducibility.
 
 ### 6. Copying Application Files
-- All remaining application files are copied into the container. This includes the main application file (`app.js`) and any other necessary assets.
+- Only relevant application file/folders are copied into the container. This includes the main application file (`app.js`) and any other necessary assets.
 
 ### 7. Exposing Port
 - The `EXPOSE` instruction exposes port 3000, which is typically used by Node.js applications to serve HTTP requests. This allows external access to the application running within the container.

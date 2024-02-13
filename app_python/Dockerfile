@@ -1,5 +1,5 @@
 # Using the Python Alpine image as the base image
-FROM python:alpine3.19@sha256:849ed6079c9f797ca9c1b7d6aea1c00aea3ac35110cbd0d6003f15950017ea8d
+FROM python:3.9.18-alpine3.19@sha256:7e53de21917d6793787bc67483838360404bb2fd70d9c3e38ccc243790c323b2
 
 # Set the working directory in the container
 WORKDIR /app
@@ -14,8 +14,10 @@ COPY requirements.txt ./app_python/requirements.txt
 # Install dependencies
 RUN pip install -r ./app_python/requirements.txt --no-cache-dir --user
 
-# Copy the rest of the application
-COPY . .
+# Copy relevant folders 
+COPY app ./app
+COPY tests ./tests
+COPY static ./static
 
 # Expose port 5000
 EXPOSE 5000
