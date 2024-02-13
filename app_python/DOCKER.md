@@ -1,3 +1,5 @@
+# Docker
+
 While creating a Docker image for my application, I used the following Docker best practices:
 
 1. I created `.dockerignore` file to exclude unnecessary and sensitive files from the Docker image.
@@ -8,4 +10,4 @@ While creating a Docker image for my application, I used the following Docker be
 6. I copied files using the `COPY` instruction instead of `ADD` instruction, since `COPY` is more explicit.
 7. I explicitly specified the exposed port in the Dockerfile.
 
-For this Python web-application I didn't use multi-stage builds, since Python is an interpreted language and it requires all the dependencies to run the application. 
+For this Python web-application I didn't use multi-stage builds, since Python is an interpreted language and it requires all the dependencies to run the application.

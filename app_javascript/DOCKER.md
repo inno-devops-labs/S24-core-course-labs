@@ -1,3 +1,5 @@
+# Docker
+
 While creating a Docker image for my application, I used the following Docker best practices:
 
 1. I created `.dockerignore` file to exclude unnecessary and sensitive files from the Docker image.
