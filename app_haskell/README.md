@@ -19,3 +19,25 @@ stack run
 ```
 
 Now you can make requests to `localhost:8081` to fetch the current Moscow time.
+
+## Docker
+
+You can also use a Docker container with this app. If you want to build a new
+image for this app, run
+
+```bash
+docker build -t devops-haskell .
+```
+
+Alternatively, you can pull an already-built image from Docker Hub. Download it
+by running
+
+```bash
+docker pull snejugal/devops-lab2-haskell
+```
+
+Once you obtain the image, run it using
+
+```bash
+docker run --rm -p 8081:8081 snejugal/devops-lab2-haskell
+```
