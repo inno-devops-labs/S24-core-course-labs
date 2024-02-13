@@ -3,7 +3,10 @@ name = "app-python"
 version = "0.1.0"
 description = ""
 authors = ["Ilnar Khasanov <i.khasanov@innopolis.university>"]
-readme = "README.md"
+packages = [
+    { include = "src" },
+    { include = "tests" },
+]
 
 [tool.poetry.dependencies]
 python = "3.12"
