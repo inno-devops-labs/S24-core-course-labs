@@ -45,3 +45,17 @@ Run the provided unit tests to ensure the application is working correctly:
 ```bash
 python -m unittest test_app.py
 ```
+
+## Building and running docker
+
+To run the application as docker container:
+
+```bash
+docker pull orillion1/lab2
+```
+
+```bash
+docker run -p 5000:5000 lab2
+```
+
+The application will be accessible at `127.0.0.1:5000`
