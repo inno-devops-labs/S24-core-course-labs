@@ -33,6 +33,31 @@ python3 app.py
 4. **View in Browser**:
 Open your browser to http://localhost:5000/ to see WEB APP
 
-## MSK Time Setup
 
-The application uses the `pytz` library to handle timezone information, ensuring the displayed time is accurate for the Moscow timezone.
+## Docker Container
+To simplify deployment, the application has been containerized with Docker. Follow these steps to run the app using Docker:
+1. **Build the Docker Image locallu:**:
+```bash
+docker build -t AlebrahimLaith/app_python:latest .
+```
+2. **Run the Docker Container:**:
+```bash
+docker run -p 5000:5000 AlebrahimLaith/app_python:latest
+```
+3. **Access the application:**:
+Open a browser and go to http://localhost:5000/ to view the application.
+
+Or
+
+2. **Pull the Docker image directly from Docker Hub:**
+  ```bash
+    docker pull AlebrahimLaith/app_python:latest
+
+    docker run -d -p 5000:5000 AlebrahimLaith/app_python:latest
+  ```
+2. **Run the Docker Container:**:
+```bash
+docker run -p 5000:5000 AlebrahimLaith/app_python:latest
+```
+Open a browser and go to http://localhost:5000/ to view the application.
+

@@ -37,3 +37,33 @@ Open `http://localhost:3000/` in your web browser to view the application.
 - Simple Express setup.
 - Random quote generation.
 - Basic HTML response.
+
+
+
+## Docker Container
+To simplify deployment, the application has been containerized with Docker. Follow these steps to run the app using Docker:
+1. **Build the Docker Image locallu:**:
+```bash
+docker build -t AlebrahimLaith/app_js:latest .
+```
+2. **Run the Docker Container:**:
+```bash
+docker run -p 3000:3000 AlebrahimLaith/app_js:latest
+```
+3. **Access the application:**:
+Open a browser and go to http://localhost:3000/ to view the application.
+
+Or
+
+2. **Pull the Docker image directly from Docker Hub:**
+  ```bash
+    docker pull AlebrahimLaith/app_js:latest
+
+    docker run -d -p 3000:3000 AlebrahimLaith/app_js:latest
+  ```
+2. **Run the Docker Container:**:
+```bash
+docker run -p 5000:5000 AlebrahimLaith/app_js:latest
+```
+Open a browser and go to http://localhost:3000/ to view the application.
+
