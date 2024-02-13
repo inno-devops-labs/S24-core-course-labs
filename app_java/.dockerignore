@@ -1,0 +1,10 @@
+.git
+.gitignore
+.pre-commit-config.yaml
+
+# Maven target files
+**.properties
+**.class
+**.lst
+
+**.md
