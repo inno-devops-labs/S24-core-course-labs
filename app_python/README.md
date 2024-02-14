@@ -40,13 +40,13 @@ This is a flask web application that renders current time in Moscow zone.
 
 - run `docker run -p 5000:5000 name`
 
-## Steps to push docker image
+## Steps to push the docker image
 
 1. `docker login`
 2. `docker tag name yourusername/name`
 3. `docker push yourusername/name`
 
-## Steps to pull and run docker image
+## Steps to pull and run the docker image
 1. `docker pull yourusername/name`
 2. `docker run -p 5000:5000 yourusername/name`
 
