@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from datetime import datetime, timedelta
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder= 'template')
 
 @app.route('/')
 def index():
