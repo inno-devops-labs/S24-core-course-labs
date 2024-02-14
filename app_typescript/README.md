@@ -16,3 +16,24 @@ This application serves the current time in my hometown Aktobe,Kazakhstan using 
 
 ## Usage
 Open a web browser and navigate to `http://localhost:3000` to view the current time in Aktobe.
+
+## Building the Docker Image
+
+To build the Docker image, navigate to the directory containing the `Dockerfile` and run:
+
+`bash docker build -t my-typescript-app . `
+
+## Pulling the Docker Image
+
+The image is pushed to my Docker Hub, you can pull it using:
+
+`bash docker pull a1kuat/my-typescript-app`
+
+## Running the Docker Image
+
+To run the Docker image locally, use:
+
+`bash docker run -p 3000:3000 -d my-typescript-app`
+
+
+Then visit `http://localhost:3000/` in your web browser to see the application in action.
