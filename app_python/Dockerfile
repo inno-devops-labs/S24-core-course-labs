@@ -1,21 +1,24 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3.12.2-slim
+# Stage 1: Build stage
+FROM python:3.12.2-slim-bullseye as builder
 
 LABEL maintainer="almetov.kamil@gmail.com"
 
-ENV FLASK_APP=app.py \
-    FLASK_RUN_HOST=0.0.0.0 \
-    FLASK_RUN_PORT=5000
-
 WORKDIR /app_python
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+# Copy requirements.txt to the container
+COPY requirements.txt .
+RUN pip install --upgrade pip \
+    pip install --no-cache-dir -r requirements.txt
 
+# Copy the application source code
 COPY . .
+
+RUN chown -R nobody /app_python
 
 EXPOSE 5000
 
-CMD [ "python3", "-m" , "flask", "run", \ 
-    "--host", "0.0.0.0", "--port", "5000"]
+USER nobody
+
+CMD [ "python3", "-m" , "flask", "run"]
