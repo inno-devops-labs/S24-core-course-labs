@@ -1,0 +1,4 @@
+- Used a lightweight and precise base image (`python:3.9-alpine`) to minimize image size.
+- Created a non-root user (`myuser`) to run the container.
+- Copied only specific files from work repository
+- Utilized `.dockerignore` file to exclude unnecessary files from the image.
