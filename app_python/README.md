@@ -45,3 +45,29 @@ For testing purposes, you can execute all tests by running the following command
 ```properties
 pytest
 ```
+
+## Docker
+
+### Pull
+
+Run the following command to pull docker image from docker hub
+
+```properties
+docker pull ahmadalhussin/app_python:latest
+```
+
+### Build
+
+Run the following command to build docker image
+
+```properties
+docker build --tag ahmadalhussin/app_python .
+```
+
+### Run 
+
+To start the image
+
+```properties
+docker run -d -p 5000:5000 ahmadalhussin/app_python
+```
