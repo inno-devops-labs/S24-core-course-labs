@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Time in Moscow</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 100px;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-4 mb-4">Current Time in Moscow</h1>
+        <div class="card">
+            <div class="card-body">
+                <p class="lead">The current time in Moscow is:</p>
+                <h2 class="mb-4">{{ current_time }}</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
