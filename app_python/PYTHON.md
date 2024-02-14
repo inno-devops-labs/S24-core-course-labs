@@ -11,7 +11,7 @@ Flask is chosen for several reasons when developing web applications in Python:
 
 - **Extensibility**: Flask supports a wide range of extensions that can easily be integrated into applications to add additional functionality. These extensions cover various aspects such as authentication, database integration, RESTful APIs, and more, allowing developers to enhance their applications without reinventing the wheel.
 
-## Best Practices Applied:
+## Best Practices Applied
 1. **Project Structure**:
 -- Organize the project structure logically, separating concerns such as application logic, templates, and static files.
 -- Use a modular approach for routing and application logic to keep code organized and maintainable.
@@ -25,7 +25,7 @@ Flask is chosen for several reasons when developing web applications in Python:
 -- Employ appropriate libraries for handling date and time operations (datetime and pytz in this case).
 -- Ensure proper handling of timezone conversions and localization to provide accurate information to users.
 
-## Best Practices in Unit Testing:
+## Best Practices in Unit Testing
 
 1. **Isolation Using Mocking:**
    - Utilize mocking to isolate the unit of code under test from its dependencies.
@@ -66,6 +66,6 @@ Flask is chosen for several reasons when developing web applications in Python:
    - Ensure that all tests are run automatically whenever changes are made to the codebase, helping to catch regressions early.
 
 
-## Implementation Details:
+## Implementation Details
 - **Coding Standards**: Adhered to PEP 8 guidelines for code formatting and style.
 - **Testing**: Unit tests could be implemented using frameworks like pytest to verify the functionality of the get_moscow_time function and ensure it returns the expected output for different scenarios.

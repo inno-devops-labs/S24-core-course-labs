@@ -1,4 +1,4 @@
-### Dockerfile Best Practices
+# Dockerfile Best Practices
 
 1. **Use a Base Image Wisely**: Starting from a Python base image (`FROM python`) is a common practice, providing a clean environment for Python applications. However, be cautious with the base image size to keep the final image lightweight.
 
