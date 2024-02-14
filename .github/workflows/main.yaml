@@ -76,3 +76,5 @@ jobs:
           file: ./app_python/Dockerfile
           push: true
           tags: user/app:latest
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
