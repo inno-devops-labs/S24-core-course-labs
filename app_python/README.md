@@ -118,7 +118,7 @@ The workflow runs on every push event.
   - Sets up Python version 3.12
   - Installs dependencies from `requirements.txt`
   - Lints code using Flake8
-  - Executes tests with `test.py`
+  - Executes tests with `pytest`
   - Checks vulnerabilites using SNYK
 
 ### Docker Hub Credentials
