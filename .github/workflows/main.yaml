@@ -71,7 +71,8 @@ jobs:
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
-        working-directory: ./app_python
         with:
+          context: ./app_python
+          file: ./app_python/Dockerfile
           push: true
           tags: user/app:latest
