@@ -4,11 +4,8 @@ FROM python:3.10-alpine3.19@sha256:8fc9419f65880c3f7a127f6243962b3bdee6543ecbd3d
 # Define working directory for docker
 WORKDIR /code
 
-# Create a user
-RUN adduser -D myuser
-
-# Make the directory
-RUN mkdir /install
+# Create a user and make the directory for installation
+RUN adduser -D myuser && mkdir /install
 
 # Add to the path the bin of new user
 ENV PATH="$PATH:/home/myuser/.local/bin"
@@ -20,11 +17,9 @@ FROM common-base as builder
 # Copying the requirements to working directory
 COPY ./requirements.txt /code/requirements.txt
 
-# Upgrading pip
-RUN pip3 install --upgrade pip
-
-# Installing python requirements
-RUN pip3 install --no-cache-dir --prefix=/install --upgrade -r /code/requirements.txt
+# Upgrading pip and installing python requirements
+RUN pip3 install --upgrade pip &&  \
+    pip3 install --no-cache-dir --prefix=/install --upgrade -r /code/requirements.txt
 
 
 # The deploy stage where we copy only files required for project operation and define entrypoint
