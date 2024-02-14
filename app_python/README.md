@@ -8,15 +8,15 @@ This Python web application displays the current time in Moscow.
 
 2. Navigate to the `app_python` directory:
 
-    ```bash
-    cd app_python
-    ```
+   ```bash
+   cd app_python
+   ```
 
 3. Create a virtual environment:
 
-    ```bash
-    python -m venv venv
-    ```
+   ```bash
+   python -m venv venv
+   ```
 
 4. Activate the virtual environment:
 
@@ -34,9 +34,9 @@ This Python web application displays the current time in Moscow.
 
 5. Install the required dependencies:
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ## Usage
 
@@ -46,11 +46,22 @@ This Python web application displays the current time in Moscow.
 
 2. Run the application using the following command:
 
-    ```bash
-    python3 app.py
-    ```
+   ```bash
+   python app.py
+   ```
+
+   Or:
+
+   ```bash
+   python3 app.py
+   ```
 
 3. Open a web browser and navigate to `http://127.0.0.1:5000/` to view the current time in Moscow.
+
+4. Upon finishing, deactivate the virtual environment:
+   ```
+   deactivate
+   ```
 
 ### Running the Tests
 
@@ -58,14 +69,48 @@ This Python web application displays the current time in Moscow.
 
 2. Run the test suite using the following command:
 
-    ```bash
-    python -m unittest test_app.py
-    ```
+   ```bash
+   python -m unittest test_app.py
+   ```
 
 3. After running the command, you should see the output of the test results.
+
+## Docker
+
+To run the application in a Docker container, follow these steps:
+
+### Building the Docker Image
+
+1. Navigate to the `app_python` directory.
+
+2. Run the following command:
+
+```bash
+docker build -t python-web-app .
+```
+
+### Running the Docker Container
+To run the build image, execute the command:
+```bash
+docker run -p 5000:5000 python-web-app
+```
+### Pulling and running the Docker Image
+
+1. Pulling the image from Docker Hub:
+
+```bash
+docker pull ghadeero/python-web-app
+```
+
+2. Running the pulled image
+
+```bash
+docker run -p 5000:5000 ghadeero/python-web-app
+```
 
 ## Technologies Used
 
 - Python
 - Flask
 - pytz
+- Docker
