@@ -23,12 +23,8 @@ Note:
 from flask import Flask, render_template
 from datetime import datetime
 import pytz
-import logging
 
 app = Flask(__name__)
-
-# Configure logging
-logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
 
 @app.route('/')
@@ -40,27 +36,18 @@ def display_moscow_time():
             str: Formatted string representing the current time in Moscow.
 
     """
-    try:
-        # Get the current time in UTC
-        utc_now = datetime.utcnow()
+    # Get the current time in UTC
+    utc_now = datetime.utcnow()
 
-        # Set the timezone to Moscow
-        moscow_tz = pytz.timezone('Europe/Moscow')
-        moscow_time = utc_now.replace(tzinfo=pytz.utc).astimezone(moscow_tz)
+    # Set the timezone to Moscow
+    moscow_tz = pytz.timezone('Europe/Moscow')
+    moscow_time = utc_now.replace(tzinfo=pytz.utc).astimezone(moscow_tz)
 
-        # Format the time as a string
-        formatted_time = moscow_time.strftime('%Y-%m-%d %H:%M:%S')
+    # Format the time as a string
+    formatted_time = moscow_time.strftime('%Y-%m-%d %H:%M:%S')
 
-        # Log the successful time retrieval
-        logging.info('Moscow time retrieved successfully.')
-
-        # Render the template with the formatted time
-        return render_template('index.html', moscow_time=formatted_time)
-
-    except Exception as e:
-        # Log the error if an exception occurs
-        logging.exception('An error occurred: %s', str(e))
-        return 'An internal server error occurred.', 500
+    # Render the template with the formatted time
+    return render_template('index.html', moscow_time=formatted_time)
 
 
 if __name__ == '__main__':
