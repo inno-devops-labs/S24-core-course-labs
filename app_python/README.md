@@ -35,3 +35,25 @@ cd S24-core-course-labs/app_python
 
 1. `uvicorn app:app --reload`
 2. Open the `http://127.0.0.1:8000/` in browser for current time
+
+
+## Docker
+
+You can either build the image by yourself by:
+- Navigate to the application directory
+
+```bash
+cd S24-core-course-labs/app_python
+```
+
+- Build the image
+
+```bash
+docker build -t <tag_here> .
+```
+
+- Run the image
+
+```bash
+docker run <tag_here>
+```
