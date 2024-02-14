@@ -1,6 +1,6 @@
-![example workflow](https://github.com/IlyaPechersky/S24-core-course-labs/.github/workflows/main.yml/badge.svg)
-
 # Flask Web Application: Moscow Time Display
+
+![workflow](https://github.com/IlyaPechersky/S24-core-course-labs/.github/workflows/main.yml/badge.svg)
 
 This Flask web application displays the current time in Moscow on the main page. The time is updated every time the page is refreshed.
 
@@ -84,7 +84,7 @@ Follow these steps to set up the project locally:
 ## Files Overview
 
 - `app.py`: Contains the Flask application code, including route definitions and the function to retrieve Moscow time.
-- `templates/`: Contains html templates.
+- `templates/`: Contains HTML templates.
 - `test.py`: Contains unit tests for the Flask application.
 - `requirements.txt`: Lists the dependencies required for the project.
 - `PYTHON.md`: Describes the reason for choosing the framework, best practices, and implementation details.
@@ -96,9 +96,9 @@ Once the Flask application is running locally, open a web browser and navigate t
 
 ## Unit Tests
 
-- `test_index_route`: Checking the main sections for html.
+- `test_index_route`: Checking the main sections for HTML.
 - `test_get_moscow_time_format`: Checking the format of the returned time.
-- `test_index_template_rendering`: It mocks the returned time, and then sends it to the html page, check that this time is displayed.
+- `test_index_template_rendering`: It mocks the returned time, and then sends it to the HTML page, check that this time is displayed.
 
 You can read about the implemented best practices at [PYTHON.md](PYTHON.md).
 
