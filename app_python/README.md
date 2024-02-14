@@ -49,3 +49,27 @@ To run the tests type the following command:
 pytest
 ```
 
+## Docker
+
+It is also possible to run this application with Docker
+
+To build this app you should have docker installed and running on your machine:
+
+```shell
+cd app_python
+docker build -t vladdan16/app_python .
+```
+
+There is also a depoyed image on Docker Hub. You can pull it with command:
+
+```shell
+docker pull vladdan16/app_python
+```
+
+To run container:
+
+```shell
+docker run -p 8080:8000 vladdan16/app_python
+```
+
+Now you should be able to access application at `http://localhost:8080`

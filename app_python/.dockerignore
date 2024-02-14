@@ -1,0 +1,7 @@
+.DS_Store
+env
+record.log
+__pycache__
+tests
+*.md
+.pytest_cache
