@@ -22,3 +22,30 @@
 ```bash
 pytest app_python/unittests.py
 ```
+
+## Running the Docker image
+
+1. Pull the Docker image from Docker Hub:
+
+    ```bash
+    docker pull sapushha/sapushha_flask_app
+    ```
+
+2. Run the Docker container:
+
+    ```bash
+    docker run -p 8080:8080 sapushha/sapushha_flask_app
+    ```
+
+## Building the Docker Image
+
+1. Change the current directory to `app_python`:
+
+    ```bash
+    cd app_python
+    ```
+
+2. Build the Docker image:
+    ```bash
+    docker build -t sapushha_flask_app .
+    ```
