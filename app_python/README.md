@@ -6,7 +6,9 @@ This is a simple Python web application built using Flask that displays the curr
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
-
+- [Build](#build)
+- [Pull](#pull)
+- [Run](#run)
 ## Introduction
 
 The application uses Flask, a lightweight web framework, to showcase the current time in Moscow. It follows best practices for code organization, coding standards, and includes testing to ensure reliability.
