@@ -1,3 +1,5 @@
+![example workflow](https://github.com/IlyaPechersky/S24-core-course-labs/.github/workflows/main.yml/badge.svg)
+
 # Flask Web Application: Moscow Time Display
 
 This Flask web application displays the current time in Moscow on the main page. The time is updated every time the page is refreshed.
@@ -99,6 +101,36 @@ Once the Flask application is running locally, open a web browser and navigate t
 - `test_index_template_rendering`: It mocks the returned time, and then sends it to the html page, check that this time is displayed.
 
 You can read about the implemented best practices at [PYTHON.md](PYTHON.md).
+
+## CI workflow
+
+This GitHub Actions workflow automates the testing, linting, and Docker image building process for a Python application.
+
+## Trigger
+The workflow runs on every push event.
+
+## Jobs
+
+### Test
+- **Runs on:** Ubuntu latest
+- **Steps:**
+  - Checks out the codebase
+  - Sets up Python version 3.12
+  - Installs dependencies from `requirements.txt`
+  - Lints code using Flake8
+  - Executes tests with `test.py`
+  - Checks vulnerabilites using SNYK
+
+### Docker Hub Credentials
+The workflow requires Docker Hub credentials to push the Docker image. Make sure to set up the `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN` secrets in your repository settings.
+
+### Build and Push Docker Image
+- **Runs on:** Ubuntu latest
+- **Steps:**
+  - Sets up Docker Buildx
+  - Logs in to Docker Hub using provided credentials
+  - Builds and pushes the Docker image tagged as `user/app:latest`
+
 
 ## License
 
