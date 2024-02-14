@@ -1,0 +1,9 @@
+# python
+**/__pycache__
+**/.pytest_cache
+
+# vscode
+.vscode
+
+# venv
+.venv
