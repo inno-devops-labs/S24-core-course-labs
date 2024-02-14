@@ -2,6 +2,11 @@ name: app python workflow
 
 on: push
 
+defaults:
+  run:
+    working-directory: ./app_python
+
+
 jobs:
   lint__test_security:
     runs-on: ubuntu-latest
@@ -16,7 +21,6 @@ jobs:
       
       - name: Cache dependencies
         uses: actions/cache@v2
-        working-directory: ./app_python
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
@@ -24,21 +28,18 @@ jobs:
             ${{ runner.os }}-pip-
       
       - name: Install dependencies
-        working-directory: ./app_python
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       
       - name: Lint code
         uses: docker://ghcr.io/github/super-linter:v4
-        working-directory: ./app_python
         with:
           args: --validate-yaml --skip ansible --no-skip pylint --no-skip yamllint
         env:
           VALIDATE_ALL_CODEBASE: "true"
       
       - name: Run tests
-        working-directory: ./app_python
         run: python3 -m pytest
 
       - name: Run Snyk to check for vulnerabilities
@@ -54,11 +55,9 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Set up Docker Buildx
-        working-directory: ./app_python
         uses: docker/setup-buildx-action@v1
       
       - name: Cache Docker layers
-        working-directory: ./app_python
         uses: actions/cache@v2
         with:
           path: ~/.docker
@@ -72,7 +71,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
       - name: Build and push Docker image
-        working-directory: ./app_python
         uses: docker/build-push-action@v2
         with:
           push: true
