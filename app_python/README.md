@@ -23,3 +23,13 @@ The application uses Flask, a lightweight web framework, to showcase the current
    ```bash
    git clone <repository-url>
    cd app_python
+
+## Build
+docker build -t second-lab1 .
+
+## Pull
+docker pull niksgont/second-lab1
+
+## Run
+Once the image is built, you can run the container using:
+docker run -d -p 5000:5000 second-lab1
