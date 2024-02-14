@@ -39,3 +39,32 @@ go test
 ```
 
 This command will run all tests included in the project, outputting the results to your terminal. Ensure you're in the project's root directory to successfully execute the tests.
+
+## Docker Usage
+
+This section covers building, pulling, and running the Docker container for the application.
+
+### Building the Docker Image
+
+To build the Docker image, run the following command in the project app_golang folder:
+
+```bash
+docker build -t xdrdvd/app_golang:latest .
+```
+
+### Pushing the Docker Image
+
+To push the Docker image to Docker Hub, run the following command in the project app_golang folder:
+
+```bash
+docker push xdrdvd/app_golang:latest
+```
+
+### Pulling and running the Docker Container
+
+To pull and run the Docker container, run the following commands:
+
+```bash
+docker pull xdrdvd/app_golang:latest
+docker run -p 8080:8080 xdrdvd/app_golang:latest
+```

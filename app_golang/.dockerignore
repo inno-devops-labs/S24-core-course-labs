@@ -1,0 +1,12 @@
+.dockerignore
+.git
+.gitignore
+.project
+.settings
+.toolstarget
+.vs
+.vscode
+/bin
+Dockerfile*
+*.md
+LICENSE
