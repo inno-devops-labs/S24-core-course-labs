@@ -34,11 +34,6 @@ jobs:
       
       - name: Run tests
         run: python3 test.py
-
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python-3.10@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       
       - name: Lint code
         uses: docker://ghcr.io/github/super-linter:v4
@@ -46,6 +41,19 @@ jobs:
           args: --skip ansible --no-skip pylint
         env:
           VALIDATE_ALL_CODEBASE: "true"
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: snyk/actions/setup@master
+      - uses: actions/setup-go@v1
+        with:
+          python-version: '3.12'
+      - name: Snyk monitor
+        run: snyk test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       
   build_and_push_image:
     runs-on: ubuntu-latest
