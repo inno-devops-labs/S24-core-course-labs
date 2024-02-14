@@ -62,3 +62,35 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 ```
+
+### Docker
+
+#### Containerized Application
+
+The application is containerized using Docker, ensuring portability and ease of deployment across different environments. Below are instructions for building, pulling, and running the Docker container.
+
+#### How to Build
+
+To build the Docker image locally, follow these steps:
+
+```bash
+docker build -t mtz_js .
+```
+
+This command builds the Docker image based on the provided Dockerfile (`Dockerfile`) in the `app_javascript` directory and tags it with the name `mtz_js`.
+
+#### How to Pull
+
+If you prefer to pull the pre-built Docker image from a container registry instead of building it locally, you can use the following command:
+
+```bash
+docker pull wesamnaseer/mtz_js
+```
+
+#### How to Run
+
+Once you have either built the Docker image locally or pulled it from a registry, you can run the container using the following command:
+
+```bash
+docker run -p 3000:3000 -e PORT=3000 wesamnaseer/mtz_js
+```
