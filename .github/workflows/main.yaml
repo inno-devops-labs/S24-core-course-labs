@@ -74,7 +74,6 @@ jobs:
         with:
           context: ./app_python
           file: ./app_python/Dockerfile
-          push: true
-          tags: user/app:latest
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          push: ${{ github.ref_type == 'tag' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
