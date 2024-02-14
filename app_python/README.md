@@ -53,3 +53,35 @@ flask run
 ```
 
 The application will be available at [localhost:5000](http://localhost:5000/)
+
+### Docker
+
+#### Containerized Application
+
+The application is containerized using Docker, ensuring portability and ease of deployment across different environments. Below are instructions for building, pulling, and running the Docker container.
+
+#### How to Build
+
+To build the Docker image locally, follow these steps:
+
+```bash
+docker build -t mtz .
+```
+
+This command builds the Docker image based on the provided Dockerfile (`Dockerfile`) in the `app_python` directory and tags it with the name `mtz`.
+
+#### How to Pull
+
+If you prefer to pull the pre-built Docker image from a container registry instead of building it locally, you can use the following command:
+
+```bash
+docker pull wesamnaseer/mtz:v1.0
+```
+
+#### How to Run
+
+Once you have either built the Docker image locally or pulled it from a registry, you can run the container using the following command:
+
+```bash
+docker run -p 5000:5000 wesamnaseer/mtz:v1.0
+```
