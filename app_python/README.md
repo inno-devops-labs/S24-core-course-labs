@@ -7,8 +7,8 @@ This is a simple Flask web application that displays the current time in Moscow.
 - Displays the current time in Moscow timezone.
 - Built with Flask, a simple and flexible Python web framework.
 
-## Installation
-
+## Manual set up
+### Installation
 1. Clone the repository:
 
    
@@ -24,7 +24,7 @@ This is a simple Flask web application that displays the current time in Moscow.
    
     pip install -r requirements.txt
     
-## Usage
+### Usage
 
 1. Run the Flask application:
 
@@ -32,3 +32,22 @@ This is a simple Flask web application that displays the current time in Moscow.
     python app.py
     
 2. Open your web browser and go to [http://localhost:5000](http://localhost:5000) to view the current time in Moscow.
+
+## Set up via docker
+### Getting image
+There are 2 possible ways to get image for this app:
+1. Build it via 'Dockerfile'
+```
+    docker build - t <image name> app_python/
+```
+
+2. Pull from Dockerhub
+```
+    docker pull glebuben/dev-ops-labs:1.0
+```
+**Note: the image name in the second case is "glebuben/dev-ops-labs:1.0"**
+### Running the image
+To run the image use this command line
+```
+    docker run -d -p 5000:5000 <image name>
+```
