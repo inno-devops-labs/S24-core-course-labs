@@ -39,17 +39,37 @@ jobs:
       - name: Testing
         run: pytest
 
+  security:
+    name: Looking for vulnerabilities
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - name: Check out
+      - uses: actions/checkout@v4
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.10@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif
+
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
+
   docker:
     name: Building & Pushing Docker Image
     runs-on: ubuntu-22.04
     timeout-minutes: 5
 
     needs:
-#      - security
+      - security
       - build
 
-    # TODO: change with security
-    if: ${{ needs.build.result == 'success' }}
+    if: ${{ needs.build.result == 'success' && needs.security.result == 'success'}}
 
     steps:
       - name: Check out
