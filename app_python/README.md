@@ -1,3 +1,5 @@
+![CI Workflow](https://github.com/y0szx/devops/actions/workflows/main.yml/badge.svg)
+
 # Current Moscow time web application documentation
 
 ## Overview
@@ -12,32 +14,32 @@ Make sure you have Python and Docker installed on your system.
 
 * Clone the repository to your local machine:
 
-```
+```bash
 git clone https://github.com/y0szx/devops.git
 ```
 
 * Go to the `app_python`:
 
-```
+```bash
 cd app_python
 ```
 
 * Create virtual environment:
 
-```
+```bash
 python3.11 -m venv env
 source env/bin/activate
 ```
 
 * Install dependencies:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
 * Run the application:
 
-```
+```bash
 python main.py 
 ```
 
@@ -52,13 +54,13 @@ Docker image includes all the necessary dependencies to run the application.
 
 To build image locally go to app_python directory and use:
 
-```
+```bash
 docker build -t app_python .
 ```
 
 To run locally use:
 
-```
+```bash
 docker run -p 5000:5000 app_python
 ```
 
@@ -66,7 +68,7 @@ docker run -p 5000:5000 app_python
 
 To pull the image from the Docker Hub use:
 
-```
+```bash
 docker pull yuszx/app_python
 ```
 
@@ -74,8 +76,46 @@ docker pull yuszx/app_python
 
 To run pulled image use:
 
-```
+```bash
 docker run -p 5000:5000 yuszx/app_python
 ```
 
 Go to https://127.0.0.1:5000 to see the result.
+
+## Unit Tests
+
+* `test_response`: checks if respond is successful when request is made
+* `test_time_format`: checks if returned time is in the expected format
+
+You can read the full description by referring to `PYTHON.md`.
+
+## CI workflow
+
+This repository is configured with a continuous integration (CI) workflow using GitHub Actions. The CI workflow includes
+two jobs:
+
+### 1. Build and Dependency Installation
+
+* Checkout repository
+* Set up Python environment (using Python 3.11)
+* Cache dependencies to speed up subsequent runs
+* Install dependencies from requirements.txt
+
+### 2. Linting
+
+* Install Ruff
+* Run linting with Ruff and output results in GitHub format
+* Continues on error to provide feedback without halting the workflow
+
+### 3. Testing
+
+* Run unit tests using the `unittest` framework
+
+### 4. Docker Image Build and Push
+
+* Log in to Docker Hub using credentials stored in secrets
+* Set up QEMU and Docker Buildx for multi-platform builds
+* Build the Docker image and push it to Docker Hub with a unique tag based on the commit SHA
+
+These CI workflows help ensure the quality and reliability of the Python package and Docker image associated with this
+repository.
