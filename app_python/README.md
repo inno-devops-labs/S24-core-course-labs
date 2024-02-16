@@ -14,7 +14,7 @@ To run the app one should proceed the following:
 * open `http://127.0.0.1:5000/`;
 * enjoy.
 
-## Testing
+## Unit Testing
 To test the application one should just run `pytest` command in `app_python` folder. By this, all the tests in `tests` folder will be run.
 
 ## Docker usage 
