@@ -1,5 +1,7 @@
 # Moscow time web app
 
+![CI badge](https://github.com/kolayne-IU-assignments/S24-core-course-labs/actions/workflows/python-app.yml/badge.svg)
+
 A web application that shows current Moscow time on the main page.
 
 ## How to run
