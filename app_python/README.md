@@ -99,3 +99,39 @@ This orders Docker to run your image in a new container while also publishing th
 You should now be able to access the app at http://localhost:8080.
 
 Use docker ps to verify that your container is running, and docker logs <container-id> for inspecting the application logs.
+
+## Continuous Integration (CI) Workflow
+
+Our project leverages GitHub Actions to automate the testing, linting, security vulnerability checking, and Docker image building/pushing processes. This ensures that every push and pull request triggers a series of checks to maintain code quality and security standards.
+
+### Workflow Overview
+
+Here's what happens under the hood when a new code is pushed or a pull request is made:
+
+1. Linting: We use flake8 to check for any Python style guide violations and potential errors in the code.
+2. Automated Testing: Our unit tests are run using pytest to ensure existing functionality remains consistent with any changes introduced.
+3. Security Vulnerability Check: With Snyk integration, our workflow checks for any known vulnerabilities in the project dependencies, enhancing the application's security posture.
+4. Docker: Upon successful completion of the above steps, a new Docker image is built and pushed to Docker Hub automatically. This ensures that the Docker image is always up to date with the latest codebase.
+
+### Running CI Locally
+
+While our CI processes are fully automated through GitHub Actions, developers can replicate these steps locally to ensure their contributions are compliant before pushing:
+
+- Linting: Execute flake8 . in the project root directory.
+- Testing: Run unit tests using the command pytest.
+- Checking for Vulnerabilities: Install Snyk and run snyk test to find any vulnerabilities. Note: Requires Snyk authentication.
+- Building Docker Image: Use the docker build command detailed in the "Using Docker" section.
+
+### CI Best Practices
+
+Our CI workflow adheres to industry best practices, including but not limited to:
+
+- Automated testing on every push and pull request to ensure robustness.
+- Using Docker to ensure consistent environments from development to production.
+- Employing Snyk for continuous security vulnerability assessment.
+
+For more details on our CI workflow and practices, refer to the CI.md documentation included in the project repository.
+
+### Viewing CI Status
+
+Visit the "Actions" tab in our GitHub repository to view the current and historical statuses of our CI workflows. Each commit or pull request will display whether it passed all the CI checks or if any action is required to resolve issues.
