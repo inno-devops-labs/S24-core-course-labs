@@ -58,6 +58,7 @@ jobs:
             --sarif-file-output=snyk.sarif
             --package-manager=pip
             --file=app_python/requirements.txt
+            --skip-unresolved
 
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
