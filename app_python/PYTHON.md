@@ -24,3 +24,27 @@ deployed in a rather advanced way.
     be set to one other than Moscow) or local time (as it may be
     arbitrary), instead, it uses an external service as the source of
     truth.
+
+## Tests
+
+For the project there are unit tests that cover key functionalities
+of the web application. Tests ensure that:
+
+-   When index is queried, time is displayed. In particular, it is
+    tested that in a response a second later time advances, but no
+    more than by 2 seconds.
+
+-   Quering a URL other than index results in a 404 Not Found
+    response.
+
+-   Requests on index with method other than GET result in a
+    405 Method Not Allowed response.
+
+Tests are implemented using best practices:
+
+-   A conventional project structure splitting source code and tests.
+
+-   Web app tests are implemented in accordance with suggestions from
+    the framework's documentation.
+
+-   Tests cover behavior on both valid and errornous input.

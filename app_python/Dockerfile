@@ -3,7 +3,7 @@ FROM python:3.10.13-alpine3.19
 WORKDIR /app
 EXPOSE 5000
 RUN ["adduser", "-Ds", "/usr/bin/nologin", "flask"]
-COPY requirements.txt *.py /app/
+COPY requirements.txt moscow_time/*.py /app/
 # Note: keeping the project files owned by root so
 # the web server has less privileges over them
 USER flask:flask

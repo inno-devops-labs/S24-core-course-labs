@@ -51,3 +51,11 @@ docker run --rm -d -p 5000 kolay0ne/app_py
 ```
 
 Replace `kolay0ne/app_py` with your image/tag name if you built it manually.
+
+## Unit Tests
+
+To run unit tests:
+
+-   Install `pytest` via `pip` or using your distribution-specific method
+
+-   Go to the project directory and run the `pytest` command
