@@ -1,3 +1,5 @@
+[![Python App Pipeline](https://github.com/SokolOFFF/S24-Devops-core-course-labs/actions/workflows/app_python.yaml/badge.svg)](https://github.com/SokolOFFF/S24-Devops-core-course-labs/actions/workflows/app_python.yaml)
+
 # Moscow time & date displayer 
 
 ## Main description 
