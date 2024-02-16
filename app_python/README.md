@@ -65,6 +65,6 @@ To run unit tests:
 ## CI
 
 On every push to the repository that changes files under `app_python/`,
-the code is linted and tested, on success, an image is built and published
-in DockerHub under the name `kolay0ne/app_py` with a tag matching the branch
-name.
+the code is linted and tested, and checked for vulnerabilities. On success,
+an image is built and published in DockerHub under the name `kolay0ne/app_py`
+with a tag matching the branch name.
