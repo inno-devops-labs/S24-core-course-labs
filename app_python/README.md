@@ -59,3 +59,10 @@ To run unit tests:
 -   Install `pytest` via `pip` or using your distribution-specific method
 
 -   Go to the project directory and run the `pytest` command
+
+## CI
+
+On every push to the repository that changes files under `app_python/`,
+the code is linted and tested, on success, an image is built and published
+in DockerHub under the name `kolay0ne/app_py` with a tag matching the branch
+name.
