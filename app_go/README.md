@@ -52,3 +52,10 @@ Replace `kolay0ne/app_go` with your image/tag name if you built it manually.
 ## Unit Tests
 
 To run unit tests, navigate to the project directory and run `go test`.
+
+## CI
+
+On every push to the repository that changes files under `app_go/`,
+the code is linted and tested, and checked for vulnerabilities. On success,
+an image is built and published in DockerHub under the name `kolay0ne/app_go`
+with a tag matching the branch name.
