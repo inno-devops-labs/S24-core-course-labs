@@ -6,6 +6,10 @@ on:
       - "app_python/**"
       - ".github/workflows/app_python.yaml"
 
+defaults:
+  run:
+    working-directory: app_python
+
 jobs:
   build:
     name: Building App
@@ -23,11 +27,9 @@ jobs:
           cache: 'pip'
 
       - name: Installing dependencies
-        working-directory: app_python
         run: pip install -r requirements.py
 
       - name: Linter
-        working-directory: app-python
         run: flake8
 #        continue-on-error: true
 
