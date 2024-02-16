@@ -27,7 +27,7 @@ jobs:
           cache: 'pip'
 
       - name: Installing dependencies
-        run: pip install -r requirements.py
+        run: pip install -r requirements.txt
 
       - name: Linter
         run: flake8
