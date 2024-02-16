@@ -1,4 +1,4 @@
-from app import app, unify_number
+from src.app import app, unify_number
 import zoneinfo
 from datetime import datetime
 from time import sleep

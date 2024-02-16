@@ -1,4 +1,4 @@
-from app import unify_number
+from src.app import unify_number
 
 
 def test_unify_func():
