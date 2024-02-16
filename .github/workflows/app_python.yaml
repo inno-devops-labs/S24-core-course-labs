@@ -10,6 +10,10 @@ defaults:
   run:
     working-directory: app_python
 
+env:
+  DOCKER_IMAGE_NAME: app_python
+  DOCKER_IMAGE_TAG: latest
+
 jobs:
   build:
     name: Building App
@@ -31,7 +35,38 @@ jobs:
 
       - name: Linter
         run: flake8
-#        continue-on-error: true
 
       - name: Testing
         run: pytest
+
+  docker:
+    name: Building & Pushing Docker Image
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+
+    needs:
+#      - security
+      - build
+
+    # TODO: change with security
+    if: ${{ needs.build.result == 'success' }}
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Login DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Setup Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and Push Image
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          context: app_python
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_TAG }}
