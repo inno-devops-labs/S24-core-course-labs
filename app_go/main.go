@@ -9,8 +9,10 @@ import (
 func handler(w http.ResponseWriter, r *http.Request) {
 	fact, err := catFact()
 	if err == nil {
+        w.WriteHeader(http.StatusOK)
 		_, _ = fmt.Fprintf(w, fact)
 	} else {
+        w.WriteHeader(http.StatusInternalServerError)
 		_, _ = fmt.Fprintf(w, "Failed to query a cat fact :(")
 	}
 }
