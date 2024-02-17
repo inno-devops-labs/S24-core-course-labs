@@ -42,9 +42,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: pwd
+        run: pwd
       - name: Build and push
         uses: docker/build-push-action@v4
-        run: pwd
         with:
           context: .
           file: app_python/Dockerfile
