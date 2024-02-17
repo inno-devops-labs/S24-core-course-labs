@@ -21,11 +21,11 @@ class FlaskAppTests(unittest.TestCase):
             .strip()
         )
         self.assertEqual(displayed_time_str, expected_time_str)
-        
+
     def test_template_rendering(self):
         response = self.app.get('/')
         self.assertIn(b'Current time in Moscow:', response.data)
-        
+
     def test_error_route(self):
         response = self.app.get('/error')
         self.assertEqual(response.status_code, 200)

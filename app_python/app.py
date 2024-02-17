@@ -25,14 +25,13 @@ def display_time():
         return render_template('index.html', time=formatted_time)
     except Exception as e:
         logging.error("An error occurred: %s", str(e))
-        return redirect(url_for('handle_error')) 
+        return redirect(url_for('handle_error'))
 
 
 @app.route('/error')
 def handle_error():
     return render_template('error.html')
 
-    
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
-
