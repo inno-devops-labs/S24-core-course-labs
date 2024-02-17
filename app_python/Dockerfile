@@ -5,7 +5,7 @@ WORKDIR /app_python
 RUN adduser -D new_user && chown -R new_user /app_python
 USER new_user
 
-COPY requirements.txt app.py ./
+COPY ./requirements.txt ./app.py ./
 
 EXPOSE 5000
 
