@@ -45,8 +45,10 @@ app_python/
 ├── templates/ # HTML templates
 │ └── index.html # Main HTML template
 ├── static/ # Styles, scripts and etc
-│ └── script.js
+│ ├── script.js
 │ └── styles.css
+├── static/ # Unit tests
+│ └── test_app.py
 ├── .gitignore # Git ignore file
 ├── .dockerignore # Ignore files during building Docker container
 ├── Dockerfile # Dockerfile itself :D
@@ -93,6 +95,16 @@ docker run -p 5001:5000 fatm1nd/devops-lab-container
 ```
 
 After that your applications would be available on https://localhost:5001
+
+## Unit Tests
+
+1. Test if get_moscow_time returns the current time.
+
+2. Test if index route returns the current time.
+
+3. Test if defined text is displayed on web page
+
+4. Test if download speed is enough (very fast)
 
 ## Contributions
 

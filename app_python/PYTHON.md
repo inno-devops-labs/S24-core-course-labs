@@ -34,3 +34,33 @@ When selecting a framework for building a Python web application that displays t
 3. Testing: The application is tested to ensure the displayed time updates upon page refreshing. This ensures the correctness and reliability of the application's functionality.
 
 4. Code Quality: The code is regularly reviewed to maintain high quality and readability. Refactoring and improvements are made as necessary to enhance the codebase.
+
+# Unit Tests
+
+## Tests
+
+1. Test if get_moscow_time returns the current time.
+
+2. Test if index route returns the current time.
+
+3. Test if defined text is displayed on web page
+
+4. Test if download speed is enough (very fast)
+
+## Best Practices of Unit Testing
+
+1. Isolated tests: tests seem to be isolated from each other. Each test method focuses on testing a specific aspect of the code.
+
+2. Descriptive test names: test method names are descriptive and clearly indicate what aspect of the code they are testing.
+
+3. Small and focused tests: tests are focused on testing small units of functionality.
+
+4. setUp and tearDown: I'm using the setUp method to set up the test environment 
+
+5. Assertions: I'm using assertions (self.assertEqual, self.assertIn) to validate the behavior of the code being tested, which is good.
+
+6. Test edge cases: Your tests currently cover the basic functionality
+
+7. Run tests automatically: I integrate my tests into CI pipeline.
+
+8. Use business analysis: I check the time and availability of web site due to it business purpose.
