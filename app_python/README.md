@@ -1,5 +1,12 @@
 # Python Web Application: Moscow Time Display
 
+Main Branch:
+![Devops Lab Workflow](https://github.com/fatm1nd/devops-core-innopolis-course/actions/workflows/python-app.yml/badge.svg)
+
+Lab3 branch:
+![Devops Lab Workflow](https://github.com/fatm1nd/devops-core-innopolis-course/actions/workflows/python-app.yml/badge.svg?branch=Lab3)
+
+
 This is a simple web application built with Python and Flask framework to display the current time in Moscow.
 
 ## Features
