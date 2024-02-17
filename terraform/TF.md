@@ -92,3 +92,6 @@ container_id = "b5dd746594d5003069cfa48f8a988bd1a082494f7bd4b00cb77c02cda24aaced
 image_id = "sha256:5819d3286d01eaff596a667a90149a967e58fbfc1ad77e2fb0972ea06482d358ramprin/devops_py"
 
 ```
+## GitHub
+
+result <https://github.com/RamPrin/Terraform-S24>

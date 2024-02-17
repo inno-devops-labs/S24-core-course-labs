@@ -19,7 +19,7 @@ provider "github" {
 
 #Create and initialise a public GitHub Repository with MIT license and a Visual Studio .gitignore file (incl. issues and wiki)
 resource "github_repository" "repo" {
-  name               = "Lab4 DevOps"
+  name               = "Terraform-S24"
   description        = "My awesome codebase"
   visibility         = "public"
   has_issues         = true
