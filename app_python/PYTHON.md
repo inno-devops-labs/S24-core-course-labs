@@ -24,12 +24,23 @@ Format features (linters + codebase style) can be run via `make format`, and typ
 Also, some of tools also run during pre-commit phase.
 
 
-### Testing
+## Testing
 
 There are 2 main classes of tests: unit + service. You run all together with `make tests`.
 
+### Best Practices
 
-### Develop process
+> The most of ideas and approaches have been taken from the great book `"Unit Testing Principles, Practices, and Patterns" by Vladimir Khorikov`
+
+Firstly, it is important to separate test by their domain: there are `unit` and `service` folders. The first one contains tests that checks domain of the web app (here it is `TimeManager`), tests in the `service` folder simply checks handlers of the applications - requests processing and responses.
+
+Second approach is *parametrizing* - to avoid code duplications and make easy to process different input parameters.
+
+Third and the most important in testing theory approach is using *fixtures*. They are makes setup phase of testing more "clear" and easy to understand and modify.
+
+Also fourth point is to use *Mocks*. This makes it possible to simplify the testing process, isolate the tested component from external dependencies, and control the behavior of dependent components.
+
+## Develop process
 
 To simplify dev process, all most usefull actions were described in `Makefile`:
 - `make init` a base actions for starting dev process; it installs all needed dependecies

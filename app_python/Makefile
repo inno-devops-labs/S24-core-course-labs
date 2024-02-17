@@ -28,10 +28,11 @@ test:
 format:
 	( \
 		. venv/bin/activate; \
+		isort .; \
 		flake8 app; \
+		flake8 tests; \
 		pylint app; \
-		isort app; \
-		refurb app; \
+		refurb .; \
 	)
 
 typecheck:

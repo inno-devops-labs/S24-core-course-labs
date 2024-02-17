@@ -2,8 +2,9 @@
 Setup API dependency injections.
 """
 
-from app.domain.time import TimeManager
 from fastapi import Request
+
+from app.domain.time import TimeManager
 
 
 async def time_manager(request: Request) -> TimeManager:
