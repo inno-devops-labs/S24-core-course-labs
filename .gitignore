@@ -2,3 +2,17 @@
 __pycache__/
 venve/
 .pytest_cache/
+.terraform/
+*.tfstate
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
