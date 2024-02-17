@@ -1,3 +1,7 @@
+
+![CI](https://github.com/FurryLord/DevOps24/workflows/CI/badge.svg)
+
+
 ## Overview of project
 
 ### 1. Purpose
