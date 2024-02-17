@@ -27,3 +27,9 @@ This app displays current Moscow time.
 #### Run:
 
 * `docker run -p 5000:5000 -t maintheme/flask-msktime-app:v1`
+
+## Testing :white_check_mark:
+
+* `pip install pytest`
+
+* Inside __app_python__ dir : `pytest`
