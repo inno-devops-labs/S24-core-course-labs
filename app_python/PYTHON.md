@@ -16,11 +16,31 @@ I chose ``Flask`` for this project due to following reasons:
 - Store all HTML templates into separate folder ``templates``
 - Follow Python's PEP 8 style guide for code consistency.
 
-## Testing
-
-- File ``test_app.py`` contains unit test which validates the rendered time by calculating the actual time during the test and compares them.
-
 ## Code quality
 
 - I used ``Pylint`` linter for code formatting.
+
+
+### Unit tests
+
+1. **test_moscow_time_calculation**: This test ensures that the displayed time on the homepage (`/`) is correctly calculated as the current UTC time plus 3 hours, which corresponds to Moscow time. It compares the expected Moscow time string with the actual displayed time string on the webpage.
+
+2. **test_template_rendering**: This test checks that the homepage (`/`) renders the correct template, which includes the text "Current time in Moscow:".
+
+3. **test_error_route**: This test checks that the error route (`/error`) returns a status code of 200 (OK) and includes the expected error message "An error occurred" in the response data.
+
+#### Best practices for tests
+
+1. **setUp Method:** The `setUp` method is used to set up the test client and configure it for testing. This ensures that these steps are executed before each test method, keeping the tests isolated and reducing duplication.
+
+2. **Test Isolation:** Each test method is independent and does not rely on the state set by other tests. This ensures that the tests can be run in any order and are not affected by each other.
+
+3. **Descriptive Test Names:** The test methods have descriptive names that clearly indicate what aspect of the application they are testing. This makes it easier to understand the purpose of each test.
+
+4. **Use of Assertions:** Specific assertions (`self.assertEqual` and `self.assertIn`) are used to verify the expected behavior of the application. These assertions test exactly what is intended to be verified.
+
+5. **Handling of Exceptions:** The `display_time` route includes exception handling, ensuring that both the normal behavior and any exceptional cases are covered by the tests.
+
+
+
 

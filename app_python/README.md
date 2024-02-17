@@ -49,4 +49,34 @@ Additionally, a logging directory is created within the container to store appli
 `cd .\app_python\`
 `docker run -p 5000:5000 furryowolord/lab2`
 
-          
+### 6. Unit tests
+
+ These tests cover different aspects of the Flask application, including calculation logic, template rendering, and error handling, ensuring that the application functions correctly under various conditions:
+
+1. **test_moscow_time_calculation**: This test ensures that the displayed time on the homepage (`/`) is correctly calculated as the current UTC time plus 3 hours, which corresponds to Moscow time. It compares the expected Moscow time string with the actual displayed time string on the webpage.
+
+2. **test_template_rendering**: This test checks that the homepage (`/`) renders the correct template, which includes the text "Current time in Moscow:".
+
+3. **test_error_route**: This test checks that the error route (`/error`) returns a status code of 200 (OK) and includes the expected error message "An error occurred" in the response data.
+
+### 7. CI Pipeline
+
+This repository uses GitHub Actions to automate the build, test, and Docker image deployment process. The CI pipeline consists of the following steps:
+
+1. **Dependencies**
+   - Check out the code from the repository.
+   - Set up Python environment using the specified version.
+   - Install project dependencies listed in the `requirements.txt` file.
+
+2. **Linter**
+   - Use Flake8 to lint the Python code for style and formatting errors.
+
+3. **Tests**
+   - Run unit tests using the `unittest` framework to ensure code functionality.
+
+4. **Docker Integration**
+   - Login to Docker Hub using the provided credentials stored as GitHub Secrets.
+   - Build a Docker image tagged as `yourusername/yourimage:latest`.
+   - Push the Docker image to Docker Hub for deployment.
+
+The CI pipeline is triggered on each push to the `main` branch, ensuring that changes are automatically tested and deployed to Docker Hub when the code is merged.
