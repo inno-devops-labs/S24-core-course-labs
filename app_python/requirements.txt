@@ -1,0 +1,7 @@
+fastapi==0.68.2
+pytz==2021.3
+uvicorn==0.15.0
+pytest==8.0.0
+requests==2.31.0
+aiofiles==23.2.1
+
