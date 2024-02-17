@@ -1,8 +1,6 @@
 name: Python web application
 
 on: [pull_request]
-paths:
-  - 'app_python/**'
 
 jobs:
   build:
