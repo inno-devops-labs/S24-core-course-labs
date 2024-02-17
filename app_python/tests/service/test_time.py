@@ -1,8 +1,9 @@
 import asyncio
 
 import pytest
-from app.api import app, di
 from fastapi.testclient import TestClient
+
+from app.api import app, di
 
 
 @pytest.fixture()

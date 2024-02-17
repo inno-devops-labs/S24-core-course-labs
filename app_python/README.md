@@ -14,7 +14,12 @@ Run web server use `make run` command or `bash start.sh` in `venv` terminal. Web
 
 ### Tests
 
-To run tests use `make test` or `pytest tests` command.
+To run tests use `make test` or
+
+```
+PYTHONPATH=. pytest tests/
+```
+make sure you have activated virtualenv with `source venv/bin/activate`. `PYTHONPATH` needed to specify certain "root" for correct imports.
 
 ### Following code style
 

@@ -12,7 +12,7 @@ class TimeManagerConfig(BaseSettings, case_sensitive=False):
     dump_format: str = "%H:%M:%S %d.%m.%Y"
     timezone: t.Union[pytz.BaseTzInfo, str] = pytz.timezone("Europe/Moscow")
 
-    @field_validator('timezone')
+    @field_validator("timezone")
     @classmethod
     def _timezone(cls, v: t.Union[str, pytz.BaseTzInfo]):
         return pytz.timezone(v) if type(v) is str else v
