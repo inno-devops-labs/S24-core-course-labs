@@ -1,4 +1,3 @@
-import pytest
 from app import app
 import re
 
