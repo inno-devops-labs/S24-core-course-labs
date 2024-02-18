@@ -49,7 +49,9 @@ jobs:
           flake8 .
 
       - name: Tests
-        run: unittest ./tests/time_tests.py
+        run: |
+          pip install unittest
+          unittest ./tests/time_tests.py
 
       - name: Vulnerability check
         uses: snyk/actions/python@master
