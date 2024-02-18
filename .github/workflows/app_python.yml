@@ -52,7 +52,6 @@ jobs:
         run: python -m unittest ./tests/time_tests.py
 
       - name: Vulnerability check
-        uses: snyk/actions/python@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: snyk test --sarif-file-output=snyk_results.sarif
