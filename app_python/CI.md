@@ -9,3 +9,5 @@ We have implemented several best practices to optimize our CI workflow:
 ## Snyk Vulnerability Checks
 
 We have integrated Snyk into our CI workflow to identify and address vulnerabilities in our Python project.
+
+The Snyk vulnerability check is accomplished as a separate `security` job.
