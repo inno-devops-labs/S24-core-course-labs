@@ -60,8 +60,9 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.8@master
+        with:
+          args: test /github/workspace/app_python
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
