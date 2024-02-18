@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
+          python-version: '3.8'
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -25,6 +25,26 @@ jobs:
         run: |
           pip install pytest
           pytest
+          
+  security:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app_python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.8@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   docker-python:
     runs-on: ubuntu-latest
@@ -48,3 +68,4 @@ jobs:
           context: ./app_python
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow-time:latest
+          
