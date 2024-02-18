@@ -68,8 +68,8 @@ jobs:
           pip install -r requirements.txt
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.8@master
-        with:
-          args: test app_python --skip-unresolved
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        timeout-minutes: 1
+        args:
+          -snyk
+          -test app_python --skip-unresolved
