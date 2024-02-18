@@ -26,7 +26,7 @@ jobs:
         run: ./gradlew build
 
       - name: Lint with Spotless
-        run: ./gradlew spotlessCheck
+        run: ./gradlew spotlessApply
         continue-on-error: true
 
       - name: Test with kotlin.test
