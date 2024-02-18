@@ -50,3 +50,24 @@ docker run -p 8080:8080 slry/python_moscow_time
 ```
 
 Go to http://127.0.0.1:8080
+
+## Unit Tests
+Unit tests are written using `pytest` testing framework
+
+All unit tests are located in `tests/unit` folder
+
+```bash
+pip install pytest
+pytest
+```
+
+## CI Workflows
+
+- `python_tests.yml` 
+    - action triggers only on changes that occures in `app_python/**`
+    - lint -> test -> snyk security check
+
+- `docker_build_python.yml`
+    - action triggers only on changes that occures in `app_python/app/**` files, Dockerfile and requirements.txt
+    - action lints dockerfile, builds image and uploads it to Dockerhub
+
