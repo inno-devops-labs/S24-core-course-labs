@@ -35,3 +35,23 @@
 - **Code Review**: Peer code review is encouraged to identify potential issues, improve code quality, and ensure
   adherence to coding standards. This collaborative approach helps catch bugs early and improve overall code
   maintainability.
+
+## Unit Tests
+
+I have created a unit test for our Flask application using the `pytest` library. The test checks the `index` route of
+our application.
+
+Here's a brief description of the test:
+
+- I use a context manager, `captured_templates`, to capture the templates rendered by the Flask application.
+- In my test function, `test_index`, we use the `captured_templates` context manager to get the template and context
+  used by the `index` route.
+- I then assert that the status code of the response is 200, indicating a successful request.
+- I also assert that the correct template, 'index.html', was used and that the 'time' variable is present in the
+  context.
+
+This test follows best practices for unit testing:
+
+- **Isolation:** The test does not depend on any external factors and can be run independently.
+- **Use of Assertions:** The test uses assertions to verify that the code behaves as expected.
+- **Coverage:** The test covers the main functionality of the `index` route.
