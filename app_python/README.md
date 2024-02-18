@@ -58,4 +58,25 @@ docker pull bulatok4/devops-lab-02
 docker run -p 8080:8080 --rm -ti bulatok4/devops-lab-02
 ```
 
+## CI
+This CI workflow automates the testing, security scanning, and deployment of a Python application to Docker Hub.
 
+Build Aspect:
+- Utilizes GitHub Actions on push and pull requests triggers (only in `./app_python` directory).
+- Executes on an Ubuntu latest runner.
+- Sets up Python 3.9 and installs dependencies defined in requirements.txt.
+- Performs linting using Flake8 and runs tests with pytest.
+
+Testing Aspect:
+- Lints the Python codebase using Flake8.
+- Runs tests defined in test_main.py using pytest.
+
+Security Aspect:
+- Utilizes Snyk to check for vulnerabilities in dependencies.
+- Executes after the build step and requires it to succeed.
+
+Docker Aspect:
+- Executes on an Ubuntu latest runner and requires successful completion of both build and security steps.
+- Sets up Docker service.
+- Builds a Docker image tagged as DOCKER_USERNAME/app_python:latest.
+- Pushes the Docker image to Docker Hub using secrets for authentication.
