@@ -72,3 +72,4 @@ jobs:
           args: test app_python --skip-unresolved
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        timeout-minutes: 1
