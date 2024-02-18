@@ -46,6 +46,14 @@ Once the container is running, you can access the application by opening a web b
 1. Run the application by executing the command: `python app.py`.
 2. Open a web browser and visit `http://localhost:5000` to see the current time in Moscow.
 
+## Unit Tests
+
+The application includes comprehensive unit tests to ensure its functionality and quality. These tests cover various aspects of the application, including the routes, rendering, and time updates.
+
+To run the unit tests, execute the following command:
+    
+    python -m unittest test_app.py
+
 ## Contributing
 
 Contributions to enhance the functionality of the application are welcome. To contribute, please follow these steps:
