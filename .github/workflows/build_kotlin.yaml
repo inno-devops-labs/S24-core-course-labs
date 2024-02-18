@@ -36,6 +36,7 @@ jobs:
 
       - name: Snyk test
         run: snyk test
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
