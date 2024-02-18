@@ -1,5 +1,7 @@
 # Python Web Application for Moscow time display
 
+![CI](https://github.com/Ozurexus/S24-DevOps-labs/workflows/CI/badge.svg)
+
 ## Set Up
 
 1. (Optional) Create a virtual environment:
