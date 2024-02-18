@@ -87,9 +87,10 @@ jobs:
         cd app_python
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python-3.8@master
-        with:
-          file: app_python
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/python-3.8@master
+      with:
+        file: app_python
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
