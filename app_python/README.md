@@ -28,36 +28,28 @@ python app.py
 
 ## Setup via docker
 
-### Build and Run Locally
-To build and run the Flask application locally using Docker, follow these steps:
-1. Build the Docker Image: 
+### Build
+Build the Docker Image: 
 ```bash
 docker build -t app-flask .
 ```
 
-2. Run the Docker Container:
-```bash
-docker run -d -p 5000:5000 app-flask
-```
-
 ### Pull and Run from Dockerhub
-If you prefer to use a pre-built Docker image from Dockerhub, follow these steps:
-
-1. Pull the Docker Image:
+If you prefer to use a pre-built Docker image from Dockerhub. Pull the Docker Image:
 ```bash
 docker pull blbr13/app-flask:lab2
 ```
 
-2. Run the Docker Container:
-
+### Run Container
+Run the Docker Container:
 ```bash
 docker run -d -p 5000:5000 app-flask
 ```
 
 > After successfully building or pulling the Docker image and running the container, you can access the Flask application by navigating to http://localhost:5000 in your web browser.
 
-## Testing
-Run the unit test to ensure the time format is correct:
+## Unit Tests
+Run the unit tests:
 ```bash
 python -m unittest tests/test_app.py
 ```
@@ -66,3 +58,4 @@ python -m unittest tests/test_app.py
 * Flask
 * pytz
 * pytest
+* requests

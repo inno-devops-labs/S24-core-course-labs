@@ -33,7 +33,8 @@ The code is organized into the following components:
 
 ### Testing
 
-- A simple unit test is implemented in the `tests/test_app.py` file to ensure the correct format of the displayed time.
+- A simple unit tests are implemented in the `tests/test_app.py` file. 
+- -  the correct format of the displayed time.
 - The accuracy of the time values was verified by refreshing the webpage multiple times with varying delays. The test was successful.
 
 ## Testing
@@ -44,7 +45,7 @@ To run the tests, execute the following command:
 python -m unittest tests.test_app.py
 ```
 
-This will validate that the time format conforms to the expected 'YYYY-MM-DD HH:MM:SS' standard.
+This command will verify that the time format follow to the expected 'YYYY-MM-DD HH:MM:SS' format and that the time precision is less than 1 second.
 
 ## Running the Application
 To run the application locally, use the following command:
