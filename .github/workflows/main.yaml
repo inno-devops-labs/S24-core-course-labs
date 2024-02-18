@@ -46,6 +46,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./app_python
-          file: Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow-time:latest
