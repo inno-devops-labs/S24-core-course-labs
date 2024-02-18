@@ -28,3 +28,10 @@ I used Python unittest library and I tried to write the testcases that cover all
 - We can access the application
 - The application displays the correct time
 - Time is changing after refreshing the website
+
+### Best practices
+
+- Give test cases descriptive and meaningful names
+- Write tests that run independently and do not rely on each other
+- Cover all functionality of the application
+- Use AAA pattern: Arrange (set up the test environment), Act (perform the action being tested), and Assert (verify the expected outcome).
