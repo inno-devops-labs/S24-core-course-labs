@@ -2,7 +2,7 @@
 
 ## Workflow Status Badge
 
-!Python application
+![CI](https://github.com/profectus200/S24-core-course-labs/actions/workflows/CI/badge.svg)
 
 ## Overview
 This Python web application displays the current time in Moscow using the Flask framework.
