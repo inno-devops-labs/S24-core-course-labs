@@ -60,6 +60,6 @@ jobs:
       - name: Snyk vulnerability scan
         uses: snyk/actions/python@master
         with:
-          args: test
+          args: app_python
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
