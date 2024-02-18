@@ -11,7 +11,7 @@ class TestApp(unittest.TestCase):
 
     def test_time(self):
         URL = "http://127.0.0.1:5000"
-        assert datetime.now().strftime("%H:%M") in get(URL).text, "Incorrect time"
+        assert datetime.now().strftime("%H:%M") in get(URL).text, "Wrong time"
 
     def test_index(self):
         URL = "http://127.0.0.1:5000"
