@@ -17,6 +17,21 @@ The code follows the PEP 8 style guide for Python code. Tools like Flake8 and Bl
 ## Testing
 The application includes comprehensive unit tests using the pytest framework. These tests cover both the main functionality of the application and edge cases to ensure robustness.
 
+## Best Practices Applied in unit tests
+`Fixture Usage`: Test client fixture created with module scope for efficiency.
+
+`Time Freezing`: Time frozen using @freeze_time decorator.
+
+`Endpoint Testing`: Tests ensure correct time is returned.
+
+`Assertions`: HTTP status and response content asserted.
+
+`DateTime Comparison`: Current time fetched and compared with expected.
+
+`Isolation`: Tests are independent, ensuring reliable results.
+
+`Documentation`: Clear docstrings explain test purpose and conditions.
+
 ## Timezone Handling
 The application uses the pytz library to handle timezones accurately. This ensures that the displayed time is always correct for the specified timezone (Moscow in this case).
 

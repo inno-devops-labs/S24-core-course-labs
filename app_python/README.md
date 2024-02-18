@@ -26,7 +26,7 @@ Then the app accept GET requests on ```/```, which returns the OK status code wi
 1. Run the application using `python main.py`.
 2. Access the application at `http://localhost:8000`.
 
-## Testing
+## Unit Tests
 
 1. Run tests using `pytest` (using the venv).
 

@@ -28,6 +28,22 @@ Errors are handled appropriately using idiomatic Go error handling techniques, i
 ### Testing: 
 The application includes unit tests for critical components such as the clock service and HTTP handlers. Testing is an integral part of the development process, ensuring that the application behaves as expected under different scenarios.
 
+### Best Practices Applied in unit tests
+
+Clear and descriptive test case names ('GET /' OK) for easy identification of failing tests.
+
+Isolation of tests to ensure independence and prevent side effects.
+
+Mocking of dependencies (such as the ClockService) to isolate the component under test.
+
+Assertions for verifying expected behavior.
+
+Proper error handling to handle failures gracefully.
+
+Use of helper functions (newTestApiServerSuite, getTestApiServerSuite) for setup to avoid code duplication.
+
+Mocking of time to test time-dependent functionality deterministically.
+
 ### Documentation: 
 Code is appropriately documented with comments, providing context and guidance for future maintainers.
 
