@@ -62,8 +62,6 @@ jobs:
         uses: snyk/actions/python-3.8@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --all-projects
       
   build_and_push_image:
     runs-on: ubuntu-latest
