@@ -1,5 +1,7 @@
 ## Overview
 
+![CI badge](https://github.com/kolayne-IU-assignments/S24-core-course-labs/actions/workflows/app_python.yml/badge.svg)
+
 This app displays current Moscow time.
 
 * Scalable
@@ -33,3 +35,7 @@ This app displays current Moscow time.
 * `pip install pytest`
 
 * Inside __app_python__ dir : `pytest`
+
+## Continuous Integration :recycle:
+
+The CI workflow ensures that every pull request has the code linted and tested before it can be merged. Additionally, it builds a Docker image of the application and pushes it to Docker Hub, ready for deployment. The use of GitHub secrets for sensitive information like Docker Hub credentials is a secure practice, as it prevents the credentials from being exposed in logs or the workflow file.
