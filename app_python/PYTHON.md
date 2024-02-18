@@ -22,3 +22,20 @@
 
 - `Python` vscode extension
 - `markdownlint` vscode extension
+
+## Unit tests
+
+### Added tests
+
+1. Checking if the function `get_moscow_time` returns time in the correct format
+2. Checking if the flask app returns 200 for the `/` route
+
+### Best practices
+
+- used pytest
+- folder structure
+- `__init__.py` for imports
+- `conftest.py`
+- test files names starting from `test_`
+- descriptive tests' names
+- followed the "arrange, act, assert"
