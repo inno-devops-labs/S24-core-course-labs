@@ -13,4 +13,4 @@ def display_time():
     return f'Current time in the city: {formatted_city_time}'
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
