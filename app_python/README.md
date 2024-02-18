@@ -4,7 +4,7 @@
 
 Runs server which returns the MSK tz time. Source code is in `ptime` folder
 
-## Prepare
+## Prepare local environment
 
 ```bash
 python -m venv ./venv
@@ -22,4 +22,23 @@ python ptime/main.py
 
 ```bash
 pytest
+```
+
+## In Docker
+
+Either pull docker image
+
+```bash
+docker pull legolass322/devops:python
+```
+
+Either build it yourself
+
+```bash
+docker build -t devops .
+```
+
+Then to run app
+```bash
+docker run -p <PORT>:8080 devops
 ```
