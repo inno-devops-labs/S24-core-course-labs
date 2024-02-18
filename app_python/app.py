@@ -12,7 +12,9 @@ app = create_app(templates_path='project/templates')
 def get_time() -> str:
     # Retrieving Moscow timezone info
     timezone: datetime.tzinfo = pytz.timezone('Europe/Moscow')
-    moscow_time: str = datetime.datetime.now(timezone).strftime("%d %B, %H:%M:%S")
+    moscow_time: str = datetime.datetime.now(
+        timezone
+    ).strftime("%d %B, %H:%M:%S")
     return moscow_time
 
 
