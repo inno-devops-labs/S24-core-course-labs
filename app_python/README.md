@@ -61,6 +61,7 @@ Repository has a workflow `build_python` with 2 jobs:
     - `Install dependencies`
     - `Lint with Ruff`
     - `Test with Pytest`
+    - `Snyk test`
 - `docker`
   - `Login to Docker Hub` (using `docker/login-action@v3` and repository secrets)
   - `Set up Docker Buildx` (using `docker/setup-buildx-action@v3`)

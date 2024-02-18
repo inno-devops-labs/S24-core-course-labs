@@ -34,3 +34,33 @@ docker run -p 80:8080 -t tufra/moscow-time-app-kotlin:0.0.1
 ```
 
 Now you can see moscow time at `localhost`
+
+## Unit tests
+
+### Test cases
+
+- `get("/")` returns `200` code
+- `get("/")` and `get("/")` after 2 seconds return different bodies
+
+### How to run
+
+```bash
+cd app_kotlin
+./gradlew test
+```
+
+## CI
+
+Repository has a workflow `build_kotlin` with 2 jobs:
+
+- `build`
+    - `Setup Gradle`
+    - `Make gradlew executable`
+    - `Run build with Gradle Wrapper`
+    - `Lint with Spotless`
+    - `Test with kotlin.test`
+    - `Snyk test`
+- `docker`
+    - `Login to Docker Hub` (using `docker/login-action@v3` and repository secrets)
+    - `Set up Docker Buildx` (using `docker/setup-buildx-action@v3`)
+    - `Build and push` (using `docker/build-push-action@v5` and repository secrets)

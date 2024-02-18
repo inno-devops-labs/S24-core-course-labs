@@ -19,7 +19,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Mke gradlew executable
+      - name: Make gradlew executable
         run: chmod +x ./gradlew
 
       - name: Run build with Gradle Wrapper
