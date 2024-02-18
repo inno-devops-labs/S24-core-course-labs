@@ -36,12 +36,17 @@ jobs:
         run: python3 test.py
 
   lint:
-    image: hoto/flake8:3.0.4
-    stage: lint
-    tags:
-      - dind
-    script:
-      - flake8 app.py test.py
+    runs-on: ubuntu-latest
+    name: Lint
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v3
+      - name: Set up Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: flake8 Lint
+        uses: py-actions/flake8@v2
 
   security:
     runs-on: ubuntu-latest
