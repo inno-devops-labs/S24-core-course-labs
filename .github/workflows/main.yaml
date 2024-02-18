@@ -8,7 +8,7 @@ defaults:
 
 
 jobs:
-  lint_test_security:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -34,13 +34,14 @@ jobs:
       
       - name: Run tests
         run: python3 test.py
-      
-      - name: Lint code
-        uses: docker://ghcr.io/github/super-linter:v4
-        with:
-          args: --skip ansible --no-skip pylint
-        env:
-          VALIDATE_ALL_CODEBASE: "true"
+
+  lint:
+    image: hoto/flake8:3.0.4
+    stage: lint
+    tags:
+      - dind
+    script:
+      - flake8 app.py test.py
 
   security:
     runs-on: ubuntu-latest

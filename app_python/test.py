@@ -7,7 +7,7 @@ class TestMoscowTime(unittest.TestCase):
     def setUp(self):
         app.testing = True
         self.app = app.test_client()
-    
+
     def test_index_route(self):
         response = self.app.get("/")
         self.assertEqual(response.status_code, 200)
@@ -18,7 +18,8 @@ class TestMoscowTime(unittest.TestCase):
         # Check if the returned time string matches the expected format
         moscow_time = get_moscow_time()
         moscow_time_str = moscow_time.strftime("%Y-%m-%d %H:%M:%S")
-        self.assertRegex(moscow_time_str, r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}")
+        self.assertRegex(moscow_time_str,
+                         r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}")
 
     @patch("app.get_moscow_time")
     def test_index_template_rendering(self, mock_get_moscow_time):
@@ -31,4 +32,3 @@ class TestMoscowTime(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
