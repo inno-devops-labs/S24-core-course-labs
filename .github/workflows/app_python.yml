@@ -33,7 +33,7 @@ jobs:
       - name: Run tests
         run: |
           pip install pytest
-          pytest app_python/main_test.py
+          pytest app_python/test_main.py
 
       - name: Login to DockerHub
         uses: docker/login-action@v2
