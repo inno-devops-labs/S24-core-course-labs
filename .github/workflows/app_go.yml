@@ -12,10 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: app_go
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -24,7 +20,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('go.mod') }}
+          key: ${{ runner.os }}-go-${{ hashFiles('app_go/go.mod') }}
           restore-keys: |
             ${{ runner.os }}-go-
 
@@ -37,12 +33,15 @@ jobs:
         uses: golangci/golangci-lint-action@v4
         with:
           version: v1.54
+          working-directory: 'app_go'
 
       - name: Build
+        working-directory: 'app_go'
         run: |
           go build ./cmd/app/*
 
       - name: Test
+        working-directory: 'app_go'
         run: |
           go test -v ./...
 
