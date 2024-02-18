@@ -33,11 +33,9 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.8'
-      - name: Move to app_python
-        run: |
-          cd app_python
       - name: Install dependencies
         run: |
+          cd app_python
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - uses: actions/checkout@master
@@ -45,6 +43,10 @@ jobs:
         uses: snyk/actions/python-3.8@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+           args:
+             -snyk
+             -test app_python
 
   docker-python:
     runs-on: ubuntu-latest
