@@ -63,6 +63,6 @@ jobs:
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.8@master
         with:
-          args: test /github/workspace/app_python
+          args: test /github/workspace
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
