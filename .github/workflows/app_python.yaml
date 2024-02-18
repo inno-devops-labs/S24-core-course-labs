@@ -63,7 +63,7 @@ jobs:
         with:
           args:
             -snyk
-            -test app_python --skip-unresolved
+            -test app_python --skip-unresolved 
 
   docker:
     runs-on: ubuntu-latest
