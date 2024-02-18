@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<div id="clock">
+    Current time in Moscow
+    <br>
+    {{ current_time.strftime("%H:%M:%S") }}
+</div>
+
+{% endblock %}
