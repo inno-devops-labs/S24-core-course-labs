@@ -5,6 +5,7 @@ val logback_version: String by project
 plugins {
     kotlin("jvm") version "1.9.22"
     id("io.ktor.plugin") version "2.3.7"
+    id("com.diffplug.spotless") version "6.25.0"
 }
 
 group = "time.moscow"
@@ -33,4 +34,20 @@ dependencies {
     implementation("io.github.softartdev:kronos:0.0.1")
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+}
+
+spotless {
+    format("misc") {
+        // define the files to apply `misc` to
+        target("*.gradle", ".gitattributes", ".gitignore")
+
+        // define the steps to apply to those files
+        trimTrailingWhitespace()
+        indentWithTabs() // or spaces. Takes an integer argument if you don't like 4
+        endWithNewline()
+    }
+
+    kotlin {
+        ktlint("1.1.1")
+    }
 }

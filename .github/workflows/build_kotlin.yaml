@@ -1,9 +1,9 @@
-name: Python app
+name: Kotlin app
 
 on:
   push:
     paths:
-      - 'app_python/**'
+      - 'app_kotlin/**'
 
 jobs:
   build:
@@ -12,30 +12,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-          cache: 'pip'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
 
-      - name: Install dependencies
-        working-directory: app_python
-        run: pip install -r requirements.txt
+      - name: Run build with Gradle Wrapper
+        working-directory: app_kotlin
+        run: ./gradlew build
 
-      - name: Lint with Ruff
-        working-directory: app_python
-        run: |
-          pip install ruff
-          ruff --output-format=github .
+      - name: Lint with Spotless
+        working-directory: app_kotlin
+        run: ./gradlew spotlessCheck
         continue-on-error: true
 
-      - name: Test with Pytest
-        run: pytest
+      - name: Test with kotlin.test
+        run: ./gradlew test
 
       - uses: snyk/actions/setup@master
 
       - name: Snyk test
-        working-directory: app_python
+        working-directory: app_kotlin
         run: snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
@@ -60,7 +55,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: app_python
-          file: app_python/Dockerfile
+          context: app_kotlin
+          file: app_kotlin/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow-time-app-python:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow-time-app-kotlin:latest
