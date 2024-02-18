@@ -1,5 +1,7 @@
 # Moscow Time Web Application
 
+![Python CI](https://github.com/evsey9/S24-core-course-labs/workflows/Python%20CI/badge.svg)
+
 This simple Python web application built with Flask displays the current time in Moscow.
 
 ## Usage
@@ -34,3 +36,7 @@ docker pull evsey/flask-moscow-time-app:latest
 ```bash
 docker run -p 5000:5000 evsey/flask-moscow-time-app
 ```
+
+## Unit Tests
+
+- We have included comprehensive unit tests for our Python Flask web application. These tests verify the functionality of different parts of the application, including getting the time, the time formatting and the general workflow itself, and ensure that the application behaves as expected.

@@ -14,3 +14,9 @@ Flask is a lightweight and easy-to-use web framework for Python. The choice of F
 - Debug Mode: The application is set to run in debug mode using `app.run(debug=True)` during development for easier debugging.
 - Manual Testing: The application has been tested manually to ensure that the displayed time updates upon page refreshing.
 - Code Review: Code has been reviewed to ensure adherence to PEP 8 coding standards, including proper indentation, clear variable naming, and code readability.
+
+## Unit Tests
+
+- We have included comprehensive unit tests for our Python Flask web application. These tests verify the functionality of different parts of the application, including getting the time, the time formatting and the general workflow itself.
+- We have applied best practices by ensuring each test case is isolated and tests a specific functionality of the application.
+- These tests use the standard unittest library for testing.
