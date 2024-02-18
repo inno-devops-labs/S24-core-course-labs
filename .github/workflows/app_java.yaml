@@ -32,7 +32,7 @@ jobs:
         with:
           args:
             -snyk
-            -test app_python --skip-unresolved --severity-threshold=critical
+            -test app_java --skip-unresolved --severity-threshold=critical
 
   docker:
     runs-on: ubuntu-latest
