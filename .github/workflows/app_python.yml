@@ -62,10 +62,6 @@ jobs:
             --file=app_python/requirements.txt
             --package-manager=pip
             --skip-unresolved
-      - name: Vulnerability report
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: snyk.sarif
 
   docker:
     needs: build
