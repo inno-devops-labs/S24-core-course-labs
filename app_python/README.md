@@ -1,6 +1,6 @@
 ## Overview
 
-![CI badge](https://github.com/kolayne-IU-assignments/S24-core-course-labs/actions/workflows/app_python.yml/badge.svg)
+![CI badge](https://github.com/maintheme2/S24-devops-labs/actions/workflows/app_python/badge.svg)
 
 This app displays current Moscow time.
 
