@@ -9,7 +9,10 @@ def test_get_timestamp_type():
 
 
 def test_get_timestamp_validity():
-    assert abs(get_timestamp().timestamp() - datetime.now().timestamp()) < 1
+    tz_name = "Europe/Moscow"
+    tz = pytz.timezone(tz_name)
+    timestamp = tz.localize(datetime.now(), is_dst=None)
+    assert abs(get_timestamp().timestamp() - timestamp.timestamp()) < 1
 
 
 def test_get_timestamp_timezone():
