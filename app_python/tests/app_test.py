@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from requests import get
 import unittest
 
@@ -11,7 +11,9 @@ class TestApp(unittest.TestCase):
 
     def test_time(self):
         URL = "http://127.0.0.1:5000"
-        assert datetime.now().strftime("%H:%M") in get(URL).text, "Wrong time"
+        msc_time = (datetime.utcnow()
+                    + timedelta(hours=3)).strftime("%H:%M:%S")
+        assert msc_time in get(URL).text, "Incorrect time"
 
     def test_index(self):
         URL = "http://127.0.0.1:5000"
