@@ -12,6 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: app_go
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -20,7 +24,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('app_go/go.mod') }}
+          key: ${{ runner.os }}-go-${{ hashFiles('go.mod') }}
           restore-keys: |
             ${{ runner.os }}-go-
 
@@ -36,11 +40,11 @@ jobs:
 
       - name: Build
         run: |
-          cd app_go && go build ./cmd/app/*
+          go build ./cmd/app/*
 
       - name: Test
         run: |
-          cd app_go && go test -v ./...
+          go test -v ./...
 
   security:
     runs-on: ubuntu-latest
