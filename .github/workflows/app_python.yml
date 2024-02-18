@@ -62,6 +62,10 @@ jobs:
             --file=app_python/requirements.txt
             --package-manager=pip
             --skip-unresolved
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
 
   docker:
     needs: build
