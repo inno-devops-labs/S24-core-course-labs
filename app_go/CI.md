@@ -13,7 +13,7 @@ Next, we perform linting using the golangci-lint tool to detect code-style viola
 Unit tests are executed using the `go test` command to validate code functionality correctness. Testing is crucial for identifying and fixing bugs early in the development process.
 
 ## Security Checks
-Security vulnerabilities in the Go codebase are scanned using Snyk. By integrating vulnerability scanning into our CI workflow, we proactively identify and mitigate security risks.
+Security vulnerabilities in the Go codebase are scanned using Snyk.  By integrating vulnerability scanning into our CI workflow, we proactively identify and mitigate security risks.
 
 ## Docker Deployment
 Upon successful completion of the previous steps, the Docker image is built and pushed to Docker Hub. Docker integration streamlines deployment and ensures consistency across different environments.
