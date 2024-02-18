@@ -33,8 +33,9 @@ jobs:
       - name: Tests
         run: |
           cd app_python
+          python app.py &
           cd tests
-          python -m unittest
+          python app_test.py
 
       - name: Docker login
         uses: docker/login-action@v2
