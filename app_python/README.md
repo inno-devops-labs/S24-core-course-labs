@@ -43,3 +43,24 @@ To run the tests, execute:
 venv/bin/pytest
 ```
 
+## Building docker image
+
+To build docker image, execute the following commang:
+
+```bash
+docker build . -t catdog905/dev-ops-course-app-python
+```
+
+or you can pull the image from Docker Hub
+
+```bash
+docker pull docker push catdog905/dev-ops-course-app-python:latest
+```
+
+Currently available versions are latest, 0.1.0
+
+Run docker container from image using
+
+```bash
+docker run -p 80:80 catdog905/dev-ops-cours-app-python
+```

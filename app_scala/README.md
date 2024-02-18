@@ -28,3 +28,26 @@ Execute the tests with:
 ```bash
 sbt test
 ```
+
+## Building docker image
+
+To build docker image, execute the following commang:
+
+```bash
+docker build . -t catdog905/dev-ops-course-app-scala
+```
+
+or you can pull the image from Docker Hub
+
+```bash
+docker pull docker push catdog905/dev-ops-course-app-scala:latest
+```
+
+Currently available versions are latest, 0.1.0
+
+Run docker container from image using
+
+```bash
+docker run -p 9000:9000 -e SECRET_KEY="QCY?tAnfk?aZ?iwrNwnxIlR6CTf:G3gf:90Latabg@5241AB`R5W:1uDFN];Ik@n" catdog905/dev-ops-cours-app-scala
+```
+
