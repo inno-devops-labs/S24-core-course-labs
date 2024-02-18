@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY app_python/requirements.txt .
 
-RUN pip install --no-cache-dir -r app_python/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 FROM base as runtime
 
