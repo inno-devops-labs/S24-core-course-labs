@@ -52,15 +52,16 @@ jobs:
         run: python -m unittest ./tests/time_tests.py
 
       - name: Vulnerability check
+        uses: snyk/actions/python-3.8@master
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk test --sarif-file-output=snyk_results.sarif
-        continue-on-error: true
-
+        with:
+          args: --sarif-file-output=snyk.sarif
       - name: Vulnerability report
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: ./app_python/snyk_results.sarif
+          sarif_file: snyk.sarif
 
   docker:
     needs: build
