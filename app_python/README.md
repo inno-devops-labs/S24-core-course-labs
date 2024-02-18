@@ -1,4 +1,5 @@
 # Moscow Time Flask Web Application Documentation
+[![Python App CI](https://github.com/r-mol/S24-DevOps-labs/actions/workflows/python-app.yml/badge.svg)](https://github.com/r-mol/S24-DevOps-labs/actions/workflows/python-app.yml)
 
 ## Description
 
