@@ -1,6 +1,8 @@
 # Anonymous threats sender
 API to send threats to intimidate your enemies
 
+![CI badge](https://github.com/FK12344321/S24-core-course-labs/actions/workflows/app_java.yaml/badge.svg)
+
 ## Description
 A java app that connects to the smpt server and sends messages from an anonymous email  
 
@@ -51,3 +53,10 @@ Here how you can:
   ```bash
   docker run fk12344321/anon_threats:v1.0.0
   ```
+
+## CI
+
+Github actions is used for setting up a CI pipeline that have the following jobs:
+* code quality check
+* security check
+* docker image build and push
