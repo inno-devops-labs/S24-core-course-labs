@@ -65,5 +65,5 @@ jobs:
       - name: Build and push Docker image
         run: |
           cd app_python
-          docker build -t elintendo/s24-devops:lab3 .
-          docker push elintendo/s24-devops:lab3
+          docker build -t ieorekhov/s24-devops:lab3 .
+          docker push ieorekhov/s24-devops:lab3
