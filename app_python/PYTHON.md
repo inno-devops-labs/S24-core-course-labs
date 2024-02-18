@@ -16,7 +16,14 @@ I have used several best practices in my implementation:
 6. *Code documentation*: The code is documented using comments to improve the understanding of the person who just came across my implementation of what the function does.
 
 ## Testing
-Test was implemented using `pytest`. One test is like ping, other checks that time is correct.
+Test was implemented using `pytest`. I have wrote several tests:
+– Test that checks that time that will be displayed on site is correct
+– Unit test for function that get Moscow current time
+
+Best practices that were applied:
+1. Independence of tests: Each test is isolated and does not rely on the state from other tests. This is a healthy practice in testing because if tests are dependent on each other, one failed test could create a chain of failing tests which would be difficult to debug.
+2. Taking Care of Precision: In test_current_moscow_time, seconds and microseconds are ignored for testing equality between two datetime objects. It's always important to consider the precision required for any given test and trim off excess precision that can cause unnecessary test failures.
+3. Test Naming: Test function names should be descriptive and indicate what they test. 
 
 ## Code Quality
 As was said, I used `pylint` and PEP8 standard for `python` code

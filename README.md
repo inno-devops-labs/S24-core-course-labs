@@ -1,3 +1,4 @@
+[![Python App CI](https://github.com/NAD777/S24-DevOps/actions/workflows/app_python.yaml/badge.svg)](https://github.com/NAD777/S24-DevOps/actions/workflows/app_python.yaml)
 # DevOps Engineering Labs
 
 ## Introduction
