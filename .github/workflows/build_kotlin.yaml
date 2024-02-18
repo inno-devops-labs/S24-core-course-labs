@@ -5,6 +5,10 @@ on:
     paths:
       - 'app_kotlin/**'
 
+defaults:
+  run:
+    working-directory: app_kotlin
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -16,15 +20,12 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Mke gradlew executable
-        working-directory: app_kotlin
         run: chmod +x ./gradlew
 
       - name: Run build with Gradle Wrapper
-        working-directory: app_kotlin
         run: ./gradlew build
 
       - name: Lint with Spotless
-        working-directory: app_kotlin
         run: ./gradlew spotlessCheck
         continue-on-error: true
 
@@ -34,7 +35,6 @@ jobs:
       - uses: snyk/actions/setup@master
 
       - name: Snyk test
-        working-directory: app_kotlin
         run: snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

@@ -30,5 +30,3 @@ def test_content_change(fixture):
     assert first_response.status == 200
     assert second_response.status == 200
     assert first_response.body != second_response.body
-
-    

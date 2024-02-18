@@ -5,6 +5,10 @@ on:
     paths:
       - 'app_python/**'
 
+defaults:
+  run:
+    working-directory: app_python
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -19,11 +23,9 @@ jobs:
           cache: 'pip'
 
       - name: Install dependencies
-        working-directory: app_python
         run: pip install -r requirements.txt
 
       - name: Lint with Ruff
-        working-directory: app_python
         run: |
           pip install ruff
           ruff --output-format=github .
@@ -35,7 +37,6 @@ jobs:
       - uses: snyk/actions/setup@master
 
       - name: Snyk test
-        working-directory: app_python
         run: snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
