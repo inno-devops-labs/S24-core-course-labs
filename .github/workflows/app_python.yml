@@ -51,8 +51,17 @@ jobs:
 
       - name: Build  Docker image
         run: |
-          docker build -t bulatok4/app_python:latest ./app_python
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/app_python:latest ./app_python
 
       - name: Push Docker image
         run: |
-          docker push bulatok4/app_python:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/app_python:latest
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.10@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
