@@ -56,3 +56,10 @@ jobs:
         run: |
           docker push dudukk/devops:latest
           cd ..
+
+      - name: Snyk vulnerability scan
+        uses: snyk/actions/python@master
+        with:
+          args: test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
