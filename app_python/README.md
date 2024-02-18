@@ -1,4 +1,4 @@
-![Github Actions CI](https://github.com/majorro/devops-engineering-course/actions/workflows/app-python-ci.yml/badge.svg)
+![Github Actions CI](https://github.com/majorro/devops/actions/workflows/app-python-ci.yml/badge.svg)
 
 # Moscow Time Web Application
 
