@@ -56,3 +56,10 @@ Here how you can:
   ```bash
   docker run fk12344321/moscow-time:v1.0.0
   ```
+  
+## Unit tests
+
+Several test cases were implemented for the project and the following best practices were applied: 
+- the test cases are concise 
+- each of them isolates some part of functionality and tests it separately 
+- the names of the testing functions are clear and reflect the purpose of the tests
