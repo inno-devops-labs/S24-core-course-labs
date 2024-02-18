@@ -9,6 +9,8 @@ defaults:
 
 jobs:
   test_app:
+
+    name: Test&lint app
     runs-on: ubuntu-latest
 
     steps:
@@ -27,4 +29,28 @@ jobs:
 
       - name: Testing app
         run: make test
-  
+
+  build_push:
+    needs: test_app
+
+    name: Docker build and push image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sign in to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+
+      - uses: docker/setup-buildx-action@v3
+      - name: Build and push image
+        uses: docker/build-push-action@v5
+        with:
+          context: app_python
+          file: app_python/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-lab-02-python:latest
