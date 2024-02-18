@@ -1,0 +1,20 @@
+[project]
+name = "moscow_time_app"
+version = "1.0.0"
+authors = [
+  {name = "Vyacheslav Rybalchenko", email = "v.rybalchenko@innopolis.university"},
+]
+description = "Simple app that shows Moscow time in any timezone"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+  "Framework :: FastAPI",
+  "Programming Language :: Python :: 3",
+]
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]",
+  "httpx",
+  "pytest"
+]
+
