@@ -1,5 +1,5 @@
 import unittest
-import main as app
+from app_python.app import main as app
 from datetime import datetime
 from datetime import timedelta
 import pytz

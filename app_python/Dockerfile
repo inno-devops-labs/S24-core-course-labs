@@ -10,7 +10,7 @@ USER flaskuser
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY main.py /app/main.py
+COPY app/main.py /app/main.py
 COPY templates/index.html /app/templates/index.html
 COPY requirements.txt /app/requirements.txt
 
