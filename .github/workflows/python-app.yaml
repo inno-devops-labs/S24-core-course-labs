@@ -1,0 +1,30 @@
+name: Python app
+
+on: [push, pull_request]
+
+defaults:
+  run:
+    working-directory: app_python
+    shell: bash
+
+jobs:
+  test_app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: make init
+
+      - name: Lint check source code
+        run: make lint-check
+
+      - name: Testing app
+        run: make test
+  

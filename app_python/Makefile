@@ -28,12 +28,12 @@ test:
 format:
 	( \
 		. venv/bin/activate; \
-		isort .; \
-		flake8 app; \
-		flake8 tests; \
-		pylint app; \
-		refurb .; \
+		isort app; isort tests; \
+		black app; black tests; \
 	)
+
+lint-check:
+	. venv/bin/activate; flake8 app; flake8 tests; pylint app; refurb --enable-all app
 
 typecheck:
 	. venv/bin/activate; pyright app
