@@ -1,3 +1,6 @@
+![app_python](https://github.com/ananastya1/S24-core-course-labs/workflows/Main%20CI/badge.svg)
+
+
 # Python Web Application - Moscow Time Display
 
 ## Overview
