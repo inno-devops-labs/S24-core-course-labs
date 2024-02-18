@@ -20,7 +20,7 @@ jobs:
       - name: Run the Maven verify phase
         run: mvn --batch-mode --update-snapshots verify
         
-  opensource-security:
+  ensure-security:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
