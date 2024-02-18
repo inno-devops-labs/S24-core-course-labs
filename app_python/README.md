@@ -65,3 +65,11 @@ Several test cases were implemented for the project and the following best pract
 - the test cases are concise 
 - each of them isolates some part of functionality and tests it separately 
 - the names of the testing functions are clear and reflect the purpose of the tests
+
+
+## CI 
+
+Github actions is used for setting up a CI pipeline that have the following jobs: 
+* code quality check 
+* security check 
+* docker image build and push
