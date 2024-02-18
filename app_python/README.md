@@ -41,7 +41,7 @@ Visit http://127.0.0.1:5000/ in your browser to view the work of the application
 To get and run the Docker image, use the following commands:
 
 ```bash
-docker pull dudukk/devops:latest .
+docker pull dudukk/devops:latest
 docker run -p 5000:5000 dudukk/devops:latest .
 ```
 

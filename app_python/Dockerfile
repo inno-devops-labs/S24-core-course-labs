@@ -1,8 +1,8 @@
 FROM python:3.8-alpine3.15 as base
 
-WORKDIR /app
+WORKDIR /app_python
 
-COPY app_python/requirements.txt .
+COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 

@@ -39,7 +39,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t dudukk/devops:latest -f app_python/Dockerfile .
+        run: |
+          cd app_python
+          docker build -t dudukk/devops:latest Dockerfile .
 
       - name: Push Docker Image
-        run: docker push dudukk/devops:latest
+        run: |
+          docker push dudukk/devops:latest
+          cd ..
