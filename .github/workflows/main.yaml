@@ -28,6 +28,7 @@ jobs:
 
   docker-python:
     runs-on: ubuntu-latest
+    needs: ['ensure-quality-python']
     defaults:
       run:
         working-directory: ./app_python
@@ -45,6 +46,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile
+          file: ./app_python/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow-time:latest
