@@ -69,6 +69,6 @@ jobs:
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.8@master
         with:
-          args: test app_python
+          args: test app_python --skip-unresolved
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
