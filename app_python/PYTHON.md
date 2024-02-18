@@ -28,7 +28,23 @@ The application adheres to [PEP 8](https://pep8.org/). The code is PEP 8 complia
 ## Testing
 
 ### Unit Testing
-Unit tests were written to ensure that the application works correctly. The Python's built-in `unittest` framework was used for this purpose.
+Unit tests were written to ensure that the application works correctly. The Python's `pytest` framework was used for this purpose.
+
+#### Test Cases
+1. **Test Show Time Status Code**: verifies that the / endpoint responds with a 200 HTTP status code, indicating a successful request.
+2. **Test Show Time Content**: ensures that the / endpoint renders the correct template with the expected context variables.
+3. **Test Home Page Moscow Time Display**: checks that the home page correctly displays the current Moscow time.
+#### Best Practices applied in Testing
+1. Test Isolation
+- Each test is written to be independent of others, ensuring no shared state or side effects between tests.
+2. Continuous Integration (CI)
+- Integrating these tests into a CI pipeline ensures that tests are automatically run for every change, helping to catch issues early.
+3. Naming Conventions and Documentation
+- Standard naming conventions for test files and functions is used to ensure clarity and discoverability. Each test is documented to describe its purpose and methodology.
+4. Use of Fixtures
+- Fixtures are used for setting up the test environment and providing a reusable set of tools for multiple test functions. 
+5. Context Manager for Resource Management
+- Context Manager is utilized to manage resources efficiently, ensuring proper setup and teardown actions. It is particularly useful for testing that the correct templates are rendered with the expected context variables.
 
 ## Code Quality
 

@@ -38,12 +38,14 @@ python app.py
 Navigate to http://127.0.0.1:5000/ in your web browser to view the application.
 
 ## Testing
+### Unit Testing
 Ensure all tests pass by running:
 
 ```
-python -m unittest discover
+pytest
 ```
 
+### Test Coverage
 For test coverage, run:
 
 ```
