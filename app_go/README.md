@@ -54,3 +54,16 @@ docker run -p 8080:8080 --rm -ti devops-lab-02-go
 docker pull bulatok4/devops-lab-02-go 
 docker run -p 8080:8080 --rm -ti bulatok4/devops-lab-02-go
 ```
+
+
+# CI
+
+This CI workflow automates building, testing, linting, security vulnerability checking, and Docker image deployment for Go applications. It consists of the following steps:
+
+1. **Building**: Go modules are cached for faster builds. Dependencies are installed, and the Go environment is set up before building the application.
+2. **Linting**: Code-style violations and potential errors are detected using golangci-lint.
+3. **Testing**: Unit tests are executed to ensure code functionality correctness.
+4. **Security Checks**: Vulnerabilities in the codebase are scanned using Snyk.
+5. **Docker Deployment**: Upon successful completion, the Docker image is built and pushed to Docker Hub.
+
+
