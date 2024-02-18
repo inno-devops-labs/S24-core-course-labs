@@ -73,3 +73,16 @@ To run the Docker container:
 ```
 docker run -d -p 5000:5000 -t ananastya10/devops:lab2  
 ```
+
+## CI
+
+The CI file is located at .github/worflows/main.yaml
+
+CI consists of:
+
+- Python Setup
+- Dependencies Installation
+- Linter 
+- Testing
+- Login to Docker Hub
+- Build and Push to Docker Hub
