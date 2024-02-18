@@ -53,13 +53,10 @@ jobs:
 
       - name: Vulnerability check
         uses: snyk/actions/python@master
-        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args:
-            --sarif-file-output=snyk_results.sarif
-            --file=app_python/requirements.txt
+        run: snyk test --sarif-file-output=snyk_results.sarif
+        continue-on-error: true
 
       - name: Vulnerability report
         uses: github/codeql-action/upload-sarif@v3
