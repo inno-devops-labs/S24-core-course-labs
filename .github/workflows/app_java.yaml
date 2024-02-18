@@ -30,7 +30,9 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: -snyk -test app_java -skip-unresolved -fail-on=none --severity-threshold=high
+          args:
+            -snyk
+            -test --fail-on=none --severity-threshold=high app_java
         
   docker:
     runs-on: ubuntu-latest
