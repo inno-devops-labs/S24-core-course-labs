@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    - '*'
+  pull_request:
+    - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r app_python/requirements.txt
+
+      - name: Linter
+        run: pylint app_python/app.py
+
+      - name: Tests
+        run: pytest
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker Image
+        run: docker build -t Dudukk/devops:latest -f app_python/Dockerfile .
+
+      - name: Push Docker Image
+        run: docker push Dudukk/devops:latest
