@@ -1,7 +1,7 @@
 # Time API 
 A simple web api returning value of time
 
-![CI badge](https://github.com/FK12344321/S24-core-course-labs/actions/workflows/app_python/badge.svg)
+![CI badge](https://github.com/FK12344321/S24-core-course-labs/actions/workflows/app_python.yaml/badge.svg)
 
 ## Description
 A python application that returns current time value (by default in Europe/Moscow timezone)
