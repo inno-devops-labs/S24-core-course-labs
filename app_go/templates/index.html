@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Go</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+  <ul id="records"></ul>
+
+  <form>
+    <input name="record" placeholder="Place your record" />
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    $('form').on('submit', function (e) {
+      e.preventDefault()
+      const sArr = $(this).serializeArray()
+      const data = {}
+      sArr.forEach(item => {
+        $.ajax({
+          url: '/api/v1/records/v1/add',
+          method: 'POST',
+          data: JSON.stringify({text: item['value']}),
+          success: () => {
+            sArr.forEach(item => {
+              addToList({text: item['value']})
+            })
+          }
+        })
+      })
+    })
+  </script>
+
+  <script>
+    let records = null
+    try {
+      rstr = '{{ .records }}'
+      if (!rstr || rstr === 'null') {
+        records = []
+      } else {
+        records = JSON.parse(rstr)
+      }
+    } finally {
+      console.log('Debug', records)
+    }
+  </script>
+
+  <script>
+    function addToList(record) {
+      $('#records').append($(`<li>${record.text}</li>`))
+    }
+  </script>
+
+  <script>
+    $('document').ready(() => {
+      console.log("start", records)
+      if (!Array.isArray(records)) return
+
+      records.forEach(record => {
+        console.log('Debug records render', record)
+        addToList(record)
+      })
+    })
+  </script>
+</body>
+
+</html>
