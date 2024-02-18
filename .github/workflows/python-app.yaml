@@ -1,6 +1,13 @@
 name: Python app
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - "feature/**"
+
+  pull_request:
+    branches:
+      - "feature/**"
 
 defaults:
   run:
@@ -9,6 +16,7 @@ defaults:
 
 jobs:
   test_app:
+    timeout-minutes: 2
 
     name: Test&lint app
     runs-on: ubuntu-latest
@@ -30,8 +38,26 @@ jobs:
       - name: Testing app
         run: make test
 
-  build_push:
+  snyk_check:
     needs: test_app
+    timeout-minutes: 3
+
+    name: Run Snyk
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.10@master
+        with:
+          args: --skip-unresolved app_python/
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  build_push:
+    needs: [test_app, snyk_check]
+    timeout-minutes: 3
 
     name: Docker build and push image
     runs-on: ubuntu-latest
@@ -54,3 +80,6 @@ jobs:
           file: app_python/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-lab-02-python:latest
+
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/python_app:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/python_app:buildcache,mode=max
