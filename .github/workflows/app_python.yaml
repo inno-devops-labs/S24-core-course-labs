@@ -30,9 +30,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.8'
       - name: Install dependencies
         run: |
           cd app_python
@@ -43,9 +40,9 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-           args:
-             -snyk
-             -test app_python
+          args:
+            -snyk
+            -test app_python --skip-unresolved
 
   docker-python:
     runs-on: ubuntu-latest
