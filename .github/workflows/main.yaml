@@ -51,7 +51,7 @@ jobs:
           npm install -g snyk
           snyk auth ${{ secrets.SNYK_TOKEN }}
           cd app_python
-          snyk test code
+          snyk test --code
 
       - name: Docker login
         uses: docker/login-action@v2
