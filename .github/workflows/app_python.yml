@@ -62,9 +62,9 @@ jobs:
             --file=app_python/requirements.txt
 
       - name: Vulnerability report
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: snyk_results.sarif
+          sarif_file: ./app_python/snyk_results.sarif
 
   docker:
     needs: build
