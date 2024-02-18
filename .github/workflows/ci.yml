@@ -41,7 +41,7 @@ jobs:
       - name: Build Docker Image
         run: |
           cd app_python
-          docker build -t dudukk/devops:latest Dockerfile .
+          docker build -t dudukk/devops:latest -f Dockerfile .
 
       - name: Push Docker Image
         run: |
