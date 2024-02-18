@@ -62,3 +62,22 @@ To run the unit tests locally, follow these steps:
 3. Run the tests using pytest:
    ```bash
    pytest
+
+## Continuous Integration (CI) Workflow
+
+Our project uses GitHub Actions for continuous integration. The CI workflow includes the following steps:
+
+1. **Dependencies:** Install project dependencies.
+2. **Linter:** Run pylint to check code quality.
+3. **Tests:** Execute unit tests using `pytest`.
+4. **Docker:** Build and push a Docker image to Docker Hub.
+
+### Running CI Locally
+
+To replicate the CI workflow locally, you need to have the necessary dependencies installed, including Docker.
+Additionally, set up Docker Hub credentials as secrets in your GitHub repository.
+
+```bash
+pip install -r app_python/requirements.txt
+pytest
+```
