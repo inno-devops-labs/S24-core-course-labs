@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - app_java/**
+      - .github/workflows/app_java.yaml
 
 jobs:
   ensure-quality:
