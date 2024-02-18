@@ -28,7 +28,7 @@ In `RFC3339`
 2. Access the application at http://localhost:8080.
 
 # Unit Tests
-1. Run `go test ./... -v`
+1. Run `go test ./... -v` 
 
 # Structure
 
