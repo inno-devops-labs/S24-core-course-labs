@@ -1,5 +1,8 @@
 # Flask Web Application displaying current time in Moscow
 
+[![Test](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/test.yml/badge.svg?branch=lab-3&event=push)](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/test.yml)
+[![Lint](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/lint.yml/badge.svg?branch=lab-3&event=push)](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/lint.yml)
+
 ## Description
 
 This is a simple Flask web application that displays the current time in Moscow.
@@ -74,9 +77,26 @@ This is a simple Flask web application that displays the current time in Moscow.
     ```
 
 2. Build the Docker image:
+
     ```bash
     docker build -t devops-flask-app .
     ```
+
+## CI Workflow
+
+The CI workflow is set up using GitHub Actions. There are two workflows: **Lint** and **Test**.
+
+### Lint Workflow
+
+The Lint workflow checks the code for any linting issues using `pylint`.
+
+The workflow is triggered on every push & pull request in the repository.
+
+### Test Workflow
+
+The Test workflow runs the unit tests for the application.
+
+The workflow is triggered on every push & pull request in the repository.
 
 ## Author
 
