@@ -24,9 +24,7 @@ class _MainAppState extends State<MainApp> {
 
   Future<void> _setTime() async {
     final time = Time();
-    // await tz.initializeTimeZone();
-    // final moscowTz = tz.getLocation('Europe/Moscow');
-    // final time = tz.TZDateTime.now(moscowTz).toString().split(' ');
+    await time.getMoscowTime();
 
     setState(() {
       _time = time.moscowTime[1].split('.')[0];
