@@ -36,18 +36,8 @@ jobs:
         working-directory: 'app_python'
         run: python test.py
 
-  lint:
-    runs-on: ubuntu_latest
-    name: Linter
-    steps:
-      - name: Check out source repository
-        uses: actions/checkout@v3
-      - name: Set up Python environment
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-      - name: flake8 Lint
-        uses: py-actions/flake8@v2
+      - name: Lint
+        run: flake8 .
 
   security:
     runs-on: ubuntu-latest
