@@ -1,4 +1,4 @@
-name: Lint and Test
+name: Checking the codebase
 
 on: [push]
 
@@ -13,6 +13,14 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.12.2
+    
+    - name: Cache pip packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt', '**/requirements.dev.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
     - name: Dependencies
       run: |
@@ -30,3 +38,13 @@ jobs:
       run: |
         cd app_python
         python -m pytest tests/
+  
+  snyk:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Scan for vulnerabilities with Snyk
+      uses: snyk/actions/setup-snyk@master
+      with:
+        snyk_token: ${{ secrets.SNYK_TOKEN }}
+      run: snyk test --all-projects
+

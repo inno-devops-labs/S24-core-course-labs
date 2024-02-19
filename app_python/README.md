@@ -43,6 +43,7 @@ docker run -p <some host port: p>:8080 nabuki/devops-lab2:v1
 ## Workflows
 
 ### Lint and Test
+![Lint and Test](https://github.com/Senopiece/S24-core-course-labs/actions/workflows/lint_and_test.yml/badge.svg)
 - **File**: `lint_and_test.yml`
 - **Triggers**: Runs on any push.
 - **Steps**:
@@ -52,6 +53,7 @@ docker run -p <some host port: p>:8080 nabuki/devops-lab2:v1
   - Run unit tests with pytest.
 
 ### Deployment
+![Deployment](https://github.com/Senopiece/S24-core-course-labs/actions/workflows/deploy.yml/badge.svg)
 - **File**: `deploy.yml`
 - **Secrets**:
   - `DOCKER_IMG_NAME` - the image name to be deployed as

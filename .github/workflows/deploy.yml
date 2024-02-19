@@ -25,3 +25,5 @@ jobs:
         tags: |
           ${{ secrets.DOCKER_IMG_NAME }}:${{ github.event.release.tag_name }}
           ${{ secrets.DOCKER_IMG_NAME }}:latest
+        cache-from: type=registry,ref=${{ secrets.DOCKER_IMG_NAME }}:cache
+        cache-to: type=inline,mode=max
