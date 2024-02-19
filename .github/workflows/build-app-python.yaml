@@ -3,10 +3,8 @@ name: Python Flask Application
 on:
   push:
     paths:
-      - "app_python/**/*"
-
-permissions:
-  contents: read
+      - "app_python/**"
+      - ".github/workflows/build-app-python.yaml"
 
 jobs:
   build:
