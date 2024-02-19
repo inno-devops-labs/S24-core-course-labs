@@ -40,7 +40,6 @@ jobs:
         python -m pytest tests/
   
   snyk:
-    runs-on: ubuntu-latest
     steps:
     - name: Scan for vulnerabilities with Snyk
       uses: snyk/actions/setup-snyk@master
