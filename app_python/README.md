@@ -38,7 +38,7 @@ This Python web application displays the current time in Moscow.
    \
    ![alt text](./md_screenshots/image-1.png)
 
-5. **Running Unit Tests:**
+5. **Unit Tests:**
 
    Execute the following command:
    ```bash

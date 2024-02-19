@@ -29,7 +29,7 @@ A simple ToDo List web application built with Node.js and Express.
    node app.js
    ```
    ![alt text](./md_screenshots/image.png)
-5. Running tests: 
+5. Unit Tests: 
    ```bash
    npm test
    ``` 
