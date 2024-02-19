@@ -1,2 +1,0 @@
-export AWS_PROFILE=redacted
-export GITHUB_TOKEN=redacted
