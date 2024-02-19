@@ -26,7 +26,8 @@ jobs:
 
     - name: Run tests
       run: |
-        PYTHONPATH=$PYTHONPATH:$(pwd) python -m unittest app_python/tests/test_flask_app.py
+        python -m unittest tests.test_flask_app.FlaskAppTest
+      working-directory: app_python
 
     - name: Lint code with pylint
       run: |
