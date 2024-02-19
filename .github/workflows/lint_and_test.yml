@@ -29,4 +29,4 @@ jobs:
     - name: Tests
       run: |
         cd app_python
-        python -m pytest
+        python -m pytest tests/
