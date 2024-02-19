@@ -1,10 +1,6 @@
 name: app python workflow
 
-on:
-  push:
-    paths:
-      - 'app_python/**'
-
+on: push
 
 jobs:
   build_and_test:
