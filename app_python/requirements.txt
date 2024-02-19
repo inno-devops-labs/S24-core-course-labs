@@ -1,0 +1,7 @@
+fastapi==0.109.1
+uvicorn[default] ==0.27.0.post1
+tzdata == 2023.4
+
+pytest==8.0.0
+pytest-time==0.3.1
+requests==2.31.0
