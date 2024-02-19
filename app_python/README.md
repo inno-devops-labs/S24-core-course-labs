@@ -51,3 +51,11 @@ Once you obtain the image, run it using
 ```bash
 docker run --rm -p 8080:8080 snejugal/devops-lab2
 ```
+
+## Testing
+
+To run tests for the application, run
+
+```
+pytest src/test.py
+```
