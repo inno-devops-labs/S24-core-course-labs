@@ -1,0 +1,36 @@
+name: Haskell web application
+
+on:
+  push
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: haskell-actions/setup@v2
+        with:
+          ghc-version: "9.2.8"
+          enable-stack: true
+          stack-version: "latest"
+      - name: Cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-haskell
+        with:
+          path: |
+            ~/.cabal
+            ~/.stack
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('app_haskell/stack.yaml*') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Run tests
+        run: |
+          cd app_haskell
+          stack test
