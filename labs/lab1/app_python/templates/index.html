@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="date-time">
+      <p id="date">{{ current_date }}</p>
+      <p id="time">{{ current_time }} MSK</p>
+    </div>
+  </body>
+</html>
