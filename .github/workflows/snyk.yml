@@ -28,6 +28,7 @@ jobs:
                 uses: snyk/actions/setup@master
 
             -   name: Snyk Security Check
+                working-directory: ./app_python
                 run: snyk test
                 env:
                     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
