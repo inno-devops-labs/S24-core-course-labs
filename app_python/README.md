@@ -1,6 +1,9 @@
 # Python Web Application for Displaying Current Time in Moscow
 
+[![CI](https://github.com/hugowea/S24-core-course-labs/actions/workflows/ci.yml/badge.svg)](https://github.com/hugowea/S24-core-course-labs/actions/workflows/ci.yml)
+
 This is a Python-based web application that displays the current time in Moscow.
+
 
 ## Features
 
