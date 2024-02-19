@@ -1,4 +1,6 @@
-[![Python CI Workflow](https://github.com/starkda/S24-core-course-labs/actions/workflows/python_ci.yml/badge.svg)](https://github.com/starkda/S24-core-course-labs/actions/workflows/python_ci.yml)
+## Workflow Status
+
+![Python CI Workflow](https://github.com/starkda/S24-core-course-labs/actions/workflows/python_ci.yml/badge.svg?event=push)
 
 # Python Web Application
 
@@ -33,16 +35,22 @@ This is a Python web application built using the Flask framework to display the 
 5. Access the application in your web browser at `http://127.0.0.1:5000/`.
 
 ## Docker
+
 Building the Docker Image
+
  ```bash
     docker build -t <image name> .
 ```
+
 Pulling the docker Image
+
  ```bash
     docker pull djhovi/my-flask-app:latest
 
 ```
+
 Running the docker Image
+
  ```bash
     docker run -p5000:5000 djhovi/my-flask-app:latest
 
@@ -50,7 +58,8 @@ Running the docker Image
 
 ## Unit Tests
 
-Comprehensive unit tests have been implemented to ensure the reliability and functionality of the Flask web application. These tests cover critical parts of the application and validate its behavior under various conditions.
+Comprehensive unit tests have been implemented to ensure the reliability and functionality of the Flask web application.
+These tests cover critical parts of the application and validate its behavior under various conditions.
 
 To run the unit tests, execute the following command in your terminal(in root project folder):
 
@@ -70,11 +79,14 @@ The CI workflow consists of the following steps:
 
 ### Workflow Configuration
 
-The workflow is configured using a YAML file named `ci.yml` located in the `.github/workflows` directory. This file defines the sequence of steps to be executed during the CI process.
+The workflow is configured using a YAML file named `ci.yml` located in the `.github/workflows` directory. This file
+defines the sequence of steps to be executed during the CI process.
 
 ### Viewing Workflow Status
 
-The status of the CI workflow can be viewed in the "Actions" tab of this repository. Successful workflow runs will be indicated by a green checkmark, while failed runs will display a red 'X'. You can click on individual workflow runs to view detailed logs and any errors or warnings encountered during the process.
+The status of the CI workflow can be viewed in the "Actions" tab of this repository. Successful workflow runs will be
+indicated by a green checkmark, while failed runs will display a red 'X'. You can click on individual workflow runs to
+view detailed logs and any errors or warnings encountered during the process.
 
 ### GitHub Secrets
 

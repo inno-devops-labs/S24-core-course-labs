@@ -37,6 +37,12 @@ jobs:
         run: |
           python3 -m unittest discover -s app_python/src/tests -p "test_application.py"
 
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
       - name: Docker Login
         uses: docker/login-action@v2
         with:
