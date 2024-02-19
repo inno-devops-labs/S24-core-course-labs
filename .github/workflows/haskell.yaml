@@ -1,7 +1,9 @@
 name: Haskell web application
 
 on:
-  push
+  push:
+    paths:
+      - "app_haskell/**/*"
 
 permissions:
   contents: read

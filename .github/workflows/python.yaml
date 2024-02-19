@@ -1,7 +1,9 @@
 name: Python web application
 
 on:
-  push
+  push:
+    paths:
+      - "app_python/**/*"
 
 permissions:
   contents: read
