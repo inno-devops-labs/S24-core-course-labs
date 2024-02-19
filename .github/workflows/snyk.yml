@@ -21,6 +21,9 @@ jobs:
                     python-version: 3.10.13
                     cache: pip
 
+            -   name: Install dependencies
+                run: pip install -r app_python/requirements.txt
+
             -   name: Snyk Security Check
                 uses: snyk/actions/python-3.10@master
                 with:
