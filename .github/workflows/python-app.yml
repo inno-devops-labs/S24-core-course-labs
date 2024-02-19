@@ -42,7 +42,7 @@ jobs:
       run: poetry install --directory app_python
 
     - name: Lint with flake8
-      run: poetry --directory app_python run flake8
+      run: poetry --directory app_python run flake8 --exclude=.venv
       
     - name: Test with pytest
       run: poetry --directory app_python run pytest
