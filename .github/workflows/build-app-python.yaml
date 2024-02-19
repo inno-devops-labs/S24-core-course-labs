@@ -92,4 +92,4 @@ jobs:
       with:
         context: app_python
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_python_image
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_python_image:latest
