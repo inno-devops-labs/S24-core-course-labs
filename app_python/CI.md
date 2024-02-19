@@ -1,6 +1,6 @@
 # CI Workflow Best Practices
 
-This document outlines the best practices implemented in the CI workflow of our project. These practices help improve the efficiency, reliability, and security of our CI process.
+This document outlines the best practices implemented in the CI workflow of our project. These practices help improve the efficiency, reliability, and security of our CI process
 
 ## Workflow Status Badge
 
