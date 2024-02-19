@@ -1,23 +1,27 @@
 # Terraform
 
 ## Table of Contents
+
 - [Terraform](#terraform)
   - [Table of Contents](#table-of-contents)
-  - [Outputs for Docker](#outputs-for-docker)
+  - [Docker](#docker)
     - [Building the infrastructure](#building-the-infrastructure)
     - [List of states](#list-of-states)
     - [Details of states](#details-of-states)
     - [Part of the log](#part-of-the-log)
     - [Outputs](#outputs)
-  - [Outputs for AWS](#outputs-for-aws)
-    - [Building the infrastructure](#building-the-infrastructure-1)
+  - [AWS](#aws)
+    - [Building](#building)
     - [State Details](#state-details)
-    - [Part of the log](#part-of-the-log-1)
-    - [Outputs](#outputs-1)
+    - [Partial Log](#partial-log)
+    - [Output](#output)
+  - [Github](#github)
+  - [Github Teams](#github-teams)
+  - [Best Practices](#best-practices)
 
 ![Output](https://i.postimg.cc/QxStknwW/image.png)
 
-## Outputs for Docker
+## Docker
 
 ### Building the infrastructure
 
@@ -258,6 +262,7 @@ Here we can see that the name is being changed from `test-bun-name` to `bun-app`
 ```bash
 terraform output
 ```
+
 The output was following-
 
 ```terraform
@@ -265,12 +270,12 @@ bun-container-id = "2e069cab42d128f9d628320afbec9ad478a0d2a9629857845367d854be53
 python-container-id = "ff291f1fa252e67bb966271f8d82fa5af042b59b43d66279f507be347c9b4827"
 ```
 
-## Outputs for AWS
+## AWS
 
-### Building the infrastructure
+### Building
 
 Since, the previous infrastructure had docker only, I had to add AWS provider and do the following after changing the `.tf` files-
-    
+
 ```bash
 terraform init -upgrade
 terraform fmt
@@ -394,7 +399,7 @@ resource "aws_instance" "app_server" {
 }
 ```
 
-### Part of the log
+### Partial Log
 
 ```terraform
 Terraform used the selected providers to generate the following execution plan.
@@ -444,7 +449,7 @@ Terraform will perform the following actions:
 
 This is a part of the log which shows the creation of the `aws_instance.app_server`. We can see that for some of the fields, the value is `known after apply` since the resource is not yet created.
 
-### Outputs
+### Output
 
 ```bash
 terraform output
@@ -455,3 +460,55 @@ The output was following-
 ```terraform
 aws-public-ip = "54.93.186.176"
 ```
+
+## Github
+
+Apart from following [this tutorial](https://dev.to/pwd9000/manage-and-maintain-github-with-terraform-2k86), I imported `S24-devops-labs` repository and added branch protection to the `main` branch.
+
+Since the repository already existed, I had to import it first-
+
+```bash
+GITHUB_TOKEN=<redacted> terraform import "github_repository.S24-devops-labs" "S24-devops-labs"
+```
+
+Afterwards, I running `plan` command, applied the changes using the following command-
+
+```bash
+GITHUB_TOKEN=<redacted> terraform apply
+```
+
+As I didn't want the repository to be deleted, I removed the states related to the repository using the following command-
+
+```bash
+terraform state rm github_repository.S24-devops-labs
+terraform state rm github_branch_protection.devops-default
+```
+
+Additionally, "lifecycle.prevent_destroy" was set to `true`. This made running `terraform destroy` safe.
+
+## Github Teams
+
+I already had an organization [TeamOmukk](https://github.com/TeamOmukk) with my friends before. So. I decided to use that organization to create teams and add members to it. For PoC, I created 2 repos and 3 teams.
+
+3 Teams were created-
+- `reader` that has read access to repositories
+- `writer` that has write access to repositories
+- `mixed` that has read access for one repository and write access for another repository
+
+Apart from the `reader` team, the other teams are secret teams.
+
+![tf-mock](https://i.postimg.cc/VvYFfJcd/image.png)
+
+![reader](https://i.postimg.cc/4xhpT6hW/image.png)
+
+![all](https://i.postimg.cc/3xp0q3P6/image.png)
+
+## Best Practices
+
+- The files were named based on the resources or their tasks. `main.tf` contained version and providers. `variable.tf` and `outputs.tf` contained the variables and outputs respectively. The other files were named based on the resources they were creating or managing.
+- Naming convention followed [terraform-best-practices](https://www.terraform-best-practices.com/naming).
+- The secrets are not hardcoded and used as environment variables.
+- `terraform fmt` and `terraform validate` were used to format and validate the code.
+- `terraform plan` was always used to verify the changes before applying them. Also, `terraform state list` and `terraform state show` were used before destroying any resource.
+- `target` flag was used to apply changes to a specific resource when needed.
+- For existing resources, `terraform import` was used to import the resources to the state file.
