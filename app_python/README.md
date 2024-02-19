@@ -42,15 +42,16 @@ docker run -p <some host port: p>:8080 nabuki/devops-lab2:v1
 
 ## Workflows
 
-### Lint and Test
-![Lint and Test](https://github.com/Senopiece/S24-core-course-labs/actions/workflows/lint_and_test.yml/badge.svg)
-- **File**: `lint_and_test.yml`
+### Check codebase
+![Check Codebase](https://github.com/Senopiece/S24-core-course-labs/actions/workflows/checks.yml/badge.svg)
+- **File**: `checks.yml`
 - **Triggers**: Runs on any push.
 - **Steps**:
   - Setup Python environment.
   - Install dependencies from `requirements.txt` and `requirements.dev.txt`.
   - Lint codebase with flake8.
   - Run unit tests with pytest.
+  - Run snyk.
 
 ### Deployment
 ![Deployment](https://github.com/Senopiece/S24-core-course-labs/actions/workflows/deploy.yml/badge.svg)
