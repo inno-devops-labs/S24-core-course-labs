@@ -1,0 +1,57 @@
+name: Pytest
+on:
+  push:
+    paths:
+      - 'app_python/*'
+  workflow_dispatch:
+jobs:
+    testing:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Install Python
+              uses: actions/setup-python@v4
+              with:
+                python-version: '3.11.5'
+
+            - name: Install dependencies with pytest
+              working-directory: ./app_python
+              run: |
+                pip install -r requirements.txt
+                pip install pytest
+            
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v3
+
+            - name: Install snyk
+              run: |
+                curl --compressed https://static.snyk.io/cli/latest/snyk-linux -o snyk
+                chmod +x ./snyk
+                mv ./snyk /usr/local/bin/
+                snyk auth ${{ secrets.SNYK_TOKEN }}
+
+            - name: Pytest
+              working-directory: ./app_python
+              run: |    
+                pytest .
+
+            - name: Run snyk
+              working-directory: ./app_python
+              run: |
+                snyk test
+
+            - name: Docker Login
+              run: |
+                docker login --username ${{secrets.DOCKER_USERNAME}} --password ${{secrets.DOCKER_PASSWORD}}
+            
+            - name: Build and push
+              uses: docker/build-push-action@v5
+              with:
+                context: app_python/
+                push: true
+                tags: ramprin/devops_py:latest
+                cache-from: type=registry,ref=ramprin/devops:buildcache
+                cache-to: type=registry,ref=ramprin/devops:buildcache,mode=max
+                
