@@ -1,5 +1,7 @@
 # Moscow Time Web App
 
+[![Workflow Status](https://github.com/blueberry13-8/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)](https://github.com/blueberry13-8/S24-core-course-labs/actions/workflows/main.yaml)
+
 This Python web application displays the current time in Moscow.
 
 ## Features
@@ -53,6 +55,25 @@ Run the unit tests:
 ```bash
 python -m unittest tests/test_app.py
 ```
+
+## Continuous Integration
+
+This project uses GitHub Actions for CI. Triggered on every push to the repository. The workflow includes three main jobs:
+
+### Build and Test Job
+- Set up Python, install project dependencies and run tests using `pytest`.
+
+### Linting Job
+- Run `flake8` linting.
+
+### Build and Push Docker Image Job
+- Set up Docker.
+- Cache Docker layers to speed up subsequent runs.
+- Log in to Docker Hub via provided in `secrets` credentials.
+- Build and push Docker image.
+
+These automated CI jobs help ensure the reliability and quality of the application by running tests, performing linting, and building/pushing Docker images based on the defined workflow.
+
 
 ## Dependencies
 * Flask
