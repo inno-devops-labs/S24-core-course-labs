@@ -30,7 +30,7 @@ jobs:
           poetry-version: '1.7.1'
 
     - name: Install dependencies
-      run: poetry install
+      run: poetry install --directory app_python
 
     # - name: Lint with mypy
     #   run: poetry run mypy
