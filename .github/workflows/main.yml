@@ -53,7 +53,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args:
-            -test app_python/ --skip-unresolved
+            -test app_python --skip-unresolved
 
   docker:
     runs-on: ubuntu-latest
@@ -73,5 +73,5 @@ jobs:
 
       - name: Build and push
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest 'app_python/'
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest 'app_python'
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest
