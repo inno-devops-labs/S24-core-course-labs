@@ -1,0 +1,88 @@
+name: JavaScript Application
+
+on:
+  push:
+    paths:
+      - "app_javascript/**"
+      - ".github/workflows/build-app-javascript.yaml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: |
+        npm install
+      working-directory: app_javascript
+
+    - name: Run tests
+      run: |
+        npm test
+      working-directory: app_javascript
+
+    - name: Lint code with ESLint
+      run: |
+        npm install eslint --save-dev
+        npx eslint .
+      continue-on-error: true
+  
+  security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Install dependencies
+      run: |
+        npm install
+      working-directory: app_javascript
+
+    # Download Snyk CLI if cache is not hit
+    - name: Download Snyk CLI
+      if: steps.cache-snyk.outputs.cache-hit != 'true'
+      run: |
+        curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
+        chmod +x snyk-linux
+      working-directory: app_javascript
+
+    # Run Snyk vulnerability scan
+    - name: Run Snyk vulnerability scan
+      run: ./snyk-linux test --severity-threshold=high
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      working-directory: app_javascript
+
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs:
+      - security
+      - build
+    if: ${{ needs.security.result == 'success' && needs.build.result == 'success'}}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # Build and push the Docker image
+    - name: Build and push
+      uses: docker/build-push-action@v5
+      with:
+        context: app_javascript
+        push: true
+        tags: ${{ secrets.DOCKER_USERNAME }}/app_javascript_image:latest
