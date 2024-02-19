@@ -1,3 +1,6 @@
+## Workflow Status
+
+![CI Workflow](https://github.com/starkda/S24-core-course-labs/workflows/CI%20Workflow/badge.svg)
 # DevOps Engineering Labs
 
 ## Introduction
