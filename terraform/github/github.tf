@@ -17,7 +17,7 @@ resource "github_branch_default" "main" {
 }
 
 # Branch protection
-resource "github_branch_protection" "repo-default" {
+resource "github_branch_protection" "repo" {
   repository_id                   = github_repository.repo.id
   pattern                         = github_branch_default.main.branch
   require_conversation_resolution = true
@@ -30,17 +30,24 @@ resource "github_branch_protection" "repo-default" {
 
 # Import S24-devops-labs repository
 resource "github_repository" "S24-devops-labs" {
-    name = "S24-devops-labs"
+  name = "fastapi-social-media"
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 # Branch protection
-resource "github_branch_protection" "devops-default" {
+resource "github_branch_protection" "devops" {
   repository_id                   = github_repository.S24-devops-labs.id
-  pattern                         = "main"
+  pattern                         = "main" # This is hardcoded because the repo already exists
   require_conversation_resolution = true
   enforce_admins                  = true
 
   required_pull_request_reviews {
     required_approving_review_count = 1
+  }
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
