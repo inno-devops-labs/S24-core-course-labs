@@ -6,7 +6,7 @@ RUN adduser -D -s /bin/bash nonroot
 
 COPY --chown=nonroot:nonroot ./requirements.txt /app_python
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY --chown=nonroot:nonroot app.py /app_python
 COPY --chown=nonroot:nonroot templates/index.html /app_python/templates/index.html
