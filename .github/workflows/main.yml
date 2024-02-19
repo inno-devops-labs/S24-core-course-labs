@@ -48,8 +48,9 @@ jobs:
 
     steps:
       - name: Test with unittest
+        working-directory: app_python
         run: |
-          python app_python/test.py
+          python test.py
 
   docker:
     runs-on: ubuntu-latest
