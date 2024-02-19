@@ -59,3 +59,11 @@ To run tests for the application, run
 ```
 pytest src/test.py
 ```
+
+## CI
+
+This reposity has a CI workflow which automatically runs tests for this
+application and updates the app's image on Docker hub. See the [workflow] for
+more.
+
+[workflow]: ../.github/workflows/python.yaml
