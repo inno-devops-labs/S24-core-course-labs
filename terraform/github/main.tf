@@ -50,7 +50,7 @@ resource "github_branch_protection" "default" {
 resource "github_repository" "DevOps-S24" {
   name             = "DevOps-S24"
   description      = "A demo GitHub repository created by hand and imported into Terraform"
-  private          = false
+  visibility       = "public"
   has_projects     = false
   has_wiki         = false
   has_downloads    = false
@@ -59,3 +59,28 @@ resource "github_repository" "DevOps-S24" {
   topics           = ["example", "public", "infrastructure-as-code", "operations", "terraform", "github"]
 }
 
+module "teams" {
+  source = "mineiros-io/team/github"
+  version = "~> 0.8.0"
+
+  name = "DevOps"
+  description = "The DevOps Team"
+  privacy = "secret"
+
+  members = [
+    "RamPrin",
+    "teexone"
+  ]
+
+  maintainers = [
+    "RamPrin"
+  ]
+
+  push_repositories = [
+    github_repository.DevOps-S24.name
+  ]
+
+  admin_repositories = [
+    github_repository.repo.name
+  ]
+}
