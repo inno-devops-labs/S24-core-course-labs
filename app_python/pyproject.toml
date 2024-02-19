@@ -14,6 +14,7 @@ fastapi = "^0.109.2"
 pytz = "^2024.1"
 uvicorn = "^0.27.0.post1"
 types-pytz = "^2024.1.0.20240203"
+flake8 = "^7.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
