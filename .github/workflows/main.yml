@@ -49,7 +49,7 @@ jobs:
     steps:
       - name: Test with unittest
         run: |
-          python -m unittest test
+          python test.py
 
   docker:
     runs-on: ubuntu-latest
