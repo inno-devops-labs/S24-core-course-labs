@@ -29,6 +29,7 @@ jobs:
     - name: Run tests
       run: |
         python -m unittest app_python/tests/test_flask_app.py
+      working-directory: app_python
 
     - name: Lint code with pylint
       run: |
