@@ -47,7 +47,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
       working-directory: app_python
-      
+
     # Download Snyk CLI if cache is not hit
     - name: Download Snyk CLI
       if: steps.cache-snyk.outputs.cache-hit != 'true'
@@ -92,4 +92,4 @@ jobs:
       with:
         context: app_python_image
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_python_image:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_python_image
