@@ -2,12 +2,6 @@ name: app python workflow
 
 on: push
 
-on:
-  push:
-    paths:
-      - 'app_python/**'
-
-
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
