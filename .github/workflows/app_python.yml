@@ -52,7 +52,7 @@ jobs:
         run: python -m unittest ./tests/time_tests.py
 
       - name: Vulnerability check
-        uses: snyk/actions/python-3.8@master
+        uses: snyk/actions/python-3.9@master
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

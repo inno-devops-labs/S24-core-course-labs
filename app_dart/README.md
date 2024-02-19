@@ -1,5 +1,7 @@
 # Flutter Web Application
 
+[![Dart CI](https://github.com/Alyona-art/S24-core-course-labs/actions/workflows/app_dart.yml/badge.svg)](https://github.com/Alyona-art/S24-core-course-labs/actions/workflows/app_dart.yml)
+
 ## Description
 
 This is simple web application that displays the current time in Moscow. To develop the app, I used the Dart language and Flutter framework.
