@@ -31,7 +31,7 @@ jobs:
 
       - name: Linting
         run: |
-          python3 -m flake8
+          python3 -m  flake8
 
       - name: Tests
         run: |
