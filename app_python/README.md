@@ -79,3 +79,17 @@ docker run -p 5000:5000 <name_of_container>
 ```
 
 If you pulled from dockerhub name of container is "ilnurha/lab2:latest"
+
+---
+
+## Unit Tests
+
+To execute unit tests ensure
+that you are in virtual environment and installed dependencies
+as in [How To Run](README.md#how-to-run) section
+
+After that, execute:
+
+```shell
+pytest
+```
