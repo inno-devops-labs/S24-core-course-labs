@@ -68,11 +68,11 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build and push
+        with:
+          context: ./app_python
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest
-        with:
-          context: ./app_python
 
   security:
     runs-on: ubuntu-latest
