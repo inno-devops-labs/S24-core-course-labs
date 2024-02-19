@@ -50,8 +50,10 @@ Once the container is running, you can access the application by opening a web b
 
 The application includes comprehensive unit tests to ensure its functionality and quality. These tests cover various aspects of the application, including the routes, rendering, and time updates.
 
-To run the unit tests, execute the following command:
+To run the unit tests, execute the following commands:
     
+    cd app_python
+    pip install -r requirements.txt
     python -m unittest test_app.py
 
 ## Contributing
