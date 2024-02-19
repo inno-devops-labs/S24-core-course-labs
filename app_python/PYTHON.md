@@ -46,3 +46,32 @@ Several best practices were applied to ensure code quality, maintainability, and
     - Testing the application in various browsers and operating systems to ensure cross-browser compatibility is important for a seamless user experience.
 
 While the provided example is relatively simple, following best practices helps to ensure that the application is well-structured, maintainable, and prepared for future enhancements or scaling.
+
+# Unit Testing Documentation
+
+## Files Overview
+
+- `app.py`: Contains the application logic for displaying the current time in Moscow.
+- `conftest.py`: Configures test fixtures for the pytest environment, focusing on setting up and tearing down states as needed for tests.
+- `test_time.py`: Contains unit tests for the `current_time_in_moscow` function in `app.py`.
+
+## Testing Strategy
+
+### `app.py`
+
+Implements a simple web application using the Bottle framework that returns the current time in Moscow. The core functionality is to calculate the Moscow time by adding three hours to the UTC time.
+
+### `conftest.py`
+
+This file is used to configure shared test fixtures for pytest. It's designed to provide a common setup and teardown logic that can be used across different test modules, ensuring a clean testing environment.
+
+### `test_time.py`
+
+Focuses on testing the `current_time_in_moscow` function. The tests likely simulate requests to the application and assert that the response is accurate according to the expected time format and value.
+
+## Best Practices Applied
+
+1. **Modular Code Structure**: Separation of application logic and test code into distinct files for better maintainability and readability.
+2. **Fixture Usage**: Utilization of fixtures in `conftest.py` to manage test setup and teardown, promoting code reuse and reducing redundancy.
+3. **Assertive Testing**: Employing assert statements to rigorously validate the output of the application against expected results, ensuring correctness and reliability of the function under test.
+4. **Clean Code Conventions**: Following Pythonic conventions for clean and readable code, enhancing the maintainability of both application and test code.
