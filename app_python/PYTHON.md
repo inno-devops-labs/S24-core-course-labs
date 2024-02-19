@@ -20,7 +20,18 @@ For solving this lab's task I chose FastAPI framework. The choice was made due t
 
 ## Testing
 
-With permission of professor, the app testing was done by manually checking and refreshing the page.
+Implemented unit tests:
+
+- Root endpoint returns `200` status code.
+- Root endpoint returns correct time.
+- Incorrect endpoint returns `404` status code.
+
+Best practices:
+- Tests are located separately from the rest of the code.
+- Each test is isolated and independent.
+- Each test is not complex and checks just one piece of functionality.
+- `TestClient` is used to mock FastApi app.
+- Edge cases are tested.
 
 ## Code quality
 

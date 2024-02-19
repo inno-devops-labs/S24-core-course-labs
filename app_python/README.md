@@ -1,3 +1,5 @@
+![python workflow](https://github.com/Probirochniy/S24-core-course-labs/actions/workflows/app_python.yml/badge.svg)
+
 # Moscow time app
 
 ## Description
@@ -60,3 +62,14 @@ docker run -p 8000:8000 moscow-time-app
 ```
 
 After that, the application will be accessible at `http://localhost:8000/` in the web browser.
+
+## Unit tests
+Unit tests are located inside the `tests/unit/test.py` file. They can be run using `pytest`:
+
+```bash
+pytest tests/unit/test.py
+```
+
+## CI workflow
+
+At push/pull request into `app_python`, workflow starts via github actions. It runs dependencies check, linter and tests of the project. Moreover, the docker image is built and pushed into the Dockerhub

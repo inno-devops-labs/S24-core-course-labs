@@ -1,2 +1,5 @@
 venv
 app.log
+.pytest_cache
+__pycache__
+secrets
