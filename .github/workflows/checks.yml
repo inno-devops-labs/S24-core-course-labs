@@ -49,7 +49,9 @@ jobs:
 
       - name: Run Snyk to check for vulnerabilities
         continue-on-error: true
-        run: snyk test --severity-threshold=high --sarif-file-output=snyk.sarif
+        run: |
+          cd app_python
+          snyk test --severity-threshold=high --sarif-file-output=snyk.sarif
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       
