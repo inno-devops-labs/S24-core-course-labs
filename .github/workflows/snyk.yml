@@ -27,5 +27,7 @@ jobs:
 
             -   name: Snyk Security Check
                 uses: snyk/actions/python-3.10@master
+                with:
+                    args: --workdir=./app_python
                 env:
                     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
