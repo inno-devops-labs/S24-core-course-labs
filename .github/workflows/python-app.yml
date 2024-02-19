@@ -32,13 +32,6 @@ jobs:
     - name: Install dependencies
       run: poetry install --directory app_python
 
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-
     - name: Lint with flake8
       run: poetry --directory app_python run flake8
       
