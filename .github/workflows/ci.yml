@@ -42,11 +42,11 @@ jobs:
       - name: Build Docker image
         run: |
           cd app_python
-          docker build -t hugowea/devops-labs-py:correct -f Dockerfile .
+          docker build -t hugowea123/devops-labs-py:correct -f Dockerfile .
           
       - name: Push Docker Image
         run: |
-          docker push hugowea/devops-labs-py:correct
+          docker push hugowea123/devops-labs-py:correct
           cd ..
 
   secure:
