@@ -6,7 +6,7 @@ This document outlines the best practices implemented in the CI workflow of our 
 
 We have added a workflow status badge to provide visibility into the status of our CI workflow. The badge indicates whether the workflow is passing or failing. Here's the markdown used to display the badge:
 
-![CI](https://github.com/hugowea/S24-core-course-labs/.github/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/hugowea/S24-core-course-labs/actions/workflows/ci.yml/badge.svg)](https://github.com/hugowea/S24-core-course-labs/actions/workflows/ci.yml)
 
 ## Optimization
 
