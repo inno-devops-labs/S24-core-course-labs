@@ -1,6 +1,6 @@
 # The Moscow Timezone python application
 
-![Workflow Status](https://github.com/NikitaGrigorenko/DevOps/actions/workflows/main.yaml/badge.svg)
+[![Workflow Status](https://github.com/NikitaGrigorenko/DevOps/actions/workflows/main.yaml/badge.svg)](https://github.com/NikitaGrigorenko/DevOps/actions/workflows/main.yaml)
 
 ## Overview
 
