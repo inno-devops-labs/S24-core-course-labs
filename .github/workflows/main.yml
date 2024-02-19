@@ -42,19 +42,6 @@ jobs:
         run: |
           python -m unittest discover -s .
 
-  security:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python-3.10@master
-        continue-on-error: true
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args:
-            -test app_python --skip-unresolved
-
   docker:
     runs-on: ubuntu-latest
 
@@ -73,5 +60,18 @@ jobs:
 
       - name: Build and push
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest 'app_python'
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest 'app_python/'
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest
+
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.10@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args:
+            -test app_python --skip-unresolved
