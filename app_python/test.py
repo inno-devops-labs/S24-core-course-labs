@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime
 import pytz
-from main import *
+from main import app
 
 
 class TestApp(unittest.TestCase):
@@ -16,7 +16,8 @@ class TestApp(unittest.TestCase):
 
     def test_time_format(self):
         response = self.client.get('/')
-        msk_time = datetime.now(pytz.timezone('Europe/Moscow')).strftime('Current time in Moscow: %H:%M:%S')
+        msk_time = datetime.now(pytz.timezone('Europe/Moscow'))
+        msk_time = msk_time.strftime('Current time in Moscow: %H:%M:%S')
         self.assertEqual(response.data.decode('utf-8'), msk_time)
 
 
