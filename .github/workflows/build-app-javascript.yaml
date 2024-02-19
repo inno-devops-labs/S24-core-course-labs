@@ -1,4 +1,4 @@
-name: JavaScript Application
+name: App Javascript
 
 on:
   push:
@@ -33,6 +33,7 @@ jobs:
       run: |
         npm install eslint --save-dev
         npx eslint .
+      working-directory: app_javascript
       continue-on-error: true
   
   security:
@@ -46,6 +47,19 @@ jobs:
       run: |
         npm install
       working-directory: app_javascript
+
+    # Caches Snyk binary for faster future runs
+    - name: Cache Snyk binary
+      id: cache-snyk
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-snyk
+      with:
+        path: app_javascript/snyk-linux
+        key: ${{ runner.os }}-snyk-${{ hashFiles('app_javascript/snyk-linux') }}
+        restore-keys: |
+          ${{ runner.os }}-snyk-
+          ${{ runner.os }}-
 
     # Download Snyk CLI if cache is not hit
     - name: Download Snyk CLI

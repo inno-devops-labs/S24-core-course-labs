@@ -57,3 +57,19 @@ A simple ToDo List web application built with Node.js and Express.
    ```bash 
    docker run -dp 0.0.0.0:3000:3000 cogbonna/app_javascript_image
    ```
+
+## CI Workflow
+
+This CI workflow is responsible for building, testing, ensuring security, and deploying the JavaScript application. Below are the details of the workflow:
+
+### Workflow File Location
+The configuration for this workflow is stored in the `.github/workflows/build-app-javascript.yaml` file within the project repository.
+
+### Workflow Triggers
+This workflow is triggered by pushes to the repository. Specifically, it is triggered when changes occur in the `app_javascript` directory or in the workflow file itself.
+
+### Jobs 
+The CI workflow has three jobs:
+- **Build Job:** Tests the code, installs dependencies, and lints the code using ESLint.
+- **Security Job:** Ensures code security using Snyk by scanning for vulnerabilities.
+- **Docker Job:** Builds and pushes a Docker image for the JavaScript application, but only if the previous jobs succeed.

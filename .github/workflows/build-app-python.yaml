@@ -1,4 +1,4 @@
-name: Python Flask Application
+name: App Python
 
 on:
   push:
@@ -34,6 +34,7 @@ jobs:
       run: |
         pip install pylint
         pylint app_python
+      working-directory: app_python
       continue-on-error: true
   
   security:
@@ -48,6 +49,19 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
       working-directory: app_python
+    
+    # Caches Snyk binary for faster future runs
+    - name: Cache Snyk binary
+      id: cache-snyk
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-snyk
+      with:
+        path: app_python/snyk-linux
+        key: ${{ runner.os }}-snyk-${{ hashFiles('app_python/snyk-linux') }}
+        restore-keys: |
+          ${{ runner.os }}-snyk-
+          ${{ runner.os }}-
 
     # Download Snyk CLI if cache is not hit
     - name: Download Snyk CLI
