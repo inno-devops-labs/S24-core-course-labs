@@ -30,7 +30,7 @@ We have integrated Snyk into our CI workflow to identify and address vulnerabili
 
 We added the Snyk CLI tool to our workflow to scan our project for vulnerabilities.
 
-The Snyk vulnerability scan is performed after installing project dependencies and before running tests.
+The Snyk vulnerability scan is performed in parallel to build.
 
 The Snyk scan results are displayed in the workflow log, and appropriate actions are taken to address any identified vulnerabilities.
 

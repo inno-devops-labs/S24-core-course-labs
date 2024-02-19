@@ -66,9 +66,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r app_python/requirements.txt
 
-      - name: Authenticate with Snyk
-        run: npx snyk auth ${{ secrets.SNYK_TOKEN }}
-
       - name: Snyk
         uses: snyk/actions/python-3.8@master
         env:
