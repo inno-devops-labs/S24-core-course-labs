@@ -95,3 +95,16 @@ image_id = "sha256:5819d3286d01eaff596a667a90149a967e58fbfc1ad77e2fb0972ea06482d
 ## GitHub
 
 result <https://github.com/RamPrin/Terraform-S24>
+
+```bash
+$ terraform import github_repository.DevOps-S24 "DevOps-S24"
+github_repository.DevOps-S24: Importing from ID "DevOps-S24"...
+github_repository.DevOps-S24: Import prepared!
+  Prepared github_repository for import
+github_repository.DevOps-S24: Refreshing state... [id=DevOps-S24]
+
+Import successful!                                                                                                   
+                                                                                                                     
+The resources that were imported are shown above. These resources are now in                                         
+your Terraform state and will henceforth be managed by Terraform. 
+```

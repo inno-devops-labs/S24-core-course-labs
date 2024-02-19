@@ -20,7 +20,7 @@ provider "github" {
 #Create and initialise a public GitHub Repository with MIT license and a Visual Studio .gitignore file (incl. issues and wiki)
 resource "github_repository" "repo" {
   name               = "Terraform-S24"
-  description        = "My awesome codebase"
+  description        = "Lab4 Terraform repo"
   visibility         = "public"
   has_issues         = true
   has_wiki           = true
@@ -46,3 +46,16 @@ resource "github_branch_protection" "default" {
     required_approving_review_count = 1
   }
 }
+
+resource "github_repository" "DevOps-S24" {
+  name             = "DevOps-S24"
+  description      = "A demo GitHub repository created by hand and imported into Terraform"
+  private          = false
+  has_projects     = false
+  has_wiki         = false
+  has_downloads    = false
+  has_issues       = false
+  license_template = "mit"
+  topics           = ["example", "public", "infrastructure-as-code", "operations", "terraform", "github"]
+}
+
