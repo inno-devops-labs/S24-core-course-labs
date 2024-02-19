@@ -24,12 +24,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-      working-directory: app_python
 
     - name: Run tests
       run: |
         python -m unittest app_python/tests/test_flask_app.py
-      working-directory: app_python
 
     - name: Lint code with pylint
       run: |
@@ -50,12 +48,10 @@ jobs:
       run: |
         curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
         chmod +x snyk-linux
-      working-directory: app_python
 
     # Run Snyk vulnerability scan
     - name: Run Snyk vulnerability scan
       run: ./snyk-linux test --severity-threshold=high
-      working-directory: app_python
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
