@@ -29,7 +29,7 @@ jobs:
         npm test
       working-directory: app_javascript
 
-    # Lint
+    # Run Lint
     - name: Lint code with ESLint
       run: |
         npm install eslint --save-dev

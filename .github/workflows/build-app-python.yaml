@@ -30,6 +30,7 @@ jobs:
         python -m unittest tests.test_flask_app.FlaskAppTest
       working-directory: app_python
 
+    # Run Lint
     - name: Lint code with pylint
       run: |
         pip install pylint
