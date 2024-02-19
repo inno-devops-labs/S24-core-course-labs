@@ -1,5 +1,7 @@
 # The Moscow Timezone python application
 
+![Workflow Status](https://github.com/NikitaGrigorenko/DevOps/actions/workflows/main.yml/badge.svg)
+
 ## Overview
 
 The simple python application which display time in moscow time zone. Was built by using Flask framework.
