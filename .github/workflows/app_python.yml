@@ -16,7 +16,8 @@ defaults:
 
 jobs:
   build_and_test:
-    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    runs-on: ubuntu-22.04
     name: Build and test
 
     steps:
@@ -36,7 +37,8 @@ jobs:
         python -m pytest tests/unit/test.py 
 
   lint:
-    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    runs-on: ubuntu-22.04
     name: lint with flake8
 
     steps:
@@ -52,7 +54,8 @@ jobs:
         flake8 main.py tests/unit/test.py
 
   docker-push:
-    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    runs-on: ubuntu-22.04
     name: Push Docker image to Docker Hub
 
     steps:
@@ -75,7 +78,8 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow-time-app:latest
 
   snyk:
-    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    runs-on: ubuntu-22.04
     name: Snyk Vulnerability Checks
 
     steps:
