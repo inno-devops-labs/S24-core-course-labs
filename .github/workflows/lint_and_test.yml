@@ -17,14 +17,16 @@ jobs:
     - name: Dependencies
       run: |
         python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        if [ -f requirements.dev.txt ]; then pip install -r requirements.dev.txt; fi
+        if [ -f ./app_python/requirements.txt ]; then pip install -r ./app_python/requirements.txt; fi
+        if [ -f ./app_python/requirements.dev.txt ]; then pip install -r ./app_python/requirements.dev.txt; fi
 
     - name: Linter
       run: |
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        cd app_python
+        python -m flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        python -m flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Tests
       run: |
-        pytest
+        cd app_python
+        python -m pytest
