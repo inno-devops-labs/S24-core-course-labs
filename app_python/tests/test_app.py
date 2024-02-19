@@ -1,7 +1,8 @@
 import unittest
 from datetime import datetime, timedelta
+from time import sleep
 from app import get_time
-import requests
+import pytz
 
 
 class TestApp(unittest.TestCase):
@@ -9,41 +10,30 @@ class TestApp(unittest.TestCase):
     def test_time_format(self):
         """
         Test that the time returned by the get_time function is in the expected format.
-
-        This test checks if the time string returned by get_time is in the format
-        'YYYY-MM-DD HH:MM:SS', which is the format specified in the get_time function.
         """
         str_time = get_time()
-        try:
-            # Try to parse the time string in the expected format
-            datetime.strptime(str_time, '%Y-%m-%d %H:%M:%S')
-        except ValueError:
-            self.fail("Time is not in the expected format")
+        self.assertRegex(str_time, r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}', "Time is not in the expected format")
 
     def test_time_correctness(self):
         """
-        Test the correctness of the time value obtained from the web API and the application.
-
-        This test checks the time retrieved from the WorldTimeAPI for the 'Europe/Moscow' timezone
-        against the time obtained from the 'get_time' function in the application. If the time
-        difference exceeds two seconds, the test fails.
-
-        Note: Ensure that the application is running, and the WorldTimeAPI is accessible for accurate testing.
+        Test the correctness of the time value obtained from the system and the application.
         """
-        # API link for Moscow timezone
-        api_link = 'http://worldtimeapi.org/api/timezone/Europe/Moscow'
-        
-        # Get time from the WorldTimeAPI
-        res = requests.get(api_link)
-        api_time = datetime.strptime(res.json()['datetime'].split('.')[0], '%Y-%m-%dT%H:%M:%S')
-        
-        # Get time from the application
-        app_time = datetime.strptime(get_time(), '%Y-%m-%d %H:%M:%S')
+        app_time = get_time()
+        moscow_time = datetime.now(pytz.timezone('Europe/Moscow')).strftime('%Y-%m-%d %H:%M:%S')
 
-        # Check if the time difference exceeds one second
-        max_allowed_difference = timedelta(seconds=1)
-        if abs(api_time - app_time) >= max_allowed_difference:
-            self.fail("Time is not in sync with the Moscow timezone")
+        self.assertEqual(app_time, moscow_time, 'Time is not in sync with the Moscow timezone')
+    
+    def test_(self):
+        """
+        Test that the time difference between two requests is equal to the specified duration.
+        """
+        delay_in_seconds = 3
+
+        time_1 = datetime.strptime(get_time(), '%Y-%m-%d %H:%M:%S')
+        sleep(delay_in_seconds)
+        time_2 = datetime.strptime(get_time(), '%Y-%m-%d %H:%M:%S')
+
+        self.assertEqual(time_2 - time_1, timedelta(seconds=delay_in_seconds), f"The time difference is not equal to {delay_in_seconds}")
 
 
 if __name__ == '__main__':

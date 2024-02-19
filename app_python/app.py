@@ -13,10 +13,8 @@ def get_time():
     Returns:
         str: Current time formatted as 'YYYY-MM-DD HH:MM:SS'.
     """
-    # Set the time zone to Moscow
-    moscow_tz = pytz.timezone('Europe/Moscow')
     # Get the current time in Moscow
-    moscow_time = datetime.now(moscow_tz)
+    moscow_time = datetime.now(pytz.timezone('Europe/Moscow'))
     # Convert time to string
     str_time = moscow_time.strftime('%Y-%m-%d %H:%M:%S')
     return str_time

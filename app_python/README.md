@@ -58,4 +58,3 @@ python -m unittest tests/test_app.py
 * Flask
 * pytz
 * pytest
-* requests
