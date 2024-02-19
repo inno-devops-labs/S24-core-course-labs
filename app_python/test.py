@@ -1,14 +1,14 @@
 import unittest
 from datetime import datetime
 import pytz
-from app_python import main
+from main import *
 
 
 class TestApp(unittest.TestCase):
 
     def setUp(self):
-        main.app.testing = True
-        self.client = main.app.test_client()
+        app.testing = True
+        self.client = app.test_client()
 
     def test_response(self):
         response = self.client.get('/')
