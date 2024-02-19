@@ -67,8 +67,8 @@ jobs:
 
       - name: Build and push
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest 'app_python/'
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest
+          docker build -t yuszx/app_python:latest 'app_python/'
+          docker push yuszx/app_python:latest
 
   security:
     runs-on: ubuntu-latest
