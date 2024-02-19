@@ -1,6 +1,6 @@
 # Docker Best Practices
 
-In the Dockerfile for this application I have implemented several best practices to ensure security and efficiency:
+In the Dockerfile for this application, I have implemented several best practices to ensure security and efficiency:
 
 1. Avoid unnecessary privileges:
    - The container runs as a non-root user to reduce the risk of privilege escalation.
