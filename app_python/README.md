@@ -1,3 +1,5 @@
+![](https://github.com/ilnarkhasanov/S24-core-course-labs/actions/workflows/python-app.yml/badge.svg)
+
 ## Prerequisite
 
 Install Python 3.12
