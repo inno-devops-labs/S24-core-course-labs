@@ -15,6 +15,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install Snyk CLI
+        run: npm install snyk -g
+
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
@@ -22,9 +25,6 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-
-      - name: Install Snyk CLI
-        run: npm install snyk -g
 
       - name: Install dependencies
         run: |
@@ -35,8 +35,7 @@ jobs:
 
     steps:
       - name: Lint with Flake8
-        run: |
-          flake8 .
+        uses: py-actions/flake8@v2
   test:
     runs-on: ubuntu-latest
 
@@ -72,6 +71,9 @@ jobs:
       - build
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.10@master
         continue-on-error: true
