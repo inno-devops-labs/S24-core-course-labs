@@ -1,5 +1,7 @@
 # Moscow Time Application
 
+[![CI](https://github.com/blinikar/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)](https://github.com/blinikar/S24-core-course-labs/actions/workflows/main.yaml)
+
 ## Overview
 
 This application make opportunity to see the current moscow time in your web browser.
@@ -26,7 +28,7 @@ You can find your application at http://localhost:5000
 Run following command to test the application: 
 
 ```
-python3 test.py
+python -m unittest test.py
 ```
 
 ## Docker
