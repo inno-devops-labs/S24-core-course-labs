@@ -23,3 +23,5 @@ def start_app() -> FastAPI:
 def client() -> Generator[TestClient, Any, None]:
     with TestClient(start_app()) as client:
         yield client
+
+# source https://www.fastapitutorial.com/blog/unit-testing-in-fastapi/
