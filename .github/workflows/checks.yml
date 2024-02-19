@@ -62,20 +62,8 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       
-      - name: kek
-        run: ls
-
-      - name: kek
-        run: cd ..
-
-      - name: kek
-        run: ls
-      
-      - name: kek
-        run: cd app_python
-      
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: ./snyk.sarif
+          sarif_file: ./app_python/snyk.sarif
 
