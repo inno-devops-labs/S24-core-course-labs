@@ -32,3 +32,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Docker Build and Push
+        run: |
+          docker build -t p_app .
+          docker tag p_app djhovi/p_app:latest
+          docker push djhovi/p_app:latest
