@@ -1,6 +1,6 @@
 name: Python package
 
-on: [push]
+on: [ push ]
 
 jobs:
   build:
@@ -34,8 +34,15 @@ jobs:
     runs-on: ubuntu_latest
 
     steps:
-      - name: Lint with Flake8
+      - name: Check out source repository
+        uses: actions/checkout@v3
+      - name: Set up Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: flake8 Lint
         uses: py-actions/flake8@v2
+
   test:
     runs-on: ubuntu-latest
 
