@@ -5,7 +5,7 @@ FROM python:3-alpine3.15
 WORKDIR /app
 
 # Copy only specific files
-COPY app.py requirements.txt /app/
+COPY src/moscow_time/app.py requirements.txt /app/
 
 # Install virtualenv
 RUN python -m venv /opt/venv

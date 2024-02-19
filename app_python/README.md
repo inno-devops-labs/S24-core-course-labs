@@ -45,3 +45,12 @@ Running the docker Image
     docker run -p5000:5000 djhovi/my-flask-app:latest
 
 ```
+
+## Unit Tests
+
+Comprehensive unit tests have been implemented to ensure the reliability and functionality of the Flask web application. These tests cover critical parts of the application and validate its behavior under various conditions.
+
+To run the unit tests, execute the following command in your terminal(in root project folder):
+
+```bash
+python3 -m unittest discover -s app_python/src/tests -p "test_application.py"
