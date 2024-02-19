@@ -53,7 +53,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args:
-            -test app_python --skip-unresolved
+            -test app_python/ --skip-unresolved
 
   docker:
     runs-on: ubuntu-latest
