@@ -3,7 +3,7 @@ name: Checking the codebase
 on:
   push:
     paths:
-      - 'app_python/**'
+      - '**' #'app_python/**'
 
 defaults:
   run:
