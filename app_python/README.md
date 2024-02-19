@@ -1,3 +1,4 @@
+[![Python CI Workflow](https://github.com/starkda/S24-core-course-labs/actions/workflows/python_ci.yml/badge.svg)](https://github.com/starkda/S24-core-course-labs/actions/workflows/python_ci.yml)
 
 # Python Web Application
 
