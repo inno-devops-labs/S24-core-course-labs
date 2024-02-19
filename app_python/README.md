@@ -1,7 +1,6 @@
 # Python Web Application
 
-![python-app workflow badge]
-(https://github.com/Alyona-art/S24-core-course-labs/actions/workflows/app-python.yml/badge.svg?branch=lab3) 
+[![Python CI](https://github.com/Alyona-art/S24-core-course-labs/actions/workflows/app_python.yml/badge.svg)](https://github.com/Alyona-art/S24-core-course-labs/actions/workflows/app_python.yml)
 
 ## Description
 
