@@ -29,3 +29,19 @@ This is a Python web application built using the Flask framework to display the 
     ```
 
 5. Access the application in your web browser at `http://127.0.0.1:5000/`.
+
+## Docker
+Building the Docker Image
+ ```bash
+    docker build -t <image name> .
+```
+Pulling the docker Image
+ ```bash
+    docker pull djhovi/my-flask-app:latest
+
+```
+Running the docker Image
+ ```bash
+    docker run -p5000:5000 djhovi/my-flask-app:latest
+
+```

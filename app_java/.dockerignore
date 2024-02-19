@@ -1,0 +1,33 @@
+# Temporary files
+.DS_Store
+Thumbs.db
+*~
+
+# Version control system files
+.git
+.svn
+.hg
+.bzr
+
+# IDE-specific files
+.idea
+.vscode
+*.iml
+
+# Dependency management files
+node_modules
+vendor
+*.egg-info
+
+# Build artifacts
+*.pyc
+*.class
+*.o
+
+# Logs and cache files
+*.log
+*.cache
+
+# Documentation and tests
+docs
+test
