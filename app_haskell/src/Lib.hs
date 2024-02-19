@@ -1,7 +1,7 @@
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE TypeApplications #-}
 
-module Lib (app) where
+module Lib (getCurrentMoscowTime, moscowTimeZone, app) where
 
 import Data.Time.Clock (getCurrentTime)
 import Data.Time.LocalTime
