@@ -15,6 +15,8 @@
     - [Part of the log](#part-of-the-log-1)
     - [Outputs](#outputs-1)
 
+![Output](https://i.postimg.cc/QxStknwW/image.png)
+
 ## Outputs for Docker
 
 ### Building the infrastructure
