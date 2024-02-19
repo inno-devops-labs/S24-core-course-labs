@@ -1,0 +1,14 @@
+# Python-specific ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment-specific ignores
+venv/
+.env
+
+# IDE-specific ignores
+.vscode/
+.idea/
+*.sublime-*
