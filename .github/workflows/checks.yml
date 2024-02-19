@@ -1,6 +1,13 @@
 name: Checking the codebase
 
-on: [push]
+on:
+  push:
+    paths:
+      - 'app_python/**'
+
+defaults:
+  run:
+    working-directory: app_python
 
 jobs:
   build_and_test:
@@ -13,14 +20,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.12.2
-    
-    - name: Cache pip packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt', '**/requirements.dev.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
+        cache: 'pip'
 
     - name: Dependencies
       run: |
@@ -30,30 +30,25 @@ jobs:
 
     - name: Linter
       run: |
-        cd app_python
         python -m flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         python -m flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Tests
-      run: |
-        cd app_python
-        python -m pytest tests/
+      run: python -m pytest tests/
   
   security:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-
-      - name: Install snyk
-        uses: snyk/actions/setup@master
-
+      
       - name: Run Snyk to check for vulnerabilities
-        continue-on-error: true
-        run: |
-          cd app_python
-          snyk test --severity-threshold=high --sarif-file-output=snyk.sarif
+        uses: snyk/actions/python-3.8@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args:
+            -snyk
+            -test app_python --skip-unresolved --sarif-file-output=snyk.sarif
       
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
