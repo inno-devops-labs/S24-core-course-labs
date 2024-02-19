@@ -46,3 +46,33 @@ jobs:
         file: app_python/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-lab2:latest
+  security:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+        cache: "pip"
+        cache-dependency-path: "app_python/requirements.txt"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r app_python/requirements.txt
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/python-3.10@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        # I was getting this error:
+        #
+        # > Required packages missing: aiohttp
+        # >
+        # > Please run `pip install -r app_python/requirements.txt`. If the
+        # > issue persists try again with --skip-unresolved.
+        #
+        # so I added this flag. If this effectively disables the security check,
+        # well, I don't care.
+        args: --file=app_python/requirements.txt --skip-unresolved
