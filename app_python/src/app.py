@@ -7,7 +7,6 @@ from src.business_logic import get_current_moscow_time, get_human_readable_time
 app = FastAPI(title="Moscow Time")
 
 
-
 @app.get("/")
 def index() -> str:
     current_date: datetime = get_current_moscow_time()
