@@ -26,6 +26,8 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
+        cache: 'pip' # caching pip dependencie
+        
 
     - name: Dependencies
       run: |
@@ -47,6 +49,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
+        cache: 'pip' # caching pip dependencie
 
     - name: Lint
       run: |
