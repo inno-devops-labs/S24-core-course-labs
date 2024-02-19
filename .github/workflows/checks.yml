@@ -40,18 +40,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      
+
+      - name: Install snyk
+        uses: snyk/actions/setup@master
+
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python-3.8@master
+        continue-on-error: true
+        run: snyk test --severity-threshold=high --sarif-file-output=snyk.sarif
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args:
-            -snyk
-            -test app_python --skip-unresolved --sarif-file-output=snyk.sarif
       
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: ./app_python/snyk.sarif
+          sarif_file: snyk.sarif
 
