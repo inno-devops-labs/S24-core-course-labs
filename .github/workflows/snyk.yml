@@ -28,4 +28,4 @@ jobs:
             -   name: Snyk Security Check
                 uses: snyk/actions/python-3.10@master
                 env:
-                    SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+                    SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
