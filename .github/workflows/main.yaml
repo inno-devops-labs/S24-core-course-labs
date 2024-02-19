@@ -1,7 +1,5 @@
 name: app python workflow
 
-on: push
-
 on:
   push:
     paths:
