@@ -92,19 +92,52 @@ container_id = "b5dd746594d5003069cfa48f8a988bd1a082494f7bd4b00cb77c02cda24aaced
 image_id = "sha256:5819d3286d01eaff596a667a90149a967e58fbfc1ad77e2fb0972ea06482d358ramprin/devops_py"
 
 ```
+
+[source](docker/main.tf)
+
+## AWS
+
+By following the guide, I've built an infrastructure which creates a t2.microtype instance in EC2.
+
+![aws](assets/aws.png)
+
+[source](aws/main.tf)
+
 ## GitHub
 
-result <https://github.com/RamPrin/Terraform-S24>
+### Create repository
+
+[Result](https://github.com/RamPrin/Terraform-S24)
+
+As a result, the new repository with protection of main branch was created.
+
+![repo](assets/github_terraform.png)
+
+![branch_protection](assets/bp.png)
+
+### Import
 
 ```bash
-$ terraform import github_repository.DevOps-S24 "DevOps-S24"
-github_repository.DevOps-S24: Importing from ID "DevOps-S24"...
-github_repository.DevOps-S24: Import prepared!
+$ terraform import github_repository.DevOps "DevOps"
+github_repository.DevOps: Importing from ID "DevOps"...
+github_repository.DevOps: Import prepared!
   Prepared github_repository for import
-github_repository.DevOps-S24: Refreshing state... [id=DevOps-S24]
+github_repository.DevOps: Refreshing state... [id=DevOps]
 
 Import successful!                                                                                                   
                                                                                                                      
 The resources that were imported are shown above. These resources are now in                                         
 your Terraform state and will henceforth be managed by Terraform. 
 ```
+
+[source](github/main.tf)
+
+## GitHub Teams
+
+After creating an organization. Terraform created a team with 2 members and different accesses to the repositories.
+
+![team](assets/team.png)
+
+![team](assets/repos.png)
+
+[source](github_teams/main.tf)
