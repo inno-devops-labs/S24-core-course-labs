@@ -1,6 +1,5 @@
 ## Workflow Status
-[![Python CI Workflow](https://github.com/starkda/S24-core-course-labs/actions/workflows/python_ci.yml/badge.svg)]
-(https://github.com/starkda/S24-core-course-labs/actions/workflows/python_ci.yml)
+[![Python CI Workflow](https://github.com/starkda/S24-core-course-labs/actions/workflows/python_ci.yml/badge.svg?branch=main)]
 # DevOps Engineering Labs
 
 ## Introduction
