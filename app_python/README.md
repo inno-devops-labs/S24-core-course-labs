@@ -77,6 +77,36 @@ After running a docker image open the following url in your browser:
 http://127.0.0.1:5001
 ```
 
+## Unit Tests
+
+To test the application just run
+```bash
+python3 test_app.py
+```
+
+## CI workflow
+- Checkout Code: The actions/checkout@v4 action checks out the repository code onto the runner, allowing subsequent steps to access the code.
+
+- Set Up Python: The actions/setup-python@v2 action sets up a specific version of Python on the runner. In this case, Python 3.11 is used.
+
+- Cache Dependencies: The actions/cache@v2 action caches the pip cache directory to speed up future installations of dependencies.
+
+- Install Dependencies: The dependencies listed in app_python/requirements.txt are installed using pip. The python -m pip install --upgrade pip command ensures that pip itself is up to date.
+
+- Run Tests: The test_app.py script is executed to run tests on the application.
+
+- Security Check: The snyk/actions/python-3.10@master action runs a security check on the Python dependencies in the app_python/ directory.
+
+- Linting: The py-actions/flake8@v2 action runs flake8 to lint the Python code and check for style issues.
+
+- Set Up Docker Buildx: The docker/setup-buildx-action@v1 action sets up Docker Buildx, which is a CLI plugin that extends the docker command with the full support of the features provided by Moby BuildKit builder toolkit.
+
+- Cache Docker Layers: The actions/cache@v2 action caches Docker layers to speed up subsequent Docker builds.
+
+- Log in to Docker Hub: The docker/login-action@v1 action logs in to Docker Hub using the provided credentials, stored securely as GitHub Secrets.
+
+- Build and Push Docker Image: The docker/build-push-action@v2 action builds a Docker image from the Dockerfile in the app_python directory and pushes it to Docker Hub if the workflow was triggered by a tag.
+
 
 ## File Structure
 
