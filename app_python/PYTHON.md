@@ -24,3 +24,5 @@ Flask follows Python's readability and simplicity principles, aligning well with
 ### Testing
 
 - Manual testing was used to validate the application's behavior and interactions.
+- Unit testing
+    - in msk_timezone we check that our datetime does not change after converting to string type

@@ -1,0 +1,79 @@
+name: MSK timezone
+
+on:
+  push:
+    branches:
+      - '*'
+    paths:
+      - 'app_python/**'
+  pull_request:
+    branches:
+      - '*'
+    paths:
+      - 'app_python/**'  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      docker:
+        image: docker
+        options: --privileged
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Snyk CLI
+      run: npm install snyk -g
+
+    - name: Cache Python dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python3 -m pip3 install --upgrade pip
+        pip3 install -r requirements.txt
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.8@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Lint code
+      run: |
+        flake8 .
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests
+        run: |
+          python3 -m unittest discover -s .
+
+  dockers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push Docker image
+        run: |
+          docker build -t dzendos/app_python:latest .
+          docker push dzendos/app_python:latest
