@@ -15,7 +15,7 @@ This is a simple Flask web application that displays the current time in Moscow.
     - `style.css` - the CSS file for the application.
 - `tests` - the directory containing tests.
     - `unit` - the directory containing unit tests.
-    - `test_moscow_time.py` - the unit test for the application.
+        - `test_moscow_time.py` - the unit test for the application.
 
 ## How to Run
 
