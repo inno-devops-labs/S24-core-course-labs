@@ -4,13 +4,9 @@ on:
   push:
     branches:
       - "*"
-    paths:
-      - 'app_golang/**'
   pull_request:
     branches:
       - "*"
-    paths:
-      - 'app_golang/**'
 
 jobs:
   build_go:
