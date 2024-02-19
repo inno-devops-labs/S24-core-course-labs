@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timezone/browser.dart' as tz;
+import 'package:app_dart/time.dart';
 
 void main() {
   runApp(const MainApp());
@@ -23,13 +23,14 @@ class _MainAppState extends State<MainApp> {
   }
 
   Future<void> _setTime() async {
-    await tz.initializeTimeZone();
-    final moscowTz = tz.getLocation('Europe/Moscow');
-    final time = tz.TZDateTime.now(moscowTz).toString().split(' ');
+    final time = Time();
+    // await tz.initializeTimeZone();
+    // final moscowTz = tz.getLocation('Europe/Moscow');
+    // final time = tz.TZDateTime.now(moscowTz).toString().split(' ');
 
     setState(() {
-      _time = time[1].split('.')[0];
-      _date = time[0];
+      _time = time.moscowTime[1].split('.')[0];
+      _date = time.moscowTime[0];
     });
   }
 

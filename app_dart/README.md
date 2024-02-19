@@ -38,3 +38,5 @@ docker run -d --name dart_container -p 8080:80 app-dart
 ```
 
 The application will be accessible at http://127.0.0.1:8080
+
+## Unit Tests

@@ -1,5 +1,8 @@
 # Python Web Application
 
+![python-app workflow badge]
+(https://github.com/Alyona-art/S24-core-course-labs/actions/workflows/app-python.yml/badge.svg?branch=lab3) 
+
 ## Description
 
 This is simple Python web application that displays the current time in Moscow.
@@ -49,8 +52,6 @@ docker run -d --name container_name -p 8000:8000 app-python
 ```
 
 ## CI workflow
-
-![python-app workflow badge](https://github.com/Alyona-art/S24-core-course-labs/actions/workflows/app-python.yml/badge.svg) 
 
 I used a GitHub Actions as a CI tool. The workflow is defined in `.github/workflows/python-app.yml`. It contains the following steps:
 
