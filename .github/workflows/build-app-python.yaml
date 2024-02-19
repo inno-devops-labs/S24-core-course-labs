@@ -90,6 +90,6 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
-        context: app_python_image
+        context: app_python
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_python_image
