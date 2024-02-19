@@ -18,7 +18,3 @@ identified by the commit it corresponds to.
 
 Environment variables and secrets are used to provide sensitive information like Docker Hub credentials (${{
 secrets.DOCKERHUB_USERNAME }} and ${{ secrets.DOCKERHUB_TOKEN }}) without exposing them in the workflow file.
-
-## Launching a workflow
-
-Workflow runs only on push to main branch. This ensures that workflow runs only when necessary.
