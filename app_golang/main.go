@@ -8,6 +8,10 @@ import (
 	_ "time/tzdata"
 )
 
+func One() int {
+	return 1
+}
+
 func mskTimeHandler(w http.ResponseWriter, r *http.Request) {
 	loc, err := time.LoadLocation("Europe/Moscow")
 	if err != nil {

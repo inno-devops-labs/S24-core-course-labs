@@ -4,6 +4,7 @@ import pytz
 
 app = Flask(__name__)
 
+
 @app.route('/msk_timezone')
 def msk_timezone():
     time = datetime.now(pytz.timezone('Europe/Moscow'))

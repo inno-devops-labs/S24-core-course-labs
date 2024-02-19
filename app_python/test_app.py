@@ -10,7 +10,7 @@ class TestApp(unittest.TestCase):
         time = datetime.datetime.now(pytz.timezone('Europe/Moscow'))
         timeStr = time.strftime("Current time (MSK timezone): %H:%M:%S")
         self.assertLessEqual(resultTimeStr, timeStr)
-  
+
 
 if __name__ == "__main__":
- unittest.main()
+    unittest.main()
