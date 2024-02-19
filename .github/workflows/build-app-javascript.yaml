@@ -32,6 +32,7 @@ jobs:
     - name: Lint code with ESLint
       run: |
         npm install eslint --save-dev
+        npm init @eslint/config
         npx eslint .
       working-directory: app_javascript
       continue-on-error: true
