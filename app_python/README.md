@@ -109,7 +109,6 @@ python3 test_app.py
 
 - Build and Push Docker Image: The docker/build-push-action@v2 action builds a Docker image from the Dockerfile in the app_python directory and pushes it to Docker Hub if the workflow was triggered by a tag.
 
-
 ## File Structure
 
 - `PYTHON.md`: Contains the breif explanation of best practicies while using Flask.
