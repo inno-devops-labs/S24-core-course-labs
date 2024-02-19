@@ -11,10 +11,6 @@ jobs:
     snyk-check:
         runs-on: ubuntu-latest
 
-        defaults:
-            run:
-                working-directory: ./app_python
-
         steps:
             -   name: Checkout code
                 uses: actions/checkout@v4
@@ -28,6 +24,6 @@ jobs:
             -   name: Snyk Security Check
                 uses: snyk/actions/python-3.10@master
                 with:
-                    args: --all-projects
+                    args: --file app_python/requirements.txt
                 env:
                     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
