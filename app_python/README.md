@@ -46,6 +46,8 @@ docker run -p <some host port: p>:8080 nabuki/devops-lab2:v1
 ![Check Codebase](https://github.com/Senopiece/S24-core-course-labs/actions/workflows/checks.yml/badge.svg)
 - **File**: `checks.yml`
 - **Triggers**: Runs on any push.
+- **Secrets**:
+  - `SNYK_TOKEN` - token for snyk
 - **Steps**:
   - Setup Python environment.
   - Install dependencies from `requirements.txt` and `requirements.dev.txt`.
