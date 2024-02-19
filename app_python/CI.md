@@ -1,15 +1,20 @@
 # CI best practices
 
-## Parallel jobs
+## Job Organization
 
-The workflow defines jobs that can run in parallel, maximizing efficiency and reducing overall workflow execution time.
+The YAML file organizes jobs into logical sections for better readability and maintainability.
 
-## Cache Dependencies
+## Cache Management
 
-Dependencies are cached using the `actions/cache` action, which helps speed up subsequent workflow runs by reusing
-dependencies stored in the cache.
+Dependencies are cached (~/.cache/pip) to speed up builds and reduce the load on package repositories.
 
-## Environment Variables/Secrets
+## Environment Isolation
 
-Environment variables and secrets are used to provide sensitive information like Docker Hub credentials (${{
-secrets.DOCKERHUB_USERNAME }} and ${{ secrets.DOCKERHUB_TOKEN }}) without exposing them in the workflow file.
+Each job runs in its own isolated environment, ensuring that they don't interfere with each other and allowing for
+parallel execution.
+
+## Secrets Management
+
+Docker Hub credentials and Snyk token are stored as secrets `(${{ secrets.DOCKERHUB_USERNAME }}, ${{
+secrets.DOCKERHUB_TOKEN }}, ${{ secrets.SNYK_TOKEN }})`, ensuring security and preventing sensitive information from
+being exposed.

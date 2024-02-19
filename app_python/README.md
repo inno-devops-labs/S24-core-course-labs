@@ -92,30 +92,28 @@ You can read the full description by referring to `PYTHON.md`.
 ## CI workflow
 
 This repository is configured with a continuous integration (CI) workflow using GitHub Actions. The CI workflow includes
-two jobs:
+three jobs:
 
-### 1. Build and Dependency Installation
+### 1. Build
 
 * Checkout repository
 * Set up Python environment (using Python 3.11)
+* Install snyk
 * Cache dependencies to speed up subsequent runs
 * Install dependencies from requirements.txt
+* Run tests
+* Linting with flake8
 
-### 2. Linting
+### 2. Security
 
-* Install Ruff
-* Run linting with Ruff and output results in GitHub format
-* Continues on error to provide feedback without halting the workflow
+* Runs only after successful building
+* Check vulnerabilities using snyk
 
-### 3. Testing
+### 3. Docker
 
-* Run unit tests using the `unittest` framework
-
-### 4. Docker Image Build and Push
-
-* Log in to Docker Hub using credentials stored in secrets
-* Set up QEMU and Docker Buildx for multi-platform builds
-* Build the Docker image and push it to Docker Hub with a unique tag based on the commit SHA
+* Login into Docker hub
+* Set up Buildx
+* Build and push image
 
 These CI workflows help ensure the quality and reliability of the Python package and Docker image associated with this
 repository.
