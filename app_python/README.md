@@ -56,6 +56,15 @@ docker pull your-dockerhub-username/my-python-app:tag
 docker run -d --name my-container your-dockerhub-username/my-python-app:tag
 ```
 
+#CI Workflow
+
+This repository is integrated with GitHub Actions to automate the build and test process. The CI workflow includes the following steps:
+
+**Dependencies:** Install Python dependencies required for the application.
+**Linter:** Check the code for linting errors using Flake8.
+**Tests:** Run unit tests to ensure code quality and functionality.
+**Docker Build & Push:** Build a Docker image of the application and push it to Docker Hub.
+
 # Contribution
 Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
 
