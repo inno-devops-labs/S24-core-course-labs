@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "moscow-time"
+name = "app"
 version = "0.1.0"
 description = ""
 authors = ["Alexandr Ragulin <a.ragulin@innopolis.university>"]

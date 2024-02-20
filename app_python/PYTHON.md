@@ -3,6 +3,7 @@
 ## Table of Content
 
 <!--toc:start-->
+
 - [Date and Time in Moscow](#date-and-time-in-moscow)
   - [Table of Content](#table-of-content)
   - [Framework Choice](#framework-choice)
@@ -12,7 +13,7 @@
     - [FastAPI](#fastapi)
     - [Why Flask](#why-flask)
   - [Best Practices](#best-practices)
-<!--toc:end-->
+  <!--toc:end-->
 
 ## Framework Choice
 
@@ -89,3 +90,23 @@ This app uses Flask framework as it is a simple web application satisfies all th
      easier to understand their purpose, but also allows checking type
      correctness statically which leads to fewer bugs
 6. `.gitignore` file uses [template recommended by GitHub](https://github.com/github/gitignore/blob/main/Python.gitignore)
+
+## Unit Tests
+
+Due to the simplicity of the application only a function `get_moscow_date_time`
+is tested, but nonetheless it follows the next best practices:
+
+1. **Isolating tests from external dependencies:** The use of
+   `@patch('datetime.datetime')` replaces the actual `datetime.datetime` module
+   with a mock version, allowing us to control its behavior during testing.
+2. **Writing small, focused tests:** This single test focuses specifically on
+   checking whether the returned timezone is correct and matches the expected
+   value ('Europe/Moscow').
+3. **Using descriptive names:** The name "test_moscow_time" makes it easy to
+   identify the purpose of this particular test.
+4. **Keeping tests independent:** Since each test runs independently, there is no
+   dependency on the order in which these tests are executed.
+5. **Consistent naming conventions**: Adheres to standard naming pattern of `test_*`.
+6. **Document tests**: Briefly documents the intent of the test via clear commenting:
+7. **Run tests frequently**: Executes tests upon changes within the `app_python`
+   directory utilizing continuous integration (CI).

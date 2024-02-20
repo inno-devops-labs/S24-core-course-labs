@@ -1,8 +1,8 @@
 import logging
 
-from datetime_formatter import DateTimeFormatted
+from .datetime_formatter import DateTimeFormatted
 from flask import Blueprint, render_template
-from moscow_date_time import get_moscow_date_time
+from .moscow_date_time import get_moscow_date_time
 
 router = Blueprint('router', __name__)
 
