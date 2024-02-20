@@ -1,5 +1,9 @@
 # Lab1 Python web application for time
 
+[![Python App CI](https://github.com/y4cer/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)](https://github.com/y4cer/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)
+
+
+
 ## Overview
 
 This app displays current time in Moscow timezone, updating every second.
