@@ -1,6 +1,6 @@
 FROM python:3.11.8-alpine3.19
 
-COPY main.py requirements.txt /app_python/
+COPY ./app/main.py requirements.txt /app_python/
 
 RUN adduser -D myuser && chown -R myuser /app_python
 USER myuser

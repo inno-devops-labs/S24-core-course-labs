@@ -6,7 +6,7 @@ from fastapi.responses import HTMLResponse
 app = FastAPI()
 
 @app.get("/", response_class=HTMLResponse)
-def read_root():
+async def read_root():
     return f"""
     <html>
         <head>
@@ -14,7 +14,7 @@ def read_root():
         </head>
         <body>
         <h1>Current Moscow Time</h1>
-        <p>
+        <p id="time">
         {datetime.now(timezone(timedelta(hours=3))).strftime("%H:%M:%S")}
         </p>
         </body>
