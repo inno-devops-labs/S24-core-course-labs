@@ -10,8 +10,12 @@ Install Poetry - `$ curl -sSL https://install.python-poetry.org | python3 -`
 Run in terminal: `$ poetry run uvicorn src.app:app --port <port>`
 
 # How to run tests?
-
+## How to run all tests?
 Run in terminal: `$ poetry run pytest`
+## How to run unit tests?
+Run in terminal: `$ poetry run pytest tests/unit`
+## How to run integration tests?
+Run in terminal: `$ poetry run pytest tests/integration`
 
 # How to check test coverage?
 
