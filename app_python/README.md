@@ -1,3 +1,5 @@
+![example workflow](https://github.com/Antony-Sk/S24-DevOps-labs/.github/python.yml/badge.svg)
+
 ## Python web app
 
 This is simple python flask web application for obtaining current time in Europe/Moscow timezone
@@ -18,7 +20,7 @@ Example result:
 
 Additionaly you can run unittests by command:
 ```bash
-python test.py
+pytest test.py
 ```
 
 ### Running with docker
@@ -38,3 +40,21 @@ docker run -p 5000:5000 app_python
 ```
 
 Now you can see Moscow time at http://localhost:5000
+
+### Unit Tests
+
+You can run unit tests with:
+```bash
+pytest test.py
+```
+### CI Workflow
+
+I use GitHub Actions workflow to automate testing, security scanning of my app
+
+It uses GitHub Action on push requests
+
+On build: It uses python3.9, installs dependencies from `requirements.txt`, and run `flake8` for linting purposes
+
+On security: It uses SNYK to check on vulnerabilities
+
+On Docker: It sets p Docker service and builds image from `<docker_id>/app_python:latest`
