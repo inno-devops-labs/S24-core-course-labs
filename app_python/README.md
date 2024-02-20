@@ -1,4 +1,5 @@
 # Moscow Time Web App
+[![Python CI](https://github.com/glebuben/S24-core-course-labs/actions/workflows/CI.yml/badge.svg)](https://github.com/glebuben/S24-core-course-labs/actions/workflows/CI.yml)
 
 This is a simple Flask web application that displays the current time in Moscow. It provides a basic user interface to view the current time in the Moscow timezone.
 
