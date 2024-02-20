@@ -32,6 +32,7 @@ jobs:
         run: pip install -r app_python/requirements.txt
 
       - name: Test
+        working-directory: ./app_python
         run: python -m unittest
 
   snyk:
