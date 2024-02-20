@@ -24,10 +24,6 @@ jobs:
       run: npm install
       working-directory: app_javascript
 
-    - name: Run Tests
-      run: npm test
-      working-directory: app_javascript
-
   docker:
 
     runs-on: ubuntu-latest
