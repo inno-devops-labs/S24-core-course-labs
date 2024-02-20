@@ -1,5 +1,5 @@
 """
-App for showing current Moscow time
+Current Moscow time app
 """
 import datetime
 from flask import Flask, render_template
