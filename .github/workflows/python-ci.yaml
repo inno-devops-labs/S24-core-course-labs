@@ -21,17 +21,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@master
 
-      - name: Install the dependencies
+      - name: Download Snyk
+        run: |
+          curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
+          chmod +x snyk-linux
         working-directory: app_python
-        run: pip install -r requirements.txt
 
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python-3.8@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high --file=app_python/*.py
+      - name: Run Snyk
+        run: ./snyk-linux auth ${{ secrets.SNYK_TOKEN }} --severity-threshold=high
+        working-directory: app_python
 
   build:
     name: Build and Test
