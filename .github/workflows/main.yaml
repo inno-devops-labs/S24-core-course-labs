@@ -14,15 +14,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Python 3.10
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with: 
           python-version: '3.10'
         
       - name: Caching dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with: 
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
@@ -42,7 +42,7 @@ jobs:
   snyk:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Checking for vulnerabilities
         uses: snyk/actions/python-3.10@master
@@ -60,13 +60,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v3
       
       - name: Caching Docker layers
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with: 
           path: ~/.docker
           key: ${{ runner.os }}-docker-${{ github.sha }}
