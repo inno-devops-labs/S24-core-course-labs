@@ -81,7 +81,7 @@ jobs:
 
       - name: Build  Docker image
         run: |
-          docker build -t ${{secrets.DOCKER_USERNAME}}/app_python:latest .
+          docker build -t ${{secrets.DOCKER_USERNAME}}/app_python:latest ./app_python
 
       - name: Push Docker image
         run: |

@@ -7,7 +7,7 @@
 
 ### Security and Maintenance
 - **Secure Secrets**: Store sensitive data like `SNYK_TOKEN`, `DOCKER_USERNAME`, and `DOCKER_PASSWORD` in GitHub Secrets to protect them.
-- **Specify Working Directories**: Define the execution directory for steps using the `working-directory` key to maintain clarity.
+- **Specify Working Directories**: Define the execution directory for steps using the `working-directory`  key to maintain clarity.
 - **Conditional Docker Pushes**: Configure the workflow to push Docker images exclusively when triggered by a version tag.
 
 ### Quality and Security Assurance
