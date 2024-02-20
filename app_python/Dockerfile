@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application
 COPY --chown=myuser:myuser ./templates ./templates
-COPY --chown=myuser:myuser app.py ./PYTHON.md ./README.md ./
+COPY --chown=myuser:myuser app.py PYTHON.md README.md ./
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
