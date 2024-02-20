@@ -26,6 +26,11 @@ I isolated the logic of getting time and it's string representation from the Fas
 ### Unit and integration tests
 
 I tested my app both from the perspective of all components and from the perspective of the app (unit- and integration- testing respectively).
+
+I created 2 unit tests:
+- `test_get_current_moscow_time`: checks that `get_current_moscow_time` function returns a `datetime` object
+- `test_get_human_readable_time`: checks that `get_current_moscow_time` functions returns a specific human-readable format
+
 ### Tests running
 
 I used `pytest` in order to run all my tests.
