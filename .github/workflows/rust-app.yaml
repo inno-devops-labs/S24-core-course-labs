@@ -4,14 +4,14 @@ on:
   push:
     branches:
       - "feature/**"
-    # paths:
-    #   - app_rust/**
+    paths:
+      - app_rust/**
 
   pull_request:
     branches:
       - "feature/**"
-    # paths:
-    #   - app_rust/**
+    paths:
+      - app_rust/**
 
 defaults:
   run:
@@ -35,7 +35,7 @@ jobs:
           toolchain: stable
           components: rustfmt
 
-      - name: Run rustfmt
+      - name: Run lint check (rustfmt)
         run: cd app; cargo fmt -- --check
 
       - name: Testing app
