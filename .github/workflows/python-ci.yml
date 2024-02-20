@@ -37,14 +37,57 @@ jobs:
     - name: Testing
       run: |
         pytest
+ 
+  security:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+
+    steps:
+      # Checkout the repository and install dependencies
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+        working-directory: app_python
+
+      # Cache Snyk
+      - name: Cache Snyk binary
+        id: cache-snyk
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-snyk
+        with:
+          path: app_python/snyk-linux
+          key: ${{ runner.os }}-snyk-${{ hashFiles('app_python/snyk-linux') }}
+          restore-keys: |
+            ${{ runner.os }}-snyk-
+            ${{ runner.os }}-
+
+      # Download Snyk
+      - name: Download Snyk binary
+        if: steps.cache-snyk.outputs.cache-hit != 'true'
+        run: |
+          curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
+          chmod +x snyk-linux
+        working-directory: app_python
+
+      # Run Snyk
+      - name: Run Snyk
+        run: ./snyk-linux test --severity-threshold=high
+        working-directory: app_python
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
   
   docker:
     runs-on: ubuntu-22.04
     timeout-minutes: 5
 
     needs:
+      - security
       - build
-    if: ${{ needs.build.result == 'success'}}
+    if: ${{ needs.security.result == 'success' && needs.build.result == 'success'}}
 
     steps:
       # Checkout the repository

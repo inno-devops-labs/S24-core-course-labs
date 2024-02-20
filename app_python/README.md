@@ -1,4 +1,5 @@
 # Project Name: Time Display Web Application
+![CI Python](https://github.com/tanmaysharma2001/S24-core-course-labs/actions/workflows/python_ci.yml/badge.svg)
 
 ## Description
 
