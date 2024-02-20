@@ -1,3 +1,4 @@
+[![CI](https://github.com/nikzor/S24-core-course-labs/actions/workflows/main.yml/badge.svg)](https://github.com/nikzor/S24-core-course-labs/actions/workflows/main.yml)
 # DevOps Engineering Labs
 
 ## Introduction
