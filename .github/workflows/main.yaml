@@ -29,7 +29,7 @@ jobs:
       
       - name: Installing dependencies
         working-directory: "app_python"
-        run: pip install -r requierments.txt
+        run: pip install -r requirements.txt
       
       - name: Linting
         run: flake8 .
