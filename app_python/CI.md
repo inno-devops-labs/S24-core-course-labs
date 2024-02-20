@@ -10,3 +10,5 @@ Using GitHub secrets in CI configuration file to ensure security of sensitive in
 Each step is separated and has its own identificator `name`, so the configuration content is easily navigated.
 5. **Vulnerability scanning**
 Usage of Snyk implies effective searching for project vulnerabilities. In case they are present, this will allow to notice and eradicate them quickly.
+6. **Relevant actions version**
+Usage of non-deprecated actinos versions.
