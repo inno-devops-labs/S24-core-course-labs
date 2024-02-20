@@ -6,7 +6,7 @@
 - **Use Latest Actions**: Employ the most recent GitHub Actions to access new features and important security fixes.
 
 ### Security and Maintenance
-- **Secure Secrets**: Store sensitive data like `SNYK_TOKEN`, `DOCKERHUB_USERNAME`, and `DOCKERHUB_TOKEN` in GitHub Secrets to protect them.
+- **Secure Secrets**: Store sensitive data like `SNYK_TOKEN`, `DOCKER_USERNAME`, and `DOCKER_PASSWORD ` in GitHub Secrets to protect them.
 - **Specify Working Directories**: Define the execution directory for steps using the `working-directory` key to maintain clarity.
 - **Conditional Docker Pushes**: Configure the workflow to push Docker images exclusively when triggered by a version tag.
 
