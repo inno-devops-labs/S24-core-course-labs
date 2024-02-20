@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "test": "jest --coverage --detectOpenHandles"
+    "test": "jest --coverage --detectOpenHandles",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
@@ -13,10 +16,7 @@
   "dependencies": {
     "dotenv": "^16.4.4",
     "express": "^4.18.2",
-    "nodemon": "^3.0.3",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "format": "prettier --write ."
+    "nodemon": "^3.0.3"
   },
   "devDependencies": {
     "eslint-plugin-prettier": "^5.1.3",
