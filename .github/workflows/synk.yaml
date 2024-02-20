@@ -24,7 +24,7 @@ jobs:
       run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: pip install -r app_python/requirements.txt
 
     - name: Run Snyk Test
       run: snyk test --all-projects
