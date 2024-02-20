@@ -2,13 +2,7 @@ name: Python app
 
 on:
   push:
-    paths:
-      - app_python/**
-      - .github/workflows/main.yml
   pull_request:
-    paths:
-      - app_python/**
-      - .github/workflows/main.yml
 
 env:
   WORKING_DIR: app_python
@@ -35,6 +29,9 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       security-events: write
+    defaults:
+      run:
+        working-directory: ./app_python
     steps:
       - uses: actions/checkout@master
       - name: Set up Python
@@ -44,7 +41,6 @@ jobs:
           cache: 'pip'
       - name: Install dependencies
         run: |
-          cd app_python
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Lint
