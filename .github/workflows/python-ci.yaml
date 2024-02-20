@@ -16,6 +16,7 @@ on:
 
 jobs:
   security:
+    name: Security
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
