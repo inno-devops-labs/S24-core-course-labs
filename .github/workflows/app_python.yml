@@ -74,3 +74,39 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: snyk/actions/setup@master
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo SERVER_HOST=0.0.0.0 >> .env
+          echo SERVER_PORT=8080 >> .env
+          cat .env
+
+      - name: Install dependencies
+        working-directory: ./app_python
+        run: |
+          python -m pip install --upgrade pip
+          pip install --no-cache-dir -r requirements.txt
+
+      - name: Snyk test
+        continue-on-error: true
+        working-directory: ./app_python
+        run: snyk test --sarif-file-output=snyk.sarif
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ./app_python/snyk.sarif
+
