@@ -53,7 +53,12 @@ jobs:
       defaults:
         run:
           working-directory: ./app_python
+
       steps:
+        - uses: actions/setup-python@v2
+          with:
+            python-version: '3.11'
+        - run: pip install -r requirements.txt
         - uses: actions/checkout@v2
         - name: Prepare Snyk
           run: curl -LO 'https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux' && chmod +x snyk-linux
@@ -69,6 +74,10 @@ jobs:
       needs:
         build-and-test
       steps:
+        - uses: actions/setup-python@v2
+          with:
+            python-version: '3.11'
+          run: pip install -r requirements.txt
         - name: Docker
           uses: docker/login-action@v3
           with:
