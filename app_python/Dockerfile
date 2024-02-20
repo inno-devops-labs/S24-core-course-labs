@@ -11,7 +11,7 @@ RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
 WORKDIR /python_app
 
 # Copy only the necessary files into the container
-COPY app.py DOCKER.md PYTHON.md README.md requirements.txt ./
+COPY app.py DOCKER.md PYTHON.md README.md ./
 COPY template/* ./template
 # Set a non-root user
 
