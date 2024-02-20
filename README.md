@@ -1,3 +1,5 @@
+[![Python App Workflow](https://github.com/Skril3366/S24-core-course-labs/actions/workflows/python.yml/badge.svg)](https://github.com/Skril3366/S24-core-course-labs/actions/workflows/python.yml)
+
 # DevOps Engineering Labs
 
 ## Introduction
