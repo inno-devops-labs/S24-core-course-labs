@@ -8,8 +8,6 @@ jobs:
     defaults:
       run:
         working-directory: ./app_python
-      with:
-        working-directory: ./app_python
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -36,11 +34,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./app_python
-      with:
-        working-directory: ./app_python
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -54,7 +47,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./app_python/
+          file: ./app_python/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/python-test-app_python:latest
