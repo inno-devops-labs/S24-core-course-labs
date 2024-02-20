@@ -10,7 +10,8 @@ This web application displays the current time in Moscow. It is built with Flask
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [Tests](#tests)
+- [Continuous Integration (CI) Workflow](#continuous-integration-ci-workflow)
+- [Unit Tests](#unit-tests)
 - [Best Practices](#best-practices)
 - [License](#license)
 
@@ -70,15 +71,37 @@ python run.py
 
 Open a web browser and navigate to `http://127.0.0.1:5000/` to view the application.
 
-## Tests
+
+## Continuous Integration (CI) Workflow
+
+The project utilizes GitHub Actions for Continuous Integration (CI), automating the process of code validation, testing, and security checks upon each push to the repository. Specifically, this workflow targets changes in the `app_python` directory and the CI configuration itself.
+
+### Workflow Steps:
+1. **Environment Setup**: Runs on Ubuntu 22.04, setting up Python 3.9 and caching dependencies for faster execution.
+2. **Dependency Installation**: Installs all required Python packages, including `flake8` for linting and any libraries listed in `requirements.txt`.
+3. **Linting**: Uses `flake8` to identify syntax errors or undefined names, treating all errors as warnings for code quality assurance.
+4. **Testing**: Executes `pytest` to run unit tests, ensuring code changes do not break existing functionality.
+5. **Security**: Incorporates Snyk for vulnerability scanning, emphasizing high-severity issues and using cached binaries for efficiency.
+6. **Docker**: Builds and pushes a Docker image to DockerHub if all previous steps pass, ensuring only quality, secure builds are deployed.
+
+This workflow ensures that every change is thoroughly tested and meets our quality and security standards before integration, facilitating a robust development lifecycle.
+
+For more information on GitHub Actions and CI/CD best practices, see the [GitHub Actions documentation](https://docs.github.com/en/actions).
+
+
+## Unit Tests
 
 To run tests, execute the following command:
 
 ```
-python test_app.py
+pytest
 ```
 
+![Alt text](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+
+
 Ensure all tests pass before submitting a pull request for your changes.
+
 
 ## Best Practices
 
