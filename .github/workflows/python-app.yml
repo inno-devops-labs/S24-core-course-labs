@@ -19,18 +19,18 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Set up Python 3.12
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.12.0"
-        cache: "poetry"
-
     - name: Install Poetry
       uses: snok/install-poetry@v1
       with:
         version: 1.5.1
         virtualenvs-create: true
         virtualenvs-in-project: true
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.12.0"
+        cache: "poetry"
 
     # - name: Load cached venv
     #   id: cached-poetry-dependencies
