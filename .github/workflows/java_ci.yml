@@ -32,3 +32,5 @@ jobs:
         uses: snyk/actions/maven@master
         with:
           args: test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
