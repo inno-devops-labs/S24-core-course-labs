@@ -97,7 +97,7 @@ To run tests, execute the following command:
 pytest
 ```
 
-![Alt text](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+![Alt text](https://raw.githubusercontent.com/tanmaysharma2001/S24-core-course-labs/lab03/app_python/pytest.png)
 
 
 Ensure all tests pass before submitting a pull request for your changes.
