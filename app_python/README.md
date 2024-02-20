@@ -71,3 +71,29 @@ To start the image
 ```properties
 docker run -d -p 5000:5000 ahmadalhussin/app_python
 ```
+
+## CI
+
+For Continuous Integration I created multiple yml files in `.github/workflows/` directory.
+
+For each one, multiple parts are being runned to achieve the desired goal.
+
+The first part is to build the application. This stage consist of the following:
+
+- Install dependencies
+
+- Running unit tests
+
+- Linting/building project
+
+The second part is to do security check with snyk
+
+The final part is to push our docker image to docker hub. This part is divided also to:
+
+- Login to docker hub using GitHub secrect
+
+- Build Image
+
+- Tag the Image
+
+- Push the image to docker hub

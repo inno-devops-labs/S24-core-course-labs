@@ -1,3 +1,7 @@
+![Python workflow](https://github.com/AhmadAlhussin2/S24-core-course-labs/actions/workflows/app_python.yml/badge.svg)
+![Dotnet workflow](https://github.com/AhmadAlhussin2/S24-core-course-labs/actions/workflows/app_dotnet.yml/badge.svg)
+
+
 # DevOps Engineering Labs
 
 ## Introduction

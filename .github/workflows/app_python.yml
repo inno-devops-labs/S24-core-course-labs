@@ -13,6 +13,13 @@ jobs:
               uses: actions/setup-python@v4
               with:
                 python-version: '3.8'
+            - name: Cache dependencies
+              uses: actions/cache@v2
+              with:
+                path: ~/.cache/pip
+                key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+                restore-keys: |
+                    ${{ runner.os }}-pip-
             - name: Install dependencies
               working-directory: ./app_python
               run: |
@@ -29,7 +36,25 @@ jobs:
                 pip install ruff
                 ruff --output-format=github .
     
+    security:
+        needs: [build]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+            - name: Run Snyk to check for vulnerabilities
+              uses: snyk/actions/python-3.8@master
+              continue-on-error: true # To make sure that SARIF upload gets called
+              env:
+                SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+              with:
+                args: --sarif-file-output=snyk.sarif
+            - name: Upload result to GitHub Code Scanning
+              uses: github/codeql-action/upload-sarif@v2
+              with:
+                sarif_file: snyk.sarif
+
     docker:
+        needs: [build, security]
         runs-on: ubuntu-latest
         steps:
         - name: Checkout
@@ -49,5 +74,5 @@ jobs:
           run: | 
             docker build -t ahmadalhussin/app_python:latest .
             docker tag ahmadalhussin/app_python:latest ahmadalhussin/app_python:latest
-            docker push ahmadalhussin/app_dotnet:latest
+            docker push ahmadalhussin/app_python:latest
 

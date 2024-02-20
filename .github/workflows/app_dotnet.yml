@@ -24,6 +24,7 @@ jobs:
               run: dotnet build --configuration Release --no-restore
     
     docker:
+        needs: [build]
         runs-on: ubuntu-latest
         steps:
         - name: Checkout
