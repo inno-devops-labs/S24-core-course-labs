@@ -1,3 +1,10 @@
 # CI
 
-todo
+## Practices used
+
+1. Dependency caching via option of setup-python (see
+   [link](https://github.blog/changelog/2021-11-23-github-actions-setup-python-now-supports-dependency-caching/))
+2. Multiple version of Python in testing
+3. Push to DockerHub only when necessary - after merging in main
+4. Separated workflows
+5. Workflow results visible as badge

@@ -1,6 +1,7 @@
 # DevOps Engineering Labs
 
 ![Python App tests](https://github.com/Dirakon/S24-core-course-labs/actions/workflows/app_python_testing.yml/badge.svg)
+
 ![Python App security](https://github.com/Dirakon/S24-core-course-labs/actions/workflows/app_python_security.yml/badge.svg)
 
 ## Introduction
