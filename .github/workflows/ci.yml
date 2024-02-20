@@ -41,6 +41,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: app_python
-          file: Dockerfile
+          file: app_python/Dockerfile
           push: true
           tags: batdockerivankornienko/app_python:latest
