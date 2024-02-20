@@ -1,6 +1,6 @@
-Flask==2.0.1
+Flask==2.2.5
 pytz==2021.1
-werkzeug==2.0.3
+werkzeug==2.2.3
 annotated-types==0.6.0
 anyio==4.2.0
 blinker==1.7.0
