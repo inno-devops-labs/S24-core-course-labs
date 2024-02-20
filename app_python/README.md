@@ -78,4 +78,3 @@ These automated CI jobs help ensure the reliability and quality of the applicati
 ## Dependencies
 * Flask
 * pytz
-* pytest
