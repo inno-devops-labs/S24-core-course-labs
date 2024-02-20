@@ -90,6 +90,7 @@ jobs:
     needs: [ paths-filter, checks ]
     if: needs.paths-filter.outputs.is_in_python_dir == 'true'
     steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
       - name: Login to docker hub
         run: |
           docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
