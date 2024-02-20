@@ -58,10 +58,8 @@ jobs:
       working-directory: app_python
 
     - name: Run Snyk
-      run: ./snyk-linux test --severity-threshold=high
+      run: ./snyk-linux auth ${{ secrets.SNYK_TOKEN }} --severity-threshold=high
       working-directory: app_python
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   docker:
 
