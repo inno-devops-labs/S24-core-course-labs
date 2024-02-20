@@ -30,7 +30,7 @@
 cargo run
 ```
 
-## Testing
+## Unit Tests
 
 Execute tests:
 
