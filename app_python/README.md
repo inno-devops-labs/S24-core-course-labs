@@ -18,7 +18,10 @@ Unit and manual testing are used to ensure corectness of the application.
 Manual testing scenario was to refresh the page and check time is changed.
 
 **Unit tests**
-The unit testing part contains test for checking the correctness of the function that provides formatted time information. Time function is mocked with mocked time in different timezones - MSK and NY.
+
+The unit testing part contains test for checking the correctness of the function that provides formatted time information. 
+
+Time function is mocked with mocked time in different timezones - MSK and NY.
 
 To run unit tests use the following command:
 ```bash
