@@ -1,0 +1,14 @@
+node_modules/
+/public/build/
+
+.DS_Store
+
+# IDEs
+.vscode
+.idea
+
+.git
+.gitignore
+*.md
+
+*.env
