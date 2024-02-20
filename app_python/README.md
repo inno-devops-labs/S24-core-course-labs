@@ -1,5 +1,5 @@
 
-![Python application](https://github.com/KatyKoshmanova/S24-core-course-labs/workflows/Python%20application/badge.svg?branch=lab2)
+![Python application](https://github.com/KatyKoshmanova/S24-core-course-labs/workflows/python-app.yml/badge.svg)
 
 # Python Web Application
 

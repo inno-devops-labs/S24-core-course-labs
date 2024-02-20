@@ -34,6 +34,20 @@ jobs:
       run: |
         pytest
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install and setup Snyk
+      run: |
+        npm install -g snyk
+        snyk auth ${{ secrets.SNYK_TOKEN }}
+
+    - name: Run Snyk to find vulnerabilities
+      run: |
+        snyk test --all-projects
+
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
