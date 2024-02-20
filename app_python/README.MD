@@ -66,9 +66,11 @@ In our application we also applied unit testing for improvement code quality.
 You can follow our test files for getting more information about usage of our program and expected output.
 
 ## CI Workflow
+![CI workflow](https://github.com/tatarinalba/S24-core-course-labs/actions/workflows/main.yml/badge.svg)
+
 Our workflow triggers when we're pushing to the lab3 branch.
 We have several steps during our workflow.
-- Dependencies
-- Lint
-- Test
-- Docker deploying
+- Dependencies installation
+- Linting
+- Testing
+- Docker hub deploying
