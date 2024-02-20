@@ -59,7 +59,6 @@ Running the docker Image
 ## Unit Tests
 
 Comprehensive unit tests have been implemented to ensure the reliability and functionality of the Flask web application.
-These tests cover critical parts of the application and validate its behavior under various conditions.
 
 To run the unit tests, execute the following command in your terminal(in root project folder):
 
