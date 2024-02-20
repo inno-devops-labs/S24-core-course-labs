@@ -25,6 +25,7 @@ jobs:
           context: ./app_python
           file: ./app_python/Dockerfile
           push: true
+          tags: user/app:latest
 
   test:
     runs-on: ubuntu-latest
