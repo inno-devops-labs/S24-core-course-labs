@@ -61,9 +61,10 @@ jobs:
 
       - name: Authenticate Snyk CLI
         run: |
-          $HOME/.config/snyk/snyk auth ${{ secrets.SNYK_API_TOKEN }}
+          ./snyk-linux auth ${{ secrets.SNYK_API_TOKEN }} --severity-threshold=high
+          working-directory: app_python
 
       - name: Run Snyk Vulnerability Scan
         run: |
-          $HOME/.config/snyk/snyk test --project-path=./app_python
+          ./snyk-linux test --project-path=./app_python
       
