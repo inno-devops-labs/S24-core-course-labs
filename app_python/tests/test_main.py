@@ -17,4 +17,5 @@ def test_api(client):
     """
     response = client.get("/api/time")
     assert response.status_code == 200
-    assert response.json() == {'time': datetime.now(tz=moscow_time_zone).strftime("%H:%M:%S")}
+    assert (response.json() ==
+            {'time': datetime.now(tz=moscow_time_zone).strftime("%H:%M:%S")})
