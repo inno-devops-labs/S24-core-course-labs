@@ -69,13 +69,12 @@ jobs:
         working-directory: ./app_python
 
       - name: Run Snyk to check for vulnerabilities
-        id: snyk_check
         uses: snyk/actions/python-3.10@b98d498629f1c368650224d6d212bf7dfa89e4bf
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --severity-threshold=high --workdir=./app_python
+          args: --severity-threshold=high --sarif-file-output=snyk.sarif --workdir=app_python/
 
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@592977e6ae857384aa79bb31e7a1d62d63449ec5
