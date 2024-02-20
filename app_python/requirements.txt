@@ -1,0 +1,5 @@
+# Web application framework
+Flask==3.0.2
+
+# IANA time zone database
+tzdata==2023.4
