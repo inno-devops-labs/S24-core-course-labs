@@ -46,11 +46,14 @@ jobs:
           python test.py
 
       - name: Snyk
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: |
           npm install -g snyk
-          snyk auth ${{ secrets.SNYK_TOKEN }}
+          snyk auth $SNYK_TOKEN
           cd app_python
           snyk test --code
+      
 
       - name: Docker login
         uses: docker/login-action@v2
