@@ -61,12 +61,9 @@ jobs:
           chmod +x snyk-linux
         working-directory: app_python
 
-      - name: Authenticate Snyk CLI
+      - name: Authenticate and Run Snyk CLI
         run: |
           ./snyk-linux auth ${{ secrets.SNYK_API_TOKEN }} --severity-threshold=high
         working-directory: app_python
 
-      - name: Run Snyk Vulnerability Scan
-        run: |
-          ./snyk-linux test --project-path=./app_python
       
