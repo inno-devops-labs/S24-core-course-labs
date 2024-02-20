@@ -31,6 +31,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile
+          file: app_python/Dockerfile
           push: true
           tags: tatarinalba/devops:1.0
