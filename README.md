@@ -1,4 +1,6 @@
 # DevOps Engineering Labs
+![CI Rust](https://github.com/Ejedavy/S24-core-course-labs/actions/workflows/ci_rust.yaml/badge.svg)
+![CI Python](https://github.com/Ejedavy/S24-core-course-labs/actions/workflows/ci_python.yaml/badge.svg)
 
 ## Introduction
 

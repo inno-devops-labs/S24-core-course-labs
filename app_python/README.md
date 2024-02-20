@@ -1,5 +1,5 @@
 # FastAPI Time Display App
-
+![CI Python](https://github.com/Ejedavy/S24-core-course-labs/actions/workflows/ci_python.yaml/badge.svg)
 This web application displays the current time in Moscow, developed using the FastAPI framework and Python.
 
 ## Table of Contents
@@ -12,6 +12,7 @@ This web application displays the current time in Moscow, developed using the Fa
     - [Docker](#docker)
       - [For AMD chips](#for-amd-chips)
       - [For ARM chips](#for-arm-chips)
+  - [CI](#ci)
 
 ## Installation
 
@@ -95,3 +96,13 @@ docker run -p 8000:8000 --platform linux/amd64 python_app
 ```
 
 The application will be available at [localhost:8000](http://localhost:8000/)
+
+
+## CI
+A CI workflow is contained in the `.github/workflows/ci_python.yaml` file. This workflow lints and tests the application, checks code vulnerability using SNYK, and builds and pushes docker image. Workflow is triggered only if the there is a change in the `app_python` directory or the workflow file itself.
+
+The CI workflow contains 3 jobs. Each job has a specific set of tasks to perform:
+
+- Build: This job lints and tests the application
+- Security: This job checks code vulnerability using SNYK
+- Docker: This job builds and pushes the docker image to the Docker Hub. The job is carried out only if the previous jobs are successful.

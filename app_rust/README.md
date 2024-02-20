@@ -1,6 +1,6 @@
 # LEARNING APPLICATION
-![CI](https://github.com/Ejedavy/S24-core-course-labs/actions/workflows/ci.yaml/badge.svg)
-![Test](https://github.com/Ejedavy/S24-core-course-labs/actions/workflows/test.yaml/badge.svg)
+![CI Rust](https://github.com/Ejedavy/S24-core-course-labs/actions/workflows/ci_rust.yaml/badge.svg)
+
 
 
 This is a learning app that helps students learn school materials using AI.
@@ -100,6 +100,18 @@ To contribute:
 4. Commit your changes (`git commit -am 'Add some feature'`).
 5. Push to the branch (`git push origin feature-branch`).
 6. Create a new Pull Request.
+
+
+## CI
+A CI workflow is contained in the `.github/workflows/ci_rust.yaml` file. This workflow lints and tests the application, checks code vulnerability using SNYK, and builds and pushes docker image. Workflow is triggered only if the there is a change in the `app_rust` directory or the workflow file itself.
+
+The CI workflow contains 3 jobs. Each job has a specific set of tasks to perform:
+
+- test: This runs the unit tests of the application
+- clippy: This is used for linting in the rust application.
+- fmt: This is used for formatting the source code
+- coverage: Checks code coverage
+
 
 ## Authors
 
