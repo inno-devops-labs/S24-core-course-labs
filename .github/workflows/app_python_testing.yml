@@ -30,7 +30,7 @@ jobs:
           pip install ruff
           ruff --output-format=github .
 
-      - name: Test with pytest
+      - name: Test with Pytest
         run: |
           pytest
 
@@ -58,4 +58,4 @@ jobs:
           context: ./app_python
           file: ./app_python/Dockerfile
           push: true
-          tags: devops-py:latest
+          tags: dirakon/devops-py:latest
