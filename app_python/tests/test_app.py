@@ -3,8 +3,8 @@ import sys
 import os
 import pytz
 from datetime import datetime, timezone
-from app import app, get_moscow_time
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from app import app, get_moscow_time
 
 
 # Pytest fixture to create a test client for the Flask app
