@@ -40,11 +40,12 @@ jobs:
         run: |
           pytest
 
-      - name: Snyk check
-        run: |
-          npm install -g snyk
-          snyk auth ${{ secrets.SNYK_TOKEN }}
-          snyk test --code
+      - uses: snyk/actions/setup@master
+      - name: Snyk Security Check
+        working-directory: ./app_python
+        run: snyk test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   deploy:
     runs-on: ubuntu-latest
