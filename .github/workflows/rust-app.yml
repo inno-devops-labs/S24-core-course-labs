@@ -44,6 +44,7 @@ jobs:
 
       - name: Cargo Check
         run: cargo check
+        working-directory: ./app_rust
 
       - name: Lint with Clippy
         run: |
