@@ -1,5 +1,7 @@
 # Web App That Shows Time In Moscow
 
+![Python Workflow](https://github.com/IlnurHA/DevOps-S24-core-course-labs/actions/workflows/python-app.yml/badge.svg)
+
 ## Docs
 
 Can be accessed while running: `/docs`
