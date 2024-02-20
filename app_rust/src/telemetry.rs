@@ -1,6 +1,6 @@
-//use opentelemetry::sdk::propagation::TraceContextPropagator;
+use opentelemetry::sdk::propagation::TraceContextPropagator;
 use opentelemetry::sdk::{trace, trace::Tracer, Resource};
-//use opentelemetry::{global, KeyValue};
+use opentelemetry::KeyValue;
 use opentelemetry_otlp::WithExportConfig;
 use std::fs::File;
 use std::fs::OpenOptions;
