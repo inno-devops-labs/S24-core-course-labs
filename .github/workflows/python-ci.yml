@@ -57,12 +57,12 @@ jobs:
 
       - name: Install Snyk CLI
         run: |
-          curl -fsSL https://cli.snyk.io/install.sh | bash
+          curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
 
       - name: Authenticate Snyk CLI
         run: |
           ./snyk-linux auth ${{ secrets.SNYK_API_TOKEN }} --severity-threshold=high
-          working-directory: app_python
+        working-directory: app_python
 
       - name: Run Snyk Vulnerability Scan
         run: |
