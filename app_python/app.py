@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 import pytz
 
 app = Flask(__name__)
@@ -15,7 +15,8 @@ def display_time():
 def get_moscow_time():
     moscow_timezone = pytz.timezone('Europe/Moscow')
     current_utc_time = datetime.utcnow()
-    moscow_time = current_utc_time.replace(tzinfo=timezone.utc).astimezone(moscow_timezone)
+    moscow_time = current_utc_time.replace(tzinfo=timezone.utc).\
+        astimezone(moscow_timezone)
     return moscow_time
 
 
