@@ -61,3 +61,15 @@ docker run -p 80:80 dianatomiya/devops:p_v1.0
 ```
 
 This will run the container, exposing port 80 on your local machine. You can then access the application in your web browser at <http://localhost>.
+
+## Unit tests
+
+Please make sure to update tests as appropriate.
+
+Tests are ran using [pytest](https://docs.pytest.org/en/8.0.x/).
+
+To run the tests:
+
+```bash
+pytest
+```
