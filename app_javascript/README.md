@@ -63,10 +63,10 @@ After that, the application will be accessible at `http://localhost:3000/` in th
 
 
 ## Unit tests
-Unit tests are located inside the `tests/unit/test.py` file. They can be run using `pytest`:
+Unit tests are located inside the `app.test.js` file. They can be run using `jest`:
 
 ```bash
-pytest tests/unit/test.py
+npm test
 ```
 
 ## CI workflow
