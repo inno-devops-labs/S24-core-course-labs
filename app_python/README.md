@@ -69,7 +69,7 @@ docker build . -f Dockerfile -t <name_of_container>
 ### Pull from dockerhub
 
 ```shell
-docker pull ilnurha/lab2:latest
+docker pull ilnurha/dev_ops_course_core:latest
 ```
 
 ### Run
@@ -78,7 +78,7 @@ docker pull ilnurha/lab2:latest
 docker run -p 5000:5000 <name_of_container>
 ```
 
-If you pulled from dockerhub name of container is "ilnurha/lab2:latest"
+If you pulled from dockerhub name of container is "ilnurha/dev_ops_course_core:latest"
 
 ---
 
@@ -93,3 +93,10 @@ After that, execute:
 ```shell
 pytest
 ```
+
+---
+
+## CI workflow
+
+Now workflow is installing requirements, checking code using linter flake8,
+and building docker image and pushing to `ilnurha/dev_ops_course_core`
