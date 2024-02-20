@@ -1,0 +1,5 @@
+Flask
+pytz
+python-dotenv
+pytest
+flake8
