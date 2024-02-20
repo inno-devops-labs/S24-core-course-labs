@@ -31,3 +31,19 @@ To run tests use `make test` or you can use `cargo test` from `app_rust/app/` fo
 - To run image builded locally use make command `make docker-run` or write in terminal `docker run -p 8000:8000 --rm -ti devops-lab-02-rust`
 
 - To push local builded image to Docker Hub use make command `make docker-push`
+
+## CI workflow
+
+### Setup (dependencies), Lint checks, testing code
+Firstly, setup Rust with `actions-rs/toolchain@v1`, lint with `cargo fmt -- --check` and test with `cargo test` inside steps.
+
+### Snyk check
+
+Unfortunately, there is no snyk for Rust lang, but it is already secure enough by default
+
+### Building and deploying
+The same process as for the `app_python`:
+
+1. Logining in DockerHub to be able to push new image in public space afterwards. Login process is using GitHub repository secrets to recieve `DOCKERHUB_USERNAME` and `DOCKERHUB_ACCESS_TOKEN`
+2. Then workflow starting to build Docker image, it also push built Docker image to GitHub using username from creds (described above)
+3. Build is cahced for optimization of fututre build
