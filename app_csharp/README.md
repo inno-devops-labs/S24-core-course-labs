@@ -55,3 +55,11 @@ Run (on host port 5000 as example)
 ```sh
 docker run -p 5000:8080 dirakon/devops-cs:latest
 ```
+
+## Unit tests
+
+To run unit tests, do
+
+```sh
+dotnet test
+```
