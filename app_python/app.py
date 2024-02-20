@@ -19,5 +19,9 @@ def show_moscow_time():
     seconds = time.second
 
     # construct result HTML soup and return it
-    html = f"<center style='font-size: 60px;'>{hours}:{minutes}:{seconds}</center>"
+    html = (
+        f"<center style='font-size: 60px;'>"
+        f"{hours}:{minutes}:{seconds}"
+        f"</center>"
+    )
     return html

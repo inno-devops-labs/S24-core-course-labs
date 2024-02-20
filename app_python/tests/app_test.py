@@ -10,3 +10,4 @@ def test_request_to_existing_url():
 
 def test_request_to_not_existing_url():
     assert client.get('/test').status_code == 404
+ 
