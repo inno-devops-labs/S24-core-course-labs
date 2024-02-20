@@ -2,7 +2,7 @@
 
 The application is showing the current Moscow time that updates upon page reload.
 
-# How to run
+## How to run
 1. Install all requirements from requirements.txt using the following command (either inside venv or in global env):
    ```bash
    pip install -r requirements.txt
@@ -12,12 +12,12 @@ The application is showing the current Moscow time that updates upon page reload
    python api/main.py
    ```
 
-# Testing
+## Testing
 Unit and manual testing are used to ensure corectness of the application. 
 
 Manual testing scenario was to refresh the page and check time is changed.
 
-##Unit tests
+### Unit tests
 
 The unit testing part contains test for checking the correctness of the function that provides formatted time information. 
 
@@ -28,7 +28,7 @@ To run unit tests use the following command:
 pytest
 ```
 
-# Docker
+## Docker
 
 1. **How to build**
 You need to be in `app_python` folder to be able to use the following command:
