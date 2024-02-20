@@ -3,6 +3,7 @@ from app import app
 from datetime import datetime
 import pytz
 
+
 class TestShowTimeFunction(unittest.TestCase):
 
     def setUp(self):
@@ -25,6 +26,7 @@ class TestShowTimeFunction(unittest.TestCase):
         time_now = datetime.now(moscow_timezone).strftime('%Y-%m-%d %H:%M:%S')
         expected_html = f'<strong>{time_now}</strong>'
         self.assertIn(expected_html, response.get_data(as_text=True))
+
 
 if __name__ == '__main__':
     unittest.main()
