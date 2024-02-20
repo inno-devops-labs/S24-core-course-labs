@@ -24,7 +24,7 @@ jobs:
 
       - name: Install the dependencies
         working-directory: app_python
-        run: pip install -r requirements.txt
+        run: pip install -r app_python/requirements.txt
 
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.8@master
