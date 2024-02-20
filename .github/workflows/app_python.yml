@@ -1,5 +1,13 @@
 name: app_python
-on: [push]
+on: 
+    push:
+        paths:
+            - 'app_python/**'
+            - '.github/workflows/app_python.yml'
+    pull_request:
+        paths:
+            - 'app_python/**'
+            - '.github/workflows/app_python.yml'
 
 env:
     IMAGE_NAME: ahmadalhussin/app_python
@@ -43,15 +51,10 @@ jobs:
             - uses: actions/checkout@master
             - name: Run Snyk to check for vulnerabilities
               uses: snyk/actions/python-3.8@master
-              continue-on-error: true # To make sure that SARIF upload gets called
+              continue-on-error: false
               env:
                 SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-              with:
-                args: --sarif-file-output=snyk.sarif
-            - name: Upload result to GitHub Code Scanning
-              uses: github/codeql-action/upload-sarif@v2
-              with:
-                sarif_file: snyk.sarif
+
 
     docker:
         needs: [build, security]

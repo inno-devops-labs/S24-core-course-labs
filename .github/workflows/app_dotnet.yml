@@ -1,5 +1,13 @@
 name: app_dotnet
-on: [push]
+on: 
+    push:
+        paths:
+            - 'app_dotnet/**'
+            - '.github/workflows/app_dotnet.yml'
+    pull_request:
+        paths:
+            - 'app_dotnet/**'
+            - '.github/workflows/app_dotnet.yml'
 
 env:
     IMAGE_NAME: ahmadalhussin/app_dotnet
@@ -23,8 +31,23 @@ jobs:
               working-directory: ./app_dotnet/app_dotnet
               run: dotnet build --configuration Release --no-restore
     
-    docker:
+    security:
         needs: [build]
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@master
+          - name: Setup .NET
+            uses: actions/setup-dotnet@v3
+          - name: Restore dependencies
+            working-directory: ./app_dotnet
+            run: dotnet restore 
+          - name: Run Snyk to check for vulnerabilities
+            uses: snyk/actions/dotnet@master
+            env:
+                SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+    docker:
+        needs: [build, security]
         runs-on: ubuntu-latest
         steps:
         - name: Checkout
