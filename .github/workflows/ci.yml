@@ -13,12 +13,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
           pip install --no-cache-dir -r app_python/requirements.txt
-          # pip install flake8 pytest
 
       - name: Run linter
         run: |

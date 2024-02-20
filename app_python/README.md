@@ -104,3 +104,61 @@ docker run -d -p 8000:8000 --name <container_name> <image_name>:latest
 ## Unit Tests
 
 Refer to [Unit Tests Breakdown](PYTHON.md#unit-tests-breakdown) section in `PYTHON.MD`.
+
+## CI Workflow
+
+### Workflow Triggers
+
+- `on: [ push, pull_request ]`: This workflow is triggered on any `push` to the repository or on any `pull_request`
+  event,
+  ensuring that the code is automatically built and tested for both direct changes and proposed changes via pull
+  requests.
+
+### Jobs
+
+- `build`: Defines a single job named `build` that encapsulates the steps to check, build, and test the application.
+
+### Steps within the Build Job
+
+#### Check out repository code
+
+Uses `actions/checkout@v2` to clone the repository into the GitHub Actions runner, making the
+codebase available for the subsequent steps.
+
+#### Set up Python
+
+Utilizes `actions/setup-python@v2` to set up a Python environment with Python version `3.11`. This ensures
+that the project runs on a specific version of Python.
+
+#### Install requirements
+
+Installs the dependencies listed in `app_python/requirements.txt` using `pip`. This step prepares the
+environment with all the necessary Python packages specified in the requirements file.
+
+#### Run linter
+
+Executes `flake8` to analyze the code for style violations and potential errors. The command is configured
+to:
+
+- Fail the build for severe issues (`E9`, `F63`, `F7`, `F82`).
+- Treat all other issues as warnings without failing the build (`--exit-zero`).
+- Configure complexity and line length limits.
+  This step ensures that the code adheres to Python best practices and is free from common mistakes.
+
+#### Run tests
+
+Executes the project's tests using `pytest`. This step verifies that the code behaves as expected and that
+recent changes haven't introduced any regressions.
+
+#### Log in to Docker Hub
+
+Uses `docker/login-action@v2` with Docker Hub credentials (stored as GitHub Secrets) to
+authenticate against Docker Hub. This step is crucial for securely pushing the Docker images to the registry.
+
+#### Build and push Docker image
+
+Utilizes `docker/build-push-action@v3` to build a Docker image from the `Dockerfile` located
+in the `app_python` directory and push it to Docker Hub. The context is set to `app_python`, ensuring that the build
+process
+is scoped to the relevant part of the repository. The image is tagged as `batdockerivankornienko/app_python:latest`,
+making it identifiable and retrievable from Docker Hub.
