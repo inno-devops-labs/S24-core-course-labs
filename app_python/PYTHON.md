@@ -19,3 +19,16 @@ Testing: Implementing a comprehensive testing strategy, including unit tests, in
 Documentation: Providing clear and comprehensive documentation for the application, including code comments, API documentation, and user guides. This helps other developers understand and work with the codebase and assists users in effectively using the application.
 
 Version Control: Using a version control system, such as Git, to track changes to the codebase and facilitate collaboration among team members. This allows for easy rollback of changes, code review, and better code management.
+
+## Unit Tests I have created
+
+### test_home Test
+
+This test checks the home route ("/") of the application.
+It sends a GET request to the home route using the test client and asserts that the response status code is 200 (indicating a successful request) and that the response data contains the string "Current Time in Moscow" .
+
+### test_home_time Test
+
+This test also checks the home route ("/") of the application but with a mocked time.
+It uses the monkeypatch fixture to mock the current time to January 1, 2024, 12:00:00.
+The test then sends a GET request to the home route using the test client and asserts that the response status code is 200 and that the response data contains the string "2024-01-01 12:00:00" .
