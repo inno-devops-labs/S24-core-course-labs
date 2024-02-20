@@ -10,7 +10,8 @@ timezone_country = 'Europe/Moscow'
 
 @app.route('/')
 def display_time():
-    return render_template('index.html', current_time=get_time('Europe/Moscow'), country=timezone_country)
+    return render_template('index.html',
+                           current_time=get_time('Europe/Moscow'), country=timezone_country)
 
 
 def get_time(timezone_name):

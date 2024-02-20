@@ -29,9 +29,6 @@ This is a simple Python web application that displays the current time in Moscow
     ```bash
    pip install -r requirements.txt
 
-3. Run unit tests 
-    ```bash
-   python tests/test_app.py   
    
 ### Docker
 1. Build your own image
@@ -50,3 +47,21 @@ This is a simple Python web application that displays the current time in Moscow
    ```
    
 3. App will be available on `127.0.0.1:5000`
+
+### Unit Tests
+
+This project includes unit tests to verify the functionality of key components. To run the unit tests, follow these steps:
+
+1. Ensure you have Python installed on your system.
+2. Install the necessary dependencies by running `pip install -r requirements.txt`.
+3. Navigate to the `tests` directory.
+4. Run the following command to execute the unit tests:
+
+```bash
+python -m unittest test_app.py
+```
+OR
+
+```bash
+python tests/test_app.py
+```
