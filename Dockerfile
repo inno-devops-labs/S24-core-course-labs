@@ -5,11 +5,11 @@ USER appuser
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY app_python/requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY app_python .
 
 EXPOSE 5000
 
