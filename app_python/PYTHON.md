@@ -35,3 +35,23 @@ docker pull masterlogick/devops-py-img
 ```bash
 docker run -p 8080:8080 masterlogick/devops-py-img
 ```
+
+# Testing
+
+As best practices I have mocked server using flask `test_client`, applied fixtures and split unit and service tests.
+
+## Unit Testing
+
+Here I have created unit tests that validate returned time for:
+
+1. Iso time format
+2. Timezone
+3. Difference with system time
+
+## Service testing
+
+This tests cover index endpoint:
+
+1. Return code
+2. Content type
+3. Content length and format
