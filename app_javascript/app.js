@@ -18,7 +18,11 @@ app.get("/", (_, res) => {
   res.send(`The current time in Moscow is: ${now}`);
 });
 
-// Start the server on port 5000
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+// Start the server only if the file is executed directly
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+  });
+}
+
+module.exports = app;
