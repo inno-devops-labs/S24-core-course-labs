@@ -13,7 +13,7 @@ This is a simple Python web application that displays the current time in Moscow
 
 ## Usage
 1. Run the application:
->python3 time.py
+>python3 time_web.py
 2. Follow the instructions in terminal.
 
 ## Docker Containerization
@@ -25,7 +25,7 @@ This section explains how to containerize and run the application using Docker.
 To build the Docker image:
 
 ```bash
-docker build -t time.py .
+docker build -t time_web.py .
 ```
 
 Ensure you are in the directory containing the Dockerfile.
@@ -35,7 +35,7 @@ Ensure you are in the directory containing the Dockerfile.
 To pull the Docker image from Docker Hub:
 
 ```bash
-docker pull snapman/time.py
+docker pull snapman/time_web.py
 ```
 
 ### Run
@@ -43,7 +43,7 @@ docker pull snapman/time.py
 To run the Docker container:
 
 ```bash
-docker run -p 5000:5000 snapman/time.py
+docker run -p 5000:5000 snapman/time_web.py
 ```
 
 Make sure to meet the following requirements:
