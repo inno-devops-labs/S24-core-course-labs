@@ -17,7 +17,6 @@ pub struct ApplicationSettings {
     pub service_name: String,
     pub exporter_url: String,
 }
-
 #[derive(serde::Deserialize)]
 pub struct DatabaseSettings {
     pub username: String,
