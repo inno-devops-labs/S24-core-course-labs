@@ -10,7 +10,6 @@ The project structure organized by using two important parts
 2. Backend API (written using Python with FastAPI framework)
 
 ### Server's endpoints description
-
 Server will be located on http://127.0.0.1:8000.
 
 Detailed description of the server could be viewed using `/docs` endpoint.
@@ -21,7 +20,6 @@ Shortly it consist of two parts
 2. `/api/time` For getting current moscow time up to seconds.
 
 ## Installation guide
-
 To try our service simply you can use prepared Makefile.
 Here are several commands to use
 
