@@ -13,10 +13,11 @@ Usage:
     2. Create a 'templates' folder in the same directory.
     3. Save the HTML template as 'index.html' in the 'templates' folder.
     4. Run the script: python app.py
-    5. Open your browser and go to http://localhost:5000 to view the Moscow time.
+    5. Open browser and go to http://localhost:5000 to view the Moscow time.
 
 Note:
-    Make sure to have an HTML template named 'index.html' with appropriate placeholders.
+    Make sure to have an HTML template named 'index.html' with appropriate
+     placeholders.
 
 """
 
