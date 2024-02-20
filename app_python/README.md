@@ -86,4 +86,3 @@ Ensure the following dependencies are installed before running the unit tests:
 
 - Flask
 - pytz
-- unittest
