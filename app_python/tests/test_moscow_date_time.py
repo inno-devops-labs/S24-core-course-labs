@@ -5,12 +5,14 @@ from unittest.mock import patch
 import pytz
 from app.moscow_date_time import get_moscow_date_time
 
-# from moscow_date_time import get_moscow_date_time
-
 
 class TestGetMoscowDateTime(unittest.TestCase):
     @patch('datetime.datetime')
     def test_moscow_time(self, mock_datetime):
+        """
+        Checks if a `get_moscow_date_time` actually returns `datetime` with
+        timezone of `Europe/Moscow`
+        """
         mock_datetime.utcnow.return_value = datetime(
             2024, 2, 20, 12, 0, 0, tzinfo=pytz.utc
         )
