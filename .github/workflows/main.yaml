@@ -45,8 +45,7 @@ jobs:
       security-events: write
     defaults:
       run:
-        working-directory: ${{ env.WORKING_DIR }}
-    steps:
+        working-directory: ./app_python
       - uses: actions/checkout@v4
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
