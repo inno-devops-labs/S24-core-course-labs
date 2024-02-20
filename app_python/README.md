@@ -1,5 +1,8 @@
 # Python web application
 
+[![App python](https://github.com/SHREDDING8/S24-core-course-labs/actions/workflows/app_python.yml/badge.svg)](https://github.com/SHREDDING8/S24-core-course-labs/actions/workflows/app_python.yml)
+
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -109,6 +112,13 @@ docker pull shredding228/server_app:latest
 ```shell
 docker run -d -p 8080:8080 --name app_python server-app:latest 
 ```
+
+## CI workflow:
+1. Set up python 3.9
+2. Creating env file, installing dependencies 
+3. Linting (flake8 linter is used)
+4. Tests (pytest is used)
+5. Login to DockerHub, build image and push 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
