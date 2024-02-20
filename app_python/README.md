@@ -1,3 +1,6 @@
+[![Docker](https://github.com/catdog905/dev-ops-course/actions/workflows/docker-publish.yml/badge.svg?branch=main)](https://github.com/catdog905/dev-ops-course/actions/workflows/docker-publish.yml)
+
+
 # Python Web Application
 
 ## Overview
@@ -35,7 +38,7 @@ venv/bin/uvicorn main:app --reload
 
 Next, navigate to `http://127.0.0.1:8000/` and check current moscow time!
 
-### Testing
+### Testing (Unit tests)
 
 To run the tests, execute:
 
@@ -64,3 +67,11 @@ Run docker container from image using
 ```bash
 docker run -p 80:80 catdog905/dev-ops-cours-app-python
 ```
+
+## CI workflow
+The project have 2 github workflows: `validator.yml` and `docker-publish.yml`
+
+- `validator.yml` workflow is reponsible for building the project (download dependencies), linting project files, testing project and checking it security level using snyk.
+
+- `docker-publish.yml` workflow is responsible for building docker image and publishing it to docker hub.
+

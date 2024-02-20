@@ -8,11 +8,11 @@
 
 ## Testing
 
-- **Unit Testing**: Implemented unit tests using FastAPI's TestClient to simulate API requests and validate responses.
+- **Unit Testing**: Implemented unit tests using FastAPI's TestClient to simulate API requests and validate responses. I've mocked time to ensure tests correctness.
 
 ## Code Quality
 
-- **Linting**: Used linters (e.g., flake8) to identify and fix stylistic issues and potential errors.
+- **Linting**: Used linters (pylint) to identify and fix stylistic issues and potential errors.
 
 ## Best Practices in Web Application
 

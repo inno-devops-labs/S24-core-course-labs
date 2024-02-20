@@ -3,7 +3,7 @@ name: Pylint
 on:
   push:
     paths:
-      - app_python
+      - app_python/**
 
 jobs:
   build:

@@ -8,7 +8,7 @@ name: Docker
 on:
   push:
     paths:
-      app_python
+      - app_python/**
 
 env:
   # Use docker.io for Docker Hub if empty
