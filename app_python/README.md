@@ -103,4 +103,4 @@ docker run -d -p 8000:8000 --name <container_name> <image_name>:latest
 
 ## Unit Tests
 
-Refer to `Testing and Code Quality` section at `PYTHON.MD`.
+Refer to [Unit Tests Breakdown](PYTHON.md#unit-tests-breakdown) section in `PYTHON.MD`.

@@ -37,12 +37,6 @@
   data contains digits. This test is a bit more generic, as it checks for the presence of digits in the response, which
   are necessary for the date/time format, without validating the exact time or format.
 
-#### Test for Template Rendering
-
-- `test_template_rendering` checks that the correct template (`index.html`) is used to render the home page and that the
-  template context contains the time variable. This test uses a context manager `captured_templates` to capture
-  templates rendered during the request, allowing for inspection of which templates were rendered and their contexts.
-
 ### Best practices
 
 #### Fixture Use for Test Setup
