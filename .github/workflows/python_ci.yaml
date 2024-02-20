@@ -41,8 +41,8 @@ jobs:
 
     - name: Build and Push Docker Image
       run: |
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest app_python/.
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/app_python:latest app_python/.
+        docker push ${{ secrets.DOCKER_USERNAME }}/app_python:latest
 
     - name: Snyk Vulnerability Scan
       run: |
