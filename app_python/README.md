@@ -64,3 +64,19 @@ This is a Python web application built with Flask to display the current time in
 4. Access the Application:
 
     - Once the container is running, open a web browser and navigate to http://localhost:5000 to access the application.
+
+## Unit tests
+
+- The project includes unit tests to ensure the correctness of specific functions and features. To run the unit tests, you can use the following command:
+
+   ```bash
+   pytest
+
+- The project includes comprehensive unit tests to ensure the correctness and reliability of specific functions and features. These tests cover various aspects of the application, including:
+
+   - Time Handling: Ensuring the accurate conversion of time zones and correct display of the Moscow time.
+
+   - HTML Template Rendering: Verifying that the HTML templates are correctly rendered and contain the expected content.
+
+
+

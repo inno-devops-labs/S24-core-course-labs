@@ -36,6 +36,14 @@ The application has undergone testing to ensure its functionality and reliabilit
 - **Debug Mode:** The application is set to run in debug mode during development (`app.run(debug=True)`). This mode
   provides detailed error messages and facilitates the identification and resolution of issues.
 
+- **Unit Tests with Pytest:** Unit tests have been implemented using Pytest to ensure the correctness of specific functions. These tests cover the display of time, the conversion of time zones, and the HTML template rendering.
+
+  - **Isolation:** Each unit test is designed to be isolated and independent of other tests. This ensures that a failure in one test does not affect the execution of others.
+
+  - **Fixture Usage:** The `pytest.fixture` decorator is used to create fixtures, such as the test client. This promotes code reusability and avoids code duplication.
+
+  - **Assertions:** Meaningful assertions are used in tests to clearly specify the expected behavior. For example, asserting the HTTP status code, presence of specific text, or correct rendering of HTML templates.
+
 ### Code Quality
 
 - **Readability:** The code is written using meaningful variable and function names.
