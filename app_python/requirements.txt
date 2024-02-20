@@ -9,3 +9,4 @@ MarkupSafe==2.1.5
 pytz==2024.1
 Werkzeug==3.0.1
 zipp==3.17.0
+pylint==3.0.3

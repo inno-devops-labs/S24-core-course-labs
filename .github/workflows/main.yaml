@@ -1,0 +1,89 @@
+name: Python app
+
+on:
+  push:
+    paths:
+      - app_python/**
+      - .github/workflows/main.yml
+  pull_request:
+    paths:
+      - app_python/**
+      - .github/workflows/main.yml
+
+env:
+  WORKING_DIR: app_python
+  DOCKER_IMAGE_NAME: app
+  DOCKER_IMAGE_TAG: latest
+
+jobs:
+  security:
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.10@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif
+            --file=${{ env.WORKING_DIR }}/requirements.txt
+            --package-manager=pip
+            --skip-unresolved
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
+
+  build-and-test:
+    timeout-minutes: 30
+    runs-on: ubuntu-22.04
+    permissions:
+      security-events: write
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          architecture: 'x64'
+          cache: 'pip'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Lint
+        run: pylint main.py .
+      - name: Test
+        run: python app-test.py
+
+  dockerhub-push:
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    needs: [ build-and-test, security ]
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./${{ env.WORKING_DIR }}
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_TAG }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
