@@ -2,7 +2,8 @@ name: Python CI
 
 on:
   push:
-    branches: [ main ]
+    paths:
+      - "app_python/**/*"
 
 jobs:
   build:
