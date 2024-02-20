@@ -1,5 +1,7 @@
 # Flask Web Application 
 
+[![flask-app](https://github.com/VectorsMaster/S24-core-course-labs/actions/workflows/main.yaml/badge.svg?branch=lab3)](https://github.com/VectorsMaster/S24-core-course-labs/actions/workflows/main.yaml)
+
 ## Overview
 
 This is a flask web application that renders current time in Moscow zone. 
@@ -22,13 +24,19 @@ This is a flask web application that renders current time in Moscow zone.
 
 5. Run `flask --app flaskr/app run`.
 
-## Steps to test the application 
- 
+## Steps to test the app on Unit Tests
+
 1. Navigate to `app_python` directory.
 
 2. Set up virtual environment, activate it and install requirements as mentioned previously.
 
 3. Run `pytest`.
+
+There exists 3 Unit tests:
+
+1. Test to check whether the app is responding to get requests
+2. Test to chech whether the app is rendering time block
+3. Test to check whether time changes upon refreshing (subsequent requests)
 
 ## Steps to build docker  
 
@@ -50,3 +58,20 @@ This is a flask web application that renders current time in Moscow zone.
 1. `docker pull yourusername/name`
 2. `docker run -p 5000:5000 yourusername/name`
 
+## CI workflow
+This project is set up with continuous integration (CI) using GitHub Actions. The CI workflow performs the following steps on every push:
+
+1. **Dependencies:** Installs project dependencies using `pip`.
+2. **Linting:** Runs linting checks using `flake8` to ensure code quality.
+3. **Tests:** Runs automated tests using `pytest`.
+4. **Docker:** Builds a Docker image and pushes it to Docker Hub.
+
+You can also run these steps locally by following the instructions in the [CI Workflow](/.github/workflows/main.yml) file.
+
+**Make sure you add Docker Hub Credentials as Secrets**
+   - Navigate to your repository on GitHub.
+   - Go to `Settings` > `Secrets`.
+   - Click on `New repository secret`.
+   - Add your Docker Hub username and password as secrets with the names `DOCKER_USERNAME` and `DOCKER_PASSWORD` respectively.
+
+These secrets will be securely accessed by GitHub Actions during the Docker-related steps of the CI workflow.
