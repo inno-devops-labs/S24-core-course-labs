@@ -12,6 +12,10 @@ on:
 permissions:
   contents: read
 
+defaults:
+  run:
+    working-directory: app_python
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -36,13 +40,13 @@ jobs:
     #     key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
 
     - name: Install dependencies
-      run: cd app_python && poetry install
+      run: poetry install
 
     - name: Lint with flake8
-      run: cd app_python && poetry run flake8 --exclude=.venv
+      run: poetry run flake8 --exclude=.venv
       
     - name: Test with pytest
-      run: cd app_python && poetry run pytest --cov --cov-fail-under=90
+      run: poetry run pytest --cov --cov-fail-under=90
 
   security:
     runs-on: ubuntu-latest
