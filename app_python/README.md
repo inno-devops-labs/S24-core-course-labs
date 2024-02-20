@@ -5,8 +5,6 @@
 
 [![Workflow][Workflow-badge]][Workflow-url]
 
-[badge]: https://github.com/SnejUgal/S24-core-course-labs/actions/workflows/python.yaml/badge.svg
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
