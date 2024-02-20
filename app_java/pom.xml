@@ -14,7 +14,7 @@
 	<name>app</name>
 	<description>This is a simple java web application that shows current time in Moscow.</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

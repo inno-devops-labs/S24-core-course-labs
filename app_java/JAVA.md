@@ -17,5 +17,9 @@ project (`gradle` is a way more complicated)
 
 ## Testing
 
-This application was tested manually by comparing the outputs with this
-[site](https://www.timeanddate.com/worldclock/russia/samara)
+This application was tested using unit tests and `JUnit 5.7` library. There are
+3 tests:
+
+1. Checks availability of the application
+2. Checks that non-broken HTML is returned
+3. Checks that displayed time is correct excluding milliseconds
