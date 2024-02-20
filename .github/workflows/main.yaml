@@ -22,8 +22,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./app_python
-          file: ./app_python/Dockerfile
+#          context: ./app_python
+ #         file: ./app_python/Dockerfile
           push: true
           tags: user/app:latest
 
