@@ -59,6 +59,7 @@ jobs:
         run: |
           curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
           chmod +x snyk-linux
+        working-directory: app_python
 
       - name: Authenticate Snyk CLI
         run: |
