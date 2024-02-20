@@ -34,6 +34,9 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+
+    -  run: pip install -r app_python/requirements.txt
+
     - name: Run Tests
       run: |
         python -m unittest app_python/test_app.py
@@ -43,6 +46,8 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+
+    -  run: pip install -r app_python/requirements.txt
 
     - name: Download Snyk
       run: |
