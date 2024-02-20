@@ -17,7 +17,7 @@ jobs:
       - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with: 
-          python-version: 3.10
+          python-version: '3.10'
         
       - name: Caching dependencies
         uses: actions/cache@v2
@@ -43,7 +43,7 @@ jobs:
       - name: Checking for vulnerabilities
         uses: snyk/actions/python-3.10@master
         env: 
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN2 }}
         with: 
           args:
             -snyk
@@ -75,7 +75,8 @@ jobs:
       - name: Build and Push image
         uses: docker/build-push-action@v5
         with: 
-          file: ./app_python/Dockerfile
+          context: ./app_python
+          file: app_python/Dockerfile
           push: true
           tags: vikono/devops:latest 
         
