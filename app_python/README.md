@@ -1,5 +1,7 @@
 # "Time in Moscow" Web Application
 
+![Tests workflow](https://github.com/evermake/iu_devops/actions/workflows/ci-python.yaml/badge.svg)
+
 ## Overview
 
 This Python web application displays the current time in Moscow.
