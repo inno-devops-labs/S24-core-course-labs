@@ -43,3 +43,9 @@ jobs:
       run: |
         docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest app_python/.
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest
+
+    - name: Snyk Vulnerability Scan
+      run: |
+        curl -sSL https://get.snyk.io/bash | bash
+        snyk auth ${{ secrets.SNYK_TOKEN }}
+        snyk test --file=app_python/requirements.txt
