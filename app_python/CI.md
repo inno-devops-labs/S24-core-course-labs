@@ -8,11 +8,11 @@ This document outlines the best practices implemented in the Continuous Integrat
 
 **Description:** Automated tests are essential to verify the correctness of the codebase and catch potential issues early in the development process.
 
-**Implementation:** The CI workflow includes automated testing using pytest. Unit tests are executed on each push to the main branch within the `app_python/` directory.
+**Implementation:** The CI workflow includes automated testing using `pytest`. Unit tests are executed on each push to the main branch within the `app_python/` directory.
 
 ### 2. Code Linting
 
-**Description:** Consistent code style and formatting improve readability, maintainability, and collaboration within the development  team.
+**Description:** Consistent code style and formatting improve readability, maintainability, and collaboration within the development team.
 
 **Implementation:** Code linting is performed using Flake8, a popular Python linting tool. It checks the code for adherence to coding standards and identifies style violations within the `app_python/` directory.
 
