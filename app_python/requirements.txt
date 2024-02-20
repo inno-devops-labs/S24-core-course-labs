@@ -2,3 +2,4 @@ Flask==3.0.2
 pytz==2024.1
 DateTime==5.4
 pytest==8.0.0
+beautifulsoup4==4.10.0

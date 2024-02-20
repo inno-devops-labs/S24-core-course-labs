@@ -19,8 +19,16 @@ The main framework chosen for this web application is Flask.
 
 5. **Docstrings**: Docstrings are included in functions to provide documentation and enhance code understanding.
 
-## Testing
-   - Unit tests are implemented to ensure functionality correctness.
-   - The `test_app.py` file contains unit tests for the main endpoint of the application.
-   - The tests verify that the endpoint returns a status code of 200 (OK) and contains the expected content.
-   - Additionally, a time correctness test is included to verify that the displayed time is correct.
+# Unit Tests
+
+Unit tests have been implemented for the Flask web application to ensure its functionality remains consistent.
+
+### Test Cases
+1. **test_index**: Verifies that the root URL endpoint returns a status code of 200 (OK) and contains the expected string "The current time in Moscow:".
+2. **test_time_correctness**: Verifies that the displayed time matches the current time in Moscow.
+
+### Best Practices Applied
+- Use of `unittest.TestCase` for organizing test cases.
+- Use of `setUp()` method to set up the testing environment.
+- Use of assertions such as `assertEqual()` and `assertIn()` to verify expected behavior.
+- Use of BeautifulSoup for parsing HTML responses in tests to ensure accurate comparisons.

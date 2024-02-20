@@ -63,7 +63,7 @@ This Python web application displays the current time in Moscow.
    deactivate
    ```
 
-### Running the Tests
+### Running the Unit Tests
 
 1. Ensure you are in the `app_python` directory.
 

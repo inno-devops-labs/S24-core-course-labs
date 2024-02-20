@@ -2,6 +2,7 @@ import unittest
 from app import app
 from datetime import datetime
 import pytz
+from bs4 import BeautifulSoup
 
 class TestApp(unittest.TestCase):
        
@@ -20,8 +21,10 @@ class TestApp(unittest.TestCase):
     def test_time_correctness(self):
         response = self.app.get('/')
         moscow = pytz.timezone('Europe/Moscow')
-        current_time = datetime.now(moscow).strftime('%Y-%m-%d %H:%M:%S').encode('utf-8')
-        self.assertIn(current_time, response.data)
+        current_time = datetime.now(moscow).strftime('%Y-%m-%d %H:%M:%S')
+        soup = BeautifulSoup(response.data, 'html.parser')
+        displayed_time = soup.find('h3').text.strip()
+        self.assertEqual(displayed_time, current_time)
 
 if __name__ == "__main__":
     unittest.main()
