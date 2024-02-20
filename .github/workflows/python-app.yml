@@ -38,12 +38,20 @@ jobs:
     - name: Test
       run: |
         python3 app_python/test_app.py
-    - name: Build and push Docker images
-      uses: docker/build-push-action@v5.1.0
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
       with:
-        context: app_python/
+        username: ${{ secrets.esadmazi }}
+        password: ${{ secrets.123asdesad }}
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    - name: Build and push
+      uses: docker/build-push-action@v5
+      with:
+        context: .
         file: app_python/Dockerfile
         push: true
-    - name: Docker Login
-      uses: docker/login-action@v3.0.0
+        tags: ${{ secrets.esadmazi }}/clockbox:latest
                
