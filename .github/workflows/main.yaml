@@ -1,16 +1,23 @@
 name: msk-time-ci
 
-on:
-  push:
+permissions:
+  contents:
+    read
+  checks:
+    write
+
+on: push
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11.7'
+          cache: 'pip'
       - name: Install dependencies
         run: pip3 install -r app_python/requirements.txt
       - name: Run pylint
@@ -19,19 +26,22 @@ jobs:
         run: pycodestyle **/*.py
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11.7'
+          cache: 'pip'
       - name: Install dependencies
         run: pip3 install -r app_python/requirements.txt
       - name: Run pytest
         run: PYTHONPATH=. pytest app_python/tests
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - name: Login to docker hub
@@ -48,3 +58,22 @@ jobs:
           file: ./app_python/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow_time_python:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  snyk:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python@master
+        continue-on-error: true # To make sure that SARIF upload gets called
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
