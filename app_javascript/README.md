@@ -52,3 +52,13 @@ docker run -p 3000:3000 your_username/app_js:latest
 ```
 <n><n>
 Please note that you must have docker installed on your device to be able to run the previous commands.
+
+## Continuous Integration (CI)
+
+This project is configured with Continuous Integration (CI) using GitHub Actions. CI is a development practice that allows automatic testing and building of your codebase whenever changes are pushed to the repository. The CI workflow ensures that code changes are validated and can be easily integrated into the project without introducing issues.
+
+The JavaScript CI workflow is triggered on each push to the repository. It performs the following steps:
+
+1. **Build**: Sets up Node.js, installs dependencies, and runs tests to ensure the integrity of the JavaScript code.
+
+2. **Docker Build and Push**: Builds a Docker image for the JavaScript app and pushes it to Docker Hub. This step ensures that the latest version of the app is available in a Docker container for deployment.
