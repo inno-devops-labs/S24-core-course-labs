@@ -28,7 +28,8 @@ jobs:
             ${{ runner.os }}-pip-
       
       - name: Installing dependencies
-        run: pip install -r ./app_python/requierments.txt
+        working-directory: "app_python"
+        run: pip install -r requierments.txt
       
       - name: Linting
         run: flake8 .
