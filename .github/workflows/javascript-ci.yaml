@@ -16,15 +16,24 @@ on:
 
 jobs:
   security:
+    name: Security
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download snyk
+        run: |
+          curl --compressed  https://static.snyk.io/cli/latest/snyk-linux -o snyk
+          chmod +x ./snyk
+          mv ./snyk /usr/local/bin/
+
+      - name: Snyk test
+        working-directory: app_javascript
+        run: |
+          npm ci
+          snyk auth ${{ secrets.SNYK_TOKEN }}
+          snyk test --severity-threshold=high
 
   build:
     name: Build and Test
@@ -39,7 +48,7 @@ jobs:
 
       - name: Lint code
         working-directory: app_javascript
-        run: cd app_javascript && npm run lint
+        run: npm run lint
 
       - name: Tests
         working-directory: app_javascript
