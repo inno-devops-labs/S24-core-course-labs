@@ -23,3 +23,13 @@ Overall, Flask strikes a balance between simplicity and functionality, making it
 4. **Linting:** ```Flake8``` is used to identify and address potential code issues and maintain consistency.
 5. **Dependency management:** requirements.txt file lists all the dependencies required to run the application. This ensures that anyone cloning the repository can easily set up the environment with the necessary packages.
 6. **Documentation:** Code is adequately documented using docstrings and inline comments, providing insights into functionality and usage.
+
+## Best Practices Applied in Unit tests
+1. **Fixture usage:** The code uses pytest fixtures to set up a test client for the Flask app, which is a good practice for reusability and modularity in unit tests.
+2. **Mocking with fixture:** Utilizing a library like freezegun to control the flow of time in the tests, which ensures more accurate and predictable testing.
+3. **Arrange-Act-Assert pattern:** The test cases follow the Arrange-Act-Assert pattern, separating the setup, execution, and verification steps, which is a good practice for readability and maintainability.
+4. **Isolation:** Tests are made independent, which ensures reliable and consistent results.
+5. **Use meaningful and descriptive test names:** Test names clearly describe what the test is testing, making it easier to understand and debug failures.
+6. **Stable testing with pytest:** Using the pytest framework for writing and running the tests.
+7. **Assertions:** Making precise assertions to validate the expected behavior of the application.
+8. **Tests in CI:** tests are integreted into the development process via continuous integration and github workflow.

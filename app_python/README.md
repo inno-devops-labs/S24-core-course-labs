@@ -53,6 +53,22 @@ Follow these steps to set up the application locally:
 
 The application has been containerized using Docker. Follow the steps below to build, pull, and run the containerized application.
 
+## Unit Tests
+
+To run tests use `pytest` command (via venv).
+
+### CI Workflow
+
+The CI (Continuous Integration) workflow for this project automates the process of building, testing, and deploying the application. It ensures code quality, reliability, and security by following best practices in software development.
+
+### Workflow Overview:
+
+- **Automated Testing**: Unit tests are executed using `pytest` to verify the correctness of the codebase.
+- **Code Linting**: `Flake8` is used to enforce coding standards and maintain consistent code style.
+- **Security Scanning**: `Snyk` is integrated to check for vulnerabilities in dependencies and ensure application security.
+- **Docker Integration**: `Docker` is utilized for containerization, enabling consistent deployment across environments.
+- **Documentation**: Comprehensive documentation in `CI.md` outlines the best practices implemented in the CI workflow.
+
 ### How to build?
 
 To build the Docker image, run the following command:
