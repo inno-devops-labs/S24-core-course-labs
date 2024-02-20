@@ -4,7 +4,7 @@ import pytest
 import pytz
 from fastapi.testclient import TestClient
 
-from app_python.main import app
+from main import app
 
 client = TestClient(app)
 
