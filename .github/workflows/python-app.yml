@@ -78,6 +78,8 @@ jobs:
 
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@592977e6ae857384aa79bb31e7a1d62d63449ec5
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           sarif_file: ./app_python/snyk.sarif
 
