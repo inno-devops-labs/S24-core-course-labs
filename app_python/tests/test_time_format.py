@@ -1,5 +1,5 @@
 import pytest
-from app_python.app import app
+from app import app
 import re
 
 
