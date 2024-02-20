@@ -21,3 +21,6 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B clean package --file app_java/pom.xml
+
+      - name: Run Tests
+        run: mvn test --file app_java/pom.xml
