@@ -20,3 +20,4 @@ obj/
 .history
 .idea
 .DS_STORE
+.ruff_cache

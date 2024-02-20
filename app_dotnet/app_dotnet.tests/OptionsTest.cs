@@ -3,7 +3,7 @@ using app_dotnet.Services;
 
 namespace Prime.UnitTests.Services;
 
-public class DoItOrDont_ValidRequest_ShouldReturn200OK
+public class OptionsTest
 {
     private readonly DoItOrDontService _target = new();
 

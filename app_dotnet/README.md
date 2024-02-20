@@ -14,7 +14,7 @@ This application gives you a string to help you to decide if you want to do some
 
    You should see a version greater than or equal to `8.0.0`
 
-2. Navigate to app_cs.
+2. Navigate to app_dotnet.
 
 3. Trust the HTTPS development certificate by running the following command:
 
@@ -32,7 +32,7 @@ This application gives you a string to help you to decide if you want to do some
 
 6. Go to the link shown in the terminal.
 
-## Testing
+## Unit tests
 
 For testing you can run all tests using
 
@@ -40,4 +40,41 @@ For testing you can run all tests using
 dotnet test
 ```
 
-Inside `/app_cs` directory.
+Inside `/app_dotnet` directory.
+
+## Testing best practices
+
+- All tests are isolated from each other. Thus, having a completly isolated unit testing.
+
+- Followed Arrange, Act, Assert pattern (also known as AAA)
+
+- Added docstring description for each test
+
+- Followed common naming conventions for naming tests.
+
+
+## Docker
+
+### Pull
+
+Run the following command to pull docker image from docker hub
+
+```properties
+docker pull ahmadalhussin/app_dotnet:latest
+```
+
+### Build
+
+Run the following command to build docker image
+
+```properties
+docker build --tag ahmadalhussin/app_dotnet .
+```
+
+### Run 
+
+To start the image
+
+```properties
+docker run -d -p 8080:8080 ahmadalhussin/app_dotnet
+```
