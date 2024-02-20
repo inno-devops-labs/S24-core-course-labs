@@ -24,7 +24,7 @@ jobs:
       - name: Tests
         run: |
           pip install pytest Flask-Testing
-          pytest
+          pytest testing.py
 
   linting:
     runs-on: ubuntu-latest
