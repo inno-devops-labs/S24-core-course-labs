@@ -17,7 +17,7 @@ Unit and manual testing are used to ensure corectness of the application.
 
 Manual testing scenario was to refresh the page and check time is changed.
 
-**Unit tests**
+##Unit tests
 
 The unit testing part contains test for checking the correctness of the function that provides formatted time information. 
 
