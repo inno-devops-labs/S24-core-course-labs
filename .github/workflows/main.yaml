@@ -1,0 +1,38 @@
+name: Python App Workflow
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python-app-job:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./app_python
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-python@master
+        with:
+          python-version: 3.10.13
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Lint
+        run: pylint app.py
+
+      - name: Test
+        run: pytest unittests.py
+
+      - name: Snyk
+        uses: snyk/actions/setup@master
+        run: snyk test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
