@@ -4,6 +4,12 @@ from datetime import datetime
 import pytz
 
 
+def get_time():
+    """Returns current MSK time."""
+    timezone = pytz.timezone("Europe/Moscow")
+    return datetime.now(timezone)
+
+
 class HTTPTimeHandler(BaseHTTPRequestHandler):
     """Handles GET requests."""
 
@@ -14,8 +20,7 @@ class HTTPTimeHandler(BaseHTTPRequestHandler):
         self.send_header("Content-type", "text/plain")
         self.end_headers()
 
-        timezone = pytz.timezone("Europe/Moscow")
-        self.wfile.write(str(datetime.now(timezone)).encode())
+        self.wfile.write(str(get_time()).encode())
 
 
 def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):

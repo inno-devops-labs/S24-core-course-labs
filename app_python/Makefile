@@ -3,10 +3,13 @@ VENVDIR ?= $(PROJECT)/venv
 
 PYLINT := $(VENVDIR)/bin/pylint
 PYLINTFLAGS := -rn
-PYTHONFILES := $(wildcard $(PROJECT)/*.py)
+PYTHONFILES := $(wildcard $(PROJECT)/*.py) $(wildcard $(PROJECT)/*/*.py)
 
 PYCODESTYLE := $(VENVDIR)/bin/pycodestyle
 PYCODESTYLEFLAGS := --first
+
+PYTEST := $(VENVDIR)/bin/pytest
+PYTESTFLAGS := -rP
 
 venv: $(VENVDIR)/touchfile
 
@@ -35,3 +38,6 @@ pep8: $(patsubst %.py,%.pep8,$(PYTHONFILES))
 
 # Run pylint and PEP checks for all python files
 lint: pep8 pylint
+
+test: $(VENVDIR)/touchfile
+	PYTHONPATH=$(PROJECT)/.. $(PYTEST) $(PYTESTLAGS) $(PROJECT)/tests
