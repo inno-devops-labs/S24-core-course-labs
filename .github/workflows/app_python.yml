@@ -25,6 +25,7 @@ jobs:
         with:
           python-version: '3.12'
           cache: 'pip'
+          cache-dependency-path: "requirements.txt"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -51,9 +52,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     - name: Snyk
-      uses: snyk/actions/python@master
+      uses: snyk/actions/python-3.12@master
       with:
-        args: --skip-unresolved app_python/
+        args: --file=app_python/requirements.txt --skip-unresolved
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
   docker-push:
