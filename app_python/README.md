@@ -74,6 +74,7 @@ The CI workflow consists of the following steps:
 - **Dependencies:** Install project dependencies.
 - **Linting:** Run code linting checks using Flake8.
 - **Tests:** Run automated tests to ensure code quality.
+- **Run Snyk Test:** The Snyk test command is executed to scan the project for vulnerabilities.
 - **Docker Login:** Authenticate with Docker Hub using a Docker access token.
 - **Docker Build and Push:** Build a Docker image and push it to Docker Hub.
 
@@ -93,3 +94,4 @@ view detailed logs and any errors or warnings encountered during the process.
 To enable the CI workflow, the following GitHub repository secrets are required:
 
 - `DOCKER_ACCESS_TOKEN`: Docker access token for authentication when pushing Docker images.
+- `SNYK_TOKEN`: Needed to use Snyk.
