@@ -7,10 +7,7 @@ on:
   pull_request:
     branches:
       - "*"
-stages:
-  - build
-  - snyk
-  - docker
+
   
 jobs:
   build: 
