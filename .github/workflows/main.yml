@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - Lab3
+      - lab-3
 
 jobs:
   build:
