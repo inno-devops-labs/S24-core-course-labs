@@ -55,6 +55,10 @@ jobs:
         cache: 'npm'
         cache-dependency-path: app_javascript/package-lock.json
 
+    - name: Install dependencies
+      run: |
+        npm install
+
     - name: Lint
       run: |
         npm run lint
