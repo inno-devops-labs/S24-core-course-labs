@@ -1,6 +1,10 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - 'app_rust/**'
+      - '.github/workflows/ci_python.yaml'
 
 env:
   CARGO_TERM_COLOR: always

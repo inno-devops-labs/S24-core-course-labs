@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'app_python/**'
-      - '.github/workflows/build-python.yaml'
+      - '.github/workflows/ci_python.yaml'
 
 jobs:
   build:
