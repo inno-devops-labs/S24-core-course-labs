@@ -1,0 +1,70 @@
+name: Python App
+
+on:
+  push:
+    paths:
+      - app_python/**
+      - github/workflows/python_app_ci.yml
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.8@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif
+        - name: Upload result to GitHub Code Scanning
+          uses: github/codeql-action/upload-sarif@v2
+          with:
+            sarif_file: snyk.sarif
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Cache node modules
+      id: cache-npm
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: .cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          ${{ runner.os }}-
+    - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+    
+    - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Lint code
+        run: |
+          pylint app_python/src/main.py
+      
+      - name: Run unit tests
+        run: |
+          pytest
+
+      - name: Login to Docekr Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/moscow-time-app:1.0.0 ./app_python
+          docker push ${{ secrets.DOCKER_USERNAME }}/moscow-time-app:1.0.0
