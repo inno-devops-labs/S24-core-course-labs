@@ -1,4 +1,5 @@
 # My Python Web Application
+[![app python](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml/badge.svg?branch=lab3)](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml)
 
 ## Overview
 This application displays the current time in Moscow using the Flask framework.
@@ -60,4 +61,3 @@ The CI workflow includes the following steps:
 
 You can view the status of the CI workflow by clicking on the "Actions" tab at the top of this repository.
 
-[![app python](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml/badge.svg?branch=lab3)](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml)
