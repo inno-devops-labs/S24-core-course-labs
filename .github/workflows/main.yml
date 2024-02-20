@@ -1,9 +1,9 @@
-name: Python CI
+name: app pyhton
 
 on:
   push:
     paths:
-      - "app_python/**/*"
+      - "app_python/**"
 
 jobs:
   build:
