@@ -1,6 +1,5 @@
-use actix_web::{web, get, HttpResponse, Responder};
 use crate::service::state::AppState;
-
+use actix_web::{get, web, HttpResponse, Responder};
 
 #[get("/")]
 pub async fn base(data: web::Data<AppState>) -> impl Responder {
