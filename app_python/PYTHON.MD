@@ -13,8 +13,13 @@ configuration will be minimal.
 
 ## Testing
 
-I tested my application manually because automated tests are not required in this assignment.
-I refreshed page several times in different moments, and I ensured that the time was always correct.
+* ### Tests description
+  I have created the unit tests for the testing the single endpoint of my application.
+  I test several features of my response:
+    * Status Code is valid
+    * DateTime format is valid
+    * DataTime timezone is Moscow timezone
+    * The Moscow time corresponds to the NTP server time.
 
 ## Best practices
 
@@ -31,3 +36,24 @@ I refreshed page several times in different moments, and I ensured that the time
 
   For formatting, I used the Black and Isort to structure the code properly, follow the restricted length of lines and
   sort the imports.
+
+* ### Tests
+    1. #### Tests Should Be Fast
+       The tests I wrote are fast and modulus. For example, test that checks the status code does not depend on test
+       that checks the format of datetime.
+    2. #### Tests Should Be Simple
+       Tests are simple as possible. I tried my best to simplify each test and extract some logic into the functions if
+       possible.
+    3. #### Test Shouldn’t Duplicate Implementation Logic
+       I did not duplicate any logic of the program in my tests.
+    4. #### Tests Should Be Readable
+       Tests are small, simple and well-documented. Therefore, they are readable for other developers.
+    5. #### Tests Should Be Deterministic
+       Tests are deterministic if they are run on modern hardware. This means that I have some simple tests that work
+       with time and count on high precision of the application time comparing to NTP time.
+    6. #### Make Sure They’re Part of the Build Process
+       The tests are part of the build process in my pipeline.
+    7. #### Distinguish Between The Many Types of Test Doubles and Use Them Appropriately
+       I have no external dependencies. Therefore, I follow this practice anyway.
+    8. #### Adopt a Sound Naming Convention for Your Tests
+       All the tests names follow the same convention. The names describe the purpose of the tests.

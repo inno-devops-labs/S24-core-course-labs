@@ -12,7 +12,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     startup_time: float = Field(default=time.time())
     global_startup_time: float = Field(default=time.time())
-    tz: pytz.UTC = pytz.timezone("Europe/Moscow")
+    tz: pytz.BaseTzInfo = pytz.timezone("Europe/Moscow")
 
 
 @asynccontextmanager
@@ -33,9 +33,9 @@ app = FastAPI(lifespan=lifespan)
     status_code=200,
     description="""
     The endpoint that returns the exact global Moscow time.
-    """
+    """,
 )
-async def root():
+async def global_moscow_time():
     time_from_startup = time.time() - settings.startup_time
     global_time_seconds = time_from_startup + settings.global_startup_time
     return {

@@ -25,6 +25,7 @@
 </details>
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 This the Python web application that displays the current time in Moscow. This web application is based on FastAPI
@@ -41,6 +42,7 @@ Use the `PYTHON.md` to know about Framework choice, testing and best practices.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 Here you can find instruction to set up project on your environment.
@@ -75,6 +77,7 @@ pip install -r ./app_python/requirements.txt
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 ### Manual run of the application
@@ -88,7 +91,9 @@ uvicorn app_python.main:app
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
+
 [FastAPI]: https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi
+
 [FastAPI-url]: https://fastapi.tiangolo.com/
 
 ## Docker
@@ -121,4 +126,16 @@ For example,
 
 ```bash
 docker run -d --name fastapi-moscow-time -p 80:80 zaqbez39me/s24-devops-labs:latest
+```
+
+## Unit tests
+
+The tests are located in the `tests` folder.
+
+### Run
+
+To run the unit tests use the following command
+
+```bash
+pytest
 ```
