@@ -1,5 +1,5 @@
 # Python time app
-![CI pipeline](https://github.com/vikono/s24-devops/.github/workflows/main.yaml/badge.svg)
+![CI pipeline](https://github.com/Vikono/S24-DevOps/actions/workflows/main.yaml/badge.svg)
 
 The application is showing the current Moscow time that updates upon page reload.
 
