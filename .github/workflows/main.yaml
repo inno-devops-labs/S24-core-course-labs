@@ -24,9 +24,6 @@ jobs:
         with:
           context: ./app_python
           file: ./app_python/Dockerfile
-          push: ${{ github.ref_type == 'tag' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
 
   test:
     runs-on: ubuntu-latest
