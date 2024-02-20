@@ -13,3 +13,13 @@ I implemented several best practices when using Docker for containerization. Bel
 5. Distroless, from scratch: I leveraged distroless base images (python:3.11.6-alpine3.18). Distroless images contain only the necessary dependencies for the application, making them more lightweight and secure.
 
 6. Exposed ports: I exposed only the necessary ports (only 5000) in the containers to limit potential entry points for attackers. By explicitly specifying the ports that need to be exposed, I minimized the risk of unauthorized access to the containerized applications.
+
+### Unit testing best practices
+
+1. Test only one thing at a time: Each unit test should focus on testing a specific piece of functionality or behavior. This helps in isolating issues and makes it easier to diagnose and fix failing tests.
+
+2. Keep test cases small and focused: Test cases should be simple, readable, and focused on testing one specific aspect of the code. 
+
+3. Automate testing: I use github action to automate the execution of unit tests, making it easier to run tests frequently and ensuring the stability of the codebase.
+
+
