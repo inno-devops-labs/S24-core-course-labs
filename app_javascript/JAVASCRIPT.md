@@ -41,4 +41,41 @@ To run the Node.js Express web application, follow these steps:
    ![Website screen](./screenshots/test.png)
    ![Terminal screenshot](./screenshots/terminal.png)
 
-This report provides an overview of the Node.js Express web application, its framework choice, implementation details, best practices, and instructions for installation and testing. Adjustments can be made based on specific project requirements.
+### Unit Test: Testing Current Time Format
+
+#### Purpose:
+
+- The `test_current_time_format` unit test ensures that the Express application endpoint `/` returns the current time in Moscow with the expected format `DD.MM.YYYY, HH:MM.SS`.
+
+#### Test Setup:
+
+- The test suite utilizes the `supertest` library to perform HTTP requests to the Express application.
+- The Express application instance is imported from the `app.js` file to enable testing.
+
+```javascript
+const request = require("supertest");
+const app = require("../app");
+```
+
+#### Test Function:
+
+- The `GET /` test case sends a GET request to the `/` endpoint and verifies that the response contains the current time in the specified format.
+
+```javascript
+describe("GET /", () => {
+  it("should return the current time in Moscow", async () => {
+    const response = await request(app).get("/");
+    expect(response.status).toBe(200);
+    expect(response.text).toMatch(
+      /The current time in Moscow is: \d{2}.\d{2}.\d{4}, \d{2}:\d{2}.\d{2}/gm
+    );
+  });
+});
+```
+
+#### Best Practices Applied:
+
+- **Asynchronous Testing**: Uses `async` and `await` to handle asynchronous operations, ensuring proper sequencing and error handling in test execution.
+- **Assertion**: Asserts the expected behavior of the Express application, validating both the HTTP status code and the format of the response text.
+- **Regular Expressions**: Employs a regular expression to verify that the response contains the current time in the expected format, enabling precise validation.
+- **Separation of Concerns**: Defines the test case within a separate `describe` block, enhancing readability and organization of test suites.

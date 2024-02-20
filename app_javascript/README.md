@@ -63,7 +63,7 @@ app.listen(port, () => {
 });
 ```
 
-## How To Install and Test
+## How To Install and Run
 
 To run the Node.js Express web application, follow these steps:
 
@@ -86,7 +86,7 @@ To run the Node.js Express web application, follow these steps:
      node app.js
      ```
 
-4. **Test:**
+4. **Run:**
 
    - Open a web browser and visit `http://localhost:5000/` to access the application.
    - You should see the current time in Moscow displayed on the webpage.
@@ -128,3 +128,42 @@ docker run -p 5000:5000 -e PORT=5000 zeyadalagamy/moscow_tz_js
 ```
 
 ![Docker pull and run](./screenshots/docker-pull-test-js.png)
+
+### Unit Tests
+
+#### Testing Current Time Formatting
+
+- We have a unit test named `app.test.js` which verifies that the current time retrieved by our application is correctly formatted in the expected format.
+
+#### Running the Unit Tests
+
+To run the unit tests for the JavaScript application, follow these steps:
+
+1. **Navigate to the Application Directory:**
+
+   - Open a terminal or command prompt.
+   - Navigate to the directory where your JavaScript application (`app_javascript`) is located.
+
+2. **Install Testing Dependencies (if not already installed):**
+
+   - Ensure that the required testing dependencies are installed. You can install them using npm:
+
+     ```
+     npm install
+     ```
+
+3. **Run the Unit Tests:**
+
+   - Run the following command to execute the unit tests:
+
+     ```
+     npm run test
+     ```
+
+   - This command will execute the tests defined in the `app.test.js` file within the `tests` directory.
+
+4. **View Test Results:**
+
+   - After running the tests, the test runner (such as Jest) will display the test results in the terminal. You should see information about the test cases executed and whether they passed or failed.
+
+![Unit test results](./screenshots/unit-testing-js.png)

@@ -57,7 +57,7 @@ if __name__ == '__main__':
     app.run()
 ```
 
-## How To Install and Test
+## How To Install and Run
 
 To run the Flask web application, follow these steps:
 
@@ -94,11 +94,10 @@ To run the Flask web application, follow these steps:
 
    - After installing dependencies, navigate to the directory containing the `app.py` file.
    - Run the following command to start the Flask development server:
+
      ```
      python app.py
      ```
-
-4. **Test:**
 
    - Open a web browser and visit `http://127.0.0.1:5000/` to access the application.
    - You should see the current time in Moscow displayed on the webpage.
@@ -106,3 +105,46 @@ To run the Flask web application, follow these steps:
 
    !["Website screen"](./screenshots/test.png)
    !["Website screen"](./screenshots/terminal.png)
+
+### Unit Tests
+
+#### Testing Current Time Formatting
+
+- We have a unit test named `test_current_time_format` which verifies that the current time retrieved by our application is correctly formatted in the expected format (`YYYY-MM-DD HH:MM:SS`).
+
+#### Running the Unit Tests
+
+To run the unit tests for the Python web application, follow these steps:
+
+1. **Navigate to the Application Directory:**
+
+   - Open a terminal or command prompt.
+   - Navigate to the directory where your Python web application (`app_python`) is located.
+
+2. **Activate Virtual Environment (if applicable):**
+
+   - If you are using a virtual environment, activate it using the appropriate command for your operating system.
+
+3. **Install Testing Dependencies (if not already installed):**
+
+   - Ensure that the required testing dependencies are installed. You can install them using pip:
+
+     ```
+     pip install pytest
+     ```
+
+4. **Run the Unit Tests:**
+
+   - Run the following command to execute the unit tests:
+
+     ```
+     pytest
+     ```
+
+   - This command will discover and run all test cases within the `tests` directory.
+
+5. **View Test Results:**
+
+   - After running the tests, pytest will display the test results in the terminal. You should see information about the test cases executed and whether they passed or failed.
+
+![Unit Testing](./screenshots/unit-testing.png)
