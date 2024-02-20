@@ -95,13 +95,13 @@ To run the Node.js Express web application, follow these steps:
    ![Website screen](./screenshots/test.png)
    ![Terminal screenshot](./screenshots/terminal.png)
 
-### Docker
+## Docker
 
-#### Containerized Application
+### Containerized Application
 
 The application is containerized using Docker, ensuring portability and ease of deployment across different environments. Below are instructions for building, pulling, and running the Docker container.
 
-#### How to Build
+### How to Build
 
 To build the Docker image locally, follow these steps:
 
@@ -111,7 +111,7 @@ docker build -t zeyadalagamy/moscow_tz_js .
 
 This command builds the Docker image based on the provided Dockerfile (`Dockerfile`) in the `app_javascript` directory and tags it with the name `moscow_tz_js`.
 
-#### How to Pull
+### How to Pull
 
 If you prefer to pull the pre-built Docker image from a container registry instead of building it locally, you can use the following command:
 
@@ -119,7 +119,7 @@ If you prefer to pull the pre-built Docker image from a container registry inste
 docker pull zeyadalagamy/moscow_tz_js
 ```
 
-#### How to Run
+### How to Run
 
 Once you have either built the Docker image locally or pulled it from a registry, you can run the container using the following command:
 

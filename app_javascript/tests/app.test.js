@@ -7,7 +7,7 @@ describe("GET /", () => {
     const response = await request(app).get("/");
     expect(response.status).toBe(200);
     expect(response.text).toMatch(
-      /The current time in Moscow is: \d{2}.\d{2}.\d{4}, \d{2}:\d{2}.\d{2}/gm
+      /The current time in Moscow is: \d{2}.\d{2}.\d{4}, \d{2}:\d{2}.\d{2}/gm,
     );
   });
 });
