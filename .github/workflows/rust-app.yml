@@ -1,4 +1,4 @@
-name: Rust
+name: Rust Application
 
 on:
   push:
@@ -17,5 +17,7 @@ jobs:
     - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
     - name: Build
       run: cargo build --verbose
+      working-directory: ./app_rust
     - name: Run tests
       run: cargo test --verbose
+      working-directory: ./app_rust
