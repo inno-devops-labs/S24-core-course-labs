@@ -1,6 +1,6 @@
 # DevOps Engineering Labs
 
-![CI workflow](https://github.com/rinri-d/S24-core-course-labs/actions/workflows/main.yml/badge.svg)
+![CI workflow](https://github.com/rinri-d/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)
 
 ## Introduction
 

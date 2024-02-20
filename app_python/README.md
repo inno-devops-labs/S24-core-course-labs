@@ -1,6 +1,6 @@
 # MSK time
 
-![CI workflow](https://github.com/rinri-d/S24-core-course-labs/actions/workflows/main.yml/badge.svg)
+![CI workflow](https://github.com/rinri-d/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)
 
 A python web app that shows current server time in Moscow timezone.
 
