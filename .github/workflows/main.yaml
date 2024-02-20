@@ -55,13 +55,12 @@ jobs:
           working-directory: ./app_python
       steps:
         - uses: actions/checkout@v2
-
         - name: Prepare Snyk
           run: curl -LO 'https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux' && chmod +x snyk-linux
         - name: Snyk Auth
           run: ./snyk-linux auth ${{secrets.SNYK_TOKEN }}
         - name: Snyk test
-          run: ./snyk-linux test app_python
+          run: ./snyk-linux test .
 
   docker-build:
       environment: github-actions
