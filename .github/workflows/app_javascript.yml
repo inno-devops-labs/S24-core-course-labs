@@ -88,7 +88,7 @@ jobs:
         context: app_javascript
         file: ./app_javascript/Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow-time-app:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow-time-app-js:latest
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
