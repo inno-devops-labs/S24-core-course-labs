@@ -1,6 +1,10 @@
 name: Python CI
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - 'app_python/**'
+      - '.github/workflows/ci_python.yaml'
 
 jobs:
   build:
@@ -17,7 +21,6 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd app_python
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
