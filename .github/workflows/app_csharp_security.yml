@@ -19,6 +19,6 @@ jobs:
         run: dotnet restore --locked-mode
 
       - name: Snyk monitor
-        run: snyk test
+        run: snyk code test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
