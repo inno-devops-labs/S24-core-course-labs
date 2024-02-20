@@ -16,20 +16,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: '17'
+          java-version: '11'
           distribution: 'adopt'
 
-      - name: Cache Maven dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-maven-
-
       - name: Build with Maven
-        run: mvn -B clean package --file ./path/to/your/pom.xml
-
-      - name: Run Tests
-        run: mvn test --file ./path/to/your/pom.xml
-
-      # Additional steps for quality checks, deployment, etc. can be added here
+        run: mvn -B clean package --file ../app_java/pom.xml
