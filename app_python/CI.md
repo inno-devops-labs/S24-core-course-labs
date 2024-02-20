@@ -17,3 +17,4 @@
 
 ### Workflow Optimization
 - **Triggering Workflows**: Set the workflow to trigger on every push to maintain continuous integration and immediate feedback.
+
