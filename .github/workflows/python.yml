@@ -33,7 +33,7 @@ jobs:
       - name: Tests
         run: |
           pip install pytest
-          pytest app_pyton/test.py
+          pytest app_python/test.py
 
   security:
     runs-on: ubuntu-latest
