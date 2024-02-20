@@ -31,6 +31,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8
           pip install Flask gunicorn pytz
+          pip install pytest
 
       - name: Lint code
         run: |
