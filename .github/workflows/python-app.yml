@@ -73,6 +73,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r app_python/requirements.txt
 
+      - name: Debug Workspace Contents
+        run: ls -la /github/workspace  # Print out workspace contents for debugging
+
+
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.10@master
         env:
