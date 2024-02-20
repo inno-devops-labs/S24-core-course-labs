@@ -2,99 +2,67 @@ name: CI-Workflow
 
 on:
   push:
-    paths:
-      - 'app_python/**'
-      - '.github/workflows/main.yml'
-  pull_request:
-    paths:
-      - 'app_python/**'
-      - '.github/workflows/main.yml'
-
-defaults:
-  run:
-    working-directory: app_python
+    branches:
+      - main
+      - Lab3
 
 jobs:
-  build_and_test:
-    timeout-minutes: 2
-    runs-on: ubuntu-22.04
-    name: Build and test
-
+  build:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.11'
-        cache: 'pip'
+      - name: Checkout code
+        uses: actions/checkout@v2
 
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
-    - name: Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.12"
 
-    - name: Tests
-      run: |
-        python -m pytest test.py 
+      - name: Dependencies
+        run: |
+          cd app_python
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-  lint:
-    timeout-minutes: 2
-    runs-on: ubuntu-22.04
-    name: lint with flake8
+      - name: Linter
+        run: |
+          cd app_python
+          pip install flake8
+          flake8 .
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.11'
-        cache: 'pip'
+      - name: Tests
+        run: |
+          cd app_python
+          python app.py &
+          sleep 5
+          python test.py
 
-    - name: Lint
-      run: |
-        pip install flake8
-        flake8 app.py test.py
+      - name: Snyk
+        run: |
+          npm install -g snyk
+          export SNYK_TOKEN=${{ secrets.SNYK_TOKEN }}
+          snyk auth $SNYK_TOKEN
+          cd app_python
+          snyk test --code
 
-  docker-push:
-    timeout-minutes: 3
-    runs-on: ubuntu-22.04
-    name: Push Docker image to Docker Hub
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKER_LOGIN }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-
-    - name: Sign in to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-
-    - name: build and push
-      uses: docker/build-push-action@v5
-      with:
-        context: app_python
-        file: ./app_python/Dockerfile
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow-time-app:latest
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
-
-  snyk:
-    timeout-minutes: 3
-    runs-on: ubuntu-22.04
-    name: Snyk Vulnerability Checks
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Snyk
-      uses: snyk/actions/python@master
-      with:
-          args: --skip-unresolved app_python/
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Build and push Docker image
+        run: |
+          cd app_python
+          docker build -t anastasiamartynova/my-docker-repo:latest .
+          docker tag anastasiamartynova/my-docker-repo:latest anastasiamartynova/my-docker-repo:latest
+          docker push anastasiamartynova/my-docker-repo:latest
