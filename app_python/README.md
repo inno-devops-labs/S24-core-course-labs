@@ -1,3 +1,5 @@
+![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+
 # Moscow Time ⏳
 
 ## Overview
@@ -51,3 +53,15 @@ You can test the application using the following command
 ```
 python3 testing.py
 ```
+
+## Unit testing
+
+You can test it, by the following command
+
+```
+pytest testing.py
+```
+
+## CI workflow
+
+There is a pipeline on push trigger. Firstly, ut checks the build with requirments and tests. Next, it checks linting using flake8, after that there is a pipeline for snyk and Docker. Also, I used a github secrets for keys and passwords.

@@ -14,7 +14,7 @@ The application could benefit from adding error handling around the pytz library
 The app.run() method is used with the debug=True parameter, which is suitable for development but should be set to False in production to prevent security vulnerabilities.
 
 ### Testing
-There is unittest for testcase to maintain that the application work in a correct way.
+There is unittest for testcase to maintain that the application work in a correct way. I add a test to check correctness of a getting time using regular expressions. Also, I tested it with pytest.
 
 ### Separation of Concerns
 The application follows the MVC pattern by separating the presentation logic (HTML rendering) from the business logic (Python code) using templates.
