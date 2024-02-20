@@ -27,10 +27,10 @@ jobs:
       - name: Run tests with pytest
         run: pytest
 
-      - name: Lint with Ruff
+      - name: Lint with flake8
         run:
-          pip install ruff
-          ruff check .
+          pip install flake8
+          flake8 app
 
   build:
     needs: lint-and-test

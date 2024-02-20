@@ -6,6 +6,7 @@ from main import app
 
 client = TestClient(app)
 
+
 def test_read_root():
     d = datetime.now(timezone(timedelta(hours=3))).strftime("%H:%M:%S")
     res = client.get("/")
