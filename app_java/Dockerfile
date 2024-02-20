@@ -1,7 +1,16 @@
-FROM ubuntu:22.04 AS source
-WORKDIR /archive
-RUN apt update && apt install wget unzip -y
-RUN wget https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-zip-file.zip && unzip sample-zip-file.zip && rm sample-zip-file.zip
+# Stage 1: Build the application
+FROM maven:3.8.4 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package
 
-FROM ubuntu:22.04
-COPY --from=source /archive/sample.txt /archive/sample.txt
+# Stage 2: Create the final image
+FROM openjdk:17-jdk-slim
+RUN adduser springuser
+WORKDIR /app
+COPY --from=build /app/target/app_java-0.0.1-SNAPSHOT-jar-with-dependencies.jar /app/
+EXPOSE 8080
+CMD ["java", "-jar", "app_java-0.0.1-SNAPSHOT-jar-with-dependencies.jar"]
+COPY .dockerignore /app/.dockerignore
+RUN chown -R springuser:springuser /app
+USER springuser
