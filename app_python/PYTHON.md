@@ -11,3 +11,7 @@ I used the built-in ```http.server``` package. It is appropriately minimal, and 
 ## Ensuring code quality
 - ```make lint``` may be utilised to run ```pylint``` and PEP checks on the project.
 - Pre-commit integration added for ```pylint```, ```black```, trailing whitespace and EOF fixers.
+
+## Unit testing
+- Utilised `pytest`, tests may be ran with `make test`
+- Implemented a unit test for the ```get_time``` function, comparing its return value to the result of ```datetime.now```, down to seconds.
