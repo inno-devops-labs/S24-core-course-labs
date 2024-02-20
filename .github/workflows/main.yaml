@@ -4,10 +4,6 @@ on:
   push:
     paths:
       - 'app_python/**'
-  pull_request:
-    paths:
-      - 'app_python/**'
-
 
 jobs:
   build:
