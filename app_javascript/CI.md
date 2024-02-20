@@ -4,7 +4,7 @@
 
 ### Selective CI triggering
 
-CI is only triggered if specific directories or files are changed - `app_python` or the workflow file itself. It prevents the redundant usage of the CI.
+CI is only triggered if specific directories or files are changed - `app_javascript` or the workflow file itself. It prevents the redundant usage of the CI.
 
 ### Versions specification
 
