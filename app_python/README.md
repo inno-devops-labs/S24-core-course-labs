@@ -1,4 +1,5 @@
 # Python time app
+![CI workflow](https://github.com/vikono/s24-devops/actions/workflows/main.yml/badge.svg)
 
 The application is showing the current Moscow time that updates upon page reload.
 
