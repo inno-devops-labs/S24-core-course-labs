@@ -1,0 +1,46 @@
+# This is a basic workflow to help you get started with Actions
+
+name: app_python
+
+# Controls when the workflow will run
+on: push
+
+defaults:
+  run:
+    working-directory: ./app_python
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  python:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: 'Create env file'
+        run: |
+          cd src
+          touch .env
+          echo SERVER_HOST=0.0.0.0 >> .env
+          echo SERVER_PORT=8080 >> .env
+          cat .env
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --no-cache-dir -r requirements.txt
+
+      - name: Linting
+        run: flake8 .
+
+      - name: Tests
+        run: pytest tests/
