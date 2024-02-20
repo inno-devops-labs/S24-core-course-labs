@@ -9,3 +9,4 @@
 4. Separated workflows
 5. Workflow results visible as badge
 6. Using some of the latest versions of actions
+7. Run only on changes withing app_python folder
