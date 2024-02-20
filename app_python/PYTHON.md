@@ -40,3 +40,17 @@ I used:
 - `black` for linting .py files after isort
 
 Isort and Black are useful as they are not only linters, but also formatters.
+
+### Unit test
+
+I used `pytest` for running tests.
+
+Now, there is only one test. It tests whether app is running or not.
+
+Best practices:
+
+- Isolated tests (in a separate directory).
+- Fixtures for tests.
+- Good and self-secribing names.
+- Simple tests.
+- Test only one unit of functionality.

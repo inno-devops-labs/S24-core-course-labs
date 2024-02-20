@@ -90,6 +90,12 @@ Command above will pull an image from Docker Hub. Run a container from it:
 docker run -p 5000:5000 hallejujah/devops_app
 ```
 
+## Unit tests
+
+I wrote only one unit test for now using `pytest` for now.
+
+More information is placed in `app_python/PYTHON.md`.
+
 ## Contact
 
 University mail: ro.zhukov@innopolis.university
