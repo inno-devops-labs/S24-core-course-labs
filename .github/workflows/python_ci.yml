@@ -1,7 +1,9 @@
 name: Python CI Workflow
 
-on: push
-
+on:
+  push:
+    paths:
+      - "app_python/**/*"
 jobs:
   build:
     runs-on: ubuntu-latest

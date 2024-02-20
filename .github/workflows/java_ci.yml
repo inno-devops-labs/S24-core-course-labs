@@ -1,7 +1,9 @@
 name: Java Spring CI Workflow
 
-on: push
-
+on:
+  push:
+    paths:
+      - "app_java/**/*"
 jobs:
   build:
     runs-on: ubuntu-latest
