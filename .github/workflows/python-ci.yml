@@ -49,7 +49,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t your-image-name app_python
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/my-python-app:latest app_python
 
       - name: Push Docker image to registry
         run: |
