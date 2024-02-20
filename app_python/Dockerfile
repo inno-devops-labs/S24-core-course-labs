@@ -7,7 +7,7 @@ RUN adduser --disabled-password user && chown -R user /app_python
 USER user
 
 COPY . /app_python
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt --no-cache-dir --user
 
 EXPOSE 5000
 
