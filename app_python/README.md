@@ -1,7 +1,6 @@
 # Python Web Application
 
-https://github.com/habur331/https://github.com/habur331/S24-DevOps-course-labs/actions/workflows/main.yaml/badge.svg
-
+![CI](https://github.com/habur331/S24-DevOps-course-labs/workflows/main.yml/badge.svg)
 ## Overview
 
 This document outline a simple Python web application designed to display the current time in Moscow. The application leverages the Flask framework, adhering to established best practices and coding standards.
