@@ -54,12 +54,12 @@ jobs:
       steps:
         - uses: actions/checkout@v2
 
-        - name: snyk
-          uses: snyk/actions/python-3.11@master
-          with:
-            args: --skip-unresolved app_python/
-          env:
-            SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
+        - name: Prepare Snyk
+          run: curl -LO 'https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux' && chmod +x snyk-linux
+        - name: Snyk Auth
+          run: ./snyk-linux auth ${{ secrets.SNYK_TOKEN }}
+        - name: Snyk test
+          run: ./snyk-linux test app_python
 
   docker-build:
       runs-on:
