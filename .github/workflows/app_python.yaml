@@ -50,12 +50,14 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@master
 
       - name: Run Snyk
         uses: snyk/actions/python-3.10@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --file=app_python/requirements.txt --skip-unresolved
 
   docker:
     needs: [build-and-test, security]
@@ -73,6 +75,6 @@ jobs:
       - name: Build and Push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: app_python
+          context: "{{defaultContext}}:app_python/"
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest
