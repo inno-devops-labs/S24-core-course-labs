@@ -9,7 +9,8 @@ app = Flask(__name__)
 def display_time_msk():
     timezone = pytz.timezone('Europe/Moscow')
     time_msk = datetime.now(timezone)
-    return f"Current time in Moscow: {time_msk.strftime('%Y-%m-%d %H:%M:%S %Z')}"
+    return f"Current time in Moscow: " \
+           f"{time_msk.strftime('%Y-%m-%d %H:%M:%S %Z')}"
 
 
 if __name__ == '__main__':
