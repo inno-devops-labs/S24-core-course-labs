@@ -1,6 +1,5 @@
 FROM python:3.9-slim
 
-# Create a non-root user
 RUN adduser --disabled-password --gecos '' appuser
 USER appuser
 
@@ -12,6 +11,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE 5000
-
-CMD ["python", "app.py"]
+CMD ["python", "app/app.py"]
