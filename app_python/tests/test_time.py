@@ -5,7 +5,8 @@ import pytest
 
 from ..api.time_manager import get_current_time
 
-MOCK_TIME = datetime.datetime(2024, 2, 6, 13, 0)
+MOCK_TIME = datetime.datetime(
+    2024, 2, 6, 13, 0, tzinfo=pytz.timezone("Europe/Moscow"))
 MOCK_DATE_NY = datetime.datetime(
     2024, 2, 6, 5, 4, tzinfo=pytz.timezone("America/New_York")
 )
