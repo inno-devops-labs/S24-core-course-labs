@@ -19,7 +19,9 @@ app.get("/", (req, res) => {
   res.render("quote", { quote: randomQuote })
 })
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+const server = app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 app.set("view engine", "ejs")
-module.exports = app;
+
+
+module.exports = { app, server };
