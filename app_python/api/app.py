@@ -10,5 +10,6 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/", response_class=HTMLResponse)
 def time(request: Request):
     return templates.TemplateResponse(
-        request=request, name="index.html", context={"time": get_current_time()}
+        request=request, name="index.html",
+        context={"time": get_current_time()}
     )
