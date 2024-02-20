@@ -1,4 +1,4 @@
-name: Tests (Python)
+name: Tests & Security (Python)
 
 on:
   push:
@@ -42,3 +42,18 @@ jobs:
         run: |
           pip install pytest
           python -m pytest ./tests
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Snyk
+        uses: snyk/actions/python-3.10@master
+        continue-on-error: true # To make sure that SARIF upload gets called
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif --file=./app_python/requirements.txt
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
