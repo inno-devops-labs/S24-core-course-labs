@@ -12,7 +12,7 @@ jobs:
         with:
           python-version: '3.11.7'
       - name: Install dependencies
-        run: pip3 install -R app_python/requirements.txt
+        run: pip3 install -r app_python/requirements.txt
       - name: Run pylint
         run: pylint -rn **/*.py
       - name: Run pycodestyle
@@ -26,7 +26,7 @@ jobs:
         with:
           python-version: '3.11.7'
       - name: Install dependencies
-        run: pip3 install -R app_python/requirements.txt
+        run: pip3 install -r app_python/requirements.txt
       - name: Run pytest
         run: PYTHONPATH=. pytest app_python/tests
 
@@ -45,6 +45,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./app_python
-          file: ./Dockerfile
+          file: ./app_python/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow_time_python:latest
