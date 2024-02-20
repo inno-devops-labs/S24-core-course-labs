@@ -29,6 +29,7 @@ jobs:
       with:
         node-version: '16'
         cache: 'npm'
+        cache-dependency-path: app_javascript/package-lock.json
     - name: Install dependencies
       run: |
         npm install
@@ -52,6 +53,7 @@ jobs:
       with:
         node-version: '16'
         cache: 'npm'
+        cache-dependency-path: app_javascript/package-lock.json
 
     - name: Lint
       run: |
