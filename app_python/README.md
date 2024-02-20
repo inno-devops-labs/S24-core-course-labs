@@ -103,6 +103,31 @@ docker run -p 5001:5000 fatm1nd/devops-lab-container
 
 After that your applications would be available on https://localhost:5001
 
+## Workflow Overview
+
+The CI workflow consists of two main jobs:
+
+### Build Job
+- Installs Python dependencies specified in the `requirements.txt` file.
+- Lints the codebase using flake8 to enforce code style and quality.
+- Executes unit tests with pytest to validate the functionality of the code.
+
+### Deploy Job
+- Logs in to Docker Hub securely using GitHub Secrets.
+- Sets up Docker Buildx for multi-platform builds.
+- Builds the Docker image from the Dockerfile.
+- Pushes the built image to Docker Hub, tagged with the latest version.
+
+## Best Practices Implemented
+- **Python Versioning**: Ensures consistency by specifying Python version 3.10 across environments.
+- **Dependency Management**: Installs dependencies and necessary packages using pip, with pip upgrades to the latest version.
+- **Code Quality Assurance**: Enforces code style and quality standards using flake8 for linting.
+- **Automated Testing**: Validates code functionality through automated tests using pytest.
+- **Secure Deployment**: Utilizes GitHub Secrets for secure management of sensitive information like Docker Hub credentials.
+- **Official Actions**: Leverages official Docker GitHub Actions for Docker-related tasks, ensuring reliability and compatibility.
+- **Permissions Management**: Sets appropriate permissions to enhance security during CI workflow execution.
+
+
 ## Unit Tests
 
 1. Test if get_moscow_time returns the current time.

@@ -61,4 +61,13 @@ jobs:
         file: ./app_python/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-lab-container:latest
+        
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.10@v3
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
    
