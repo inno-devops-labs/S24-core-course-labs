@@ -27,13 +27,12 @@ import pytz
 app = Flask(__name__)
 
 
-@app.route('/')
-def display_moscow_time():
+def get_moscow_time():
     """
-        Route function to display the current time in Moscow.
+    Function to find the current time in Moscow.
 
-        Returns:
-            str: Formatted string representing the current time in Moscow.
+    Returns:
+        datetime: Current time in Moscow.
 
     """
     # Get the current time in UTC
@@ -43,11 +42,36 @@ def display_moscow_time():
     moscow_tz = pytz.timezone('Europe/Moscow')
     moscow_time = utc_now.replace(tzinfo=pytz.utc).astimezone(moscow_tz)
 
-    # Format the time as a string
-    formatted_time = moscow_time.strftime('%Y-%m-%d %H:%M:%S')
+    return moscow_time
+
+
+def formatted_time(time):
+    """
+    Function to format the given time.
+
+    Args:
+        time (datetime): Time to be formatted.
+
+    Returns:
+        str: Formatted time string.
+
+    """
+    return time.strftime('%Y-%m-%d %H:%M:%S')
+
+
+@app.route('/')
+def display_moscow_time():
+    """
+        Route function to display the current time in Moscow.
+
+        Returns:
+            str: Formatted string representing the current time in Moscow.
+
+    """
+    time = formatted_time(get_moscow_time())
 
     # Render the template with the formatted time
-    return render_template('index.html', moscow_time=formatted_time)
+    return render_template('index.html', moscow_time=time)
 
 
 if __name__ == '__main__':

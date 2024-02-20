@@ -51,3 +51,39 @@ To run the image use this command line
 ```
     docker run -d -p 5000:5000 <image name>
 ```
+
+## Unit Tests
+
+For ensuring the correctness and reliability of the application, unit tests have been implemented. These tests verify the functionality of key components and features of the Flask web app.
+
+### Usage
+
+1. Navigate to the `tests` directory:
+
+    
+    cd tests
+   
+
+2. Run the unit tests:
+
+    
+    python test_app.py
+   
+
+### Test Structure
+
+The unit tests are structured into separate test cases, each focusing on specific functionalities of the Flask web app. Here's an overview of the test cases and their respective functionalities:
+
+- **Test Time Accuracy**: Validates the accuracy of the time retrieved by the `get_moscow_time` function against the actual time in the Europe/Moscow timezone.
+
+- **Test Time Format**: Verifies the format of the time string returned by the `formatted_time` function.
+
+- **Test Display Moscow Time**: Ensures that the `display_moscow_time` route returns a valid response.
+
+## Dependencies
+
+Ensure the following dependencies are installed before running the unit tests:
+
+- Flask
+- pytz
+- unittest
