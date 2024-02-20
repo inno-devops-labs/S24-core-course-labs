@@ -62,7 +62,8 @@ class TestApp(unittest.TestCase):
         moscow_tz = pytz.timezone(TIMEZONE_STRING)
         correct_time = utc_now.replace(tzinfo=pytz.utc).astimezone(moscow_tz)
 
-        # Assert that the received time is synchronized with the Europe/Moscow timezone
+        # Assert that the received time is synchronized with the
+        # Europe/Moscow timezone
         self.assertAlmostEqual(time.timestamp(), correct_time.timestamp(), 0,
                                'The received time is not synchronized with '
                                'the Europe/Moscow timezone.')
