@@ -29,9 +29,7 @@ jobs:
 
       - name: Run unit tests
         working-directory: app_python
-        run: |
-          pip install pytest
-          pytest test.py
+        run: python -m unittest
 
   snyk:
     needs: build-app-pipeline
