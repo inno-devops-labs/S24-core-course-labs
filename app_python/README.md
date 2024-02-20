@@ -36,6 +36,30 @@ This Python web application displays the current time in Moscow. It utilizes the
    ```
 5. Open a web browser and go to `http://http://127.0.0.1:5000/` to view the application.
 
+# Docker
+
+Our application is containerized using Docker, which ensures it can run consistently on any platform that supports Docker.
+
+## Building the Docker Image
+
+1. To build the Docker image, navigate to the `app_python` directory and run the following command:
+
+```bash
+docker build -t image:latest .
+```
+
+2. To pull the image from Docker Hub, run the following command:
+
+```bash
+docker pull katykoshmanova/image:latest
+```
+
+3. To run the Docker container, use the following command:
+
+```bash 
+docker run -p 5000:5000 katykoshmanova/image:latest
+```
+
 ## Unit Tests
 
 In the `unittest1.py` file, two unit tests have been created for the web application.
