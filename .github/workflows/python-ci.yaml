@@ -32,7 +32,8 @@ jobs:
         working-directory: app_python
         run: |
           pip install -r requirements.txt
-          snyk auth ${{ secrets.SNYK_TOKEN }} --severity-threshold=high
+          snyk auth ${{ secrets.SNYK_TOKEN }}
+          snyk test --severity-threshold=high
 
   build:
     name: Build and Test
