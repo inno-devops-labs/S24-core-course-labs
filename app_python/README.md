@@ -65,13 +65,14 @@ This project is set up with continuous integration (CI) using GitHub Actions. Th
 2. **Linting:** Runs linting checks using `flake8` to ensure code quality.
 3. **Tests:** Runs automated tests using `pytest`.
 4. **Docker:** Builds a Docker image and pushes it to Docker Hub.
+5. **Snyk:** runs the Snyk test to check for vulnerabilities in the Python dependencies.
 
 You can also run these steps locally by following the instructions in the [CI Workflow](/.github/workflows/main.yml) file.
 
-**Make sure you add Docker Hub Credentials as Secrets**
+**Make sure you add Docker Hub Credentials and Snyk token as Secrets**
    - Navigate to your repository on GitHub.
    - Go to `Settings` > `Secrets`.
    - Click on `New repository secret`.
-   - Add your Docker Hub username and password as secrets with the names `DOCKER_USERNAME` and `DOCKER_PASSWORD` respectively.
+   - Add your Docker Hub username, password, and snyk tokek as secrets with the names `DOCKER_USERNAME`, `DOCKER_PASSWORD`, `SNYK_TOKEN` respectively.
 
 These secrets will be securely accessed by GitHub Actions during the Docker-related steps of the CI workflow.
