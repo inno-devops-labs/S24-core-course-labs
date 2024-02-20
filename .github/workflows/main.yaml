@@ -31,8 +31,10 @@ jobs:
       - name: Test
         run: pytest unittests.py
 
-      - name: Snyk
+      - name: Setup Snyk
         uses: snyk/actions/setup@master
+
+      - name: Snyk Run
         run: snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
