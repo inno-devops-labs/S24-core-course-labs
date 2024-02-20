@@ -58,6 +58,7 @@ jobs:
       - name: Install Snyk CLI
         run: |
           curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
+          chmod +x snyk-linux
 
       - name: Authenticate Snyk CLI
         run: |
