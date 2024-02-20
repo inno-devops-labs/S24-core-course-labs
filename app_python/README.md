@@ -11,14 +11,14 @@ Simple FastApi-based web API that can give you current time in Moscow Standard T
 Prepare the environment:
 
 1. Create venv
-2. Install the requirements: `pip install -r requirements.txt`
+2. Install the requirements: `pip install -r requirements-dev.txt`
 
 ### Launch
 
 Then you can actually launch the app:
 
 ```sh
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
 ### Interact
@@ -53,4 +53,12 @@ Run (on host port 5000 as example)
 
 ```sh
 docker run -p 5000:80 dirakon/devops-py:latest
+```
+
+## Unit tests
+
+To run unit tests, do
+
+```sh
+pytest
 ```

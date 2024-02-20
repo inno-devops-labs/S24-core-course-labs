@@ -15,3 +15,7 @@ Dockerfile*
 **/*.ps1
 **/*.cmd
 **/*.sh
+
+# Development-only
+requirements-dev.txt
+tests

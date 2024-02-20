@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from controllers import time
+
+from app.controllers import time
 
 tags_metadata = [
     {
