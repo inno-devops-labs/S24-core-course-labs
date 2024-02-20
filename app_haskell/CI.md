@@ -1,4 +1,4 @@
-## CI
+# CI
 
 In this app's workflow, I implemented these best practices:
 
