@@ -1,62 +1,127 @@
-# DevOps Engineering Labs
+# Project Name: Time Display Web Application
 
-## Introduction
+## Description
 
-Welcome to the DevOps Engineering course labs! These hands-on labs are designed to guide you through various aspects of DevOps practices and principles. As you progress through the labs, you'll gain practical experience in application development, containerization, testing, infrastructure setup, CI/CD processes, and more.
+This web application displays the current time in Moscow. It is built with Flask, a lightweight WSGI web application framework in Python. The application demonstrates the use of Flask for creating web applications, handling routes, rendering templates, and displaying dynamic content based on the server's timezone.
 
-## Architecture
+## Table of Contents
 
-This repository has a master branch containing an introduction. Each new lab assignment will be added as a markdown file with a lab number.
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Best Practices](#best-practices)
+- [License](#license)
 
-## Rules
+## Installation
 
-To successfully complete the labs and pass the course, follow these rules:
+Follow these steps to set up your development environment:
 
-1. **Lab Dependency:** Complete the labs in order; each lab builds upon the previous one.
-2. **Submission and Grading:** Submit your solutions as pull requests (PRs) to the master branch of this repository. You need at least 6/10 points for each lab to pass.
-3. **Fork Repository:** Fork this repository to your workspace to create your own version for solving the labs.
-4. **Recommended Workflow:** Build your solutions incrementally. Complete lab N based on lab N-1.
-5. **PR Creation:** Create a PR from your fork to the master branch of this repository and from your fork's branch to your fork's master branch.
-6. **Wait for Grade:** Once your PR is created, wait for your lab to be reviewed and graded.
+1. **Clone the repository**
 
-### Example for the first lab
+```
+git clone https://github.com/tanmaysharma2001/S24-core-course-labs.git
+```
 
-1. Fork this repository.
-2. Checkout to the lab1 branch.
-3. Complete the lab1 tasks.
-4. Push the code to your repository.
-5. Create a PR to the master branch of this repository from your fork's lab1 branch.
-6. Create a PR to the master branch of your repository from your lab1 branch.
-7. Wait for your grade.
+Switch branch to 'lab 01'.
 
-## Grading and Grades Distribution
+2. **Set up a virtual environment**
 
-Your final grade will be determined based on labs and a final exam:
+Navigate to the project directory.
 
-- Labs: 70% of your final grade.
-- Final Exam: 30% of your final grade.
+Create a virtual environment:
 
-Grade ranges:
+```
+python -m venv venv
+```
 
-- [90-100] - A
-- [75-90) - B
-- [60-75) - C
-- [0-60) - D
 
-### Labs Grading
+Activate the virtual environment:
 
-Each lab is worth 10 points. Completing main tasks correctly earns you 10 points. Completing bonus tasks correctly adds 2.5 points. You can earn a maximum of 12.5 points per lab by completing all main and bonus tasks.
+- On Windows:
+  ```
+  .\venv\Scripts\activate
+  ```
+- On Unix or MacOS:
+  ```
+  source venv/bin/activate
+  ```
 
-Finishing all bonus tasks lets you skip the exam and grants you 5 extra points. Incomplete bonus tasks require you to take the exam, which could save you from failing it.
+3. **Install dependencies**
 
->The labs account for 70% of your final grade. With 14 labs in total, each lab contributes 5% to your final grade. Completing all main tasks in a lab earns you the maximum 10 points, which corresponds to 5% of your final grade.
->If you successfully complete all bonus tasks, you'll earn an additional 2.5 points, totaling 12.5 points for that lab, or 6.25% of your final grade. Over the course of all 14 labs, the cumulative points from bonus tasks add up to 87.5% of your final grade.
->Additionally, a 5% bonus is granted for successfully finishing all bonus tasks, ensuring that if you successfully complete everything, your final grade will be 92.5%, which corresponds to an A grade.
+```
+pip install -r requirements.txt
+```
 
-## Deadlines and Labs Distribution
 
-Each week, two new labs will be available. You'll have one week to submit your solutions. Refer to Moodle for presentation slides and deadlines.
+## Usage
 
-## Submission Policy
+To run the application locally:
 
-Submitting your lab results on time is crucial for your grading. Late submissions receive a maximum score of 6 points for the corresponding lab. Remember, completing all labs is necessary to successfully pass the course.
+1. **Start the Flask application**
+
+```
+python run.py
+```
+
+
+2. **Visit the application**
+
+Open a web browser and navigate to `http://127.0.0.1:5000/` to view the application.
+
+## Tests
+
+To run tests, execute the following command:
+
+```
+python -m unittest discover -s tests
+```
+
+Ensure all tests pass before submitting a pull request for your changes.
+
+## Best Practices
+
+This project adheres to the following best practices:
+
+- **Code Style**: Follows PEP 8 style guide for Python code.
+- **Security**: Implements input validation and output encoding to protect against common vulnerabilities.
+- **Testing**: Includes comprehensive unit tests to ensure functionality and prevent regressions.
+
+For more details, refer to the [PYTHON.md](PYTHON.md) document.
+
+## Docker
+
+The Time Display Web Application is also containerized using Docker, allowing for easy setup, deployment, and distribution. Below are the instructions for building, pulling, and running the Docker container.
+
+### How to Build
+
+To build the Docker image for the application, follow these steps:
+
+1. **Navigate to the project directory** where the `Dockerfile` is located.
+
+2. **Build the Docker image** using the following command:
+
+```bash
+docker build -t time-display-app .
+```
+Replace time-display-app with your preferred image name.
+
+### How to Pull
+
+The Docker image is available in a registry, you can pull it directly instead of building it locally:
+```bash
+docker pull sharmatanmay617/devops-lab-2
+```
+
+### How to Run
+
+To run the application inside a Docker container, use the following command:
+
+```bash
+docker run -p 5000:5000 sharmatanmay617/devops-lab-2
+```
+This command runs the Docker container and maps port 5000 of the container to port 5000 on your host machine, allowing you to access the application through your browser.
+
+### Accessing the Application
+
+After starting the container, open a web browser and navigate to http://127.0.0.1:5000/ to view the application.
