@@ -10,14 +10,14 @@ import java.time.format.DateTimeFormatter;
 
 @RestController
 public class Controller {
-    @GetMapping("/")
-    public ModelAndView index() {
-        var moscowZone = ZoneId.of("Europe/Samara");
-        var currentTime = LocalDateTime.now(moscowZone);
-        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        var time = currentTime.format(formatter);
-        var modelAndView = new ModelAndView("index");
-        modelAndView.addObject("currentTime", time);
-        return modelAndView;
-    }
+  @GetMapping("/")
+  public ModelAndView index() {
+    var moscowZone = ZoneId.of("Europe/Samara");
+    var currentTime = LocalDateTime.now(moscowZone);
+    var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    var time = currentTime.format(formatter);
+    var modelAndView = new ModelAndView("index");
+    modelAndView.addObject("currentTime", time);
+    return modelAndView;
+  }
 }
