@@ -19,13 +19,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-      - name: Build and push Docker image
+        name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-#          context: ./app_python
- #         file: ./app_python/Dockerfile
-          push: true
-          tags: user/app:latest
+         file: ./app_python/Dockerfile
+         push: true
+         tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
 
   test:
     runs-on: ubuntu-latest
