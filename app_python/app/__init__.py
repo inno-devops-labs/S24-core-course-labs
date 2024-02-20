@@ -1,8 +1,8 @@
 import logging
 
-from config import PORT
-from logger import setup_logging
-from router import router
+from .config import PORT
+from .logger import setup_logging
+from .router import router
 from flask import Flask
 
 from waitress import serve
