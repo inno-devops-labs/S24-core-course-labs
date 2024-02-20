@@ -1,5 +1,7 @@
 # Node.js Express Web Application
 
+[![Node.js CI](https://github.com/zeyadAjamy/S24-core-course-labs/actions/workflows/javascript-ci.yaml/badge.svg?branch=lab3)](https://github.com/zeyadAjamy/S24-core-course-labs/actions/workflows/javascript-ci.yaml)
+
 ## Framework Choice: Express
 
 For this Node.js web application, I chose Express as the web framework. Express is a fast, unopinionated, and minimalist web framework for Node.js, making it ideal for building lightweight and efficient web applications.

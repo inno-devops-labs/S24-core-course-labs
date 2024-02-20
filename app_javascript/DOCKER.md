@@ -1,6 +1,6 @@
 # Docker Best Practices
 
-Here's an elaboration on the best practices applied in the provided Dockerfile for a Node.js application:
+[![Node.js CI](https://github.com/zeyadAjamy/S24-core-course-labs/actions/workflows/javascript-ci.yaml/badge.svg?branch=lab3)](https://github.com/zeyadAjamy/S24-core-course-labs/actions/workflows/javascript-ci.yaml)
 
 1. **Use a specific Node.js version as the base image**: Utilizing a specific Node.js version (`node:18-bullseye`) ensures consistency and avoids unexpected behavior due to version differences. It also allows for better reproducibility of builds.
 

@@ -2,6 +2,8 @@
 
 This documentation provides an overview of the Node.js web application built using Express.
 
+[![Node.js CI](https://github.com/zeyadAjamy/S24-core-course-labs/actions/workflows/javascript-ci.yaml/badge.svg?branch=lab3)](https://github.com/zeyadAjamy/S24-core-course-labs/actions/workflows/javascript-ci.yaml)
+
 ## Overview
 
 The web application displays the current time in Moscow. It utilizes the Express framework to create a simple web server in Node.js and the `toLocaleString` method to retrieve and format the current time.

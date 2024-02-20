@@ -1,6 +1,6 @@
 # Docker Best Practices
 
-In this Dockerfile, several best practices are employed to ensure security, efficiency, and maintainability. Let's elaborate on each one:
+[![Python CI](https://github.com/zeyadAjamy/S24-core-course-labs/actions/workflows/python-ci.yaml/badge.svg?branch=lab3)](https://github.com/zeyadAjamy/S24-core-course-labs/actions/workflows/python-ci.yaml)
 
 1. **Use a specific Python version as the base image**: By specifying the exact Python version (`python:3.9.18-bullseye`), we ensure consistency and reproducibility in our environment. This helps avoid unexpected behavior due to version differences.
 

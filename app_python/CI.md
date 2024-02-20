@@ -1,5 +1,7 @@
 # CI Best Practices
 
+[![Python CI](https://github.com/zeyadAjamy/S24-core-course-labs/actions/workflows/python-ci.yaml/badge.svg?branch=lab3)](https://github.com/zeyadAjamy/S24-core-course-labs/actions/workflows/python-ci.yaml)
+
 ## Overview
 
 The CI workflow is triggered on pushes to the `main` and `lab3` branches, as well as pull requests targeting these branches. It consists of three main jobs:

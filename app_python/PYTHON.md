@@ -1,6 +1,6 @@
 # Python Web Application Documentation
 
-This documentation provides an overview of the Python web application built using Flask.
+[![Python CI](https://github.com/zeyadAjamy/S24-core-course-labs/actions/workflows/python-ci.yaml/badge.svg?branch=lab3)](https://github.com/zeyadAjamy/S24-core-course-labs/actions/workflows/python-ci.yaml)
 
 ## Overview
 
