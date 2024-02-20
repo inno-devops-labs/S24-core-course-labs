@@ -24,3 +24,6 @@ jobs:
 
       - name: Run Tests
         run: mvn test --file app_java/pom.xml
+
+      - name: Run Checkstyle
+        run: mvn checkstyle:checkstyle --file app_java/pom.xml
