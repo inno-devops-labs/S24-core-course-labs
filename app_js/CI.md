@@ -12,7 +12,7 @@
 
 ### Quality and Security Assurance
 - **Snyk Security Scans**: Include Snyk scans within your workflow for automatic vulnerability detection.
-- **Code Quality**: Incorporate a `flake8` linting step to ensure code quality remains high.
+- **Code Quality**: Incorporate a `eslint` linting step to ensure code quality remains high.
 - **Docker Buildx**: Utilize Docker buildx for effective multi-platform image builds.
 
 ### Workflow Optimization
