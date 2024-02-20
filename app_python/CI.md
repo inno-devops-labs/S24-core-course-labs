@@ -8,3 +8,4 @@
 3. Push to DockerHub only when necessary - after merging in main
 4. Separated workflows
 5. Workflow results visible as badge
+6. Using some of the latest versions of actions

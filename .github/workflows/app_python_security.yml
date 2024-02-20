@@ -10,7 +10,7 @@ jobs:
         working-directory: app_python
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - uses: snyk/actions/setup@master
       - name: Set up Python
         uses: actions/setup-python@v4
