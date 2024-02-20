@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
     }
 });
 
-app.listen(port, function () {
+const server = app.listen(port, function () {
     console.log(`Server is running on port ${port}`);
 });
 
@@ -33,4 +33,4 @@ process.on('SIGINT', function() {
     process.exit();
 });
 
-module.exports = app;
+module.exports = { app, server };

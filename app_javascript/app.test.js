@@ -1,6 +1,10 @@
 const request = require('supertest');
 const express = require('express');
-const app = require('./app'); // assuming your express app file is named 'app.js' and in the parent directory
+const { app, server } = require('./app');
+
+afterAll(done => {
+  server.close(done);
+});
 
 describe('GET /', () => {
   it('should respond with a 200 status code', async () => {
