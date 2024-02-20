@@ -1,3 +1,5 @@
+[![CI](https://github.com/Tyu-cr/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)](https://github.com/Tyu-cr/S24-core-course-labs/actions/workflows/main.yaml)
+
 ## Overview
 
 This simple Python web application is built using the FastAPI framework to display the current time and date in Moscow.
