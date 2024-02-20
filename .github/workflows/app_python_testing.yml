@@ -1,6 +1,9 @@
 name: Python app - testing
 
-on: [ push ]
+on:
+  push:
+    paths:
+      - 'app_python/**'
 
 jobs:
   lint_and_test:

@@ -2,6 +2,8 @@ name: Python app - docker
 
 on:
   push:
+    paths:
+      - 'app_python/**'
     branches:
       - main
 

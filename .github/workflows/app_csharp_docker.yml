@@ -2,6 +2,8 @@ name: C# app - docker
 
 on:
   push:
+    paths:
+      - 'app_csharp/**'
     branches:
       - main
 

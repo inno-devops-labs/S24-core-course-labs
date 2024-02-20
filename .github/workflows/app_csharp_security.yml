@@ -1,6 +1,9 @@
 name: C# app - security
 
-on: [ push ]
+on:
+  push:
+    paths:
+      - 'app_csharp/**'
 
 jobs:
   security:

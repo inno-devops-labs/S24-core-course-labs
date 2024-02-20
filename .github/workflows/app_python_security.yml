@@ -1,6 +1,9 @@
 name: Python app - security
 
-on: [ push ]
+on:
+  push:
+    paths:
+      - 'app_python/**'
 
 jobs:
   security:
