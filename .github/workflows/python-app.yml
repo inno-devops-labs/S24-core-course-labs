@@ -68,8 +68,8 @@ jobs:
           pytest
         working-directory: ./app_python
 
+      - uses: snyk/actions/setup@b98d498629f1c368650224d6d212bf7dfa89e4bf
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/setup@b98d498629f1c368650224d6d212bf7dfa89e4bf
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
