@@ -63,7 +63,7 @@ The CI (Continuous Integration) workflow for this project automates the process 
 
 ### Workflow Overview:
 
-- **Automated Testing**: Unit tests are executed using `pytest` to verify the correctness of the codebase.
+- **Automated Testing**: Unit tests are executed using `pytest` to verify the correctness of the codebase .
 - **Code Linting**: `Flake8` is used to enforce coding standards and maintain consistent code style.
 - **Security Scanning**: `Snyk` is integrated to check for vulnerabilities in dependencies and ensure application security.
 - **Docker Integration**: `Docker` is utilized for containerization, enabling consistent deployment across environments.
