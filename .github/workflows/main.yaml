@@ -48,7 +48,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Lint
-        run: pylint main.py 
+        run: pylint main.py
       - name: Test
         run: python app-test.py
 
@@ -72,6 +72,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./${{ env.WORKING_DIR }}
+          file: app_python/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_TAG }}
           cache-from: type=gha
