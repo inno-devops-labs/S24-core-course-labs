@@ -91,4 +91,4 @@ jobs:
           with:
             context: "{{defaultContext}}:app_python/"
             push: true
-            tags: achupkova/app_python:latest
+            tags: bavpnet/app_python:latest
