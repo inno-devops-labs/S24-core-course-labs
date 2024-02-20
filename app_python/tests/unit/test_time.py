@@ -11,6 +11,7 @@ def test_get_current_moscow_time():
     ), "Function `get_current_moscow_time` does not return a `datetime` object"
 
 
+
 def test_get_human_readable_time():
     dt = get_current_moscow_time()
 
