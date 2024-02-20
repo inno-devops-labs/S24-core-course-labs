@@ -38,3 +38,8 @@ jobs:
     - name: Test with pytest
       run: |
         python3 app_python/test_app.py
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v5.1.0
+    - name: Docker Login
+      uses: docker/login-action@v3.0.0
+                    
