@@ -69,6 +69,8 @@ The CI (Continuous Integration) workflow for this project automates the process 
 - **Docker Integration**: `Docker` is utilized for containerization, enabling consistent deployment across environments.
 - **Documentation**: Comprehensive documentation in `CI.md` outlines the best practices implemented in the CI workflow.
 
+![CI Workflow Status](https://github.com/levpen/S24-core-course-labs/actions/workflows/python_workflow.yml/badge.svg)
+
 ### How to build?
 
 To build the Docker image, run the following command:
