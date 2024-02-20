@@ -2,6 +2,7 @@ import time
 import unittest
 from app import app
 
+
 class AppTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -16,8 +17,8 @@ class AppTestCase(unittest.TestCase):
         response1 = self.app.get('/')
         time.sleep(1)
         response2 = self.app.get('/')
-        
         self.assertNotEqual(response1.data, response2.data)
+
 
 if __name__ == '__main__':
     unittest.main()
