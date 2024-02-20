@@ -1,0 +1,27 @@
+:root {
+	--primary: #2d7eda;
+	--primary-light: #4f8dd4;
+	--primary-dark: #2262aa;
+}
+
+html, body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	color: #333;
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a, button, input, textarea, div {
+	-webkit-tap-highlight-color: transparent;
+}

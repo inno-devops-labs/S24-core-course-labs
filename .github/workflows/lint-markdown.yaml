@@ -1,0 +1,24 @@
+name: Lint Markdown
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Create configuration file
+        run: |
+          echo '{"MD013":false}' > .markdownlint.json
+      - name: Lint all Markdown files
+        uses: DavidAnson/markdownlint-cli2-action@v15
+        with:
+          globs: '**/*.md'
+          config: '.markdownlint.json'
