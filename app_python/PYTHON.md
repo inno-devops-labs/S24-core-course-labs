@@ -30,4 +30,11 @@ Some practices used:
 4. CI runs tests automatically
 
 
-### CI
+## CI
+
+CI includes
+
+1. Testing - python is installed with the dependencies
+   - linting is run via `ruff`
+   - unit tests are run via `pytest`
+2. Docker build & push
