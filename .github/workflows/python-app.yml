@@ -53,13 +53,6 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         working-directory: ./app_python
 
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python-3.10@b98d498629f1c368650224d6d212bf7dfa89e4bf
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high
-
       - name: Lint with flake8
         run: |
           pip install flake8
@@ -74,6 +67,13 @@ jobs:
           pip install pytest
           pytest
         working-directory: ./app_python
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.10@b98d498629f1c368650224d6d212bf7dfa89e4bf
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
 
       - name: Login to docker hub
         run: |
