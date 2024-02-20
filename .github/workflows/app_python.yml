@@ -47,7 +47,6 @@ jobs:
         - name: Build and push
           working-directory: ./app_python
           run: | 
-            cd app_python
             docker build -t ahmadalhussin/app_python:latest .
             docker tag ahmadalhussin/app_python:latest ahmadalhussin/app_python:latest
             docker push ahmadalhussin/app_dotnet:latest

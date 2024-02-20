@@ -12,7 +12,7 @@ jobs:
             - name: Set up .NET
               uses: actions/setup-dotnet@v3
               with:
-                dotnet-version: '8.0.0'
+                dotnet-version: '7.0.0'
             - name: Restore dependencies
               working-directory: ./app_dotnet
               run: dotnet restore
@@ -41,7 +41,6 @@ jobs:
         - name: Build and push
           working-directory: ./app_dotnet
           run: | 
-            cd app_dotnet
             docker build -t ahmadalhussin/app_dotnet:latest .
             docker tag ahmadalhussin/app_dotnet:latest ahmadalhussin/app_dotnet:latest
             docker push ahmadalhussin/app_dotnet:latest
