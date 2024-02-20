@@ -35,8 +35,10 @@ jobs:
 
     steps:
 
-    - run: pip install -r requirements.txt
-      working-directory: app_python
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r app_python/requirements.txt
 
     - name: Run Tests
       run: |
@@ -48,8 +50,10 @@ jobs:
 
     steps:
 
-    - run: pip install -r requirements.txt
-      working-directory: app_python
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r app_python/requirements.txt
 
     - name: Download Snyk
       run: |
