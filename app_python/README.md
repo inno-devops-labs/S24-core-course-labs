@@ -3,6 +3,10 @@
 </div>
 <a name="readme-top"></a>
 
+[![Workflow][Workflow-badge]][Workflow-url]
+
+[badge]: https://github.com/SnejUgal/S24-core-course-labs/actions/workflows/python.yaml/badge.svg
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -92,6 +96,10 @@ uvicorn app_python.main:app
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
+[Workflow-badge]: https://github.com/zaqbez39me/S24-DevOps-Labs/actions/workflows/app_python.yaml/badge.svg
+
+[Workflow-url]: https://github.com/zaqbez39me/S24-DevOps-Labs/actions/workflows/app_python.yaml
+
 [FastAPI]: https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi
 
 [FastAPI-url]: https://fastapi.tiangolo.com/
@@ -139,3 +147,9 @@ To run the unit tests use the following command
 ```bash
 pytest
 ```
+
+## CI
+
+This application supplied with automated tests, linter and snyk security testing. The workflow also updates the image on
+dockerhub if all the tests are passed. You can findout everything about
+workflow [here](https://github.com/zaqbez39me/S24-DevOps-Labs/actions/workflows/app_python.yaml).
