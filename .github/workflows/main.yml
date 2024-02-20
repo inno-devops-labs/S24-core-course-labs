@@ -15,9 +15,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install pipenv
-        run: pip install pipenv
+        run: pip install --user pipenv
       - name: Install dependencies
-        run: pipenv install --dev
+        run: make build
       - name: Lint with flake8
         run: pipenv run flake8
       - name: Test with pytest
