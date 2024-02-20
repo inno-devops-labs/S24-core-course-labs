@@ -31,7 +31,7 @@ This project is a simple web application built using Flask, a Python web framewo
 5. Observe the real-time display of the current time in Moscow (GMT+3)
 6. Refresh the page to get the current time
 
-🐳 Docker:
+🐳 **Docker:**
 
 To run the application in a Docker container, follow these steps:
 
@@ -49,3 +49,13 @@ To run the Docker container, execute the following command:
 **`docker run -d -p 5000:5000 flask-app`**
 
 Access the application at **`http://127.0.0.1:5000/`** in your web browser.
+
+⚙️ **Unit Tests**
+
+Unit tests ensure the correctness and reliability of the application's functionality. The tests cover critical components and behaviors, providing confidence in the codebase. Below are the unit tests applied to this project:
+
+- **test_get_current_time_format**: This test verifies that the `get_current_time` function returns the current time in the correct format (HH:MM:SS).
+
+To run the unit tests, execute the following command in your terminal:
+
+**`pytest`**
