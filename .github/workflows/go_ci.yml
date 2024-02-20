@@ -36,6 +36,7 @@ jobs:
       - name: Test
         run: | 
           go test
+        working-directory: ${{ env.WORKING_DIR }}
       - name: Snyk
         uses: snyk/actions/golang@master
         continue-on-error: true # To make sure that SARIF upload gets called
