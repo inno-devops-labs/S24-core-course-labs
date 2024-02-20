@@ -1,12 +1,14 @@
 {
     "env": {
         "browser": true,
+        "node": true,
         "commonjs": true,
         "es2021": true
     },
-    "extends": "standard",
+    "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
     "rules": {
         "quotes": [2, "double", { "avoidEscape": true }]

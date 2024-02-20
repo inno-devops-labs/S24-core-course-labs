@@ -5,6 +5,7 @@
 - **Caching Dependencies**: Cache dependencies and Docker layers to avoid unnecessary reinstalls and rebuilds, speeding up the workflow.
 - **Use Latest Actions**: Employ the most recent GitHub Actions to access new features and important security fixes.
 
+
 ### Security and Maintenance
 - **Secure Secrets**: Store sensitive data like `SNYK_TOKEN`, `DOCKER_USERNAME`, and `DOCKER_PASSWORD` in GitHub Secrets to protect them.
 - **Specify Working Directories**: Define the execution directory for steps using the `working-directory`  key to maintain clarity.
