@@ -46,4 +46,4 @@ jobs:
           context: ./app_python
           file: ./app_python/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/flask_app:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devops_app:latest
