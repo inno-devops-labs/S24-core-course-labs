@@ -5,16 +5,10 @@ name: Docker
 # separate terms of service, privacy policy, and support
 # documentation.
 
-on: [push, workflow_dispatch]
-# on:
-#   schedule:
-#     - cron: '32 9 * * *'
-#   push:
-#     branches: [ "main" ]
-#     # Publish semver tags as releases.
-#     tags: [ 'v*.*.*' ]
-#   pull_request:
-#     branches: [ "main" ]
+on:
+  push:
+    paths:
+      app_python
 
 env:
   # Use docker.io for Docker Hub if empty
