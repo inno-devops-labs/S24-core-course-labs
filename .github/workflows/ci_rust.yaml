@@ -206,6 +206,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: app_python
+          context: app_rust
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_python:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_rust:latest
