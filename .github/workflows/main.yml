@@ -55,7 +55,7 @@ jobs:
         with:
           registry: docker.io
           username: ${{ secrets.DOCKER_LOGIN }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: ${{ secrets.DOCKER_PASS }}
 
       - name: Build and push Docker image
         run: |
