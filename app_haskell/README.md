@@ -1,6 +1,6 @@
 # Current Moscow Time
 
-[![Haskell web application][badge][workflow]
+[![Haskell web application][badge]][workflow]
 
 [badge]: https://github.com/SnejUgal/S24-core-course-labs/actions/workflows/haskell.yaml/badge.svg
 

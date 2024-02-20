@@ -1,6 +1,6 @@
 # Current Moscow Time
 
-[![Python web application][badge][workflow]
+[![Python web application][badge]][workflow]
 
 [badge]: https://github.com/SnejUgal/S24-core-course-labs/actions/workflows/python.yaml/badge.svg
 
