@@ -77,6 +77,27 @@ Run commands from `app_python` directory
 
 3. Open <http://localhost:5000/> and see the result
 
+## Unit Tests
+
+The unit tests are designed to validate the functionality of the Flask web application that displays the current time in Moscow. Two main test cases are implemented:
+
+1. `test_display_moscow_time`: Checks if the application displays the current time in Moscow correctly.
+2. `test_invalid_route`: Checks if the application returns a 404 status code for an invalid route.
+
+## CI Workflow
+
+This project includes a continuous integration (CI) workflow to automate testing and Docker image building. The workflow is triggered on each push to the repository. Here's what the CI workflow does:
+
+1. Checks out the repository code.
+2. Sets up Python environment with version 3.9.
+3. Installs project dependencies specified in app_python/requirements.txt.
+4. Lints the code using Flake8.
+5. Runs unit tests.
+6. Checks for vulnerabilities in dependencies using Snyk.
+7. Logs in to Docker Hub.
+8. Builds a Docker image for the application.
+9. Pushes the Docker image to Docker Hub.
+
 ## Dependencies
 
 * Flask
