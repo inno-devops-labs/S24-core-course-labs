@@ -56,10 +56,13 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/my-python-app:latest
 
       - name: Install Snyk CLI
-        run: pip install snyk
+        run: |
+          curl -fsSL https://cli.snyk.io/install.sh | bash
 
       - name: Authenticate Snyk CLI
-        run: snyk auth ${{ secrets.SNYK_API_TOKEN }}
+        run: |
+          snyk auth ${{ secrets.SNYK_API_TOKEN }}
 
       - name: Run Snyk Vulnerability Scan
-        run: snyk test --all-projects
+        run: |
+          snyk test --project-path=./app_python 
