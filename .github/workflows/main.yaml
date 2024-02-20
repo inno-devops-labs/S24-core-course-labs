@@ -4,6 +4,10 @@ on:
   push:
     paths:
       - 'app_python/**'
+  pull_request:
+    paths:
+      - 'app_python/**'
+
 
 jobs:
   build:
@@ -86,4 +90,3 @@ jobs:
       - name: Push Docker image
         run: |
           docker push AlebrahimLaith/app_python:latest
-          
