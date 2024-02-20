@@ -12,10 +12,25 @@ permissions:
   contents: read
 
 jobs:
+  paths-filter:
+    runs-on: ubuntu-latest
+    outputs:
+      is_in_python_dir: ${{ steps.filter.outputs.in_python }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            in_python:
+              - './app_python/**'
+  # source: https://stackoverflow.com/questions/70708306/github-actions-run-step-job-in-a-workflow-if-changes-happen-in-specific-folde
+
   build:
 
     runs-on: ubuntu-latest
-
+    needs: paths-filter
+    if: needs.paths-filter.outputs.is_in_python_dir == 'true'
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.10
