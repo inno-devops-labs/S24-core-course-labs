@@ -19,11 +19,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
-        uses: docker/build-push-action@v5
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
         with:
-          push: true
-          tags: uzifam/s24-core-course-labs:latest
+          context: ./app_python
+          file: ./app_python/Dockerfile
+          push: ${{ github.ref_type == 'tag' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
   test:
     runs-on: ubuntu-latest
