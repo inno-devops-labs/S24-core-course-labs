@@ -31,5 +31,5 @@ docker run -p 8000:8000 rinri/python-test-app_python:latest
 ```
 
 ### CI workflow
-The CI workflow of this repository tests the app using pytest, lint using ruff, builds the docker image, and finally pushes it to [Docker Hub](https://hub.docker.com/r/rinri/python-test-app_python).
+The CI workflow of this repository tests the app using pytest, lint using ruff, builds the docker image, and finally pushes it to [Docker Hub](https://hub.docker.com/r/rinri/python-test-app_python). There is also SNYK vulnerability check.
 
