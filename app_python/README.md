@@ -72,4 +72,4 @@ pytest tests/unit/test.py
 
 ## CI workflow
 
-At push/pull request into `app_python`, workflow starts via github actions. It runs dependencies check, linter and tests of the project. Moreover, the docker image is built and pushed into the Dockerhub
+At push/pull request into `app_python`, workflow starts via github actions. It runs dependencies check, linter and tests of the project. Moreover, the docker image is built and pushed into the Dockerhub.

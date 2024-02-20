@@ -60,3 +60,15 @@ docker run -p 3000:3000 moscow-time-app-js
 ```
 
 After that, the application will be accessible at `http://localhost:3000/` in the web browser.
+
+
+## Unit tests
+Unit tests are located inside the `tests/unit/test.py` file. They can be run using `pytest`:
+
+```bash
+pytest tests/unit/test.py
+```
+
+## CI workflow
+
+At push/pull request into `app_javascript`, workflow starts via github actions. It runs dependencies check, linter and tests of the project. Moreover, the docker image is built and pushed into the Dockerhub.
