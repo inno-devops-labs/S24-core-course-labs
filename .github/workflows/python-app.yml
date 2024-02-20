@@ -35,11 +35,13 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
+    - name: Test
       run: |
         python3 app_python/test_app.py
     - name: Build and push Docker images
       uses: docker/build-push-action@v5.1.0
+      with:
+        context: /app_python/Dockerfile
     - name: Docker Login
       uses: docker/login-action@v3.0.0
-                    
+               
