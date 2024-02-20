@@ -33,7 +33,7 @@ jobs:
       - name: Run tests
         working-directory: 'app_python'
         run: |
-          python -m unittest tests.test_app.py
+          python -m unittest tests.test_app
 
   lint:
     runs-on: ubuntu-latest
