@@ -1,7 +1,11 @@
 name: app CI
 
 on:
-  [ push, pull_request ]:
+  push:
+    paths:
+      - 'app_python/**'
+      - '.github/workflows/app_python.yml'
+  pull_request:
     paths:
       - 'app_python/**'
       - '.github/workflows/app_python.yml'
