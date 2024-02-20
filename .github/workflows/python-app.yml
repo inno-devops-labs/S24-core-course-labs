@@ -36,7 +36,7 @@ jobs:
       run: poetry install
 
     - name: Lint with flake8
-      run: poetry run flake8 --exclude=.venv
+      run: poetry run flake8
       
     - name: Test with pytest
       run: poetry run pytest --cov --cov-fail-under=90
