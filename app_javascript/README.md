@@ -61,7 +61,6 @@ docker run -p 3000:3000 moscow-time-app-js
 
 After that, the application will be accessible at `http://localhost:3000/` in the web browser.
 
-
 ## Unit tests
 Unit tests are located inside the `app.test.js` file. They can be run using `jest`:
 
