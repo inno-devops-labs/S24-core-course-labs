@@ -21,11 +21,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Testing
-        run: |
-          pip install flake8
-          pip flake8
-
   linting:
     runs-on: ubuntu-latest
     needs:
@@ -39,10 +34,10 @@ jobs:
         uses: actions/setup-python@v4
         with:
             python-version: "3.9"
-      - name: flake8 Lint
+      - name: Linting
         run: |
-          python install flake8
-          pip flake8
+          pip install flake8
+          flake8
 
   snyk:
       runs-on: ubuntu-latest
