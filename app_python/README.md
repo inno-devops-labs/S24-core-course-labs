@@ -108,9 +108,21 @@ docker pull ghadeero/python-web-app
 docker run -p 5000:5000 ghadeero/python-web-app
 ```
 
+
+## Continuous Integration (CI)
+This project is integrated with GitHub Actions for continuous integration. The CI workflow includes steps to:
+- Install dependencies
+- Lint the code using flake8
+- Run unit tests
+- Login to DockerHub
+- Build and push a Docker image
+
 ## Technologies Used
 
 - Python
 - Flask
 - pytz
 - Docker
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
