@@ -64,6 +64,23 @@ docker run -p 5000:5000 your_username/app_python:latest
 <n><n>
 Please note that you must have docker installed on your device to be able to run the previous commands.
 
+### Unit Testing
 
+The project incorporates comprehensive unit tests written using the `unittest` module in Python. The `test_app.py` file contains a specific test function, `test_get_moscow_time`, tailored for the `get_moscow_time` function in the application.
 
+To execute the unit test, run the following command in the terminal:
 
+```bash
+python -m unittest test_app.py
+```
+
+## Continuous Integration (CI)
+
+This project includes a GitHub Actions CI workflow that runs on every push. The workflow performs the following steps:
+
+- **Dependencies:** Installs project dependencies using Python `pip`.
+- **Linting:** Uses Flake8 for code linting to maintain code quality.
+- **Tests:** Runs Python unit tests to ensure code correctness.
+- **Docker:** Builds and pushes a Docker image to Docker Hub.
+
+The CI workflow guarantees that the project builds successfully, passes linting, and all tests before deploying.

@@ -15,4 +15,12 @@ We adhered to the PEP 8 style guide for Python code, promoting consistency and r
 
 ## Testing
 
-Due to the simplicity of the web application, testing is primarily conducted through manual testing by refreshing the page to ensure the time is being updated accurately. As the primary functionality involves displaying the current time in Moscow, this straightforward approach provides a quick and effective means of verification.
+The project integrates unit test to validate crucial functionalities using the `unittest` module in Python. The `test_app.py` file now includes a test function, `test_get_moscow_time`, specifically designed for the `get_moscow_time` function in the `app.py` file.
+
+### Function: `test_get_moscow_time`
+- **Description:** Tests the `get_moscow_time` function, which retrieves and formats the current time in Moscow.
+- **Best Practices Applied:**
+  - **Descriptive Naming:** The test function is aptly named to clearly convey its purpose.
+  - **Comparison Against Expected Results:** The result is compared against the expected current time in Moscow, ensuring the accuracy of the function.
+
+This unit test adheres to best practices, providing a reliable mechanism for verifying the accuracy and functionality of the critical `get_moscow_time` component within the Python web application.
