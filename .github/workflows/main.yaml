@@ -1,17 +1,44 @@
-name: flask-app
+name: CI
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  test:
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - name: Install dependencies
-        run: python -m pip install -r app_python/requirements.txt
-      - name: Test with pytest
-        run: python -m pytest
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Lint code
+      run: |
+        python -m pip install flake8
+        flake8 .
+
+    - name: Run tests
+      run: pytest
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t vectorsmaster/flask-app:latest .
+        docker push vectorsmaster/flask-app:latest
