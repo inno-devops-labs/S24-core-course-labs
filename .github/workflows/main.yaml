@@ -52,6 +52,15 @@ jobs:
       - name: flake8 Lint
         uses: py-actions/flake8@v2
   
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.9@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  
   build_and_push_image:
     runs-on: ubuntu-latest
     steps:

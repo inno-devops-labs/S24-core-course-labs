@@ -9,7 +9,7 @@ This Python web application displays the current time in Moscow.
 - Lightweight web app built with Flask.
 - Utilizes `pytz` for accurate time zone handling.
 - Follows PEP 8 coding standards for clean and readable code.
-- Includes a simple unit test to ensure time format correctness.
+- Includes unit tests.
 
 ## Setup
 
