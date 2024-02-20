@@ -57,3 +57,18 @@ To run the image you can use next command:
 `docker run -d -p {your_port_number}:8000 -t tatarinalba/devops:1.0`
 
 Tadam. It works!
+
+## Unit Tests
+
+In our application we also applied unit testing for improvement code quality.
+* `test_api` - test verifies that correct Moscow time has been retrieved.
+
+You can follow our test files for getting more information about usage of our program and expected output.
+
+## CI Workflow
+Our workflow triggers when we're pushing to the lab3 branch.
+We have several steps during our workflow.
+- Dependencies
+- Lint
+- Test
+- Docker deploying

@@ -9,3 +9,14 @@ documentation, high-performance. For realizing our main functional requirements 
 chance of corrupts during building stage
 3. PEP-8 standards in the main backend code.
 4. PEP-484 (i.e type hinting)
+
+
+## Testing
+Because we have no complex functionality in our application, there are not many test cases. We cannot test endpoint `/`
+for the reason that this just returns file, but we can test `/api/time/` for confirming that our application correctly 
+retrieve current moscow time. 
+
+### Best practices applied
+1. Tests have meaningful name.
+2. Appropriate creation of mock by using **fixtures**.
+3. Code coverage. Our tests coverage maintains 91%.

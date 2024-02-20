@@ -8,12 +8,14 @@ pytz = "*"
 fastapi = "*"
 starlette = "*"
 uvicorn = "*"
+coverage = "*"
 
 [dev-packages]
 pytest = "*"
 mypy = "*"
 types-pytz = "*"
 flake8 = "*"
+httpx = "*"
 
 [requires]
 python_version = "3.12"
