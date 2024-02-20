@@ -22,7 +22,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: app_python
+          context: app_python/Dockerfile
           push: true
           tags: user/app:latest
 
