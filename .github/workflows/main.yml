@@ -17,7 +17,7 @@ jobs:
       - name: Install pipenv
         run: pip install pipenv
       - name: Install dependencies
-        run: cd app_python && pipenv install
+        run: cd app_python && pipenv install --dev
       - name: Lint with flake8
         run: cd app_python && pipenv run flake8
       - name: Test with pytest
