@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pytz = "*"
+fastapi = "*"
+starlette = "*"
+uvicorn = "*"
+
+[dev-packages]
+pytest = "*"
+mypy = "*"
+types-pytz = "*"
+flake8 = "*"
+
+[requires]
+python_version = "3.12"
