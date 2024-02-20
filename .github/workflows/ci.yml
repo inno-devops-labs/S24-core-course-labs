@@ -43,4 +43,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: yourusername/yourapp:latest
+          tags: batdockerivankornienko/app_python:latest
