@@ -1,4 +1,4 @@
-name: Rust Application
+name: Rust application
 
 on:
   push:
@@ -9,15 +9,69 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
-
+  paths-filter:
     runs-on: ubuntu-22.04
-
+    outputs:
+      is_in_rust_dir: ${{ steps.filter.outputs.in_rust }}
     steps:
-    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
-    - name: Build
-      run: cargo build --verbose
-      working-directory: ./app_rust
-    - name: Run tests
-      run: cargo test --verbose
-      working-directory: ./app_rust
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
+      - uses: dorny/paths-filter@ebc4d7e9ebcb0b1eb21480bb8f43113e996ac77a
+        id: filter
+        with:
+          ref: ${{ github.ref_name }}
+          filters: |
+            in_rust:
+              - './app_rust/**'
+  # source: https://stackoverflow.com/questions/70708306/github-actions-run-step-job-in-a-workflow-if-changes-happen-in-specific-folde
+
+  checks:
+    runs-on: ubuntu-22.04
+    needs: paths-filter
+    if: needs.paths-filter.outputs.is_in_rust_dir == 'true'
+    steps:
+      - name: Cache dependencies
+        uses: actions/cache@e12d46a63a90f2fae62d114769bbf2a179198b5c
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
+
+      - name: Cargo Check
+        run: cargo check
+
+      - name: Lint with Clippy
+        run: |
+          cargo add clippy
+          cargo clippy
+        working-directory: ./app_rust
+
+      - name: Run tests
+        run: cargo test --verbose
+        working-directory: ./app_rust
+
+  docker_build:
+    timeout-minutes: 30
+    runs-on: ubuntu-22.04
+    needs: [ paths-filter, checks ]
+    if: needs.paths-filter.outputs.is_in_rust_dir == 'true'
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
+      - name: Login to docker hub
+        run: |
+          docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push docker image
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        with:
+          context: ./app_rust
+          file: ./app_rust/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/dev_ops_course_bonus
+
+    #        From source: https://docs.github.com/en/actions/publishing-packages/publishing-docker-images

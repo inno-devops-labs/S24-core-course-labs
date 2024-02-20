@@ -7,4 +7,3 @@ __pycache__
 
 # For rust projects
 target/
-Cargo.lock
