@@ -32,13 +32,6 @@ jobs:
         python-version: "3.12.0"
         cache: "poetry"
 
-    # - name: Load cached venv
-    #   id: cached-poetry-dependencies
-    #   uses: actions/cache@v2
-    #   with:
-    #     path: .venv
-    #     key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-
     - name: Install dependencies
       run: poetry install
 
