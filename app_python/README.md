@@ -24,3 +24,8 @@ docker run -d -p {port-name}:{docker-port-name} --name new_container flask-app
 
 ## How to check
 Go to the `localhost:{port-name}`
+
+
+## Unit Tests
+All `Unit tests` lie in directory `/app_python/tests/...`
+Tests include static testing of code. 
