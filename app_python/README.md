@@ -100,3 +100,7 @@ docker run -d -p 8000:8000 --name <container_name> <image_name>:latest
 - `<image_name>:latest` specifies which image to use to create the container.
   After running the container, visit [http://localhost:8000] in your browser to see the application displaying Moscow's
   current time.
+
+## Unit Tests
+
+Refer to `Testing and Code Quality` section at `PYTHON.MD`.
