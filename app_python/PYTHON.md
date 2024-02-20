@@ -17,5 +17,9 @@ development.
 
 ## Testing
 
-This application was tested manually by comparing the outputs with this
-[site](https://www.timeanddate.com/worldclock/russia/moscow)
+This application was tested using unit tests and `pytest` library. There are 3
+tests:
+
+1. Checks availability of the application
+2. Checks that non-broken HTML is returned
+3. Checks that displayed time is correct excluding milliseconds
