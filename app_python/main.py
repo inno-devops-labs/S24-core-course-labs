@@ -6,7 +6,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
-templates = Jinja2Templates(directory="./app_python/templates")
+templates = Jinja2Templates(directory="./templates")
 
 
 @app.get("/")

@@ -17,9 +17,9 @@ For now you have to refresh the browser page manually to update the time.
    ```bash
    pip install -r requirements.txt
    ```
-2. Run `main.py` from the root directory of a project to start the FastAPI server:
+2. Run `main.py` from the `app_python` directory of a project to start the FastAPI server:
     ```bash
-    python .\app_python\main.py
+    python .\main.py
     ```
 3. Open a web browser and go to `http://localhost:8000`
 
@@ -65,10 +65,10 @@ Then go to the [localhost:8000](http://localhost:8000/) to see Moscow time.
 
 To run the tests:
 
-- Run the following command in root directory of a project:
+- Run the following command in `app_python` directory of a project:
 
    ```bash
-   pytest .\app_python\tests\test.py
+   pytest .\tests\test.py
    ```
 
 ## Continuous Integration Workflow
