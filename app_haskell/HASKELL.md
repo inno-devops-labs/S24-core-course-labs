@@ -18,4 +18,15 @@ warnings enabled to ensure code quality.
 
 ## Testing
 
-So far, I tested my web application manually using `curl`.
+The application is quite small, and `getCurrentMoscowTime` is the only
+function one can write unit tests for (other tests would be integration tests).
+For this function, I test these properties:
+
+- The returned time is not too old;
+- The timezone is correct;
+- The returned time is monotonic.
+
+While writing tests, I followed these best practices:
+
+- Write tightly scoped unit tests;
+- Check that the tests work by intentionally introducing a bug.
