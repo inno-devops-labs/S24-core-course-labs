@@ -1,3 +1,8 @@
+import time
+from datetime import datetime
+from pytz import timezone
+
+
 def test_get_returns200(client):
     """
     Test the availability of "/" endpoint
@@ -10,8 +15,6 @@ def test_get_time_returns_correct_time(client):
     """
     Test the correctness of time in moscow
     """
-    from datetime import datetime
-    from pytz import timezone
 
     response = client.get("/")
     MSK = timezone("Europe/Moscow")
@@ -23,7 +26,6 @@ def test_get_time_returns_different_time_each_request(client):
     """
     Test chainging time after refreshing
     """
-    import time
 
     response1 = client.get("/")
     time.sleep(1)

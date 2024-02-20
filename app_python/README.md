@@ -38,7 +38,7 @@ This web application provides the current time in the Moscow time zone.
 
 6. Go to the link shown in the terminal, and you will get the time in Moscow.
 
-## Testing
+## Unit tests
 
 For testing purposes, you can execute all tests by running the following command inside the `/app_python` directory:
 

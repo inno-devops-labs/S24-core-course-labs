@@ -32,6 +32,16 @@ I wrote tests for the main endpoint, the following tests where added:
 
 3. Test how refreshing the page affects the time diplayed.
 
+## Testing best practices
+
+- All tests are isolated from each other. Thus, having a completly isolated unit testing.
+
+- Followed Arrange, Act, Assert pattern (also known as AAA)
+
+- Added docstring description for each test
+
+- Followed common naming conventions for naming tests.
+
 ## Ensure code quality
 
 I formatted the code using python black formatter
