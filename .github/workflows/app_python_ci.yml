@@ -34,8 +34,6 @@ jobs:
         run: pytest
       - name: Install Snyk
         run: npm install -g snyk
-      - name: Set up Snyk
-        run: export SNYK_TOKEN=12345678
       - name: Authenticate Snyk
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
       - name: Check vulnerabilities
