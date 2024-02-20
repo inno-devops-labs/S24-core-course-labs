@@ -5,10 +5,9 @@ name: Python application
 
 on:
   push:
-    branches: [ "lab03" ]
-
-permissions:
-  contents: read
+    paths:
+      - 'app_python/**'
+      - '.github/workflows/python-ci.yml'
 
 jobs:
   build:
@@ -34,4 +33,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Testing
       run: |
-        python test_app.py
+        pytest
