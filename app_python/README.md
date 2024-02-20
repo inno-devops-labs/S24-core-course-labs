@@ -86,3 +86,24 @@ Ensure the following dependencies are installed before running the unit tests:
 
 - Flask
 - pytz
+
+## Continuous Integration Workflow
+
+The CI workflow defined in this project automates the testing, linting, and Docker image building process for the Python application using GitHub Actions. The workflow consists of the following jobs:
+
+### Build and Test
+- **Job Name**: build_test
+- **Trigger**: Triggered on every push to the repository.
+- **Description**: This job sets up a Python environment, caches dependencies to speed up subsequent runs, installs project dependencies, and runs unit tests using `unittest`.
+
+### Linting
+- **Job Name**: lint
+- **Trigger**: Triggered on every push to the repository.
+- **Description**: This job checks the code for style and potential issues using Flake8, a Python linting tool. It ensures that the codebase adheres to coding standards and best practices.
+
+### Docker Image Building
+- **Job Name**: docker
+- **Trigger**: Triggered on every push to the repository.
+- **Description**: This job builds and pushes a Docker image of the Python application to Docker Hub. It sets up Docker Buildx for multi-platform builds and utilizes Docker's official actions for seamless integration.
+
+The CI workflow helps maintain code quality, ensures consistency, and automates the deployment process, facilitating efficient development practices.
