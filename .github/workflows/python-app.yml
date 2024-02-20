@@ -45,10 +45,7 @@ jobs:
       run: cd app_python && poetry run flake8 --exclude=.venv
       
     - name: Test with pytest
-      run: cd app_python && poetry run pytest
-
-    - name: Check for coverage
-      run: cd app_python && poetry run coverage report -m --fail-under=90
+      run: cd app_python && poetry run pytest --cov --fail-under=90
 
   security:
     runs-on: ubuntu-latest
