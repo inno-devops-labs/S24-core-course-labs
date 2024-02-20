@@ -118,7 +118,8 @@ docker run -d -p 8080:8080 --name app_python server-app:latest
 2. Creating env file, installing dependencies 
 3. Linting (flake8 linter is used)
 4. Tests (pytest is used)
-5. Login to DockerHub, build image and push 
+5. Login to DockerHub, build image and push
+6. Security check (Snyk tool is used)
 
 <!-- USAGE EXAMPLES -->
 ## Usage
