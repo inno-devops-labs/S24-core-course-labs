@@ -3,7 +3,7 @@ name: app python workflow
 on: [push]
 
 jobs:
-  enviroment: github-actions
+  environment: github-actions
   build-and-test:
     runs-on: ubuntu-latest
 
