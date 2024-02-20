@@ -36,5 +36,5 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t vectorsmaster/flask-app:latest ./python_app
+        docker build -t vectorsmaster/flask-app:latest ./app_python
         docker push vectorsmaster/flask-app:latest
