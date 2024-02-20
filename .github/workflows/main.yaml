@@ -52,7 +52,7 @@ jobs:
         - build-and-test
       defaults:
         run:
-          working-directory: ./app_python
+          working-directory: app_python
 
       steps:
         - uses: actions/setup-python@v2
