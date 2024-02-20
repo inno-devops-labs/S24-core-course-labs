@@ -4,6 +4,7 @@
 name: Python application
 
 on:
+  push:
   pull_request:
     branches: [ "main" ]
 
@@ -12,12 +13,12 @@ permissions:
 
 jobs:
   paths-filter:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     outputs:
       is_in_python_dir: ${{ steps.filter.outputs.in_python }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: dorny/paths-filter@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
+      - uses: dorny/paths-filter@ebc4d7e9ebcb0b1eb21480bb8f43113e996ac77a
         id: filter
         with:
           ref: ${{ github.ref_name }}
@@ -27,26 +28,34 @@ jobs:
   # source: https://stackoverflow.com/questions/70708306/github-actions-run-step-job-in-a-workflow-if-changes-happen-in-specific-folde
 
   build:
-
-    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    runs-on: ubuntu-22.04
     needs: paths-filter
     if: needs.paths-filter.outputs.is_in_python_dir == 'true'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
       - name: Set up Python 3.10
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@61a6322f88396a6271a6ee3565807d608ecaddd1
         with:
           python-version: "3.10"
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         working-directory: ./app_python
 
       - name: Lint with flake8
         run: |
+          pip install flake8
           # stop the build if there are Python syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
@@ -55,6 +64,7 @@ jobs:
 
       - name: Test with pytest
         run: |
+          pip install pytest
           pytest
         working-directory: ./app_python
 
