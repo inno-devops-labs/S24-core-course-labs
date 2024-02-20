@@ -4,6 +4,11 @@
 
 ![Python App security](https://github.com/Dirakon/S24-core-course-labs/actions/workflows/app_python_security.yml/badge.svg)
 
+![Csharp App tests](https://github.com/Dirakon/S24-core-course-labs/actions/workflows/app_csharp_testing.yml/badge.svg)
+
+![Csharp App security](https://github.com/Dirakon/S24-core-course-labs/actions/workflows/app_csharp_security.yml/badge.svg)
+
+
 ## Introduction
 
 Welcome to the DevOps Engineering course labs! These hands-on labs are designed to guide you through various aspects of DevOps practices and principles. As you progress through the labs, you'll gain practical experience in application development, containerization, testing, infrastructure setup, CI/CD processes, and more.
