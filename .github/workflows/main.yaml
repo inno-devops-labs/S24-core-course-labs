@@ -22,8 +22,10 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
+          context: .
           push: true
           tags: user/app:latest
+
   test:
     runs-on: ubuntu-latest
     steps:
@@ -31,10 +33,6 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.12'
-     # - name: Run image
-      #  uses: abatilo/actions-poetry@v2
-      #  with:
-       #   poetry-version: '1.7.1'
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
