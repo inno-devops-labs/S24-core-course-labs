@@ -48,7 +48,7 @@ jobs:
       run: poetry --directory app_python run pytest
 
     - name: Check for coverage
-      run: poetry --directory app_python run coverage report -m --fail-under=90
+      run: cd app_python && poetry run coverage report -m --fail-under=90
 
   security:
     runs-on: ubuntu-latest
