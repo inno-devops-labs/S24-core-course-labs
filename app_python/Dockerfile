@@ -12,7 +12,7 @@ WORKDIR /python_app
 
 # Copy only the necessary files into the container
 COPY app.py DOCKER.md PYTHON.md README.md requirements.txt ./
-COPY template ./template
+COPY template/* ./template
 # Set a non-root user
 
 # Install any needed dependencies specified in requirements.txt
