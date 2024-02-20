@@ -18,9 +18,10 @@ jobs:
       is_in_python_dir: ${{ steps.filter.outputs.in_python }}
     steps:
       - uses: actions/checkout@v2
-      - uses: dorny/paths-filter@v2
+      - uses: dorny/paths-filter@v3
         id: filter
         with:
+          ref: ${{ github.ref_name }}
           filters: |
             in_python:
               - './app_python/**'
