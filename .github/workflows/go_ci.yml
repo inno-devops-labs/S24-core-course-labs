@@ -35,6 +35,7 @@ jobs:
         uses: golangci/golangci-lint-action@v4
         with: 
             version: v1.54
+            working-directory: ${{ env.WORKING_DIR }}
       - name: Test
         run: | 
           go test
