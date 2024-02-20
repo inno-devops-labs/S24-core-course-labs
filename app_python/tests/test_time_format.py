@@ -17,3 +17,4 @@ def test_current_time_format(client):
         r"The current time in Moscow is: \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}",
         data,
     )
+    
