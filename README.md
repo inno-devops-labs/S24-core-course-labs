@@ -1,5 +1,6 @@
 # DevOps Engineering Labs
 ![CI Python](https://github.com/tanmaysharma2001/S24-core-course-labs/actions/workflows/python_ci.yaml/badge.svg)
+https://github.com/tanmaysharma2001/S24-core-course-labs/actions/workflows/python-ci.yml
 
 ## Introduction
 
