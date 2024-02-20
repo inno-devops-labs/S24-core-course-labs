@@ -22,9 +22,10 @@ jobs:
         name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-         file: ./app_python/Dockerfile
-         push: true
-         tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+          context: ./app_python  # Specify the directory containing the Dockerfile and requirements.txt
+          file: Dockerfile  # Update to just "Dockerfile" since it's in the context directory
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
 
   test:
     runs-on: ubuntu-latest
