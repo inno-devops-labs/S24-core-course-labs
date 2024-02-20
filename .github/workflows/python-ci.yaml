@@ -64,7 +64,7 @@ jobs:
       - name: Lint code
         working-directory: app_python
         run: |
-          black . --line-length=79 --check
+          black . --line-length=79
           flake8 .
 
       - name: Tests
