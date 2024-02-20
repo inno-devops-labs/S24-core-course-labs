@@ -1,6 +1,9 @@
 name: Python CI
 
 on: [push, pull_request]
+  paths:
+      - 'app_python/**'
+      - '.github/workflows/ci_python.yaml'
 
 jobs:
   build:
