@@ -16,3 +16,7 @@ build/
 .fake
 bin/
 obj/
+
+.history
+.idea
+.DS_STORE
