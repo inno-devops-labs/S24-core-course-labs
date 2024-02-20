@@ -15,3 +15,11 @@ As we're using Python for this project, Flask's way of working fits nicely with 
    - Meaningful and descriptive names are used for variables, functions, and classes.
 ### Testing
 Manual testing was used to verify the functionality and interactions of the application.
+
+## Unit tests
+I have created unit tests for the Flask application using the unittest framework. The main test I wrote is test_display_time_msk, which tests the / route of the application to ensure it returns the current time in Moscow correctly.
+
+### Best Practices Applied:
+- Used the unittest.TestCase class to define test cases.
+- Utilized the Flask test client to simulate requests and test responses.
+- Checked response status codes and content to verify the correctness of the application output.

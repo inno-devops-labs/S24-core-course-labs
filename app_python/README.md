@@ -1,4 +1,5 @@
 # Python Web Application Documentation
+[![CI](https://github.com/anastasia-martynova/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)](https://github.com/anastasia-martynova/S24-core-course-labs/actions/workflows/main.yaml)
 
 ## Description
 This Python web application displays the current time in Moscow. It was developed using Flask framework, following best practices and coding standards.
@@ -51,3 +52,24 @@ This application is containerized using Docker for easy deployment and portabili
 - `requirements.txt`: Python packages with their versions necessary for running the application.
 - `PYTHON.md`: Explains Flask choice; covers coding standards & testing.
 
+## Unit Tests
+Unit tests cover essential functionalities, such as displaying the current time in Moscow, and verify the expected behavior of the application.
+
+### Running Unit Tests:
+To run the unit tests:
+```bash
+python -m unittest test.py
+```
+
+## Continuous Integration (CI) Workflow
+### Workflow Steps:
+1. Dependencies Installation: Installs project dependencies specified in requirements.txt.
+2. Linting: Runs pylint to ensure code quality and adherence to Python best practices.
+3. Unit Tests: Executes unit tests to verify the functionality of the Python code.
+4. Docker Image Building and Pushing:
+   - Login to Docker Hub: Authenticates with Docker Hub using GitHub Actions.
+   - Build and Push Docker Image: Builds a Docker image and pushes it to the Docker Hub registry for deployment.
+
+### How to Run the CI Workflow:
+1. When a push event occurs in the repository, the CI workflow is automatically triggered.
+2. The workflow can be found in the .github/workflows/main.yaml file.
