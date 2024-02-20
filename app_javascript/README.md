@@ -106,7 +106,7 @@ The application is containerized using Docker, ensuring portability and ease of 
 To build the Docker image locally, follow these steps:
 
 ```bash
-docker build -t moscow_tz_js .
+docker build -t zeyadalagamy/moscow_tz_js .
 ```
 
 This command builds the Docker image based on the provided Dockerfile (`Dockerfile`) in the `app_javascript` directory and tags it with the name `moscow_tz_js`.
