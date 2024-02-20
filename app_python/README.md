@@ -1,4 +1,4 @@
-![example workflow](https://github.com/Antony-Sk/S24-DevOps-labs/.github/python.yml/badge.svg)
+![example workflow](https://github.com/Antony-Sk/S24-DevOps-labs/.github/workflows/python.yml/badge.svg)
 
 ## Python web app
 
