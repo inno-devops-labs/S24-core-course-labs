@@ -31,7 +31,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --severity-threshold=high --file=app_python/*
+          args: --severity-threshold=high --file=app_python/*.py
 
   build:
     name: Build and Test
@@ -70,7 +70,7 @@ jobs:
 
       - name: Tests
         run: |
-          cd .. && pytest .
+          pytest
 
   push-docker:
     name: Build and Push Docker Image
