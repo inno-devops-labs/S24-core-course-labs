@@ -48,8 +48,7 @@ jobs:
       - name: Snyk
         run: |
           npm install -g snyk
-          export SNYK_TOKEN=${{ secrets.SNYK_TOKEN }}
-          snyk auth $SNYK_TOKEN
+          snyk auth ${{ secrets.SNYK_TOKEN }}
           cd app_python
           snyk test --code
 
