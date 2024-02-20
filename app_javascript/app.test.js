@@ -19,8 +19,18 @@ describe('GET /', () => {
 
   it('should respond with the current Moscow time', async () => {
     const response = await request(app).get('/');
+    let regex = /\d{1,2}\/\d{1,2}\/\d{4}, \d{1,2}:\d{2}:\d{2} (AM|PM)/g;
+    const receivedTime = response.text.match(regex);
     const moscowTime = new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" });
-    expect(response.text).toContain(moscowTime);
+
+    const time1 = new Date(receivedTime[0]);
+    const time2 = new Date(moscowTime);
+
+    const diff = Math.abs(time1.getTime() - time2.getTime());
+
+    result = diff < 10000;
+    
+    expect(result).toBe(true);
   });
 });
 
