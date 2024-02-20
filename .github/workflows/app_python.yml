@@ -26,7 +26,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-        cache: 'pip' # caching pip dependencie
+        cache: 'pip'
         
 
     - name: Dependencies
@@ -49,7 +49,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-        cache: 'pip' # caching pip dependencie
+        cache: 'pip'
 
     - name: Lint
       run: |
@@ -93,7 +93,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     - name: Snyk
-      uses: snyk/actions/python-3.9@master
+      uses: snyk/actions/python@master
       with:
           args: --skip-unresolved app_python/
       env:
