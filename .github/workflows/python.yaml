@@ -41,7 +41,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Snyk check for vulnerabilities
+      - name: Snyk vulnerability scan
         uses: snyk/actions/python-3.10@master
         with:
           args: --skip-unresolved app_python/

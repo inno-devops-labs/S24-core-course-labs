@@ -1,5 +1,7 @@
 # Python Web Application
 
+[![CI](https://github.com/g-akleh/S24-core-course-labs/actions/workflows/python.yaml/badge.svg)](https://github.com/g-akleh/S24-core-course-labs/actions/workflows/python.yaml)
+
 This Python web application displays the current time in Moscow.
 
 ## Installation
@@ -114,6 +116,7 @@ This project is integrated with GitHub Actions for continuous integration. The C
 - Install dependencies
 - Lint the code using flake8
 - Run unit tests
+- Utilizing Snyk to check for vulnerabilities
 - Login to DockerHub
 - Build and push a Docker image
 
@@ -125,4 +128,4 @@ This project is integrated with GitHub Actions for continuous integration. The C
 - Docker
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License
