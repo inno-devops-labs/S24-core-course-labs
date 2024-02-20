@@ -33,7 +33,6 @@ jobs:
 
       - name: Linter
         run: |
-          pip install flake8
           flake8 .
 
       - name: Run pytest

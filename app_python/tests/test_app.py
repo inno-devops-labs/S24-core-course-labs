@@ -1,11 +1,11 @@
-# Import necessary modules
 import pytest
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import pytz
 from datetime import datetime, timezone
-from app import app, get_moscow_time  # Import the Flask app and related functions
+from app import app, get_moscow_time
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 
 # Pytest fixture to create a test client for the Flask app
 @pytest.fixture
