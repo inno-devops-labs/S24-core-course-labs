@@ -53,7 +53,7 @@ jobs:
 
       - name: Push Docker image to registry
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/app_python:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/your-image-name:latest
 
       - name: Install Snyk CLI
         run: pip install snyk
