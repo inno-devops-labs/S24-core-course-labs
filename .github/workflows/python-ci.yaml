@@ -68,7 +68,6 @@ jobs:
           flake8 .
 
       - name: Tests
-        working-directory: app_python
         run: |
           pytest .
 
