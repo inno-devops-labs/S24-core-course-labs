@@ -38,3 +38,6 @@ CI includes
    - linting is run via `ruff`
    - unit tests are run via `pytest`
 2. Docker build & push
+   - only on push to main
+   - login, build and push as `:latest`
+3. Security - using `snyk`
