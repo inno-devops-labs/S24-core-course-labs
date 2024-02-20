@@ -59,7 +59,6 @@ jobs:
 
     needs:
       - build
-      - security
     services:
       docker:
         image: docker:latest
