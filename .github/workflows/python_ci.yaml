@@ -29,10 +29,38 @@ jobs:
       run: |
         flake8
 
+  testing:
+
+    runs-on: ubuntu-22.04
+
+    steps:
     - name: Run Tests
       run: |
         python -m unittest app_python/test_app.py
 
+  snyk:
+
+    runs-on: ubuntu-22.04
+
+    steps:
+
+    - name: Download Snyk
+      run: |
+        curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
+        chmod +x snyk-linux
+      working-directory: app_python
+
+    - name: Run Snyk
+      run: ./snyk-linux test --severity-threshold=high
+      working-directory: app_python
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  docker:
+
+    runs-on: ubuntu-22.04
+
+    steps:
     - name: Login to Docker Hub
       uses: docker/login-action@v1
       with:
@@ -43,9 +71,3 @@ jobs:
       run: |
         docker build -t ${{ secrets.DOCKER_USERNAME }}/app_python:latest app_python/.
         docker push ${{ secrets.DOCKER_USERNAME }}/app_python:latest
-
-    - name: Snyk Vulnerability Scan
-      run: |
-        curl -sSL https://get.snyk.io/bash | bash
-        snyk auth ${{ secrets.SNYK_TOKEN }}
-        snyk test --file=app_python/requirements.txt
