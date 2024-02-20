@@ -80,3 +80,10 @@ The project can be tested using the `pytest` command as shown below:
 
   ============================================================================================= 2 passed in 0.18s ==============================================================================================
   ```
+
+## CI Workflow
+The CI workflow is set up using GitHub Actions. The workflow includes the following essential steps:
+- Dependencies - Install the dependencies using `pip install -r requirements.txt`
+- Linter - Run the linter using `flake8`
+- Tests - Run the unit tests using `pytest`
+- Docker - Build and push the Docker image to Docker Hub
