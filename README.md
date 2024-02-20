@@ -74,7 +74,7 @@ Open a web browser and navigate to `http://127.0.0.1:5000/` to view the applicat
 To run tests, execute the following command:
 
 ```
-python -m unittest discover -s tests
+python test_app.py
 ```
 
 Ensure all tests pass before submitting a pull request for your changes.
