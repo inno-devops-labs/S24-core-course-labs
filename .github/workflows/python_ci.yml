@@ -26,9 +26,9 @@ jobs:
         working-directory: ./${{ env.WORKING_DIR }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python 3.10
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
           python-version: "3.10"
       - name: Install dependencies
@@ -56,9 +56,10 @@ jobs:
             --file=${{ env.WORKING_DIR }}/requirements.txt
             --skip-unresolved
       - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: snyk.sarif
+
   build-and-publish:
     timeout-minutes: 30
     permissions:
