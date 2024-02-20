@@ -21,9 +21,6 @@ env:
 jobs:
   test:
     timeout-minutes: 30
-    defaults:
-      run:
-        working-directory: ./${{ env.WORKING_DIR }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
