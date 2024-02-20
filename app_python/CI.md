@@ -12,7 +12,7 @@ This document outlines the best practices implemented in the Continuous Integrat
 
 ### 2. Code Linting
 
-**Description:** Consistent code style and formatting improve readability, maintainability, and collaboration within the development team.
+**Description:** Consistent code style and formatting improve readability, maintainability, and collaboration within the development  team.
 
 **Implementation:** Code linting is performed using Flake8, a popular Python linting tool. It checks the code for adherence to coding standards and identifies style violations within the `app_python/` directory.
 
