@@ -1,5 +1,7 @@
 # Web Application that displays the current Moscow time
 
+[![Python App Workflow](https://github.com/sapushha/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)](https://github.com/sapushha/S24-core-course-labs/actions/workflows/main.yaml)
+
 ## How to run
 
 1. Install the required packages:
