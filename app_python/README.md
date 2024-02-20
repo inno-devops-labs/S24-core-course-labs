@@ -1,7 +1,7 @@
-[![Docker](https://github.com/catdog905/dev-ops-course/actions/workflows/docker-publish.yml/badge.svg?branch=main)](https://github.com/catdog905/dev-ops-course/actions/workflows/docker-publish.yml)
-
-
 # Python Web Application
+
+[![Docker](https://github.com/catdog905/dev-ops-course/actions/workflows/docker-publish.yml/badge.svg?branch=main)](https://github.com/catdog905/dev-ops-course/actions/workflows/docker-publish.yml)
+[![Validator](https://github.com/catdog905/dev-ops-course/actions/workflows/validator.yml/badge.svg)](https://github.com/catdog905/dev-ops-course/actions/workflows/validator.yml)
 
 ## Overview
 
@@ -69,6 +69,7 @@ docker run -p 80:80 catdog905/dev-ops-cours-app-python
 ```
 
 ## CI workflow
+
 The project have 2 github workflows: `validator.yml` and `docker-publish.yml`
 
 - `validator.yml` workflow is reponsible for building the project (download dependencies), linting project files, testing project and checking it security level using snyk.
