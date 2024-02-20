@@ -16,6 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/current_time")
 def read_root():
     moscow_tz = timezone('Europe/Moscow')

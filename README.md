@@ -1,3 +1,5 @@
+[![Python App CI](https://github.com/vladdan16/S24-core-course-labs/actions/workflows/app_python.yaml/badge.svg)](https://github.com/vladdan16/S24-core-course-labs/actions/workflows/app_python.yaml)
+
 # DevOps Engineering Labs
 
 ## Introduction
