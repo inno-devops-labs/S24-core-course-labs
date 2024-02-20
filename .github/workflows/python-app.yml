@@ -41,7 +41,9 @@ jobs:
     - name: Build and push Docker images
       uses: docker/build-push-action@v5.1.0
       with:
-        context: app_python/Dockerfile
+        context: app_python/
+        file: app_python/Dockerfile
+        push: true
     - name: Docker Login
       uses: docker/login-action@v3.0.0
                
