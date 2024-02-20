@@ -12,4 +12,5 @@ I chose Flask as the framework for this Python web application because of its si
 - Documented the code with clear comments to enhance code readability and understanding.
 
 ## Testing:
-For testing the application, a test script `test_app.py` has been created using the `pytest` testing framework. This script includes a test function `test_get_time` that verifies the correctness of the response from the `get_time()` route. The test checks for the successful response status code, the presence of the message indicating the current time in Moscow, and validates the format of the displayed time to ensure accuracy in time representation.
+- For testing the application, a test script `test_app.py` has been created using the `pytest` testing framework. This script includes a test function `test_get_time` that verifies the correctness of the response from the `get_time()` route. The test checks for the successful response status code, the presence of the message indicating the current time in Moscow, and validates the format of the displayed time to ensure accuracy in time representation.
+- Also manual testing was applied: several runs of the app with checking the time after several refreshments comparing to the conventional time servers
