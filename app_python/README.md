@@ -2,6 +2,8 @@
 
 This project is a FastAPI-based web application designed to display the current time in Moscow.
 
+![example workflow](https://github.com/github/frog-da/DevOps/workflows/python_ci.yml/badge.svg)
+
 ## Local Installation
 
 Follow these steps to set up the project locally:
@@ -73,3 +75,19 @@ To run the tests:
 ```bash
 pytest
 ```
+
+## CI
+
+This project includes a CI workflow that runs on the `main` branch and pull requests to the `main` branch. The workflow is triggered when changes are made to the `app_python/` directory or the `.github/workflows/python_ci.yml` file. It uses the `ubuntu-latest` environment and has two jobs:
+
+### test
+
+This job installs dependencies, runs linting with flake8, runs tests with pytest, and scans for security vulnerabilities using Snyk. If any issues are found, they are uploaded to GitHub Code Scanning as a SARIF file.
+
+### build-and-publish
+
+This job builds and pushes a Docker image to Docker Hub.
+
+The workflow includes steps to check out the repository, set up Python, run the tests, and perform Docker operations.
+
+Please note that the workflow requires the `SNYK_TOKEN` and `DOCKERHUB_TOKEN` secrets to be set in the repository settings.
