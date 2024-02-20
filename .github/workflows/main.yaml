@@ -24,7 +24,6 @@ jobs:
         with:
          context: ./app_python
          file: ./app_python/Dockerfile
-         push: true
          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
 
   test:
