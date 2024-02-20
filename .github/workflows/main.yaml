@@ -23,7 +23,7 @@ jobs:
 
       - name: Testing
         run: |
-          python install flake8
+          pip install flake8
           pip flake8
 
   linting:
