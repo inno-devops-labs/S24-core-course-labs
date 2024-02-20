@@ -24,7 +24,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: 3.10
 
       - name: Install dependencies
         run: |
@@ -81,8 +81,8 @@ jobs:
 
       - name: Build  Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/app_python:latest ./app_python
+          docker build -t AlebrahimLaith/app_python:latest .
 
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/app_python:latest
+          docker push AlebrahimLaith/app_python:latest
