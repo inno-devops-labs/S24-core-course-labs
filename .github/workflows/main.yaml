@@ -25,18 +25,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.10@master
-        continue-on-error: true
+        with:
+          args: --skip-unresolved app_python/
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --sarif-file-output=snyk.sarif
-            --file=${{ env.WORKING_DIR }}/requirements.txt
-            --package-manager=pip
-            --skip-unresolved
-      - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: snyk.sarif
 
   build-and-test:
     timeout-minutes: 30
@@ -46,6 +38,7 @@ jobs:
     defaults:
       run:
         working-directory: ./app_python
+    steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
