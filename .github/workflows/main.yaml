@@ -30,9 +30,10 @@ jobs:
       - name: Lint with Ruff
         run:
           pip install ruff
-          ruff .
+          ruff check .
 
   build:
+    needs: lint-and-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
