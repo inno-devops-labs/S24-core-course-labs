@@ -38,5 +38,5 @@ jobs:
       - name: Docker Build and Push
         run: |
           docker build -t j_app app_java
-          docker tag p_app djhovi/j_app:latest
+          docker tag j_app djhovi/j_app:latest
           docker push djhovi/j_app:latest

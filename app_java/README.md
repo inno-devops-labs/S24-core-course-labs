@@ -1,3 +1,7 @@
+## Workflow Status
+
+![Java CI Workflow](https://github.com/starkda/S24-core-course-labs/actions/workflows/java_ci.yml/badge.svg?event=push)
+
 # Java Web Application
 
 This is a Java web application built using Spring Boot to track how many times a specific route is accessed.
@@ -39,17 +43,24 @@ To run the tests:
 ```bash
 mvn test
 ```
+
 ## Docker
+
 Building the Docker Image
+
  ```bash
     docker build -t <image name> .
 ```
+
 Pulling the docker Image
+
  ```bash
     docker pull djhovi/my-java-app:latest
 
 ```
+
 Running the docker Image
+
  ```bash
     docker run -p8080:8080 djhovi/my-java-app:latest
 

@@ -2,6 +2,9 @@
 
 ![Python CI Workflow](https://github.com/starkda/S24-core-course-labs/actions/workflows/python_ci.yml/badge.svg?event=push)
 
+![Java CI Workflow](https://github.com/starkda/S24-core-course-labs/actions/workflows/java_ci.yml/badge.svg?event=push)
+
+
 # DevOps Engineering Labs
 
 ## Introduction
