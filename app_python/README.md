@@ -37,3 +37,27 @@ To run the Docker image locally, use:
 
 
 Then visit `http://localhost:5000` in your web browser to see the application in action.
+
+## Unit Tests
+
+We've written unit tests for our application to ensure that it's working as expected. These tests are run automatically as part of our CI workflow.
+
+To run the unit tests locally, use the following command:
+`bash python -m unittest test.py`
+
+## Continuous Integration
+
+We've set up a CI workflow using GitHub Actions to automatically build and test our Python project whenever changes are pushed to the main branch or a pull request is opened.
+
+The CI workflow includes the following steps:
+
+- Checkout the code
+- Set up Python  3.8
+- Install dependencies
+- Lint the code with flake8
+- Run unit tests with pytest
+- Build and push a Docker image
+
+You can view the status of the CI workflow by clicking on the "Actions" tab at the top of this repository.
+
+![CI/CD Pipeline](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml/badge.svg)

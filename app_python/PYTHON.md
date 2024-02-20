@@ -14,3 +14,17 @@ Flask framework chosen for its simplicity and ease of use. It allows us to quick
 
 ## Testing
 * While our application is simple, python web application manually tested by browser Chrome.
+
+## Unit Tests
+
+We've used the `unittest` module in Python to write unit tests for our application. This module provides a rich set of tools for constructing and running tests.
+
+The tests we've written include:
+
+- `test_index`: This test checks that the `index` route returns a  200 status code and that the current time in Moscow is included in the response.
+
+Best practices applied in testing include:
+
+- Isolation: Each test is independent of the others.
+- Repeatability: The tests can be run any number of times and will always produce the same results.
+- Self-validation: The test itself is the specification of the expected behavior.
