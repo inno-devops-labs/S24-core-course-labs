@@ -1,4 +1,4 @@
-https://github.com/GuzelZakirova/devops-course/actions/workflows/app_python_ci.yml/badge.svg
+![Deploy badge](https://github.com/GuzelZakirova/devops-course/actions/workflows/app_python_ci.yml/badge.svg)
 
 # Application for displaying the Moscow time
 
