@@ -43,9 +43,11 @@ uvicorn app:app --reload
 
 Then open your browser and go to http://localhost:8000/ to see the current time in Moscow. 
 
+
 ## Unit Tests
 
 This project also contains unit tests, that allow us to keep code maintainable.
+
 
 To run the tests type the following command:
 
