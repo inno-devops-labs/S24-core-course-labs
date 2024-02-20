@@ -27,3 +27,8 @@ jobs:
 
       - name: Run Checkstyle
         run: mvn checkstyle:checkstyle --file app_java/pom.xml
+
+      - name: Snyk Security Scan
+        uses: snyk/actions/maven@master
+        with:
+          args: test
