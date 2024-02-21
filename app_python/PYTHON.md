@@ -8,14 +8,22 @@ It is also widely used and has rich documentation.
 
 ## Testing
 
-The project was tested manually by running the application and refreshing the web page.
+### Unit tests
+
+Unit testing was done with [pytest](https://docs.pytest.org/en/7.4.x/contents.html). The tests performed are:
+
+- Checking that the page mentions 'Moscow';
+- Verifying the time format.
+
+Some tests were also performed manually, for instance via page refreshing.
 
 ## Best Practices Applied
 
 - The code is written following **official Flask documentation**;
 - **Virtual environment** is used to isolate dependencies;
 - **GitHub** is used as **VCS** to track changes and project history;
-- PyCharm built-in **linter** is used to achieve style consistency.
+- PyCharm built-in **linter** is used to achieve style consistency;
+- Tests are clear and self-explanatory, performed via pytest.
 
 ## Coding Standards
 
