@@ -1,3 +1,5 @@
+[![Scala App Workflow](https://github.com/Skril3366/S24-core-course-labs/actions/workflows/scala.yml/badge.svg)](https://github.com/Skril3366/S24-core-course-labs/actions/workflows/scala.yml)
+
 # Date and Time in Moscow
 
 ## Table of Content
@@ -11,6 +13,9 @@
     - [Using Docker](#using-docker)
     - [Using Docker Compose](#using-docker-compose)
     - [Locally](#locally)
+  - [CI workflow](#ci-workflow)
+    - [Checks Job](#checks-job)
+    - [Build Job](#build-job)
 <!--toc:end-->
 
 ## Overview
@@ -94,3 +99,28 @@ test
 ```
 
 It can be accessed on http://localhost:8080/
+
+## CI workflow
+
+This GitHub Actions workflow automates testing and building of your Python
+application. It's triggered whenever code changes in `app_python` directory are
+pushed.
+
+### Checks Job
+
+The **Checks** job ensures the project passes basic quality checks on every commit by running tests and linting:
+
+1. Clones the repository using the latest Ubuntu environment.
+2. Installs OpenJDK 17
+3. Uses sbt build tool to manage dependencies
+4. Installs all required packages from build.sbt file
+5. Performs static analysis using scalafix and scalafmt
+6. Executes unit tests using ZIO Test framework
+
+### Build Job
+
+After successful checks, the **Build** job builds and pushes a Docker image to Docker Hub:
+
+1. Sets up Docker Buildx for multi-architecture support.
+2. Logins into Docker Hub using secure credentials stored as secrets.
+3. Builds and pushes an optimized Docker image based on the provided `Dockerfile`. The tag will be set to `skril/moscow-time:scala`.
