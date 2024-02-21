@@ -1,3 +1,6 @@
+"""
+Test for app
+"""
 import datetime
 import time
 
@@ -32,14 +35,17 @@ def test_moscow_time_go_further():
     client = app.test_client()
     first_response = client.get('/')
     first_time = first_response.get_data(as_text=True)
-    index_of_time_data = first_time.index("The current time in Moscow is: ") + len("The current time in Moscow is: ")
+    index_of_time_data = (first_time.index("The current time in Moscow is: ") +
+                          len("The current time in Moscow is: "))
     first_time = first_time[index_of_time_data:index_of_time_data + 19]
 
     time.sleep(1)
 
     second_response = client.get('/')
     second_time = second_response.get_data(as_text=True)
-    index_of_time_data = second_time.index("The current time in Moscow is: ") + len("The current time in Moscow is: ")
+    index_of_time_data = (second_time.index("The current time in Moscow is: ") +
+                          len("The current time in Moscow is: "))
     second_time = second_time[index_of_time_data:index_of_time_data + 19]
 
-    assert datetime.datetime.fromisoformat(first_time) < datetime.datetime.fromisoformat(second_time)
+    assert (datetime.datetime.fromisoformat(first_time) <
+            datetime.datetime.fromisoformat(second_time))

@@ -1,3 +1,7 @@
+"""
+Routing of the app
+"""
+
 from flask import Flask, render_template
 
 from .utils import get_moscow_time

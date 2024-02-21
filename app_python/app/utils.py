@@ -1,3 +1,6 @@
+"""
+Util functions of the app
+"""
 from datetime import datetime, timezone, timedelta
 
 
