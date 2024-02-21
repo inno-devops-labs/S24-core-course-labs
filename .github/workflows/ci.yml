@@ -36,7 +36,18 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Fetch only Python app folder
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: app_python
+          sparse-checkout-cone-mode: false
+      - name: Move files to root
+        run: |
+          ls -lah
+          shopt -s dotglob
+          mv app_python/* .
+          rm -rf app_python
+          ls -lah
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -45,10 +56,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r app_python/requirements.txt
+          pip install -r requirements.txt
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --all-projects
