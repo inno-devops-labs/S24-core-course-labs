@@ -16,7 +16,7 @@ pip install -r requirements.txt
 python main.py
 ```
 
-### Testing
+### Unit Test
 To run the tests, you can use the following command:
 
 ```bash 

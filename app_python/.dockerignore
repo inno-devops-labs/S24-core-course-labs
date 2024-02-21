@@ -1,2 +1,5 @@
-*
-!app_python/
+/DOCKER.md
+/Dockerfile
+/PYTHON.md
+/README.md
+/CI.md
