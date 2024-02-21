@@ -70,3 +70,9 @@ I have several tests:
         then the second responses will differ from the first
 - Check if the application response once and one more time after that,
         then the second responses will be more recent time than the first
+
+### CI workflow
+
+![workflow status](https://github.com/MinusOne-1/DevOpsUI-s24-labs/actions/workflows/app_python_CI.yml/badge.svg)
+
+CI workflow was set up using Github Actions. it contains stages as import dependencies, linting, and testing. Also CI works with Docker Hub: build and push updated source code to the Docker image.
