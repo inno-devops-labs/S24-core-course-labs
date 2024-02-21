@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-from datetime import datetime, timezone, timedelta
+from flask import Flask
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
