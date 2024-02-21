@@ -22,14 +22,17 @@ def index():
         time_part = current_time.strftime('%H:%M:%S')
 
         # Render the template with date and time
-        return render_template('index.html', date_part=date_part, time_part=time_part)
+        return render_template('index.html',
+                               date_part=date_part, time_part=time_part)
 
     except Exception as e:
-        # Log the exception (you can also use a logging library for more advanced logging)
+        # Log the exception (you can also use a logging
+        # library for more advanced logging)
         print(f"An unexpected error occurred: {str(e)}")
 
         # Return a generic error message to the user
-        return "An unexpected error occurred. Please try again later.", 500
+        return "An unexpected error occurred. " \
+               "Please try again later.", 500
 
 
 if __name__ == '__main__':
