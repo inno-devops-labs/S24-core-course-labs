@@ -1,4 +1,4 @@
-name: app pyhton
+name: app python
 
 on:
   push:
@@ -38,7 +38,9 @@ jobs:
       run: |
         pip install flake8
         flake8 app.py
+
   snyk:
+    runs-on: ubuntu-latest
     needs: build-app-pipeline
     timeout-minutes: 5
 
