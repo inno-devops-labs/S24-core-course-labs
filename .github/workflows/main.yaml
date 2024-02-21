@@ -29,6 +29,9 @@ jobs:
         pip install -r webapp/requirements.txt
         pip install flake8 pytest
 
+    - name: Update Flake8
+      run: pip install --upgrade flake8
+
     - name: Run code linting
       run: |
         flake8 webapp/.
