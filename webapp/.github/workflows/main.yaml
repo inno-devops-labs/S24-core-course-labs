@@ -34,7 +34,7 @@ jobs:
 
     - name: Run tests
       run: |
-        python webapp/manage.py test
+        python manage.py test
 
   build_and_push_docker:
     runs-on: ubuntu-latest
