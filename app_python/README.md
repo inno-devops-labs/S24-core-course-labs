@@ -68,6 +68,19 @@ This command will run the container in detached mode (`-d`) and map port 5000 on
 
 You can now access your application by navigating to `http://localhost:5000` in your web browser.
 
+## Unit Tests
+
+We have implemented unit tests to ensure the correctness and reliability of our code. These tests cover critical components of our application and help us catch bugs early in the development process.
+
+To run the unit tests locally, follow these steps:
+
+1. Ensure that Python and the necessary dependencies are installed on your system.
+2. Navigate to the root directory of the project.
+3. Run the following command to execute the unit tests:
+   ```bash
+   pytest
+   ```
+
 ## Continuous Integration (CI) Workflow
 
 ### GitHub Actions
