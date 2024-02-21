@@ -93,3 +93,5 @@ For contributors, this means that you can submit pull requests with confidence, 
 ---
 
 By implementing these CI practices, we aim to maintain high standards of quality and reliability for the Moscow Time Web App, ensuring a seamless experience for both developers and users.
+
+[![Python application](https://github.com/esadmazi/S24-core-course-labs/actions/workflows/python-app.yml/badge.svg?branch=lab3)](https://github.com/esadmazi/S24-core-course-labs/actions/workflows/python-app.yml)
