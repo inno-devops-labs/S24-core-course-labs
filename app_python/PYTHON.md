@@ -3,7 +3,6 @@
 ## Table of Content
 
 <!--toc:start-->
-
 - [Date and Time in Moscow](#date-and-time-in-moscow)
   - [Table of Content](#table-of-content)
   - [Framework Choice](#framework-choice)
@@ -13,7 +12,8 @@
     - [FastAPI](#fastapi)
     - [Why Flask](#why-flask)
   - [Best Practices](#best-practices)
-  <!--toc:end-->
+  - [Unit Tests](#unit-tests)
+<!--toc:end-->
 
 ## Framework Choice
 

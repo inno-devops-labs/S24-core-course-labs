@@ -5,12 +5,18 @@
 ## Table of Content
 
 <!--toc:start-->
-
 - [Date and Time in Moscow](#date-and-time-in-moscow)
   - [Table of Content](#table-of-content)
   - [Overview](#overview)
-  - [Running](#running) - [Using Docker](#using-docker) - [Using Docker Compose](#using-docker-compose) - [Locally](#locally)
-  <!--toc:end-->
+  - [Running](#running)
+    - [Using Docker](#using-docker)
+    - [Using Docker Compose](#using-docker-compose)
+    - [Locally](#locally)
+  - [Unit Tests](#unit-tests)
+  - [CI workflow](#ci-workflow)
+    - [Checks Job](#checks-job)
+    - [Build Job](#build-job)
+<!--toc:end-->
 
 ## Overview
 

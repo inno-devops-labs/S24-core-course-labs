@@ -17,6 +17,6 @@ object Main extends ZIOAppDefault {
   } yield ()).provide(
     Router.live,
     Server.live,
-    MoscowDateTime.live,
+    MoscowDateTime.live
   )
 }
