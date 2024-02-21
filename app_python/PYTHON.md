@@ -31,3 +31,11 @@ Several practices are in place to maintain high-quality code:
 
 By following these best practices, the Flask web application maintains a clean, readable, and maintainable codebase.
 
+## Unit Tests
+
+Unit tests are designed to test individual components of the application in isolation. In this project, we use Python's built-in `unittest` module to write and run our unit tests.
+
+- **Isolation**: Each test should be isolated and independent of other tests. This ensures that the outcome of one test does not affect the outcome of another.
+- **Clear Assertions**: Assertions should clearly specify what is being tested and what the expected outcome is.
+- **Mocking External Dependencies**: When testing components that rely on external services, use mocking to isolate the component being tested.
+- **Test Coverage**: Aim for high test coverage, but ensure that tests are meaningful and provide value.
