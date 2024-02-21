@@ -28,6 +28,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
+          cache-dependency-path: app_javascript/pnpm-lock.json
       - name: Install dependencies
         working-directory: ./app_javascript
         run: pnpm install
@@ -39,11 +40,30 @@ jobs:
         if: '!cancelled()'
         working-directory: ./app_javascript
         run: pnpm run test
-  # security:
-  #   name: Snyk Security
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - 123
+  security:
+    name: Snyk Security
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: snyk/actions/setup@master
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+          cache-dependency-path: app_javascript/pnpm-lock.json
+      - name: Install dependencies
+        working-directory: ./app_javascript
+        run: pnpm install
+      - name: Snyk test
+        working-directory: ./app_javascript
+        run: snyk test --sarif-file-output=../snyk.sarif
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
   build:
     runs-on: ubuntu-latest
     needs: [test]
