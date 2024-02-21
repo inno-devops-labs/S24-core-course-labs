@@ -5,10 +5,10 @@ name: Docke-scala
 # separate terms of service, privacy policy, and support
 # documentation.
 
-on: push
-  #push:
-  # paths:
-  #   - app_python/**
+on:
+  push:
+    paths:
+      - app_scala/**
 
 env:
   # Use docker.io for Docker Hub if empty

@@ -5,7 +5,10 @@
 
 name: Scala CI
 
-on: [push]
+on:
+  push:
+    paths:
+      - app_scala/**
 
 permissions:
   contents: read
