@@ -54,10 +54,40 @@ To run the automated tests for this system use the following command:
 pytest
 ```
 
+## Docker Usage
+
+This section covers building, pulling, and running the Docker container for the application.
+
+### Building the Docker Image
+
+To build the Docker image, run the following command in the project app_python folder:
+
+```bash
+docker build -t xdrdvd/app_python:latest .
+```
+
+### Pushing the Docker Image
+
+To push the Docker image to Docker Hub, run the following command in the project app_python folder:
+
+```bash
+docker push xdrdvd/app_python:latest
+```
+
+### Pulling and running the Docker Container
+
+To pull and run the Docker container, run the following commands:
+
+```bash
+docker pull xdrdvd/app_python:latest
+docker run -p 5000:5000 xdrdvd/app_python:latest
+```
+
 ## Built With
 
 - [FastAPI](https://fastapi.tiangolo.com/) - The web framework used
 - [Python](https://www.python.org/) - Programming Language
+- [docker](https://www.docker.com/) - Containerization
 
 ```
 

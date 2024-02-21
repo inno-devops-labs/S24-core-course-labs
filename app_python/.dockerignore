@@ -1,0 +1,15 @@
+__pycache__
+.venv
+.classpath
+.dockerignore
+.git
+.gitignore
+.project
+.settings
+.toolstarget
+.vs
+.vscode
+.env
+Dockerfile*
+*.md
+LICENSE
