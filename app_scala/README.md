@@ -51,3 +51,9 @@ Run docker container from image using
 docker run -p 9000:9000 -e SECRET_KEY="QCY?tAnfk?aZ?iwrNwnxIlR6CTf:G3gf:90Latabg@5241AB`R5W:1uDFN];Ik@n" catdog905/dev-ops-cours-app-scala
 ```
 
+## Continious integration
+
+There are two workflows in the `.github/workflows/`: `scala.yml` and `docker-publish-scala.yml`
+
+- `scala.yml` is responsible for linters check, unit tests check and snyk security check
+- `docker-publish-scala.yml` is responsible for building docker image and publilshing it to docker hub
