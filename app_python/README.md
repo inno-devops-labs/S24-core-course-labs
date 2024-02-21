@@ -1,3 +1,5 @@
+![Workflow name](https://github.com/RoukayaZaki/S24-core-course-labs/blob/lab03/.github/workflows/ci.yml/badge.svg)
+
 # Python Web Application
 
 This is a Python web application built using the Flask framework to display the current time in Moscow.
@@ -75,3 +77,10 @@ If you prefer to pull the pre-built Docker image from a registry, you can use th
 ```bash
 docker pull roukayazaki/devops-lab02:latest
 ```
+### CI
+The workflow is done using Github actions
+The workflow includes:
+- building, testing and linting job
+- building and deploying image on dockerhub
+- checking security valnurabilities with Synk
+The workflow uses ubuntu as a base for every job
