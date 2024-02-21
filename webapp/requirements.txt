@@ -4,4 +4,6 @@ pytz==2024.1
 setuptools==65.5.1
 sqlparse==0.4.4
 wheel==0.38.4
-flake8
+flake8==4.0.1
+pycodestyle==2.8.0
+pyflakes==2.4.0
