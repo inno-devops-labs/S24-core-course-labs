@@ -53,7 +53,7 @@ jobs:
       - name: Install pipenv
         run: |
           pip install pipenv
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          export PATH="$PATH:$HOME/.local/bin"
 
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python@master
