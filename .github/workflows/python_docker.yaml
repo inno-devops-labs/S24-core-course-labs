@@ -16,11 +16,20 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Docker image
-        working-directory: ./app_python
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/app_python .
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
+      - name: Cache Docker layers
+        run: |
+          docker buildx create --use
+          docker buildx inspect --bootstrap
+
+      # Cache Docker layers with cache-to
+      - name: Build Docker image with cache-to
+        working-directory: ./app_python
+        run: docker buildx build --cache-to type=local,dest=/tmp/.buildx-cache -t ${{ secrets.DOCKER_USERNAME }}/app_python .
+
+      # Push Docker image
       - name: Push Docker image
         working-directory: ./app_python
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/app_python
-
+        run: docker buildx build --cache-from type=local,src=/tmp/.buildx-cache -t ${{ secrets.DOCKER_USERNAME }}/app_python --push .

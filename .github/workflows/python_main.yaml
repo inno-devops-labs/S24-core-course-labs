@@ -8,6 +8,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      # Cache dependencies
+      - name: Cache pip packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Pip install deps
         working-directory: ./app_python
         run: |
@@ -19,3 +29,12 @@ jobs:
       - name: Pytest
         working-directory: ./app_python
         run: pytest -v
+
+      # Step to save dependencies cache
+      - name: Save dependencies cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
