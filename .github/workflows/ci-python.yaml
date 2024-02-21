@@ -2,6 +2,9 @@ name: CI (Python)
 
 on:
   push:
+    branches:
+      - 'main'
+      - 'master'
     paths:
       - app_python/**
   pull_request:
