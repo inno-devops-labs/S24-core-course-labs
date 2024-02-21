@@ -1,5 +1,7 @@
 # My First Web App On Rust
 
+![Rust Workflow](https://github.com/IlnurHA/DevOps-S24-core-course-labs/actions/workflows/rust-app.yml/badge.svg)
+
 --- 
 
 ## Routes:
