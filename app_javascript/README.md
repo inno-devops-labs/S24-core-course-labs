@@ -1,5 +1,7 @@
 # Visual Sorts
 
+![Tests workflow](https://github.com/evermake/iu_devops/actions/workflows/ci-javascript.yaml/badge.svg)
+
 ## Overview
 
 Web-application written in [Svelte](https://svelte.dev) and [TypeScript](https://www.typescriptlang.org/) that visualizes common sorting algorithms.
