@@ -2,7 +2,7 @@
 
 ---
 
-## Task 1: Python Web Application
+## Task 1: Web Application
 
 ### Framework Selection
 
@@ -20,3 +20,13 @@ I chose first framework I saw in the Internet. It's my first writing attempt
 ### Testing
 
 Testing is a built-in feature of rust lang. Could be executed by `cargo test`
+
+#### Performed Tests
+
+Tests for function and corresponding request for `plus`, `minus`, `multiply`, and `divide`
+
+#### Testing Best Practices
+
+- Each Unit test is as small as possible
+- Naming of test corresponds
+  to [Descriptive and Meaningful Phrases (DAMP)](https://imsadra.me/unit-testing-in-python-and-best-practices#heading-5-damp-andamp-dry-principles-in-your-tests)

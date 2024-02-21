@@ -24,11 +24,22 @@ framework creates API documentation automatically from code.
    new version API without changing other parts of API.
 
 2. Additional information of API inside code
-(`tags` in `APIRouter`, `response_model` in `API`, etc.).
-This information allows `FastAPI` to describe API documentation.
+   (`tags` in `APIRouter`, `response_model` in `API`, etc.).
+   This information allows `FastAPI` to describe API documentation.
 
 ### Testing
 
-Testing performed by using `pytest` and `pytest-time` for `time.sleep()`.
-Test is written in a way that time requested from webapp two times
-with 10 seconds pause. Then compare time after pause with calculated predicted time.
+There are 3 unit tests for time api path testing:
+
+- For correctness of response
+- For correctness of sending type
+- For correctness of time as some time passes
+
+#### Testing Best Practices
+
+- Configuration file in separate file to configure test env and isolating it from application
+- Each Unit test is as small as possible
+- Naming of test
+  corresponds
+  to [Descriptive and Meaningful Phrases (DAMP)](https://imsadra.me/unit-testing-in-python-and-best-practices#heading-5-damp-andamp-dry-principles-in-your-tests)
+- Using conventional naming for test files
