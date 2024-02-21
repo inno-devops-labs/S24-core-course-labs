@@ -61,5 +61,5 @@ jobs:
         run: |
           cd app_python
           docker build -t ${{ secrets.DOCKER_USERNAME }}/flask-moscow-app .
-          docker tag flask-moscow-app ${{ secrets.DOCKER_USERNAME }}/flask-moscow-app
+          docker tag ${{ secrets.DOCKER_USERNAME }}/flask-moscow-app ${{ secrets.DOCKER_USERNAME }}/flask-moscow-app
           docker push ${{ secrets.DOCKER_USERNAME }}/flask-moscow-app
