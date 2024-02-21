@@ -9,6 +9,8 @@
 
 ## Coding Standards, Testing, and Code Quality:
 
-- **Coding Standards**: The code follows PEP 8 guidelines for Python code style and formatting. Variable names are descriptive, functions are appropriately named, and indentation is consistent.
-- **Testing**: Unit tests are implemented using the `unittest` module to ensure the correctness of the application's functionality. Tests cover critical parts of the application such as routing and template rendering.
+### Coding Standards:
+The code follows PEP 8 guidelines for Python code style and formatting. Variable names are descriptive, functions are appropriately named, and indentation is consistent.
+### Testing:
+Unit tests are implemented using the `unittest` module to ensure the correctness of the application's functionality. Tests cover critical parts of the application such as routing and template rendering.
 
