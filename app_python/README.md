@@ -1,7 +1,7 @@
 # My Python Web Application
-[![app python](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml/badge.svg?branch=lab3)](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml)
 
 ## Overview
+[![app python](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml/badge.svg?branch=lab3)](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml)
 This application displays the current time in Moscow using the Flask framework.
 
 ## Features
