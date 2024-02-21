@@ -32,4 +32,4 @@ jobs:
       with:
         context: app_python/
         push: true
-        tags: user/app:latest
+        tags: mrfired/devops-course:latest
