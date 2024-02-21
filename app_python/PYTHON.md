@@ -43,6 +43,12 @@ I followed these procedures to ensure the quality of my code:
 
 - Code Reviews: In order to identify possible problems and guarantee code quality, I carried out code reviews with my teammates.
 
+## Unit Tests
+My test case sets up a Flask test client and sends a GET request to the root URL ('/'). 
+
+Then, it checks whether the response status code is 200, whether the response contains the expected text, and whether the returned time format matches the expected pattern.
+
+
 ## Conclusion
 
 I've written a functional, dependable, and maintainable Python web application by adhering to coding standards and upholding code quality. The long-term success of the project and the convenience of collaboration are enhanced by these best practices.

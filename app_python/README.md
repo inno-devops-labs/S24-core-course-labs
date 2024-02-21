@@ -1,4 +1,7 @@
-# My Python Web Application
+# Flask Python Web Application
+[![Test](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/test.yml/badge.svg?branch=lab-3&event=push)](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/test.yml)
+[![Lint](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/lint.yml/badge.svg?branch=lab-3&event=push)](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/lint.yml)
+[![Snyk Check](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/snyk.yml/badge.svg?branch=lab-3&event=push)](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/snyk.yml)
 
 ## Description
 This Python web application displays the current time in Moscow using the Flask framework.
@@ -17,7 +20,13 @@ This Python web application displays the current time in Moscow using the Flask 
 3. Install the required packages
    ```bash
     pip install -r requirements.txt
-    ```
+   ```
+
+## Testing
+Run the tests:
+   ```bash
+   python app_python/tests/unit/test_moscow_time.py
+   ```
 
 ## Usage
 1. Run the application:
@@ -55,6 +64,19 @@ This Python web application displays the current time in Moscow using the Flask 
     ```bash
     docker build -t devops-flask-app .
     ```
+
+## CI Workflow
+GitHub Actions is used to set up the CI workflow. The two workflows are Test and Lint.
+
+### Lint Workflow
+Using `pylint`, the Lint workflow verifies that the code is free of linting errors.
+
+Every push and pull request in the repository starts the workflow.
+
+### Test Workflow
+The application's unit tests are executed via the Test workflow.
+
+Every push and pull request in the repository starts the workflow.
 
 ## Author
 Inga Ezhova
