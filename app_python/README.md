@@ -1,6 +1,6 @@
 # Python Web Application
 
-[![CI](https://github.com/g-akleh/S24-core-course-labs/actions/workflows/python.yaml/badge.svg)](https://github.com/g-akleh/S24-core-course-labs/actions/workflows/python.yaml)
+[![Python App](https://github.com/g-akleh/S24-core-course-labs/actions/workflows/python.yaml/badge.svg)](https://github.com/g-akleh/S24-core-course-labs/actions/workflows/python.yaml)
 
 This Python web application displays the current time in Moscow.
 
