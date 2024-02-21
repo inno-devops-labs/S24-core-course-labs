@@ -97,6 +97,5 @@ docker run -p 5000:5000 xdrdvd/app_python:latest
 - [Python](https://www.python.org/) - Programming Language
 - [docker](https://www.docker.com/) - Containerization
 
-```
-
-```
+## CI/CD
+![python app workflow](https://github.com/ahmedXDR/S24-core-course-labs/actions/workflows/python-ci.yml/badge.svg)

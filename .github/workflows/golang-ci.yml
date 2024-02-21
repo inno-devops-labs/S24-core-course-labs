@@ -1,0 +1,99 @@
+name: Go application CI
+
+on:
+  push:
+    branches: [lab3-solution]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app_golang
+
+    steps:
+      - name: Checkout contents
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Build
+        run: |
+          go build -v -o ./bin/moscowtime .
+
+      - name: Test
+        run: |
+          go test
+
+  security_scan:
+    needs: build-test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app_golang
+
+    steps:
+      - name: Checkout contents
+        uses: actions/checkout@v4
+
+      - name: Download snyk
+        run: |
+          curl --compressed  https://static.snyk.io/cli/latest/snyk-linux -o snyk
+          chmod +x ./snyk
+          mv ./snyk /usr/local/bin/
+
+      - name: Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Build
+        run: |
+          go build -v -o ./bin/msktime .
+      - name: Run Snyk to check for vulnerabilities
+        run: |
+          snyk auth ${{ secrets.SNYK_TOKEN }}
+          snyk test
+
+  docker:
+    needs: security_scan
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app_golang
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: "{{defaultContext}}:app_golang"
+          push: true
+          tags: xdrdvd/app_golang:latest
