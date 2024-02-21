@@ -30,6 +30,11 @@ python app.py
 
 4. Open your web browser and navigate to `http://localhost:5000/` to view the application.
 
+5. Unit Tests
+To run the tests:
+```
+pytest
+```
 ## Project Structure
 
 - `app.py`: Main Flask application file containing route definitions.
