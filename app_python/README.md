@@ -45,3 +45,13 @@ docker run -p 5000:5000 mrfired/devops-course:lab2
 ```
 
 Then you will be able to use the application on `localhost:5000`
+
+## Unit Tests
+
+To test the application after installation simply run from within virtual environment:
+
+```bash
+pytest
+```
+
+> Note: Testing is not available in Docker installation.
