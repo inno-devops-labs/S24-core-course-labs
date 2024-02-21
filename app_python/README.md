@@ -39,3 +39,25 @@ The requirements.txt file lists the necessary dependencies for the application t
 - Flask
 - pytz
 - datetime
+
+## Docker
+
+### Building the Docker Image
+To build the Docker image for this application, follow these steps:
+```bash
+docker build -t app_python .
+```
+
+### Pulling the Docker Image
+To pull the Docker image from Docker Hub, use the following command:
+```bash
+docker pull {your_username}/app_python
+```
+
+### Running the Docker Container
+To run the Docker container for the application, execute the following command:
+```bash
+docker run -d -p 5000:5000 {your_username}/app_python
+```
+
+Access the web application in your browser at http://localhost:5000/ to view the current time in Moscow within the Docker container.
