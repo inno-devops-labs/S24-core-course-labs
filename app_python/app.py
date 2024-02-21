@@ -1,12 +1,12 @@
 from flask import Flask, render_template
 from datetime import datetime
 import pytz
-import os
+#import os
 import subprocess
 
 # Create a non-root user if it doesn't exist
-subprocess.call(['adduser', '-D', 'myuser'])
-os.setuid(1000)  # Switch to non-root user
+#subprocess.call(['adduser', '-D', 'myuser'])
+#os.setuid(1000)  # Switch to non-root user
 
 app = Flask(__name__)
 
