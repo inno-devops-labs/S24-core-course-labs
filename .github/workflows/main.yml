@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -42,13 +42,17 @@ jobs:
           cd app_python
           pipenv run pytest
 
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python@master
-        with:
-          args: --skip-unresolved app_python/
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
+  security:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@master
+        - name: Run Snyk to check for vulnerabilities
+          uses: snyk/actions/python@master
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  docker_build:
+    runs-on: ubuntu-latest
+    steps:
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
