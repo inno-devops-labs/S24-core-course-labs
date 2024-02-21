@@ -62,3 +62,11 @@ docker run -d -p 5000:5000 belowzero1/app_python:v1
 This command will run the container in detached mode (`-d`) and map port 5000 on the host to port 5000 in the container.
 
 Now you can access the application on `http://localhost:5000` in browser.
+
+### Unit Tests
+I have several tests:
+- Check that application give response without errors
+- Check if the application response once and one more time after that,
+        then the second responses will differ from the first
+- Check if the application response once and one more time after that,
+        then the second responses will be more recent time than the first

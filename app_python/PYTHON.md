@@ -14,11 +14,12 @@
 4. Tests structure for PyTest
     - I placed test in a "test" folder
     - all test's names have same pattern: "test_*"
+5. Add linting using pylint.
 
 ### Coding standards
 
 I used function of PyCharm to ensure that my code is correlate with PEP8 standards.
 Also, I wrote comments there it can be useful.
 
-### Testing implementation
+### Testing
 I used PyTest to run tests and "coverage" extension to know test coverage - it is 98% now. 
