@@ -1,5 +1,7 @@
 # Python Web Application
 
+![CI](https://github.com/MrFired/S24-core-course-labs/actions/workflows/ci.yml/badge.svg)
+
 ## Overview
 
 This web application displays the current time in Moscow.
