@@ -1,4 +1,5 @@
 # Flask Web Application
+[![app python](https://github.com/itoqsky/S24-core-course-labs/actions/workflows/main.yml/badge.svg?branch=lab3)](https://github.com/itoqsky/S24-core-course-labs/actions/workflows/main.yml)
 
 This simple Flask web application displays the current time in Moscow. It serves as a demonstration of best practices in web development.
 
