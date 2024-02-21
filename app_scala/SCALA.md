@@ -3,11 +3,12 @@
 ## Table of Content
 
 <!--toc:start-->
+
 - [Date and Time in Moscow](#date-and-time-in-moscow)
   - [Table of Content](#table-of-content)
   - [Tech Stack Choice](#tech-stack-choice)
   - [Best Practices](#best-practices)
-<!--toc:end-->
+  <!--toc:end-->
 
 ## Tech Stack Choice
 
@@ -41,3 +42,25 @@
      which allows developers to be sure in the correctness of the application
 6. `.gitignore` file uses [template by author of Scala
    Cookbook](https://alvinalexander.com/source-code/scala/sample-gitignore-file-scala-sbt-intellij-eclipse/)
+
+## Unit Tests
+
+Due to the simplicity of the application only a function `MoscowDateTime.getCurrentTime`
+is tested, but nonetheless it follows the next best practices:
+
+1. **Isolating tests from external dependencies:** Due to functional nature of
+   scala and ease of use of ZIO Test framework it is simple to mock all the
+   outer world (including Clock service) for proper testing.
+2. **Writing small, focused tests:** There are 2 test cases: whether the
+   function returns time different to one in the timezone other than Moscow
+   (London) is chosen and whether it returns the same time as in Moscow.
+3. **Using descriptive names:** The name "Moscow Time Spec" encapsulates all the
+   tests related to `MoscowTime` class
+4. **Keeping tests independent:** Since each test runs independently, there is no
+   dependency on the order in which these tests are executed.
+5. **Consistent naming conventions**: Adheres to standard naming conventions of
+   Scala and ZIO test
+6. **Document tests**: Each test has a brief description on which feature it
+   tests
+7. **Run tests frequently**: Executes tests upon changes within the `app_scala`
+   directory utilizing continuous integration (CI).

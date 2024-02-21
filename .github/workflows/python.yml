@@ -9,6 +9,7 @@ on:
 jobs:
   checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - name: Setup Python
@@ -30,6 +31,7 @@ jobs:
         run: poetry run pytest
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     needs: checks
     steps:
       - uses: actions/checkout@v4
@@ -51,6 +53,7 @@ jobs:
           cache-to: type=inline
   snyk:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
