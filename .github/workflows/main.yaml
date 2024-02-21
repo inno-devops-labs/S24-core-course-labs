@@ -48,7 +48,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t webapp/webapp webapp/.
+      run: docker build -t webapp webapp/.
 
     - name: Push Docker image to Docker Hub
       run: |
