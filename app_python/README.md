@@ -46,13 +46,21 @@ python main.py
 
 The application will be available at `http://127.0.0.1:5000/` by default change `PORT` environment variable to change the port.
 
-## Running the Tests
 
-To run the automated tests for this system use the following command:
+### Unit Tests
+
+The application includes a suite of unit tests to ensure the functionality behaves as expected. Here's a brief overview of the tests:
+
+- **Test for Time Updates**: This test checks that the time displayed updates correctly at least every 5 seconds, ensuring dynamic content is properly rendered.
+- **Test for Time Format**: This test verifies that the time displayed matches the expected format (HH:MM:SS), ensuring data is accurately presented.
+
+To execute the unit tests, ensure you have pytest installed and run the following command in the app root:
 
 ```bash
 pytest
 ```
+
+These tests are vital for maintaining the application's reliability and ensuring any new changes do not break existing functionality.
 
 ## Docker Usage
 
