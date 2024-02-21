@@ -7,4 +7,3 @@ wheel==0.38.4
 flake8==4.0.1
 pycodestyle==2.8.0
 pyflakes==2.4.0
-CPython==3.8.5
