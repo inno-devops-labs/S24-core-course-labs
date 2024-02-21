@@ -32,7 +32,9 @@ jobs:
 
     - name: Run unit tests
       run: |
-        python -m unittest app_python/test.py
+        cd app_python
+        python -m unittest test.py
+
 
     - name: Lint with flake8
       run: |
