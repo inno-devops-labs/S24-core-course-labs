@@ -3,8 +3,12 @@ name: Node.js CI
 on:
   push:
     branches: [main, lab03]
+    paths:
+      - "app_javascript/**"
   pull_request:
     branches: [main, lab03]
+    paths:
+      - "app_javascript/**"
 
 jobs:
   security:
