@@ -1,62 +1,63 @@
-# DevOps Engineering Labs
+[![Python application](https://github.com/arinazaza/S24-core-course-labs-Zavelevich/actions/workflows/app_python.yml/badge.svg)](https://github.com/arinazaza/S24-core-course-labs-Zavelevich/actions/workflows/app_python.yml)
+# Flask Moscow Time Web Application
 
-## Introduction
+This is a simple web application built with Flask that displays the current time in Moscow.
 
-Welcome to the DevOps Engineering course labs! These hands-on labs are designed to guide you through various aspects of DevOps practices and principles. As you progress through the labs, you'll gain practical experience in application development, containerization, testing, infrastructure setup, CI/CD processes, and more.
+## Getting Started
 
-## Architecture
+1. Install the required dependencies from the `requirements.txt` file:
+   ```shell
+   pip install -r requirements.txt
+   ```
 
-This repository has a master branch containing an introduction. Each new lab assignment will be added as a markdown file with a lab number.
+2. Run the Flask application:
+   ```shell
+   python app_python.py
+   ```
 
-## Rules
+3. Open your web browser and visit `http://localhost:5000` to see the current time in Moscow.
 
-To successfully complete the labs and pass the course, follow these rules:
+## Docker
 
-1. **Lab Dependency:** Complete the labs in order; each lab builds upon the previous one.
-2. **Submission and Grading:** Submit your solutions as pull requests (PRs) to the master branch of this repository. You need at least 6/10 points for each lab to pass.
-3. **Fork Repository:** Fork this repository to your workspace to create your own version for solving the labs.
-4. **Recommended Workflow:** Build your solutions incrementally. Complete lab N based on lab N-1.
-5. **PR Creation:** Create a PR from your fork to the master branch of this repository and from your fork's branch to your fork's master branch.
-6. **Wait for Grade:** Once your PR is created, wait for your lab to be reviewed and graded.
+### Build
 
-### Example for the first lab
+To build the Docker image locally, run the following command in the project's root directory:
 
-1. Fork this repository.
-2. Checkout to the lab1 branch.
-3. Complete the lab1 tasks.
-4. Push the code to your repository.
-5. Create a PR to the master branch of this repository from your fork's lab1 branch.
-6. Create a PR to the master branch of your repository from your lab1 branch.
-7. Wait for your grade.
+```bash
+docker build -t image_name .
+```
 
-## Grading and Grades Distribution
+### Pull
 
-Your final grade will be determined based on labs and a final exam:
+To pull the Docker image from a remote repository, use the following command:
 
-- Labs: 70% of your final grade.
-- Final Exam: 30% of your final grade.
+```bash
+docker arinazaza/app_python.py 
+```
 
-Grade ranges:
+### Run
 
-- [90-100] - A
-- [75-90) - B
-- [60-75) - C
-- [0-60) - D
+To run the Docker container from the built or pulled image, execute the following command:
 
-### Labs Grading
+```bash
+docker run -d --name container_name -p 8000:8000 image_name
+```
 
-Each lab is worth 10 points. Completing main tasks correctly earns you 10 points. Completing bonus tasks correctly adds 2.5 points. You can earn a maximum of 12.5 points per lab by completing all main and bonus tasks.
+This command will start a container with the name `container_name`, bind the container's port 8000 to the host's port 8000, and use the `image_name` image.
 
-Finishing all bonus tasks lets you skip the exam and grants you 5 extra points. Incomplete bonus tasks require you to take the exam, which could save you from failing it.
+## Unit tests
 
->The labs account for 70% of your final grade. With 14 labs in total, each lab contributes 5% to your final grade. Completing all main tasks in a lab earns you the maximum 10 points, which corresponds to 5% of your final grade.
->If you successfully complete all bonus tasks, you'll earn an additional 2.5 points, totaling 12.5 points for that lab, or 6.25% of your final grade. Over the course of all 14 labs, the cumulative points from bonus tasks add up to 87.5% of your final grade.
->Additionally, a 5% bonus is granted for successfully finishing all bonus tasks, ensuring that if you successfully complete everything, your final grade will be 92.5%, which corresponds to an A grade.
+This application is covered by unit tests made with Pytest. Tests can be executed by `pytest` command.
 
-## Deadlines and Labs Distribution
+## CI workflow 
 
-Each week, two new labs will be available. You'll have one week to submit your solutions. Refer to Moodle for presentation slides and deadlines.
+This repository uses GitHub Actions to automate the linting, testing and building. The workflow is triggered on each push to the `main` branch.
 
-## Submission Policy
+## Dependencies
 
-Submitting your lab results on time is crucial for your grading. Late submissions receive a maximum score of 6 points for the corresponding lab. Remember, completing all labs is necessary to successfully pass the course.
+- Flask
+- pytz
+
+## License
+
+[MIT License](LICENSE)
