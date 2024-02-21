@@ -1,0 +1,61 @@
+name: Scala App Workflow
+
+on:
+  push:
+    paths:
+      - app_scala/**
+      - .github/workflows/scala.yml
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17.0.10"
+          distribution: "temurin"
+      - name: Linting (Scalafix or Scalastyle)
+        working-directory: app_scala
+        run: sbt "scalafix --check; scalafmtCheckAll"
+      - name: Testing (SBT Test)
+        working-directory: app_scala
+        run: sbt test
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: checks
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./app_scala
+          file: ./app_scala/Dockerfile
+          push: true
+          tags: skril/moscow-time:scala
+          cache-from: type=registry,ref=skril/moscow-time:scala
+          cache-to: type=inline
+  # it seems that something is wrong with this action and it runs infinitely, so
+  # this check is commented for now, but it may be related to snyk
+  # infrastructure and may start working in the future
+  # snyk:
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 10
+  #   steps:
+  #     - uses: actions/checkout@master
+  #     - name: Run Snyk to check for vulnerabilities
+  #       uses: snyk/actions/scala@master
+  #       with:
+  #         args: scan --file=./app_scala/build.sbt
+  #       env:
+  #         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
