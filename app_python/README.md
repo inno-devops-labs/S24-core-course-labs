@@ -1,5 +1,4 @@
-![Workflow name](https://github.com/RoukayaZaki/S24-core-course-labs/blob/lab03/.github/workflows/ci.yml/badge.svg)
-
+[![Flask App CI](https://github.com/RoukayaZaki/S24-core-course-labs/actions/workflows/ci.yml/badge.svg)](https://github.com/RoukayaZaki/S24-core-course-labs/actions/workflows/ci.yml)
 # Python Web Application
 
 This is a Python web application built using the Flask framework to display the current time in Moscow.
