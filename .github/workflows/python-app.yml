@@ -23,6 +23,7 @@ jobs:
       - uses: dorny/paths-filter@ebc4d7e9ebcb0b1eb21480bb8f43113e996ac77a
         id: filter
         with:
+          base: ${{ github.ref_name }}
           ref: ${{ github.ref_name }}
           filters: |
             in_python:

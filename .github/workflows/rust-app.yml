@@ -20,6 +20,7 @@ jobs:
         id: filter
         with:
           ref: ${{ github.ref_name }}
+          base: ${{ github.ref_name }}
           filters: |
             in_rust:
               - './app_rust/**'
