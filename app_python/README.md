@@ -55,3 +55,13 @@ pytest
 ```
 
 > Note: Testing is not available in Docker installation.
+
+## CI Workflow
+
+The Continuous Integration workflow for the project consists of the following steps:
+
+1. **Set up**: configuring the environment for CI;
+2. **Dependencies**: installing requirements;
+3. **Lint**: linting the project sources;
+4. **Test**: testing the implementation;
+5. **Docker Build & Push**: building and pushing the image to Docker Hub.
