@@ -1,8 +1,8 @@
 # My Python Web Application
+[![app python](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml/badge.svg?branch=lab3)](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml)
 
 ## Overview
 This application displays the current time in Moscow using the Flask framework.
-[![app python](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml/badge.svg?branch=lab3)](https://github.com/a1kuat/S24-core-course-labs/actions/workflows/main.yml)
 
 ## Features
 - Displays the current time in Moscow.
@@ -41,10 +41,11 @@ Then visit `http://localhost:5000` in your web browser to see the application in
 
 ## Unit Tests
 
-We've written unit tests for our application to ensure that it's working as expected. These tests are run automatically as part of our CI workflow.
+We've written unit tests for our Flask application using `pytest`. These tests ensure that the application behaves as expected.
 
 To run the unit tests locally, use the following command:
-`bash python -m unittest test.py`
+
+`bash pip install pytest pytest app_python/test_app.py`
 
 ## Continuous Integration
 

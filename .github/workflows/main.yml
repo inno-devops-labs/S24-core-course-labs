@@ -30,10 +30,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
-    - name: Run unit tests
+    - name: Run pytest
       run: |
-        cd app_python
-        python -m unittest test.py
+        pip install pytest
+        pytest app_python/test_app.py
 
 
     - name: Lint with flake8
