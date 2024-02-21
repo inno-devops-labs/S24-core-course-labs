@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes:   5
+    timeout-minutes:   2
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -41,9 +41,9 @@ jobs:
         pip install flake8
         flake8 app_python/app.py
 
-  snyk:
+  security:
     needs: build
-    timeout-minutes:   5
+    timeout-minutes:   3
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -59,9 +59,9 @@ jobs:
   docker:
     needs:
       - build
-      - snyk
+      - security
     runs-on: ubuntu-latest
-    timeout-minutes:   7
+    timeout-minutes:   4
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
