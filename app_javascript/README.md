@@ -28,7 +28,7 @@ _Step 5._ Run local development server:
 pnpm run dev
 ```
 
-_Step 6._ Go to [localhost:8080](http://localhost:8080) in the browser and watch sorting algorithms in action.
+_Step 6._ Go to [localhost:5173](http://localhost:5173) in the browser and watch sorting algorithms in action.
 
 _Step 7._ (Optional) To build the production build run:
 
@@ -36,7 +36,7 @@ _Step 7._ (Optional) To build the production build run:
 pnpm run build
 ```
 
-Production build will be in `public` directory.
+Production build will be in `dist` directory.
 
 ## Docker
 

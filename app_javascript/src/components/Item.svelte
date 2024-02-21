@@ -6,7 +6,6 @@
   export let isComparing: boolean
 </script>
 
-
 <span
   class="item"
   class:comparing={isComparing}

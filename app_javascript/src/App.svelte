@@ -181,6 +181,7 @@
     padding: 0.5rem 1rem;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
+    appearance: none;
     -webkit-appearance: none;
     transition-property: letter-spacing, background-color, color;
     transition-duration: 200ms;

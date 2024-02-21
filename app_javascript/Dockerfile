@@ -22,4 +22,4 @@ COPY --from=build /app/public /app/public
 
 EXPOSE 8000
 
-CMD [ "pnpm", "start", "--host", "--port=8000" ]
+CMD [ "pnpm", "preview", "--host", "--port=8000" ]

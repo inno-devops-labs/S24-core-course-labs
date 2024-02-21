@@ -18,11 +18,11 @@ export function shuffle(array: any[]) {
  * @param max maximum value]
  * @returns Randomly generated integer
  */
-export function randint(min, max) {
+export function randint(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-export function generateArray(count, min: number = 0, max: number = 100) {
+export function generateArray(count: number, min: number = 0, max: number = 100) {
   const array = [];
   for (let i = 0; i < count; ++i) {
     array.push(randint(min, max));

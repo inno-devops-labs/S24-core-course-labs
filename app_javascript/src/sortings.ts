@@ -74,7 +74,11 @@ export const algorithms: { name: string, func: SortingFunc }[] = [
   {name: "Selection Sort", func: selectionSort},
 ];
 
-export function generateSortMethods(elements: ArrayElement[], updateTrigger, delayGetter) {
+export function generateSortMethods(
+  elements: ArrayElement[],
+  updateTrigger: () => void,
+  delayGetter: () => number,
+) {
   // Map between number indecies and elements indecies
   const elementsIndecies: { [key: number]: number } = {};
 
