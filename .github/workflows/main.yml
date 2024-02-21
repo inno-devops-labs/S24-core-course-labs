@@ -50,6 +50,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install pipenv
+        run: pip install pipenv
+
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python@master
         with:
