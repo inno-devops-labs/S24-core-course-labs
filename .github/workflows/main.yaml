@@ -31,7 +31,8 @@ jobs:
 
     - name: Run code linting
       run: |
-        flake8 webapp/.
+        cd webapp
+        flake8 .
 
     - name: Run tests
       run: |
