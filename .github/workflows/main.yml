@@ -33,8 +33,7 @@ jobs:
 
     - name: Test Execution
       run: |
-        pip install pytest
-        pytest app_python/test_app.py
+        python3 app_python/test_app.py
 
   linter:
     needs: setup_environment
