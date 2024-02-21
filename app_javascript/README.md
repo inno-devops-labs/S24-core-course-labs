@@ -65,3 +65,21 @@ docker run -p 8000:8000 evermake/devops-visual-sorts
 ```
 
 App will be available at [localhost:8000](http://localhost:8000).
+
+## Testing
+
+Tests are written with Vitest testing framework.
+
+To run the tests, use the following command:
+
+```sh
+pnpm run test
+```
+
+## CI/CD
+
+Application has a configured GitHub Actions workflow at root of the repository at `/.github/workflows/ci-javascript.yaml`, which includes:
+
+- Running unit tests;
+- Running checks with `svelte-check`;
+- Building and publishing Docker image (if all checks above have passed).

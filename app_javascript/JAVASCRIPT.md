@@ -17,3 +17,10 @@ When implementing the web application, I followed the best practices:
 - In JavaScript has no common coding-style standard like PEP8 in Python, but my own style is consistent accross the codebase;
 
 I also manually tested the application locally on my machine.
+
+## Unit Tests
+
+Application unit tests are located in `src` and names like `*.test.ts`.
+
+- I followed official Vitest guidelines on how to write the tests (de-facto in JS).
+- I used multiple small unit tests to test only specific functions to make sure they work as expected.
