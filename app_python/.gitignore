@@ -1,0 +1,12 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore the virtual environment
+venv/
+
+# Ignore any local files or directories
+*.sqlite
+*.pyc
+.DS_Store
