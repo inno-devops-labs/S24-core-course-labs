@@ -46,10 +46,10 @@ jobs:
         path: app_python/snyk-linux
         key: ${{ runner.os }}-snyk-${{ hashFiles('app_python/snyk-linux') }}
         restore-keys: |
-            ${{ runner.os }}-snyk-
-            ${{ runner.os }}-
+          ${{ runner.os }}-snyk-
+          ${{ runner.os }}-
 
-    # Download Snyk
+      # Download Snyk
     - name: Download Snyk binary
       if: steps.cache-snyk.outputs.cache-hit != 'true'
       run: |
@@ -57,34 +57,44 @@ jobs:
         chmod +x snyk-linux
       working-directory: app_python
 
-    # Run Snyk
+      # Run Snyk
     - name: Run Snyk
       run: ./snyk-linux test --severity-threshold=high
       working-directory: app_python
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-    - name: Docker
-      uses: actions/checkout@v4
+  docker:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
 
-    # Set up QEMU
-    - name: Set up QEMU
-      uses: docker/setup-qemu-action@v3
+    needs:
+      - build
+    if: ${{ needs.build.result == 'success'}}
 
-    # Set up Docker Buildx
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+    steps:
+      # Checkout the repository
+      - uses: actions/checkout@v4
 
-    # Login to DockerHub
-    - name: Login to DockerHub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_TOKEN }}
+      # Set up QEMU
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
-    # Build and push the image
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/app_python:latest
-    
-    - name: Push Docker image to DockerHub
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/app_python:latest
+      # Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Login to DockerHub
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      # Build and push the image
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: app_python
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/app_python:latest
