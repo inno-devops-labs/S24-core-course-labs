@@ -1,0 +1,14 @@
+# Ignore Python bytecode files
+__pycache__
+.pytest_cache
+.vscode
+test/
+.gitignore
+*.md
+
+# Ignore virtual environment directories
+.venv/
+
+# Ignore Docker related files
+.dockerignore
+Dockerfile
