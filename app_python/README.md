@@ -63,3 +63,55 @@ docker run -d -p 5000:5000 almetovkamil/app_python:v1
 This command will run the container in detached mode (`-d`) and map port 5000 on the host to port 5000 in the container.
 
 You can now access your application by navigating to `http://localhost:5000` in your web browser.
+
+## Continuous Integration (CI) Workflow
+
+### GitHub Actions
+
+We have set up a CI workflow using GitHub Actions to automate the testing, linting, building, and pushing of our application Docker image to Docker Hub.
+
+#### Linter and Testing Workflow
+
+The `linter` job is responsible for setting up dependencies, running linting checks, and testing our application code. It consists of the following steps:
+
+1. **Checkout**: Check out the code from the repository.
+2. **Install Dependencies**: Install Python dependencies specified in `requirements.txt`.
+3. **Lint with Ruff**: Run linting checks using Ruff.
+4. **Test with pytest**: Run unit tests using pytest.
+
+The job runs on each push event to the repository.
+
+#### Docker Build and Push Workflow
+
+The `build` job is responsible for building the Docker image of our application and pushing it to Docker Hub. It consists of the following steps:
+
+1. **Checkout**: Check out the code from the repository.
+2. **Login to Docker Hub**: Authenticate with Docker Hub using Docker login.
+3. **Set up Docker Buildx**: Set up Docker Buildx for building multi-platform Docker images.
+4. **Build and push**: Build the Docker image using the Dockerfile located in the `app_python` directory and push it to Docker Hub with the specified tags.
+
+The job also runs on each push event to the repository.
+
+### How to Use the CI Workflow
+
+1. **Push to Repository**: Make changes to your code and push them to your GitHub repository.
+2. **GitHub Actions**: GitHub Actions will automatically trigger the CI workflow defined in the `.github/workflows` directory.
+3. **View Results**: You can view the workflow runs and their statuses in the "Actions" tab of your GitHub repository.
+
+### Authorizing Docker Hub Access
+
+To enable GitHub Actions to push Docker images to Docker Hub, you need to set up two secrets in your repository:
+
+- `DOCKERHUB_USERNAME`: Your Docker Hub username.
+- `DOCKERHUB_TOKEN`: Your Docker Hub access token or password.
+
+Follow these steps to add the secrets:
+
+1. Go to the "Settings" tab of your GitHub repository.
+2. Click on "Secrets" in the left sidebar.
+3. Click on "New repository secret".
+4. Enter `DOCKERHUB_USERNAME` as the name and your Docker Hub username as the value.
+5. Click on "Add secret".
+6. Repeat steps 3-5 for `DOCKERHUB_TOKEN`, using your Docker Hub access token or password as the value.
+
+These secrets will be securely used by GitHub Actions to authenticate with Docker Hub during the Docker image push process.
