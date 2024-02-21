@@ -33,3 +33,7 @@ jobs:
         context: app_python/
         push: true
         tags: mrfired/devops-course:latest
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/python@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
