@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    #Django Apps Urls
+    # Django Apps Urls
     "msk_time",
 ]
 
