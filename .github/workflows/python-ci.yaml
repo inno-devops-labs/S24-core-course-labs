@@ -2,15 +2,11 @@ name: Python CI
 
 on:
   push:
-    branches:
-      - main
-      - lab03
+    branches: [main, lab03]
     paths:
       - "app_python/**"
   pull_request:
-    branches:
-      - main
-      - lab03
+    branches: [main, lab03]
     paths:
       - "app_python/**"
 
