@@ -65,6 +65,27 @@ In summary, the simplicity, ease of learning, flexibility, and active community 
 4. **Version Control:**
    The use of version control (e.g., Git) allows for better collaboration, tracking changes, and easy rollback in case of errors. The code can be easily shared and deployed to different environments.
 
+# Unit Tests
+
+#### test_homepage_status_code
+
+- **Description:** Ensures that the homepage returns a successful status code (200).
+- **Best Practices:**
+  - **Isolation of Tests:** Each test case is isolated within the `setUp` method, ensuring independence.
+  - **Clear Naming:** The test method is named descriptively, making it easy to understand its purpose.
+  - **Test Documentation:** Docstrings are provided for each test method, documenting the purpose of the test.
+  - **Assertions:** Contains a single assertion to check the status code.
+
+#### test_homepage_content
+
+- **Description:** Validates the presence of key content elements on the homepage.
+- **Best Practices:**
+  - **Isolation of Tests:** Each test case is independent, focusing on specific functionality.
+  - **Clear Naming:** The test method is named descriptively, indicating its focus on homepage content.
+  - **Test Documentation:** Docstrings are provided for each test method, documenting the purpose of the test.
+  - **Assertions:** Uses `assertIn` to check for the presence of specific content in the response data.
+
+
 ### 🤝🏻 Conclusion:
 
 The web application follows best practices in terms of code organization, readability, adherence to coding standards, and basic testing. These practices contribute to a maintainable and reliable codebase. Continuous improvement and adherence to best practices will further enhance the quality of the application.

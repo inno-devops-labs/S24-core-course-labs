@@ -8,12 +8,16 @@ This Python web application is built using the Flask framework to display the cu
 ```
 ├── app_python
 │   ├── app.py
+│   ├── tests.py
 │   ├── templates
 │   │   ├── index.html
 │   ├── static
 │   │   ├── moscow.jpg
 │   ├── PYTHON.md
 │   ├── README.md
+│   ├── Dockerfile
+│   ├── DOCKER.md
+│   ├── CI.md
 │   ├── requirements.txt
 ```
 
@@ -84,6 +88,26 @@ docker run -p 4000:80 nytakoe115/flask-moscow-app
 
 ####3. Access the Web Application
 Open your web browser and navigate to http://localhost:4000 to view the Moscow Time web application.
+
+##⭐️ Unit Tests
+
+The application includes a set of unit tests to ensure the correctness of its functionality. To run the tests, use the following command:
+
+```
+python tests.py
+```
+
+##🧸 CI Workflow
+
+This repository includes a continuous integration (CI) workflow using GitHub Actions. The workflow performs the following steps on each push to the `main` branch:
+
+- **Dependencies**: Set up Python environment and install project dependencies.
+- **Linter**: Run linting checks to ensure code style and consistency.
+- **Tests**: Execute unit tests to validate the functionality of the application.
+- **Docker Login and Build & Push**: If all previous steps succeed, log in to Docker Hub and build/push the Docker image.
+
+**Note:** The Docker-related steps require Docker credentials, which are securely stored as GitHub secrets.
+
 
 ## 📚 Acknowledgments
 
