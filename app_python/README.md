@@ -24,6 +24,8 @@ Now app will be accessible at http://127.0.0.1:8000/
 
 ## Testing
 
+Comprehensive unit tests have been implemented to ensure the reliability and correctness of the application's functionality.
+
 Running tests:
 
 ```bash

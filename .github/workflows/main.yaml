@@ -1,0 +1,20 @@
+name: python-CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Pip install deps
+        working-directory: ./app_python
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Flake8
+        working-directory: ./app_python
+        run: flake8
+      - name: Pytest
+        working-directory: ./app_python
+        run: pytest -v

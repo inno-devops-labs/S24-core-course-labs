@@ -44,5 +44,9 @@ async def get_time(request: Request):
     @arg request: input request from a client
     @returns: HTMLResponse
     """
-    moscow_time = datetime.now(pytz.timezone(MOSCOW_TZ)).strftime('%Y-%m-%d %H:%M:%S')
-    return HTMLResponse(content=html_template.format(time=moscow_time), status_code=200)
+    moscow_time = (datetime.now(pytz.timezone(MOSCOW_TZ))
+                   .strftime('%Y-%m-%d %H:%M:%S'))
+    return HTMLResponse(
+        content=html_template.format(time=moscow_time),
+        status_code=200
+    )
