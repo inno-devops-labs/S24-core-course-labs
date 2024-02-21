@@ -1,5 +1,9 @@
 # Flask Web Application
 
+[![App Python Testing](https://github.com/AlmetovKamil/S24-core-course-labs/actions/workflows/app_python_testing.yaml/badge.svg?branch=lab3&event=push)](https://github.com/AlmetovKamil/S24-core-course-labs/actions/workflows/app_python_testing.yaml)
+
+[![App Python Docker Build and Push](https://github.com/AlmetovKamil/S24-core-course-labs/actions/workflows/app_python_docker_push.yaml/badge.svg?branch=lab3&event=push)](https://github.com/AlmetovKamil/S24-core-course-labs/actions/workflows/app_python_docker_push.yaml)
+
 This is a simple Flask web application that displays the current Moscow time. It provides a basic example of how to create a web application using the Flask framework.
 
 ## Features
