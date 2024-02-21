@@ -41,8 +41,8 @@ jobs:
 
   snyk:
     needs: build
-    timeout-minutes:  5
     runs-on: ubuntu-latest
+    timeout-minutes:  5
     steps:
     - name: Snyk vulnerability check
       uses: snyk/actions/python@master
