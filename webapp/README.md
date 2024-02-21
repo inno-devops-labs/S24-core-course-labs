@@ -108,7 +108,7 @@ python manage.py test
 This will discover and run all tests within the tests package of your Django app.
 
 ## CI Workflow
-[![CI](https://github.com/GrishaRybolovel/S24-core-course-labs/actions/workflows/ci.yml/badge.svg)](https://github.com/GrishaRybolovel/S24-core-course-labs/actions/workflows/ci.yml)
+[![CI](https://github.com/GrishaRybolovel/S24-core-course-labs/actions/workflows/main.yml/badge.svg)](https://github.com/GrishaRybolovel/S24-core-course-labs/actions/workflows/main.yml)
 
 A CI workflow has been set up using GitHub Actions to automate the build, test, and deployment process of the Django application. The workflow consists of the following essential steps:
 

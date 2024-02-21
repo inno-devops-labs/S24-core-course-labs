@@ -29,6 +29,10 @@ jobs:
         pip install -r webapp/requirements.txt
         pip install flake8 pytest
 
+    - name: Run code linting
+      run: |
+        flake8 webapp/.
+
     - name: Run tests
       run: |
         python webapp/manage.py test
