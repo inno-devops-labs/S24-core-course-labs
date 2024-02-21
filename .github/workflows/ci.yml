@@ -36,4 +36,30 @@ jobs:
       run: |
         pytest
 
+      # Cache Snyk
+    - name: Cache Snyk binary
+      id: cache-snyk
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-snyk
+      with:
+        path: app_python/snyk-linux
+        key: ${{ runner.os }}-snyk-${{ hashFiles('app_python/snyk-linux') }}
+        restore-keys: |
+            ${{ runner.os }}-snyk-
+            ${{ runner.os }}-
 
+    # Download Snyk
+    - name: Download Snyk binary
+      if: steps.cache-snyk.outputs.cache-hit != 'true'
+      run: |
+        curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux
+        chmod +x snyk-linux
+      working-directory: app_python
+
+    # Run Snyk
+    - name: Run Snyk
+      run: ./snyk-linux test --severity-threshold=high
+      working-directory: app_python
+      env:
+         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
