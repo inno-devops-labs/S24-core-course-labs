@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 
 // Defining the port for the server to listen on, using either the environment variable or defaulting to 3000
 // Starting the server and logging its URL to the console
+//
 if (require.main === module) {
     app.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}`);
