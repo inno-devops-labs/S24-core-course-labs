@@ -74,3 +74,21 @@ docker run -p 8000:8000 evermake/devops-simple-app
 ```
 
 App will be available at [localhost:8000](http://localhost:8000).
+
+## Testing
+
+Tests are written with PyTest testing framework and are located at `tests` directory.
+
+To run the tests, use the following command:
+
+```sh
+python -m pytest ./tests
+```
+
+## CI/CD
+
+Application has a configured GitHub Actions workflow at root of the repository at `/.github/workflows/ci-python.yaml`, which includes:
+
+- Running unit tests;
+- Linting code base with [Ruff](https://github.com/astral-sh/ruff);
+- Building and publishing Docker image (if all checks above have passed).
