@@ -55,10 +55,6 @@ jobs:
           pip install pipenv
           export PATH="$PATH:$HOME/.local/bin"
 
-      - name: Verify Pipenv Installation
-        run: |
-          pipenv --version
-
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python@master
         with:
