@@ -11,6 +11,12 @@
 		},
 		"ghcr.io/devcontainers-contrib/features/poetry:2": {
 			"version": "latest"
+		},
+		// "ghcr.io/devcontainers/features/terraform:1": {
+		// 	"version": "latest"
+		// },
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"version": "latest"
 		}
 	},
 	"customizations": {
@@ -23,7 +29,8 @@
 				"DavidAnson.vscode-markdownlint",
 				"exiasr.hadolint",
 				"GitHub.vscode-github-actions",
-				"kennylong.kubernetes-yaml-formatter"
+				"kennylong.kubernetes-yaml-formatter",
+				"HashiCorp.terraform"
 			]
 		}
 	},
