@@ -11,6 +11,8 @@ __pycache__/
 *.mp4
 *.mov
 
+.terraform/
+*.tfvars
 # Distribution / packaging
 .Python
 build/
