@@ -174,3 +174,11 @@ $
 container_id = "a6ee92fe32d9ba6f0f5f9ebe17e64f7b5bd128f60f781746fa29c90cd3a32512"
 image_id = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666anginx:latest"
 ```
+
+## Best practices
+
+-   Using separate files to define variables or logically independent resources.
+
+-   Using terraform variables to specify API tokens or reousrce ids.
+
+-   Using environment variables to specify sensitive terraform variables.
