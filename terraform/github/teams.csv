@@ -1,0 +1,5 @@
+name,description,privacy,permission
+Admin team,This is the admin team,closed,admin
+Maintainers team,This is the maintainers team,closed,maintain
+Push team,This is the push team,closed,push
+Pull team,This is the pull team,closed,pull
