@@ -48,8 +48,8 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_ed25519.pub")}"
-  }
+    user-data = "${file("./meta.txt")}"
+}
   folder_id = "b1gvup3s47j516kd9hdh"
 }
 
@@ -71,7 +71,7 @@ resource "yandex_compute_instance" "vm-2" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_ed25519.pub")}"
+    user-data = "${file("./meta.txt")}"
   }
   folder_id = "b1gvup3s47j516kd9hdh"
 }

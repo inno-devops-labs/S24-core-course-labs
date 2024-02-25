@@ -1,3 +1,5 @@
+# For docker
+
 <code>terraform state show docker_container.custom_container</code>
 ```
 # docker_container.custom_container:
@@ -167,4 +169,397 @@ port_of_container = tolist([
     "protocol" = "tcp"
   },
 ])
+```
+
+# For Yandex Cloud
+
+```terraform state list```
+
+```
+yandex_compute_disk.boot-disk-1
+yandex_compute_disk.boot-disk-2
+yandex_compute_instance.vm-1
+yandex_compute_instance.vm-2
+yandex_vpc_network.network-1
+yandex_vpc_subnet.subnet-1
+```
+
+```terraform state show yandex_compute_disk.boot-disk-1```
+```
+# yandex_compute_disk.boot-disk-1:
+resource "yandex_compute_disk" "boot-disk-1" {
+    block_size  = 4096
+    created_at  = "2024-02-25T09:44:29Z"
+    folder_id   = "b1gvup3s47j516kd9hdh"
+    id          = "fhm4l6bq8gm7kcr49mtr"
+    image_id    = "fd87ap2ld09bjiotu5v0"
+    labels      = {}
+    name        = "boot-disk-1"
+    product_ids = [
+        "f2ea07nu3lns12491hku",
+    ]
+    size        = 20
+    status      = "ready"
+    type        = "network-hdd"
+    zone        = "ru-central1-a"
+
+    disk_placement_policy {}
+}
+```
+```terraform state show yandex_compute_disk.boot-disk-2```
+```
+# yandex_compute_disk.boot-disk-2:
+resource "yandex_compute_disk" "boot-disk-2" {
+    block_size  = 4096
+    created_at  = "2024-02-25T09:44:29Z"
+    folder_id   = "b1gvup3s47j516kd9hdh"
+    id          = "fhmobdk3ibl3pht4vn05"
+    image_id    = "fd87ap2ld09bjiotu5v0"
+    labels      = {}
+    name        = "boot-disk-2"
+    product_ids = [
+        "f2ea07nu3lns12491hku",
+    ]
+    size        = 20
+    status      = "ready"
+    type        = "network-hdd"
+    zone        = "ru-central1-a"
+
+    disk_placement_policy {}
+}
+```
+```terraform state show yandex_compute_instance.vm-1```
+```
+# yandex_compute_instance.vm-1:
+resource "yandex_compute_instance" "vm-1" {
+    created_at                = "2024-02-25T10:02:41Z"
+    folder_id                 = "b1gvup3s47j516kd9hdh"
+    fqdn                      = "fhm107pd4r9pkngvjlln.auto.internal"
+    id                        = "fhm107pd4r9pkngvjlln"
+    labels                    = {}
+    metadata                  = {
+        "user-data" = <<-EOT
+            #cloud-config
+            users:
+              - name: test-user
+                groups: sudo
+                shell: /bin/bash
+                sudo: 'ALL=(ALL) NOPASSWD:ALL'
+                ssh-authorized-keys:
+                  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID7lCKhU3jzKMDckSDO7KLYs/vYV1lk1uMvy71ZNjqH7 furrylord@furrylord-pc
+        EOT
+    }
+    name                      = "terraform1"
+    network_acceleration_type = "standard"
+    platform_id               = "standard-v1"
+    status                    = "running"
+    zone                      = "ru-central1-a"
+
+    boot_disk {
+        auto_delete = true
+        device_name = "fhm4l6bq8gm7kcr49mtr"
+        disk_id     = "fhm4l6bq8gm7kcr49mtr"
+        mode        = "READ_WRITE"
+
+        initialize_params {
+            block_size = 4096
+            image_id   = "fd87ap2ld09bjiotu5v0"
+            name       = "boot-disk-1"
+            size       = 20
+            type       = "network-hdd"
+        }
+    }
+
+    metadata_options {
+        aws_v1_http_endpoint = 1
+        aws_v1_http_token    = 2
+        gce_http_endpoint    = 1
+        gce_http_token       = 1
+    }
+
+    network_interface {
+        index              = 0
+        ip_address         = "192.168.10.6"
+        ipv4               = true
+        ipv6               = false
+        mac_address        = "d0:0d:10:1f:2d:26"
+        nat                = true
+        nat_ip_address     = "158.160.109.5"
+        nat_ip_version     = "IPV4"
+        security_group_ids = []
+        subnet_id          = "e9bljutf7b7fu5qs9rkl"
+    }
+
+    placement_policy {
+        host_affinity_rules       = []
+        placement_group_partition = 0
+    }
+
+    resources {
+        core_fraction = 100
+        cores         = 2
+        gpus          = 0
+        memory        = 2
+    }
+
+    scheduling_policy {
+        preemptible = false
+    }
+}
+```
+```terraform state show yandex_compute_instance.vm-2```
+```
+# yandex_compute_instance.vm-2:
+resource "yandex_compute_instance" "vm-2" {
+    created_at                = "2024-02-25T10:02:41Z"
+    folder_id                 = "b1gvup3s47j516kd9hdh"
+    fqdn                      = "fhmabfc9qmmi3l70h1qu.auto.internal"
+    id                        = "fhmabfc9qmmi3l70h1qu"
+    labels                    = {}
+    metadata                  = {
+        "user-data" = <<-EOT
+            #cloud-config
+            users:
+              - name: test-user
+                groups: sudo
+                shell: /bin/bash
+                sudo: 'ALL=(ALL) NOPASSWD:ALL'
+                ssh-authorized-keys:
+                  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID7lCKhU3jzKMDckSDO7KLYs/vYV1lk1uMvy71ZNjqH7 furrylord@furrylord-pc
+        EOT
+    }
+    name                      = "terraform2"
+    network_acceleration_type = "standard"
+    platform_id               = "standard-v1"
+    service_account_id        = "ajegjli36ht8b37uoout"
+    status                    = "running"
+    zone                      = "ru-central1-a"
+
+    boot_disk {
+        auto_delete = true
+        device_name = "fhmobdk3ibl3pht4vn05"
+        disk_id     = "fhmobdk3ibl3pht4vn05"
+        mode        = "READ_WRITE"
+
+        initialize_params {
+            block_size = 4096
+            image_id   = "fd87ap2ld09bjiotu5v0"
+            name       = "boot-disk-2"
+            size       = 20
+            type       = "network-hdd"
+        }
+    }
+
+    metadata_options {
+        aws_v1_http_endpoint = 1
+        aws_v1_http_token    = 2
+        gce_http_endpoint    = 1
+        gce_http_token       = 1
+    }
+
+    network_interface {
+        index              = 0
+        ip_address         = "192.168.10.33"
+        ipv4               = true
+        ipv6               = false
+        mac_address        = "d0:0d:a5:bd:89:d5"
+        nat                = true
+        nat_ip_address     = "158.160.61.245"
+        nat_ip_version     = "IPV4"
+        security_group_ids = []
+        subnet_id          = "e9bljutf7b7fu5qs9rkl"
+    }
+
+    placement_policy {
+        host_affinity_rules       = []
+        placement_group_partition = 0
+    }
+
+    resources {
+        core_fraction = 100
+        cores         = 4
+        gpus          = 0
+        memory        = 4
+    }
+
+    scheduling_policy {
+        preemptible = false
+    }
+}
+```
+``` terraform state show yandex_vpc_network.network-1 ```
+```
+# yandex_vpc_network.network-1:
+resource "yandex_vpc_network" "network-1" {
+    created_at                = "2024-02-25T10:01:17Z"
+    default_security_group_id = "enp0lncbt5jqkt5a7bfc"
+    folder_id                 = "b1gvup3s47j516kd9hdh"
+    id                        = "enp2johtfvo0mcm0melg"
+    labels                    = {}
+    name                      = "network1"
+    subnet_ids                = [
+        "e9bljutf7b7fu5qs9rkl",
+    ]
+}
+```
+```erraform state show yandex_vpc_subnet.subnet-1  ```
+```
+# yandex_vpc_subnet.subnet-1:
+resource "yandex_vpc_subnet" "subnet-1" {
+    created_at     = "2024-02-25T10:01:53Z"
+    folder_id      = "b1gvup3s47j516kd9hdh"
+    id             = "e9bljutf7b7fu5qs9rkl"
+    labels         = {}
+    name           = "subnet1"
+    network_id     = "enp2johtfvo0mcm0melg"
+    v4_cidr_blocks = [
+        "192.168.10.0/24",
+    ]
+    v6_cidr_blocks = []
+    zone           = "ru-central1-a"
+}
+```
+
+## Changes applied
+
+```terraform apply```
+```
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # yandex_compute_instance.vm-1 will be created
+  + resource "yandex_compute_instance" "vm-1" {
+      + created_at                = (known after apply)
+      + folder_id                 = "b1gvup3s47j516kd9hdh"
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + maintenance_grace_period  = (known after apply)
+      + maintenance_policy        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys" = <<-EOT
+                ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID7lCKhU3jzKMDckSDO7KLYs/vYV1lk1uMvy71ZNjqH7 furrylord@furrylord-pc
+            EOT
+        }
+      + name                      = "terraform1"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = "fhm4l6bq8gm7kcr49mtr"
+          + mode        = (known after apply)
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = "e9bljutf7b7fu5qs9rkl"
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 2
+          + memory        = 2
+        }
+    }
+
+  # yandex_compute_instance.vm-2 will be created
+  + resource "yandex_compute_instance" "vm-2" {
+      + created_at                = (known after apply)
+      + folder_id                 = "b1gvup3s47j516kd9hdh"
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + maintenance_grace_period  = (known after apply)
+      + maintenance_policy        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys" = <<-EOT
+                ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID7lCKhU3jzKMDckSDO7KLYs/vYV1lk1uMvy71ZNjqH7 furrylord@furrylord-pc
+            EOT
+        }
+      + name                      = "terraform2"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = "fhmobdk3ibl3pht4vn05"
+          + mode        = (known after apply)
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = "e9bljutf7b7fu5qs9rkl"
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 4
+          + memory        = 4
+        }
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + external_ip_address_vm_1 = (known after apply)
+  + external_ip_address_vm_2 = (known after apply)
+  + internal_ip_address_vm_1 = (known after apply)
+  + internal_ip_address_vm_2 = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+yandex_compute_instance.vm-1: Creating...
+yandex_compute_instance.vm-2: Creating...
+yandex_compute_instance.vm-2: Still creating... [10s elapsed]
+yandex_compute_instance.vm-1: Still creating... [10s elapsed]
+yandex_compute_instance.vm-2: Still creating... [20s elapsed]
+yandex_compute_instance.vm-1: Still creating... [20s elapsed]
+yandex_compute_instance.vm-1: Creation complete after 26s [id=fhm107pd4r9pkngvjlln]
+yandex_compute_instance.vm-2: Creation complete after 27s [id=fhmabfc9qmmi3l70h1qu]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+```
+
+## Output
+```terraform output```
+```
+external_ip_address_vm_1 = "158.160.109.5"
+external_ip_address_vm_2 = "158.160.61.245"
+internal_ip_address_vm_1 = "192.168.10.6"
+internal_ip_address_vm_2 = "192.168.10.33"
 ```
