@@ -2,6 +2,11 @@
 
 ## Best practices
 
+- Usage of modules for `cloud`, `docker`, `github`
+- Following naming conventions
+- Declaration of variables and outputs in different files
+- Including lock-file into VCS
+
 ## Docker
 
 - `terraform state list`
