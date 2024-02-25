@@ -308,6 +308,39 @@ instance_id = "i-0bd22aaed913ba65a"
 instance_public_ip = "54.213.235.215"
 ```
 
+## Terraform Github Repository, Teams and Organizations (bonus)
+Teams with corresponding permissions are stored in the `teams.csv`
+and created using for-each syntax in the terraform
+
+```terraform
+# Create a team for each row in the CSV file
+resource "github_team" "all" {
+  for_each = {
+    for team in csvdecode(file("teams.csv")) : team.name => team
+  }
+
+  name                      = each.value.name
+  description               = each.value.description
+  privacy                   = each.value.privacy
+  create_default_maintainer = true
+}
+
+# Add each team to the repository with the permissions specified in the CSV file
+resource "github_team_repository" "all" {
+  for_each = {
+    for team in csvdecode(file("teams.csv")) : team.name => team
+  }
+
+  team_id    = github_team.all[each.key].id
+  repository = github_repository.repo.name
+  permission = each.value.permission
+}
+```
+Each team has different permissions
+
+You can check results at [my organization](https://github.com/s24-devops-organization)
+
+
 ## Terraform Github Best Practices
 
 - **Environment variables**: Use environment variables to store sensitive information such as access keys, secret keys, and other credentials. This will help you avoid hardcoding sensitive information in your code.
