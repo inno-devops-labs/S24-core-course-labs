@@ -1,0 +1,11 @@
+#cloud-config
+users:
+  - name: terraform-admin
+    groups: sudo
+    shell: /bin/bash
+    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID7lCKhU3jzKMDckSDO7KLYs/vYV1lk1uMvy71ZNjqH7 furrylord@furrylord-pc
+
+
+ 
