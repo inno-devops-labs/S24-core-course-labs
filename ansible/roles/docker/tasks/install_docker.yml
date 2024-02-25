@@ -1,7 +1,8 @@
 ---
-- name: Install Docker
+- name: Deploy Docker
+  hosts: all
   become: true
-  package:
-    name: "{{ item }}"
-    state: "{{ docker_packages_state }}"
-  loop: "{{ docker_packages }}"
+  tasks:
+    - name: Include geerlingguy.docker role
+      include_role:
+        name: geerlingguy.docker
