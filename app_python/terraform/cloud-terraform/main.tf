@@ -1,9 +1,10 @@
 resource "yandex_compute_disk" "boot-disk-1" {
-  name     = "boot-disk-1"
-  type     = "network-hdd"
-  zone     = "ru-central1-a"
-  size     = "20"
-  image_id = "fd8b1uvm6a48q040kcus"
+  folder_id = var.yandex_folder_id
+  image_id  = var.yandex_image_id
+  name      = "boot-disk-1"
+  type      = "network-hdd"
+  zone      = "ru-central1-a"
+  size      = "20"
 }
 
 resource "yandex_compute_instance" "vm-1" {
@@ -29,7 +30,8 @@ resource "yandex_compute_instance" "vm-1" {
 }
 
 resource "yandex_vpc_network" "network-1" {
-  name = "network1"
+  folder_id = var.yandex_folder_id
+  name      = "network1"
 }
 
 resource "yandex_vpc_subnet" "subnet-1" {

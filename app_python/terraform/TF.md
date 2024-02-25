@@ -131,6 +131,90 @@ docker_image.app_image
 container_id = "124f05601c1e99400b087525cd5cdb1dfb158d8c3206e2f16089f8072c9cdf34"
 ```
 
+<code>terraform state list</code>
+```
+github_branch_default.main
+github_branch_protection.default
+github_repository.Devops-core-course-labs
+```
+
+<code>terraform state show github_branch_default.main</code>
+```
+resource "github_branch_default" "main" {
+    branch     = "main"
+    id         = "Devops-core-course-labs"
+    repository = "Devops-core-course-labs"
+}
+```
+
+<code>terraform state show github_branch_protection.default</code>
+```
+resource "github_branch_protection" "default" {
+    allows_deletions                = false
+    allows_force_pushes             = false
+    blocks_creations                = false
+    enforce_admins                  = true
+    id                              = "BPR_kwDOLXofEs4C0cTI"
+    pattern                         = "main"
+    repository_id                   = "Devops-core-course-labs"
+    require_conversation_resolution = true
+    require_signed_commits          = false
+    required_linear_history         = false
+
+    required_pull_request_reviews {
+        dismiss_stale_reviews           = false
+        require_code_owner_reviews      = false
+        required_approving_review_count = 1
+        restrict_dismissals             = false
+    }
+}
+```
+<code>terraform state show github_repository.Devops-core-course-labs
+```
+resource "github_repository" "Devops-core-course-labs" {
+    allow_auto_merge            = false
+    allow_merge_commit          = true
+    allow_rebase_merge          = true
+    allow_squash_merge          = true
+    archived                    = false
+    auto_init                   = true
+    branches                    = [
+        {
+            name      = "main"
+            protected = false
+        },
+    ]
+    default_branch              = "main"
+    delete_branch_on_merge      = false
+    description                 = "This is a repository for the DevOps Core Course Labs"
+    etag                        = "W/\"795c131845ed3d684f6f01e814fcd488ecbcbd2ff89b1437edd24c88f0478510\""
+    full_name                   = "r-mol/Devops-core-course-labs"
+    git_clone_url               = "git://github.com/r-mol/Devops-core-course-labs.git"
+    gitignore_template          = "Python"
+    has_downloads               = false
+    has_issues                  = true
+    has_projects                = false
+    has_wiki                    = true
+    html_url                    = "https://github.com/r-mol/Devops-core-course-labs"
+    http_clone_url              = "https://github.com/r-mol/Devops-core-course-labs.git"
+    id                          = "Devops-core-course-labs"
+    is_template                 = false
+    license_template            = "mit"
+    merge_commit_message        = "PR_TITLE"
+    merge_commit_title          = "MERGE_MESSAGE"
+    name                        = "Devops-core-course-labs"
+    node_id                     = "R_kgDOLXofEg"
+    private                     = false
+    repo_id                     = 762978066
+    squash_merge_commit_message = "COMMIT_MESSAGES"
+    squash_merge_commit_title   = "COMMIT_OR_PR_TITLE"
+    ssh_clone_url               = "git@github.com:r-mol/Devops-core-course-labs.git"
+    svn_url                     = "https://github.com/r-mol/Devops-core-course-labs"
+    visibility                  = "public"
+    vulnerability_alerts        = false
+}
+```
+
 # Terraform Best Practices Documentation
 
 This TF.md file outlines best practices that have been applied to the management of Terraform configurations within this project. These practices aim to ensure that our configurations are manageable, version-controlled, and well-organized across different platforms such as GitHub, Docker, and Yandex Cloud.

@@ -11,7 +11,7 @@ LABEL version="1.0" description="WebApp showing current Moscow time" maintainer=
 WORKDIR /app_python
 
 # Create user
-RUN ARG UID=10001
+ARG UID=10001
 RUN adduser \
     --disabled-password \
     --gecos "" \
