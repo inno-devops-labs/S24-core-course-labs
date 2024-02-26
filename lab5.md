@@ -22,9 +22,9 @@ In this lab, you will get acquainted with Ansible, a powerful configuration mana
      |   |       `-- main.yaml
      |   |-- roles
      |   |   |-- docker
-     |   |   |   |-- defaults
+     |   |   |   |-- meta
      |   |   |   |   `-- main.yml
-     |   |   |   |-- handlers
+     |   |   |   |-- tasks
      |   |   |   |   `-- main.yml
      |   |   |   |-- tasks
      |   |   |   |   |-- install_compose.yml
@@ -32,9 +32,9 @@ In this lab, you will get acquainted with Ansible, a powerful configuration mana
      |   |   |   |   `-- main.yml
      |   |   |   `-- README.md
      |   |   `-- web_app
-     |   |       |-- defaults
+     |   |       |-- meta
      |   |       |   `-- main.yml
-     |   |       |-- handlers
+     |   |       |-- tasks
      |   |       |   `-- main.yml
      |   |       |-- meta
      |   |       |   `-- main.yml

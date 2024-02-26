@@ -48,7 +48,7 @@ In this lab, you will utilize Ansible to set up a Continuous Deployment (CD) pro
 
    ```sh
    .
-   |-- defaults
+   |-- meta
    |   `-- main.yml
    |-- meta
    |   `-- main.yml
