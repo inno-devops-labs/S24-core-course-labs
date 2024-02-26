@@ -1,0 +1,16 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Python ENV
+venv/
+env/
+*.env
+
+# PyCharm files
+.idea/
+
+# Project specific files or directories
+S24-DevOps.iml
