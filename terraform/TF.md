@@ -8,14 +8,14 @@ The terraform files are under `/terraform/docker`
 - `terraform validate`
 - `terraform apply`
 - `terraform state list`
-    ```
+    ```python
     docker_container.app_javascript
     docker_container.app_python
     docker_image.app_javascript
     docker_image.app_python
     ```
 - `terraform state show docker_container.app_javascript`, `terraform state show docker_container.app_python`, `terraform state show docker_image.app_javascript`, `terraform state show docker_image.app_python` 
-    ```
+    ```python
     # docker_container.app_javascript:
     resource "docker_container" "app_javascript" {
         attach                                      = false
@@ -80,7 +80,7 @@ The terraform files are under `/terraform/docker`
         }
     }
     ```
-    ```
+    ```python
     # docker_container.app_python:
     resource "docker_container" "app_python" {
         attach                                      = false
@@ -151,7 +151,7 @@ The terraform files are under `/terraform/docker`
         }
     }
     ```
-    ```
+    ```python
     # docker_image.app_javascript:
     resource "docker_image" "app_javascript" {
         id           = "sha256:2eb6456359c194f3aa4981b7a848d40f34cbc1c166444cad8bcb9ab755186fd1cogbonna/app_javascript_image:latest"
@@ -161,7 +161,7 @@ The terraform files are under `/terraform/docker`
         repo_digest  = "cogbonna/app_javascript_image@sha256:9c6a976c126cf61b12c65c7ca4d92333babbb0da65183bd2feb590aeeb230c32"
     }
     ```
-    ```
+    ```python
     # docker_image.app_python:
     resource "docker_image" "app_python" {
         id           = "sha256:9fe03b6cdae4062ab1e878c64239c95cbbcd1636de5fefa36d8d1bfd818e90cacogbonna/app_python_image:latest"
@@ -172,7 +172,7 @@ The terraform files are under `/terraform/docker`
     }
     ```
 - `terraform apply -var "javascript_container_name=js-container"` (Renaming container)
-    ```
+    ```python
       # docker_container.app_javascript must be replaced
     -/+ resource "docker_container" "app_javascript" {
           + bridge                                      = (known after apply)
@@ -203,7 +203,7 @@ The terraform files are under `/terraform/docker`
           ~ name                                        = "app_javascript" -> "js-container" # forces replacement
     ```
 - `terraform output`
-    ```
+    ```python
     javascript-container-id = "915da567d2d3c54088710deb6348f0e029bb862c5bb88d0bdf431ea59c717f24"
     python-container-id = "733c25d078c60842e9658b53e6fc212341ec8c161b65cb5deb9e71f405396b3b"
     ```
@@ -215,7 +215,7 @@ The terraform files are under `/terraform/aws`
 ### Commands & Output(s) 
 - `terraform init` 
 - `terraform apply` 
-    ```
+    ```python
     -/+ resource "aws_instance" "app_server" {
       ~ arn                                  = "arn:aws:ec2:us-east-1:905418130500:instance/i-0a09cc3432e429498" -> (known after apply)
       ~ associate_public_ip_address          = true -> (known after apply)
@@ -249,7 +249,7 @@ The terraform files are under `/terraform/aws`
       ~ secondary_private_ips                = [] -> (known after apply)
     ```
 - `terraform state show aws_instance.app_server`
-    ```
+    ```python
         # aws_instance.app_server:
     resource "aws_instance" "app_server" {
         ami                                  = "ami-0cf1810907a781f00"
@@ -344,7 +344,7 @@ The terraform files are under `/terraform/aws`
     ```
 
 - `terraform output` 
-    ```
+    ```python
     aws-public-ip = "54.159.229.143"
     ```
 
@@ -358,7 +358,6 @@ The terraform files are under `/terraform/github`
 - `terraform apply`
 - `terraform import github_repository.repo S24-core-course-labs`
 ![alt text](images/image.png)
-- `terraform apply`
 
 ### Best Practices
 
