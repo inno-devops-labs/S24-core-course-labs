@@ -7,3 +7,8 @@ __pycache__
 .idea
 
 node_modules
+
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
