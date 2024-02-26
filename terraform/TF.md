@@ -213,7 +213,7 @@ The terraform files are under `/terraform/docker`
 
 The terraform files are under `/terraform/aws`
 
-### Commands ran 
+### Commands & Output(s) 
 - `terraform init` 
 - `terraform apply` 
     ```
@@ -344,7 +344,7 @@ The terraform files are under `/terraform/aws`
     }
     ```
 
-- terraform output 
+- `terraform output` 
     ```
     aws-public-ip = "54.159.229.143"
     ```
@@ -353,7 +353,7 @@ The terraform files are under `/terraform/aws`
 
 The terraform files are under `/terraform/github`
 
-### Commands ran  
+### Commands & Output(s)
 - `export TF_VAR_github_token=xxx`
 - `terraform init` 
 - `terraform apply`
