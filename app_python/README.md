@@ -26,14 +26,14 @@ docker build -t <name:tagname> .
 If you prefer to pull the pre-built image from Docker Hub, you can use the following command:
 
 ```bash
-docker pull nabuki/devops-lab:latest
+docker pull nabuki/moscowtime-web:latest
 ```
 
 ## Run
 Once the Docker image is built or pulled, you can run the container using the following command:
 
 ```bash
-docker run -p <some host port: p>:8080 nabuki/devops-lab2:v1
+docker run -p <some host port: p>:8080 nabuki/moscowtime-web:latest
 ```
 
 - Navigate to `http://localhost:<p>/` in your browser
