@@ -92,3 +92,147 @@ $ terraform output
 container_id = "476df821c902003b67fb47876217ccc8b148d5a11c8008883df38a694a1180df"
 image_id = "sha256:a9eee15f45da3b91fe22a0fc15b35db6134a4bb5dbbfc08b71e4c94c3a36981cnabuki/moscowtime-web:latest"
 ```
+
+## Yandex Cloud
+
+```console
+$ terraform state list
+yandex_compute_disk.boot-disk-1
+yandex_compute_instance.vm-1
+yandex_vpc_network.network-1
+yandex_vpc_subnet.subnet-1
+```
+
+```console
+$ terraform state show yandex_compute_disk.boot-disk-1
+# yandex_compute_disk.boot-disk-1:
+resource "yandex_compute_disk" "boot-disk-1" {
+    block_size  = 4096
+    created_at  = "2024-02-26T22:41:47Z"
+    folder_id   = "b1go42d8nahe3jt1ksa7"
+    id          = "fhmucnpgo6ploakfu5u4"
+    image_id    = "fd8hnnsnfn3v88bk0k1o"
+    name        = "boot-disk-1"
+    product_ids = [
+        "f2ej6hk1qmuqu40ku14r",
+    ]
+    size        = 20
+    status      = "ready"
+    type        = "network-hdd"
+    zone        = "ru-central1-a"
+
+    disk_placement_policy {}
+}
+```
+
+```console
+$ terraform state show yandex_compute_instance.vm-1
+# yandex_compute_instance.vm-1:
+resource "yandex_compute_instance" "vm-1" {
+    created_at                = "2024-02-26T22:41:57Z"
+    folder_id                 = "b1go42d8nahe3jt1ksa7"
+    fqdn                      = "fhm3ic1qks8ibepbjjg4.auto.internal"
+    id                        = "fhm3ic1qks8ibepbjjg4"
+    metadata                  = {
+        "ssh-keys" = <<-EOT
+            ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGIQcNLErVe6Au22kY/YIRAtKnpOqS0lgbxEOQGlVaqB nabuki@LAPTOP-6UP0H37T
+        EOT
+    }
+    name                      = "terraform1"
+    network_acceleration_type = "standard"
+    platform_id               = "standard-v1"
+    status                    = "running"
+    zone                      = "ru-central1-a"
+
+    boot_disk {
+        auto_delete = true
+        device_name = "fhmucnpgo6ploakfu5u4"
+        disk_id     = "fhmucnpgo6ploakfu5u4"
+        mode        = "READ_WRITE"
+
+        initialize_params {
+            block_size = 4096
+            image_id   = "fd8hnnsnfn3v88bk0k1o"
+            name       = "boot-disk-1"
+            size       = 20
+            type       = "network-hdd"
+        }
+    }
+
+    metadata_options {
+        aws_v1_http_endpoint = 1
+        aws_v1_http_token    = 2
+        gce_http_endpoint    = 1
+        gce_http_token       = 1
+    }
+
+    network_interface {
+        index              = 0
+        ip_address         = "192.168.10.10"
+        ipv4               = true
+        ipv6               = false
+        mac_address        = "d0:0d:39:30:3a:a7"
+        nat                = true
+        nat_ip_address     = "51.250.78.242"
+        nat_ip_version     = "IPV4"
+        security_group_ids = []
+        subnet_id          = "e9br45ol393470oqud3m"
+    }
+
+    placement_policy {
+        host_affinity_rules       = []
+        placement_group_partition = 0
+    }
+
+    resources {
+        core_fraction = 100
+        cores         = 2
+        gpus          = 0
+        memory        = 2
+    }
+
+    scheduling_policy {
+        preemptible = false
+    }
+}
+```
+
+```console
+$ terraform state show yandex_vpc_network.network-1
+# yandex_vpc_network.network-1:
+resource "yandex_vpc_network" "network-1" {
+    created_at                = "2024-02-26T22:37:50Z"
+    default_security_group_id = "enpvur6835nb7ph5g333"
+    folder_id                 = "b1go42d8nahe3jt1ksa7"
+    id                        = "enp9a5sk2a2b3avrngkg"
+    labels                    = {}
+    name                      = "network1"
+    subnet_ids                = [
+        "e9br45ol393470oqud3m",
+    ]
+}
+```
+
+```console
+$ terraform state show yandex_vpc_subnet.subnet-1
+# yandex_vpc_subnet.subnet-1:
+resource "yandex_vpc_subnet" "subnet-1" {
+    created_at     = "2024-02-26T22:37:52Z"
+    folder_id      = "b1go42d8nahe3jt1ksa7"
+    id             = "e9br45ol393470oqud3m"
+    labels         = {}
+    name           = "subnet1"
+    network_id     = "enp9a5sk2a2b3avrngkg"
+    v4_cidr_blocks = [
+        "192.168.10.0/24",
+    ]
+    v6_cidr_blocks = []
+    zone           = "ru-central1-a"
+}
+```
+
+```console
+$ terraform output
+external_ip_address_vm_1 = "51.250.78.242"
+internal_ip_address_vm_1 = "192.168.10.10"
+```

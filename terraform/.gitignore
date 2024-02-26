@@ -1,3 +1,6 @@
 .terraform
 terraform.tfstate
 terraform.tfstate.backup
+.env
+key.json
+export_env.sh
