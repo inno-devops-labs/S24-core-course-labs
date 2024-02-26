@@ -40,7 +40,7 @@ resource "yandex_compute_disk" "boot-disk" {
 
 data "template_file" "default" {
   template = file("${path.module}/init.ps1")
-  vars     = {
+  vars = {
     user_name  = var.user_name
     user_pass  = var.user_pass
     admin_pass = var.admin_pass
