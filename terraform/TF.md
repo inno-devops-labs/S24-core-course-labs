@@ -171,8 +171,7 @@ The terraform files are under `/terraform/docker`
         repo_digest  = "cogbonna/app_python_image@sha256:e1c23881fe8ae41c020b99aff9b5e013084ad443ade99e1ab54a82850ffe0c01"
     }
     ```
-
-    - `terraform apply -var "javascript_container_name=js-container"` (Renaming container)
+- `terraform apply -var "javascript_container_name=js-container"` (Renaming container)
     ```
       # docker_container.app_javascript must be replaced
     -/+ resource "docker_container" "app_javascript" {
