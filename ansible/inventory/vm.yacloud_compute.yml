@@ -1,0 +1,7 @@
+---
+plugin: yacloud_compute
+yacloud_token_file: "/usr/share/oauth.txt"
+yacloud_clouds:
+  - "cloud-tufra"
+yacloud_folders:
+  - "default"

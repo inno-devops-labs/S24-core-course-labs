@@ -1,0 +1,27 @@
+---
+- name: Install Dependencies
+  become: true
+  apt:
+    name:
+      - curl
+      - ca-certificates
+    state: present
+    update_cache: true
+
+- name: Setup keyrings folder
+  become: true
+  shell: "install -m 0755 -d {{ gpg_dir|quote }}"
+
+- name: Add Docker apt key
+  get_url:
+    url: "{{ gpg_url }}"
+    dest: "{{ gpg_dest }}"
+    mode: '0644'
+    force: false
+
+- name: Add Docker repository
+  apt_repository:
+    repo: "{{ repo }}"
+    state: present
+    filename: docker
+    update_cache: true

@@ -1,0 +1,29 @@
+---
+- include_tasks: setup_repo_debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Disable Unattended Upgrades
+  apt:
+    name: unattended-upgrades
+    state: absent
+
+- name: Install pip
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: true
+
+
+- name: Install Docker
+  apt:
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+  notify: restart_docker
+
+- name: Install Docker Compose with pip
+  pip:
+    name: docker-compose
