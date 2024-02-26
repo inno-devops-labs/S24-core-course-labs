@@ -563,3 +563,11 @@ external_ip_address_vm_2 = "158.160.61.245"
 internal_ip_address_vm_1 = "192.168.10.6"
 internal_ip_address_vm_2 = "192.168.10.33"
 ```
+
+# Best practices
+
+- Use ```terraform fmt```
+- Use ```terraform validate``` and ```terraform plan``` before applying the changes
+- Use dependency lock file
+- Use variables and outputs
+- Use ```terraform import``` to manage existing resourses
