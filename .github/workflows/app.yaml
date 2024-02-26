@@ -1,10 +1,6 @@
 name: CI
 
-on:
-  push:
-    branches:
-      - main
-      - lab3
+on: ['push']
 
 jobs:
   build:
