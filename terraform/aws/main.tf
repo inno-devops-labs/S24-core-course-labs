@@ -26,3 +26,7 @@ resource "aws_instance" "app_server" {
     Name = var.aws_tag_name
   }
 }
+
+output "aws-public-ip" {
+  value = aws_instance.app_server.public_ip
+}

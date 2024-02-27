@@ -10,28 +10,34 @@ terraform apply -var "container_name=app"
 ```
 
 ### Terraform state list
+By running `terraform state list` command, I got the following output:
 
-![Terraform](images/docker.png)
+```
+docker_container.app_python
+docker_image.app_python
+```
 
 ### Terraform show
+
+This is the output of the `terraform show` command:
+
 ```
-# docker_container.nginx:
-resource "docker_container" "nginx" {
+# docker_container.app_python:
+resource "docker_container" "app_python" {
     attach                                      = false
     command                                     = [
-        "nginx",
-        "-g",
-        "daemon off;",
+        "python",
+        "/app_python/app.py",
+        "--host",
+        "0.0.0.0",
     ]
     container_read_refresh_timeout_milliseconds = 15000
     cpu_shares                                  = 0
-    entrypoint                                  = [
-        "/docker-entrypoint.sh",
-    ]
+    entrypoint                                  = []
     env                                         = []
-    hostname                                    = "c84925cd643f"
-    id                                          = "c84925cd643f6ba1c3f7d5045d0da57cf78b99da4fd06a9d777244224174a340"
-    image                                       = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666a"
+    hostname                                    = "d6d21d4ca4cf"
+    id                                          = "d6d21d4ca4cf8ec9eca59bcfd30e5019c1121c4e6c4ab2edd7eddbe88e24c0d9"
+    image                                       = "sha256:ec852bb874df9ab07a6f3376e9590d3e547a80e8563064cf86ade8a3e3cda171"
     init                                        = false
     ipc_mode                                    = "private"
     log_driver                                  = "json-file"
@@ -40,7 +46,7 @@ resource "docker_container" "nginx" {
     memory                                      = 0
     memory_swap                                 = 0
     must_run                                    = true
-    name                                        = "app"
+    name                                        = "app_python"
     network_data                                = [
         {
             gateway                   = "172.17.0.1"
@@ -65,28 +71,36 @@ resource "docker_container" "nginx" {
     shm_size                                    = 64
     start                                       = true
     stdin_open                                  = false
-    stop_signal                                 = "SIGQUIT"
     stop_timeout                                = 0
     tty                                         = false
+    user                                        = "myuser"
     wait                                        = false
     wait_timeout                                = 60
+    working_dir                                 = "/app_python"
 
     ports {
-        external = 8000
-        internal = 80
+        external = 5000
+        internal = 5000
         ip       = "0.0.0.0"
         protocol = "tcp"
     }
 }
 
-# docker_image.nginx:
-resource "docker_image" "nginx" {
-    id           = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666anginx"
-    image_id     = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666a"
+# docker_image.app_python:
+resource "docker_image" "app_python" {
+    id           = "sha256:ec852bb874df9ab07a6f3376e9590d3e547a80e8563064cf86ade8a3e3cda171mostafakira/app_python:latest"
+    image_id     = "sha256:ec852bb874df9ab07a6f3376e9590d3e547a80e8563064cf86ade8a3e3cda171"
     keep_locally = false
-    name         = "nginx"
-    repo_digest  = "nginx@sha256:c26ae7472d624ba1fafd296e73cecc4f93f853088e6a9c13c0d52f6ca5865107"
+    name         = "mostafakira/app_python:latest"
+    repo_digest  = "mostafakira/app_python@sha256:9bb626323f20c71d21d10d85631748b1e3639c63d1a1f8b367e049b6189236f6"
 }
+```
+
+### Output
+By running `terraform output` command, I got the following output:
+
+```
+container-id = "d6d21d4ca4cf8ec9eca59bcfd30e5019c1121c4e6c4ab2edd7eddbe88e24c0d9"
 ```
 
 ## AWS
@@ -95,22 +109,25 @@ resource "docker_image" "nginx" {
 The following commands were used for building:
 ```
 terraform init
-terraform fmt
 terraform validate
 terraform apply -var "aws_tag_name=AppServerInstance" 
 ```
 
 ### Terraform State List
 
-![alt text](images/aws.png)
+By running `terraform state list` command, I got the following output:
+
+```
+aws_instance.app_server
+```
 
 ### Terraform show
-
+This is the output of the `terraform show` command:
 ```
 # aws_instance.app_server:
 resource "aws_instance" "app_server" {
     ami                                  = "ami-830c94e3"
-    arn                                  = "arn:aws:ec2:us-west-2:195079873263:instance/i-0742e2e9cd759875b"
+    arn                                  = "arn:aws:ec2:us-west-2:195079873263:instance/i-0dc6c4d8479fe4b45"
     associate_public_ip_address          = true
     availability_zone                    = "us-west-2b"
     cpu_core_count                       = 1
@@ -120,7 +137,7 @@ resource "aws_instance" "app_server" {
     ebs_optimized                        = false
     get_password_data                    = false
     hibernation                          = false
-    id                                   = "i-0742e2e9cd759875b"
+    id                                   = "i-0dc6c4d8479fe4b45"
     instance_initiated_shutdown_behavior = "stop"
     instance_state                       = "running"
     instance_type                        = "t2.micro"
@@ -128,11 +145,11 @@ resource "aws_instance" "app_server" {
     ipv6_addresses                       = []
     monitoring                           = false
     placement_partition_number           = 0
-    primary_network_interface_id         = "eni-07666691abab61904"
-    private_dns                          = "ip-172-31-23-76.us-west-2.compute.internal"
-    private_ip                           = "172.31.23.76"
-    public_dns                           = "ec2-18-246-243-77.us-west-2.compute.amazonaws.com"
-    public_ip                            = "18.246.243.77"
+    primary_network_interface_id         = "eni-0e49e4bbecb78d201"
+    private_dns                          = "ip-172-31-23-68.us-west-2.compute.internal"
+    private_ip                           = "172.31.23.68"
+    public_dns                           = "ec2-34-213-83-71.us-west-2.compute.amazonaws.com"
+    public_ip                            = "34.213.83.71"
     secondary_private_ips                = []
     security_groups                      = [
         "default",
@@ -193,11 +210,18 @@ resource "aws_instance" "app_server" {
         iops                  = 0
         tags                  = {}
         throughput            = 0
-        volume_id             = "vol-0cadabd137708130e"
+        volume_id             = "vol-0819cad23a781de85"
         volume_size           = 8
         volume_type           = "standard"
     }
 }
+```
+
+### Output
+By running `terraform output` command, I got the following output:
+
+```
+aws-public-ip = "34.213.83.71"
 ```
 
 ## Github
@@ -206,17 +230,24 @@ resource "aws_instance" "app_server" {
 The following commands were used for building:
 ```
 terraform init
-terraform fmt
 terraform validate
 terraform apply
 ```
 
 ### Terraform State List
 
-![alt text](images/github.png)
+By running `terraform state list` command, I got the following output:
+
+```
+github_branch_default.main
+github_branch_protection.devops
+github_branch_protection.repo
+github_repository.S24-devops-labs
+github_repository.repo
+```
 
 ### Terraform Show
-
+This is the output of the `terraform show` command:
 ```
 # github_branch_default.main:
 resource "github_branch_default" "main" {
@@ -380,4 +411,3 @@ resource "github_repository" "repo" {
 - The secrets are not hardcoded and used as environment variables.
 - Naming convention followed terraform-best-practices.
 - `terraform fmt` and `terraform validate` were used to format and validate the code.
-- `terraform plan` was used to verify the changes before applying them. Also, `terraform state list` and `terraform state show` were used before destroying any resource.

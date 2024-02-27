@@ -8,27 +8,29 @@ terraform {
   }
 }
 
-provider "docker" {
-  host    = "npipe:////.//pipe//docker_engine"
-}
+provider "docker" {}
 
 variable "container_name" {
   description = "Name for the app container"
   type        = string
-  default     = "app"
+  default     = "app_python"
 }
 
-resource "docker_image" "nginx" {
-  name         = "nginx"
+resource "docker_image" "app_python" {
+  name         = "mostafakira/app_python:latest"
   keep_locally = false
 }
 
-resource "docker_container" "nginx" {
-  image = docker_image.nginx.image_id
+resource "docker_container" "app_python" {
+  image = docker_image.app_python.image_id
   name  = var.container_name
 
   ports {
-    internal = 80
-    external = 8000
+    internal = 5000
+    external = 5000
   }
+}
+
+output "container-id" {
+  value = docker_container.app_python.id
 }
