@@ -39,3 +39,5 @@ resource "github_team_repository" "example-admin-team-repo" {
 # Admin team repositories: https://github.com/orgs/DevOpsCourse-S24-Terraform/teams/admin-team/repositories
 
 # Tutorial: https://www.hashicorp.com/blog/managing-github-with-terraform
+# Since I this repository not in organization, I didn't extend terraform_github.
+# I wrote a new one for organization
