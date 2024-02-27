@@ -5,23 +5,27 @@
 **Output of `terraform state show && terraform state list`**
 
 Command:
+
 ```sh
 terraform state list
 ```
 
 Output:
-```
+
+```plaintext
 docker_container.nginx
 docker_image.nginx
 ```
 
 Command:
+
 ```sh
 terraform show
 ```
 
 Output:
-```
+
+```plaintext
 # docker_container.nginx:
 resource "docker_container" "nginx" {
     attach                                      = false
@@ -100,7 +104,7 @@ resource "docker_image" "nginx" {
 
 I updated port in the `docker_container.nginx` resource, and ran `terraform apply`:
 
-```
+```plaintext
 docker_image.nginx: Refreshing state... [id=sha256:760b7cbba31e196288effd2af6924c42637ac5e0d67db4de6309f24518844676nginx]
 docker_container.nginx: Refreshing state... [id=45fec8e4a0726713fe66ba5269d470d2e32dde8038479e3f8ff9bcc378d61951]
 
@@ -188,12 +192,12 @@ Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
 
 **Output of `terraform output`**
 
-```
+```plaintext
 container_id = "657da4d88fffd92a92b2182d420a04daf78f22fa0ebfc85cb3e09ac42b55af65"
 image_id = "sha256:760b7cbba31e196288effd2af6924c42637ac5e0d67db4de6309f24518844676nginx"
 ```
 
-## Lab 4, Task 1
+## Lab 4, Task 2
 
 ### Utilized Terraform Best Practices
 
