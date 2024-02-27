@@ -1,12 +1,12 @@
-name: Python CI
+name: Kotlin CI
 
 on: 
   push:
     paths:
-      - 'app_python/**'
+      - 'app_kotlin/**'
   pull_request:
     paths:
-      - 'app_python/**'
+      - 'app_kotlin/**'
 jobs:
   build:
     runs-on: ubuntu-latest

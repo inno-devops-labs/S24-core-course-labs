@@ -1,2 +1,5 @@
 app_python/__pycache__
 app_python/venv
+terraform/*/.terraform
+terraform/*/terraform.tfstate.backup
+terraform/*/terraform.tfstate
