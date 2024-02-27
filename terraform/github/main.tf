@@ -1,4 +1,12 @@
 // New Repository
+terraform {
+  required_providers {
+    github = {
+      source  = "intergrations/github"
+      version = "~> 5.0"
+    }
+  }
+}
 
 resource "github_repository" "iac_lab" {
   name             = "iac_lab"
