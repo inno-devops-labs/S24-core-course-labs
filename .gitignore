@@ -4,3 +4,8 @@ record.log
 __pycache__
 .pytest_cache
 .idea/
+
+.terraform
+ *.tfvars
+ *.tfstate
+ *.tfstate.*
