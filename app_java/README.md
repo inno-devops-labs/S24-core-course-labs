@@ -1,5 +1,7 @@
 # Java Sample Application
 
+![workflow](https://github.com/dmfrpro/s24-core-course-labs/actions/workflows/app_java.yaml/badge.svg)
+
 ## Overview
 
 This is a simple java web application that shows current time in **Samara**.
