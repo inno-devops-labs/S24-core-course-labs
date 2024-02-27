@@ -21,3 +21,10 @@ lib64/
 parts/
 sdist/
 var/
+
+.terraform
+*.tfvars
+*.tfstate
+*.tfstate.*
+*.hcl
+key.json
