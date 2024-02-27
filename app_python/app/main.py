@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 TIMEZONE = "Europe/Moscow"
-HOSTNAME = "0.0.0.0:3000"
+HOSTNAME = "0.0.0.0"
 
 
 def get_time(timezone):
@@ -26,4 +26,4 @@ def home():
 
 
 if __name__ == "__main__":
-    app.run(host=HOSTNAME, debug=True)
+    app.run(host=HOSTNAME, port=3000, debug=True)
