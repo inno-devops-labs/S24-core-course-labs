@@ -1,0 +1,3 @@
+variable "TOKEN" {
+  type = string
+}

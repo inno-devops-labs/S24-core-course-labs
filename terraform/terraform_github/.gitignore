@@ -1,0 +1,4 @@
+.terraform
+token.txt
+terraform.tfstate
+terraform.tfstate.backup
