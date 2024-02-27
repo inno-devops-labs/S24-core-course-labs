@@ -1,3 +1,8 @@
+# Terraform
+
+## terraform output
+
+```
 container_id = {
   "attach" = false
   "bridge" = ""
@@ -31,7 +36,7 @@ container_id = {
   "init" = false
   "ipc_mode" = "private"
   "labels" = toset([])
-  "log_driver" = "json-file"
+  "log_driver" = "json-fhttps://github.com/y4cer/S24-core-course-labs/pull/4ile"
   "log_opts" = tomap(null) /* of string */
   "logs" = false
   "max_retry_count" = 0
@@ -45,7 +50,7 @@ container_id = {
       "gateway" = "172.17.0.1"
       "global_ipv6_address" = ""
       "global_ipv6_prefix_length" = 0
-      "ip_address" = "172.17.0.2"
+      "ip_address" = "17https://github.com/y4cer/S24-core-course-labs/pull/42.17.0.2"
       "ip_prefix_length" = 16
       "ipv6_gateway" = ""
       "mac_address" = "02:42:ac:11:00:02"
@@ -72,7 +77,7 @@ container_id = {
   "runtime" = "runc"
   "security_opts" = toset([])
   "shm_size" = 64
-  "start" = true
+  "start" = truehttps://github.com/y4cer/S24-core-course-labs/pull/4
   "stdin_open" = false
   "stop_signal" = ""
   "stop_timeout" = 0
@@ -82,7 +87,7 @@ container_id = {
   "tty" = false
   "ulimit" = toset([])
   "upload" = toset([])
-  "user" = "user"
+  "user" = "user"https://github.com/y4cer/S24-core-course-labs/pull/4
   "userns_mode" = ""
   "volumes" = toset([])
   "wait" = false
@@ -101,6 +106,7 @@ image_id = {
   "repo_digest" = "y4cerr/app_python@sha256:ba5e02ff79d0de09be7ded975fdd62504d28b9190909cf8438d2fe09d46eb45f"
   "triggers" = tomap(null) /* of string */
 }
+```
 
 ## Best practices
 
