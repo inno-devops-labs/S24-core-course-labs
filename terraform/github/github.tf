@@ -30,7 +30,7 @@ resource "github_branch_protection" "repo" {
 
 # Import S24-devops-labs repository
 resource "github_repository" "S24-devops-labs" {
-  name = "fastapi-social-media"
+  name = "S24-devops-labs"
   lifecycle {
     prevent_destroy = true
   }
