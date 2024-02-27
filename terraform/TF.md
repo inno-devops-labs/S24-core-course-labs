@@ -1,0 +1,29 @@
+container_id = "d81811276de0b38202293eff39eaf66e33ee1a337713c434241b074f544ba271"
+image_id = "sha256:40dcb4091002fe20ed2be8d36df5249c4d37452ee15491c0840547521e6e0b85dzendos/app_python:latest"
+
+
+
+github_repository.repo: Creating...
+github_repository.repo: Creation complete after 6s [id=sample-repo]
+github_branch_default.main: Creating...
+github_branch_default.main: Creation complete after 2s [id=sample-repo]
+github_branch_protection.default: Creating...
+github_branch_protection.default: Creation complete after 4s [id=BPR_KwDOLYwnrs4c0ukY]
+
+
+github_team.dev: Creating...
+github_team.man: Creating...
+github_team.dev: Creation complete after 8s [id=9569732]
+github_team_repository.dev_bind: Creating...
+github_team_membership.membership_for_y0szx: Creating...
+github_team.man: Creation complete after 9s [id=9569733]
+github_team_membership.membership_for_dzendos: Creating...
+github_team_repository.man_bind: Creating...
+github_team_membership.membership_for_y0szx: Creation complete after 4s [id=9569732:y0szx]
+github_team_membership.membership_for_dzendos: Creation complete after 6s [id=9569733:dzendos]
+github_team_repository.dev_bind: Creation complete after 8s [id=9569732:sample-repo]
+github_team_repository.man_bind: Creation complete after 7s [id=9569733:sample-repo]
+
+
+external_ip_address_vm_1 = "84.201.157.197"
+internal_ip_address_vm_1 = "192.168.10.19"
