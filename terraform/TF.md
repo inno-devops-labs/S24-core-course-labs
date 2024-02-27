@@ -187,6 +187,159 @@ image_id = "sha256:d53bc1efba437c72e441814533df761425156cff065f4882b9c9eb38e807f
 ```
 
 
+# Cloud Yandex
+Output of the `terraform apply` command:
+```bash
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # yandex_compute_disk.boot-disk-1 will be created
+  + resource "yandex_compute_disk" "boot-disk-1" {
+      + block_size  = 4096
+      + created_at  = (known after apply)
+      + folder_id   = "b1gfsnafkp1luu3mjsah"
+      + id          = (known after apply)
+      + image_id    = "fd83s8u085j3mq231ago"
+      + name        = "boot-disk-1"
+      + product_ids = (known after apply)
+      + size        = 20
+      + status      = (known after apply)
+      + type        = "network-hdd"
+      + zone        = "ru-central1-a"
+    }
+
+  # yandex_compute_instance.vm-1 will be created
+  + resource "yandex_compute_instance" "vm-1" {
+      + created_at                = (known after apply)
+      + folder_id                 = "b1gfsnafkp1luu3mjsah"
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + maintenance_grace_period  = (known after apply)
+      + maintenance_policy        = (known after apply)
+      + metadata                  = {
+          + "user-data" = <<-EOT
+                #cloud-config
+                users:
+                  - name: terraform1
+                    groups: sudo
+                    shell: /bin/bash
+                    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+                    ssh-authorized-keys:
+                      - AAAAC3NzaC1lZDI1NTE5AAAAIEAReCbooaAtIv/SzJV8UOup9xbDXFO+Pi33uzln9pGF nikitagrigorenko@MacBook-Pro.local
+            EOT
+        }
+      + name                      = "terraform1"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 2
+          + memory        = 2
+        }
+    }
+
+  # yandex_vpc_network.network-1 will be created
+  + resource "yandex_vpc_network" "network-1" {
+      + created_at                = (known after apply)
+      + default_security_group_id = (known after apply)
+      + folder_id                 = "b1gfsnafkp1luu3mjsah"
+      + id                        = (known after apply)
+      + labels                    = (known after apply)
+      + name                      = "network1"
+      + subnet_ids                = (known after apply)
+    }
+
+  # yandex_vpc_subnet.subnet-1 will be created
+  + resource "yandex_vpc_subnet" "subnet-1" {
+      + created_at     = (known after apply)
+      + folder_id      = "b1gfsnafkp1luu3mjsah"
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "subnet-1"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "192.168.10.0/24",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-a"
+    }
+
+Plan: 4 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + external_ip_address_vm_1 = (known after apply)
+  + internal_ip_address_vm_1 = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+yandex_vpc_network.network-1: Creating...
+yandex_compute_disk.boot-disk-1: Creating...
+yandex_vpc_network.network-1: Creation complete after 2s [id=ensd523u43n0fdsf732o]
+yandex_vpc_subnet.subnet-1: Creating...
+yandex_vpc_subnet.subnet-1: Creation complete after 0s [id=e12qt12343362bt4123m]
+yandex_compute_disk.boot-disk-1: Creation complete after 6s [id=f1233vu123189l1231mp]
+yandex_compute_instance.vm-1: Creating...
+yandex_compute_instance.vm-1: Still creating... [10s elapsed]
+yandex_compute_instance.vm-1: Still creating... [20s elapsed]
+yandex_compute_instance.vm-1: Still creating... [30s elapsed]
+yandex_compute_instance.vm-1: Creation complete after 30s [id=fasdmasdpx13pq8t12sd]
+
+Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+external_ip_address_vm_1 = "51.201.12.197"
+internal_ip_address_vm_1 = "192.168.10.30"
+```
+
+Output of the `terraform state list` command:
+```bash
+yandex_compute_disk.boot-disk-1
+yandex_compute_instance.vm-1
+yandex_vpc_network.network-1
+yandex_vpc_subnet.subnet-1
+```
+
+Output of the `terraform output` command:
+```bash
+external_ip_address_vm_1 = "51.201.12.197"
+internal_ip_address_vm_1 = "192.168.10.30"
+```
+
+
 # GitHub
 
 Outpur of the `terraform import "github_repository.repo" "sample-repo"`

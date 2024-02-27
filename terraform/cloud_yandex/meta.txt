@@ -1,0 +1,9 @@
+#cloud-config
+users:
+  - name: terraform1
+    groups: sudo
+    shell: /bin/bash
+    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+    ssh-authorized-keys:
+      - AAAAC3NzaC1lZDI1NTE5AAAAIEAReCbooaAtIv/SzJV8UOup9xbDXFO+Pi33uzln9pGF nikitagrigorenko@MacBook-Pro.local
+      - b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUxOQAAACBAEXgm6KGgLSL/0syVfFDrqfcWw1xTvj4t97s5Z/aRhQAAAKhvQWEXb0FhFwAAAAtzc2gtZWQyNTUxOQAAACBAEXgm6KGgLSL/0syVfFDrqfcWw1xTvj4t97s5Z/aRhQAAAECemXC5v3e5lFhNBF150iT8DmecrP0wXcIp3yTfw4J+KUAReCbooaAtIv/SzJV8UOup9xbDXFO+Pi33uzln9pGFAAAAIm5pa2l0YWdyaWdvcmVua29ATWFjQm9vay1Qcm8ubG9jYWwBAgM=
