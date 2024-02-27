@@ -1,0 +1,8 @@
+#cloud-config
+users:
+  - name: alyona_art
+    groups: sudo
+    shell: /bin/bash
+    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL7WL90vSP1Ln9IACf5ai11B6/3rwhLDgtGZVXvOuvvY everyonehateme@everyonehateme-X99-KD
