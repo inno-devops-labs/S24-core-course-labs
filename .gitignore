@@ -15,3 +15,8 @@ env.bak/
 venv.bak/
 
 poetry.toml
+
+.terraform
+*.tfvars
+*.tfstate
+*.lock.hcl
