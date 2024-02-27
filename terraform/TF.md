@@ -135,3 +135,13 @@ $ terraform output
 container_id = "f6555dca3814a886b2279869c27d49d5e3933c20295d1679f9da345a681f4df7"
 image_id = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666anginx"
 ```
+
+## Best practices
+
+I applied these best practices:
+
+- Split configuration into several files (`main.tf`, `variables.tf`,
+  `outputs.tf`);
+- Use version control;
+- Use variables and outputs;
+- Security best practices.
