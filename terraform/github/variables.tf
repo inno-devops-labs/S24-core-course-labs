@@ -15,3 +15,9 @@ variable "repository_description" {
     type = string
     default = "Innopolis University DevOps course labs solutions."
 }
+
+variable "organization_name" {
+    description = "GitHub organization name"
+    type = string
+    default = "Test-devops-organization"
+}

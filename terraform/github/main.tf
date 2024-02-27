@@ -9,11 +9,13 @@ terraform {
 }
 
 provider "github" {
-  token = var.GITHUB_TOKEN
+  token        = var.GITHUB_TOKEN
+  owner = var.organization_name
 }
 
 #Create and initialise a public GitHub Repository with MIT license and a Visual Studio .gitignore file (incl. issues and wiki)
 resource "github_repository" "repo" {
+
   name               = var.repository_name
   description        = var.repository_description
   visibility         = "public"
@@ -41,4 +43,40 @@ resource "github_branch_protection" "default" {
   required_pull_request_reviews {
     required_approving_review_count = 1
   }
+}
+
+resource "github_team" "team1" {
+  name        = "Team 1"
+  description = "My new team 1 for use with Terraform"
+  privacy     = "closed"
+}
+
+resource "github_team_repository" "team-repo1" {
+  team_id    = github_team.team1.id
+  repository = github_repository.repo.name
+  permission = "pull"
+}
+
+resource "github_team" "team2" {
+  name        = "Team 2"
+  description = "My new team 2 for use with Terraform"
+  privacy     = "closed"
+}
+
+resource "github_team_repository" "team-repo2" {
+  team_id    = github_team.team2.id
+  repository = github_repository.repo.name
+  permission = "push"
+}
+
+resource "github_team" "team3" {
+  name        = "Team 3"
+  description = "My new team 3 for use with Terraform"
+  privacy     = "closed"
+}
+
+resource "github_team_repository" "team-repo3" {
+  team_id    = github_team.team3.id
+  repository = github_repository.repo.name
+  permission = "admin"
 }
