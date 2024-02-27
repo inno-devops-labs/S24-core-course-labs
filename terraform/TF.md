@@ -177,7 +177,8 @@ image_id = "sha256:63b40cb5d53bdb70db72d9b7722b5417d27b33ebb1e8379130b17da6838c6
 ```
 
 2. Due to issues with Yandex cloud, I was unable to create a VM and run Terraform on it. I was able to only create a VM.
-   <https://i.ibb.co/wrjwWL3/Yandex-Cloud.png>
+
+    ![alt text](https://i.ibb.co/wrjwWL3/Yandex-Cloud.png)
 
 3. I created github folder for Terraform and added the file with the code. I also applied **the best practices** for Terraform code.
 
