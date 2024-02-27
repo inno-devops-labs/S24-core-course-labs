@@ -227,12 +227,21 @@ image_id = "sha256:12ef77b9fab686eea5e3fd0d6f3c7b2763eaeb657f037121335a60805d3be
 ## AWS 
 I followed the tutorial, created an account on aws using an international bank account. I created a resource and here is a picture of the AWS web UI panel 
 ![aws](pics/aws.png)
-And here is the output of `terraform show`
+Additionally I modified the script, so it generates an ssh key for me for connecting to the vm 
+```
+fedorkrasilnikov@Fedors-MacBook-Pro aws % terraform state list 
+aws_instance.app_server
+aws_key_pair.key_pair
+aws_security_group.sg_ec2
+local_file.private_key
+tls_private_key.rsa_4096
+```
+And here is the output of `aws_instance.app_server `
 ```
 # aws_instance.app_server:
 resource "aws_instance" "app_server" {
     ami                                  = "ami-830c94e3"
-    arn                                  = "arn:aws:ec2:us-west-2:637423257153:instance/i-0bedcb45e93afce74"
+    arn                                  = "arn:aws:ec2:us-west-2:637423257153:instance/i-039db647b006e4858"
     associate_public_ip_address          = true
     availability_zone                    = "us-west-2a"
     cpu_core_count                       = 1
@@ -242,19 +251,20 @@ resource "aws_instance" "app_server" {
     ebs_optimized                        = false
     get_password_data                    = false
     hibernation                          = false
-    id                                   = "i-0bedcb45e93afce74"
+    id                                   = "i-039db647b006e4858"
     instance_initiated_shutdown_behavior = "stop"
     instance_state                       = "running"
     instance_type                        = "t2.micro"
     ipv6_address_count                   = 0
     ipv6_addresses                       = []
+    key_name                             = "fedorkrasilnikov"
     monitoring                           = false
     placement_partition_number           = 0
-    primary_network_interface_id         = "eni-0ff08238ebfad114f"
-    private_dns                          = "ip-172-31-25-185.us-west-2.compute.internal"
-    private_ip                           = "172.31.25.185"
-    public_dns                           = "ec2-35-165-79-56.us-west-2.compute.amazonaws.com"
-    public_ip                            = "35.165.79.56"
+    primary_network_interface_id         = "eni-089206febe536586c"
+    private_dns                          = "ip-172-31-31-93.us-west-2.compute.internal"
+    private_ip                           = "172.31.31.93"
+    public_dns                           = "ec2-54-203-161-145.us-west-2.compute.amazonaws.com"
+    public_ip                            = "54.203.161.145"
     secondary_private_ips                = []
     security_groups                      = [
         "default",
@@ -262,15 +272,15 @@ resource "aws_instance" "app_server" {
     source_dest_check                    = true
     subnet_id                            = "subnet-06f2b002cab504ffb"
     tags                                 = {
-        "Name" = "ExampleAppServerInstance"
+        "Name" = "WebServer"
     }
     tags_all                             = {
-        "Name" = "ExampleAppServerInstance"
+        "Name" = "WebServer"
     }
     tenancy                              = "default"
     user_data_replace_on_change          = false
     vpc_security_group_ids               = [
-        "sg-041cacdaaa2eaea6b",
+        "sg-0d870c65b3d21f2ac",
     ]
 
     capacity_reservation_specification {
@@ -314,13 +324,16 @@ resource "aws_instance" "app_server" {
         iops                  = 0
         tags                  = {}
         throughput            = 0
-        volume_id             = "vol-0cd12d8e37820095e"
+        volume_id             = "vol-0e98b26e76ce8f48f"
         volume_size           = 8
         volume_type           = "standard"
     }
 }
 
 ```
+
+And here I tried to connect to the VM
+![vm](pics/VM_connect.png)
 
 ## Github 
 
