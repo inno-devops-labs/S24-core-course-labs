@@ -642,3 +642,88 @@ resource "github_repository" "repo" {
     }
 }
 ```
+
+## GitHub Teams infrastructure
+> https://github.com/intaby/devops-repo
+> all premissions have been applied (I have checked it in settigs - devs group with maintain role)
+
+- `terraform apply`
+> I have cut out log a little
+```
+...
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.github_teams.github_repository.example_repo will be created
+  + resource "github_repository" "example_repo" {
+      + allow_auto_merge            = false
+      + allow_merge_commit          = true
+      + allow_rebase_merge          = true
+      + allow_squash_merge          = true
+      + archived                    = false
+      + default_branch              = (known after apply)
+      + delete_branch_on_merge      = false
+      + description                 = "example"
+      + etag                        = (known after apply)
+      + full_name                   = (known after apply)
+      + git_clone_url               = (known after apply)
+      + html_url                    = (known after apply)
+      + http_clone_url              = (known after apply)
+      + id                          = (known after apply)
+      + merge_commit_message        = "PR_TITLE"
+      + merge_commit_title          = "MERGE_MESSAGE"
+      + name                        = "devops-repo"
+      + node_id                     = (known after apply)
+      + primary_language            = (known after apply)
+      + private                     = (known after apply)
+      + repo_id                     = (known after apply)
+      + squash_merge_commit_message = "COMMIT_MESSAGES"
+      + squash_merge_commit_title   = "COMMIT_OR_PR_TITLE"
+      + ssh_clone_url               = (known after apply)
+      + svn_url                     = (known after apply)
+      + topics                      = (known after apply)
+      + visibility                  = "public"
+    }
+
+  # module.github_teams.github_team_repository.developers will be created
+  + resource "github_team_repository" "developers" {
+      + etag       = (known after apply)
+      + id         = (known after apply)
+      + permission = "maintain"
+      + repository = "devops-repo"
+      + team_id    = "9570382"
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Redundant empty provider block
+│ 
+│   on docker/main.tf line 10:
+│   10: provider "docker" {}
+│ 
+│ Earlier versions of Terraform used empty provider blocks ("proxy provider configurations") for child modules to declare their need to be passed a provider
+│ configuration by their callers. That approach was ambiguous and is now deprecated.
+│ 
+│ If you control this module, you can migrate to the new declaration syntax by removing all of the empty provider "docker" blocks and then adding or updating
+│ an entry like the following to the required_providers block of module.app_python:
+│     docker = {
+│       source = "kreuzwerker/docker"
+│     }
+╵
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.github_teams.github_repository.example_repo: Creating...
+module.github_teams.github_repository.example_repo: Creation complete after 5s [id=devops-repo]
+module.github_teams.github_team_repository.developers: Creating...
+module.github_teams.github_team_repository.developers: Creation complete after 2s [id=9570382:devops-repo]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+```
