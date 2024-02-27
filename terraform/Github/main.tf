@@ -9,9 +9,7 @@ terraform {
   }
 }
 
-provider "github" {
-  token = var.token # or `GITHUB_TOKEN`
-}
+provider "github" {}
 
 #Create and initialise a public GitHub Repository with MIT license and a Visual Studio .gitignore file (incl. issues and wiki)
 resource "github_repository" "repo" {
