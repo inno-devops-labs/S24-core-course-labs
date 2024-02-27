@@ -4,6 +4,8 @@ __pycache__/
 *$py.class
 
 key.json
+.terraform/
+app_python/terraform/git/main.tf
 
 # C extensions
 *.so
