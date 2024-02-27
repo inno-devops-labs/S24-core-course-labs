@@ -27,7 +27,7 @@ resource "twc_ssh_key" "your-key" {
 }
 
 resource "twc_server" "my-timeweb-server" {
-  name  = "My Timeweb Server"
+  name  = var.webserver_name
   os_id = data.twc_os.os.id
 
   ssh_keys_ids = [twc_ssh_key.your-key.id]

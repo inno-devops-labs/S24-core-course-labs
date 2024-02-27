@@ -179,12 +179,16 @@ image_id = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b176
 
 # Terraform on Timeweb
 
+---
+
 ## Document a part of the log with the applied changes
+
 ```
 data.twc_os.os: Reading...
 data.twc_configurator.configurator: Reading...
-data.twc_os.os: Read complete after 0s [id=61]
+twc_ssh_key.your-key: Refreshing state... [id=159285]
 data.twc_configurator.configurator: Read complete after 0s [id=11]
+data.twc_os.os: Read complete after 0s [id=61]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   + create
@@ -206,7 +210,7 @@ Terraform will perform the following actions:
       + is_ddos_guard     = (known after apply)
       + location          = (known after apply)
       + main_ipv4         = (known after apply)
-      + name              = "My Timeweb Server"
+      + name              = "webserver"
       + networks          = (known after apply)
       + os                = (known after apply)
       + os_id             = 61
@@ -214,7 +218,9 @@ Terraform will perform the following actions:
       + project_id        = (known after apply)
       + ram               = (known after apply)
       + software          = (known after apply)
-      + ssh_keys_ids      = (known after apply)
+      + ssh_keys_ids      = [
+          + 159285,
+        ]
       + start_at          = (known after apply)
       + status            = (known after apply)
       + vnc_pass          = (sensitive value)
@@ -227,18 +233,16 @@ Terraform will perform the following actions:
         }
     }
 
-  # twc_ssh_key.TimeWebSSH will be created
-  + resource "twc_ssh_key" "TimeWebSSH" {
-      + body       = <<-EOT
-            ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJaNJ+4aFLTH7H2q+tkcU+Zvt0QvbF1ULL9arBzZrJds ilnur@DESKTOP-803OF5N
-        EOT
-      + created_at = (known after apply)
-      + id         = (known after apply)
-      + name       = "TimeWebSSH"
-      + used_by    = (known after apply)
-    }
+Plan: 1 to add, 0 to change, 0 to destroy.
 
-Plan: 2 to add, 0 to change, 0 to destroy.
+Changes to Outputs:
+  + twc_configuration_id = {
+      + configurator_id = 11
+      + cpu             = 1
+      + disk            = 10240
+      + ram             = 1024
+    }
+  + twc_os_id            = 61
 
 Do you want to perform these actions?
   Terraform will perform the actions described above.
@@ -246,93 +250,51 @@ Do you want to perform these actions?
 
   Enter a value: yes
 
-twc_ssh_key.TimeWebSSH: Creating...
-twc_ssh_key.TimeWebSSH: Creation complete after 0s [id=159253]
 twc_server.my-timeweb-server: Creating...
-twc_server.my-timeweb-server: Creation complete after 3s [id=2600691]
+twc_server.my-timeweb-server: Creation complete after 2s [id=2600803]
 
-Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
+Outputs:
+
+twc_configuration_id = {
+  "configurator_id" = 11
+  "cpu" = 1
+  "disk" = 10240
+  "ram" = 1024
+}
+twc_os_id = 61
 ```
 
 ## Terraform state show
 
 ```shell
-terraform state show twc_server.my-timeweb-server
+terraform state show twc_server.data.twc_configurator.configurator
 ```
 
 ```
-# twc_server.my-timeweb-server:
-resource "twc_server" "my-timeweb-server" {
-    availability_zone = "spb-2"
-    boot_mode         = "std"
-    configurator_id   = 11
-    cpu               = 1
-    cpu_frequency     = "3.3"
-    disks             = [
-        {
-            id          = 16775091
-            is_mounted  = true
-            is_system   = true
-            size        = 10240
-            status      = "done"
-            system_name = "vda"
-            type        = "nvme"
-            used        = 0
-        },
-    ]
-    id                = "2600691"
-    is_ddos_guard     = false
-    location          = "ru-1"
-    main_ipv4         = "188.225.58.185"
-    name              = "My Timeweb Server"
-    networks          = [
-        {
-            bandwidth     = 200
-            ips           = [
-                {
-                    ip      = "2a03:6f00:5:1::e49"
-                    is_main = true
-                    ptr     = ""
-                    type    = "ipv6"
-                },
-                {
-                    ip      = "188.225.58.185"
-                    is_main = true
-                    ptr     = ""
-                    type    = "ipv4"
-                },
-            ]
-            is_ddos_guard = false
-            nat_mode      = ""
-            type          = "public"
-        },
-    ]
-    os                = [
-        {
-            id      = 61
-            name    = "ubuntu"
-            version = "20.04"
-        },
-    ]
-    os_id             = 61
-    preset_id         = 0
-    project_id        = 707467
-    ram               = 1024
-    software          = []
-    ssh_keys_ids      = [
-        159253,
-    ]
-    status            = "installing"
+# data.twc_configurator.configurator:
+data "twc_configurator" "configurator" {
+    cpu_frequency = "3.3"
+    disk_type     = "nvme"
+    id            = "11"
+    location      = "ru-1"
 
-    configuration {
-        configurator_id = 11
-        cpu             = 1
-        disk            = 10240
-        ram             = 1024
+    requirements {
+        cpu_max                = 104
+        cpu_min                = 1
+        cpu_step               = 1
+        disk_max               = 2048000
+        disk_min               = 10240
+        disk_step              = 5120
+        network_bandwidth_max  = 1000
+        network_bandwidth_min  = 200
+        network_bandwidth_step = 100
+        ram_max                = 747520
+        ram_min                = 1024
+        ram_step               = 1024
     }
 }
-
 ```
 
 ## Terraform state list
@@ -341,5 +303,19 @@ resource "twc_server" "my-timeweb-server" {
 data.twc_configurator.configurator
 data.twc_os.os
 twc_server.my-timeweb-server
-twc_ssh_key.TimeWebSSH
+twc_ssh_key.your-key
+```
+
+## Terraform output
+
+```
+Outputs:
+
+twc_configuration_id = {
+  "configurator_id" = 11
+  "cpu" = 1
+  "disk" = 10240
+  "ram" = 1024
+}
+twc_os_id = 61
 ```
