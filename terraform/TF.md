@@ -101,3 +101,12 @@ image_id = {
   "repo_digest" = "y4cerr/app_python@sha256:ba5e02ff79d0de09be7ded975fdd62504d28b9190909cf8438d2fe09d46eb45f"
   "triggers" = tomap(null) /* of string */
 }
+
+## Best practices
+
+I followed these best practices:
+
+- Used git version control
+- Split configuration into several files (`main.tf`, `variables.tf`,
+  `terraform.tfvars`)
+- Use variables and outputs
