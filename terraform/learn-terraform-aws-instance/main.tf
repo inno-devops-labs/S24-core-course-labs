@@ -10,20 +10,5 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-west-2"
-}
-
-variable "name" {
-  description = "The name of the EC2 instance"
-  type        = string
-  default     = "example-instance"
-}
-
-resource "aws_instance" "app_server" {
-  ami           = "ami-830c94e3"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = var.name
-  }
+  region = var.region
 }
