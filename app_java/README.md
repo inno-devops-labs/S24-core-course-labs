@@ -19,7 +19,7 @@ cd S24-core-course-labs/app_java
 
 ```bash
 mvn install
-curl localhost:8080
+curl localhost:8000
 ```
 
 ## Docker
@@ -38,7 +38,7 @@ docker build --build-arg \
 
 ```bash
 docker pull dmfrpro/app_java:v1.0
-docker run -p 8080:8080 dmfrpro/app_java:v1.0
+docker run -p 8000:8000 dmfrpro/app_java:v1.0
 ```
 
 ## CI Workflow
