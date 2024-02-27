@@ -407,6 +407,12 @@ resource "github_repository" "repo" {
 }
 ```
 
+## Adding Teams
+In the previous year, I was working with my friends on a project called Ayoto and we created a github organization for this project. I will be using this organization for the task of adding teams.
+
+Here is the teams I created:
+![alt text](images/team.png)
+
 ## Best Practices
 - The secrets are not hardcoded and used as environment variables.
 - Naming convention followed terraform-best-practices.
