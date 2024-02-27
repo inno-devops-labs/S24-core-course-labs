@@ -20,7 +20,6 @@ jobs:
       - uses: axel-op/googlejavaformat-action@v3
         with:
           args: "--skip-sorting-imports --replace"
-
   test:
     timeout-minutes: 2
     defaults:
@@ -62,6 +61,16 @@ jobs:
     needs: [lint, test, snyk_check]
     runs-on: ubuntu-22.04
     steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          architecture: x64
+      - name: Build with Maven
+        run: mvn clean compile assembly:single
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -74,8 +83,11 @@ jobs:
       - name: Build and push to the dockerhub
         uses: docker/build-push-action@v5
         with:
+          context: .
+          file: app_java/Dockerfile
+          build-args: |
+            JAR_FILE=app_java/target/app-0.0.1-SNAPSHOT-jar-with-dependencies.jar
           push: true
           tags: "${{ secrets.DOCKER_USERNAME }}/app_java:latest"
-          context: "{{defaultContext}}:app_java"
           cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/app_java:latest
           cache-to: type=inline
