@@ -294,7 +294,8 @@ resource "yandex_compute_instance" "default" {
 ```
 
 `terraform state show yandex_vpc_network.default`  
-```# yandex_vpc_network.default:
+```
+# yandex_vpc_network.default:
 resource "yandex_vpc_network" "default" {
     created_at                = "2024-02-27T20:45:47Z"
     default_security_group_id = "enpasli6engjnq3s53bm"
@@ -303,11 +304,12 @@ resource "yandex_vpc_network" "default" {
     labels                    = {}
     name                      = "ya-network"
     subnet_ids                = []
-}```
-
+}
+```
 
 `terraform state show yandex_vpc_subnet.default`
-```# yandex_vpc_subnet.default:
+```
+# yandex_vpc_subnet.default:
 resource "yandex_vpc_subnet" "default" {
     created_at     = "2024-02-27T20:45:49Z"
     folder_id      = "b1grh1oiajrordvcn1c6"
@@ -320,9 +322,11 @@ resource "yandex_vpc_subnet" "default" {
     ]
     v6_cidr_blocks = []
     zone           = "ru-central1-a"
-}```
+}
+```
 
 `terraform output`
+
 ```address = "84.201.158.25"```
 
 # Terraform-related best practices
@@ -344,7 +348,3 @@ resource "yandex_vpc_subnet" "default" {
 8. **Use of Data Sources**: The `data` block is used to fetch data about existing resources. This is a good practice as it allows you to use data from outside of Terraform in your configuration.
 
 9. **Documentation**: The `TF.md` file includes detailed documentation about the Terraform code, including how to view the state of resources and how to apply the configuration. This is a good practice as it makes it easier for others to understand and use your code.
-
-
-
-
