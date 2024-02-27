@@ -12,7 +12,7 @@
 
 6. **Resource Dependency Management**: Ensure correct dependency management, such as `docker_container.nginx` depending on `docker_image.nginx`, to guarantee that resources are provisioned in the correct order and dependencies are satisfied appropriately.
 
-## Outputs
+## Outputs | Docker
 
 `terraform state list`
 
@@ -105,19 +105,6 @@ resource "docker_image" "nginx" {
 }
 ```
 
-## Documented log
-
-`docker_container.nginx`
-
-Command: Specifies the command to run within the container.
-Hostname: Defines the hostname assigned to the container.
-Image: Indicates the Docker image used by the container.
-Name: Specifies the name of the container.
-Network Configuration: Describes network-related settings such as IP address, gateway, and MAC address.
-Port Mapping: Maps internal container ports (5000) to external ports (8000).
-User: Sets the user within the container.
-Working Directory: Defines the working directory inside the container.
-Additionally, various other configurations like CPU shares, memory, restart policy, security options, etc., are included with their respective settings.
 
 
 `terraform output`
@@ -126,3 +113,46 @@ Additionally, various other configurations like CPU shares, memory, restart poli
 container_id = "201dd5e9bd478b8b3aa1c5b22f6fb86265185c56b5516f6616c264b5e8e28c43"
 image_id = "sha256:49f3d80bb32bfe2d42d9578751c949a1be1484c2ee355daf756eb22b7ac5c917orillion1/lab2:latest"
 ```
+
+
+## Outputs | Yandex Cloud
+
+`terraform state list`
+
+```text
+yandex_compute_disk.boot-disk
+yandex_compute_image.default
+yandex_compute_instance.default
+yandex_vpc_network.default
+yandex_vpc_subnet.default
+```
+
+`terraform apply`
+
+```text
+Apply complete! Resources: 2 added, 0 changed, 2 destroyed.
+
+Outputs:
+
+address = "158.160.117.23"
+```
+
+
+## Outputs | Git
+
+`terraform state list`
+
+```text
+github_branch_default.main
+github_branch_protection.default
+github_repository.repo
+```
+
+`terraform apply`
+
+```text
+Apply complete! Resources: 2 added, 0 changed, 2 destroyed.
+
+Outputs:
+
+address = "158.160.117.23"
