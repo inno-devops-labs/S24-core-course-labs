@@ -319,3 +319,11 @@ twc_configuration_id = {
 }
 twc_os_id = 61
 ```
+
+---
+
+# Best practices
+
+- Tokens are read from files (Not hardcoded)
+- Used variables for potentially changing data
+- Outputs for necessary data
