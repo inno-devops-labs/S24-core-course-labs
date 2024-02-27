@@ -10,3 +10,10 @@ variable "organization" {
   sensitive   = true
   default = "nik-grig-dev-ops"
 }
+
+variable "repo" {
+  type        = string
+  description = "Repository name to bind the teams to"
+  sensitive   = true
+  default = "sample-repo"
+}

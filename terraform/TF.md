@@ -214,11 +214,9 @@ var.token
 
   Enter a value: 
 
-github_repository.repo: Refreshing state... [id=sample-repo]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   + create
-  ~ update in-place
 
 Terraform will perform the following actions:
 
@@ -240,7 +238,7 @@ Terraform will perform the following actions:
       + id                              = (known after apply)
       + lock_branch                     = false
       + pattern                         = "main"
-      + repository_id                   = "sample-repo"
+      + repository_id                   = (known after apply)
       + require_conversation_resolution = true
       + require_signed_commits          = false
       + required_linear_history         = false
@@ -251,17 +249,44 @@ Terraform will perform the following actions:
         }
     }
 
-  # github_repository.repo will be updated in-place
-  ~ resource "github_repository" "repo" {
-      ~ auto_init                   = false -> true
-        id                          = "sample-repo"
-        name                        = "sample-repo"
-        # (33 unchanged attributes hidden)
-
-        # (1 unchanged block hidden)
+  # github_repository.repo will be created
+  + resource "github_repository" "repo" {
+      + allow_auto_merge            = false
+      + allow_merge_commit          = true
+      + allow_rebase_merge          = true
+      + allow_squash_merge          = true
+      + archived                    = false
+      + auto_init                   = true
+      + default_branch              = (known after apply)
+      + delete_branch_on_merge      = false
+      + description                 = "Sample Lab4 DevOps"
+      + etag                        = (known after apply)
+      + full_name                   = (known after apply)
+      + git_clone_url               = (known after apply)
+      + has_downloads               = true
+      + has_issues                  = true
+      + has_projects                = true
+      + has_wiki                    = true
+      + html_url                    = (known after apply)
+      + http_clone_url              = (known after apply)
+      + id                          = (known after apply)
+      + merge_commit_message        = "PR_TITLE"
+      + merge_commit_title          = "MERGE_MESSAGE"
+      + name                        = "sample-repo"
+      + node_id                     = (known after apply)
+      + primary_language            = (known after apply)
+      + private                     = (known after apply)
+      + repo_id                     = (known after apply)
+      + squash_merge_commit_message = "COMMIT_MESSAGES"
+      + squash_merge_commit_title   = "COMMIT_OR_PR_TITLE"
+      + ssh_clone_url               = (known after apply)
+      + svn_url                     = (known after apply)
+      + topics                      = (known after apply)
+      + visibility                  = "public"
+      + web_commit_signoff_required = false
     }
 
-Plan: 2 to add, 1 to change, 0 to destroy.
+Plan: 3 to add, 0 to change, 0 to destroy.
 
 Do you want to perform these actions?
   Terraform will perform the actions described above.
@@ -269,14 +294,14 @@ Do you want to perform these actions?
 
   Enter a value: yes
 
-github_repository.repo: Modifying... [id=sample-repo]
-github_repository.repo: Modifications complete after 2s [id=sample-repo]
+github_repository.repo: Creating...
+github_repository.repo: Creation complete after 6s [id=sample-repo]
 github_branch_default.main: Creating...
 github_branch_default.main: Creation complete after 2s [id=sample-repo]
 github_branch_protection.default: Creating...
-github_branch_protection.default: Creation complete after 4s [id=BPR_kwDOLYp_5c4C0smt]
+github_branch_protection.default: Creation complete after 4s [id=BPR_kwDOLYwmrs4C0uIY]
 
-Apply complete! Resources: 2 added, 1 changed, 0 destroyed.
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
 ```
 
 Output of the `terraform show` command:
@@ -284,7 +309,7 @@ Output of the `terraform show` command:
 # github_branch_default.main:
 resource "github_branch_default" "main" {
     branch     = "main"
-    etag       = "W/\"fab1eaa8ae4fbd70996358bb1c83fc18942f3c08cde6fded64ca8cf4fab98a2b\""
+    etag       = "W/\"9935d9c3a99096c2664081d1dbc78a620b9579f08570a800bbd9bd3e31e7097b\""
     id         = "sample-repo"
     rename     = false
     repository = "sample-repo"
@@ -296,7 +321,7 @@ resource "github_branch_protection" "default" {
     allows_force_pushes             = false
     blocks_creations                = false
     enforce_admins                  = true
-    id                              = "BPR_kwDOLYp_5c4C0smt"
+    id                              = "BPR_kwDOLYwmrs4C0uIY"
     lock_branch                     = false
     pattern                         = "main"
     repository_id                   = "sample-repo"
@@ -325,28 +350,28 @@ resource "github_repository" "repo" {
     default_branch              = "main"
     delete_branch_on_merge      = false
     description                 = "Sample Lab4 DevOps"
-    etag                        = "W/\"fab1eaa8ae4fbd70996358bb1c83fc18942f3c08cde6fded64ca8cf4fab98a2b\""
-    full_name                   = "NikitaGrigorenko/sample-repo"
-    git_clone_url               = "git://github.com/NikitaGrigorenko/sample-repo.git"
+    etag                        = "W/\"9935d9c3a99096c2664081d1dbc78a620b9579f08570a800bbd9bd3e31e7097b\""
+    full_name                   = "nik-grig-dev-ops/sample-repo"
+    git_clone_url               = "git://github.com/nik-grig-dev-ops/sample-repo.git"
     has_discussions             = false
     has_downloads               = true
     has_issues                  = true
     has_projects                = true
     has_wiki                    = true
-    html_url                    = "https://github.com/NikitaGrigorenko/sample-repo"
-    http_clone_url              = "https://github.com/NikitaGrigorenko/sample-repo.git"
+    html_url                    = "https://github.com/nik-grig-dev-ops/sample-repo"
+    http_clone_url              = "https://github.com/nik-grig-dev-ops/sample-repo.git"
     id                          = "sample-repo"
     is_template                 = false
     merge_commit_message        = "PR_TITLE"
     merge_commit_title          = "MERGE_MESSAGE"
     name                        = "sample-repo"
-    node_id                     = "R_kgDOLYp_5Q"
+    node_id                     = "R_kgDOLYwmrg"
     private                     = false
-    repo_id                     = 764051429
+    repo_id                     = 764159662
     squash_merge_commit_message = "COMMIT_MESSAGES"
     squash_merge_commit_title   = "COMMIT_OR_PR_TITLE"
-    ssh_clone_url               = "git@github.com:NikitaGrigorenko/sample-repo.git"
-    svn_url                     = "https://github.com/NikitaGrigorenko/sample-repo"
+    ssh_clone_url               = "git@github.com:nik-grig-dev-ops/sample-repo.git"
+    svn_url                     = "https://github.com/nik-grig-dev-ops/sample-repo"
     topics                      = []
     visibility                  = "public"
     vulnerability_alerts        = false
@@ -374,7 +399,173 @@ github_repository.repo
 # GitHub Teams
 Output of the `terraform apply` command:
 ```bash
+var.token
+  Specifies the GitHub PAT token or `GITHUB_TOKEN`
 
+  Enter a value: 
+
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # github_team.dev will be created
+  + resource "github_team" "dev" {
+      + create_default_maintainer = false
+      + etag                      = (known after apply)
+      + id                        = (known after apply)
+      + members_count             = (known after apply)
+      + name                      = "Dev"
+      + node_id                   = (known after apply)
+      + privacy                   = "closed"
+      + slug                      = (known after apply)
+    }
+
+  # github_team.man will be created
+  + resource "github_team" "man" {
+      + create_default_maintainer = false
+      + etag                      = (known after apply)
+      + id                        = (known after apply)
+      + members_count             = (known after apply)
+      + name                      = "Man"
+      + node_id                   = (known after apply)
+      + privacy                   = "closed"
+      + slug                      = (known after apply)
+    }
+
+  # github_team_membership.membership_for_nikitagrigorenko will be created
+  + resource "github_team_membership" "membership_for_nikitagrigorenko" {
+      + etag     = (known after apply)
+      + id       = (known after apply)
+      + role     = "member"
+      + team_id  = (known after apply)
+      + username = "nikitagrigorenko"
+    }
+
+  # github_team_membership.membership_for_y0szx will be created
+  + resource "github_team_membership" "membership_for_y0szx" {
+      + etag     = (known after apply)
+      + id       = (known after apply)
+      + role     = "member"
+      + team_id  = (known after apply)
+      + username = "y0szx"
+    }
+
+  # github_team_repository.dev_bind will be created
+  + resource "github_team_repository" "dev_bind" {
+      + etag       = (known after apply)
+      + id         = (known after apply)
+      + permission = "maintain"
+      + repository = (sensitive value)
+      + team_id    = (known after apply)
+    }
+
+  # github_team_repository.man_bind will be created
+  + resource "github_team_repository" "man_bind" {
+      + etag       = (known after apply)
+      + id         = (known after apply)
+      + permission = "admin"
+      + repository = (sensitive value)
+      + team_id    = (known after apply)
+    }
+
+Plan: 6 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+github_team.dev: Creating...
+github_team.man: Creating...
+github_team.dev: Creation complete after 8s [id=9569716]
+github_team_repository.dev_bind: Creating...
+github_team_membership.membership_for_y0szx: Creating...
+github_team.man: Creation complete after 9s [id=9569717]
+github_team_membership.membership_for_nikitagrigorenko: Creating...
+github_team_repository.man_bind: Creating...
+github_team_membership.membership_for_y0szx: Creation complete after 4s [id=9569716:y0szx]
+github_team_membership.membership_for_nikitagrigorenko: Creation complete after 6s [id=9569717:nikitagrigorenko]
+github_team_repository.dev_bind: Creation complete after 8s [id=9569716:sample-repo]
+github_team_repository.man_bind: Creation complete after 7s [id=9569717:sample-repo]
+
+Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+```
+
+Output of the `terraform show` command:
+```bash
+# github_team.dev:
+resource "github_team" "dev" {
+    create_default_maintainer = false
+    etag                      = "W/\"afeac971628d6e2df5c05dbf9346eb113e4a402ca4f98bd6b9940e575ff4d3ed\""
+    id                        = "9569716"
+    members_count             = 0
+    name                      = "Dev"
+    node_id                   = "T_kwDOCaAcJM4AkgW0"
+    privacy                   = "closed"
+    slug                      = "dev"
+}
+
+# github_team.man:
+resource "github_team" "man" {
+    create_default_maintainer = false
+    etag                      = "W/\"2fab4b7ebb2d781c7ee9af10f56961c17adc640f9dffc44c719621d3db2ec308\""
+    id                        = "9569717"
+    members_count             = 0
+    name                      = "Man"
+    node_id                   = "T_kwDOCaAcJM4AkgW1"
+    privacy                   = "closed"
+    slug                      = "man"
+}
+
+# github_team_membership.membership_for_nikitagrigorenko:
+resource "github_team_membership" "membership_for_nikitagrigorenko" {
+    etag     = "W/\"787bd32dcb534ac36bb6abd452e4d5c9d31f8943f79eb6887d2b317811ee7b4b\""
+    id       = "9569717:nikitagrigorenko"
+    role     = "maintainer"
+    team_id  = "9569717"
+    username = "nikitagrigorenko"
+}
+
+# github_team_membership.membership_for_y0szx:
+resource "github_team_membership" "membership_for_y0szx" {
+    etag     = "W/\"752c103e779e14c80b54157b2e56fb457e13a990bf7d64e157a05f2b36f3218f\""
+    id       = "9569716:y0szx"
+    role     = "member"
+    team_id  = "9569716"
+    username = "y0szx"
+}
+
+# github_team_repository.dev_bind:
+resource "github_team_repository" "dev_bind" {
+    etag       = "W/\"9ce70ca972f84d3da5cbc2e7b54251fba74ef9c9ef1e6206a0c576fe227a35f6\""
+    id         = "9569716:sample-repo"
+    permission = "maintain"
+    repository = (sensitive value)
+    team_id    = "9569716"
+}
+
+# github_team_repository.man_bind:
+resource "github_team_repository" "man_bind" {
+    etag       = "W/\"fc638ed64318424e19b2d4985a93301d66332a738bd0653b061cc9c76c4e015a\""
+    id         = "9569717:sample-repo"
+    permission = "admin"
+    repository = (sensitive value)
+    team_id    = "9569717"
+}
+
+```
+
+Output of the `terraform state list` command:
+```bash
+github_team.dev
+github_team.man
+github_team_membership.membership_for_nikitagrigorenko
+github_team_membership.membership_for_y0szx
+github_team_repository.dev_bind
+github_team_repository.man_bind
 ```
 
 
