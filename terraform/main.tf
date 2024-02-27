@@ -15,3 +15,11 @@ module "github" {
   source = "./github"
   token     = ""
 }
+
+module "github_teams" {
+  source = "./github_teams"
+
+  github_organization = "intaby"
+  token               = "" 
+  repository          = "devops-repo"
+}
