@@ -1,8 +1,25 @@
-# Best practices
-
-# Commands Output
-
 ## Docker
+
+### Best Practices
+
+#### Organizational Best Practices
+
+- **Logical Segmentation of Resources:** The Terraform configuration is meticulously organized into separate files, such as `variables.tf` for variable declarations, `output.tf` for output values, among others. This structure facilitates ease of navigation and management of the infrastructure code.
+
+- **Modularity and Reusability:** By decomposing the Terraform code into modular components, the configurations foster reusability and simplify the process of managing complex infrastructures. This modular approach aids in keeping the codebase clean and comprehensible.
+
+#### Code Quality and Maintenance
+
+- **Code Formatting and Validation:** The Terraform configurations have been refined using the `terraform fmt` command, which ensures that the code adheres to Terraform's formatting standards. Additionally, the `terraform validate` command has been employed to scrutinize the code for errors, further bolstering the code's quality and readability.
+
+- **Version Pinning for Reliability:** To safeguard the infrastructure from potential disruptions caused by provider updates, version pinning is meticulously applied. By locking the versions of Terraform providers, we ensure a stable and predictable deployment environment.
+
+#### Summary
+
+These practices underscore a commitment to high-quality infrastructure as code. Through careful organization, modular design, strict code quality checks, and version control, the Terraform configurations are poised to support scalable, flexible, and reliable infrastructure deployments. By adhering to these principles, the codebase not only facilitates ease of use and maintenance but also ensures that the infrastructure remains robust against the evolving landscape of provider updates and enhancements.
+
+
+### Commands Output
 
 ```console
 $ terraform state list
@@ -94,6 +111,72 @@ image_id = "sha256:a9eee15f45da3b91fe22a0fc15b35db6134a4bb5dbbfc08b71e4c94c3a369
 ```
 
 ## Yandex Cloud
+
+### Best Practices
+
+#### `main.tf` Best Practices
+
+- **Provider Configuration with Variables:**
+
+    ```hcl
+    provider "yandex" {
+      zone      = var.zone
+      token     = var.token
+      cloud_id  = var.cloud_id
+      folder_id = var.folder_id
+    }
+    ```
+    Utilizing variables for provider configuration enhances flexibility and reusability across different environments or projects.
+
+- **Resource Declaration:**
+
+    Resources such as `yandex_compute_disk`, `yandex_compute_instance`, `yandex_vpc_network`, and `yandex_vpc_subnet` are defined with clear naming conventions and properties, illustrating a structured approach to resource management.
+
+- **Use of Metadata for SSH Keys:**
+
+    ```hcl
+    metadata = {
+      ssh-keys = "ubuntu:${file("~/.ssh/id_ed25519.pub")}"
+    }
+    ```
+    Embedding SSH keys through metadata for compute instances enhances security and access control.
+
+#### `output.tf` Best Practices
+
+- **Output Values for Resource Attributes:**
+
+    ```hcl
+    output "internal_ip_address_vm_1" {
+      value = yandex_compute_instance.vm-1.network_interface.0.ip_address
+    }
+
+    output "external_ip_address_vm_1" {
+      value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
+    }
+    ```
+    Specifying outputs for both internal and external IP addresses of a compute instance provides essential information for subsequent operations or dependencies.
+
+#### `variables.tf` Best Practices
+
+- **Variable Definitions with Descriptions and Defaults:**
+
+    Each variable is accompanied by a description, and where applicable, a default value. This practice not only enhances the readability of the code but also provides context and defaults for essential configurations.
+
+    ```hcl
+    variable "zone" {
+      description = "Zone"
+      type        = string
+      default     = "ru-central1-a"
+    }
+    ```
+
+    Including descriptions and default values (where suitable) makes the configuration more user-friendly and self-documenting.
+
+#### Summary
+
+The Terraform configurations for Yandex Cloud infrastructure deployment demonstrate adherence to several best practices, including modularization, use of variables for flexible configurations, descriptive naming of resources, security practices through metadata, and clear output definitions. These practices ensure the code is maintainable, scalable, and adaptable to various deployment scenarios, thereby facilitating efficient infrastructure management.
+
+### Commands Output
 
 ```console
 $ terraform state list
@@ -235,4 +318,156 @@ resource "yandex_vpc_subnet" "subnet-1" {
 $ terraform output
 external_ip_address_vm_1 = "51.250.78.242"
 internal_ip_address_vm_1 = "192.168.10.10"
+```
+
+## Github
+
+### Best Practices
+
+#### `main.tf` Best Practices
+
+- **Provider Configuration with Required Version:**
+
+    ```hcl
+    terraform {
+      required_providers {
+        github = {
+          source  = "integrations/github"
+          version = "~> 6.0"
+        }
+      }
+    }
+    ```
+    This block ensures that the GitHub provider is used with a specific version, promoting consistency and reliability in Terraform operations.
+
+- **Resource Management for GitHub:**
+
+    The configuration manages GitHub resources such as repositories, branch defaults, and branch protection settings. Each resource is declared with comprehensive settings, reflecting a detailed and thoughtful approach to resource configuration.
+
+    ```hcl
+    resource "github_repository" "repo" {
+      name        = "terraform_test"
+      description = "Testing terraform github"
+      visibility  = "public"
+      ...
+    }
+    ```
+
+    This demonstrates a careful consideration of repository features and settings, ensuring that the GitHub repository is configured with desired properties like visibility, issue tracking, and initialization state.
+
+- **Security and Workflow Enhancements:**
+
+    The configuration enforces best practices such as branch protection to secure the repository's main branch, requiring pull request reviews and conversation resolutions, which are critical for maintaining a high standard of code quality and collaboration.
+
+    ```hcl
+    resource "github_branch_protection" "default" {
+      ...
+      require_conversation_resolution = true
+      enforce_admins                  = true
+      ...
+    }
+    ```
+
+#### `variables.tf` Best Practices
+
+- **Sensitive Variable Handling:**
+
+    ```hcl
+    variable "token" {
+      type        = string
+      description = "Specifies the GitHub PAT token or `GITHUB_TOKEN`"
+      sensitive   = true
+    }
+    ```
+    The token variable is marked as sensitive, ensuring that its value is treated with an appropriate level of security, avoiding accidental exposure in logs or outputs.
+
+#### Summary
+
+These Terraform configurations showcase a well-organized and secure approach to managing GitHub resources. By utilizing best practices such as provider version pinning, comprehensive resource configuration, and sensitive variable handling, the configurations ensure that GitHub repositories and their associated settings are managed in a secure, efficient, and reliable manner. This approach not only enhances the code's maintainability but also aligns with best practices for security and collaboration within GitHub projects.
+
+### Commands Output
+
+```console
+$ terraform import "github_repository.repo" "terraform_test"
+var.token
+  Specifies the GitHub PAT token or `GITHUB_TOKEN`
+
+  Enter a value: 
+
+github_repository.repo: Importing from ID "terraform_test"...
+github_repository.repo: Import prepared!
+  Prepared github_repository for import
+```
+
+```console
+$ terraform apply
+var.token
+  Specifies the GitHub PAT token or `GITHUB_TOKEN`
+
+  Enter a value: 
+
+github_repository.repo: Refreshing state... [id=terraform_test]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  + create
+  ~ update in-place
+
+Terraform will perform the following actions:
+
+  # github_branch_default.main will be created
+  + resource "github_branch_default" "main" {
+      + branch     = "main"
+      + etag       = (known after apply)
+      + id         = (known after apply)
+      + rename     = false
+      + repository = "terraform_test"
+    }
+
+  # github_branch_protection.default will be created
+  + resource "github_branch_protection" "default" {
+      + allows_deletions                = false
+      + allows_force_pushes             = false
+      + enforce_admins                  = true
+      + id                              = (known after apply)
+      + lock_branch                     = false
+      + pattern                         = "main"
+      + repository_id                   = "terraform_test"
+      + require_conversation_resolution = true
+      + require_signed_commits          = false
+      + required_linear_history         = false
+
+      + required_pull_request_reviews {
+          + require_last_push_approval      = false
+          + required_approving_review_count = 1
+        }
+    }
+
+  # github_repository.repo will be updated in-place
+  ~ resource "github_repository" "repo" {
+      ~ auto_init                   = false -> true
+      + description                 = "Testing terraform github"
+        id                          = "terraform_test"
+        name                        = "terraform_test"
+        # (32 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+Plan: 2 to add, 1 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+github_repository.repo: Modifying... [id=terraform_test]
+github_repository.repo: Modifications complete after 2s [id=terraform_test]
+github_branch_default.main: Creating...
+github_branch_default.main: Creation complete after 1s [id=terraform_test]
+github_branch_protection.default: Creating...
+github_branch_protection.default: Creation complete after 4s [id=BPR_kwDOLYmp8s4C0rZM]
+
+Apply complete! Resources: 2 added, 1 changed, 0 destroyed.
 ```
