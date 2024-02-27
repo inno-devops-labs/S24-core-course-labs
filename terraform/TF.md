@@ -2,7 +2,7 @@
 
 ## Lab 4, Task 1
 
-**Output of `terraform state show && terraform state list`**
+### Output of `terraform state show && terraform state list`
 
 Command:
 
@@ -100,7 +100,7 @@ resource "docker_image" "nginx" {
 }
 ```
 
-**Changes applied**
+### Changes applied
 
 I updated port in the `docker_container.nginx` resource, and ran `terraform apply`:
 
@@ -190,7 +190,7 @@ docker_container.nginx: Creation complete after 0s [id=db4390990ea77ea7a14ee0b84
 Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
 ```
 
-**Output of `terraform output`**
+### Output of `terraform output`
 
 ```plaintext
 container_id = "657da4d88fffd92a92b2182d420a04daf78f22fa0ebfc85cb3e09ac42b55af65"
