@@ -12,9 +12,9 @@ provider "github" {
 }
 
 resource "github_repository" "repo" {
-  name               = "devops-example"
-  description        = "My awesome codebase"
-  visibility         = "public"
+  name        = "devops-example"
+  description = "My awesome codebase"
+  visibility  = "public"
 }
 
 resource "github_branch_default" "main" {

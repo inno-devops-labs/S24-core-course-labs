@@ -2,6 +2,12 @@
 
 ## Best practices
 
+1. Using `terraform validate` before applying any changes to verify and validate them.
+2. Using `terraform fmt` to ensure the readability of the terraform files.
+3. Using `variables` and `outputs` files. The former is for storing the variables for the `main` file, and the latter - for the easier access to the particular values.
+4. Avoiding placing any sensitive data in the code. Instead, it is asked during the run of the `terraform apply` command.
+5. Not pushing the terraform state files into the repo.
+6. Versions are explicitly specified in the terraform code.
 
 ## Outputs
 
@@ -257,4 +263,17 @@ github_branch_protection.default: Creating...
 github_branch_protection.default: Creation complete after 5s [id=BPR_kwDOLY7o9s4C0xah]
 
 Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+```
+
+### Github teams
+
+- `terraform apply`
+
+```
+github_team.some_team: Refreshing state... [id=9573708]
+github_team.some_other_team: Refreshing state... [id=9573707]
+github_team_repository.team1_repo: Refreshing state... [id=9573708:devops-example]
+github_team_repository.team2_repo: Refreshing state... [id=9573707:devops-example]
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
 ```
