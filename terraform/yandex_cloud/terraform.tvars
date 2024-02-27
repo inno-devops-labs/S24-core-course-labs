@@ -1,0 +1,4 @@
+name       = "app-server"
+user_name  = "user"
+user_pass  = "user"
+admin_pass = "admin"
