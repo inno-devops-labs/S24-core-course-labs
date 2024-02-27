@@ -439,3 +439,17 @@ After that, you can see (in the timeweb console) that the server has new name: *
 instance_id = "2600837"
 instance_public_ip = "92.255.76.109"
 ```
+
+# Terraform-related best practices
+
+1. Use version control (Git)
+
+2. Organize the code: use separate directories for different environments and break down your configurations into several files.
+
+3. Use variables and outputs
+
+4. Plan before applying.
+
+5. Keep dependencies up to date.
+
+6. Use environment variables for tokens.
