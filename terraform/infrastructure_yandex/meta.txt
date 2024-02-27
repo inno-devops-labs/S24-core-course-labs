@@ -1,0 +1,9 @@
+#cloud-config
+users:
+  - name: diana
+    groups: sudo
+    shell: /bin/bash
+    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJtZr88I5bnb8hxEjdVbTDUvanq5nUS2WE391luVvybH tomilovediana@gmail.com
+
