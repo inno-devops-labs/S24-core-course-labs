@@ -3,3 +3,5 @@
 .vscode/
 venv
 __pycache__
+
+.terraform/
