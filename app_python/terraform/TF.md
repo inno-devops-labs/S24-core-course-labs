@@ -216,6 +216,287 @@ resource "github_repository" "S24-core-course-labs" {
 }
 ```
 
+## Outputs for Yandex Cloud Infrastructure
+
+```bash
+terraform state list
+
+data.template_file.default
+data.yandex_compute_image.default
+yandex_compute_disk.boot-disk
+yandex_compute_instance.default
+yandex_vpc_network.default
+yandex_vpc_subnet.default
+```
+
+```bash
+terraform state show data.template_file.default
+
+# data.template_file.default:
+data "template_file" "default" {
+    id       = "44441a3ff2754e3bf6862d18966fb8f44b97579e0bd291eeb3250ab01b119989"
+    rendered = <<-EOT
+        #ps1
+        # ^^^ 'ps1' is only for cloudbase-init, some sort of sha-bang in linux
+
+        # logging
+        Start-Transcript -Path "$ENV:SystemDrive\provision.txt" -IncludeInvocationHeader -Force
+        "Bootstrap script started" | Write-Host
+
+        # inserting value's from terraform
+        $MyUserName = "sapushha"
+        $MyPlainTextPassword = "sapushha"
+        if (-not [string]::IsNullOrEmpty($MyUserName) -and -not [string]::IsNullOrEmpty($MyPlainTextPassword)) {
+            "Create user" | Write-Host
+            $MyPassword = $MyPlainTextPassword | ConvertTo-SecureString -AsPlainText -Force
+            $MyUser = New-LocalUser -Name $MyUserName -Password $MyPassword -PasswordNeverExpires -AccountNeverExpires
+            $MyUser | Add-LocalGroupMember -Group 'Administrators'
+            $MyUser | Add-LocalGroupMember -Group 'Remote Management Users'
+        }
+
+        # inserting value's from terraform
+        $MyAdministratorPlainTextPassword = "sapushha"
+        if (-not [string]::IsNullOrEmpty($MyAdministratorPlainTextPassword)) {
+            "Set local administrator password" | Write-Host
+            $MyAdministratorPassword = $MyAdministratorPlainTextPassword | ConvertTo-SecureString -AsPlainText -Force
+            # S-1-5-21domain-500 is a well-known SID for Administrator
+            # https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/security-identifiers-in-windows
+            $MyAdministrator = Get-LocalUser | Where-Object -Property "SID" -like "S-1-5-21-*-500"
+            $MyAdministrator | Set-LocalUser -Password $MyAdministratorPassword
+        }
+
+        "Bootstrap script ended" | Write-Host
+    EOT
+    template = <<-EOT
+        #ps1
+        # ^^^ 'ps1' is only for cloudbase-init, some sort of sha-bang in linux
+
+        # logging
+        Start-Transcript -Path "$ENV:SystemDrive\provision.txt" -IncludeInvocationHeader -Force
+        "Bootstrap script started" | Write-Host
+
+        # inserting value's from terraform
+        $MyUserName = "${ user_name }"
+        $MyPlainTextPassword = "${ user_pass }"
+        if (-not [string]::IsNullOrEmpty($MyUserName) -and -not [string]::IsNullOrEmpty($MyPlainTextPassword)) {
+            "Create user" | Write-Host
+            $MyPassword = $MyPlainTextPassword | ConvertTo-SecureString -AsPlainText -Force
+            $MyUser = New-LocalUser -Name $MyUserName -Password $MyPassword -PasswordNeverExpires -AccountNeverExpires
+            $MyUser | Add-LocalGroupMember -Group 'Administrators'
+            $MyUser | Add-LocalGroupMember -Group 'Remote Management Users'
+        }
+
+        # inserting value's from terraform
+        $MyAdministratorPlainTextPassword = "${ admin_pass }"
+        if (-not [string]::IsNullOrEmpty($MyAdministratorPlainTextPassword)) {
+            "Set local administrator password" | Write-Host
+            $MyAdministratorPassword = $MyAdministratorPlainTextPassword | ConvertTo-SecureString -AsPlainText -Force
+            # S-1-5-21domain-500 is a well-known SID for Administrator
+            # https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/security-identifiers-in-windows
+            $MyAdministrator = Get-LocalUser | Where-Object -Property "SID" -like "S-1-5-21-*-500"
+            $MyAdministrator | Set-LocalUser -Password $MyAdministratorPassword
+        }
+
+        "Bootstrap script ended" | Write-Host
+    EOT
+    vars     = {
+        "admin_pass" = "sapushha"
+        "user_name"  = "sapushha"
+        "user_pass"  = "sapushha"
+    }
+}
+```
+
+```bash
+terraform state show data.yandex_compute_image.default
+
+# data.yandex_compute_image.default:
+data "yandex_compute_image" "default" {
+    created_at    = "2024-02-26T10:55:21Z"
+    description   = "centos 7"
+    family        = "centos-7"
+    folder_id     = "standard-images"
+    id            = "fd8p3qkkviv008rkeb83"
+    image_id      = "fd8p3qkkviv008rkeb83"
+    labels        = {}
+    min_disk_size = 10
+    name          = "centos-7-v20240226"
+    os_type       = "linux"
+    pooled        = true
+    product_ids   = [
+        "f2eo8hihti6h5tcvv773",
+    ]
+    size          = 2
+    status        = "ready"
+}
+```
+
+```bash
+terraform state show yandex_compute_disk.boot-disk
+
+# yandex_compute_disk.boot-disk:
+resource "yandex_compute_disk" "boot-disk" {
+    block_size  = 4096
+    created_at  = "2024-02-28T04:17:47Z"
+    folder_id   = "b1g1cvrjre5nhj5nuthg"
+    id          = "fhmkvosnp7pikg4ck51b"
+    image_id    = "fd8p3qkkviv008rkeb83"
+    name        = "boot-disk"
+    product_ids = [
+        "f2eo8hihti6h5tcvv773",
+    ]
+    size        = 50
+    status      = "ready"
+    type        = "network-ssd"
+    zone        = "ru-central1-a"
+
+    disk_placement_policy {}
+}
+
+```
+
+```bash
+terraform state show yandex_compute_instance.default
+
+# yandex_compute_instance.default:
+resource "yandex_compute_instance" "default" {
+    created_at                = "2024-02-28T04:17:53Z"
+    folder_id                 = "b1g1cvrjre5nhj5nuthg"
+    fqdn                      = "test.ru-central1.internal"
+    hostname                  = "test"
+    id                        = "fhmlv9st1tfha50uni18"
+    metadata                  = {
+        "user-data" = <<-EOT
+            #ps1
+            # ^^^ 'ps1' is only for cloudbase-init, some sort of sha-bang in linux
+
+            # logging
+            Start-Transcript -Path "$ENV:SystemDrive\provision.txt" -IncludeInvocationHeader -Force
+            "Bootstrap script started" | Write-Host
+
+            # inserting value's from terraform
+            $MyUserName = "sapushha"
+            $MyPlainTextPassword = "sapushha"
+            if (-not [string]::IsNullOrEmpty($MyUserName) -and -not [string]::IsNullOrEmpty($MyPlainTextPassword)) {
+                "Create user" | Write-Host
+                $MyPassword = $MyPlainTextPassword | ConvertTo-SecureString -AsPlainText -Force
+                $MyUser = New-LocalUser -Name $MyUserName -Password $MyPassword -PasswordNeverExpires -AccountNeverExpires
+                $MyUser | Add-LocalGroupMember -Group 'Administrators'
+                $MyUser | Add-LocalGroupMember -Group 'Remote Management Users'
+            }
+
+            # inserting value's from terraform
+            $MyAdministratorPlainTextPassword = "sapushha"
+            if (-not [string]::IsNullOrEmpty($MyAdministratorPlainTextPassword)) {
+                "Set local administrator password" | Write-Host
+                $MyAdministratorPassword = $MyAdministratorPlainTextPassword | ConvertTo-SecureString -AsPlainText -Force
+                # S-1-5-21domain-500 is a well-known SID for Administrator
+                # https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/security-identifiers-in-windows
+                $MyAdministrator = Get-LocalUser | Where-Object -Property "SID" -like "S-1-5-21-*-500"
+                $MyAdministrator | Set-LocalUser -Password $MyAdministratorPassword
+            }
+
+            "Bootstrap script ended" | Write-Host
+        EOT
+    }
+    name                      = "test"
+    network_acceleration_type = "standard"
+    platform_id               = "standard-v1"
+    status                    = "running"
+    zone                      = "ru-central1-a"
+
+    boot_disk {
+        auto_delete = true
+        device_name = "fhmkvosnp7pikg4ck51b"
+        disk_id     = "fhmkvosnp7pikg4ck51b"
+        mode        = "READ_WRITE"
+
+        initialize_params {
+            block_size = 4096
+            image_id   = "fd8p3qkkviv008rkeb83"
+            name       = "boot-disk"
+            size       = 50
+            type       = "network-ssd"
+        }
+    }
+
+    metadata_options {
+        aws_v1_http_endpoint = 1
+        aws_v1_http_token    = 2
+        gce_http_endpoint    = 1
+        gce_http_token       = 1
+    }
+
+    network_interface {
+        index              = 0
+        ip_address         = "192.168.10.27"
+        ipv4               = true
+        ipv6               = false
+        mac_address        = "d0:0d:15:fa:79:d0"
+        nat                = true
+        nat_ip_address     = "158.160.37.209"
+        nat_ip_version     = "IPV4"
+        security_group_ids = []
+        subnet_id          = "e9br2l1dbd7a81808l9a"
+    }
+
+    placement_policy {
+        host_affinity_rules       = []
+        placement_group_partition = 0
+    }
+
+    resources {
+        core_fraction = 100
+        cores         = 2
+        gpus          = 0
+        memory        = 4
+    }
+
+    scheduling_policy {
+        preemptible = false
+    }
+
+    timeouts {
+        create = "10m"
+        delete = "10m"
+    }
+}
+```
+
+```bash
+terraform state show yandex_vpc_network.default
+
+# yandex_vpc_network.default:
+resource "yandex_vpc_network" "default" {
+    created_at                = "2024-02-28T04:17:47Z"
+    default_security_group_id = "enpvftvok5q7e75dk442"
+    folder_id                 = "b1g1cvrjre5nhj5nuthg"
+    id                        = "enpt0t2pi30ttnh5o6eu"
+    labels                    = {}
+    name                      = "ya-network"
+    subnet_ids                = []
+}
+```
+
+```bash
+terraform state show yandex_vpc_subnet.default
+
+# yandex_vpc_subnet.default:
+resource "yandex_vpc_subnet" "default" {
+    created_at     = "2024-02-28T04:17:49Z"
+    folder_id      = "b1g1cvrjre5nhj5nuthg"
+    id             = "e9br2l1dbd7a81808l9a"
+    labels         = {}
+    name           = "ya-network"
+    network_id     = "enpt0t2pi30ttnh5o6eu"
+    v4_cidr_blocks = [
+        "192.168.10.0/24",
+    ]
+    v6_cidr_blocks = []
+    zone           = "ru-central1-a"
+}
+```
+
 ## Best Practices I applied
 
 ### Version Constraints:
