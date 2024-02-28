@@ -1,5 +1,12 @@
 # Terraform
 
+## Best Practices Applied
+
+- Stored configuration files in VCS;
+- Used variables and outputs files;
+- Stored sensitive info in .tfvars files;
+- Planned and reviewed changes before application.
+
 ## Docker command outputs
 
 ```bash
