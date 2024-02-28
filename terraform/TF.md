@@ -273,3 +273,33 @@ output:
 ```bash
 main_ipv4 = "91.210.171.97"
 ```
+
+# Best practices
+
+## Modularization
+Organize your Terraform code into separate files for providers, resources, variables, and outputs to enhance maintainability and readability.
+
+## Parameterization
+Utilize variables to parameterize your infrastructure configurations, promoting reusability and flexibility.
+
+## Documentation
+Document resources, variables, and outputs with clear descriptions to facilitate understanding and collaboration among team members.
+
+## Provider Versioning
+Specify provider versions with version constraints to ensure consistency and predictability in deployments.
+
+## Dependency Management
+Properly manage dependencies between resources to ensure that resources are provisioned in the correct order.
+
+## Output Exposition
+Expose important information such as resource IDs or IP addresses as outputs to enable easy retrieval and integration with other systems.
+
+## Configuration Options
+Utilize configuration options provided by providers to tailor resources to specific requirements or environments.
+
+## Security Measures
+Safeguard sensitive information such as access tokens or passwords by storing them in environment variables instead of hardcoding them in Terraform files.
+```bash
+export TWC_TOKEN=...
+export GITHUB_TOKEN=...
+```

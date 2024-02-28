@@ -10,3 +10,7 @@ terraform/timeweb/.terraform
 terraform/timeweb/terraform.tfstate
 terraform/timeweb/terraform.tfstate.backup
 terraform/timeweb/.terraform.lock.hcl
+terraform/github/.terraform
+terraform/github/terraform.tfstate
+terraform/github/terraform.tfstate.backup
+terraform/github/.terraform.lock.hcl
