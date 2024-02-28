@@ -1,0 +1,7 @@
+users:
+  - name: lab4
+    groups: sudo
+    shell: /bin/bash
+    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+    ssh-authorized-keys:
+      - AAAAC3NzaC1lZDI1NTE5AAAAIBjYhDx4PQ5a9ZxfMjBz0cAShIh3sciAYTRPxpoHTDmm yuszx@LAPTOP-4DNNPE6B
