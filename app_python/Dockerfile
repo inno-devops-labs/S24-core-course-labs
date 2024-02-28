@@ -5,10 +5,10 @@ FROM python:3.9-slim
 WORKDIR /app_python
 
 # Copy the requirements file
-COPY requirements.txt .
+#COPY requirements.txt .
 
 # Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+#RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code into the container
 COPY . .

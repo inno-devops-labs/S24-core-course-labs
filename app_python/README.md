@@ -61,3 +61,25 @@ docker run -d -p 5000:5000 {your_username}/app_python
 ```
 
 Access the web application in your browser at http://localhost:5000/ to view the current time in Moscow within the Docker container.
+
+## Unit Tests
+The application includes unit tests to verify the functionality of the time retrieval and response formatting. The tests ensure that the response contains the expected time message and that the time format is correct.
+
+To run the unit tests:
+```bash
+pytest test_app.py
+```
+
+## CI Workflow
+
+### Workflow Description
+The CI workflow for this project is set up using GitHub Actions. It includes the following essential steps:
+- **Dependencies:** Installs project dependencies specified in `requirements.txt`.
+- **Linter:** Runs pylint to check code style.
+- **Tests:** Executes unit tests using pytest.
+- **Docker Steps:**
+  - **Login to Docker Hub:** Authenticates with Docker Hub using GitHub Secrets.
+  - **Build and Push Docker Image:** Builds the Docker image for the application and pushes it to Docker Hub.
+
+### Running the Workflow
+The CI workflow runs on push and pull requests to the repository. It checks the code dependencies, style, and tests on each commit.
