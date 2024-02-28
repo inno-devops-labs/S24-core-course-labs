@@ -222,4 +222,38 @@ Apply complete! Resources: 3 added, 0 changed, 1 destroyed.
 ```
 You can check [repo](https://github.com/doechon/terraform-project-for-devops-course) and [branch protection rules](https://github.com/doechon/terraform-project-for-devops-course/settings/branches)
 
-#### `terraform import`
+## Best Practises
+
+### Modularization
+
+Each directory (docker and github) contains separate Terraform configurations for different purposes (Docker and GitHub, respectively). This modular approach makes it easier to manage and understand the infrastructure code.
+
+### File Naming 
+I've used descriptive filenames such as main.tf, variables.tf, and outputs.tf, which helps in quickly understanding the purpose of each file.
+
+### Provider Configuration
+I've declared provider configurations separately in each main.tf file, ensuring clarity and separation of concerns.
+
+### Variable Definitions
+Variables are defined in dedicated variables.tf files, providing a clear overview of input parameters and their descriptions.
+
+### Output Definitions
+Outputs are defined in outputs.tf files, making it clear what information will be available after the Terraform execution.
+
+### Resource Configuration
+Resource configurations are logically organized within each main.tf file, following the Terraform syntax and structure.
+
+### Version Control
+I're utilizing version control (assuming Git) to manage your Terraform configurations. This enables collaboration, change tracking, and rollback capabilities.
+
+### Secrets Management
+I've marked sensitive variables (like the GitHub token) with sensitive = true in the variables.tf file, indicating that they should be treated securely.
+
+### Documentation 
+I've provided descriptions for variables, helping other users understand their purpose and usage.
+
+### Resource Naming 
+I've used meaningful names for resources (docker_image.nginx, github_repository.terraform_repo), enhancing readability and maintainability.
+
+### GitHub Branch Protection 
+I've implemented a branch protection rule for the default branch in the GitHub configuration, enforcing code review practices and protecting the main branch.
