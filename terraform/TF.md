@@ -10,7 +10,7 @@
     ```
    2. #### Terraform apply usage
     `terraform apply`
-   2. #### Get list of states
+   3. #### Get list of states
     #### Input
     `terraform state list`
     #### Output
@@ -18,7 +18,7 @@
     docker_container.moscow-time-app
     docker_image.moscow-time-app
     ```
-   3. #### Get details of each state
+   4. #### Get details of each state
     #### Input
     `for i in $(terraform state list); do echo "--State ${i}--" && terraform state show $i; echo; done`
     #### Output
@@ -99,6 +99,88 @@
       name         = "zaqbez39me/moscow-time-app:latest"
       repo_digest  = "zaqbez39me/moscow-time-app@sha256:34118954c51968a7f98661e3be96e7803c41f8c1a2be702032c65ca74a4c5f30"
   }
+  ```
+* ### Part of output after application
+  ```text
+  Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+  Terraform will perform the following actions:
+
+  # docker_container.moscow-time-app will be created
+  + resource "docker_container" "moscow-time-app" {
+      + attach                                      = false
+      + bridge                                      = (known after apply)
+      + command                                     = (known after apply)
+      + container_logs                              = (known after apply)
+      + container_read_refresh_timeout_milliseconds = 15000
+      + entrypoint                                  = (known after apply)
+      + env                                         = (known after apply)
+      + exit_code                                   = (known after apply)
+      + hostname                                    = (known after apply)
+      + id                                          = (known after apply)
+      + image                                       = (known after apply)
+      + init                                        = (known after apply)
+      + ipc_mode                                    = (known after apply)
+      + log_driver                                  = (known after apply)
+      + logs                                        = false
+      + must_run                                    = true
+      + name                                        = "moscow-time-app"
+      + network_data                                = (known after apply)
+      + read_only                                   = false
+      + remove_volumes                              = true
+      + restart                                     = "no"
+      + rm                                          = false
+      + runtime                                     = (known after apply)
+      + security_opts                               = (known after apply)
+      + shm_size                                    = (known after apply)
+      + start                                       = true
+      + stdin_open                                  = false
+      + stop_signal                                 = (known after apply)
+      + stop_timeout                                = (known after apply)
+      + tty                                         = false
+      + wait                                        = false
+      + wait_timeout                                = 60
+
+      + ports {
+          + external = 8000
+          + internal = 80
+          + ip       = "0.0.0.0"
+          + protocol = "tcp"
+        }
+    }
+
+  # docker_image.moscow-time-app will be created
+  + resource "docker_image" "moscow-time-app" {
+      + id           = (known after apply)
+      + image_id     = (known after apply)
+      + keep_locally = true
+      + name         = "zaqbez39me/moscow-time-app:latest"
+      + repo_digest  = (known after apply)
+    }
+
+  Plan: 2 to add, 0 to change, 0 to destroy.
+
+  Changes to Outputs:
+      + container_id = (known after apply)
+
+  Do you want to perform these actions?
+    Terraform will perform the actions described above.
+    Only 'yes' will be accepted to approve.
+  
+    Enter a value: yes
+
+  docker_image.moscow-time-app: Creating...
+  docker_image.moscow-time-app: Creation complete after 0s [id=sha256:fb124f12af9d6649662026e11e8e0fbfbaf51fc620e40bace869b6424a63a780zaqbez39me/moscow-time-app:latest]
+  docker_container.moscow-time-app: Creating...
+  docker_container.moscow-time-app: Creation complete after 0s [id=402285d9cfe6c4fabd525ad7084510d8bb93ea29695f3d40041f88d51f0746fc]
+  
+  Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+  
+  Outputs:
+
+  container_id = "402285d9cfe6c4fabd525ad7084510d8bb93ea29695f3d40041f88d51f0746fc"
+
   ```
 * ### After utilizing input variables to rename your Docker container
   1. #### Terraform apply usage
