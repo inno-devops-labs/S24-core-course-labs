@@ -121,11 +121,100 @@ container_id = "3d02f68c621cec8dca6b52def695436a46ef6fcebf25a5be20a17c7be1149410
 
 ## Outputs for Github Infrastructure
 
-bebebe
+```bash
+terraform state list
 
-## Outputs for Yandex Cloud Infrastructure
+github_branch_default.main
+github_branch_protection.default
+github_repository.S24-core-course-labs
+```
 
-bebebe
+```bash
+terraform state show github_branch_protection.default
+
+# github_branch_protection.default:
+resource "github_branch_protection" "default" {
+    allows_deletions                = false
+    allows_force_pushes             = false
+    enforce_admins                  = false
+    id                              = "BPR_kwDOLN3JHc4C0zVH"
+    lock_branch                     = false
+    pattern                         = "main"
+    repository_id                   = "S24-core-course-labs"
+    require_conversation_resolution = false
+    require_signed_commits          = false
+    required_linear_history         = false
+}
+```
+
+```bash
+terraform state show github_branch_default.main
+
+# github_branch_default.main:
+resource "github_branch_default" "main" {
+    branch     = "main"
+    etag       = "W/\"08f9039c6a73b8abeda501708c636edb8155d67521c3887923c8c4ab7a72e535\""
+    id         = "S24-core-course-labs"
+    rename     = false
+    repository = "S24-core-course-labs"
+}
+```
+
+```bash
+terraform state show github_repository.S24-core-course-labs
+
+# github_repository.S24-core-course-labs:
+resource "github_repository" "S24-core-course-labs" {
+    allow_auto_merge            = false
+    allow_merge_commit          = true
+    allow_rebase_merge          = true
+    allow_squash_merge          = true
+    allow_update_branch         = false
+    archived                    = false
+    auto_init                   = true
+    default_branch              = "main"
+    delete_branch_on_merge      = false
+    description                 = "DevOps Engineering Labs"
+    etag                        = "W/\"08f9039c6a73b8abeda501708c636edb8155d67521c3887923c8c4ab7a72e535\""
+    full_name                   = "sapushha/S24-core-course-labs"
+    git_clone_url               = "git://github.com/sapushha/S24-core-course-labs.git"
+    gitignore_template          = "Python"
+    has_discussions             = false
+    has_downloads               = false
+    has_issues                  = false
+    has_projects                = false
+    has_wiki                    = false
+    html_url                    = "https://github.com/sapushha/S24-core-course-labs"
+    http_clone_url              = "https://github.com/sapushha/S24-core-course-labs.git"
+    id                          = "S24-core-course-labs"
+    is_template                 = false
+    license_template            = "mit"
+    merge_commit_message        = "PR_TITLE"
+    merge_commit_title          = "MERGE_MESSAGE"
+    name                        = "S24-core-course-labs"
+    node_id                     = "R_kgDOLN3JHQ"
+    primary_language            = "Python"
+    private                     = false
+    repo_id                     = 752732445
+    squash_merge_commit_message = "COMMIT_MESSAGES"
+    squash_merge_commit_title   = "COMMIT_OR_PR_TITLE"
+    ssh_clone_url               = "git@github.com:sapushha/S24-core-course-labs.git"
+    svn_url                     = "https://github.com/sapushha/S24-core-course-labs"
+    topics                      = []
+    visibility                  = "public"
+    vulnerability_alerts        = false
+    web_commit_signoff_required = false
+
+    security_and_analysis {
+        secret_scanning {
+            status = "disabled"
+        }
+        secret_scanning_push_protection {
+            status = "disabled"
+        }
+    }
+}
+```
 
 ## Best Practices I applied
 
