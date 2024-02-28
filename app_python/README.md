@@ -1,8 +1,9 @@
 # Flask Web Application displaying current time in Moscow
 
-[![Test](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/test.yml/badge.svg?branch=lab-3&event=push)](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/test.yml)
-[![Lint](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/lint.yml/badge.svg?branch=lab-3&event=push)](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/lint.yml)
-[![Snyk Security Check](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/snyk.yml/badge.svg?branch=lab-3&event=push)](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/snyk.yml)
+[![Test](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/test.yml/badge.svg)](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/test.yml)
+[![Lint](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/lint.yml/badge.svg)](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/lint.yml)
+[![Snyk Security Check](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/snyk.yml/badge.svg)](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/snyk.yml)
+[![Docker Image Push](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/docker.yml/badge.svg)](https://github.com/plov-cyber/S24-core-course-labs/actions/workflows/docker.yml)
 
 ## Description
 
