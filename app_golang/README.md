@@ -68,3 +68,6 @@ To pull and run the Docker container, run the following commands:
 docker pull xdrdvd/app_golang:latest
 docker run -p 8080:8080 xdrdvd/app_golang:latest
 ```
+
+## CI/CD
+![golang app workflow](https://github.com/ahmedXDR/S24-core-course-labs/actions/workflows/golang-ci.yml/badge.svg)
