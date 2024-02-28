@@ -21,3 +21,7 @@ obj/
 .idea
 .DS_STORE
 .ruff_cache
+.terraform
+*.tfstate.backup
+.terraform.lock.hcl
+terraform.tfstate
