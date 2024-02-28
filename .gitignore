@@ -1,3 +1,5 @@
+app_python/terraform/github/config.auto.tfvars
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
