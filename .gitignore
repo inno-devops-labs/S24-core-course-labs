@@ -208,3 +208,25 @@ bin/
 
 .DS_Store
 
+# ----------------------- Terraform ------------------------
+# Local .terraform directories
+/terraform/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Files containing sensitive data, variable files
+*.override.tf
+*.plan
+
+# Terraform CLI configuration files
+.terraformrc
+terraform.rc
+
+# ----------------------- Secrets ------------------------
+
+/terraform/yandex_cloud/authorized_key.json
