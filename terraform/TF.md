@@ -166,3 +166,256 @@ $ terraform output
 container_id = "7777ff2e657afb002703dd76feffb8f05e525b73a5ce512d15047e175b166db6"
 image_id = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666anginx:latest"
 ```
+
+## Yandex Cloud command outputs
+
+```bash
+$ terraform apply
+docker_image.nginx: Refreshing state... [id=sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666anginx:latest]
+docker_container.nginx: Refreshing state... [id=7f50b82ad3a8a14ec3ab95b07c8243560952d785a3d76c169e35a1b0558c20d3]
+yandex_vpc_network.network-1: Refreshing state... [id=enpp88amqva30hnnnhhv]
+yandex_compute_disk.boot-disk-1: Refreshing state... [id=fhm8716enlkivmdqktas]
+yandex_vpc_subnet.subnet-1: Refreshing state... [id=e9bv27imeg76ibb3f9cd]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # yandex_compute_instance.vm-1 will be created
+  + resource "yandex_compute_instance" "vm-1" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + maintenance_grace_period  = (known after apply)
+      + maintenance_policy        = (known after apply)
+      + metadata                  = {
+          + "user-data" = <<-EOT
+                #cloud-config
+                users:
+                  - name: devops_user
+                    groups: sudo
+                    shell: /bin/bash
+                    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+                    ssh-authorized-keys:
+                      - ssh-rsa AAAAB3NzaC**************************************************
+            EOT
+        }
+      + name                      = "terraform1"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = "fhm8716enlkivmdqktas"
+          + mode        = (known after apply)
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = "e9bv27imeg76ibb3f9cd"
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 2
+          + memory        = 2
+        }
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + external_ip_address_vm_1 = (known after apply)
+  + internal_ip_address_vm_1 = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+yandex_compute_instance.vm-1: Creating...
+yandex_compute_instance.vm-1: Still creating... [10s elapsed]
+yandex_compute_instance.vm-1: Still creating... [20s elapsed]
+yandex_compute_instance.vm-1: Creation complete after 25s [id=fhmaf932ebrtp259lo5p]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+container_id = "7f50b82ad3a8a14ec3ab95b07c8243560952d785a3d76c169e35a1b0558c20d3"
+external_ip_address_vm_1 = "84.201.***.***"
+image_id = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666anginx:latest"
+internal_ip_address_vm_1 = "192.168.10.21"
+```
+
+```bash
+$ terraform state list
+docker_container.nginx
+docker_image.nginx
+yandex_compute_disk.boot-disk-1
+yandex_compute_instance.vm-1
+yandex_vpc_network.network-1
+yandex_vpc_subnet.subnet-1
+```
+
+```bash
+$ terraform state show yandex_compute_disk.boot-disk-1
+# yandex_compute_disk.boot-disk-1:
+resource "yandex_compute_disk" "boot-disk-1" {
+    block_size  = 4096
+    created_at  = "2024-02-28T00:28:08Z"
+    folder_id   = "b1gnnf3j8bv1kfirnuq4"
+    id          = "fhm8716enlkivmdqktas"
+    image_id    = "fd83s8u085j3mq231ago"
+    labels      = {}
+    name        = "boot-disk-1"
+    product_ids = [
+        "f2eth1eavhqoh47mqj08",
+    ]
+    size        = 20
+    status      = "ready"
+    type        = "network-hdd"
+    zone        = "ru-central1-a"
+
+    disk_placement_policy {}
+}
+```
+
+```bash
+$ terraform state show yandex_compute_instance.vm-1   
+# yandex_compute_instance.vm-1:
+resource "yandex_compute_instance" "vm-1" {
+    created_at                = "2024-02-28T00:30:01Z"
+    folder_id                 = "b1gnnf3j8bv1kfirnuq4"
+    fqdn                      = "fhmaf932ebrtp259lo5p.auto.internal"
+    id                        = "fhmaf932ebrtp259lo5p"
+    metadata                  = {
+        "user-data" = <<-EOT
+            #cloud-config
+            users:
+              - name: devops_user
+                groups: sudo
+                shell: /bin/bash
+                sudo: 'ALL=(ALL) NOPASSWD:ALL'
+                ssh-authorized-keys:
+                  - ssh-rsa AAAAB3Nza**********************************
+        EOT
+    }
+    name                      = "terraform1"
+    network_acceleration_type = "standard"
+    platform_id               = "standard-v1"
+    status                    = "running"
+    zone                      = "ru-central1-a"
+
+    boot_disk {
+        auto_delete = true
+        device_name = "fhm8716enlkivmdqktas"
+        disk_id     = "fhm8716enlkivmdqktas"
+        mode        = "READ_WRITE"
+
+        initialize_params {
+            block_size = 4096
+            image_id   = "fd83s8u085j3mq231ago"
+            name       = "boot-disk-1"
+            size       = 20
+            type       = "network-hdd"
+        }
+    }
+
+    metadata_options {
+        aws_v1_http_endpoint = 1
+        aws_v1_http_token    = 2
+        gce_http_endpoint    = 1
+        gce_http_token       = 1
+    }
+
+    network_interface {
+        index              = 0
+        ip_address         = "192.168.10.21"
+        ipv4               = true
+        ipv6               = false
+        mac_address        = "d0:0d:a7:a4:62:72"
+        nat                = true
+        nat_ip_address     = "84.201.***.***"
+        nat_ip_version     = "IPV4"
+        security_group_ids = []
+        subnet_id          = "e9bv27imeg76ibb3f9cd"
+    }
+
+    placement_policy {
+        host_affinity_rules       = []
+        placement_group_partition = 0
+    }
+
+    resources {
+        core_fraction = 100
+        cores         = 2
+        gpus          = 0
+        memory        = 2
+    }
+
+    scheduling_policy {
+        preemptible = false
+    }
+}
+```
+
+```bash
+$ terraform state show yandex_vpc_network.network-1   
+# yandex_vpc_network.network-1:
+resource "yandex_vpc_network" "network-1" {                                        
+    created_at                = "2024-02-28T00:20:21Z"                             
+    default_security_group_id = "enp3kirtt4ceob1d6cst"                             
+    folder_id                 = "b1gnnf3j8bv1kfirnuq4"                             
+    id                        = "enpp88amqva30hnnnhhv"                             
+    labels                    = {}                                                 
+    name                      = "network1"                                         
+    subnet_ids                = [                                                  
+        "e9bv27imeg76ibb3f9cd",                                                    
+    ]                                                                              
+}                        
+```
+
+```bash
+$ terraform state show yandex_vpc_subnet.subnet-1     
+# yandex_vpc_subnet.subnet-1:
+resource "yandex_vpc_subnet" "subnet-1" {
+    created_at     = "2024-02-28T00:21:34Z"
+    folder_id      = "b1gnnf3j8bv1kfirnuq4"
+    id             = "e9bv27imeg76ibb3f9cd"
+    labels         = {}
+    name           = "subnet1"
+    network_id     = "enpp88amqva30hnnnhhv"
+    v4_cidr_blocks = [
+        "192.168.10.0/24",
+    ]
+    v6_cidr_blocks = []
+    zone           = "ru-central1-a"
+}
+```
+
+```bash
+$ terraform output
+container_id = "7f50b82ad3a8a14ec3ab95b07c8243560952d785a3d76c169e35a1b0558c20d3"
+external_ip_address_vm_1 = "84.201.***.***"
+image_id = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666anginx:latest"
+internal_ip_address_vm_1 = "192.168.10.21"
+```
