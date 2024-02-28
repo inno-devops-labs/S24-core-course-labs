@@ -1,0 +1,9 @@
+---
+name: "container"
+
+username: "tufra"
+image_name: "moscow-time-app-python"
+tag: "0.0.1"
+ports: "80:8080"
+
+web_app_full_wipe: false

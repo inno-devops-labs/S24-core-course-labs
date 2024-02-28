@@ -1,0 +1,20 @@
+---
+- name: Deploy Docker
+  hosts: yacloud
+  remote_user: user
+  become: true
+
+  roles:
+    - role: ../../../roles/web_app
+      vars:
+        name: "app_kotlin"
+        username: "tufra"
+        image_name: "moscow-time-app-kotlin"
+        tag: "0.0.1"
+        ports: "80:8000"
+
+#  tasks:
+#    - name: Run container
+#      ansible.builtin.shell: "docker run -d -p 80:8080 -t {{ image_tag|quote }}"
+
+

@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  web_app:
+    image: "{{ username }}/{{ image_name }}:{{ tag }}"
+    ports:
+      - "{{ ports }}"

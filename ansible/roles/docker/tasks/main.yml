@@ -22,7 +22,6 @@
       - containerd.io
       - docker-buildx-plugin
       - docker-compose-plugin
-  notify: restart_docker
 
 - name: Install Docker Compose with pip
   pip:

@@ -1,0 +1,17 @@
+---
+- name: Deploy Docker
+  hosts: yacloud
+  remote_user: user
+  become: true
+
+  roles:
+    - role: ../../../roles/web_app
+      vars:
+        name: "app_python"
+        username: "tufra"
+        image_name: "moscow-time-app-python"
+        tag: "0.0.1"
+        ports: "80:8080"
+        web_app_full_wipe: true
+
+

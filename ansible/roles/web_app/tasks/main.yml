@@ -1,0 +1,29 @@
+---
+- name: Get image nad run container
+  block:
+  - name: Get image
+    docker_image:
+      name: "{{ username }}/{{ image_name }}:{{ tag }}"
+      source: pull
+      state: present
+
+  - name: Run container
+    docker_container:
+      name: "{{ name }}"
+      image: "{{ username }}/{{ image_name }}:{{ tag }}"
+      published_ports: "{{ ports }}"
+      state: started
+
+  tags:
+    - run
+
+- name: Deliver Docker Compose
+  include_tasks: compose.yml
+  tags:
+    - compose
+
+- name: Wipe image and container
+  include_tasks: 0-wipe.yml
+  tags:
+    - wipe
+
