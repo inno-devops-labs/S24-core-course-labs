@@ -6,6 +6,10 @@ output "bun-container-id" {
   value = docker_container.app_bun.id
 }
 
-output "aws-public-ip" {
-  value = aws_instance.app_server.public_ip
+output "aws-1-public-ip" {
+  value = aws_instance.server_python.public_ip
+}
+
+output "aws-2-public-ip" {
+  value = aws_instance.server_bun.public_ip
 }
