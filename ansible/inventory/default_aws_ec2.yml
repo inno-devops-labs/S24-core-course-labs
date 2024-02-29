@@ -1,0 +1,12 @@
+plugin: amazon.aws.aws_ec2
+profile: "{{ lookup('env', 'AWS_PROFILE') }}"
+regions:
+  - eu-central-1
+include_filters:
+  - tag:Name:
+      - 'server-python'
+  - tag:Name:
+      - 'server-bun'
+compose:
+  ansible_host: public_ip_address
+  ansible_user: "'ubuntu'"
