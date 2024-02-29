@@ -1,0 +1,21 @@
+---
+# Update apt
+- name: Update apt packages
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400
+    
+# Remove old versions of Docker if installed
+- name: Remove old versions of Docker
+  apt:
+    name: docker.io
+    state: absent
+  tags: docker
+
+# Install Docker
+- name: Install Docker using docker.io
+  apt:
+    name: docker.io
+    state: present
+  tags: docker
+  notify: add_user_to_docker
