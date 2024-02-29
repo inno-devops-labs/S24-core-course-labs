@@ -5,3 +5,9 @@ __pycache__
 .DS_Store
 
 .idea
+
+
+.terraform.lock.hcl
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
