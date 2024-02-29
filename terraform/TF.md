@@ -89,6 +89,8 @@ container_name = "devops-lab-python-app"
 
 ## Yandex-cloud Provider
 
+Export variable using `export TF_VAR_secret-token=<token>`
+
 ```
 fatm1nd@fatm1nd-IdeaPad-5-14ARE05:~/Documents/Innopolis/devops-core-innopolis-course/terraform/yandex-cloud$ terraform state list
 yandex_compute_disk.boot-drive-1
