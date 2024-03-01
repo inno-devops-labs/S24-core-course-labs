@@ -1,0 +1,32 @@
+- name: Ensure /etc/apt/keyrings exists
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+  become: true
+
+- name: Add docker's GPG
+  ansible.builtin.get_url:
+    url: 'https://download.docker.com/linux/ubuntu/gpg'
+    dest: /etc/apt/keyrings/docker.asc
+    mode: a+r
+    force: true  # Redownload every time
+    decompress: false
+  become: true
+
+- name: Create docker source list for apt
+  shell: >
+    echo "deb [arch=$(dpkg --print-architecture)
+    signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" > /etc/apt/sources.list.d/docker.list
+  become: true
+
+- name: Install docker via apt
+  ansible.builtin.apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+    state: present
+    update_cache: true
+  become: true

@@ -8,11 +8,8 @@
       ansible.builtin.debug:
         msg: Hello, world
 
-- name: Install docker
-  hosts: myhosts
-  collections:
-    - geerlingguy.docker
+- name: Install docker (custom role)
+  hosts: all
   roles:
     - name: "Install docker"
-      role: geerlingguy.docker
-      become: yes
+      role: docker
