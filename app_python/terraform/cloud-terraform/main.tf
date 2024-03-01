@@ -1,14 +1,17 @@
 resource "yandex_compute_disk" "boot-disk-1" {
-  folder_id = var.yandex_folder_id
-  image_id  = var.yandex_image_id
-  name      = "boot-disk-1"
-  type      = "network-hdd"
-  zone      = "ru-central1-a"
-  size      = "20"
+  name = "boot-disk-1"
+  type = "network-hdd"
+  zone = var.yandex_compute_zone
+  size = "10"
+  # ubuntu 18.04 lts
+  image_id = "fd8b1k66ee99rmt7p9ac"
 }
 
-resource "yandex_compute_instance" "vm-1" {
-  name = "terraform1"
+// Create a new instance
+resource "yandex_compute_instance" "vm1" {
+  name        = "terraform-test"
+  platform_id = "standard-v1"
+  zone        = var.yandex_compute_zone
 
   resources {
     cores  = 2
@@ -20,8 +23,7 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-1.id
-    nat       = true
+    subnet_id = yandex_vpc_subnet.test_subnet.id
   }
 
   metadata = {
@@ -29,23 +31,12 @@ resource "yandex_compute_instance" "vm-1" {
   }
 }
 
-resource "yandex_vpc_network" "network-1" {
-  folder_id = var.yandex_folder_id
-  name      = "network1"
+resource "yandex_vpc_network" "test_net" {
+  name = "test_network"
 }
 
-resource "yandex_vpc_subnet" "subnet-1" {
-  name           = "subnet1"
-  zone           = "ru-central1-a"
-  network_id     = yandex_vpc_network.network-1.id
-  v4_cidr_blocks = ["192.168.10.0/24"]
-}
-
-output "internal_ip_address_vm_1" {
-  value = yandex_compute_instance.vm-1.network_interface.0.ip_address
-}
-
-
-output "external_ip_address_vm_1" {
-  value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
+resource "yandex_vpc_subnet" "test_subnet" {
+  zone           = var.yandex_compute_zone
+  network_id     = yandex_vpc_network.test_net.id
+  v4_cidr_blocks = ["10.130.0.0/24"]
 }
