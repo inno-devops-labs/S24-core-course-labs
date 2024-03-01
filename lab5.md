@@ -16,30 +16,30 @@ In this lab, you will get acquainted with Ansible, a powerful configuration mana
      |-- README.md
      |-- ansible
      |   |-- inventory
-     |   |   `-- default_aws_ec2.yml
+     |   |   `-- yc_compute.yml
      |   |-- playbooks
      |   |   `-- dev
      |   |       `-- main.yaml
      |   |-- roles
      |   |   |-- docker
      |   |   |   |-- defaults
-     |   |   |   |   `-- main.yml
+     |   |   |   |   `-- docker-compose.yml.j2
      |   |   |   |-- handlers
-     |   |   |   |   `-- main.yml
+     |   |   |   |   `-- docker-compose.yml.j2
      |   |   |   |-- tasks
      |   |   |   |   |-- install_compose.yml
      |   |   |   |   |-- install_docker.yml
-     |   |   |   |   `-- main.yml
+     |   |   |   |   `-- docker-compose.yml.j2
      |   |   |   `-- README.md
      |   |   `-- web_app
      |   |       |-- defaults
-     |   |       |   `-- main.yml
+     |   |       |   `-- docker-compose.yml.j2
      |   |       |-- handlers
-     |   |       |   `-- main.yml
+     |   |       |   `-- docker-compose.yml.j2
      |   |       |-- meta
-     |   |       |   `-- main.yml
+     |   |       |   `-- docker-compose.yml.j2
      |   |       |-- tasks
-     |   |       |   `-- main.yml
+     |   |       |   `-- docker-compose.yml.j2
      |   |       `-- templates
      |   |           `-- docker-compose.yml.j2
      |   `-- ansible.cfg

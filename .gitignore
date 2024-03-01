@@ -4,3 +4,4 @@ venv/
 
 *.python_cache
 *.terraform
+terraform/cloud-terraform/key.json
