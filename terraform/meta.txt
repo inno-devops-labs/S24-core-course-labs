@@ -1,7 +1,7 @@
+#cloud-config
 users:
-  - name: djhovi
-    groups: sudo
-    shell: /bin/bash
-    sudo: 'ALL=(ALL) NOPASSWD:ALL'
-    ssh-authorized-keys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP/CazbzhPKYe/63IuhdNPmB8s0z70dtf63WU44ucvbE
+- name: djhovi
+  sudo: ALL=(ALL) NOPASSWD:ALL
+  shell: /bin/bash
+  ssh_authorized_keys:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP/CazbzhPKYe/63IuhdNPmB8s0z70dtf63WU44ucvbE

@@ -19,14 +19,6 @@ resource "yandex_compute_disk" "boot-disk-1" {
   image_id = "fd8hnnsnfn3v88bk0k1o"
 }
 
-resource "yandex_compute_disk" "boot-disk-2" {
-  name     = "boot-disk-2"
-  type     = "network-hdd"
-  zone     = var.zone
-  size     = "20"
-  image_id = "fd8hnnsnfn3v88bk0k1o"
-}
-
 resource "yandex_compute_instance" "vm-1" {
   name = "terraform1-new-name"
 
@@ -46,29 +38,6 @@ resource "yandex_compute_instance" "vm-1" {
 
   metadata = {
     user-data = "${file("meta.txt")}"
-  }
-}
-
-resource "yandex_compute_instance" "vm-2" {
-  name = "terraform2"
-
-  resources {
-    cores  = 4
-    memory = 4
-  }
-
-  boot_disk {
-    disk_id = yandex_compute_disk.boot-disk-2.id
-  }
-
-  network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-1.id
-    nat       = true
-  }
-
-  metadata = {
-    user-data = "${file("meta.txt")}"
-
   }
 }
 
