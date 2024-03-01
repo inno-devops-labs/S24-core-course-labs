@@ -1,3 +1,6 @@
+![app_python](https://github.com/ananastya1/S24-core-course-labs/workflows/Main%20CI/badge.svg)
+
+
 # Python Web Application - Moscow Time Display
 
 ## Overview
@@ -38,12 +41,14 @@ python app.py
 Navigate to http://127.0.0.1:5000/ in your web browser to view the application.
 
 ## Testing
+### Unit Testing
 Ensure all tests pass by running:
 
 ```
-python -m unittest discover
+pytest
 ```
 
+### Test Coverage
 For test coverage, run:
 
 ```
@@ -70,4 +75,19 @@ docker pull  ananastya10/devops:lab2
 To run the Docker container:
 ```
 docker run -d -p 5000:5000 -t ananastya10/devops:lab2  
+```
+
+## CI
+
+The CI file is located at .github/worflows/main.yaml
+
+CI consists of:
+
+- Python Setup
+- Dependencies Installation
+- Linter 
+- Testing
+- Login to Docker Hub
+- Build and Push to Docker Hub
+=======
 ```
