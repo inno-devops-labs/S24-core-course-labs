@@ -1,0 +1,11 @@
+myhosts:
+  hosts:
+    host_01:
+      ansible_host: 178.154.221.43
+      ansible_user: ubuntu
+
+ungrouped:
+  # For testing purposes
+  hosts:
+    this:
+      ansible_host: localhost

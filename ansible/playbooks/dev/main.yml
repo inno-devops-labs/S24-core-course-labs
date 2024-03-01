@@ -1,0 +1,18 @@
+- name: My first play
+  hosts: all
+  tasks:
+    - name: Ping my hosts
+      ansible.builtin.ping:
+
+    - name: Print message
+      ansible.builtin.debug:
+        msg: Hello, world
+
+- name: Install docker
+  hosts: myhosts
+  collections:
+    - geerlingguy.docker
+  roles:
+    - name: "Install docker"
+      role: geerlingguy.docker
+      become: yes
