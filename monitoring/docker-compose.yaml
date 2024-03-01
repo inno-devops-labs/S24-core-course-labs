@@ -3,6 +3,10 @@ version: "3.7"
 networks:
   loki:
 
+volumes:
+  prometheus:
+  grafana:
+
 services:
   loki:
     image: grafana/loki:2.9.4
@@ -11,6 +15,16 @@ services:
     command: -config.file=/etc/loki/config.yml
     volumes:
       - ./loki-config.yml:/etc/loki/config.yml
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{ .Name }}"
+        max-size: "100m"
+        max-file: "10"
+    deploy:
+      resources:
+        limits:
+          memory: "500m"
     networks:
       - loki
 
@@ -23,6 +37,18 @@ services:
     command:
       - "--config.file=/etc/promtail/config.yml"
       - "--config.expand-env=true"
+    ports:
+      - "9080:9080"
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{ .Name }}"
+        max-size: "100m"
+        max-file: "10"
+    deploy:
+      resources:
+        limits:
+          memory: "500m"
     networks:
       - loki
 
@@ -34,10 +60,45 @@ services:
     image: grafana/grafana:latest
     volumes:
       - ./grafana-ds.yml:/etc/grafana/provisioning/datasources/ds.yml
+      - grafana:/var/lib/grafana
     ports:
       - "3000:3000"
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{ .Name }}"
+        max-size: "100m"
+        max-file: "10"
+    deploy:
+      resources:
+        limits:
+          memory: "500m"
     networks:
       - loki
+
+  prometheus:
+    image: prom/prometheus:v2.5.0
+    volumes:
+      - ./prometheus-config.yml:/etc/prometheus/config.yml
+      - prometheus:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/config.yml"
+    ports:
+      - "9090:9090"
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{ .Name }}"
+        max-size: "100m"
+        max-file: "10"
+    deploy:
+      resources:
+        limits:
+          memory: "500m"
+    networks:
+      - loki
+
+
 
   app_python:
     container_name: "app_python"
@@ -48,6 +109,12 @@ services:
       driver: "json-file"
       options:
         tag: "{{ .Name }}"
+        max-size: "100m"
+        max-file: "10"
+    deploy:
+      resources:
+        limits:
+          memory: "300m"
 
   app_kotlin:
     container_name: "app_kotlin"
@@ -58,3 +125,9 @@ services:
       driver: "json-file"
       options:
         tag: "{{ .Name }}"
+        max-size: "100m"
+        max-file: "10"
+    deploy:
+      resources:
+        limits:
+          memory: "300m"

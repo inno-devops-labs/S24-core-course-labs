@@ -16,6 +16,7 @@ common:
     kvstore:
       store: inmemory
 
+
 query_range:
   results_cache:
     cache:
@@ -35,6 +36,16 @@ schema_config:
 
 ruler:
   alertmanager_url: http://localhost:9093
+  enable_api: true
+  remote_write:
+    enabled: true
+    clients:
+      local:
+        url: http://prometheus:9090/api/v1/write
+        queue_config:
+          # send immediately as soon as a sample is generated
+          capacity: 1
+          batch_send_deadline: 0s
 
 # By default, Loki will send anonymous, but uniquely-identifiable usage and configuration
 # analytics to Grafana Labs. These statistics are sent to https://stats.grafana.org/
