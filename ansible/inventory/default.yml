@@ -1,0 +1,4 @@
+vk_hosts:
+  hosts:
+    vk01:
+      ansible_host: 212.111.84.102
