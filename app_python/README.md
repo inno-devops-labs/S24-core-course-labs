@@ -50,3 +50,24 @@ For test coverage, run:
 coverage run -m unittest discover
 coverage report
 ```
+
+## Docker
+
+The application is containerized using Docker, allowing for easy deployment and scaling. 
+Below are instructions on how to interact with the Dockerized application.
+
+To build the Docker image:
+```
+docker build -t ananastya10/devops:lab2 . 
+```
+
+To pull the Docker image:
+
+```
+docker pull  ananastya10/devops:lab2   
+```
+
+To run the Docker container:
+```
+docker run -d -p 5000:5000 -t ananastya10/devops:lab2  
+```
