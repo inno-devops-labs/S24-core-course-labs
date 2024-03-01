@@ -1,0 +1,5 @@
+- hosts: web_server
+  roles:
+    - role: docker
+#    - role: geerlingguy.docker
+      become: true
