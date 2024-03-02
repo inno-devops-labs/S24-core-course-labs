@@ -1,0 +1,4 @@
+- hosts: web_server
+  roles:
+    - role: ../../roles/docker
+      become: true
