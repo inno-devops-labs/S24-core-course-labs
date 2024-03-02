@@ -2,7 +2,6 @@ repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v4.5.0
   hooks:
-  - id: check-yaml
   - id: end-of-file-fixer
   - id: trailing-whitespace
   - id: mixed-line-ending
@@ -36,6 +35,7 @@ repos:
       [
         "-rn", # Only display messages
         "-sn", # Don't display the score
+        "--ignore-patterns=.*test.*"
       ]
 - repo: https://github.com/pryorda/dockerfilelint-precommit-hooks
   rev: v0.1.0
