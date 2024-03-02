@@ -1,3 +1,5 @@
+# For docker
+
 <code>terraform state show docker_container.custom_container</code>
 ```
 # docker_container.custom_container:
@@ -78,7 +80,7 @@ docker_container.custom_container
 docker_image.custom_image
 ```
 
-## Changes Applied:
+## Changes applied
 
 ```terraform apply```
 
@@ -168,3 +170,275 @@ port_of_container = tolist([
   },
 ])
 ```
+
+# For Yandex Cloud
+
+```terraform state list```
+
+```
+yandex_compute_disk.boot-disk-1
+yandex_compute_instance.vm-1
+yandex_vpc_network.network-1
+yandex_vpc_subnet.subnet-1
+```
+
+```terraform state show yandex_compute_disk.boot-disk-1```
+```
+# yandex_compute_disk.boot-disk-1:
+resource "yandex_compute_disk" "boot-disk-1" {
+    block_size  = 4096
+    created_at  = "2024-02-27T16:34:12Z"
+    folder_id   = "b1gvup3s47j516kd9hdh"
+    id          = "fhmkjbl97rvtkaiamr31"
+    image_id    = "fd87ap2ld09bjiotu5v0"
+    name        = "boot-disk-1"
+    product_ids = [
+        "f2ea07nu3lns12491hku",
+    ]
+    size        = 20
+    status      = "ready"
+    type        = "network-hdd"
+    zone        = "ru-central1-a"
+
+    disk_placement_policy {}
+}
+```
+
+```terraform state show yandex_compute_instance.vm-1```
+```
+# yandex_compute_instance.vm-1:
+resource "yandex_compute_instance" "vm-1" {
+    created_at                = "2024-02-27T16:34:18Z"
+    folder_id                 = "b1gvup3s47j516kd9hdh"
+    fqdn                      = "fhm24ltfa3g50emcmdl3.auto.internal"
+    id                        = "fhm24ltfa3g50emcmdl3"
+    metadata                  = {
+        "ssh-keys" = <<-EOT
+            *my ssh key*
+        EOT
+    }
+    name                      = "terraform1"
+    network_acceleration_type = "standard"
+    platform_id               = "standard-v1"
+    status                    = "running"
+    zone                      = "ru-central1-a"
+
+    boot_disk {
+        auto_delete = true
+        device_name = "fhmkjbl97rvtkaiamr31"
+        disk_id     = "fhmkjbl97rvtkaiamr31"
+        mode        = "READ_WRITE"
+
+        initialize_params {
+            block_size = 4096
+            image_id   = "fd87ap2ld09bjiotu5v0"
+            name       = "boot-disk-1"
+            size       = 20
+            type       = "network-hdd"
+        }
+    }
+
+    metadata_options {
+        aws_v1_http_endpoint = 1
+        aws_v1_http_token    = 2
+        gce_http_endpoint    = 1
+        gce_http_token       = 1
+    }
+
+    network_interface {
+        index              = 0
+        ip_address         = "192.168.10.4"
+        ipv4               = true
+        ipv6               = false
+        mac_address        = "d0:0d:22:57:af:50"
+        nat                = true
+        nat_ip_address     = "51.250.82.195"
+        nat_ip_version     = "IPV4"
+        security_group_ids = []
+        subnet_id          = "e9bc3e3s75bpipp399v4"
+    }
+
+    placement_policy {
+        host_affinity_rules       = []
+        placement_group_partition = 0
+    }
+
+    resources {
+        core_fraction = 100
+        cores         = 2
+        gpus          = 0
+        memory        = 2
+    }
+
+    scheduling_policy {
+        preemptible = false
+    }
+}
+```
+``` terraform state show yandex_vpc_network.network-1 ```
+```
+# yandex_vpc_network.network-1:
+resource "yandex_vpc_network" "network-1" {
+    created_at                = "2024-02-27T16:34:12Z"
+    default_security_group_id = "enpk4pmb1qfaf829epeb"
+    folder_id                 = "b1gvup3s47j516kd9hdh"
+    id                        = "enpuj599931covdoj74a"
+    labels                    = {}
+    name                      = "network1"
+    subnet_ids                = []
+}
+```
+```terraform state show yandex_vpc_subnet.subnet-1  ```
+```
+# yandex_vpc_subnet.subnet-1:
+resource "yandex_vpc_subnet" "subnet-1" {
+    created_at     = "2024-02-27T16:34:15Z"
+    folder_id      = "b1gvup3s47j516kd9hdh"
+    id             = "e9bc3e3s75bpipp399v4"
+    labels         = {}
+    name           = "subnet1"
+    network_id     = "enpuj599931covdoj74a"
+    v4_cidr_blocks = [
+        "192.168.10.0/24",
+    ]
+    v6_cidr_blocks = []
+    zone           = "ru-central1-a"
+}
+```
+
+## Changes applied
+
+```terraform apply```
+```
+Terraform will perform the following actions:
+
+  # yandex_compute_disk.boot-disk-1 will be created
+  + resource "yandex_compute_disk" "boot-disk-1" {
+      + block_size  = 4096
+      + created_at  = (known after apply)
+      + folder_id   = "b1gvup3s47j516kd9hdh"
+      + id          = (known after apply)
+      + image_id    = "fd87ap2ld09bjiotu5v0"
+      + name        = "boot-disk-1"
+      + product_ids = (known after apply)
+      + size        = 20
+      + status      = (known after apply)
+      + type        = "network-hdd"
+      + zone        = "ru-central1-a"
+    }
+
+  # yandex_compute_instance.vm-1 will be created
+  + resource "yandex_compute_instance" "vm-1" {
+      + created_at                = (known after apply)
+      + folder_id                 = "b1gvup3s47j516kd9hdh"
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + maintenance_grace_period  = (known after apply)
+      + maintenance_policy        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys" = <<-EOT
+              *my ssh key*
+            EOT
+        }
+      + name                      = "terraform1"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 2
+          + memory        = 2
+        }
+    }
+
+  # yandex_vpc_network.network-1 will be created
+  + resource "yandex_vpc_network" "network-1" {
+      + created_at                = (known after apply)
+      + default_security_group_id = (known after apply)
+      + folder_id                 = "b1gvup3s47j516kd9hdh"
+      + id                        = (known after apply)
+      + labels                    = (known after apply)
+      + name                      = "network1"
+      + subnet_ids                = (known after apply)
+    }
+
+  # yandex_vpc_subnet.subnet-1 will be created
+  + resource "yandex_vpc_subnet" "subnet-1" {
+      + created_at     = (known after apply)
+      + folder_id      = "b1gvup3s47j516kd9hdh"
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "subnet1"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "192.168.10.0/24",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-a"
+    }
+
+Plan: 4 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + external_ip_address_vm_1 = (known after apply)
+  + internal_ip_address_vm_1 = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+yandex_vpc_network.network-1: Creating...
+yandex_compute_disk.boot-disk-1: Creating...
+yandex_vpc_network.network-1: Creation complete after 5s [id=enpuj599931covdoj74a]
+yandex_vpc_subnet.subnet-1: Creating...
+yandex_vpc_subnet.subnet-1: Creation complete after 1s [id=e9bc3e3s75bpipp399v4]
+yandex_compute_disk.boot-disk-1: Creation complete after 8s [id=fhmkjbl97rvtkaiamr31]
+yandex_compute_instance.vm-1: Creating...
+yandex_compute_instance.vm-1: Still creating... [10s elapsed]
+yandex_compute_instance.vm-1: Still creating... [20s elapsed]
+yandex_compute_instance.vm-1: Creation complete after 27s [id=fhm24ltfa3g50emcmdl3]
+```
+
+## Output
+```terraform output```
+```
+external_ip_address_vm_1 = "51.250.82.195"
+internal_ip_address_vm_1 = "192.168.10.4"
+```
+
+# Best practices
+
+- Use ```terraform fmt```
+- Use ```terraform validate``` and ```terraform plan``` before applying the changes
+- Use dependency lock file
+- Use variables and outputs
+- Use ```terraform import``` to manage existing resourses
+- Use ```.gitignore``` for terraform state files

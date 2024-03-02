@@ -3,76 +3,78 @@ variable "zone" {
   default = "ru-central1-a"
 }
 
-variable "network" {
-  type    = string
-  default = "ya-network"
-}
-
-variable "subnet" {
-  type    = string
-  default = "ya-network"
-}
-
-variable "subnet_v4_cidr_blocks" {
-  type    = list(string)
-  default = ["192.168.10.0/16"]
-}
-
-variable "nat" {
-  type    = bool
-  default = true
-}
-
-variable "image_family" {
-  type    = string
-  default = "ubuntu-1804-lts"
-}
-
-variable "name" {
+variable "token" {
   type = string
-  default = "lab4-terraform"
-  
 }
 
-variable "cores" {
-  type    = number
-  default = 2
-}
-
-variable "memory" {
-  type    = number
-  default = 4
-}
-
-variable "disk_size" {
-  type    = number
-  default = 50
+variable "disk_name" {
+  type    = string
+  default = "boot-disk-1"
 }
 
 variable "disk_type" {
   type    = string
-  default = "network-nvme"
+  default = "network-hdd"
 }
 
-variable "user_name" {
-  default = ""
+variable "disk_size" {
   type    = string
+  default = "20"
 }
 
-variable "user_pass" {
-  default = ""
+variable "image_id" {
   type    = string
+  default = "fd87ap2ld09bjiotu5v0"
 }
 
-variable "admin_pass" {
-  default = ""
+variable "disk_folder_id" {
+  type = string
+}
+
+variable "vm_name" {
   type    = string
+  default = "terraform1"
 }
 
-variable "timeout_create" {
-  default = "10m"
+variable "vm_cores" {
+  type    = number
+  default = 2
 }
 
-variable "timeout_delete" {
-  default = "10m"
+variable "vm_memory" {
+  type    = number
+  default = 2
+}
+
+variable "subnet_name" {
+  type    = string
+  default = "subnet1"
+}
+
+variable "subnet_zone" {
+  type    = string
+  default = "ru-central1-a"
+}
+
+variable "subnet_cidr" {
+  type    = string
+  default = "192.168.10.0/24"
+}
+
+variable "network_name" {
+  type    = string
+  default = "network1"
+}
+
+variable "network_folder_id" {
+  type = string
+}
+
+variable "metadata_ssh_keys_path" {
+  type    = string
+  default = "~/.ssh/id_ed25519.pub"
+}
+
+variable "vm_folder_id" {
+  type = string
 }
