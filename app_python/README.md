@@ -43,3 +43,10 @@ docker build --tag your_docker_username/app_python:v1.0 .
 docker pull dmfrpro/app_python:v1.0
 docker run -p 8080:8080 dmfrpro/app_python:v1.0
 ```
+
+- Run the application and test:
+
+```bash
+python3 app.py
+curl localhost:5000
+```
