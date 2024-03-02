@@ -21,3 +21,22 @@ cd S24-core-course-labs/app_java
 mvn install
 curl localhost:8080
 ```
+
+## Docker
+
+### Build
+
+```bash
+cd S24-core-course-labs/app_java
+mvn clean compile assembly:single
+docker build --build-arg \
+    JAR_FILE=target/app-0.0.1-SNAPSHOT-jar-with-dependencies.jar \
+    --tag=dmfrpro/app_java:v1.0 .
+```
+
+### Pull and Run
+
+```bash
+docker pull dmfrpro/app_java:v1.0
+docker run -p 8080:8080 dmfrpro/app_java:v1.0
+```

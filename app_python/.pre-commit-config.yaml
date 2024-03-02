@@ -8,7 +8,7 @@ repos:
   - id: mixed-line-ending
     args: ['--fix=lf']
 - repo: https://github.com/psf/black
-  rev: 24.1.1
+  rev: 24.2.0
   hooks:
   - id: black
 - repo: https://github.com/pre-commit/mirrors-mypy
@@ -37,3 +37,8 @@ repos:
         "-rn", # Only display messages
         "-sn", # Don't display the score
       ]
+- repo: https://github.com/pryorda/dockerfilelint-precommit-hooks
+  rev: v0.1.0
+  hooks:
+  - id: dockerfilelint
+    stages: [commit]
