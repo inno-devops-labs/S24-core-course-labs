@@ -1,0 +1,4 @@
+- name: Docker installation
+  apt:
+    name: docker.io
+    state: present
