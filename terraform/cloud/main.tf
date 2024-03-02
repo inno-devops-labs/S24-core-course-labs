@@ -11,23 +11,29 @@ provider "yandex" {
   token     = var.token
   cloud_id  = var.cloud_id
   folder_id = var.folder_id
+  zone     = "ru-central1-a"
 }
 
 resource "yandex_compute_disk" "boot-disk-1" {
-  zone     = "ru-central1-a"
   name     = "boot-disk-1"
   type     = "network-hdd"
-  size     = "20"
-  image_id = "fd8t8vqitgjou20saanq"
+  size     = 8
+  image_id = "fd83s8u085j3mq231ago"
 }
 
 resource "yandex_compute_instance" "vm-1" {
-  name = "terraform1"
-  zone = "ru-central1-a"
+  name                      = "terraform1"
+  platform_id               = "standard-v2"
+  allow_stopping_for_update = true
 
   resources {
-    cores  = 2
-    memory = 2
+    cores         = 2
+    memory        = 1
+    core_fraction = 5
+  }
+
+  scheduling_policy {
+    preemptible = true
   }
 
   boot_disk {
