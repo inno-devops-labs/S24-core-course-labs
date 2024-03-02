@@ -430,8 +430,10 @@ yandex_compute_instance.vm-1: Creation complete after 27s [id=fhm24ltfa3g50emcmd
 ## Output
 ```terraform output```
 ```
-external_ip_address_vm_1 = "51.250.82.195"
-internal_ip_address_vm_1 = "192.168.10.4"
+external_ip_address_vm_1 = "158.160.109.5"
+external_ip_address_vm_2 = "158.160.61.245"
+internal_ip_address_vm_1 = "192.168.10.6"
+internal_ip_address_vm_2 = "192.168.10.33"
 ```
 
 # Best practices
@@ -441,4 +443,3 @@ internal_ip_address_vm_1 = "192.168.10.4"
 - Use dependency lock file
 - Use variables and outputs
 - Use ```terraform import``` to manage existing resourses
-- Use ```.gitignore``` for terraform state files
