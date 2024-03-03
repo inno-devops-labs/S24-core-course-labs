@@ -18,4 +18,4 @@
     name: docker.io
     state: present
   tags: docker
-  notify: add_user_to_docker
+  notify: start_docker
