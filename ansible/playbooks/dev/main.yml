@@ -1,4 +1,4 @@
 - hosts: all
   roles:
-    - role: geerlingguy.docker
+    - role: ../../roles/docker
       become: yes

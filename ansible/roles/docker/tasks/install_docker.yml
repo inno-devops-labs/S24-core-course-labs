@@ -1,0 +1,28 @@
+- name: Install required system packages
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - software-properties-common
+      - gnupg
+    state: present
+    update_cache: true
+
+- name: Add Docker's GPG key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    filename: docker
+    state: present
+
+- name: Install Docker
+  ansible.builtin.apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+    state: present
+    update_cache: true
