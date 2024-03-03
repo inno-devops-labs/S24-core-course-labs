@@ -1,4 +1,5 @@
 # DevOps Engineering Labs
+![CI Python](https://github.com/abuwho/S24-DevOps-Engineering/actions/workflows/ci_python.yaml/badge.svg)
 
 ## Introduction
 
