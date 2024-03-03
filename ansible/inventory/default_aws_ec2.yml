@@ -1,0 +1,5 @@
+my_hosts:
+  hosts:
+    host_01:
+      ansible_host: 84.201.130.157
+      ansible_user: bulatok
