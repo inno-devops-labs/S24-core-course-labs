@@ -29,8 +29,6 @@ Although, `docker` is set as a meta dependency, it will not run automatically. I
 
 ## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
 ```yaml
 - name: Install docker
   hosts: app_server_python
@@ -50,6 +48,11 @@ Including an example of how to use your role (for instance, with variables passe
       host_name: "{{ ansible_host }}"
       web_app_full_wipe: true
 ```
+
+Tags that can be used with this role:
+
+- `setup`: Related to the setup and deployment of the web app
+- `wipe`: Related to the removal of the web app
 
 ## License
 
