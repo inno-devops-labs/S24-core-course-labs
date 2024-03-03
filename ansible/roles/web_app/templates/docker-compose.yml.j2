@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  web:
+    image: pptx704/{{ app_name }}:latest
+    ports:
+      - "{{ app_port }}:{{ app_port }}"
