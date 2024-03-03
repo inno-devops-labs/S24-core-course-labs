@@ -1,6 +1,8 @@
----
-- name: Deploy Docker
-  hosts: all
-  become: true
+- hosts: all
   roles:
-    - role: geerlingguy.docker
+    - role: docker
+      become: true
+  
+
+  vars:
+    ansible_ssh_private_key_file: "~/.ssh/id_ed25519"
