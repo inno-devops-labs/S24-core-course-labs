@@ -1,0 +1,7 @@
+users:
+  - name: testuser
+    groups: sudo
+    shell: /bin/bash
+    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPZXxFOR4shRPR2N4+9TCS0Sio3DOLEBJjWue4AdRM43 79393@LAPTOP-3C2PC6D1

@@ -10,3 +10,15 @@ __pycache__/
 *.sublime-*
 
 secrets
+
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+*.tfvars
+
+# Ignore local development files
+.terraform/
+terraform.tfstate.d/
+.tfenv/
+.terraform.lock.hcl
