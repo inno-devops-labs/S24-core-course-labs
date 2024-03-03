@@ -1,19 +1,20 @@
 ---
 # Check if nginx is installed
+- name: Install nginx 
+  block:
+    - name: Check if nginx is install on the system
+      command: nginx -v
+      register: nginx_version
+      ignore_errors: true
 
-- name: Check if nginx is install on the system
-  command: nginx -v
-  register: nginx_version
-  ignore_errors: true
-
-- name: Install nginx using apt
-  apt:
-    name: nginx
-    state: present
-  when: nginx_version.rc != 0
-  notify: restart
-  tags:
-    - setup
+    - name: Install nginx using apt
+      apt:
+        name: nginx
+        state: present
+      when: nginx_version.rc != 0
+      notify: restart
+      tags:
+      - setup
 
 - name: Copy nginx configuration file
   template:
