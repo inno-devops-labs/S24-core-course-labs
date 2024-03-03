@@ -1,0 +1,34 @@
+- name: Install pip
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: yes
+
+- name: Install system packages
+  apt:
+    name:
+      - ca-certificates
+      - apt-transport-https
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+    update_cache: yes
+  register: install_packages
+
+- name: Add Docker GPG Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    state: present
+
+- name: Update apt cache and install docker-ce
+  apt:
+    name: docker-ce
+    state: present
+    update_cache: yes
+  when: install_packages.changed
