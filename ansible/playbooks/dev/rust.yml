@@ -1,0 +1,8 @@
+---
+- name: Install Docker & Deploy web application
+  hosts: all
+  become: true
+  vars:
+    web_app_docker_image_tag: "rust-1.0.0"
+  roles:
+    - web_app

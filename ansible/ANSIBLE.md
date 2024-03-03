@@ -188,3 +188,220 @@ output:
 
 [yacloud_compute]:
     https://github.com/rodion-goritskov/yacloud_compute/blob/master/yacloud_compute.py
+
+## Web App Deployment
+
+### Deploy
+
+`ansible-playbook -e "yacloud_token=..." playbooks/dev/python.yml --diff`:
+
+```text
+included: /workspaces/devops/ansible/roles/docker/tasks/install_compose.yml for terraform1
+
+TASK [docker : Install docker-compose plugin] **********************************
+changed: [terraform1]
+
+TASK [docker : Add user to docker group] ***************************************
+changed: [terraform1]
+
+TASK [web_app : Deploy web application] ****************************************
+included: /workspaces/devops/ansible/roles/web_app/tasks/0-deploy.yml for terraform1
+
+TASK [web_app : Create app directory] ******************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/opt/web_app",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [terraform1]
+
+TASK [web_app : Copy Docker Compose template] **********************************
+--- before
++++ after: /home/vscode/.ansible/tmp/ansible-local-168213t94c7dpz/tmp7k2dsk0b/docker-compose.yml.j2
+@@ -0,0 +1,8 @@
++version: "3.9"
++
++services:
++  web:
++    image: "fedorivn/simple-web-app:python-1.0.0"
++    ports:
++      - target: "80"
++        published: "8000"
+
+changed: [terraform1]
+
+TASK [web_app : Ensure docker is running] **************************************
+ok: [terraform1]
+
+TASK [web_app : Create and start the services] *********************************
+changed: [terraform1]
+
+TASK [web_app : Wipe out web application] **************************************
+skipping: [terraform1]
+
+PLAY RECAP *********************************************************************
+terraform1                 : ok=15   changed=8    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+```
+
+Running `docker ps` on the remote machine:
+
+```text
+ubuntu@fhms2hta7o1v987i1180:~$ docker ps
+CONTAINER ID   IMAGE                                  COMMAND                  CREATED          STATUS          PORTS                                   NAMES
+eb439b3b2179   fedorivn/simple-web-app:python-1.0.0   "uvicorn main:app --…"   11 minutes ago   Up 11 minutes   0.0.0.0:8000->80/tcp, :::8000->80/tcp   web_app-web-1
+```
+
+### Wipe
+
+`ansible-playbook -e yacloud_token=... -e web_app_full_wipe=true --tag wipe
+playbooks/dev/python.yml`:
+
+```text
+
+PLAY [Install Docker & Deploy web application] ***********************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************************************
+ok: [terraform1]
+
+TASK [web_app : Wipe out web application] ****************************************************************************************************************************************
+included: /workspaces/devops/ansible/roles/web_app/tasks/1-wipe.yml for terraform1
+
+TASK [web_app : Shutdown and remove the services] ********************************************************************************************************************************
+changed: [terraform1]
+
+TASK [web_app : Remove app directory] ********************************************************************************************************************************************
+changed: [terraform1]
+
+PLAY RECAP ***********************************************************************************************************************************************************************
+terraform1                 : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
+```
+
+Running `docker ps` on the remote machine:
+
+```text
+ubuntu@fhmu5ucf069g6cuiuhrk:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+
+### Deploy (Bonus)
+
+`ansible-playbook -e yacloud_token=... playbooks/dev/rust.yml --diff`:
+
+```text
+PLAY [Install Docker & Deploy web application] ***********************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************************************
+ok: [terraform1]
+
+TASK [docker : include_tasks] ****************************************************************************************************************************************************
+included: /workspaces/devops/ansible/roles/docker/tasks/install_docker.yml for terraform1
+
+TASK [docker : Install aptitude] *************************************************************************************************************************************************
+ok: [terraform1]
+
+TASK [docker : Install required system packages] *********************************************************************************************************************************
+ok: [terraform1]
+
+TASK [docker : Add Docker GPG apt Key] *******************************************************************************************************************************************
+ok: [terraform1]
+
+TASK [docker : Add Docker Repository] ********************************************************************************************************************************************
+ok: [terraform1]
+
+TASK [docker : Update apt and install docker-ce] *********************************************************************************************************************************
+ok: [terraform1]
+
+TASK [docker : include_tasks] ****************************************************************************************************************************************************
+included: /workspaces/devops/ansible/roles/docker/tasks/install_compose.yml for terraform1
+
+TASK [docker : Install docker-compose plugin] ************************************************************************************************************************************
+ok: [terraform1]
+
+TASK [docker : Add user to docker group] *****************************************************************************************************************************************
+ok: [terraform1]
+
+TASK [web_app : Deploy web application] ******************************************************************************************************************************************
+included: /workspaces/devops/ansible/roles/web_app/tasks/0-deploy.yml for terraform1
+
+TASK [web_app : Create app directory] ********************************************************************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/opt/web_app",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [terraform1]
+
+TASK [web_app : Copy Docker Compose template] ************************************************************************************************************************************
+--- before
++++ after: /home/vscode/.ansible/tmp/ansible-local-2438756woxv2u6/tmpxtljgvte/docker-compose.yml.j2
+@@ -0,0 +1,8 @@
++version: "3.9"
++
++services:
++  web:
++    image: "fedorivn/simple-web-app:rust-1.0.0"
++    ports:
++      - target: "80"
++        published: "8000"
+
+changed: [terraform1]
+
+TASK [web_app : Ensure docker is running] ****************************************************************************************************************************************
+ok: [terraform1]
+
+TASK [web_app : Create and start the services] ***********************************************************************************************************************************
+changed: [terraform1]
+
+TASK [web_app : Wipe out web application] ****************************************************************************************************************************************
+skipping: [terraform1]
+
+PLAY RECAP ***********************************************************************************************************************************************************************
+terraform1                 : ok=15   changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+```
+
+### Wipe (Bonus)
+
+`ansible-playbook -e yacloud_token=... -e web_app_full_wipe=true --tag wipe
+playbooks/dev/rust.yml --diff`:
+
+```text
+PLAY [Install Docker & Deploy web application] ***********************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************************************
+ok: [terraform1]
+
+TASK [web_app : Wipe out web application] ****************************************************************************************************************************************
+included: /workspaces/devops/ansible/roles/web_app/tasks/1-wipe.yml for terraform1
+
+TASK [web_app : Shutdown and remove the services] ********************************************************************************************************************************
+changed: [terraform1]
+
+TASK [web_app : Remove app directory] ********************************************************************************************************************************************
+--- before
++++ after
+@@ -1,10 +1,4 @@
+ {
+     "path": "/opt/web_app",
+-    "path_content": {
+-        "directories": [],
+-        "files": [
+-            "/opt/web_app/docker-compose.yml"
+-        ]
+-    },
+-    "state": "directory"
++    "state": "absent"
+ }
+
+changed: [terraform1]
+
+PLAY RECAP ***********************************************************************************************************************************************************************
+terraform1                 : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
