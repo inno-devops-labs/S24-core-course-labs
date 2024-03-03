@@ -1,5 +1,0 @@
-yandex_cloud:
-  hosts:
-    "158.160.124.228":
-  vars:
-    ansible_user: ubuntu

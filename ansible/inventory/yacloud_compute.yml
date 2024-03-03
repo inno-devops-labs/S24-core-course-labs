@@ -1,0 +1,4 @@
+plugin: yacloud_compute
+yacloud_clouds: cloud-contactsnejugalru
+yacloud_folders: snejugal
+yacloud_token_file: yacloud_token
