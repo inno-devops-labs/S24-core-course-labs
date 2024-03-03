@@ -4,18 +4,13 @@
   apt:
     update_cache: yes
     cache_valid_time: 86400
-    
-# Remove old versions of Docker if installed
-- name: Remove old versions of Docker
-  apt:
-    name: docker.io
-    state: absent
   tags: docker
 
-# Install Docker
-- name: Install Docker using docker.io
+# Check if the current docker.io package is latest
+- name: Install/Update docker.io package
   apt:
     name: docker.io
-    state: present
+    state: latest
+  register: docker_io
   tags: docker
   notify: start_docker
