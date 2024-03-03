@@ -1,0 +1,33 @@
+---
+- name: Copy docker-compose file
+  block:
+    - name: Create folder for web app if it does not exist
+      file:
+        path: "{{ app_dir }}"
+        state: directory
+      tags:
+        - setup
+
+    - name: Copy template file
+      template:
+        src: docker-compose.yml.j2
+        dest: "{{ app_dir }}/docker-compose.yml"
+      tags:
+        - setup
+
+- name: Deploy application
+  block:
+    - name: Stop and remove Docker containers
+      command: docker-compose down
+      args:
+        chdir: "{{ app_dir }}"
+      tags:
+        - setup
+      
+    - name: Run docker-compose
+      command: docker-compose up -d
+      args:
+        chdir: "{{ app_dir }}"
+      tags:
+        - setup
+      notify: restart

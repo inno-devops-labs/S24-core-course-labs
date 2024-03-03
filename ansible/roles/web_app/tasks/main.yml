@@ -1,0 +1,13 @@
+---
+# tasks file for web_app
+- name: Setup nginx
+  import_tasks: setup_nginx.yml
+  tags: setup
+
+- name: Run compose
+  import_tasks: run_compose.yml
+  tags: setup
+
+- name: Wipe web app
+  import_tasks: wipe.yml
+  tags: wipe

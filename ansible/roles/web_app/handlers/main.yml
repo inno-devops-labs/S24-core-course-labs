@@ -1,0 +1,10 @@
+---
+# handlers file for web_app
+- name: Restart Nginx
+  systemd:
+    name: nginx
+    state: restarted
+  listen:
+    - restart
+  tags:
+    - setup

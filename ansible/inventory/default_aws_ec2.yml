@@ -7,6 +7,9 @@ include_filters:
       - 'server-python'
   - tag:Name:
       - 'server-bun'
+keyed_groups:
+  - key: tags.Name
+    prefix: app
 compose:
   ansible_host: public_ip_address
   ansible_user: "'ubuntu'"
