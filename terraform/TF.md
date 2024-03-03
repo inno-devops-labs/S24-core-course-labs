@@ -1,5 +1,11 @@
 # Terraform
 
+Export variables from `.env` files:
+
+```bash
+export $(cat .env | xargs)
+```
+
 ## Docker Provider
 
 Outputs for `terraform state list` and `terraform state show docker_container.devops-lab-python-app`

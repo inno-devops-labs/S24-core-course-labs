@@ -9,7 +9,7 @@ terraform {
 
 provider "yandex" {
   zone      = "ru-central1-a"
-  token     = var.secret-token
-  cloud_id  = var.yandex-cloud-id
-  folder_id = var.yandex-folder-id
+  token     = var.secret_token
+  cloud_id  = var.yandex_cloud_id
+  folder_id = var.yandex_folder_id
 }

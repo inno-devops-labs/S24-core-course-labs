@@ -1,16 +1,14 @@
-variable "yandex-cloud-id" {
+variable "yandex_cloud_id" {
   description = "Id for cloud"
   type        = string
-  default     = "<id>"
 }
 
-variable "yandex-folder-id" {
+variable "yandex_folder_id" {
   description = "Id for folder"
   type        = string
-  default     = "<id>"
 }
 
-variable "secret-token" {
+variable "secret_token" {
   description = "Secret token for authorization"
   type        = string
 }
