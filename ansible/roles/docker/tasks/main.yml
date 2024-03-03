@@ -4,5 +4,5 @@
   tags: docker
 
 - name: Install docker-compose
-  import_tasks: tasks/install_compose.yml
+  import_tasks: install_compose.yml
   tags: docker
