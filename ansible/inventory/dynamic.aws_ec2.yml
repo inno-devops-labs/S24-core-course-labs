@@ -1,0 +1,6 @@
+plugin: amazon.aws.aws_ec2
+regions:
+  - eu-north-1
+include_filters:
+  - tag:Name:
+      - 'DevOps-S24'
