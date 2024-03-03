@@ -121,73 +121,60 @@ ansible-playbook playbooks/dev/app_bun/main.yml --skip-tags "docker"
 Running `ansible-playbook playbooks/dev/app_python/main.yml --diff` gives me the following output (last 50 lines):
 
 ```ansible
-TASK [web_app : Copy nginx configuration file] ********************************************************************************************************************************************************************
+TASK [web_app : Copy nginx configuration file] *********************************
 --- before
-+++ after: /home/pptx704/.ansible/tmp/ansible-local-30562ib74k6u6/tmpqgi2hd24/nginx.conf.j2
++++ after: /home/pptx704/.ansible/tmp/ansible-local-128348u88nvgab/tmprt4kht0v/nginx.conf.j2
 @@ -0,0 +1,10 @@
 +server {
 +    listen 80;
 +    listen [::]:80;
 +
-+    server_name 18.193.109.68;
++    server_name 18.157.165.23;
 +
 +    location / {
-+        proxy_pass http://localhost:5000/;
++        proxy_pass http://localhost:3000/;
 +    }
 +}
 
-changed: [ec2-18-193-109-68.eu-central-1.compute.amazonaws.com]
+changed: [ec2-18-157-165-23.eu-central-1.compute.amazonaws.com]
 
-TASK [web_app : Create folder for web app if it does not exist] ***************************************************************************************************************************************************
+TASK [web_app : Create folder for web app if it does not exist] ****************
 --- before
 +++ after
 @@ -1,4 +1,4 @@
  {
-     "path": "/home/ubuntu/app_python",
+     "path": "/home/ubuntu/app_bun",
 -    "state": "absent"
 +    "state": "directory"
  }
 
-changed: [ec2-18-193-109-68.eu-central-1.compute.amazonaws.com]
+changed: [ec2-18-157-165-23.eu-central-1.compute.amazonaws.com]
 
-TASK [web_app : Copy template file] *******************************************************************************************************************************************************************************
+TASK [web_app : Copy template file] ********************************************
 --- before
-+++ after: /home/pptx704/.ansible/tmp/ansible-local-30562ib74k6u6/tmp4fr5j5hi/docker-compose.yml.j2
++++ after: /home/pptx704/.ansible/tmp/ansible-local-128348u88nvgab/tmpccdd0811/docker-compose.yml.j2
 @@ -0,0 +1,7 @@
 +version: "3"
 +
 +services:
 +  web:
-+    image: pptx704/app_python:latest
++    image: pptx704/app_bun:latest
 +    ports:
-+      - "5000:5000"
++      - "3000:3000"
 
-changed: [ec2-18-193-109-68.eu-central-1.compute.amazonaws.com]
-
-TASK [web_app : Stop and remove Docker containers] ****************************************************************************************************************************************************************
-changed: [ec2-18-193-109-68.eu-central-1.compute.amazonaws.com]
-
-TASK [web_app : Run docker-compose] *******************************************************************************************************************************************************************************
-changed: [ec2-18-193-109-68.eu-central-1.compute.amazonaws.com]
-
-RUNNING HANDLER [web_app : Restart Nginx] *************************************************************************************************************************************************************************
-changed: [ec2-18-193-109-68.eu-central-1.compute.amazonaws.com]
-
-PLAY RECAP ********************************************************************************************************************************************************************************************************
-ec2-18-193-109-68.eu-central-1.compute.amazonaws.com : ok=16   changed=7    unreachable=0    failed=0    skipped=5    rescued=0    ignored=1   
-
-
-RUNNING HANDLER [docker : Add ubuntu to the docker group] **********************
 changed: [ec2-18-157-165-23.eu-central-1.compute.amazonaws.com]
-changed: [ec2-18-197-154-132.eu-central-1.compute.amazonaws.com]
 
-RUNNING HANDLER [docker : Start docker] ****************************************
+TASK [web_app : Stop and remove Docker containers] *****************************
 changed: [ec2-18-157-165-23.eu-central-1.compute.amazonaws.com]
-changed: [ec2-18-197-154-132.eu-central-1.compute.amazonaws.com]
+
+TASK [web_app : Run docker-compose] ********************************************
+changed: [ec2-18-157-165-23.eu-central-1.compute.amazonaws.com]
+
+RUNNING HANDLER [web_app : Restart Nginx] **************************************
+changed: [ec2-18-157-165-23.eu-central-1.compute.amazonaws.com]
 
 PLAY RECAP *********************************************************************
-ec2-18-157-165-23.eu-central-1.compute.amazonaws.com : ok=9    changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-ec2-18-197-154-132.eu-central-1.compute.amazonaws.com : ok=9    changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ec2-18-157-165-23.eu-central-1.compute.amazonaws.com : ok=15   changed=7    unreachable=0    failed=0    skipped=7    rescued=0    ignored=0  
 ```
 
 ### Demo
