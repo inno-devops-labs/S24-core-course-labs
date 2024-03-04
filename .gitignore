@@ -14,3 +14,10 @@ build/
 *.egg-info/
 
 app_cpp/
+
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+authorized_key.json
+terraform.tfstate.backup
+config.auto.tfvars
