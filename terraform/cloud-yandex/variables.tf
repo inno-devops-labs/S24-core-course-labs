@@ -1,9 +1,9 @@
-variable "cloud-id" {
+variable "cloud_id" {
   description = "Cloud Id"
   type        = string
 }
 
-variable "folder-id" {
+variable "folder_id" {
   description = "Folder Id"
   type        = string
 }
