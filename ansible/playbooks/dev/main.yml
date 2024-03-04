@@ -1,0 +1,7 @@
+- name: AnsibleLab-05
+  hosts: all
+  become: true
+  roles:
+    - docker
+    # - geerlingguy.pip
+    # - geerlingguy.docker
