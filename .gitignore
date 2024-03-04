@@ -8,3 +8,4 @@ terraform.tfstate.backup
 .terraform.lock.hcl
 .env
 terraform/yandex-cloud/.terraform.tfstate.lock.info
+geerlingguy.docker
