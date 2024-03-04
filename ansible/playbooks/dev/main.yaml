@@ -1,5 +1,6 @@
 - hosts: web_server
   roles:
-    - role: docker
 #    - role: geerlingguy.docker
+#    - role: docker
+    - role: web_app
       become: true

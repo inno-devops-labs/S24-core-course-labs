@@ -63,6 +63,49 @@ web_server                 : ok=5    changed=3    unreachable=0    failed=0    s
 
 ```
 
+Output of `ansible-playbook playbooks/dev/main.yaml` command for `web_app` role:
+```commandline
+yegor@yegor:~/devops/S24-Devops-core-course-labs/ansible$ ansible-playbook playbooks/dev/main.yaml 
+
+PLAY [web_server] ***************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************
+ok: [web_server]
+
+TASK [docker : Update apt] ******************************************************************************************************************
+changed: [web_server]
+
+TASK [docker : Python3 and pip3 installation] ***********************************************************************************************
+ok: [web_server]
+
+TASK [docker : Docker installation] *********************************************************************************************************
+ok: [web_server]
+
+TASK [docker : Docker-compose installation] *************************************************************************************************
+ok: [web_server]
+
+TASK [web_app : Create  directory] **********************************************************************************************************
+changed: [web_server]
+
+TASK [web_app : Copy template] **************************************************************************************************************
+changed: [web_server]
+
+TASK [web_app : Ensure docker] **************************************************************************************************************
+ok: [web_server]
+
+TASK [web_app : Run Docker-Compose] *********************************************************************************************************
+changed: [web_server]
+
+TASK [web_app : Stop Docker] ****************************************************************************************************************
+skipping: [web_server]
+
+TASK [web_app : Remove files] ***************************************************************************************************************
+skipping: [web_server]
+
+PLAY RECAP **********************************************************************************************************************************
+web_server                 : ok=9    changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+```
+
 Output of the `ansible-inventory -i inventory/default_aws_ec2.yml --list` command:
 ```commandline
 yegor@yegor:~/devops/S24-Devops-core-course-labs/ansible$ ansible-inventory -i inventory/default_aws_ec2.yml --list
