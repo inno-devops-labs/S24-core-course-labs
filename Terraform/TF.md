@@ -402,6 +402,181 @@ python_app_internal_port = 5000
 ![Python and JavaScript Apps](./screenshots/apps-2.png)
 ![Python and JavaScript Apps](./screenshots/apps-3.png)
 
+## GitHub Terraform + `Bonus`
+
+- I have an existing Github Organization called `AyotoAI` and I have created a Terraform configuration to deploy a simple GitHub repository.
+
+- I have created two empty teams called `developers` and `contributors`.
+
+```bash
+    terraform show
+```
+
+```bash
+# github_branch_default.main:
+resource "github_branch_default" "main" {
+    branch     = "main"
+    etag       = "W/\"09e1922be509670cd4c5d7e66b495203a2d28bfc4a84d6d61ee83bd966cddef7\""
+    id         = "devops-terraform-example"
+    rename     = false
+    repository = "devops-terraform-example"
+}
+
+# github_branch_protection.default:
+resource "github_branch_protection" "default" {
+    allows_deletions                = false
+    allows_force_pushes             = false
+    blocks_creations                = false
+    enforce_admins                  = false
+    force_push_bypassers            = []
+    id                              = "BPR_kwDOLbNYTM4C1czT"
+    lock_branch                     = false
+    pattern                         = "main"
+    push_restrictions               = []
+    repository_id                   = "devops-terraform-example"
+    require_conversation_resolution = true
+    require_signed_commits          = false
+    required_linear_history         = false
+
+    required_pull_request_reviews {
+        dismiss_stale_reviews           = false
+        dismissal_restrictions          = []
+        pull_request_bypassers          = []
+        require_code_owner_reviews      = false
+        require_last_push_approval      = false
+        required_approving_review_count = 1
+        restrict_dismissals             = false
+    }
+}
+
+# github_repository.repo:
+resource "github_repository" "repo" {
+    allow_auto_merge            = false
+    allow_merge_commit          = true
+    allow_rebase_merge          = true
+    allow_squash_merge          = true
+    allow_update_branch         = false
+    archived                    = false
+    auto_init                   = false
+    default_branch              = "main"
+    delete_branch_on_merge      = false
+    description                 = "Terraform example to create a GitHub repository"
+    etag                        = "W/\"09e1922be509670cd4c5d7e66b495203a2d28bfc4a84d6d61ee83bd966cddef7\""
+    full_name                   = "inno-devops-test/devops-terraform-example"
+    git_clone_url               = "git://github.com/inno-devops-test/devops-terraform-example.git"
+    gitignore_template          = "VisualStudio"
+    has_discussions             = false
+    has_downloads               = false
+    has_issues                  = true
+    has_projects                = false
+    has_wiki                    = true
+    html_url                    = "https://github.com/inno-devops-test/devops-terraform-example"
+    http_clone_url              = "https://github.com/inno-devops-test/devops-terraform-example.git"
+    id                          = "devops-terraform-example"
+    is_template                 = false
+    license_template            = "mit"
+    merge_commit_message        = "PR_TITLE"
+    merge_commit_title          = "MERGE_MESSAGE"
+    name                        = "devops-terraform-example"
+    node_id                     = "R_kgDOLbNYTA"
+    private                     = false
+    repo_id                     = 766728268
+    squash_merge_commit_message = "COMMIT_MESSAGES"
+    squash_merge_commit_title   = "COMMIT_OR_PR_TITLE"
+    ssh_clone_url               = "git@github.com:inno-devops-test/devops-terraform-example.git"
+    svn_url                     = "https://github.com/inno-devops-test/devops-terraform-example"
+    topics                      = []
+    visibility                  = "public"
+    vulnerability_alerts        = false
+    web_commit_signoff_required = false
+
+    security_and_analysis {
+        secret_scanning {
+            status = "disabled"
+        }
+        secret_scanning_push_protection {
+            status = "disabled"
+        }
+    }
+}
+
+# github_team.contributors:
+resource "github_team" "contributors" {
+    create_default_maintainer = false
+    description               = "Contributors team"
+    etag                      = "W/\"05cf297a215a6f33dfcde34b04ee15e4a3f738217b0035698bc9f195e9a77959\""
+    id                        = "9608248"
+    members_count             = 0
+    name                      = "contributors"
+    node_id                   = "T_kwDOCaj6kM4Akpw4"
+    privacy                   = "secret"
+    slug                      = "contributors"
+}
+
+# github_team.developers:
+resource "github_team" "developers" {
+    create_default_maintainer = false
+    description               = "Developers team"
+    etag                      = "W/\"15f1d15ed4948560a817411200c60cec1512739a778d7d31dc720175d5ab0c72\""
+    id                        = "9608250"
+    members_count             = 0
+    name                      = "developers"
+    node_id                   = "T_kwDOCaj6kM4Akpw6"
+    privacy                   = "secret"
+    slug                      = "developers"
+}
+
+# github_team_repository.contributors_access:
+resource "github_team_repository" "contributors_access" {
+    etag       = "W/\"b60afd3b97f0a05ef64c41c3fc37eeb375566c6c9c1cd367c48ccb48cfbc44eb\""
+    id         = "9608248:devops-terraform-example"
+    permission = "pull"
+    repository = "devops-terraform-example"
+    team_id    = "9608248"
+}
+
+# github_team_repository.developers_access:
+resource "github_team_repository" "developers_access" {
+    etag       = "W/\"80b03c204d90246f2815fb3f396f8d227bed13d00507d568d9c18d78a38c6aaf\""
+    id         = "9608250:devops-terraform-example"
+    permission = "push"
+    repository = "devops-terraform-example"
+    team_id    = "9608250"
+}
+```
+
+- About the state list
+
+```bash
+    terraform state list
+```
+
+- The output of the above command:
+
+```bash
+    github_branch_default.main
+    github_branch_protection.default
+    github_repository.repo
+    github_team.contributors
+    github_team.developers
+    github_team_repository.contributors_access
+    github_team_repository.developers_access
+```
+
+![Command outputs](./screenshots/terraform-github.png)
+
+### Verify the Deployed GitHub Repository
+
+![GitHub Repository](./screenshots/github-verify.png)
+
+- Also Import the existing GitHub repository
+
+```bash
+    terraform import github_repository.repo devops-terraform-example
+```
+
+![GitHub Repository](./screenshots/github-import.png)
+
 ## Best Practices Followed
 
 1. **Modular Structure**: Configuration files are organized within separate directories for Docker and AWS, improving maintainability and clarity.
