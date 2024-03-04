@@ -1,0 +1,34 @@
+---
+- name: Update apt cache
+  ansible.legacy.apt:
+    update_cache: true
+  become: true
+
+- name: Install required packages
+  ansible.legacy.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - gnupg
+    state: present
+
+- name: Add Docker GPG key
+  ansible.legacy.apt_key:
+    url: "{{ docker_gpg_url }}"
+    state: present
+  become: true
+
+- name: Add Docker repository
+  ansible.legacy.apt_repository:
+    repo: "{{ docker_repository }}"
+    state: present
+    update_cache: true
+  become: true
+
+- name: Install Docker
+  ansible.legacy.apt:
+    name: docker-ce
+    state: present
+  become: true
