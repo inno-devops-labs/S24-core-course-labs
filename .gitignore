@@ -9,5 +9,5 @@ __pycache__/
 .pytest_cache
 .terraform/
 .pytest_cache/
-coverage/
-node_modules/
+coverage
+node_modules
