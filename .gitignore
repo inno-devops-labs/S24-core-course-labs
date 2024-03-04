@@ -7,3 +7,4 @@ env.bak/
 venv.bak/
 __pycache__/
 .pytest_cache
+.terraform/
