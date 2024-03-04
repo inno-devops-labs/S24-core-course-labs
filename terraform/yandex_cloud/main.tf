@@ -61,4 +61,8 @@ resource "yandex_compute_instance" "default" {
     nat_ip_address = yandex_vpc_address.vm1.external_ipv4_address[0].address
     nat            = true
   }
+
+  metadata = {
+    ssh-keys = "ubuntu:${file("~/.ssh/ya_cloud.pub")}"
+  }
 }
