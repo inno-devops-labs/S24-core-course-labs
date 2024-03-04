@@ -19,7 +19,7 @@ For proper usage define "hosts" and "role" in file `ansible/playbooks/dev/main.y
       become: true
 ```
 
-In case of using this role, specify only <YOUR_HOST_NAME>, role will be `docker`:
+In case of using this role, specify only <YOUR_ROLE_NAME>, role will be `docker`:
 ```commandline
 - hosts: <YOUR_HOST_NAME>
   roles:
