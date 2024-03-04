@@ -136,23 +136,3 @@ Outputs:
 
 address = "158.160.117.23"
 ```
-
-
-## Outputs | Git
-
-`terraform state list`
-
-```text
-github_branch_default.main
-github_branch_protection.default
-github_repository.repo
-```
-
-`terraform apply`
-
-```text
-Apply complete! Resources: 2 added, 0 changed, 2 destroyed.
-
-Outputs:
-
-address = "158.160.117.23"
