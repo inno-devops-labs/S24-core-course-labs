@@ -1,9 +1,4 @@
-plugin: yacloud_compute
-yacloud_clouds: cloud-brtljs
-yacloud_folders: default
-yacloud_token_file: yacloud_token
-
-# myhost:
-#   hosts:
-#     158.160.107.10:
-#       ansible_user: ubuntu
+myhost:
+  hosts:
+    158.160.107.10:
+      ansible_user: ubuntu
