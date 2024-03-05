@@ -1,4 +1,10 @@
 ---
+- name: Install pip
+  become: true
+  apt:
+    name: python3-pip
+    state: present
+
 - name: Add Docker APT repository
   become: true
   apt_repository:
