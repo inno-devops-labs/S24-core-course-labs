@@ -37,3 +37,27 @@ Execute tests:
 ```shell
 cargo test
 ```
+
+---
+
+### Docker
+
+#### Build
+
+```shell
+docker build . -f Dockerfile -t <name_of_image>
+```
+
+#### Pull
+
+```shell
+docker pull ilnurha/lab2_bonus
+```
+
+#### Run
+
+```shell
+docker run -p 9000:9000 <name_of_image>
+```
+
+If you pull from `ilnurha/lab2_bonus`, name of image is "ilnurha/lab2_bonus"

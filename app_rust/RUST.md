@@ -2,7 +2,7 @@
 
 ---
 
-## Task 1: Python Web Application
+## Task 1: Web Application
 
 ### Framework Selection
 
