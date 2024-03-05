@@ -1,0 +1,12 @@
+#cloud-config
+datasource:
+ Ec2:
+  strict_id: false
+ssh_pwauth: no
+users:
+- name: asya
+  sudo: ALL=(ALL) NOPASSWD:ALL
+  shell: /bin/bash
+  ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCR1I4yShbTT9bsJ6QSqEsuVPWJfaJ/ZqLbeUq4aXoT4FtuxXJMjzA0Kn3WVf77CeQW8BGapL6T1hrzm7JwvsIBs+i8JZmK0DyuMRqFZFz2lQiqDVd2gIczL7uHQKQD2zDUGV0WB6vL3Skw5L529ZB+caOHmYzGx+7IFwIgc4xei2IbSeq//z7/0rTRHKIuFRnurkuYkfk7xN8lMBPtiWjIPLT2GDwf/PKVX1sDNsWTF/OISPtgXHrKx7t8lnE32zy1iHlHeEpXvq7XY7OWcSBWZCq5umNBsE8VYxRrAi0ktXZPS/fBWC6fsrTAGZbVFhu9e19fI5Waqnio7Xz4oywUgWpoGEO2asaC9/N+/eShAMaQi8TI58sdMHAr4sFykL9z14tWhDS/9QrK0abePRQxS0B4TG5sllBldFhbWnln8TmG8+iR69jZeFMqKd74MTV4NCP1c6RgY71kC4fw+NXowQcgQW3rpr8/Wb+I0HpYATfe5I2S3IfIydMmtCbmvHE= anastasia@ubuntuos
+

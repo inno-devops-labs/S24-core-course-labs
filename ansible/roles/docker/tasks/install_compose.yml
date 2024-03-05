@@ -1,0 +1,5 @@
+# taken from https://github.com/geerlingguy/ansible-role-docker/blob/master tamplate
+- name: Docker-compose installation
+  pip:
+    name: docker-compose
+    state: latest

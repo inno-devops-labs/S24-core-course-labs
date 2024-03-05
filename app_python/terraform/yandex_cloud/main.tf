@@ -8,9 +8,9 @@ terraform {
 }
 
 provider "yandex" {
-  zone      = var.zone
-  service_account_key_file       = file("key.json")
-  folder_id = "b1gjtumbnfshl713ms12"
+  zone                     = var.zone
+  service_account_key_file = file("key.json")
+  folder_id                = "b1gjtumbnfshl713ms12"
 }
 
 resource "yandex_vpc_network" "network" {}
@@ -47,5 +47,9 @@ resource "yandex_compute_instance" "default" {
   network_interface {
     subnet_id = yandex_vpc_subnet.subnetwork.id
     nat       = true
+  }
+
+  metadata = {
+    user-data = file("user_data.yaml")
   }
 }
