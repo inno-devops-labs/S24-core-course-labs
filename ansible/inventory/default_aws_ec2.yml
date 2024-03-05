@@ -1,0 +1,7 @@
+all:
+  hosts:
+    ec2-34-204-94-32.compute-1.amazonaws.com:
+  vars:
+    ansible_user: ubuntu
+    ansible_ssh_private_key_file: ~/pair.pem
+    ansible_connection: ssh

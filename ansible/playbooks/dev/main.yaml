@@ -1,0 +1,5 @@
+- name: Install Docker and Docker Compose
+  hosts: all
+  roles:
+    - role: ../../roles/docker
+      become: true

@@ -1,0 +1,15 @@
+- name: Ensure {{ ansible_user }} has Docker group access
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: true
+  tags: docker
+  listen: docker_group_update
+
+- name: Run docker
+  systemd:
+    name: docker
+    state: restarted
+  tags: docker
+  delay: 10
+  listen: docker_service_restart
