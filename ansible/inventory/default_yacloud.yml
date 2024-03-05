@@ -1,0 +1,6 @@
+---
+myhosts:
+  hosts:
+    ya:
+      ansible_host: 158.160.24.166
+      ansible_user: ubuntu

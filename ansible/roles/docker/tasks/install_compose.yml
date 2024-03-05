@@ -1,0 +1,5 @@
+---
+- name: Docker compose install
+  pip:
+    name: docker-compose
+    state: latest

@@ -1,0 +1,12 @@
+---
+- name: Pip install
+  apt:
+    name: python3-pip
+    state: present
+  become: true
+
+- name: Docker install
+  import_tasks: tasks/install_docker.yml
+
+- name: Docker compose install
+  import_tasks: tasks/install_compose.yml
