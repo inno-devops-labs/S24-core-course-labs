@@ -55,3 +55,12 @@ I have written unit tests for my web application using the built-in unittest mod
 ### Code Quality
 
 I have used pylint to check my code for any errors or bad practices.
+
+# Answers to Lab 3
+
+## 1. Unit Tests
+
+I have written unit tests for my web application using the built-in unittest module in Python.
+
+The only test I have written is 'test_moscow_time.py' which tests that time changes between requests with delay of 1
+second.

@@ -45,7 +45,7 @@ class MoscowTimeTestCase(unittest.TestCase):
             assert False, "Couldn't parse time from response"
 
         # Checking that results are different
-        assert first_time != second_time
+        assert first_time != second_time, "Time should change between requests!"
 
 
 if __name__ == "__main__":
