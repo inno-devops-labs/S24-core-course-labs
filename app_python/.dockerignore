@@ -1,0 +1,9 @@
+# Excluding markdown files from the build
+*.md
+
+# Excluding pytest cache
+.pytest_cache
+__pycache__
+
+# Excluding tests
+tests

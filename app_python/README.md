@@ -9,13 +9,13 @@ This is a simple Flask web application that displays the current time in Moscow.
 - `app.py` - the main application file.
 - `requirements.txt` - the list of required Python packages.
 - `templates` - the directory containing HTML templates.
-  - `base.html` - the base HTML template.
-  - `moscow_time.html` - the template for the main page.
+    - `base.html` - the base HTML template.
+    - `moscow_time.html` - the template for the main page.
 - `static` - the directory containing static files.
-  - `style.css` - the CSS file for the application.
+    - `style.css` - the CSS file for the application.
 - `tests` - the directory containing tests.
-  - `unit` - the directory containing unit tests.
-  - `test_moscow_time.py` - the unit test for the application.
+    - `unit` - the directory containing unit tests.
+    - `test_moscow_time.py` - the unit test for the application.
 
 ## How to Run
 
@@ -46,6 +46,36 @@ This is a simple Flask web application that displays the current time in Moscow.
 
     ```bash
     python app_python/tests/unit/test_moscow_time.py
+    ```
+
+## Using Docker
+
+1. Pull the Docker image from Docker Hub:
+
+    ```bash
+    docker pull rekhlov/devops-flask-app
+    ```
+
+2. Run the Docker container:
+
+    ```bash
+    docker run -p 8080:8080 rekhlov/devops-flask-app
+    ```
+
+3. Open the web browser and navigate to [http://127.0.0.1:8080/](http://127.0.0.1:8080/) to see the current time in
+   Moscow.
+
+### Building the Docker Image
+
+1. Change the current directory to `app_python`:
+
+    ```bash
+    cd app_python
+    ```
+
+2. Build the Docker image:
+    ```bash
+    docker build -t devops-flask-app .
     ```
 
 ## Author
