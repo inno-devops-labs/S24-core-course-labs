@@ -1,3 +1,5 @@
+# flake8: noqa
+
 from __future__ import (absolute_import, division, print_function)
 from ansible.module_utils._text import to_native
 from ansible.utils.display import Display
