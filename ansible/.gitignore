@@ -31,3 +31,6 @@ roles/.galaxy/
 # Ignore environment-specific files
 .env
 .vagrant/
+
+roles/geerlingguy.docker/
+roles/web_app/
