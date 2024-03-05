@@ -1,5 +1,6 @@
 ---
-- name: install docker
+- name: Install docker
   apt:
-    name: docker.io
+    name: docker-ce
     state: present
+    update_cache: yes

@@ -1,5 +1,5 @@
----
 - name: Install Docker Compose
+  become: true
   pip:
     name: docker-compose
     state: latest
