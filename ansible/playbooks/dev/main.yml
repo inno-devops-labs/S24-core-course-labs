@@ -1,0 +1,6 @@
+- hosts: all
+  remote_user: maintheme
+  become: true
+  roles:
+    - docker
+
