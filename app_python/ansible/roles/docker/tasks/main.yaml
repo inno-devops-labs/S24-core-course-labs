@@ -1,10 +1,10 @@
 ---
 
 - name: Install Docker
-  ansible.builtin.include_tasks: install_docker.yml
+  ansible.builtin.include_tasks: install_docker.yaml
 
 - name: Install docker-compose
-  ansible.builtin.include_tasks: install_compose.yml
+  ansible.builtin.include_tasks: install_compose.yaml
 
 - name: Add user to docker group
   ansible.builtin.user:
