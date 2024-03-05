@@ -1,0 +1,7 @@
+virtual_machines:
+  hosts:
+    devops:
+      ansible_host: 158.160.150.142 
+      ansible_user: alba
+      ansible_ssh_private_key_file: ~/.ssh/id_ed25519
+      ansible_connection: ssh
