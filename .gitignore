@@ -2,4 +2,4 @@
 .pytest_cache
 venv
 app_python/.pytest_cache
-app_python/terraform/*/.terraform
+terraform/*/.terraform

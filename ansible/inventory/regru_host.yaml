@@ -1,0 +1,7 @@
+regru:
+  hosts:
+    host195:
+      ansible_host: 79.174.83.76
+      ansible_user: root
+
+

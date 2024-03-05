@@ -124,7 +124,7 @@ container_id = "3d02f68c621cec8dca6b52def695436a46ef6fcebf25a5be20a17c7be1149410
 ```bash
 terraform state list
 
-github_branch_default.main
+github_branch_default.main.yaml
 github_branch_protection.default
 github_repository.S24-core-course-labs
 ```
@@ -148,9 +148,9 @@ resource "github_branch_protection" "default" {
 ```
 
 ```bash
-terraform state show github_branch_default.main
+terraform state show github_branch_default.main.yaml
 
-# github_branch_default.main:
+# github_branch_default.main.yaml:
 resource "github_branch_default" "main" {
     branch     = "main"
     etag       = "W/\"08f9039c6a73b8abeda501708c636edb8155d67521c3887923c8c4ab7a72e535\""
