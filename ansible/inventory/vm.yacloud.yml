@@ -1,0 +1,7 @@
+---
+plugin: yacloud_compute
+yacloud_token_file: "/token.txt"
+yacloud_clouds:
+  - "cloud-habur331"
+yacloud_folders:
+  - "mierley"
