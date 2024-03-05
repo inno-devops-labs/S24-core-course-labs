@@ -2,7 +2,7 @@
 - hosts: localhost
   become: yes
   roles:
-    - geerlingguy.docker
+    - {role: ../../roles/docker }
   tasks:
     - name: Pull docker image
       command: docker pull ilnurha/dev_ops_course_core:latest
