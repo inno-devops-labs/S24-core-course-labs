@@ -4,7 +4,7 @@ A role to install docker and docker-compose on a host.
 
 ## Description
 
-The role installs docker and docker-compose on a host. For docker, it uses the ubuntu distribution `docker.io`. For docker-compose, it uses `pip3` to install the package.
+The role installs docker and docker-compose on a host. For docker, it uses the ubuntu distribution `docker.io`. For docker-compose, it uses `pip3` to install the package. If pip3 is not installed, the role will install it.
 
 ## Requirements
 
