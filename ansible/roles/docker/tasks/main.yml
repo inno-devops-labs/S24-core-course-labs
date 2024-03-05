@@ -1,0 +1,21 @@
+---
+- name: Ensure old versions of Docker are not installed.
+  package:
+    name:
+      - docker
+      - docker-engine
+    state: absent
+
+- name: Ensure dependencies are installed.
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+      - curl
+      - python3
+      - python3-pip
+    state: present
+
+- include_tasks: install_docker.yml
+- include_tasks: install_compose.yml

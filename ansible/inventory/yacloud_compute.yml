@@ -1,0 +1,3 @@
+ansible_user: diana
+plugin: yacloud_compute
+yacloud_token_file: "yandexcloud_token"

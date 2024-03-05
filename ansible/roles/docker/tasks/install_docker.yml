@@ -1,0 +1,26 @@
+- name: Add Docker apt key.
+  ansible.builtin.get_url:
+    url: "{{ docker_apt_gpg_key }}"
+    dest: /etc/apt/trusted.gpg.d/docker.asc
+    mode: '0644'
+    force: false
+    checksum: "{{ docker_apt_gpg_key_checksum | default(omit) }}"
+  register: add_repository_key
+  ignore_errors: "{{ docker_apt_ignore_key_error }}"
+  when: docker_add_repo | bool
+
+- name: Add Docker repository.
+  apt_repository:
+    repo: "{{ docker_apt_repository }}"
+    state: present
+    filename: "{{ docker_apt_filename }}"
+    update_cache: true
+  when: docker_add_repo | bool
+
+- name: Install Docker packages.
+  package:
+    name: "{{ docker_packages }}"
+    state: "{{ docker_packages_state }}"
+  notify: restart docker
+  ignore_errors: "{{ ansible_check_mode }}"
+  when: "ansible_version.full is version_compare('2.12', '<') or ansible_os_family not in ['RedHat', 'Debian']"

@@ -1,0 +1,6 @@
+all:
+  hosts:
+    yandex-cloud:
+      ansible_host: 178.154.223.174
+      ansible_user: diana
+      ansible_ssh_private_key_file: "~/.ssh/id_ed25519"
