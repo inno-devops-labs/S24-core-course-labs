@@ -9,4 +9,4 @@ app_python/__pycache__
 app_python/.pytest_cache
 
 # Terraform cache
-app_python/terraform/*/.terraform
+terraform/*/.terraform
