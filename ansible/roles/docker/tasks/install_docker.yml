@@ -11,6 +11,5 @@
   apt:
     name: docker.io
     state: latest
-  register: docker_io
   tags: docker
   notify: start_docker
