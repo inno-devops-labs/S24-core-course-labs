@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - geerlingguy.docker
+  tasks:
+    - name: Pull docker image
+      command: docker pull ilnurha/dev_ops_course_core:latest
+
+    - name: Execute docker image
+      command: docker run -p 5000:5000 ilnurha/dev_ops_course_core:latest
