@@ -93,3 +93,17 @@ In the above output there are two hosts defined: `{ anshible_host: localhost }` 
 `{ ansible_host: "51.250.1.65", ansible_user: "ubuntu" }`. The first one belongs to the
 `ungrouped` group, the second belongs to the `myhosts` group, both belong to the `all`
 metagroup (which is a special group that contains all defined hosts).
+
+## Best practices
+
+The project uses the following best practices:
+
+-   Generous use of whitespace
+
+-   Give names to everything
+
+-   Always mention the state
+
+-   Use fully qualified collection names
+
+-   Use dynamic inventory with clouds
