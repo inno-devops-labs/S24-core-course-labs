@@ -1,6 +1,8 @@
 # App Python
+[![Workflow Status](https://github.com/LaithAlebrahim/S24-core-course-labs/actions/workflows/app_python.yaml/badge.svg)](https://github.com/LaithAlebrahim/S24-core-course-labs/actions/workflows/app_python.yaml)
 
 This repository contains a Flask-based web application designed to display the current time in Moscow. It serves as an example of implementing best practices in web application development with Python.
+
 
 ## Overview
 
@@ -32,6 +34,16 @@ python3 app.py
 ```
 4. **View in Browser**:
 Open your browser to http://localhost:5000/ to see WEB APP
+
+
+## Unit Tests
+Run the unit tests:
+```bash
+python -m unittest tests/test_app.py
+```
+
+### Build and Test Job
+- Set up Python, install project dependencies and run tests using `pytest`.
 
 
 ## Docker Container

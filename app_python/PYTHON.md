@@ -12,7 +12,18 @@ Several best practices have been applied in the development of this web applicat
 - **PEP 8 Compliance**: The code follows PEP 8 style guidelines, ensuring readability and consistency throughout the application.
 - **Timezone Management**: The `pytz` library is used for accurate timezone conversions, ensuring the displayed time is always correct for Moscow.
 
+
+### Unit tests
+
+- Unit tests are implemented in the `tests/test_app.py` file:
+  - Correct format of the displayed time.
+  - Correctness of the route.
+  - Correctness of the time value obtained from the system and the application.
+
 ## Testing
 
-The application was manually tested to confirm that the current time updates upon page refreshing. Automated testing could be implemented in future iterations to further ensure the application's reliability through continuous integration practices.
+To run the tests, execute the following command:
 
+```bash
+python -m unittest tests.test_app.py
+```
