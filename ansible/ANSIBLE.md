@@ -66,3 +66,8 @@ TASK [Execute docker image] ****************************************************
 
 I didn't do anything with inventory.
 It should be default inventory
+
+## Dynamic Inventory
+
+I was using `timeweb cloud` for webserver.
+However, there is no available solution for dynamic inventory
