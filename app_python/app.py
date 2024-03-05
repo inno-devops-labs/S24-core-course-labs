@@ -9,4 +9,8 @@ timezone = ZoneInfo('Europe/Moscow')
 
 @app.route("/")
 def index():
-    return f"Current time in Moscow: {datetime.now(timezone).time().isoformat('seconds')}"
+    return f"Current time in Moscow: {current_time()}"
+
+
+def current_time():
+    return datetime.now(timezone).time().isoformat('seconds')

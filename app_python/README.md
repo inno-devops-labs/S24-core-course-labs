@@ -1,5 +1,7 @@
 # Python Web Application
 
+![CI](https://github.com/MrFired/S24-core-course-labs/actions/workflows/ci.yml/badge.svg)
+
 ## Overview
 
 This web application displays the current time in Moscow.
@@ -45,3 +47,23 @@ docker run -p 5000:5000 mrfired/devops-course:lab2
 ```
 
 Then you will be able to use the application on `localhost:5000`
+
+## Unit Tests
+
+To test the application after installation simply run from within virtual environment:
+
+```bash
+pytest
+```
+
+> Note: Testing is not available in Docker installation.
+
+## CI Workflow
+
+The Continuous Integration workflow for the project consists of the following steps:
+
+1. **Set up**: configuring the environment for CI;
+2. **Dependencies**: installing requirements;
+3. **Lint**: linting the project sources;
+4. **Test**: testing the implementation;
+5. **Docker Build & Push**: building and pushing the image to Docker Hub.
