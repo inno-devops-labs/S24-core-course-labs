@@ -19,3 +19,50 @@
 ## Inventory
 
 I didn't do anything with `ansible-inventory`
+
+## Ansible Playbook Output (Deployment Output)
+
+```
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+TASK [Gathering Facts] *******************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Install pip] **************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Install docker] ***********************************************************************************************************************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Install pip] **************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Install docker] ***********************************************************************************************************************************************
+ok: [localhost]
+
+TASK [../../roles/docker : command] ******************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [Pull docker image] *****************************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [Execute docker image] **************************************************************************************************************************************************************
+```
+
+## Inventory Details
+
+```yaml
+{
+    "_meta": {
+        "hostvars": {}
+    },
+    "all": {
+        "children": [
+            "ungrouped"
+        ]
+    }
+}
+```
+
+I didn't do anything with inventory.
+It should be default inventory
