@@ -1,0 +1,4 @@
+- name: Install Docker Compose with pip
+  become: true
+  pip:
+    name: "{{ docker_pip_package }}"

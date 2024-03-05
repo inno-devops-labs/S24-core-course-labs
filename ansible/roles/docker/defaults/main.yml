@@ -1,0 +1,10 @@
+docker_edition: 'ce'
+docker_packages:
+    - "docker-{{ docker_edition }}"
+    - "docker-{{ docker_edition }}-cli"
+    - "docker-{{ docker_edition }}-rootless-extras"
+docker_packages_state: present
+
+docker_gpg_apt_key_url: "https://download.docker.com/linux/ubuntu/gpg"
+docker_apt_repository: "deb https://download.docker.com/linux/ubuntu focal stable"
+pip_docker_compose_version: "1.29.2"
