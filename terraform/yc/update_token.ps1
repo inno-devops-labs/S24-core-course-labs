@@ -1,0 +1,1 @@
+$Env:YC_TOKEN=$(yc iam create-token)
