@@ -1,6 +1,7 @@
 fastapi==0.109.1
 uvicorn[default] ==0.27.0.post1
-tzdata == 2023.4
+tzdata==2023.4
+httpx==0.26.0
 
 pytest==8.0.0
 pytest-time==0.3.1

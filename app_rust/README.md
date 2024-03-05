@@ -1,5 +1,7 @@
 # My First Web App On Rust
 
+![Rust Workflow](https://github.com/IlnurHA/DevOps-S24-core-course-labs/actions/workflows/rust-app.yml/badge.svg)
+
 --- 
 
 ## Routes:
@@ -30,7 +32,7 @@
 cargo run
 ```
 
-## Testing
+## Unit Tests
 
 Execute tests:
 
@@ -51,7 +53,7 @@ docker build . -f Dockerfile -t <name_of_image>
 #### Pull
 
 ```shell
-docker pull ilnurha/lab2_bonus
+docker pull ilnurha/dev_ops_course_bonus
 ```
 
 #### Run
@@ -60,4 +62,4 @@ docker pull ilnurha/lab2_bonus
 docker run -p 9000:9000 <name_of_image>
 ```
 
-If you pull from `ilnurha/lab2_bonus`, name of image is "ilnurha/lab2_bonus"
+If you pull from `ilnurha/dev_ops_course_bonus`, name of image is "ilnurha/dev_ops_course_bonus"

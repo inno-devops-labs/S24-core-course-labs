@@ -1,5 +1,7 @@
 # Web App That Shows Time In Moscow
 
+![Python Workflow](https://github.com/IlnurHA/DevOps-S24-core-course-labs/actions/workflows/python-app.yml/badge.svg)
+
 ## Docs
 
 Can be accessed while running: `/docs`
@@ -69,7 +71,7 @@ docker build . -f Dockerfile -t <name_of_container>
 ### Pull from dockerhub
 
 ```shell
-docker pull ilnurha/lab2:latest
+docker pull ilnurha/dev_ops_course_core:latest
 ```
 
 ### Run
@@ -78,4 +80,25 @@ docker pull ilnurha/lab2:latest
 docker run -p 5000:5000 <name_of_container>
 ```
 
-If you pulled from dockerhub name of container is "ilnurha/lab2:latest"
+If you pulled from dockerhub name of container is "ilnurha/dev_ops_course_core:latest"
+
+---
+
+## Unit Tests
+
+To execute unit tests ensure
+that you are in virtual environment and installed dependencies
+as in [How To Run](README.md#how-to-run) section
+
+After that, execute:
+
+```shell
+pytest
+```
+
+---
+
+## CI workflow
+
+Now workflow is installing requirements, checking code using linter flake8,
+and building docker image and pushing to `ilnurha/dev_ops_course_core`
