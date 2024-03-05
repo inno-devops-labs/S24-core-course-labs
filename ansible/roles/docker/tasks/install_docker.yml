@@ -1,0 +1,24 @@
+- name: Install required packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: Add Docker's official GPG key
+  ansible.builtin.apt_key:
+    url: "{{ docker_gpg_url }}"
+    state: present
+
+- name: Add Docker repository
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] "{{ docker_repository_url }}" bionic stable
+
+- name: Update apt and install Docker
+  ansible.builtin.apt:
+    update_cache: true
+    name: "{{ docker_distribution }}"
+    state: present
