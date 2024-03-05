@@ -1,6 +1,6 @@
 - name: Update repositories
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
 
 - name: Install required packages
@@ -26,6 +26,6 @@
 
 - name: Install Docker
   ansible.builtin.apt:
-      name: docker-ce
-      state: present
-      update_cache: true
+    name: docker-ce
+    state: present
+    update_cache: true
