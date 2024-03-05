@@ -6,6 +6,7 @@ variable "yandex_token" {
 variable "yandex_folder_id" {
   description = "Yandex Cloud folder id"
   type        = string
+  default = "b1gtrhju6da0t81776al"
 }
 
 variable "yandex_image_id" {

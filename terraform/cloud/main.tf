@@ -18,6 +18,7 @@ resource "yandex_compute_disk" "boot-disk-1" {
 
 resource "yandex_compute_instance" "vm-1" {
   name = "terraform1"
+  folder_id = var.yandex_folder_id
 
   resources {
     cores  = 2
@@ -34,7 +35,7 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/sshcode.pub")}"
+    ssh-keys = "ubuntu:${file("~/.ssh/id_ed25519.pub")}"
   }
 }
 
@@ -45,6 +46,7 @@ resource "yandex_vpc_network" "network-1" {
 
 resource "yandex_vpc_subnet" "subnet-1" {
   name           = "subnet1"
+  folder_id      = var.yandex_folder_id
   zone           = "ru-central1-a"
   network_id     = yandex_vpc_network.network-1.id
   v4_cidr_blocks = ["192.168.10.0/24"]
