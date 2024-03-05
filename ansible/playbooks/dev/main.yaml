@@ -1,0 +1,14 @@
+- hosts: webservers
+  remote_user: oreh
+  roles:
+    - { role: docker, become: yes }
+    # - { role: geerlingguy.docker, become: yes }
+  
+  # tasks:
+  #   - name: Create mm folder
+  #     file:
+  #       path: '{{ home }}'
+  #       state: directory
+  #       owner: '{{ user }}'
+  #       group: '{{ user }}'
+        

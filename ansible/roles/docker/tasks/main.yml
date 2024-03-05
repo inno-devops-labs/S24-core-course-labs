@@ -1,0 +1,15 @@
+---
+- name: Install pip
+  apt:
+    name: python3-pip
+    state: present
+
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+
+- name: Install Docker Compose
+  pip:
+    name: docker-compose
+
