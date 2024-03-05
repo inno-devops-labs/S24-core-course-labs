@@ -1,0 +1,23 @@
+- name: APT Update
+  apt:
+    update_cache: yes
+  tags: docker
+
+- name: Add Docker apt key.
+  apt_key:
+    url: "{{ docker_apt_gpg_key }}"
+    state: present
+  tags: docker
+
+- name: Add Docker repository.
+  apt_repository:
+    repo: "{{ docker_apt_repository }}"
+    state: present
+  tags: docker
+
+- name: Install Docker
+  apt:
+    name: docker
+    state: present
+  become: true
+  tags: docker
