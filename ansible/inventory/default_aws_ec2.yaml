@@ -1,0 +1,4 @@
+myhost:
+  hosts:
+    84.201.129.191:
+      ansible_user: dudukk

@@ -1,6 +1,5 @@
-- name: Prepare docker
-  hosts: localhost
-  connection: local
+- name: run docker role
+  hosts: all
   become: true
   roles:
     - docker
