@@ -174,12 +174,7 @@ RUNNING HANDLER [web_app : Restart Nginx] **************************************
 changed: [ec2-18-157-165-23.eu-central-1.compute.amazonaws.com]
 
 PLAY RECAP *********************************************************************
-<<<<<<< HEAD
 ec2-18-157-165-23.eu-central-1.compute.amazonaws.com : ok=15   changed=7    unreachable=0    failed=0    skipped=7    rescued=0    ignored=0  
-=======
-ec2-18-157-165-23.eu-central-1.compute.amazonaws.com : ok=15   changed=7    unreachable=0    failed=0    skipped=7    rescued=0    ignored=0 
-
->>>>>>> bac8b98 (Update role and readme)
 ```
 
 ### Demo
