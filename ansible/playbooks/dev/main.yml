@@ -1,0 +1,6 @@
+---
+- name: Install Docker and Docker Compose
+  hosts: aws_ec2
+  roles:
+    - role: docker
+      become: true
