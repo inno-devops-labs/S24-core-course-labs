@@ -1,8 +1,10 @@
-- hosts: localhost
+- name: Docker playbook
+  hosts: localhost
   become: True
   roles:
-    - geerlingguy.pip
-    - geerlingguy.docker
+    - docker
+# Task 1
+#    - geerlingguy.docker
   tasks:
     - name: Pull Docker image
       docker_image:

@@ -1,12 +1,6 @@
 ---
-- name: Install pip
-  become: true
-  apt:
-    name: python3-pip
-    state: present
-
 - name: Install Docker Compose
   become: true
-  pip:
+  apt:
     name: docker-compose
     state: present
