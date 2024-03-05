@@ -1,0 +1,7 @@
+all:
+  hosts:
+    ec2-3-124-209-126.eu-central-1.compute.amazonaws.com:
+  vars:
+    ansible_user: ubuntu
+    ansible_ssh_private_key_file: ~/.ssh/devops_new.pem
+    ansible_connection: ssh
