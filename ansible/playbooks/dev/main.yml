@@ -1,0 +1,5 @@
+- name: Install docker and docker-compose
+  hosts: all
+  become: true
+  roles:
+    - docker

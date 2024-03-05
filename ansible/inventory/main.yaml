@@ -1,0 +1,5 @@
+servers:
+  hosts:
+    ubuntu_server:
+      ansible_host: 206.188.197.213
+      ansible_user: root
