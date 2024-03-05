@@ -9,8 +9,7 @@ terraform {
 }
 // Configure the Yandex.Cloud provider
 provider "yandex" {
-  token = var.auth_token
-  # service_account_key_file = var.key_file
+  token     = var.auth_token
   cloud_id  = var.cloud_id
   folder_id = var.folder_id
   zone      = var.compute_zone
@@ -42,6 +41,7 @@ resource "yandex_compute_instance" "vm1" {
 
   network_interface {
     subnet_id = yandex_vpc_subnet.test_subnet.id
+    nat       = true
   }
 
   metadata = {
