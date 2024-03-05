@@ -42,7 +42,6 @@ resource "aws_instance" "server_python" {
   user_data = <<-EOF
               #!/bin/bash
               sudo apt update -y
-              sudo apt install -y python3-pip
               EOF
 
   tags = {
@@ -58,7 +57,6 @@ resource "aws_instance" "server_bun" {
   user_data = <<-EOF
             #!/bin/bash
             sudo apt update -y
-            sudo apt install -y python3-pip
             EOF
   
   tags = {
