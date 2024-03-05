@@ -1,0 +1,6 @@
+virtual_machines:
+  hosts:
+    web_server:
+      ansible_host: 51.250.91.90
+  vars:
+    ansible_user: nfedorovich
