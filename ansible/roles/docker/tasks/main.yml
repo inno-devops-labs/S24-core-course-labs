@@ -1,0 +1,8 @@
+- name: Install pip
+  import_tasks: install_pip.yml
+
+- name: Install Docker
+  import_tasks: install_docker.yml
+
+- name: Install Docker Compose
+  import_tasks: install_compose.yml
