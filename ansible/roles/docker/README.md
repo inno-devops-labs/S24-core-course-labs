@@ -11,6 +11,7 @@ using installed `pip` in previous step
 ---
 
 - Python 3.8+
+- Ansible
 
 ## Usage
 
