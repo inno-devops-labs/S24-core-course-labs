@@ -1,0 +1,5 @@
+all:
+  hosts:
+    host1:
+      ansible_host: 158.160.62.182
+      ansible_user: vladimir
