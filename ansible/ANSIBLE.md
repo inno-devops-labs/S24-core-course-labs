@@ -1,3 +1,12 @@
+# Ansible
+
+## Docker
+
+All configurations reside inside `ansible` directory.
+
+`ansible-playbook --diff playbooks/dev/main.yml` result:
+
+```bash
 PLAY [playbook] *******************************************************************************************************
 
 TASK [docker : Install dependencies] **********************************************************************************
@@ -41,3 +50,43 @@ ok: [vm]
 
 PLAY RECAP ************************************************************************************************************
 vm                         : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+## Dynamic Inventory
+
+`ansible-inventory -i inventory/default_aws_ec2.yaml --list` result
+
+```json
+{
+    "_meta": {
+        "hostvars": {
+            "vm": {
+                "ansible_host": "13.48.43.83",
+                "ansible_user": "ubuntu"
+            }
+        }
+    },
+    "all": {
+        "children": [
+            "ungrouped",
+            "virtual_machines"
+        ]
+    },
+    "virtual_machines": {
+        "hosts": [
+            "vm"
+        ]
+    }
+}
+```
+
+## Best Practices
+
+Reference: <https://docs.ansible.com/ansible/2.8/user_guide/playbooks_best_practices.html>
+
+- Content Organization
+- Dynamic inventory
+- Whitespace and Comments
+- Always Name Tasks
+- Keep It Simple
+- Version Control
