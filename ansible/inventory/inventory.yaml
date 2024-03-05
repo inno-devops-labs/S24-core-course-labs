@@ -1,0 +1,4 @@
+webservers:
+  hosts:
+    51.250.10.101:
+      server_name: yandexcloud 
