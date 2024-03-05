@@ -1,8 +1,10 @@
-- name: Task 1
+- name: Task 2
   hosts: localhost
   become: True
   roles:
-    - geerlingguy.docker
+    # - geerlingguy.docker # Task 1
+    # - {role: ../../roles/docker} # Task 2
+    - docker
   tasks:
     - name: Pull Docker Image
       docker_image:

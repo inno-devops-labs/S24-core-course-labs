@@ -1,0 +1,5 @@
+# myhosts:
+#   hosts:
+#     timeweb:
+#       ansible_host: 185.104.113.125
+#       ansible_user: ubuntu
