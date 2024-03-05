@@ -9,4 +9,4 @@
     name: docker-compose
     state: latest
   tags: docker
-  notify: start_docker
+  notify: run_docker
