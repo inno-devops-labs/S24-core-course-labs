@@ -12,4 +12,3 @@
     name: docker.io
     state: latest
   tags: docker
-  notify: start_docker
