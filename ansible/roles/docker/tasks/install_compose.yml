@@ -1,0 +1,7 @@
+- name: Install Docker Compose
+  ansible.builtin.pip:
+    name: docker-compose
+    state: latest
+  become: true
+  tags: docker
+  notify: start_docker
