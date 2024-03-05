@@ -1,0 +1,9 @@
+- name: Install pip
+  ansible.builtin.package:
+    name: python3-pip
+    state: present
+
+- name: Install docker-compose
+  ansible.builtin.pip:
+    name: docker-compose
+    executable: pip3
