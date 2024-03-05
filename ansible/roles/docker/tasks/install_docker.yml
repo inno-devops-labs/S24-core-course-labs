@@ -1,0 +1,28 @@
+- name: Installation of necessary system packages
+  apt:
+    name:
+      - lsb-release
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+    state: present
+    update_cache: yes
+  register: install_packages
+
+- name: Retrieve Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository to apt sources
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    state: present
+
+- name: Update apt cache and install Docker Community Edition (docker-ce)
+  apt:
+    name: docker-ce
+    state: present
+    update_cache: yes
+  when: install_packages.changed
