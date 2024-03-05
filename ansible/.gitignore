@@ -32,5 +32,5 @@ roles/.galaxy/
 .env
 .vagrant/
 
-geerlingguy.docker/
-web_app/
+roles/geerlingguy.docker/
+roles/web_app/
