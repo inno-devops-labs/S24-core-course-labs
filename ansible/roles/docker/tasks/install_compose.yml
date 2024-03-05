@@ -1,0 +1,6 @@
+- name: Install Docker Compose via pip
+  pip:
+    name: docker-compose
+    state: latest
+  tags: docker
+  notify: start_docker
