@@ -1,0 +1,6 @@
+- name: Docker role
+  hosts: all
+  become: true
+
+  roles:
+    - ../../roles/docker 
