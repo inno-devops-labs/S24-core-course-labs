@@ -2,11 +2,11 @@
 
 This is a simple web application that shows the current time in Moscow.
 
-## Getting started
+## Getting started locally
 
 ### Prerequisites
 
-- Python 3.9
+- Python 3.9+
 
 ### Installation
 
@@ -19,6 +19,36 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+
+The running app will be available at http://localhost:8000
+
+## Getting started with Docker
+
+### Prerequisites
+
+- Docker
+
+### Usage
+
+Build the image:
+
+```bash
+docker build -t majorro/devops-engineering-course:python .
+```
+
+or pull it from Docker Hub:
+
+```bash
+docker pull majorro/devops-engineering-course:python
+```
+
+Run the container:
+
+```bash
+docker run -p 8000:8000 majorro/devops-engineering-course:python
+```
+
+The running app will be available at http://localhost:8000
 
 ## Contact
 
