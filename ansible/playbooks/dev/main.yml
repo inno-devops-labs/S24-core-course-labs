@@ -1,0 +1,5 @@
+- name: Install docker and pip
+  become: true
+  hosts: all
+  roles:
+    - ../../roles/docker 
