@@ -1,0 +1,5 @@
+regru:
+  hosts:
+    aquamarine_iridium:
+      ansible_host: 79.174.83.76
+      ansible_user: root
