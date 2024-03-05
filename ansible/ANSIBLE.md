@@ -177,6 +177,17 @@ PLAY RECAP *********************************************************************
 ec2-18-193-109-68.eu-central-1.compute.amazonaws.com : ok=16   changed=7    unreachable=0    failed=0    skipped=5    rescued=0    ignored=1   
 
 
+RUNNING HANDLER [docker : Add ubuntu to the docker group] **********************
+changed: [ec2-18-157-165-23.eu-central-1.compute.amazonaws.com]
+changed: [ec2-18-197-154-132.eu-central-1.compute.amazonaws.com]
+
+RUNNING HANDLER [docker : Start docker] ****************************************
+changed: [ec2-18-157-165-23.eu-central-1.compute.amazonaws.com]
+changed: [ec2-18-197-154-132.eu-central-1.compute.amazonaws.com]
+
+PLAY RECAP *********************************************************************
+ec2-18-157-165-23.eu-central-1.compute.amazonaws.com : ok=9    changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+ec2-18-197-154-132.eu-central-1.compute.amazonaws.com : ok=9    changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 ### Demo
