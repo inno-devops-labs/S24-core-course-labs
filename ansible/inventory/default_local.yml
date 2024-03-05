@@ -1,0 +1,6 @@
+virtual_machines:
+  hosts:
+    web_server:
+      ansible_host: 84.201.128.97
+  vars:
+    ansible_user: vm-admin

@@ -32,7 +32,7 @@ export-env {
       }
     }
 
-    let virtual_env = '/home/everyonehateme/programing/F23-core-course-labs/venv'
+    let virtual_env = '/home/everyonehateme/programing/S24-core-course-labs/venv'
     let bin = 'bin'
 
     let is_windows = ($nu.os-info.family) == 'windows'

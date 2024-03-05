@@ -1,4 +1,4 @@
-#!/home/everyonehateme/programing/F23-core-course-labs/venv/bin/python
+#!/home/everyonehateme/programing/S24-core-course-labs/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

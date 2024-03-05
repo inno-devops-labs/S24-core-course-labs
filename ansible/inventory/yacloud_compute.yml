@@ -1,0 +1,3 @@
+plugin: yacloud_compute
+yacloud_clouds: cloud-alena-art-libra
+yacloud_folders: default
