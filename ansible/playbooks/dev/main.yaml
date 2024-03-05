@@ -1,0 +1,4 @@
+- hosts: localhost
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker
