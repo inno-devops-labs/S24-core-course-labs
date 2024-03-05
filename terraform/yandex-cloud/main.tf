@@ -19,7 +19,7 @@ resource "yandex_compute_disk" "boot-disk-1" {
   type     = "network-hdd"
   zone     = var.zone
   size     = "20"
-  image_id = "fd8al14u8vbnhiqurg08"
+  image_id = "fd8b1k66ee99rmt7p9ac"
 }
 
 // Create a new instance
