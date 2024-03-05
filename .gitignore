@@ -7,3 +7,8 @@ __pycache__
 
 # For rust projects
 target/
+
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
