@@ -1,0 +1,5 @@
+- name: Install Docker and Docker Compose on Ubuntu
+  hosts: all
+  roles:
+    - role: docker
+      become: true

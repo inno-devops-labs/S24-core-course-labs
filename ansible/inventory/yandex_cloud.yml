@@ -1,0 +1,5 @@
+virtual_machines:
+  hosts:
+    devops:
+      ansible_host: 51.250.104.24
+      ansible_user: ubuntu
