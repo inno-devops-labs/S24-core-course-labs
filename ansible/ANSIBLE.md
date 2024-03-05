@@ -5,7 +5,7 @@
 ## Docker Role
 
 - To install `docker` I used `ansible.builtin.apt`
-- To install `pip` I used `command` to execute `sudo apt-get install python3-pip`
+- To install `pip` I used `command` to execute `ansible.builtin.apt`
 - To install `docker-compose` I imported `pip` and `docker` installation roles
 - In `main.yaml` of my custom docker role I just imported all installation roles
 
