@@ -16,10 +16,12 @@ This Ansible role is designed to install Docker and Docker Compose on target hos
 
 ## Example Playbook
 
+```bash
 - hosts: all
   roles:
   - role: roles/docker
       become: yes
+```
 
 ## Testing
 
