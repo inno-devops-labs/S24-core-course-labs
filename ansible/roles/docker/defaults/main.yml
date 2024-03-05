@@ -1,0 +1,2 @@
+# Default variables for web_app role
+web_app_full_wipe: false

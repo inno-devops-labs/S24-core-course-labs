@@ -1,0 +1,18 @@
+# Main tasks for web_app role
+
+- name: Deploy Docker image for web application
+  block:
+    - name: Ensure docker-compose directory exists
+      file:
+        path: ../../../../docker-compose.yml
+        state: directory
+
+    - name: Deliver docker-compose.yml template
+      template:
+        src: docker-compose.yml.j2
+        dest: ../../../../docker-compose.yml
+      tags:
+        - deploy
+
+  tags:
+    - deploy
