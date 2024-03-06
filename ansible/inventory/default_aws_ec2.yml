@@ -1,0 +1,4 @@
+plugin: amazon.aws.aws_ec2
+profile: "a1kuat"
+regions:
+ - us-east-1

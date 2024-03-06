@@ -1,0 +1,6 @@
+---
+- name: Deploy Docker
+  hosts: aws_ec2
+  become: true
+  roles:
+    - role: ../../roles/docker
