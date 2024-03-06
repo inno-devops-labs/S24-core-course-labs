@@ -3,4 +3,7 @@ uvicorn[standard]
 pytz
 
 pytest
-requests
+httpx
+beautifulsoup4
+
+flake8

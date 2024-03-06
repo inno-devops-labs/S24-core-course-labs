@@ -24,6 +24,8 @@ Now app will be accessible at http://127.0.0.1:8000/
 
 ## Testing
 
+Comprehensive unit tests have been implemented to ensure the reliability and correctness of the application's functionality.
+
 Running tests:
 
 ```bash
@@ -56,3 +58,17 @@ docker run -p 8000:8000 tsepanx/app_python-lab2
 
 
 The application now will be accessible at http://127.0.0.1:8000
+
+## Continuous Integration (CI) Workflow
+
+The project includes a CI workflow using GitHub Actions to automate the build and testing process. The workflow consists of several essential steps:
+
+- **Dependencies**: Ensure dependencies are installed using pip
+- **Linting**: Check code quality and adherence to coding standards using linters
+- **Tests**: Run comprehensive unit tests to verify the application's functionality
+
+Additionally, Docker-related steps are handled in a separate CI workflow specifically for Docker:
+
+- **Build & Push**: Automatically build Docker images and push them to Docker Hub
+
+For more details, refer to the workflow files located in the `.github/workflows` directory
