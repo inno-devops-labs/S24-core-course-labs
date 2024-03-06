@@ -1,0 +1,12 @@
+- name: Upgrade pip
+  # command: python3 -m ensurepip --upgrade
+  apt:
+    name: python3-pip
+    state: latest
+
+
+- name: Install docker
+  import_tasks: install_docker.yml
+
+- name: Install compose
+  import_tasks: install_compose.yml
