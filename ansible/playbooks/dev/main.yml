@@ -1,0 +1,20 @@
+- name: Install pip
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Install python3-pip
+      apt:
+        name: python3-pip
+        state: present
+
+- name: Install Docker
+  hosts: localhost
+  become: yes
+  tasks:
+    - include_tasks: ../../roles/docker/tasks/install_docker.yml
+
+- name: Install Docker Compose
+  hosts: localhost
+  become: yes
+  tasks:
+    - include_tasks: ../../roles/docker/tasks/install_compose.yml
