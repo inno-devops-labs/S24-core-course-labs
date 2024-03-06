@@ -1,0 +1,5 @@
+[app]
+plugin=yacloud_compute
+yacloud_clouds=cloud-ahmedsaber20022011gmailcom
+yacloud_folders=default
+yacloud_token_file=~/yandex_cloud/authorized_key.json

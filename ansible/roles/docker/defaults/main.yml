@@ -1,0 +1,23 @@
+docker_edition: "ce"
+
+docker_packages:
+  - "docker-{{ docker_edition }}"
+  - "docker-{{ docker_edition }}-cli"
+  - "docker-{{ docker_edition }}-rootless-extras"
+  - "containerd.io"
+
+docker_dependencies:
+  - "apt-transport-https"
+  - "ca-certificates"
+  - "curl"
+  - "software-properties-common"
+
+docker_apt_key: "https://download.docker.com/linux/ubuntu/gpg"
+doker_repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+docker_packages_state: present
+
+pip_docker_compose_version: "1.29.2"
+
+docker_compose_dependencies:
+  - "python3"
+  - "python3-pip"
