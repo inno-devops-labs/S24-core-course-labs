@@ -20,13 +20,13 @@ Terraform will perform the following actions:
       + exit_code                                   = (known after apply)
       + hostname                                    = (known after apply)
       + id                                          = (known after apply)
-      + image                                       = (known after apply)
+      + image                                       = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666a"
       + init                                        = (known after apply)
       + ipc_mode                                    = (known after apply)
       + log_driver                                  = (known after apply)
       + logs                                        = false
       + must_run                                    = true
-      + name                                        = "ExampleNginxContainer"
+      + name                                        = "ExampleNginx"
       + network_data                                = (known after apply)
       + read_only                                   = false
       + remove_volumes                              = true
@@ -51,20 +51,10 @@ Terraform will perform the following actions:
         }
     }
 
-  # docker_image.nginx will be created
-  + resource "docker_image" "nginx" {
-      + id           = (known after apply)
-      + image_id     = (known after apply)
-      + keep_locally = false
-      + name         = "nginx"
-      + repo_digest  = (known after apply)
-    }
-
-Plan: 2 to add, 0 to change, 0 to destroy.
+Plan: 1 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
   + container_id = (known after apply)
-  + image_id     = (known after apply)
 
 Do you want to perform these actions?
   Terraform will perform the actions described above.
@@ -72,25 +62,14 @@ Do you want to perform these actions?
 
   Enter a value: yes
 
-docker_image.nginx: Creating...
-docker_image.nginx: Still creating... [10s elapsed]
-docker_image.nginx: Still creating... [20s elapsed]
-docker_image.nginx: Still creating... [30s elapsed]
-docker_image.nginx: Still creating... [40s elapsed]
-docker_image.nginx: Still creating... [50s elapsed]
-docker_image.nginx: Still creating... [1m0s elapsed]
-docker_image.nginx: Still creating... [1m10s elapsed]
-docker_image.nginx: Still creating... [1m20s elapsed]
-docker_image.nginx: Still creating... [1m30s elapsed]
-docker_image.nginx: Creation complete after 1m32s [id=sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666anginx]
 docker_container.nginx: Creating...
-docker_container.nginx: Creation complete after 6s [id=e99ecf533a1694f254adfcdc99bbfe539c8a80d937a992335ce157c1add79e1a]
+docker_container.nginx: Creation complete after 8s [id=57222aefb7547fa0c14d8f7e69aaf63561e617c93d7b93a16400652b365432de]
 
-Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-container_id = "e99ecf533a1694f254adfcdc99bbfe539c8a80d937a992335ce157c1add79e1a"
+container_id = "57222aefb7547fa0c14d8f7e69aaf63561e617c93d7b93a16400652b365432de"
 image_id = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666anginx"
 ```
 
@@ -118,8 +97,8 @@ resource "docker_container" "nginx" {
         "/docker-entrypoint.sh",
     ]
     env                                         = []
-    hostname                                    = "e99ecf533a16"
-    id                                          = "e99ecf533a1694f254adfcdc99bbfe539c8a80d937a992335ce157c1add79e1a"
+    hostname                                    = "57222aefb754"
+    id                                          = "57222aefb7547fa0c14d8f7e69aaf63561e617c93d7b93a16400652b365432de"
     image                                       = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666a"
     init                                        = false
     ipc_mode                                    = "private"
@@ -129,7 +108,7 @@ resource "docker_container" "nginx" {
     memory                                      = 0
     memory_swap                                 = 0
     must_run                                    = true
-    name                                        = "ExampleNginxContainer"
+    name                                        = "ExampleNginx"
     network_data                                = [
         {
             gateway                   = "172.17.0.1"
@@ -185,7 +164,7 @@ resource "docker_image" "nginx" {
 ## `terraform output` output
 
 ```
-container_id = "e99ecf533a1694f254adfcdc99bbfe539c8a80d937a992335ce157c1add79e1a"
+container_id = "57222aefb7547fa0c14d8f7e69aaf63561e617c93d7b93a16400652b365432de"
 image_id = "sha256:e4720093a3c1381245b53a5a51b417963b3c4472d3f47fc301930a4f3b17666anginx"
 ```
 
