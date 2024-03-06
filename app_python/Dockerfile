@@ -8,9 +8,9 @@ LABEL maintainer="almetov.kamil@gmail.com"
 WORKDIR /app_python
 
 # Copy requirements.txt to the container
-COPY /app_python/requirements.txt .
+COPY requirements.txt .
 RUN pip install --upgrade pip \
-    pip install --no-cache-dir -r /app_python/requirements.txt
+    pip install --no-cache-dir -r requirements.txt
 
 # Copy the application source code
 COPY . .
@@ -21,4 +21,7 @@ EXPOSE 5000
 
 USER nobody
 
-CMD [ "python3", "-m" , "flask", "run"]
+# CMD [ "python3", "-m" , "flask", "run", "--host", "localhost", "--port", "5000"]
+
+ENTRYPOINT ["python3"]
+CMD ["app.py"]
