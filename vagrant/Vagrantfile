@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "mrdanielmartins/ubuntu-server-mini-22-04-lts-arm64"
+  config.vm.box_version = "1.0.0"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  config.vm.provider "vmware_desktop" do |vmware|
+    vmware.gui = true
+    vmware.cpus = 2
+    vmware.vmx["ethernet0.virtualdev"] = "vmxnet3"
+    vmware.ssh_info_public = true
+    vmware.linked_clone = false
+    vmware.memory = 512
+  end
+
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.memory = "512"
+  end
+end
