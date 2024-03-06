@@ -1,0 +1,6 @@
+myhosts:
+  hosts:
+    webserver:
+      ansible_host: ${{ secrets.IP_ADDRESS }}
+      ansible_user: ${{ secrets.USER }}
+      ansible_ssh_private_key_file: ${{ secrets.PRIVATE_KEY }}
