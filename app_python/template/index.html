@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moscow Time Digital Clock</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #0abab5; /* Tiffany Blue */
+        }
+
+        #title {
+            font-size: 4.5em; /* Triple the font size */
+            color: #fff; /* White text color for better contrast */
+            margin-bottom: 20px; /* Increased margin */
+        }
+
+        #clock {
+            font-size: 9em; /* Triple the font size */
+            color: #fff; /* White text color for better contrast */
+        }
+    </style>
+    <script>
+        function updateClock() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+
+            hours = (hours < 10 ? "0" : "") + hours;
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+
+            var timeString = hours + ":" + minutes + ":" + seconds;
+
+            document.getElementById("clock").innerHTML = timeString;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();  // Initial call to display the time immediately
+    </script>
+</head>
+<body>
+    <div id="title">Moscow Time</div>
+    <div id="clock"></div>
+</body>
+</html>
