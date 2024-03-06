@@ -1,0 +1,4 @@
+plugin: amazon.aws.aws_ec2
+profile: "ikram"
+regions:
+ - us-east-2

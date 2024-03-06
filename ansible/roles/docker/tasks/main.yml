@@ -1,0 +1,8 @@
+---
+- name: Docker installation 
+  import_tasks: install_docker.yml
+  tags: docker
+
+- name: docker-compose installation
+  import_tasks: install_compose.yml
+  tags: docker
