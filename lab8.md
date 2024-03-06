@@ -23,14 +23,6 @@ In this lab, you will become acquainted with Prometheus, set it up, and configur
    - Access `http://localhost:9090/targets` to ensure that Prometheus is correctly scraping metrics.
    - Capture screenshots that confirm the successful setup and place them in a file named `METRICS.md` within the monitoring folder.
 
-5. Pull Request to Forked Repository:
-   - Create a Pull Request (PR) to the main branch of the forked repository.
-   - Request your teammates to review this PR, and actively review PRs from your teammates.
-
-6. Pull Request in Your Repository:
-   - Construct a PR in your repository, linking the lab8 branch to the main branch.
-   - This step is essential for grading and monitoring your work.
-
 ## Task 2: Dashboard and Configuration Enhancements
 
 **4 Points:**
@@ -74,7 +66,6 @@ In this lab, you will become acquainted with Prometheus, set it up, and configur
 - Maintain a well-structured and comprehensible `METRICS.md` document.
 - Adhere to file and folder naming conventions.
 - Utilize code blocks and Markdown formatting where appropriate.
-- Engage actively in the peer review process by submitting and reviewing PRs.
-- When creating the PR in your repository, make it from the lab4 branch to the lab3 branch.
+- Create pull requests (PRs) as needed: from your fork to the main branch of this repository, and from your fork's branch to your fork's master branch.
 
 > Note: Ensure thorough documentation of your work, and guarantee that Prometheus correctly collects metrics. Take advantage of the bonus tasks to deepen your understanding and enhance the completeness of your setup.
