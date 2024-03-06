@@ -1,0 +1,6 @@
+all: 
+  hosts:
+    host1:
+    # It is timeweb cloud
+      ansible_host: 188.225.76.110
+      ansible_user: root
