@@ -1,0 +1,11 @@
+- name: Deploy app to host
+  hosts: vagrant_hosts
+  become: yes
+
+  roles:
+    - geerlingguy.docker
+    - web_app
+
+  vars_files:
+  - vars/docker_vars.yml
+  - vars/app.yml

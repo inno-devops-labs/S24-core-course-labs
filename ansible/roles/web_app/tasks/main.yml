@@ -1,0 +1,25 @@
+- name: create app directory
+  file:
+    path: "{{app_path}}"
+    state: directory
+    mode: '0755'
+
+- name: Copy app files
+  copy:
+    src: "{{item}}"
+    dest: "{{app_path}}/{{item}}"
+    mode: '0644'
+  with_items:
+    - index.html
+
+
+- name: Format jinja2 template for docker compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{app_path}}/docker-compose.yml"
+    mode: '0644'
+
+- name: (Re)Start Docker Compose
+  command: "sh -c 'docker compose down ; docker compose up -d'"
+  args:
+    chdir: "{{app_path}}"
