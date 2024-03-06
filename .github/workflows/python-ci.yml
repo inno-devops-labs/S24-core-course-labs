@@ -66,4 +66,13 @@ jobs:
           ./snyk-linux auth ${{ secrets.SNYK_API_TOKEN }} --severity-threshold=high
         working-directory: app_python
 
+      - hosts: all
+
+        vars:
+          pip_install_packages:
+            - name: docker
+
+        roles:
+          - geerlingguy.pip
+          - geerlingguy.docker
       

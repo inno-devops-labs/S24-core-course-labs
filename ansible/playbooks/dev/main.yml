@@ -1,0 +1,5 @@
+- name: lab-05
+  hosts: all
+  become: true
+  roles:
+    - docker
