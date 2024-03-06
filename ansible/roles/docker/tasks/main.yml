@@ -1,0 +1,50 @@
+- name: Update apt
+  apt:
+    name: apt
+    state: latest
+    update_cache: true
+
+- name: Install pip
+  apt:
+    name: 
+      - python3-pip
+      - python3-setuptools
+    state: latest
+    update_cache: true
+
+- name: Install Docker dependencies
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    state: present
+    update_cache: true
+
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    filename: docker
+    state: present
+
+- name: Install Docker
+  apt:
+    name: docker-ce
+    state: present
+    update_cache: true
+
+- name: Upgrade pip
+  pip:
+    name: pip
+    state: latest
+
+- name: Install docker-compose
+  ansible.builtin.pip:
+    name: docker-compose
+    state: latest
