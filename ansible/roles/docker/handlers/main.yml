@@ -1,0 +1,13 @@
+- name: check {{ ansible_user }} has a docker group access
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: true 
+  tags: docker
+
+- name: run docker image
+  systemd: 
+    name: docker
+    state: restarted 
+  tags: docker
+  delay: 10
