@@ -1,0 +1,12 @@
+- name: Refresh apt packages
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  tags: docker
+
+- name: Install/Update docker.io 
+  apt:
+    name: docker.io
+    state: latest
+  register: docker_installation_status
+  tags: docker

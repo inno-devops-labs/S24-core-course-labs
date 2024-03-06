@@ -1,0 +1,36 @@
+# Ignore private keys and certificates
+*.pem
+*.key
+*.crt
+
+# Ignore Ansible vault files
+*.vault
+
+# Ignore temporary files created by editors and the system
+*~
+.*.swp
+.DS_Store
+
+# Ignore retry files created by Ansible
+*.retry
+
+# Ignore specific directories that may contain variable files or other sensitive information
+group_vars/
+host_vars/
+secrets/
+inventory/.vault_pass.txt
+
+# Ignore Python bytecode
+__pycache__/
+*.py[cod]
+
+# Ignore role dependencies managed by ansible-galaxy or other third-party tools
+roles/external/
+roles/.galaxy/
+
+# Ignore environment-specific files
+.env
+.vagrant/
+
+roles/geerlingguy.docker/
+roles/web_app/
