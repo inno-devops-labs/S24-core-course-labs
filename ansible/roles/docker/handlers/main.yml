@@ -1,4 +1,4 @@
-- name: Ensure {{ ansible_user }} has Docker group access
+- name: Check {{ ansible_user }} access
   user:
     name: "{{ ansible_user }}"
     groups: docker

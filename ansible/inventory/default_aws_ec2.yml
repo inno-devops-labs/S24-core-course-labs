@@ -1,7 +1,6 @@
 all:
   hosts:
-    ec2-user@ec2-18-171-184-83.eu-west-2.compute.amazonaws.com:
+    ec2-18-170-41-216.eu-west-2.compute.amazonaws.com:
   vars:
     ansible_user: ubuntu
-    ansible_ssh_private_key_file: ansible.pem
     ansible_connection: ssh
