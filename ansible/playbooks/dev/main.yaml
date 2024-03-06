@@ -1,0 +1,8 @@
+- name: run Docker role
+  hosts: all
+
+  become: true
+  roles:
+    - docker
+
+# - geerlingguy.docker

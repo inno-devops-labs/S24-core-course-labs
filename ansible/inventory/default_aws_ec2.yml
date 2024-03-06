@@ -1,0 +1,4 @@
+myhosts:
+  hosts:
+    84.201.135.38:
+      ansible_user: hugowea

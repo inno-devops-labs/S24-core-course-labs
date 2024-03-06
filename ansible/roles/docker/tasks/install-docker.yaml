@@ -1,0 +1,31 @@
+- name: update repositories
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: install required packages
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - software-properties-common
+      - gnupg
+    state: present
+    update_cache: true
+
+- name: add GPG key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: add repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    filename: docker
+    state: present
+
+- name: install Docker
+  ansible.builtin.apt:
+    name: docker-ce
+    state: present
+    update_cache: true
