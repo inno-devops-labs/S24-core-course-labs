@@ -24,7 +24,7 @@ USER myuser
 COPY --from=builder /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages/
 
 # Copy the application code to the container
-COPY . .
+COPY .. .
 
 # Run the application
 CMD ["python", "app.py"]

@@ -1,0 +1,5 @@
+all:
+  hosts:
+    host1:
+      ansible_host: 84.201.158.25
+      ansible_user: katykosh
