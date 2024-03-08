@@ -70,3 +70,41 @@ $ ansible-inventory -i inventory --list
     }
 }
 ```
+
+## Python application deployment
+
+```
+$ ansible-playbook -i inventory playbooks/dev/main.yml
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [devops-lab-4-cloud]
+
+TASK [../../roles/docker : Install `pip`] **************************************
+ok: [devops-lab-4-cloud]
+
+TASK [../../roles/docker : Install required system packages] *******************
+ok: [devops-lab-4-cloud]
+
+TASK [../../roles/docker : Add Docker's GPG key] *******************************
+ok: [devops-lab-4-cloud]
+
+TASK [../../roles/docker : Add Docker Repository] ******************************
+ok: [devops-lab-4-cloud]
+
+TASK [../../roles/docker : Install Docker] *************************************
+ok: [devops-lab-4-cloud]
+
+TASK [../../roles/docker : Install Docker Compose] *****************************
+ok: [devops-lab-4-cloud]
+
+TASK [../../roles/web_app : Pull the app image] ********************************
+changed: [devops-lab-4-cloud]
+
+TASK [../../roles/web_app : Start the app] *************************************
+changed: [devops-lab-4-cloud]
+
+PLAY RECAP *********************************************************************
+devops-lab-4-cloud         : ok=9    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
