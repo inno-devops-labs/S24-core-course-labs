@@ -1,0 +1,46 @@
+---
+- name: Wipe out docker containers 
+  import_tasks: wipe.yml
+
+- name: Deliver docker-compose file
+  ansible.builtin.template:
+    src: ../templates/docker-compose.yml.j2
+    dest: /home/ubuntu/
+    owner: root
+    mode: '0644'
+  tags: 
+    - deliver-docker-compose
+
+- name: Deploy python_app with docker
+  become: true
+  become_user: root
+  when: deploy_python_app
+  block:
+    - name: Pull Docker Image
+      docker_image:
+        name: "{{ python_app_image_name }}"
+        source: pull
+
+    - name: Start Docker Container
+      docker_container:
+        name: "{{ python_app_container_name }}"
+        image: "{{ python_app_image_name }}"
+        state: started
+        network_mode: host
+
+- name: Deploy java_app with docker 
+  become: true
+  become_user: root
+  when: deploy_java_app
+  block:
+    - name: Pull Docker Image
+      docker_image:
+        name: "{{ java_app_image_name }}"
+        source: pull
+
+    - name: Start Docker Container
+      docker_container:
+        name: "{{ java_app_container_name }}"
+        image: "{{ java_app_image_name }}"
+        state: started
+        network_mode: host

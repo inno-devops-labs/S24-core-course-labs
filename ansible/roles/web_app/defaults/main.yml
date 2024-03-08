@@ -1,0 +1,9 @@
+python_app_image_name: "fk12344321/moscow-time:latest"
+python_app_container_name: "moscow-time"
+
+java_app_image_name: "fk12344321/anon_threats:latest"
+java_app_container_name: "anon_threats"
+web_app_full_wipe: false
+
+deploy_java_app: false 
+deploy_python_app: true

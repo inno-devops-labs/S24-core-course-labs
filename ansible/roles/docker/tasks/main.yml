@@ -3,20 +3,12 @@
   apt:
     update_cache: yes
 
-- name: Install pip3
-  apt:
-    name: python3-pip
-    state: present
-
-- name: Install Python3
-  apt:
-    name: python3
-    state: present
-
 - name: Install Docker 
+  tags: 
+    - docker-install
   import_tasks: install_docker.yml
 
-- name: Install Docker Compose using pip
-  pip:
-    name: docker-compose
-    state: present
+- name: Install docker-compose 
+  tags: 
+    - docker-compose-install
+  import_tasks: install_docker_compose.yml

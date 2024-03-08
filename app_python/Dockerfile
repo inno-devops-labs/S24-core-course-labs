@@ -11,4 +11,6 @@ COPY app/* /app/
 
 USER app_user:app_user
 
-ENTRYPOINT [ "flask",  "--app", "main", "run" ]
+EXPOSE 5000
+
+ENTRYPOINT [ "flask", "--app", "main", "run", "--host=0.0.0.0" ]

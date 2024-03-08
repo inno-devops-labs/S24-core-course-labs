@@ -1,0 +1,9 @@
+- name: Deploy Java Web App
+  hosts: aws
+  become: true
+  vars: 
+    web_app_full_wipe: false
+    deploy_java_app: true
+    deploy_python_app: false
+  roles:  
+    - role: web_app

@@ -1,4 +1,0 @@
-- name: Install Docker on Ubuntu
-  hosts: aws
-  become: true
-  roles: [docker]

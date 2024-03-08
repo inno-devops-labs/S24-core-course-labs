@@ -1,0 +1,9 @@
+- name: Deploy Python Web App
+  hosts: aws
+  become: true
+  vars: 
+    web_app_full_wipe: false
+    deploy_java_app: false
+    deploy_python_app: true
+  roles:  
+    - role: web_app

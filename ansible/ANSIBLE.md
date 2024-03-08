@@ -253,3 +253,170 @@ And here is the output of `ansible-inventory -i inventory/default_aws_ec2.yml --
     }
 }
 ```
+
+## Deploying web_app 
+
+Here is the output of `ansible-playbook playbooks/dev/python_app/main.yaml`
+
+```
+(venv) fedorkrasilnikov@Fedors-MBP ansible % ansible-playbook playbooks/dev/python_app/main.yaml  
+
+PLAY [Deploy Python Web App] *******************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Update apt package cache] *******************************************************************************
+changed: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Update apt package cache] *******************************************************************************
+changed: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Install dependencies for Docker] ************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Add Docker GPG key] *************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Add Docker Repository] **********************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Update apt package cache (again with Docker repository)] ************************************************
+changed: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Install Docker] *****************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Start and enable Docker service] ************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Install pip3] *******************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Install Python3] ****************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Install Docker Compose using pip] ***********************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Stop and remove moscow-time] ***************************************************************************
+skipping: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Deliver docker-compose file] ***************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Pull Docker Image] *************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Start Docker Container] ********************************************************************************
+changed: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Pull Docker Image] *************************************************************************************
+skipping: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Start Docker Container] ********************************************************************************
+skipping: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+PLAY RECAP *************************************************************************************************************
+ec2-16-170-247-65.eu-north-1.compute.amazonaws.com : ok=15   changed=4    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+```
+
+Here is the result of deploying the java app with `ansible-playbook playbooks/dev/java_app/main.yaml`
+
+```
+(venv) fedorkrasilnikov@Fedors-MBP ansible % ansible-playbook playbooks/dev/java_app/main.yaml  
+
+PLAY [Deploy Java Web App] *********************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Update apt package cache] *******************************************************************************
+changed: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Update apt package cache] *******************************************************************************
+changed: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Install dependencies for Docker] ************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Add Docker GPG key] *************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Add Docker Repository] **********************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Update apt package cache (again with Docker repository)] ************************************************
+changed: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Install Docker] *****************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Start and enable Docker service] ************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Install pip3] *******************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Install Python3] ****************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Install Docker Compose using pip] ***********************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Stop and remove moscow-time] ***************************************************************************
+skipping: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Deliver docker-compose file] ***************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Pull Docker Image] *************************************************************************************
+skipping: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Start Docker Container] ********************************************************************************
+skipping: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Pull Docker Image] *************************************************************************************
+changed: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Start Docker Container] ********************************************************************************
+changed: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+PLAY RECAP *************************************************************************************************************
+ec2-16-170-247-65.eu-north-1.compute.amazonaws.com : ok=15   changed=5    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+```
+
+## Running wipe role 
+
+```
+ansible-playbook --tags untagged  playbooks/dev/main.yaml  
+
+PLAY [Deploy Web App] **************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [docker : Update apt package cache] *******************************************************************************
+changed: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Stop and remove moscow-time] ***************************************************************************
+changed: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+```
+
+## Running docker-compose template creation 
+
+```
+(venv) fedorkrasilnikov@Fedors-MBP ansible % ansible-playbook --tags deliver-docker-compose playbooks/dev/main.yaml 
+
+PLAY [Deploy Web App] **************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+ok: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+TASK [web_app : Deliver docker-compose file] ***************************************************************************
+changed: [ec2-16-170-247-65.eu-north-1.compute.amazonaws.com]
+
+PLAY RECAP *************************************************************************************************************
+ec2-16-170-247-65.eu-north-1.compute.amazonaws.com : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
+

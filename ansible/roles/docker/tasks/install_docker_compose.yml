@@ -1,0 +1,16 @@
+- name: Install docker-compose
+  block: 
+  - name: Install pip3
+    apt:
+      name: python3-pip
+      state: present
+
+  - name: Install Python3
+    apt:
+      name: python3
+      state: present
+
+  - name: Install Docker Compose using pip
+    pip:
+      name: docker-compose
+      state: present
