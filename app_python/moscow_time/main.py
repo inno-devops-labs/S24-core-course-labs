@@ -3,7 +3,7 @@ import datetime
 from flask import Flask
 import requests
 
-from .cache import cache_for
+from cache import cache_for
 
 
 app = Flask(__name__)

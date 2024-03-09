@@ -30,3 +30,13 @@
     state: present
     update_cache: true
   become: true
+
+- name: Give user `ubuntu` access to `docker`
+  ansible.builtin.user:
+    user: "ubuntu"
+    groups: ["docker"]
+    append: true
+  become: true
+
+- name: Restart ssh connection for changes to the user's groups to take effect
+  ansible.builtin.meta: reset_connection

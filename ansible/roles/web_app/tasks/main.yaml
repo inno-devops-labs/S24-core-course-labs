@@ -1,0 +1,12 @@
+---
+- name: Pull image
+  community.docker.docker_image_pull:
+    name: "{{ image_name }}"
+    tag: "{{ image_tag }}"
+
+- name: Create container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: "{{image_name}}:{{image_tag}}"
+    state: "started"
+    ports: "{{ publish_ports }}"
