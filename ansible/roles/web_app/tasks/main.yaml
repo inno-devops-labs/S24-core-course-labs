@@ -1,23 +1,42 @@
 ---
-- name: Pull image
-  community.docker.docker_image:
-    name: "{{ image_name }}"
-    source: "pull"
-    state: "present"
-    tag: "{{ image_tag }}"
+- name: Create directory for compose
+  ansible.builtin.file:
+    path: "~/{{image_name|basename}}"
+    state: "directory"
+  register: compose_dir
+
+- name: Stop old containers
+  community.docker.docker_compose_v2:
+    project_src: "{{ compose_dir.path }}"
+    state: stopped
+  # Compose file may not exist yet, thus ignoring errors
+  ignore_errors: true
+
+- name: Render new docker-compose.yml
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ compose_dir.path }}/docker-compose.yml"
+  vars:
+    image_full: "{{image_name}}:{{image_tag}}"
+    expose_ports: "{{ publish_ports }}"
   when: not wipe
 
-- name: Manage container
-  # Note: runs both on normal run and on wipe
-  community.docker.docker_container:
-    name: "{{ container_name }}"
-    image: "{{image_name}}:{{image_tag}}"
-    state: "{{ wipe | ternary('absent', 'started') }}"
-    ports: "{{ publish_ports }}"
+- name: Manage containers
+  # If wiping, remove containers, otherwise start them
+  community.docker.docker_compose_v2:
+    project_src: "{{ compose_dir.path }}"
+    state: "{{ wipe | ternary('absent', 'present') }}"
+    pull: always
 
 - name: Wipe image
   community.docker.docker_image:
     name: "{{ image_name }}"
     tag: "{{ image_tag }}"
+    state: "absent"
+  when: wipe
+
+- name: Remove compose file from the filesystem
+  ansible.builtin.file:
+    path: "{{ compose_dir.path }}"
     state: "absent"
   when: wipe
