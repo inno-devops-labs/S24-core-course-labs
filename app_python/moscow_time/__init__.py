@@ -3,7 +3,7 @@ import datetime
 from flask import Flask
 import requests
 
-from cache import cache_for
+from .cache import cache_for
 
 
 app = Flask(__name__)
@@ -30,7 +30,3 @@ def index():
     time = get_time()
     return f"In MSK it's {time.hour}:{time.minute}:{time.second}. " \
         "Have you brushed your teeth today yet?"
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)

@@ -4,7 +4,7 @@ from time import sleep
 
 from pytest import fixture
 
-from moscow_time.main import app
+from moscow_time import app
 
 
 app.config.update({
