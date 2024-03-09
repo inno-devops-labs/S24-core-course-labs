@@ -38,3 +38,13 @@ python3 -m app_python
 foo@bar:~$ curl localhost:8080
 2024-02-05 19:21:56.513728+03:00⏎
 ```
+
+## Unit tests
+This project utilises unit tests with the use of `pytest`.
+To run tests use `make test`
+
+## CI
+This project utilises github actions CI to:
+- Lint and test the project
+- Build and push a docker image
+On push(to any branch, not just main for ease of testing)
