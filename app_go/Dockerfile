@@ -9,8 +9,9 @@ COPY go.mod *.go /usr/src/app/
 RUN ["env", "CGO_ENABLED=0", "go", "build", "-o", "catfact_webapp", "."]
 
 
-# Like `FROM scratch` but with SSL
-FROM damdo/sscratch
+FROM scratch
+# Enable https requests from within the container
+COPY --from=0 /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 EXPOSE 5000
 
