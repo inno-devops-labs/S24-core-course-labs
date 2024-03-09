@@ -161,3 +161,9 @@ The project uses the following best practices:
 -   Use fully qualified collection names
 
 -   Use dynamic inventory with clouds
+
+-   Use blocks to group related tasks together
+
+-   Use role dependencies between roles that require others to run before
+
+-   Use tags for conditional execution

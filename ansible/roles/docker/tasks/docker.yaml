@@ -1,23 +1,23 @@
-- name: Ensure /etc/apt/keyrings exists
-  file:
-    path: /etc/apt/keyrings
-    state: directory
-  become: true
+- name: Prepare apt for docker installation
+  block:
+    - name: Ensure /etc/apt/keyrings exists
+      file:
+        path: /etc/apt/keyrings
+        state: directory
 
-- name: Add docker's GPG
-  ansible.builtin.get_url:
-    url: 'https://download.docker.com/linux/ubuntu/gpg'
-    dest: /etc/apt/keyrings/docker.asc
-    mode: a+r
-    force: true  # Redownload every time
-    decompress: false
-  become: true
+    - name: Add docker's GPG
+      ansible.builtin.get_url:
+        url: 'https://download.docker.com/linux/ubuntu/gpg'
+        dest: /etc/apt/keyrings/docker.asc
+        mode: a+r
+        force: true  # Redownload every time
+        decompress: false
 
-- name: Create docker source list for apt
-  shell: >
-    echo "deb [arch=$(dpkg --print-architecture)
-    signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu
-    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" > /etc/apt/sources.list.d/docker.list
+    - name: Create docker source list for apt
+      shell: >
+        echo "deb [arch=$(dpkg --print-architecture)
+        signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu
+        $(. /etc/os-release && echo "$VERSION_CODENAME") stable" > /etc/apt/sources.list.d/docker.list
   become: true
 
 - name: Install docker via apt
@@ -31,12 +31,14 @@
     update_cache: true
   become: true
 
-- name: Give user `ubuntu` access to `docker`
-  ansible.builtin.user:
-    user: "ubuntu"
-    groups: ["docker"]
-    append: true
-  become: true
+- name: Give normal user access to docker
+  block:
+    - name: Add user `ubuntu` to group `docker`
+      ansible.builtin.user:
+        user: "ubuntu"
+        groups: ["docker"]
+        append: true
+      become: true
 
-- name: Restart ssh connection for changes to the user's groups to take effect
-  ansible.builtin.meta: reset_connection
+    - name: Restart ssh connection for changes to the user's groups to take effect
+      ansible.builtin.meta: reset_connection

@@ -3,3 +3,4 @@ image_name: "hello-world"
 image_tag: "latest"
 container_name: "{{ image_name | basename }}-0"
 publish_ports: []
+wipe: false

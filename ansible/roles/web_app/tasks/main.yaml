@@ -1,12 +1,23 @@
 ---
 - name: Pull image
-  community.docker.docker_image_pull:
+  community.docker.docker_image:
     name: "{{ image_name }}"
+    source: "pull"
+    state: "present"
     tag: "{{ image_tag }}"
+  when: not wipe
 
-- name: Create container
+- name: Manage container
+  # Note: runs both on normal run and on wipe
   community.docker.docker_container:
     name: "{{ container_name }}"
     image: "{{image_name}}:{{image_tag}}"
-    state: "started"
+    state: "{{ wipe | ternary('absent', 'started') }}"
     ports: "{{ publish_ports }}"
+
+- name: Wipe image
+  community.docker.docker_image:
+    name: "{{ image_name }}"
+    tag: "{{ image_tag }}"
+    state: "absent"
+  when: wipe

@@ -6,4 +6,13 @@
       image_name: "kolay0ne/app_py"
       image_tag: "lab6"
       publish_ports:
-        - 5000:5000
+        - "5000:5000"
+      wipe: false
+      tags: []  # Run by default
+
+    - name: "Wipe kolay0ne/app_py:lab6"
+      role: web_app
+      image_name: "kolay0ne/app_py"
+      image_tag: "lab6"
+      wipe: true
+      tags: [never, wipe]  # Only run on wipe
