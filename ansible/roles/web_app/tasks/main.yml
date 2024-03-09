@@ -2,9 +2,11 @@
   community.docker.docker_image:
     name: snejugal/devops-lab2
     source: pull
+  tags: app
 - name: Start the app
   community.docker.docker_container:
     image: snejugal/devops-lab2
     name: python-web-app
     detach: true
     published_ports: "8080:8080"
+  tags: app

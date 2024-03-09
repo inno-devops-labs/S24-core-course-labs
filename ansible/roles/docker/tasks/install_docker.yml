@@ -7,6 +7,7 @@
       - gnupg
     state: present
     update_cache: true
+  tags: docker
 
 - name: Set up Docker repository
   block:
@@ -20,6 +21,7 @@
         repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
         filename: docker
         state: present
+  tags: docker
 
 - name: Install Docker
   ansible.builtin.apt:
@@ -28,3 +30,4 @@
       - docker-ce-cli
     state: present
     update_cache: true
+  tags: docker

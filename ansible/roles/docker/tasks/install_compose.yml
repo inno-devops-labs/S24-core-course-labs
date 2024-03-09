@@ -2,3 +2,4 @@
   ansible.builtin.pip:
     name: docker-compose
     state: present
+  tags: docker-compose
