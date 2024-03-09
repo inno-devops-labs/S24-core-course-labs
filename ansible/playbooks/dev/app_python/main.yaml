@@ -1,0 +1,11 @@
+- name: Deploy Python App
+  hosts: vms
+  become: true
+  roles:
+    - role: web_app
+      vars:
+        web_app_app_dir: /opt/app_python
+        web_app_image: slry/python_moscow_time:latest
+        web_app_ports: 8081:8080
+        web_app_full_wipe: true
+        web_app_docker_ansible_user: slry

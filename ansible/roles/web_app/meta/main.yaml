@@ -1,0 +1,4 @@
+---
+
+dependencies:
+  - { role: docker, docker_ansible_user: '{{ web_app_docker_ansible_user }}' }

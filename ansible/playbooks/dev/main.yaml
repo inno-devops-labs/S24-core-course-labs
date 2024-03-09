@@ -1,7 +1,0 @@
-- name: Install Docker and Docker Compose
-  hosts: vms
-  become: true
-  vars:
-    ansible_user: slry
-  roles:
-    - docker

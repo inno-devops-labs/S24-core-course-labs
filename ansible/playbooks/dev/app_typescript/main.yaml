@@ -1,0 +1,11 @@
+- name: Deploy Typescript App
+  hosts: vms
+  become: true
+  roles:
+    - role: web_app
+      vars:
+        web_app_app_dir: /opt/app_typescript
+        web_app_image: slry/typescript_moscow_time:latest
+        web_app_ports: 8082:8080
+        web_app_full_wipe: true
+        web_app_docker_ansible_user: slry

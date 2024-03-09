@@ -1,0 +1,30 @@
+---
+
+- name: Docker compose down, remove app directory
+  include_tasks: 0-wipe.yaml
+  tags: wipe
+
+- name: Create App directory, copy template file and run docker-compose
+  block:
+    - name: Create App directory
+      changed_when: false
+      ansible.builtin.command: mkdir -p {{ web_app_app_dir }}
+      tags:
+        - configure
+        - compose
+
+    - name: Copy template file
+      ansible.builtin.template:
+        src: docker-compose.yaml.j2
+        dest: '{{ web_app_app_dir }}/docker-compose.yaml'
+        mode: '0644'
+      tags:
+        - configure
+        - compose
+
+    - name: Docker Compose Up
+      changed_when: false
+      ansible.builtin.command: docker compose up -d
+      args:
+        chdir: '{{ web_app_app_dir }}'
+      tags: compose
