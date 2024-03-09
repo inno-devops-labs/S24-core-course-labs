@@ -10,3 +10,7 @@
     detach: true
     published_ports: "8080:8080"
   tags: app
+- name: Wipe the app
+  import_tasks: wipe.yml
+  tags: wipe-web-app
+  when: wipe_web_app == true

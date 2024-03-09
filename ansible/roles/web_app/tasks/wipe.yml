@@ -1,0 +1,9 @@
+- name: Delete the app container
+  community.docker.docker_container:
+    name: python-web-app
+    state: absent
+- name: Delete the image
+  community.docker.docker_image:
+    name: snejugal/devops-lab2
+    state: absent
+
