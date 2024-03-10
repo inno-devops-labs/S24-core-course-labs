@@ -1,5 +1,9 @@
 # Simple Web Application
 
+![GitHub Actions Workflow][workflow-badge]
+
+[workflow-badge]: https://github.com/fedor-ivn/devops/actions/workflows/python.yml/badge.svg
+
 This application is a minimalistic web service that provides the current time in
 Moscow.
 
@@ -58,7 +62,7 @@ To build the Docker image, use the following command:
 docker build -t simple-web-app:python .
 ```
 
-## Testing
+## Unit Testing
 
 This project uses [pytest](https://docs.pytest.org/en/7.4.x/) for testing. It's
 important to update and run tests to ensure the application's reliability. Run
@@ -67,3 +71,17 @@ the tests using the following command:
 ```bash
 poetry run pytest
 ```
+
+## Continuous Integration (CI)
+
+The project uses a robust Continuous Integration:
+
+1. Linting with Ruff
+2. Build & Testing
+3. Security checks with Snyk
+4. Push to Docker Hub
+
+The CI process is automated using GitHub Actions and leverages the best
+practices described in [Best Practices][ci].
+
+[ci]: ./CI.md

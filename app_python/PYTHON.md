@@ -48,7 +48,7 @@ practices to my web application:
 These practices help in maintaining clean and readable code, improving code
 quickly develop APIs.
 
-## Testing
+## Unit Testing
 
 For testing, I have used the `pytest` framework and the `TestClient` class from
 `fastapi.testclient` to create a test client for easy testing of HTTP requests
