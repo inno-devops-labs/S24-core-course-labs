@@ -1,0 +1,14 @@
+---
+- name: Wipe the web app
+  block:
+  - name: Stop web app
+    community.docker.docker_compose_v2:
+      project_src: "{{ app_dir }}"
+      state: absent
+      remove_volumes: true
+      remove_images: all
+
+  - name: Remove web app directory
+    ansible.builtin.file:
+      path: "{{ app_dir }}"
+      state: absent
