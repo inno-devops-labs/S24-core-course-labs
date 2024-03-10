@@ -75,7 +75,7 @@ In this lab, you will get acquainted with Ansible, a powerful configuration mana
    - Use a Markdown template to describe your Docker role, its requirements and usage.
 
 3. Deployment Output:
-   - Execute your playbook to deploy the Docker role (either custom or existing).
+   - Execute your playbook to deploy the Docker role.
    - Provide the last 50 lines of the output from your deployment command in the `ANSIBLE.md` file.
 
    Example command:
