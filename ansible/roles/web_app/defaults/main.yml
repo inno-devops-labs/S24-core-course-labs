@@ -1,0 +1,6 @@
+---
+image_name: "rekhlov/devops-flask-app"
+image_tag: "latest"
+publish_ports:
+  - "8080:8080"
+wipe: false
