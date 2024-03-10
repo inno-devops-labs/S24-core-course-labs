@@ -1,6 +1,6 @@
 virtual_machines:
   hosts:
     web_server:
-      ansible_host: 18.237.114.36
+      ansible_host: 35.163.134.124
   vars:
     ansible_user: ansible-user

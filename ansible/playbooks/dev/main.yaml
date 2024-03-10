@@ -2,3 +2,10 @@
   roles:
     - role: ../../roles/docker
       become: true
+
+    - role: ../../../roles/web_app
+      become: true
+      vars:
+        app_dir: app_python
+        web_image: blinikar/devops-app
+        web_port: 5000

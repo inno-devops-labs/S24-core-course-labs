@@ -1,0 +1,22 @@
+- name: Deploy app to aws
+  block:
+    - name: Ensure that directory exist
+      ansible.builtin.file:
+        name: "{{ app_dir }}/"
+        state: directory
+
+    - name: Upload docker-compose.yaml
+      ansible.builtin.template:
+        src: templates/docker-compose.yml.j2
+        dest: "{{ app_dir }}/compose.yaml"
+
+    - name: Launch app
+      community.docker.docker_compose_v2:
+        project_src: "{{ app_dir }}"
+        state: present
+  tags: web
+
+- name: Wipe the app
+  import_tasks: wipe.yml
+  tags: wipe
+  when: wipe_web_app == true
