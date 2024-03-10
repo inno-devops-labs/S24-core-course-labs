@@ -1,8 +1,8 @@
 # Flask Python Web Application
-[![Test](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/test.yml/badge.svg?branch=lab-3&event=push)](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/test.yml)
-[![Lint](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/lint.yml/badge.svg?branch=lab-3&event=push)](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/lint.yml)
-[![Snyk Check](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/snyk.yml/badge.svg?branch=lab-3&event=push)](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/snyk.yml)
-
+[![Test](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/test.yml/badge.svg)](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/test.yml)
+[![Lint](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/lint.yml/badge.svg)](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/lint.yml)
+[![Snyk Check](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/snyk.yml/badge.svg)](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/snyk.yml)
+[![Docker Image Push](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/docker.yml/badge.svg)](https://github.com/inga-zimnya/S24-core-course-labs/actions/workflows/docker.yml)
 ## Description
 This Python web application displays the current time in Moscow using the Flask framework.
 
