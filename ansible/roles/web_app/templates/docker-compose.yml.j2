@@ -1,0 +1,9 @@
+services:
+  web_app:
+    image: {{ app_image }}
+{% if publish_ports is iterable and publish_ports|length > 0 %}
+    ports:
+{% for port_expr in publish_ports %}
+      - {{ port_expr }}
+{% endfor %}
+{% endif %}
