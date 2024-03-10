@@ -1,0 +1,29 @@
+- name: Deploy App with Docker
+  when: deployment_way == "docker"
+  docker_container:
+    name: "{{ container_name }}"
+    image: "{{ image }}"
+    state: started
+    published_ports:
+      - "{{ ports }}"
+    restart_policy: unless-stopped
+    restart: true
+    recreate: true
+
+- name: Deploy App with Docker Compose
+  when: deployment_way == "docker_compose"
+  block:
+    - name: Create directory
+      file:
+        path: "/app_python"
+        state: directory
+
+    - name: Create docker-compose.yml
+      template:
+        src: "docker-compose.yml.j2"
+        dest: "/app_python/docker-compose.yml"
+
+    - name: Run Docker Compose
+      community.docker.docker_compose:
+        project_src: "/app_python"
+        build: false

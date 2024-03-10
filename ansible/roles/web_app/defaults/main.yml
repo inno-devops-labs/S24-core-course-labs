@@ -1,0 +1,7 @@
+image: "ananastya10/devops:lab2"
+container_name: "web_app"
+ports: "5000:5000"
+
+deployment_way: "docker_compose"
+
+web_app_full_wipe: true

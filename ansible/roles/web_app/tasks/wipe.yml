@@ -1,0 +1,45 @@
+- name: Wipe with Docker
+  when:
+    - deployment_way == "docker"
+  block:
+    - name: Info
+      docker_container_info:
+        name: "{{ container_name }}"
+      register: info
+
+    - name: Stop container
+      when:
+        - info.exists
+        - info.container["State"]["Status"] == "running"
+      docker_container:
+        name: "{{ container_name }}"
+        state: stopped
+
+    - name: Remove container
+      docker_container:
+        name: "{{ container_name }}"
+        state: absent
+
+    - name: Remove image
+      docker_image:
+        name: "{{ image }}"
+        state: absent
+
+- name: Wipe with Docker Compose
+  when:
+    - web_app_full_wipe == true
+    - deployment_way == "docker_compose"
+  block:
+    - name: Check compose file
+      stat:
+        path: "/app_python/docker_compose.yml"
+      register: compose
+
+    - name: Delete running Docker Compose
+      when: compose.stat.exists
+      command: "docker-compose app_python down"
+
+    - name: Delete directory
+      file:
+        path: "/app_python"
+        state: absent
