@@ -49,11 +49,14 @@ fn serialize_datetime<S: Serializer>(
 /// Route for getting the current time in Moscow.
 #[get("/")]
 async fn moscow_time() -> impl Responder {
+    println!("Received request for Moscow time");
     HttpResponse::Ok().json(CurrentTimeResp::new())
 }
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    println!("Starting server at port {}", 80);
+
     HttpServer::new(|| App::new().service(moscow_time))
         .bind(("0.0.0.0", 80))?
         .run()
