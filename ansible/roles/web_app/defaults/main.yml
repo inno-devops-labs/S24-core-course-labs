@@ -1,0 +1,4 @@
+---
+# defaults file for ansible/roles/web_app
+docker_image_name: "blbr13/app-flask:lab2"
+docker_container_name: "moscow-time"

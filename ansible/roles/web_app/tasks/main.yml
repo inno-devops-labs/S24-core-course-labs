@@ -1,0 +1,14 @@
+---
+# tasks file for ansible/roles/web_app
+- name: Pull Docker Image
+  docker_image:
+    name: "{{ docker_image_name }}"
+    source: pull
+
+- name: Run Docker Container
+  docker_container:
+    name: "{{ docker_container_name }}"
+    image: "{{ docker_image_name }}"
+    state: started
+    ports:
+      - "8080:5000"
