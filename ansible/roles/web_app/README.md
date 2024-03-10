@@ -1,6 +1,6 @@
-# Python Web App role
+# Web App role
 
-This is an Ansible role to deploy the Python web application.
+This is an Ansible role to deploy a web application using Docker Compose.
 
 ## Requirements for the hosts
 
@@ -15,4 +15,8 @@ This role also depends on the Docker role to install Docker and Docker Compose.
 - hosts: all
 - roles:
     - role: web_app
+      vars:
+        app_directory: app_dada
+        app_image: snejugal/devops-dada
+        app_port: 8080
 ```

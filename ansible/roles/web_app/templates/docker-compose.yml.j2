@@ -1,5 +1,5 @@
 services:
   web_app:
-    image: snejugal/devops-lab2
+    image: "{{ app_image }}"
     ports:
-      - "8080:8080"
+      - "{{ app_port }}:{{ app_port }}"

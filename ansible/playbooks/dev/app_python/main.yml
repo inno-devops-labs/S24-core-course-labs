@@ -1,0 +1,12 @@
+- hosts: all
+  vars:
+    ansible_user: ubuntu
+  roles:
+    - role: ../../roles/docker
+      become: yes
+    - role: ../../../roles/web_app
+      become: yes
+      vars:
+        app_directory: app_python
+        app_image: snejugal/devops-lab2
+        app_port: 8080

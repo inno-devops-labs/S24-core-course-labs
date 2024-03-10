@@ -1,13 +1,19 @@
-- name: Deploy docker-compose.yml
-  ansible.builtin.template:
-    src: templates/docker-compose.yml.j2
-    dest: ./docker-compose.yml
-  tags: app
+- name: Deploy the app
+  block:
+    - name: Create directory for the app
+      ansible.builtin.file:
+        name: "{{ app_directory }}/"
+        state: directory
 
-- name: Start the app
-  community.docker.docker_compose_v2:
-    project_src: .
-    state: present
+    - name: Deploy compose.yaml
+      ansible.builtin.template:
+        src: templates/docker-compose.yml.j2
+        dest: "{{ app_directory }}/compose.yaml"
+
+    - name: Start the app
+      community.docker.docker_compose_v2:
+        project_src: "{{ app_directory }}"
+        state: present
   tags: app
 
 - name: Wipe the app

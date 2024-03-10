@@ -1,0 +1,10 @@
+- hosts: all
+  vars:
+    ansible_user: ubuntu
+  roles:
+    - role: ../../../roles/web_app
+      become: yes
+      vars:
+        app_directory: app_haskell
+        app_image: snejugal/devops-lab2-haskell
+        app_port: 8081
