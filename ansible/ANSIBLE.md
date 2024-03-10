@@ -126,3 +126,195 @@ I have used [yacloud_compute](https://github.com/rodion-goritskov/yacloud_comput
     }
 }
 ```
+
+
+## Continuous Deploy
+
+### Python App
+- `ansible-playbook playbooks/dev/app_python/main.yml --diff`
+
+```
+┌──(dari㉿Antony)-[~/S24-core-course-labs/ansible]
+└─$ ansible-playbook playbooks/dev/app_python/main.yml --diff
+
+PLAY [Ansible-Python] ********************************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************************************
+Enter passphrase for key '/home/dari/.ssh/ya_cloud': 
+Enter passphrase for key '/home/dari/.ssh/ya_cloud': 
+ok: [temp]
+
+TASK [docker : Install Docker] ***********************************************************************************************************************************
+included: /home/dari/S24-core-course-labs/ansible/roles/docker/tasks/install_docker.yml for temp
+
+TASK [docker : Install aptitude] *********************************************************************************************************************************
+ok: [temp]
+
+TASK [docker : Install required system packages] *****************************************************************************************************************
+ok: [temp]
+
+TASK [docker : Add Docker Repository] ****************************************************************************************************************************
+ok: [temp]
+
+TASK [docker : Update apt and install docker-ce] *****************************************************************************************************************
+ok: [temp]
+
+TASK [docker : Install docker-compose] ***************************************************************************************************************************
+included: /home/dari/S24-core-course-labs/ansible/roles/docker/tasks/install_compose.yml for temp
+
+TASK [docker : Install docker-compose plugin] ********************************************************************************************************************
+ok: [temp]
+
+TASK [docker : Add user to docker group] *************************************************************************************************************************
+ok: [temp]
+
+TASK [web_app : Wipe images] *************************************************************************************************************************************
+ok: [temp]
+
+TASK [web_app : Remove app directory] ****************************************************************************************************************************
+--- before
++++ after
+@@ -1,10 +1,4 @@
+ {
+     "path": "/opt/app_python/",
+-    "path_content": {
+-        "directories": [],
+-        "files": [
+-            "/opt/app_python/docker-compose.yml"
+-        ]
+-    },
+-    "state": "directory"
++    "state": "absent"
+ }
+
+changed: [temp]
+
+TASK [web_app : Create app directory] ****************************************************************************************************************************
+--- before
++++ after
+@@ -1,6 +1,6 @@
+ {
+-    "group": 0,
+-    "owner": 0,
++    "group": 1001,
++    "owner": 1000,
+     "path": "/opt/app_python/",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [temp]
+
+TASK [web_app : Copy Docker Compose template] ********************************************************************************************************************
+--- before
++++ after: /home/dari/.ansible/tmp/ansible-local-129677gi921slw/tmpi6uyrzqx/docker-compose.yml.j2
+@@ -0,0 +1,9 @@
++version: "3.9"
++
++services:
++  'app_python':
++    image:  'docker.io/adarika/devops-lab-02-python:latest'
++    restart: always
++    container_name: 'app_python'
++    ports:
++        - '8000:8000'
+
+changed: [temp]
+
+TASK [web_app : Ensure docker service is OK] *********************************************************************************************************************
+ok: [temp]
+
+TASK [web_app : Pull images] *************************************************************************************************************************************
+changed: [temp]
+
+PLAY RECAP *******************************************************************************************************************************************************
+temp                       : ok=15   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+ 
+```
+
+### Rust App
+- `ansible-playbook playbooks/dev/app_rust/main.yml --diff`
+
+```
+┌──(dari㉿Antony)-[~/S24-core-course-labs/ansible]
+└─$ ansible-playbook playbooks/dev/app_rust/main.yml --diff
+
+PLAY [Ansible-Rust] ***********************************************************************************************************************************
+
+TASK [Gathering Facts] ********************************************************************************************************************************
+Enter passphrase for key '/home/dari/.ssh/ya_cloud': 
+ok: [temp]
+
+TASK [docker : Install Docker] ************************************************************************************************************************
+included: /home/dari/S24-core-course-labs/ansible/roles/docker/tasks/install_docker.yml for temp
+
+TASK [docker : Install aptitude] **********************************************************************************************************************
+ok: [temp]
+
+TASK [docker : Install required system packages] ******************************************************************************************************
+ok: [temp]
+
+TASK [docker : Add Docker Repository] *****************************************************************************************************************
+ok: [temp]
+
+TASK [docker : Update apt and install docker-ce] ******************************************************************************************************
+ok: [temp]
+
+TASK [docker : Install docker-compose] ****************************************************************************************************************
+included: /home/dari/S24-core-course-labs/ansible/roles/docker/tasks/install_compose.yml for temp
+
+TASK [docker : Install docker-compose plugin] *********************************************************************************************************
+ok: [temp]
+
+TASK [docker : Add user to docker group] **************************************************************************************************************
+ok: [temp]
+
+TASK [web_app : Wipe images] **************************************************************************************************************************
+skipping: [temp]
+
+TASK [web_app : Remove app directory] *****************************************************************************************************************
+skipping: [temp]
+
+TASK [web_app : Create app directory] *****************************************************************************************************************
+--- before
++++ after
+@@ -1,6 +1,6 @@
+ {
+-    "group": 0,
+-    "owner": 0,
++    "group": 1001,
++    "owner": 1000,
+     "path": "/opt/app_rust/",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [temp]
+
+TASK [web_app : Copy Docker Compose template] *********************************************************************************************************
+--- before
++++ after: /home/dari/.ansible/tmp/ansible-local-181968xf3vzf12/tmpqmn4so9n/docker-compose.yml.j2
+@@ -0,0 +1,9 @@
++version: "3.9"
++
++services:
++  'app_rust':
++    image:  'docker.io/adarika/devops-lab-02-rust:latest'
++    restart: always
++    container_name: 'app_rust'
++    ports:
++        - '8001:8000'
+
+changed: [temp]
+
+TASK [web_app : Ensure docker service is OK] **********************************************************************************************************
+ok: [temp]
+
+TASK [web_app : Pull images] **************************************************************************************************************************
+changed: [temp]
+
+PLAY RECAP ********************************************************************************************************************************************
+temp                       : ok=13   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
+                                    
+```
