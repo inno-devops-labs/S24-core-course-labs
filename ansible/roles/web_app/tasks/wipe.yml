@@ -1,0 +1,7 @@
+- name: Wipe out app
+  block: 
+    - name: Stop and remove containers
+      docker_container: 
+        name: "python_app"
+        state: absent
+        keep_volumes: false

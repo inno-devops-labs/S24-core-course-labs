@@ -1,0 +1,28 @@
+- name: Wipe out docker
+  import_tasks: wipe.yml
+  tags: wipe
+  when: web_app_full_wipe
+
+- name: Ensure that directory exist
+  ansible.builtin.file:
+    name: "{{ app_dir }}/"
+    state: directory
+
+- name: Upload docker-compose.yml
+  ansible.builtin.template: 
+    src: templates/docker-compose.yml.j2
+    dest: "{{app_dir}}/docker-compose.yml"
+
+- name: Deploy
+  tags: web
+  block:
+    - name: Pull image
+      docker_image: 
+        name: "{{image_name}}"
+        source: pull
+    
+    - name: Start docker container
+      docker_container:
+        name: "python_app"
+        image: "{{image_name}}"
+        state: started
