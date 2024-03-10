@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  minio:
+    image: minio/minio
+    volumes:
+      - data:/data
+    ports:
+      - "19000:9000"
+      - "19001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin1 # awesome safety!
+      MINIO_ROOT_PASSWORD: minioadmin1
+    command: minio server /data --console-address ":9001"
+
+volumes:
+  data:
+
+
