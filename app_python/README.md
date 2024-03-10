@@ -1,6 +1,6 @@
 # Python Sample Application
 
-![workflow](https://github.com/github/docs/actions/workflows/python-app.yaml/badge.svg)
+![workflow](https://github.com/dmfrpro/s24-core-course-labs/actions/workflows/app_python.yaml/badge.svg)
 
 ## Overview
 

@@ -7,6 +7,6 @@ ARG JAR_FILE
 COPY --chown=app_java_user:app_java_user ${JAR_FILE} app.jar
 
 USER app_java_user
-EXPOSE 8080
+EXPOSE 8000
 
 CMD ["sh", "-c", "java -jar app.jar"]
