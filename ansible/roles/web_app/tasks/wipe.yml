@@ -1,0 +1,10 @@
+- name: Remove app image, container, volumes
+  community.docker.docker_compose_v2:
+    project_src: "{{ app_dir }}"
+    state: absent
+    remove_images: all
+    remove_volumes: true
+- name: Remove app directory
+  ansible.builtin.file:
+    path: "{{ app_dir }}/"
+    state: absent

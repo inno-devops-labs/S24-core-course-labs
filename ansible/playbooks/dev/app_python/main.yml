@@ -1,0 +1,11 @@
+- name: Deploy python app
+  hosts: all
+  become: true
+
+  roles:
+    - role: ../../../roles/web_app
+  vars:
+    app_dir: app_python
+    app_image: bulatok4/app_python
+    app_port: 8080
+    web_app_full_wipe: true

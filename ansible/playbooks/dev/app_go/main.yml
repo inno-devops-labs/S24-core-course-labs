@@ -1,0 +1,11 @@
+- name: Deploy golang app
+  hosts: all
+  become: true
+
+  roles:
+    - role: ../../../roles/web_app
+  vars:
+    app_dir: app_go
+    app_image: bulatok4/app_go
+    app_port: 8080
+    web_app_full_wipe: true
