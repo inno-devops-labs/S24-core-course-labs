@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+  test:
+    profiles:
+      - debug
+    image: python:3.11-slim
+    command: |
+      python -c "from urllib.request import urlopen; print(urlopen('http://web:8000').read().decode('utf-8'))"
+    depends_on:
+      - web
