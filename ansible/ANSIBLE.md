@@ -4,7 +4,7 @@
 - ansible project structure is following ansible standards
 
 
-## Docker
+## Docker role
 Installing Docker via apt and Docker-compose via pip
 
 ### Outputs
@@ -105,3 +105,78 @@ $ ansible-inventory -i inventory/default_yc_ec2.yml --list
     }
 }
 ```
+
+## Web_app role
+
+Is used to deploy MSK Time web application.
+
+### Outputs
+```bash
+$ ansible-playbook playbooks/dev/main.yaml --diff
+LAY [Docker roles] *********************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************
+ok: [host_01]
+
+TASK [docker : Install python3-pip] *****************************************************************************************************************
+ok: [host_01]
+
+TASK [docker : include_tasks] ***********************************************************************************************************************
+included: /home/anastasia/Documents/devops/ansible/roles/docker/tasks/install_docker.yml for host_01
+
+TASK [docker : Docker installation] *****************************************************************************************************************
+ok: [host_01]
+
+TASK [docker : include_tasks] ***********************************************************************************************************************
+included: /home/anastasia/Documents/devops/ansible/roles/docker/tasks/install_compose.yml for host_01
+
+TASK [docker : Docker-compose installation] *********************************************************************************************************
+ok: [host_01]
+
+TASK [web_app : Stop and remove containers] *********************************************************************************************************
+skipping: [host_01]
+
+TASK [web_app : Ensure that directory exist] ********************************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "app_python/",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [host_01]
+
+TASK [web_app : Upload docker-compose.yml] **********************************************************************************************************
+--- before
++++ after: /home/anastasia/.ansible/tmp/ansible-local-57140i36jj0d2/tmp0fj4tcl6/docker-compose.yml.j2
+@@ -0,0 +1,4 @@
++services: 
++    web_app:
++        image: "vikono/devops:latest"
++        
+\ No newline at end of file
+
+changed: [host_01]
+
+TASK [web_app : Pull image] *************************************************************************************************************************
+changed: [host_01]
+
+TASK [web_app : Start docker container] *************************************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+-    "exists": false,
+-    "running": false
++    "exists": true,
++    "running": true
+ }
+
+changed: [host_01]
+
+PLAY RECAP ******************************************************************************************************************************************
+host_01                    : ok=10   changed=4    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+```
+
