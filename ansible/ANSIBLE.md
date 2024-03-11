@@ -119,3 +119,41 @@ web_server                 : ok=9    changed=0    unreachable=0    failed=0    s
 }
 
 ```
+
+### Ansible deploy python-app
+```shell
+(venv) shredding@SHREDDING-2 ansible % ansible-playbook -i ./inventory/default_aws_ec2.yml playbooks/dev/app_python/main.yaml -K
+BECOME password: 
+
+PLAY [python_app] *****************************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************************
+ok: [web_server]
+
+TASK [docker : Install pip] *******************************************************************************************************************************************
+included: /Users/shredding/PycharmProjects/S24-core-course-labs/ansible/roles/docker/tasks/pip.yml for web_server
+
+TASK [docker : Update apt] ********************************************************************************************************************************************
+changed: [web_server]
+
+TASK [docker : Install python] ****************************************************************************************************************************************
+ok: [web_server]
+
+TASK [docker : Install pip] *******************************************************************************************************************************************
+ok: [web_server]
+
+TASK [docker : Install docker] ****************************************************************************************************************************************
+included: /Users/shredding/PycharmProjects/S24-core-course-labs/ansible/roles/docker/tasks/install_docker.yml for web_server
+
+TASK [docker : Install docker via pip] ********************************************************************************************************************************
+ok: [web_server]
+
+TASK [docker : Install docker-compose] ********************************************************************************************************************************
+included: /Users/shredding/PycharmProjects/S24-core-course-labs/ansible/roles/docker/tasks/install_compose.yml for web_server
+
+TASK [docker : Install docker-compose via pip] ************************************************************************************************************************
+ok: [web_server]
+
+PLAY RECAP ************************************************************************************************************************************************************
+web_server                 : ok=9    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
