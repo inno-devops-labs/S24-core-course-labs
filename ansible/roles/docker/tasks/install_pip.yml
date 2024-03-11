@@ -1,7 +1,7 @@
 ---
-- name: update apt list
-  apt:
-    update_cache: yes
+- name: Update apt
+  ansible.builtin.apt:
+    update_cache: true
 
 - name: Install python
   ansible.builtin.apt:
