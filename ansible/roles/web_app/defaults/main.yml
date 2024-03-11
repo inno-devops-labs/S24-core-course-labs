@@ -1,0 +1,6 @@
+---
+image_name: "djhovi/my-flask-app"
+image_tag: "latest"
+publish_ports:
+  - "5000:5000"
+wipe: false

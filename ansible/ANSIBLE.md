@@ -1,4 +1,4 @@
-# Ansible Playbook Documentation
+# Ansible Lab 5
 
 ## Overview
 
@@ -144,3 +144,62 @@ RECAP **************************************************************************
 ```
 
 In inventory, I defined virtual machine related data such as port number and user on VM
+
+# Ansible Lab 6
+
+### Output(last 50 lines)
+
+`ansible-playbook playbooks/dev/main.yaml --diff --become --become-user=root`
+
+```
+TASK [docker : Install docker] ***********************************************************************************************************************************************************************
+included: /home/djovi/PycharmProjects/S24-core-course-labs/ansible/roles/docker/tasks/install_docker.yml for web_server
+
+TASK [docker : Add Docker repository] ****************************************************************************************************************************************************************
+ok: [web_server]
+
+TASK [docker : Update apt packages] ******************************************************************************************************************************************************************
+ok: [web_server]
+
+TASK [docker : Install Docker] ***********************************************************************************************************************************************************************
+ok: [web_server]
+
+TASK [docker : Install docker compose] ***************************************************************************************************************************************************************
+included: /home/djovi/PycharmProjects/S24-core-course-labs/ansible/roles/docker/tasks/install_docker_compose.yml for web_server
+
+TASK [docker : Install Docker Compose using pip] *****************************************************************************************************************************************************
+ok: [web_server]
+
+TASK [../../roles/web_app : Create directory for compose] ********************************************************************************************************************************************
+ok: [web_server]
+
+TASK [../../roles/web_app : Stop old containers] *****************************************************************************************************************************************************
+changed: [web_server]
+
+TASK [../../roles/web_app : Render docker-compose.yml] ***********************************************************************************************************************************************
+--- before: /root/my-flask-app/docker-compose.yml
++++ after: /home/djovi/.ansible/tmp/ansible-local-183884pfgviluz/tmpffdrln8n/docker-compose.yml.j2
+@@ -2,4 +2,6 @@
+   web_app:
+     image: djhovi/my-flask-app:latest
+     ports:
+-      - 5000:5000
+\ No newline at end of file
++      - 5000:5000
++
++
+
+changed: [web_server]
+
+TASK [../../roles/web_app : Compose] *****************************************************************************************************************************************************************
+changed: [web_server]
+
+TASK [../../roles/web_app : Wipe image] **************************************************************************************************************************************************************
+skipping: [web_server]
+
+TASK [../../roles/web_app : Remove compose file] *****************************************************************************************************************************************************
+skipping: [web_server]
+
+PLAY RECAP *******************************************************************************************************************************************************************************************
+web_server                 : ok=18   changed=4    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+```
