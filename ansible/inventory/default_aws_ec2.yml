@@ -1,6 +1,6 @@
 virtual_machines:
   hosts:
     web_server:
-      ansible_host: 158.160.26.69
+      ansible_host: 51.250.31.243
   vars:
     ansible_user: djhovi

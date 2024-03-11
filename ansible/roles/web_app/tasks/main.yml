@@ -1,0 +1,42 @@
+---
+- name: Create directory for compose
+  file:
+    path: "~/{{image_name|basename}}"
+    state: directory
+  register: compose_dir
+
+- name: Stop old containers
+  become: yes
+  community.docker.docker_compose_v2:
+    project_src: "{{ compose_dir.path }}"
+    state: stopped
+  ignore_errors: true
+
+- name: Render docker-compose.yml
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ compose_dir.path }}/docker-compose.yml"
+  vars:
+    image_full: "{{image_name}}:{{image_tag}}"
+    publish_ports: 5000:5000
+  when: not wipe
+
+- name: Compose
+  become: yes
+  community.docker.docker_compose_v2:
+    project_src: "{{ compose_dir.path }}"
+    state: "{{ wipe | ternary('absent', 'present') }}"
+    pull: always
+
+- name: Wipe image
+  community.docker.docker_image:
+    name: "{{ image_name }}"
+    tag: "{{ image_tag }}"
+    state: absent
+  when: wipe
+
+- name: Remove compose file
+  file:
+    path: "{{ compose_dir.path }}"
+    state: absent
+  when: wipe
