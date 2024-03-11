@@ -1,0 +1,19 @@
+---
+- include_tasks: setup_repo.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Disable Unattended Upgrades
+  apt:
+    name: unattended-upgrades
+    state: absent
+
+- name: Install dependencies
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: true
+
+
+- include_tasks: install_docker.yml
+
+- include_tasks: install_compose.yml

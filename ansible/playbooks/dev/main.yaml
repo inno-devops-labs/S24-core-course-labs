@@ -1,3 +1,13 @@
-- hosts: all
+- name: Deploy Docker on Yandex Cloud
+  hosts: all
+  become: true
+
+  vars:
+    image_tag: "mierley4041/devops-flask:latest"
+
   roles:
-    - geerlingguy.docker
+    - ../../roles/docker
+
+  tasks:
+    - name: Run container
+      ansible.builtin.shell: "docker run -d -p 80:5000 -t {{ image_tag|quote }}"

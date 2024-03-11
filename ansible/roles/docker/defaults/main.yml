@@ -1,0 +1,8 @@
+---
+gpg_url: "https://download.docker.com/linux/debian/gpg"
+gpg_dest: "/etc/apt/keyrings/docker.asc"
+gpg_dir: "/etc/apt/keyrings"
+
+url: "https://download.docker.com/linux/ubuntu"
+arch: "amd64"
+repo: "deb [arch={{ arch }} signed-by={{ gpg_dest }}] {{ url }} jammy stable"
