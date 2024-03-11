@@ -8,7 +8,7 @@
   roles:
 #    - geerlingguy.pip
 #    - geerlingguy.docker
-    - ../../roles/docker
+    - ../../roles/web_app
 
   become: yes
 
