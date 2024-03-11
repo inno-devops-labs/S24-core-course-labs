@@ -24,4 +24,7 @@ EXPOSE 3000
 ENV FLASK_APP=main.py
 
 # Run app.py when the container launches
-CMD ["python", "-m", "flask", "run", "--host=0.0.0.0"]
+
+ENTRYPOINT ["python"]
+
+CMD ["main.py"]
