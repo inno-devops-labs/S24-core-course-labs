@@ -1,0 +1,20 @@
+- name: Start and enable Docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Pull Docker image
+  docker_image:
+    name: brutaljesus/devops_lab_2
+    source: pull
+    state: present
+
+- name: Run Docker Container
+  docker_container:
+    name: python-app
+    image: brutaljesus/devops_lab_2
+    ports:
+      - "8000:8000"
+    detach: yes
+    restart_policy: always
