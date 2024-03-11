@@ -3,6 +3,16 @@
   ansible.builtin.apt:
     update_cache: true
 
+- name: Add Docker's GPG key
+  ansible.builtin.apt_key:
+    url: "{{ docker_gpg_apt_key_url }}"
+    state: present
+
+- name: Add Docker Repository
+  ansible.builtin.apt_repository:
+    repo: "{{ docker_apt_repository }}"
+    state: present
+
 - name: Install docker
   ansible.builtin.apt:
     name:

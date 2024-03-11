@@ -1,0 +1,15 @@
+- name: Deploy python app
+  hosts: all
+  become: true
+  become_method: 'sudo'
+  roles:
+    - name: web_app
+      tags: [web_app]
+      vars:
+        web_app_name: app_python
+        web_app_path: /app_python
+        internal_port: 8000
+        external_port: 8000
+        docker_image_name: 'alyonaart/app-python'
+        docker_image_version: 'latest'
+        web_app_full_wipe: true
