@@ -1,5 +1,5 @@
 myhosts:
   hosts:
     terraform1:
-      ansible_host: 62.84.114.89
+      ansible_host: 178.154.204.63
       ansible_user: ubuntu

@@ -1,0 +1,12 @@
+- name: Ansible-NodeJS
+  hosts: all
+  become: yes
+  tags: [web_app_nodejs]
+  roles:
+    - name: web_app
+      tags: [web_app_nodejs]
+      vars:
+        app_image: docker.io/evsey/node-world-clock-app:latest
+        app_name: app_nodejs
+        internal_port: 3001
+        external_port: 8001
