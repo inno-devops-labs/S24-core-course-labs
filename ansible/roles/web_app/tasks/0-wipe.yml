@@ -12,3 +12,5 @@
     ansible.builtin.file:
       path: "{{ app_dir }}"
       state: absent
+
+  tags: wipe
