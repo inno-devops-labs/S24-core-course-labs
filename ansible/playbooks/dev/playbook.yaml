@@ -1,4 +1,4 @@
-- name: Run Docker role
+- name: Install Docker and run
   hosts: all
   become: true
   roles:
