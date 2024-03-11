@@ -19,5 +19,5 @@ COPY --from=build /app/dist /app/dist
 COPY package*.json ./
 COPY views/index.ejs ./views/index.ejs
 RUN npm install --only=production
-EXPOSE 3000
+EXPOSE 3001
 CMD ["npm", "start"]
