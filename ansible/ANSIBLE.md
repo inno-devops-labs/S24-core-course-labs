@@ -1,4 +1,41 @@
+# Ansible
+
+## Best practices
+
+- Assign unambiguous files.
+- Comply with the lab's recommended file structure.
+- Set up global preferences in ```ansible.cfg```.
+- Use fully qualified collection names to avoid ambiguity.
+## Outputs
+
+
+```json
+$ ansible-playbook playbooks/dev/main.yaml --diff
+{
+    "_meta": {
+        "hostvars": {
+            "ec2-3-124-209-126.eu-central-1.compute.amazonaws.com": {
+                "ansible_connection": "ssh",
+                "ansible_ssh_private_key_file": "~/.ssh/devops_new.pem",
+                "ansible_user": "ubuntu"
+            }
+        }
+    },
+    "all": {
+        "children": [
+            "ungrouped"
+        ]
+    },
+    "ungrouped": {
+        "hosts": [
+            "ec2-3-124-209-126.eu-central-1.compute.amazonaws.com"
+        ]
+    }
+}
+```
 ```ansible
+$ ansible-playbook playbooks/dev/main.yaml --diff
+
 PLAY [Install Docker] *********************************************************************************************************************
 TASK [Gathering Facts] ***************************************************************************************************************************************
 ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
