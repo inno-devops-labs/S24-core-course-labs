@@ -5,7 +5,7 @@ variable "zone" {
 
 variable "image_id" {
   type    = string
-  default = "fd8autg36kchufhej85b"
+  default = "fd89jk9j9vifp28uprop"
 }
 
 variable "folder_id" {

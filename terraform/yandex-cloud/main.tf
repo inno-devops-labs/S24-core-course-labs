@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "yandex" {
-  zone  = var.zone
+  zone = var.zone
 }
 
 resource "yandex_compute_disk" "boot-disk-1" {

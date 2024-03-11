@@ -1,0 +1,5 @@
+all:
+  hosts:
+    terraform1:
+      ansible_host: 158.160.115.31
+      ansible_user: ubuntu
