@@ -1,0 +1,16 @@
+---
+- name: Update apt
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install Python
+  ansible.builtin.apt:
+    name:
+      - python3
+    state: present
+
+- name: Install PIP
+  ansible.builtin.apt:
+    name:
+      - python3-pip
+    state: present

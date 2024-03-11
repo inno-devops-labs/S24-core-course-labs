@@ -1,17 +1,16 @@
-- name: Install pip
-  ansible.builtin.apt:
-    name: python3-pip
-    state: present
-  become: true
-  
+---
+- name: Install PIP
+  ansible.builtin.include_tasks:
+    file: install_pip.yml
 - name: Add user to docker group
   ansible.builtin.user:
     name: "{{ ansible_user }}"
     groups: docker
-
+    
 - name: Install Docker
-  import_tasks: install_docker.yml
+  ansible.builtin.include_tasks:
+    file: install_docker.yml
 
-- name: Install docker-compose
-  import_tasks: install_compose.yml
-
+- name: Install Docker Compose
+  ansible.builtin.include_tasks:
+    file: install_compose.yml

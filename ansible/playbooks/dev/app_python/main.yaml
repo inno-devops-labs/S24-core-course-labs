@@ -1,0 +1,15 @@
+- name: Deploy Python App
+  hosts: all
+  become: true
+  become_method: 'sudo'
+  roles:
+    - name: web_app
+      tags: [web_app_python]
+      vars:
+        web_app_name: app_python
+        web_app_path: /app_python
+        internal_port: 80
+        external_port: 8080
+        docker_image_name: 'LaithAlebrahim/python'
+        docker_image_version: 'latest'
+        web_app_full_wipe: false

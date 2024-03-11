@@ -1,0 +1,15 @@
+- name: Deploy JS app
+  hosts: all
+  become: true
+  become_method: 'sudo'
+  roles:
+    - name: web_app_js
+      tags: [web_app_js]
+      vars:
+        web_app_name: app_js
+        web_app_path: /app_js
+        internal_port: 80
+        external_port: 8080
+        docker_image_name: 'LaithAlebrahim/js'
+        docker_image_version: 'latest'
+        web_app_full_wipe: false
