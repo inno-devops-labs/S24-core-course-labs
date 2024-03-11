@@ -10,3 +10,4 @@
         app_name: app_nodejs
         internal_port: 3001
         external_port: 8001
+        web_app_full_wipe: true
