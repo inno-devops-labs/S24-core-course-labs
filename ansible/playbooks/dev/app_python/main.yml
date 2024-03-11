@@ -1,0 +1,13 @@
+- name: Deploy python web app
+  gather_facts: no
+  hosts: all
+  connection: local
+  become: true
+  roles:
+    - name: web_python
+      vars:
+        docker_container: 'app_python'
+        docker_image: 'lizavetta/devops-python:latest'
+        internal_port: 80
+        external_port: 8082
+        app_name: 'app_python'

@@ -1,0 +1,24 @@
+- name: Start of the deploy.
+  block:
+    - name: Create new dir
+      tags: new-dir
+      file:
+        path: "{{ dir_name }}/"
+        state: directory
+
+    - name: Create a docker-compose.yml file
+      tags: docker-compose
+      ansible.builtin.template:
+        src: templates/docker-compose.yml.j2
+        dest: "{{ dir_name }}/docker-compose.yml"
+
+    - name: Run the app using docker-compose
+      tags: docker-compose-run
+      community.docker.docker_compose:
+        project_src: "/ansible/playbooks/dev/app_python/new-dir-py"
+        state: present
+
+- name: Wipe the app
+  import_tasks: wipe.yml
+  tags:
+    - wipe_app

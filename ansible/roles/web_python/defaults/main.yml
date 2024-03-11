@@ -1,0 +1,5 @@
+docker_image: ramprin/devops_py:latest
+docker_container: app_python
+dir_name: 'app_python'
+
+web_app_full_wipe: false
