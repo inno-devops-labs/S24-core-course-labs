@@ -1,4 +1,4 @@
-- name: Docker role
+- name: Docker Role
   hosts: all
   roles:
     - role: docker

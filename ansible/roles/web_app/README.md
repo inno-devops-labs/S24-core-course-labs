@@ -1,0 +1,28 @@
+# Web App Role
+
+Ansible role that deploys the web application with Docker Compose with built-in ability to wipe created containers
+
+### Requirements
+- Ubuntu 22.04
+- Ansible 3.10+
+- Python 3.10+
+- Docker role
+
+### Usage
+
+```yaml
+roles:
+    - name: web_app
+      tags: [web_app]
+      vars:
+        app_image_name: soralin/moscow-time-webapp
+        app_tag: latest
+    
+        app_name: app_python
+        app_path: app_python
+    
+        app_internal_port: 5000
+        app_external_port: 8000
+    
+        app_wipe: false
+```

@@ -1,5 +1,6 @@
-## Commands Output
+## Deployment Output
 
+### Docker Role
 `ansible-playbook playbooks/dev/main.yaml --diff`:
 
 ```bash
@@ -98,3 +99,60 @@ terraform1                 : ok=7    changed=6    unreachable=0    failed=0    s
     }
 }
 ```
+
+### Web App Role
+
+`ansible-playbook playbooks/dev/app_python/main.yaml --diff`:
+```bash
+PLAY [Deploy Python App] ***********************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+ok: [terraform1]
+
+TASK [docker : Update apt] *********************************************************************************************
+changed: [terraform1]
+
+TASK [docker : install dependencies] ***********************************************************************************
+ok: [terraform1] => (item=apt-transport-https)
+ok: [terraform1] => (item=ca-certificates)
+ok: [terraform1] => (item=curl)
+ok: [terraform1] => (item=gnupg-agent)
+ok: [terraform1] => (item=software-properties-common)
+
+TASK [docker : add GPG key] ********************************************************************************************
+ok: [terraform1]
+
+TASK [docker : add docker repository to apt] ***************************************************************************
+ok: [terraform1]
+
+TASK [docker : install docker] *****************************************************************************************
+ok: [terraform1] => (item=docker-ce)
+ok: [terraform1] => (item=docker-ce-cli)
+ok: [terraform1] => (item=containerd.io)
+
+TASK [docker : Install Docker Compose] *********************************************************************************
+ok: [terraform1]
+
+TASK [web_app : Wipe Docker container] *********************************************************************************
+skipping: [terraform1]
+
+TASK [web_app : Wipe directory] ****************************************************************************************
+skipping: [terraform1]
+
+TASK [web_app : Create app directory] **********************************************************************************
+ok: [terraform1]
+
+TASK [web_app : Copy Docker Compose template file] *********************************************************************
+ok: [terraform1]
+
+TASK [web_app : Start docker service] **********************************************************************************
+ok: [terraform1]
+
+TASK [web_app : Start web app] *****************************************************************************************
+ok: [terraform1]
+
+PLAY RECAP *************************************************************************************************************
+terraform1                 : ok=11   changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+```
+
+App is now available at `158.160.115.31:8000`

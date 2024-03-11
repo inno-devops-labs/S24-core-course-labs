@@ -1,0 +1,12 @@
+- name: Wipe Docker container
+  community.docker.docker_compose_v2:
+    project_src: "{{ app_path }}"
+    remove_images: all
+    remove_volumes: true
+    remove_orphans: true
+    state: absent
+
+- name: Wipe directory
+  ansible.builtin.file:
+    path: "{{ app_path }}/"
+    state: absent
