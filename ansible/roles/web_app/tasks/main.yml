@@ -1,0 +1,20 @@
+- name: Deploy app
+  block:
+    - name: Create dir
+      ansible.builtin.file:
+        name: "{{ app_dir }}/"
+        state: directory
+
+    - name: Deploy docker compose
+      ansible.builtin.template:
+        src: templates/docker-compose.yml.j2
+        dest: "{{ app_dir }}/compose.yaml"
+
+    - name: Start app
+      community.docker.docker_compose_v2:
+        project_src: "{{ app_dir }}"
+        state: present
+
+- name: Wipe app
+  ansible.builtin.include_tasks: 0-wipe.yml
+  when: wipe_web_app == true

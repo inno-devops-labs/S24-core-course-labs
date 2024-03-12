@@ -1,6 +1,12 @@
 ---
-- hosts: all
-  become: true
-
+- hosts: web_server
   roles:
-    - ./roles/docker
+    - role: ./roles/docker
+      become: true
+
+    - role: ./roles/web_app
+      become: true
+      vars:
+        app_dir: app_python
+        web_image: monykekker/app
+        web_port: 5000
