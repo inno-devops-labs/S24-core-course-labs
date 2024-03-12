@@ -1,20 +1,33 @@
-- name: Check if Docker container and image exist
-  docker_container:
-    name: my_container
-    state: stopped
-  tags:
-    - remove-container
+- name: Container handling
+  block:
+    - name: Stop Docker container
+      docker_container:
+        name: "{{ container_name }}"
+        state: stopped
+      tags:
+        - remove-container
 
-- name: Remove Docker container if exists
-  docker_container:
-    name: my_container
-    state: absent
-  tags:
-    - remove-container
+    - name: Remove Docker container
+      docker_container:
+        name: "{{ container_name }}"
+        state: absent
+      tags:
+        - remove-container
+  rescue:
+    - name: Printing error
+      ansible.builtin.debug:
+        msg: "Error occurred when removing container. It means that container is already wiped."
 
-- name: Remove Docker image if exists
-  docker_image:
-    name: glebuben/dev-ops-labs:latest
-    state: absent
-  tags:
-    - remove-image
+- name: Image handling
+  block:
+    - name: Remove Docker image
+      docker_image:
+        name: "{{ web_image }}"
+        state: absent
+      tags:
+        - remove-image
+  rescue:
+    - name: Printing error
+      ansible.builtin.debug:
+        msg: "Error occurred when removing image. It means that image is already wiped."
+

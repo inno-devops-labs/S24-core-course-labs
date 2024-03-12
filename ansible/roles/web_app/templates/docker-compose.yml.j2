@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  web:
+    image: {{ web_image }}
+    ports:
+      - "{{ web_port }}:5000"
