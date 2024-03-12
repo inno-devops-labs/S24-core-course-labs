@@ -1,0 +1,11 @@
+- name: Deploy CSharp app
+  hosts: all
+  become: true
+  roles:
+    - web_app
+  vars:
+    web_app_image: dirakon/devops-cs:latest
+    web_app_folder: csharp_app
+    web_app_host_port: 8087
+    web_app_container_port: 8080
+    web_app_full_wipe: true

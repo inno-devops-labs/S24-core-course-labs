@@ -1,0 +1,10 @@
+- name: Stop docker-compose
+  community.docker.docker_compose_v2:
+    project_src: "{{ web_app_folder }}"
+    state: absent
+    remove_images: all
+    remove_volumes: true
+- name: Remove created files
+  ansible.builtin.file:
+    path: "{{ web_app_folder }}/"
+    state: absent
