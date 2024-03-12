@@ -78,9 +78,9 @@ In this lab, you will utilize Ansible to set up a Continuous Deployment (CD) pro
        `-- playbooks
            `-- dev
                |-- app_python
-               |   `-- main.yaml
+               |   `-- playbook.yaml
                `-- app_go
-                   `-- main.yaml
+                   `-- playbook.yaml
    ```
 
 ### Guidelines
