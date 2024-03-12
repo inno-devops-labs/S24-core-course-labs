@@ -1,0 +1,5 @@
+web_app_full_wipe: false
+web_app_container_name: "devops-lab-timer"
+web_app_docker_image: "fatm1nd/devops-lab-container"
+web_app_compose_path: "/home/ubuntu"
+

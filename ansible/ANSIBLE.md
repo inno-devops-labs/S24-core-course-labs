@@ -170,3 +170,36 @@ fatm1nd@fatm1nd-IdeaPad-5-14ARE05:~/Documents/Innopolis/devops-core-innopolis-co
     }
 }
 ```
+
+## Web App Deployment
+
+```
+fatm1nd@fatm1nd-IdeaPad-5-14ARE05:~/Documents/Innopolis/devops-core-innopolis-course/ansible$ ansible-playbook playbooks/dev/main.yml --tags "deploy,wipe" --diff
+
+PLAY [Install Docker] *******************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************
+ok: [vm1]
+
+PLAY [Deploy Web Application] ***********************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************
+ok: [vm1]
+
+TASK [web_app : Copy Docker Compose template] *******************************************************************************
+ok: [vm1]
+
+TASK [web_app : Ensure Docker Compose is installed] *************************************************************************
+ok: [vm1]
+
+TASK [web_app : Run Docker Compose] *****************************************************************************************
+changed: [vm1]
+
+TASK [web_app : include_tasks] **********************************************************************************************
+skipping: [vm1]
+
+PLAY RECAP ******************************************************************************************************************
+vm1                        : ok=5    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
+fatm1nd@fatm1nd-IdeaPad-5-14ARE05:~/Documents/Innopolis/devops-core-innopolis-course/ansible$ 
+```

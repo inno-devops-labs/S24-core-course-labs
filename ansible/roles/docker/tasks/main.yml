@@ -28,6 +28,11 @@
   apt:
     autoclean: yes
 
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
 - name: Ensure correct Docker repository configuration
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
@@ -58,7 +63,11 @@
 
 - name: Install Docker
   apt:
-    name: docker-ce
+    name: 
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
     state: present
 
 - name: Install Docker Compose
