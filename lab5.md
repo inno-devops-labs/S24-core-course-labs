@@ -13,7 +13,7 @@ In this lab, you will get acquainted with Ansible, a powerful configuration mana
 
      ```sh
      .
-     |-- README.md
+     |-- README.md.md
      |-- ansible
      |   |-- inventory
      |   |   `-- yandex_cloud.yml
@@ -30,7 +30,7 @@ In this lab, you will get acquainted with Ansible, a powerful configuration mana
      |   |   |   |   |-- install_compose.yml
      |   |   |   |   |-- install_docker.yml
      |   |   |   |   `-- main.yml
-     |   |   |   `-- README.md
+     |   |   |   `-- README.md.md
      |   |   `-- web_app
      |   |       |-- defaults
      |   |       |   `-- main.yml

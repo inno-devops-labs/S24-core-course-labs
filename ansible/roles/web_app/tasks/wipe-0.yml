@@ -1,0 +1,14 @@
+---
+-
+  name: shutdown services
+  community.docker.docker_compose_v2:
+    project_src: "{{ app_image_dir }}"
+    remove_orphans: true
+    remove_volumes: true
+    remove_images: "all"
+    state: "absent"
+-
+  name: remove web app dir
+  ansible.builtin.file:
+    path: "{{ app_image_dir }}"
+    state: "absent"

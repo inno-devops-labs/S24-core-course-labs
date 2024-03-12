@@ -1,0 +1,7 @@
+---
+app_image_name: "flask-app"
+app_image_dir: "~/app"
+app_image_tag: "latest"
+app_target_port: 80
+app_published_port: 5000:5000
+app_full_wipe: false
