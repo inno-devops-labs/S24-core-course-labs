@@ -18,7 +18,7 @@
         state: present
         pull: missing
   tags:
-    - web_app
+    - web_python
 
 - name: Wipe the app
   import_tasks: 0-wipe.yml

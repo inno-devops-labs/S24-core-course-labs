@@ -1,7 +1,0 @@
-services:
-  web_app:
-    image: ramprin/devops_py:latest
-    container_name: web_app
-    ports:
-      - "80:8080"
-    restart: always
