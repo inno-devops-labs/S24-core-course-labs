@@ -1,6 +1,7 @@
 ---
 - name: setup Docker
   hosts: all
-  become: true
   roles:
-    - docker
+    - role: web_app
+      become: true
+    

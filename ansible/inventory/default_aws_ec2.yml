@@ -3,3 +3,4 @@ all:
     new_host:
       ansible_host: 158.160.124.129
       ansible_user: user
+

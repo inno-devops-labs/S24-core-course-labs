@@ -36,3 +36,41 @@ ok: [new_host]
 
 PLAY RECAP *********************************************************************
 new_host                   : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+
+PLAY [setup Docker] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [new_host]
+
+TASK [docker : Update apt] *****************************************************
+changed: [new_host]
+
+TASK [docker : Python3 and pip3 installation] **********************************
+ok: [new_host]
+
+TASK [docker : Install Docker] *************************************************
+ok: [new_host]
+
+TASK [docker : Retrieve Docker GPG apt Key] ************************************
+ok: [new_host]
+
+TASK [docker : Add Docker Repository to apt sources] ***************************
+ok: [new_host]
+
+TASK [docker : Update apt cache] ***********************************************
+changed: [new_host]
+
+TASK [docker : Install Docker Community Edition (docker-ce)] *******************
+skipping: [new_host]
+
+TASK [docker : Install Docker Compose] *****************************************
+ok: [new_host]
+
+TASK [web_app : Pull Docker image] *********************************************
+
+fTASK [web_app : Run Docker container] ******************************************
+changed: [host_01]
+PLAY RECAP *********************************************************************
+host_01                      : ok=7    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
