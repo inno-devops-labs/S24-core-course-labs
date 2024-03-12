@@ -1,5 +1,38 @@
 # Ansible work
 
+# Lab 6
+
+## Commands Outputs
+
+- `ansible-playbook playbooks/dev/main.yml`
+
+```
+PLAY [all] *******************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [katykosh]
+
+TASK [docker : Install pip3] *************************************************************************************
+ok: [katykosh]
+
+TASK [docker : Install docker] ***********************************************************************************
+ok: [katykosh]
+
+TASK [docker : Install docker-compose] ***************************************************************************
+ok: [katykosh]
+
+TASK [web_app : pull the docker image] ***************************************************************************
+changed: [katykosh]
+
+TASK [web_app : run the docker container] ************************************************************************
+changed: [katykosh]
+
+PLAY RECAP *******************************************************************************************************
+katykosh                   : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
+
+# Lab 5
+
 ## Overview
 
 I used Yandex Cloud VM to run the ansible roles. Its credetials are specified in `ansible/inventory/default_yandex_cloud.yml` file.
