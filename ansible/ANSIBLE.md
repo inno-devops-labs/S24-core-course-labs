@@ -1,3 +1,36 @@
+# Ansible
+
+## Best practise
+Choose XML instead of JSON
+
+Use the same spaces
+
+Use a consistent tagging strategy
+
+Add comments
+
+Use a consistent naming strategy
+
+Define a style guide
+
+Keep it simple
+
+Store your projects in a Version Control System (VCS)
+
+Do not store confidential values in plain text
+
+Test projects
+## TASK 1
+- installed existing role
+```
+ansible-galaxy role install geerlingguy.docker
+```
+```
+- hosts: all
+  roles:
+    - geerlingguy.docker
+```
+
 ```shell
 $ ansible-inventory -i inventory/vm.yacloud_compute.yml --list
 {
