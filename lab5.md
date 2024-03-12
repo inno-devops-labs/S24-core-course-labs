@@ -16,10 +16,10 @@ In this lab, you will get acquainted with Ansible, a powerful configuration mana
      |-- README.md
      |-- ansible
      |   |-- inventory
-     |   |   `-- default_aws_ec2.yml
+     |   |   `-- inventory.yaml
      |   |-- playbooks
      |   |   `-- dev
-     |   |       `-- main.yaml
+     |   |       `-- playbook.yaml
      |   |-- roles
      |   |   |-- docker
      |   |   |   |-- defaults
@@ -28,7 +28,7 @@ In this lab, you will get acquainted with Ansible, a powerful configuration mana
      |   |   |   |   `-- main.yml
      |   |   |   |-- tasks
      |   |   |   |   |-- install_compose.yml
-     |   |   |   |   |-- install_docker.yml
+     |   |   |   |   |-- install_docker.yaml
      |   |   |   |   `-- main.yml
      |   |   |   `-- README.md
      |   |   `-- web_app

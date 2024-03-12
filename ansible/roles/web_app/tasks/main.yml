@@ -1,0 +1,30 @@
+- name: Create app directory
+  file:
+    path: "{{web_app_image_dir}}"
+    state: directory
+  register: compose_dir
+
+- name: Render compose template
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ web_app_image_dir }}/docker-compose.yml"
+  vars:
+    image_full: "{{web_app_image_name}}:{{web_app_image_tag}}"
+    publish_ports: "{{web_app_published_port}}"
+
+
+- name: Ensure docker is running
+  service:
+    name: "docker"
+    state: "started"
+    enabled: true
+- name: Create and start the services
+  community.docker.docker_compose_v2:
+    project_src: "{{ web_app_image_dir }}"
+    state: "present"
+    remove_orphans: true
+
+- name: Wipe out web application
+  when: web_app_full_wipe is defined and web_app_full_wipe
+  include_tasks:
+    file: "0-wipe.yml"
