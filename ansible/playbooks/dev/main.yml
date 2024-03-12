@@ -1,18 +1,17 @@
-- name: Pull and deploy
-  hosts: localhost
-  tasks:
-    - name: Pull Docker Image
-      docker_image:
-        name: zaqbez39me/moscow-time-app:latest
-        source: pull
-
-    - name: Run Docker Container
-      docker_container:
-        name: moscow-time
-        image: zaqbez39me/moscow-time-app:latest
-        state: started
-        ports:
-          - "1235:80"
+- name: Install docker using docker role
+  hosts: all
   roles:
-    - docker
-  become: True
+    - role: docker
+      become: true
+
+- name: Deploy application
+  hosts: all
+  roles:
+    - role: web_app
+      become: true
+      vars:
+        app_image: "zaqbez39me/moscow-time-app"
+        app_name: "moscow-time-app"
+        app_port: 1236
+        app_dir: "/home/{{ ansible_user }}/{{ app_name }}"
+        web_app_full_wipe: true

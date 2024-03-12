@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  web:
+    image: {{ app_image }}:latest
+    ports:
+      - "{{ app_port }}:80"

@@ -1,0 +1,7 @@
+- name: Run wipe
+  import_tasks: 0-wipe.yml
+  tags: wipe
+
+- name: Run compose
+  import_tasks: compose.yml
+  tags: compose

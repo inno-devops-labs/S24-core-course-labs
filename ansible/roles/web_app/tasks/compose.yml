@@ -1,0 +1,16 @@
+- name: Deploy app
+  block:
+    - name: Deploy docker-compose from template
+      template:
+        src: docker-compose.yml.j2
+        dest: "{{ app_dir }}/docker-compose.yml"
+      tags:
+        - compose
+
+    - name: Run docker-compose
+      command: docker-compose up -d
+      args:
+        chdir: "{{ app_dir }}"
+      tags:
+        - compose
+  tags: compose

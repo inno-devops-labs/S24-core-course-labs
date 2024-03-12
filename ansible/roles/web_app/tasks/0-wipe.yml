@@ -1,0 +1,17 @@
+- name: Wipe
+  block:
+    - name: Delete Docker container, image, networks and volumes
+      command: docker-compose down -v
+      args:
+        chdir: "{{ app_dir }}"
+
+    - name: Remove docker compose file
+      file:
+        path: "{{ app_dir }}/docker-compose.yml"
+        state: absent
+      tags:
+        - wipe
+
+  when: web_app_full_wipe == true
+  tags:
+    - wipe
