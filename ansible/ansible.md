@@ -5,6 +5,45 @@
 - Yandex cloud server and config in the inventory file 
 - Configuring of `ansible.cfg`
 
+## Lab 6 deployment output
+`ansible-playbook playbooks/dev/main.yml --diff`
+```
+PLAY [Install web_app] **************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+ok: [devops]
+
+TASK [docker : Install `pip`] ******************************************************************************************
+ok: [devops]
+
+TASK [docker : Refresh apt packages] ***********************************************************************************
+ok: [devops]
+
+TASK [docker : Install/Update docker.io] *******************************************************************************
+ok: [devops]
+
+TASK [docker : Install docker] *****************************************************************************************
+ok: [devops]
+
+TASK [docker : Install docker-compose] *********************************************************************************
+ok: [devops]
+
+TASK [web_app : Delete web app] ****************************************************************************************
+skipping: [devops]
+
+TASK [web_app : Copy docker-compose file] ******************************************************************************
+ok: [devops]
+
+TASK [web_app : Pull the image] ****************************************************************************************
+ok: [devops]
+
+TASK [web_app : Run the container] *************************************************************************************
+ok: [devops]
+
+PLAY RECAP *************************************************************************************************************
+devops                     : ok=9    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+```
+
 ## Task 2.3 
 `ansible-playbook playbooks/dev/main.yml --diff`
 

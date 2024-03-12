@@ -1,5 +1,4 @@
-- name: Install docker
+- name: Install web_app
   hosts: all
   roles:
-    - role: docker
-      become: true
+    - role: roles/web_app

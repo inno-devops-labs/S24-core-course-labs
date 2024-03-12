@@ -1,0 +1,22 @@
+- name: Delete docker containers
+  import_tasks: wipe.yml
+
+- name: Copy docker-compose file
+  template:
+    src: ../templates/docker-compose.yml.j2
+    dest: /root/
+  tags:
+    - copy_docker_compose_file
+  
+- name: Start web app
+  block:
+    - name: Pull the image
+      docker_image:
+        source: pull
+        name: "{{ app_image_name }}"
+    - name: Run the container
+      docker_container:
+        state: started
+        name: "{{ app_container_name }}"
+        image: "{{ app_image_name }}"
+
