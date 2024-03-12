@@ -1,0 +1,28 @@
+---
+- name: Run docker container
+  block:
+  - name: Get docker image
+    docker_image:
+      name: "{{ username }}/{{ image }}"
+      source: pull
+      state: present
+
+  - name: Run docker container
+    docker_container:
+      name: "{{ name }}"
+      published_ports: "{{ ports }}"
+      image: "{{ username }}/{{ image }}"
+      state: started
+
+  tags:
+    - run
+
+- name: Deliver docker compose
+  include_tasks: docker-compose.yml
+  tags:
+    - compose
+
+- name: Wipe docker image and container
+  include_tasks: wipe.yml
+  tags:
+    - wipe

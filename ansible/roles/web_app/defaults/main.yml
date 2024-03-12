@@ -1,0 +1,8 @@
+---
+name: "app"
+
+web_app_full_wipe: true
+
+username: "mierley4041"
+image: "devops-flask:latest"
+ports: "80:5000"

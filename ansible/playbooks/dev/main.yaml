@@ -2,12 +2,5 @@
   hosts: all
   become: true
 
-  vars:
-    image_tag: "mierley4041/devops-flask:latest"
-
   roles:
-    - ../../roles/docker
-
-  tasks:
-    - name: Run container
-      ansible.builtin.shell: "docker run -d -p 80:5000 -t {{ image_tag|quote }}"
+    - role: ../../../roles/web_app
