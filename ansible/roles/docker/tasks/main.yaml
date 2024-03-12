@@ -1,0 +1,59 @@
+- name: Register version codename
+  shell: . /etc/os-release && echo "$VERSION_CODENAME"
+  register: version_codename
+
+- name: Install docker dependencies
+  become: true
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - gnupg-agent
+      - software-properties-common
+    update_cache: yes
+
+- name: Add docker gpg key
+  become: true
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add docker repository
+  become: true
+  apt_repository:
+    filename: docker 
+    repo: deb https://download.docker.com/linux/ubuntu {{version_codename.stdout}} stable
+    state: present
+
+- name: Install docker engine
+  become: true
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-scan-plugin
+      - docker-compose-plugin
+    update_cache: yes
+
+- name: Install pip
+  become: true
+  apt:
+    name: python3-pip
+    update_cache: yes
+
+- name: Install Docker SDK
+  pip:
+    name:
+      - docker
+      - docker-compose
+
+- name: Setup user '{{ ansible_user }}'
+  become: true
+  ansible.builtin.user:
+    name: '{{ ansible_user }}'
+    append: true
+    groups: docker
