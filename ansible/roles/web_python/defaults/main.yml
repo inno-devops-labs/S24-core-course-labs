@@ -1,6 +1,6 @@
 web_app_full_wipe: true
 
-base_path: "app_python"
+base_path: ""
 web_app_service: "web_app"
 ports:
   int: 8080
