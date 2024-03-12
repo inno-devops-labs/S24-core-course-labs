@@ -1,0 +1,10 @@
+---
+- name: Install Docker
+  hosts: vm
+  remote_user: habur331
+  become: true
+
+  roles:
+    - ../../roles/docker
+
+
