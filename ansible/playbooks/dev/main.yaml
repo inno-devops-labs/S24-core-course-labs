@@ -1,5 +1,0 @@
-- name: Dev playbook
-  hosts: all
-  roles:
-    - role: docker
-      become: true

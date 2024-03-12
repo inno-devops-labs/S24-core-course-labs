@@ -1,0 +1,31 @@
+---
+- name: Full wipe
+  when: web_app_full_wipe is defined and web_app_full_wipe
+  tags: wipe
+  ansible.builtin.include_tasks:
+    file: "0-wipe.yml"
+    apply:
+      tags: wipe
+
+- name: Setup configuration files
+  block:
+    - name: Create app directory
+      ansible.builtin.file:
+        path: "{{ app_dir }}"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+      become: yes
+
+    - name: Copy Docker Compose template
+      ansible.builtin.template:
+        src: docker-compose.yml.j2
+        dest: "{{ app_dir }}/docker-compose.yml"
+
+- name: Start dockerized app
+  block:
+    - name: Create and start the services
+      community.docker.docker_compose_v2:
+        project_src: "{{ app_dir }}"
+        remove_orphans: true
+        state: present

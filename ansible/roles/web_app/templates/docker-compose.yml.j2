@@ -1,0 +1,7 @@
+services:
+  web_app:
+    image: "{{ app_image }}"
+    ports:
+      - "{{ web_port }}:{{ web_port }}"
+    environment:
+      - SECRET_KEY="QCY?tAnfk?aZ?iwrNwnxIlR6CTf:G3gf:90Latabg@5241AB`R5W:1uDFN];Ik@n"
