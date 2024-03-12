@@ -33,6 +33,32 @@ Using the ```apt``` module, this Ansible task installs Docker on a Debian-based 
 Tasks to install ```Python 3``` and ```pip3```, update the apt cache, import and run tasks from separate files to install Docker and Docker Compose are defined in this Ansible playbook. 
 ```docker``` is a tag used for organising tasks linked to Docker, which can be used to execute them selectively.
 
+### roles/web_app files
+
+#### 1. default/main.yml file
+
+The Docker image and container parameters for a Python application are defined by the variables.
+
+#### 2. handlers/main.yml file
+
+Restarting the web application's Docker container is done with this handler.
+
+#### 3. mata/main.yml file
+
+The `web_app` Ansible role's requirements are specified in this file.
+
+#### 4. tasks/O-wipe.yml file
+
+The web application's wipe logic, which entails pausing and deleting the Docker container, is defined by this Ansible task block.
+
+#### 5. tasks/main.yml file
+
+The tasks associated with maintaining the web application's Docker image and container are included in this Ansible task block.
+
+#### 6. templates/docker-compose.yml.j2 file
+
+This file is a Docker Compose template that specifies the web application container's configuration.
+
 ### ansible.ctg file
 
 The default parameters for Ansible are specified in this Ansible configuration file ```ansible.cfg```. By configuring Ansible to utilise particular directories and settings by default, these options assist minimise the need to define them in each playbook. The main configurations are broken down as follows:
@@ -43,7 +69,7 @@ The default parameters for Ansible are specified in this Ansible configuration f
 - ```control_path```: Indicates the path template for the SSH connection's control path.
 
 
-# Outputs
+# Outputs for docker role
 
 - `ansible-playbook playbooks/dev/main.yml --diff`
 
@@ -125,6 +151,39 @@ The default parameters for Ansible are specified in this Ansible configuration f
    PLAY RECAP *********************************************************************************************************************************************************************
    host_01                    : ok=11   changed=0    unreachable=0    failed=0    skipped=12   rescued=0    ignored=0   
     ```
+
+# Outputs for docker and web_app roles
+```
+ansible-playbook playbooks/dev/main.yml
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+Enter passphrase for key '/Users/nikitagrigorenko/.ssh/id_ed25519': 
+Enter passphrase for key '/Users/nikitagrigorenko/.ssh/id_ed25519': 
+ok: [host_01]
+
+TASK [docker : Update apt] *****************************************************
+ok: [host_01]
+
+TASK [docker : Python3 and pip3 installation] **********************************
+ok: [host_01]
+
+TASK [docker : Install docker] *************************************************
+ok: [host_01]
+
+TASK [docker : Install docker compose] *****************************************
+ok: [host_01]
+
+TASK [web_app : Pull Docker image] *********************************************
+changed: [host_01]
+
+TASK [web_app : Run Docker container] ******************************************
+changed: [host_01]
+
+PLAY RECAP *********************************************************************
+host_01                      : ok=7    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
 
 - `ansible-inventory -i inventory/default_yandex_vm.yml --list`
 
