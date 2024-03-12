@@ -1,0 +1,8 @@
+- name: Deploy Python Application with Docker Compose
+  hosts: all
+  become: yes
+  roles:
+    - role: web_app
+      become: yes
+      vars:
+        docker_services: app_python

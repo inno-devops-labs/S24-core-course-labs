@@ -1,18 +1,31 @@
-# Main tasks for web_app role
-
 - name: Deploy Docker image for web application
+  become: true
   block:
-    - name: Ensure docker-compose directory exists
-      file:
-        path: ../../../../docker-compose.yml
-        state: directory
+    - name: Wipe
+      include_tasks: 0-wipe.yaml
+      when: web_app_full_wipe
+      vars:
+        docker_container_name: "{{ docker_services }}"
+      tags:
+        - wipe
+
+    - name: Ensure docker-compose file is absent
+      ansible.builtin.file:
+        path: "/home/{{ ansible_user }}/docker-compose.yml"
+        state: absent
 
     - name: Deliver docker-compose.yml template
-      template:
+      ansible.builtin.template:
         src: docker-compose.yml.j2
-        dest: ../../../../docker-compose.yml
+        dest: "/home/{{ ansible_user }}/docker-compose.yml"
       tags:
         - deploy
 
+    - name: Run docker-compose
+      ansible.builtin.command:
+        cmd: docker-compose up --build -d  {{ docker_services }}
+        chdir: "/home/{{ ansible_user }}"
+      tags:
+        - deploy
   tags:
     - deploy
