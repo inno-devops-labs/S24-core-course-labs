@@ -1,6 +1,19 @@
-- name: Docker role
+# - name: Docker role
+#   hosts: all
+#   become: true
+
+#   roles:
+#     - ../../roles/docker 
+
+- name: My web app
   hosts: all
   become: true
 
   roles:
-    - ../../roles/docker 
+    - ../../roles/web_app
+  
+  vars:
+    python_dir: app_python
+    app_port: 5000
+    app_image: levgo/app_python
+    web_app_full_wipe: false

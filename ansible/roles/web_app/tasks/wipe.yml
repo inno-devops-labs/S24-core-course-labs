@@ -1,0 +1,11 @@
+- name: Docker wiping
+  community.docker.docker_compose_v2:
+    project_src: "{{ python_dir }}"
+    state: absent
+    remove_volumes: true
+    remove_images: all
+
+- name: Directory wiping
+  ansible.builtin.file:
+    state: absent
+    path: "{{ python_dir }}/"
