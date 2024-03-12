@@ -101,6 +101,71 @@ redacted                   : ok=7    changed=5    unreachable=0    failed=0    s
 }
 ```
 
+## Output of `ansible-playbook playbooks/dev/app_python/main.yml --diff`
+
+```
+
+PLAY [Install docker] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [redacted]
+
+TASK [docker : Install required system packages] *******************************
+ok: [redacted]
+
+TASK [docker : Add Docker's GPG key] *******************************************
+ok: [redacted]
+
+TASK [docker : Add Docker Repository] ******************************************
+ok: [redacted]
+
+TASK [docker : Install Docker] *************************************************
+ok: [redacted]
+
+TASK [docker : Install pip] ****************************************************
+ok: [redacted]
+
+TASK [docker : Install docker-compose] *****************************************
+ok: [redacted]
+
+TASK [web_app : Create directory for web app] *******************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "app_python",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [redacted]
+
+TASK [web_app : Render templated compose.yaml] ******************
+--- before
++++ after: /home/user/.ansible/tmp/ansible-local-372619n03ho7rh/tmp57309pkm/docker-compose.yml.j2
+@@ -0,0 +1,5 @@
++services:
++  web_app:
++    image: "masterlogick/devops-py-img"
++    ports:
++      - "8080:8080"
+
+changed: [redacted]
+
+TASK [web_app : Start web app] **********************************
+changed: [redacted]
+
+TASK [web_app : Remove web app artefacts] ***********************
+skipping: [redacted]
+
+TASK [web_app : Remove web app directory] ***********************
+skipping: [redacted]
+
+PLAY RECAP *********************************************************************
+redacted                   : ok=10   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
+```
+
 ## Best practices
 
 + Use state where it is possible

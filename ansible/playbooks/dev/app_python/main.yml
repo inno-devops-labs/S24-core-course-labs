@@ -1,0 +1,11 @@
+- name: Install docker and run python app
+  hosts: all
+  roles:
+    - name: "Install docker"
+      role: docker
+    - role: web_app
+      become: yes
+      vars:
+        app_directory: app_python
+        app_image: masterlogick/devops-py-img
+        app_port: 8080

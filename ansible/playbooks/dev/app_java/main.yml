@@ -1,0 +1,9 @@
+- name: Run java app
+  hosts: all
+  roles:
+    - role: web_app
+      become: yes
+      vars:
+        app_directory: app_java
+        app_image: masterlogick/devops-java-img
+        app_port: 8080

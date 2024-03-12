@@ -1,5 +1,0 @@
-- name: Install docker
-  hosts: all
-  roles:
-    - name: "Install docker"
-      role: docker

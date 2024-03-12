@@ -1,0 +1,11 @@
+- name: Remove web app artefacts
+  community.docker.docker_compose_v2:
+    project_src: "{{ app_directory }}"
+    remove_images: all
+    remove_volumes: true
+    state: absent
+
+- name: Remove web app directory
+  ansible.builtin.file:
+    path: "{{ app_directory }}"
+    state: absent
