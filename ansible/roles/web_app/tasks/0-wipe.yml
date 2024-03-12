@@ -1,0 +1,12 @@
+- name: Clean up docker compose project
+  community.docker.docker_compose_v2:
+    project_src: "{{ app_dir }}"
+    state: absent
+    remove_images: all
+    remove_volumes: true
+
+
+- name: Clean up project files
+  ansible.builtin.file:
+    path: "{{ app_dir }}/"
+    state: absent
