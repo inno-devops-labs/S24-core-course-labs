@@ -8,3 +8,6 @@
           user: "ramprin"
           image_name: "devops_go"
           tag: "latest"
+        ports:
+          int: 80
+          ext: 80

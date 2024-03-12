@@ -21,7 +21,7 @@
 
 - name: adding ubuntu to docker group
   user:
-    name: ubuntu
+    name: root
     groups: docker
     append: yes
 
