@@ -5,8 +5,3 @@
     - web_app
 # Task 1
 #    - geerlingguy.docker
-
-  tasks:
-    - name: Pull and run Docker container
-      block:
-        - include_tasks: tasks/main.yml

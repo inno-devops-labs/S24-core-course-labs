@@ -1,0 +1,20 @@
+- name: Check if Docker container and image exist
+  docker_container:
+    name: my_container
+    state: stopped
+  tags:
+    - remove-container
+
+- name: Remove Docker container if exists
+  docker_container:
+    name: my_container
+    state: absent
+  tags:
+    - remove-container
+
+- name: Remove Docker image if exists
+  docker_image:
+    name: glebuben/dev-ops-labs:latest
+    state: absent
+  tags:
+    - remove-image

@@ -4,3 +4,6 @@
   apt:
     name: docker-compose
     state: present
+  tags:
+    - install
+    - docker-compose
