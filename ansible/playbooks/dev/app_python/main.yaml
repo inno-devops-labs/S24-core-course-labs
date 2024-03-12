@@ -1,0 +1,12 @@
+- name: Install and run go web app using existing role
+  hosts: all
+  become: true
+
+  roles:
+    - web_app
+  vars:
+    docker_image: "y4cerr/app_python"
+    tag: "latest"
+    container_name: "app_python"
+    app_directory: "app_python"
+    exposed_ports: ["8080:8080"]
