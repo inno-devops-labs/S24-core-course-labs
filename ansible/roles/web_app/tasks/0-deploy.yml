@@ -1,0 +1,27 @@
+- name: Place application files
+  block:
+    - name: Create app directory
+      ansible.builtin.file:
+        mode: "0755"
+        path: "{{ web_app_dir }}"
+        state: directory
+
+    - name: Render docker-compose.yml
+      ansible.builtin.template:
+        src: docker-compose.yml.j2
+        dest: "{{ web_app_dir }}/docker-compose.yml"
+        mode: "0644"
+
+- name: Start the app in docker
+  block:
+    - name: Ensure docker is running
+      ansible.builtin.service:
+        name: "docker"
+        state: "started"
+        enabled: true
+    
+    - name: Create and start the services
+      community.docker.docker_compose_v2:
+        project_src: "{{ web_app_dir }}"
+        state: "present"
+        remove_orphans: true

@@ -1,0 +1,6 @@
+web_app_dir: "/opt/web_app"
+web_app_docker_image: "nabuki/moscowtime-web:latest"
+web_app_full_wipe: false
+# Note: no port forwarding because usually it is not needed (using reverse proxy)
+#       basically proxy is assumed to be preinstalled and web_app role to be used within some bigger environ
+#       so web_app role does only setup the web app that is avaliable only locally

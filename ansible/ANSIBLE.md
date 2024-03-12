@@ -1,7 +1,7 @@
 
 # Console Outputs
 
-## Deployment
+## Docker Deployment
 > Using custom docker role
 ```console
 $ ansible-playbook playbooks/dev/main.yml --diff | tail -50
@@ -56,6 +56,62 @@ PLAY RECAP *********************************************************************
 yandex_cloud_vm            : ok=10   changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
+## Web App Deployment
+
+```console
+$ ansible-playbook playbooks/dev/main.yml --diff | tail -50
+
+TASK [docker : Install docker-compose] *****************************************
+included: /home/nabuki/repos/study/devops-labs/ansible/roles/docker/tasks/install_compose.yml for yandex_cloud_vm
+
+TASK [docker : Install docker-compose] *****************************************
+changed: [yandex_cloud_vm]
+
+TASK [docker : Add user to docker group] ***************************************
+changed: [yandex_cloud_vm]
+
+TASK [web_app : Deploy web application] ****************************************
+included: /home/nabuki/repos/study/devops-labs/ansible/roles/web_app/tasks/0-deploy.yml for yandex_cloud_vm
+
+TASK [web_app : Create app directory] ******************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/opt/web_app",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [yandex_cloud_vm]
+
+TASK [web_app : Render docker-compose.yml] *************************************
+--- before
++++ after: /home/nabuki/.ansible/tmp/ansible-local-1548458o4o253r/tmpv19ymu7v/docker-compose.yml.j2
+@@ -0,0 +1,5 @@
++version: "3.9"
++
++services:
++  web_app:
++    image: "nabuki/moscowtime-web:latest"
+\ No newline at end of file
+
+changed: [yandex_cloud_vm]
+
+TASK [web_app : Ensure docker is running] **************************************
+ok: [yandex_cloud_vm]
+
+TASK [web_app : Create and start the services] *********************************
+changed: [yandex_cloud_vm]
+
+TASK [web_app : Wipe out web application] **************************************
+skipping: [yandex_cloud_vm]
+
+PLAY RECAP *********************************************************************
+yandex_cloud_vm            : ok=15   changed=10   unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
+```
+
 ## Inventory
 
 ### Details
@@ -86,3 +142,4 @@ $ ansible-inventory -i inventory/main.yml --list
     }
 }
 ```
+
