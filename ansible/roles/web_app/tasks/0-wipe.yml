@@ -1,0 +1,5 @@
+#- tasks:
+#    - name: Remove all docker images
+#  tags:
+#    - webserver
+#    - wipe
