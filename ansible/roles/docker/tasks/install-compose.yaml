@@ -1,4 +1,4 @@
-- name: install Docker-Compose
+- name: Install Docker-Compose
   ansible.builtin.pip:
     name: docker-compose
     state: present
