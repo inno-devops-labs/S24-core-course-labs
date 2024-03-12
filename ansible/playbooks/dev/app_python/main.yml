@@ -4,10 +4,10 @@
   connection: local
   become: true
   roles:
-    - name: web_python
+    - name: web_python    
       vars:
         docker_container: 'app_python'
-        docker_image: 'lizavetta/devops-python:latest'
-        internal_port: 80
+        docker_image: 'ramprin/devops_py:latest'
+        internal_port: 8080
         external_port: 8082
         app_name: 'app_python'

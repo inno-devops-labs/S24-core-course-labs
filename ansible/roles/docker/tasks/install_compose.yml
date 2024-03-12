@@ -9,4 +9,3 @@
     path: /usr/local/bin/docker-compose
     owner: ubuntu
     group: ubuntu
-

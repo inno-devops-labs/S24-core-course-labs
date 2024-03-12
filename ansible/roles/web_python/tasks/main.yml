@@ -15,10 +15,10 @@
     - name: Run the app using docker-compose
       tags: docker-compose-run
       community.docker.docker_compose:
-        project_src: "/ansible/playbooks/dev/app_python/new-dir-py"
+        project_src: "/ansible/playbooks/dev/app_python/app_python"
         state: present
 
 - name: Wipe the app
-  import_tasks: wipe.yml
+  import_tasks: 0-wipe.yml
   tags:
     - wipe_app
