@@ -1,0 +1,7 @@
+---
+- name: Remove docker container from machine
+  docker_container:
+    name: "{{ web_app_container_name }}"
+    state: absent
+  tags:
+    - wipe

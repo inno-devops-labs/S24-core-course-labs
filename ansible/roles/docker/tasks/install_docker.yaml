@@ -28,7 +28,11 @@
 
 - name: Update apt cache and install Docker Community Edition (docker-ce)
   apt:
-    name: docker-ce
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
     state: present
     update_cache: yes
   when: install_packages.changed

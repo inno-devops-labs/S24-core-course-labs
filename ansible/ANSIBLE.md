@@ -69,3 +69,45 @@ vm1                        : ok=10   changed=1    unreachable=0    failed=0    s
 }
 
 ```
+### Deployment information
+```
+nikitazorin@MacBook-Air-Nikita-2 ansible % ansible-playbook playbooks/dev/main.yaml --tags "deploy,wipe" --diff
+
+PLAY [Install Docker] ********************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+Enter passphrase for key '/Users/nikitazorin/.ssh/ya_cloud_key': 
+ok: [vm1]
+
+PLAY [Deploy Web Application] ************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [vm1]
+
+TASK [web_app : Create folder] ***********************************************************************************
+ok: [vm1]
+
+TASK [web_app : Copy docker-compose file] ************************************************************************
+--- before: /home/nikzor/compose.yaml
++++ after: /Users/nikitazorin/.ansible/tmp/ansible-local-75246w4_rkl7r/tmp9czw6x7g/docker-compose.yml.j2
+@@ -1,6 +1,6 @@
+ version: '3'
+ services:
+   web_app:
+-    image: "nikzor/devops-lab-container"
++    image: "nikzor/my-flask-app"
+     ports:
+       - "80:5000"
+\ No newline at end of file
+
+changed: [vm1]
+
+TASK [web_app : Start web app] ***********************************************************************************
+changed: [vm1]
+
+TASK [web_app : Stop and remove Docker container] ****************************************************************
+skipping: [vm1]
+
+PLAY RECAP *******************************************************************************************************
+vm1                        : ok=5    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0 
+```
