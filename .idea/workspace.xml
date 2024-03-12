@@ -5,51 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a907869f-f062-4d26-bf52-808ad19e005d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/terraform/TF.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/docker/main.tf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/docker/output.tf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/docker/providers.tf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/docker/terraform.tfstate" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/docker/variables.tf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/github/.terraform.lock.hcl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/github/main.tf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/github/providers.tf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/github/terraform.tfstate" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/github/terraform.tfstate.backup" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/github/variables.tf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/yandex-cloud/.terraform.lock.hcl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/yandex-cloud/init.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/yandex-cloud/main.tf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/yandex-cloud/terraform.tfstate" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/yandex-cloud/terraform.tfstate.backup" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/yandex-cloud/terraform.tfvars" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/yandex-cloud/variables.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/workflows/docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/docker.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/app_python/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app_python/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_python/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/TF.md" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/ANSIBLE.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/docker/.terraform.lock.hcl" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/docker/.terraform.lock.hcl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/docker/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/ansible.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/docker/output.tf" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/inventory/regru_compute.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/docker/providers.tf" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/playbooks/dev/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/docker/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/roles/docker/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/docker/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/roles/docker/defaults/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/github/.terraform.lock.hcl" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/roles/docker/handlers/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/github/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/roles/docker/tasks/install_compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/github/providers.tf" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/roles/docker/tasks/install_docker.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/github/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/roles/docker/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/github/terraform.tfstate.backup" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/roles/web_app/defaults/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/github/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/roles/web_app/handlers/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/yandex-cloud/.terraform.lock.hcl" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/roles/web_app/meta/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/yandex-cloud/init.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/roles/web_app/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/yandex-cloud/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/roles/web_app/templates/docker-compose.yml.j2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/yandex-cloud/terraform.tfstate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/yandex-cloud/terraform.tfstate.backup" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/yandex-cloud/terraform.tfvars" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/terraform/yandex-cloud/variables.tf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_python/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/app_python/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/docker/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/docker/terraform.tfstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/yandex-cloud/terraform.tfstate" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/yandex-cloud/terraform.tfstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/yandex-cloud/terraform.tfvars" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/yandex-cloud/terraform.tfvars" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,18 +36,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for test_moscow_time.MoscowTimeTestCase.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_moscow_time.TestApp.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Inga/Desktop/DevOps/S24-core-course-labs&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propDebugger&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for test_moscow_time.MoscowTimeTestCase.executor": "Run",
+    "Python tests.Python tests for test_moscow_time.TestApp.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Inga/lab-input-inga-zimnya",
+    "settings.editor.selected.configurable": "project.propDebugger"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Inga\Desktop\DevOps\S24-core-course-labs\terraform\yandex-cloud" />

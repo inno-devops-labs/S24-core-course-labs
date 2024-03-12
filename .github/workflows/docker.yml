@@ -23,4 +23,4 @@ jobs:
                 with:
                     context: "{{defaultContext}}:app_python/"
                     push: true
-                    tags: i.ezhova/devops-flask-app:latest
+                    tags: engaezik/devops-flask-app:latest

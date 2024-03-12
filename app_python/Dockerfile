@@ -4,7 +4,7 @@
 FROM python:3.10.13-alpine
 
 # Labelling the image
-LABEL version="1.0" description="Flask Application showing current Moscow time" maintainer="i.ezhova"
+LABEL version="1.0" description="Flask Application showing current Moscow time" maintainer="engaezik"
 
 # Set the working directory
 WORKDIR /app_python
