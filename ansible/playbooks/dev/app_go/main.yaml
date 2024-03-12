@@ -1,0 +1,8 @@
+- name: Prepare docker
+  hosts: yacloud
+  become: true
+  roles:
+    - docker
+    - role: web_app
+      image_name: dianatomiya/devops:g_v1.0
+      ports: "80:8080" 

@@ -1,0 +1,21 @@
+---
+- name: Remove app containers and images.
+  block:
+    - name: Stop running container.
+      docker_container:
+        name: "{{ app_name }}"
+        state: stopped
+
+    - name: Remove stopped docker container.
+      shell: |
+        docker rm {{ app_name }};
+    
+    - name: Remove the image.
+      docker_image:
+        name: "{{ image_name }}"
+        state: absent
+
+    - name: Remove docker-compose file.
+      file:
+        path: "/tmp/{{ image_name }}"
+        state: absent
