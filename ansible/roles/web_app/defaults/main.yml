@@ -1,0 +1,8 @@
+docker_image: 'maintheme/flask-msktime-app'
+container_name: 'flask-msktime-app'
+app_dir: '/home/maintheme/'
+image_tag: 'v1'
+web_app_full_wipe: false
+ports:
+  external: 8080
+  internal: 8080

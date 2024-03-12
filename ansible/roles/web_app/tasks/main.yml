@@ -1,0 +1,30 @@
+---
+- name: Wipe
+  import_tasks: 0-wipe.yml
+
+- name: Docker stuff
+  block: 
+    - name: get docker-compose file
+      ansible.builtin.template:
+        src: ../templates/docker-compose.yml.j2
+        dest: "{{ app_dir }}/docker-compose.yml"
+        owner: root
+        mode: '0644'
+      tags:
+      - get-docker-compose-file
+
+    - name: deploy web_app
+      become: true
+      become_user: root
+      block:
+        - name: pull image
+          docker_image:
+            name: "{{ docker_image }}:{{ image_tag }}"
+            source: pull
+
+        - name: start container
+          docker_container:
+            name: "{{ container_name }}"
+            image: "{{ docker_image }}:{{ image_tag }}"
+            state: started
+            network_mode: host

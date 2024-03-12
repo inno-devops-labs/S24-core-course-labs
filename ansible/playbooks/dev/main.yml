@@ -2,5 +2,6 @@
   remote_user: maintheme
   become: true
   roles:
-    - docker
+    - web_app
+    # - docker
 
