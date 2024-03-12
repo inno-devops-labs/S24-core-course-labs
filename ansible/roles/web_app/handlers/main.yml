@@ -1,0 +1,8 @@
+- name: Re-start Nginx
+  systemd:
+    name: nginx
+    state: restarted
+  listen:
+    - restart
+  tags:
+    - run_setup

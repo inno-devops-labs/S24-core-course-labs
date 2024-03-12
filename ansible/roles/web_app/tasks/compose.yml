@@ -1,0 +1,32 @@
+- name: Set up docker-compose environment
+  block:
+    - name: Ensure web app directory exists
+      file:
+        path: "{{ app_dir }}"
+        state: directory
+      tags:
+        - run_setup
+
+    - name: Deploy docker-compose from template
+      template:
+        src: docker-compose.yml.j2
+        dest: "{{ app_dir }}/docker-compose.yml"
+      tags:
+        - run_setup
+
+- name: Run docker
+  block:
+    - name: Clean Docker environment
+      command: docker-compose down
+      args:
+        chdir: "{{ app_dir }}"
+      tags:
+        - run_setup
+      
+    - name: Run docker-compose
+      command: docker-compose up -d
+      args:
+        chdir: "{{ app_dir }}"
+      tags:
+        - run_setup
+      notify: restart

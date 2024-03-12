@@ -1,0 +1,11 @@
+- name: Run wipe
+  import_tasks: wipe.yml
+  tags: run_wipe
+  
+- name: Setup nginx
+  import_tasks: nginx.yml
+  tags: run_setup
+
+- name: Run compose 
+  import_tasks: compose.yml
+  tags: run_setup

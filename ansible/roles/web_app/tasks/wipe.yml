@@ -1,0 +1,33 @@
+- name: Check if docker-compose file exists
+  stat:
+    path: "{{ app_dir }}/docker-compose.yml"
+  register: app_dir_exists
+  when: web_app_full_wipe | bool
+
+- name: Run Wipe
+  block:
+    - name: Delete Docker environment
+      command: docker-compose down -v
+      args:
+        chdir: "{{ app_dir }}"
+    
+    - name: Prune Docker networks and images
+      block:
+        - command: docker network prune -f
+        - command: docker image prune -a -f
+
+    - name: Remove configuration files
+      block:
+        - file:
+            path: "{{ app_dir }}/docker-compose.yml"
+            state: absent
+        - file:
+            path: /etc/nginx/sites-enabled/{{ app_name }}
+            state: absent
+      notify: restart
+      tags:
+        - run_wipe
+
+  when: web_app_full_wipe | bool and app_dir_exists.stat.exists
+  tags:
+    - run_wipe

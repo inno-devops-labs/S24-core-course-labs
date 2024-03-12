@@ -1,0 +1,15 @@
+- name: Ensure Nginx is installed and current
+  apt:
+    name: nginx
+    state: latest
+  notify: restart
+  tags:
+    - run_setup
+
+- name: Update Nginx config from template
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-enabled/{{ app_name }}
+  notify: restart
+  tags:
+    - run_setup
