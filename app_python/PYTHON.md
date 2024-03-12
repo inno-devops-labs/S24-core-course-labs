@@ -1,4 +1,6 @@
-# Flask seems like a good framework for my Python web application, based on the search results. Here's why Flask was the best option
+# Lab1
+
+## Flask seems like a good framework for my Python web application, based on the search results. Here's why Flask was the best option
 
 **Lightweight and Minimalistic:** The Flask web framework offers all the capabilities and tools needed to create online applications in a lightweight and minimalistic manner. Because it doesn't require complex boilerplate code or enforce an inflexible framework, it is accessible to novice developers.
 
@@ -18,4 +20,13 @@
 
 **Code Quality:** Following coding standards, modular organization, and code readability practices contribute to maintaining code quality. Pylint was used, code has been rated at 10/10
 
+# Lab3
 
+## Unit Tests for the Python Web Application
+The unit tests for the Python web application include a test case to validate the functionality of the index page. This test ensures that the page returns a status code of 200 and contains the expected content, specifically checking for the presence of the phrase "Current Time in Moscow" in the response.
+
+### Best Practices Applied
+The unit tests adhere to best practices such as:
+- **Readability**: The test cases are written in a clear and understandable manner, making it easier to comprehend the purpose of each test.
+- **Independence**: The tests are designed to be independent of external factors, ensuring their reliability and effectiveness.
+- **Regular Execution**: The tests are intended to be run regularly to validate the functionality of the application and catch any potential issues early in the development process.
