@@ -1,4 +1,4 @@
 - name: Install docker-compose
-  pip:
-    name: docker-compose
-    state: latest
+  ansible.builtin.apt:
+    name: docker-compose-plugin
+    state: present
