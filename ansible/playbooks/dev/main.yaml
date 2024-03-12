@@ -3,5 +3,11 @@
   become: true
 
   roles:
-    - geerlingguy.docker
+#    - geerlingguy.docker
     - docker
+
+- name: Deploy Web Application
+  hosts: all
+  become: true
+  roles:
+    - web_app

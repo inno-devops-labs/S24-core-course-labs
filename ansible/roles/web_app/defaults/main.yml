@@ -1,0 +1,4 @@
+web_app_container_name: "flask-moscow"
+web_app_docker_image: "nytakoe115/flask-moscow-app"
+web_app_compose_path: "/home/ubuntu"
+web_app_full_wipe: false

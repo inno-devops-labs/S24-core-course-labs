@@ -2,16 +2,21 @@
   apt:
     update_cache: yes
 
-- name: Install required packages
+- name: Install pip
   apt:
-    name:
-      - python3-pip
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg-agent
-      - software-properties-common
+    name: python3-pip
     state: present
+
+- name: Install Docker dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg-agent
+    - software-properties-common
 
 - name: Remove conflicting Docker GPG keys
   file:
@@ -23,23 +28,17 @@
   apt:
     autoclean: yes
 
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
 - name: Ensure correct Docker repository configuration
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
     state: present
     filename: docker
   register: docker_repo
-
-- name: Install Docker
-  apt:
-    name: docker-ce
-    state: present
-  when: docker_repo.changed
-
-- name: Install Docker Compose
-  pip:
-    name: docker-compose
-    state: present
 
 - name: Add Docker GPG key
   apt_key:
@@ -51,13 +50,16 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
     state: present
 
-- name: Install Docker (again, if repository configuration changed)
+- name: Install Docker
   apt:
-    name: docker-ce
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
     state: present
-  when: docker_repo.changed
 
-- name: Install Docker Compose (again, if repository configuration changed)
+- name: Install Docker Compose
   pip:
     name: docker-compose
     state: present
