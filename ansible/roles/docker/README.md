@@ -9,10 +9,6 @@ This Ansible role automates the installation of Docker on Ubuntu systems. It ens
 - Python 3
 - Ansible
 
-## Role Variables
-
-- `docker_pip_package`: The Docker Compose package name to be installed.
-
 ## Dependencies
 
 - python3

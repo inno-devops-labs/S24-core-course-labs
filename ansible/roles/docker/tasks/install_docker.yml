@@ -1,19 +1,17 @@
+- name: Cache handling
+  apt:
+    update_cache: yes
+
 - name: Installation of necessary system packages
   apt:
-    name:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg
-      - lsb-release
+    name: "{{ item }}"
     state: present
-    update_cache: yes
-  register: install_packages
-
-- name: Retrieve Docker GPG apt Key
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg-agent
+    - software-properties-common
 
 - name: Delete conflicting Docker GPG apt Key
   file:
@@ -21,14 +19,32 @@
     state: absent
   ignore_errors: yes
 
-- name: Add Docker Repository to apt sources
-  apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+- name: Delete cache
+  apt:
+    autoclean: yes
+
+- name: Retrieve Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
-- name: Update apt cache and install Docker Community Edition (docker-ce)
-  apt:
-    name: docker-ce
+- name: Add Docker repository to apt sources
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
     state: present
-    update_cache: yes
-  when: install_packages.changed
+
+- name: Check Docker configuration
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+    state: present
+    filename: docker
+  register: docker_repo
+
+- name: Install Docker
+  apt:
+    name: 
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+    state: present

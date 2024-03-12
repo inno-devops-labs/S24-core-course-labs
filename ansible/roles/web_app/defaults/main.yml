@@ -1,0 +1,4 @@
+web_app_wipe: false
+docker_image: "exemplerie/devops-lab"
+container_name: "time_app_container"
+compose_path: "/home/ubuntu"

@@ -1,0 +1,23 @@
+- name: Deploy Docker Compose
+  block:
+    - name: Copy Docker Compose
+      template:
+        src: docker-compose.yml.j2
+        dest: "{{ compose_path }}/docker-compose.yml"
+
+    - name: Check Docker Compose
+      pip:
+        name: docker-compose
+        state: present
+
+    - name: Run Docker Compose
+      command: docker compose up -d
+      args:
+        chdir: "{{ compose_path }}"
+  tags:
+    - deploy
+
+- include_tasks: 0-wipe.yml
+  when: web_app_wipe
+  tags:
+    - wipe

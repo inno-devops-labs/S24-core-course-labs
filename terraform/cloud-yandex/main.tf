@@ -27,7 +27,7 @@ resource "yandex_compute_instance" "devops-vm" {
   }
 
   network_interface {
-    subnet_id="e9b303ckh4h8drh4r2bs"
+    subnet_id="e9b9ag2o6frld99chit6"
     nat       = true
   }
 

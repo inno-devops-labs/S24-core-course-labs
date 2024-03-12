@@ -1,0 +1,7 @@
+- name: Remove container
+  docker_container:
+    name: "{{ container_name }}"
+    state: absent
+  tags:
+    - wipe
+
