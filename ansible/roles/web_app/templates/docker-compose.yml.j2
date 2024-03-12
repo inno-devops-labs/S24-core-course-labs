@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  web_app:
+    image: {{ docker_image }}:{{ docker_image_tag }}
+    container_name: {{ my_web_app }}
+    ports:
+      - "{{ 5000 }}:{{ 5000 }}"

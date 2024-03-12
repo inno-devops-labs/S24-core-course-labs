@@ -1,5 +1,11 @@
-- name: lab-05
+- name: lab-06
   hosts: all
   become: true
   roles:
     - docker
+
+- name: web app
+  hosts: all
+  become: true
+  roles:
+    - web_app
