@@ -1,10 +1,14 @@
 ---
-- name: Install Docker
+- name: Deploy app
   hosts: vm
   remote_user: habur331
   become: true
 
   roles:
-    - ../../roles/docker
-
-
+    - role: ../../roles/web_app
+      vars:
+      image_name: "habur331/devops-course:latest"
+      container_name: "devops-course"
+      ports: "80:5000"
+      web_app_full_wipe: false
+      

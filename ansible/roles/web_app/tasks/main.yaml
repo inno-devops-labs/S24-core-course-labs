@@ -1,0 +1,21 @@
+---
+- name: Get image nad run container
+  block:
+  - name: Get image
+    docker_image:
+      name: "{{ image_name }}"
+      source: pull
+      state: present
+
+  - name: Run container
+    docker_container:
+      name: "{{ container_name }}"
+      image: "{{ image_name }}"
+      published_ports: "{{ ports }}"
+      state: started
+  tags:
+    - run-app
+
+- include_tasks: 0-wipe.yaml
+  tags:
+    - wipe
