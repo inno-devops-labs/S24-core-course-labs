@@ -1,5 +1,11 @@
-- name: Pull docker image
-  command: docker pull ilnurha/dev_ops_course_core:latest
+- name: Pull and start docker image
+  block:
+    - name: Pull docker image
+      command: docker pull ilnurha/dev_ops_course_core:latest
+      tags:
+        - webserver
 
-- name: Execute docker image
-  command: docker run -p 5000:5000 ilnurha/dev_ops_course_core:latest
+    - name: Execute docker image
+      command: docker run -p 5000:5000 ilnurha/dev_ops_course_core:latest &
+      tags:
+        - webserver

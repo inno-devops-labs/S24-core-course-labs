@@ -1,3 +1,5 @@
-- import_tasks: install_pip.yml
-- import_tasks: install_docker.yml
 - import_tasks: install_compose.yml
+  tags:
+    - docker
+    - docker-compose
+    - pip
