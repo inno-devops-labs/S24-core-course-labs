@@ -1,0 +1,34 @@
+# Ignore files and directories commonly not needed in Docker image builds for a Flask app
+
+# Ignore version control files
+.git
+.gitignore
+
+# Ignore Python bytecode files
+*.pyc
+
+# Ignore development files
+__pycache__
+
+# Ignore environment configuration files
+.env
+
+# Ignore editor-specific files
+.vscode
+
+# Ignore local development settings
+*.log
+*.db
+
+# Ignore Docker-related files and directories
+.dockerignore
+Dockerfile
+
+# Ignore any local configurations
+config/
+
+# Ignore any local data
+data/
+
+# Ignore any local virtual environment
+venv/
