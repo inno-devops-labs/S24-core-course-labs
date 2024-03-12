@@ -6,7 +6,7 @@ __pycache__/
 key.json
 .terraform/
 app_python/terraform/git/main.tf
-
+geerlingguy.docker
 # C extensions
 *.so
 

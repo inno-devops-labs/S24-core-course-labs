@@ -1,0 +1,4 @@
+all:
+  hosts:
+    yandex_vm:
+      ansible_host: 62.84.126.157
