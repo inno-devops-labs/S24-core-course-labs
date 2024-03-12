@@ -13,10 +13,10 @@
         group: root
 
     - name: Running docker-compose
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: "{{ base_path }}"
         state: present
-        pull: true
+        pull: missing
   tags:
     - web_app
 

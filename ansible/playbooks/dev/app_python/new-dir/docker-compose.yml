@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+    app_python:
+        image: ramprin/devops_py:latest
+        container_name: app_python
+        restart: unless-stopped
+        ports:
+             - "8082:8080"

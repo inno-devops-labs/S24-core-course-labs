@@ -1,6 +1,6 @@
 - name: playbook
   gather_facts: no
-  hosts: all
+  hosts: localhost
   connection: local
   become: true
   roles:
