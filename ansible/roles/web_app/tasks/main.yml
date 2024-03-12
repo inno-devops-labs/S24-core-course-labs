@@ -1,0 +1,22 @@
+- name: App deploying to timeweb
+  block:
+    - name: Directory create
+      ansible.builtin.file:
+        name: "{{ app_dir }}/"
+        state: directory
+
+    - name: Docker compose file
+      ansible.builtin.template:
+        src: templates/docker-compose.yml.j2
+        dest: "{{ app_dir }}/compose.yaml"
+
+    - name: Start the app
+      community.docker.docker_compose_v2:
+        project_src: "{{ app_dir }}"
+        state: present
+  tags: web
+
+- name: Wipe
+  import_tasks: wipe.yml
+  tags: wipe
+  when: web_app_full_wipe == true
