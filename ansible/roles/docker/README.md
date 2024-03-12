@@ -1,21 +1,11 @@
-# Ansible Role: Docker
+# docker
 
-## Overview
-
-This Ansible role facilitates the installation of Docker and Docker Compose on Ubuntu systems. It streamlines the installation process by ensuring the presence of essential system packages, adding the Docker GPG apt key, configuring the Docker repository in the apt sources, and installing Docker Community Edition (docker-ce). Additionally, the role includes the flexibility to install Docker Compose with a specified package name.
+This Ansible role facilitates the installation of Docker and Docker Compose on Ubuntu systems.
 
 ## Requirements
 
 - Python 3
 - Ansible
-
-## Role Variables
-
-- `docker_pip_package`: The package name for Docker Compose. Default is set to "docker-compose."
-
-## Dependencies
-
-- python3
 - apt
 
 ## Example Playbook

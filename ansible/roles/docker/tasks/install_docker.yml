@@ -1,11 +1,14 @@
-- name: Install pip
-  apt:
-    name: python3-pip
-    state: present
-  become: true
+- name: Docker Install
+  block:
+    - name: Install pip
+      apt:
+        name: python3-pip
+        state: present
+      become: true  
 
-- name: Install Docker
-  apt:
-    name: docker
-    state: present
-  become: true
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+      become: true
+  tags: installdocker

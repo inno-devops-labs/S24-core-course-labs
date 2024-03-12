@@ -1,0 +1,8 @@
+# ansible/roles/web_app/templates/docker-compose.yml.j2
+version: '3'
+services:
+  flask-app:
+    image: "blbr13/app-flask:lab2"
+    ports:
+      - "8080:5000"
+    # Other configurations as needed

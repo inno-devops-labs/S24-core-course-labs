@@ -1,6 +1,5 @@
-- name: Task 1
+- name: Install and Deploy Docker
   hosts: localhost
   become: True
   roles:
-    - {role: ../../roles/docker}
-    - {role: ../../roles/web_app}
+    - web_app

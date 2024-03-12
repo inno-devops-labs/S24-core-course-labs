@@ -1,0 +1,23 @@
+- block:
+    - name: Stop Docker Container
+      docker_container:
+        name: "{{ docker_container_name }}"
+        state: stopped
+        force_kill: true
+      tags: stopcontainer
+
+    - name: Remove Docker Container
+      docker_container:
+        name: "{{ docker_container_name }}"
+        state: absent
+      tags: stopcontainer
+
+    - name: Remove Docker Image
+      docker_image:
+        name: "{{ docker_image_name }}"
+        state: absent
+      tags: removedockerimage
+  rescue:
+    - name: Print when errors
+      ansible.builtin.debug:
+        msg: "Error in removing image and/or container. It means that image and/or container don't exist => WIPE DONE :-)"

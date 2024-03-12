@@ -1,5 +1,6 @@
 - name: Install Docker Compose
-  pip:
-    name: "{{ docker_pip_package }}"
+  tags: installcompose
+  apt:
+    name: docker-compose
     state: present
   become: true

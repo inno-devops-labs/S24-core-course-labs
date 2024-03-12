@@ -1,14 +1,29 @@
----
-# tasks file for ansible/roles/web_app
-- name: Pull Docker Image
-  docker_image:
-    name: "{{ docker_image_name }}"
-    source: pull
+- block: 
+  - name: Pull Docker Image
+    docker_image:
+      name: "{{ docker_image_name }}"
+      source: pull
+    tags: pulldocker
 
-- name: Run Docker Container
-  docker_container:
-    name: "{{ docker_container_name }}"
-    image: "{{ docker_image_name }}"
-    state: started
-    ports:
-      - "8080:5000"
+  - name: Run Docker Container
+    docker_container:
+      name: "{{ docker_container_name }}"
+      image: "{{ docker_image_name }}"
+      state: started
+      ports:
+        - "{{ port }}:5000"
+    tags: runcontainer
+  tags: deploy
+
+- block:
+    - name: Deliver docker-compose.yml file
+      template:
+        src: docker-compose.yml.j2
+        dest: ../../../app_python/docker-compose.yml
+  tags: deploy, createcompose
+
+- block:
+    - name: Wipe Docker Container and Files
+      include_tasks: wipe.yml
+  tags: wipe
+  when: web_app_full_wipe

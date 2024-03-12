@@ -1,38 +1,43 @@
-Role Name
-=========
+# web_app
 
-A brief description of the role goes here.
+This Ansible role facilitates the deployment and management of a Flask-based web application running within a Docker container.
 
-Requirements
+## Requirements
 ------------
+This role has a dependency on the `docker` role. Ensure the `docker` role is included in your playbook or inventory file.
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
-
-Role Variables
+## Role Variables
 --------------
+The following variables can be configured:
+- `docker_image_name`: Name of the Docker image to be used.
+- `docker_container_name`: Name of the Docker container.
+- `port`: Port to expose the web application.
+- `web_app_full_wipe`: Boolean flag to determine whether to perform a full wipe (removing container and image).
+- `service_name`: Name of the service defined in `docker-compose.yml`.
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+## Usage
+1. Define role variables in your playbook or inventory files as needed.
+2. Include the `docker` role in your playbook to ensure Docker and Docker Compose are installed or install them by yourself.
+3. Include this role in your playbook.
+4. Run your playbook to deploy and manage the Flask web application.
 
-Dependencies
-------------
+## Task Overview
+- **Pull Docker Image**: Pulls the specified Docker image if not present locally.
+- **Run Docker Container**: Starts a Docker container based on the specified image.
+- **Deliver docker-compose.yml file**: Copies the `docker-compose.yml.j2` template file to the desired location.
+- **Wipe Docker Container and Files**: Removes Docker container and image if `web_app_full_wipe` is set to true.
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+## Tags
+Each task in this role is tagged for better control during playbook execution:
 
-Example Playbook
-----------------
+- `pulldocker`: Pulls the Docker image.
+- `runcontainer`: Runs the Docker container.
+- `deploy`: Handles deployment tasks.
+- `createcompose`: Delivers the docker-compose.yml file.
+- `wipe`: Performs wiping tasks if web_app_full_wipe is set to true.
+- `stopcontainer`: Stops and removes the Docker container.
+- `removedockerimage`: Removes the Docker image.
+- `errorhandling`: Handles errors during wiping.
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+## Note
+- Wiping actions are conditional on `web_app_full_wipe` to prevent accidental data loss.
