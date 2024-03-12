@@ -1,0 +1,5 @@
+- name: Wipe task
+  import_tasks: 0-wipe.yml
+
+- name: Compose task
+  import_tasks: docker-compose.yml

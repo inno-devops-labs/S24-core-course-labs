@@ -33,4 +33,3 @@ roles/.galaxy/
 .vagrant/
 
 roles/geerlingguy.docker/
-roles/web_app/
