@@ -1,13 +1,6 @@
-- name: Deploy python web app
-  gather_facts: no
-  hosts: all
-  connection: local
-  become: true
+- name: Install web_app
+  hosts: localhost
   roles:
-    - name: web_python    
+    - role: web_app
       vars:
-        docker_container: 'app_python'
-        docker_image: 'ramprin/devops_py:latest'
-        internal_port: 8080
-        external_port: 8082
-        app_name: 'app_python'
+        web_app_full_wipe: true

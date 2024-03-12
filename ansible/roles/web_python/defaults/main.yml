@@ -1,5 +1,11 @@
-docker_image: ramprin/devops_py:latest
-docker_container: app_python
-dir_name: 'new-dir'
+web_app_full_wipe: true
 
-web_app_full_wipe: false
+base_path: "app_python"
+web_app_service: "web_app"
+ports:
+  int: 8080
+  ext: 80
+docker:
+  user: "ramprin"
+  image_name: "devops_py"
+  tag: "latest"

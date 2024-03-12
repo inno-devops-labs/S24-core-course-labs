@@ -1,22 +1,24 @@
-- name: Start of the deploy.
+ name: Deploying web_app
   block:
-    - name: Create new dir
-      tags: new-dir
-      file:
-        path: "{{ dir_name }}/"
+    - name: Create a directory if it does not exist
+      ansible.builtin.file:
+        path: "{{ base_path }}"
         state: directory
 
-    - name: Create a docker-compose.yml file
-      tags: docker-compose
+    - name: Moving template to the dest
       ansible.builtin.template:
-        src: templates/docker-compose.yml.j2
-        dest: "{{ dir_name }}/docker-compose.yml"
+        src: docker-compose.yml.j2
+        dest: "{{ base_path }}/docker-compose.yml"
+        owner: root
+        group: root
 
-    - name: Run the app using docker-compose
-      tags: docker-compose-run
+    - name: Running docker-compose
       community.docker.docker_compose:
-        project_src: "/ansible/playbooks/dev/app_python/new-dir-py"
+        project_src: "{{ base_path }}"
         state: present
+        pull: true
+  tags:
+    - web_app
 
 - name: Wipe the app
   import_tasks: 0-wipe.yml

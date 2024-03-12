@@ -1,8 +1,7 @@
-version: '3.8'
 services:
-    {{app_name}}:
-        image: {{ docker_image }}
-        container_name: {{ docker_container }}
-        restart: unless-stopped
-        ports:
-             - "{{ external_port }}:{{ internal_port }}"
+  {{ web_app_service }}:
+    image: {{ docker.user }}/{{ docker.image_name }}:{{ docker.tag }}
+    container_name: {{ web_app_service }}
+    ports:
+      - "{{ ports.ext }}:{{ ports.int }}"
+    restart: always
