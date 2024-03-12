@@ -19,3 +19,28 @@
 
 - include_tasks: install_docker.yml
 - include_tasks: install_compose.yml
+
+- name: Ensure /etc/docker/ directory exists.
+  file:
+    path: /etc/docker
+    state: directory
+    mode: 0755
+  when: docker_daemon_options.keys() | length > 0
+
+- name: Configure Docker daemon options.
+  copy:
+    content: "{{ docker_daemon_options | to_nice_json }}"
+    dest: /etc/docker/daemon.json
+    mode: 0644
+  when: docker_daemon_options.keys() | length > 0
+  notify: restart docker
+
+- name: Ensure docker users are added to the docker group.
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: true
+  with_items: "{{ docker_users }}"
+
+- name: Reset ssh connection to apply user changes.
+  meta: reset_connection

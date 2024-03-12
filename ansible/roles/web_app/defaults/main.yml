@@ -1,0 +1,6 @@
+---
+app_name: app
+image_name: dianatomiya/devops:p_v1.0
+ports: "80:80"
+web_app_full_wipe: false
+envs:

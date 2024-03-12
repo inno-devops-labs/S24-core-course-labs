@@ -122,3 +122,58 @@ Here is `➜ ansible-inventory --list` output:
         }
     }
 ```
+
+## Deploy web app
+```bash
+    +        "GPG_KEY=E3FF2839C048B25C084DEBE9B26995E310250568",
+    +        "LANG=C.UTF-8",
+    +        "PATH=/home/app/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    +        "PYTHON_GET_PIP_SHA256=dfe9fd5c28dc98b5ac17979a953ea550cec37ae1b47a5116007395bfacff2ab9",
+    +        "PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/dbf0c85f76fb6e1ab42aa672ffca6f0a675d9ee4/public/get-pip.py",
+    +        "PYTHON_PIP_VERSION=23.0.1",
+    +        "PYTHON_SETUPTOOLS_VERSION=58.1.0",
+    +        "PYTHON_VERSION=3.9.18"
+        ],
+    -    "image": "sha256:51093643b14f456a2d8c9c0f06feda88d73e11be4c889d6a59e68a70d47c118d",
+    +    "image": "sha256:0ab53fef5d599aa980830fd55209edcff9d9c057eda46df6b4203a5b0f4ab114",
+        "running": true
+    }
+
+    [DEPRECATION WARNING]: The default value "ignore" for image_name_mismatch has been deprecated and will change to "recreate" in
+    community.docker 4.0.0. In the current situation, this would cause the container to be recreated since the current 
+    container's image name "dianatomiya/python_devops:latest" does not match the desired image name "dianatomiya/devops:p_v1.0". 
+    This feature will be removed from community.docker in version 4.0.0. Deprecation warnings can be disabled by setting 
+    deprecation_warnings=False in ansible.cfg.
+    changed: [terraform1]
+
+    TASK [web_app : Create a directory for docker-compose if it does not exist.] **************************************************
+    --- before
+    +++ after
+    @@ -1,4 +1,4 @@
+    {
+        "path": "/tmp/dianatomiya/devops:p_v1.0",
+    -    "state": "absent"
+    +    "state": "directory"
+    }
+
+    changed: [terraform1]
+
+    TASK [web_app : Deliver docker compose to the host.] **************************************************************************
+    --- before
+    +++ after: /home/roxy/.ansible/tmp/ansible-local-1830786z21853z/tmp9liu9es8/docker-compose.yml.j2
+    @@ -0,0 +1,7 @@
+    +version: '3.10'
+    +
+    +services:
+    +  app:
+    +    image: dianatomiya/devops:p_v1.0:latest
+    +    ports:
+    +      - "80:80"
+    \ No newline at end of file
+
+    changed: [terraform1]
+
+    PLAY RECAP ********************************************************************************************************************
+    terraform1                 : ok=14   changed=5    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
+```
