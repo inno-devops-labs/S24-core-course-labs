@@ -53,7 +53,7 @@ In this lab, you will utilize Ansible to set up a Continuous Deployment (CD) pro
    |-- meta
    |   `-- main.yml
    |-- tasks
-   |   |-- 0-wipe.yml
+   |   |-- 0-wipe-0.yml
    |   `-- main.yml
    `-- templates
       `-- docker-compose.yml.j2
