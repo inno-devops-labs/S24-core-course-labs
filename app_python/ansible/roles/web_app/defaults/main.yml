@@ -1,0 +1,3 @@
+wipe: false
+image: "orillion1/lab2"
+devops_dir: "/home/orillion/devops"

@@ -1,0 +1,29 @@
+---
+  - name: Deploy Docker Compose for web application
+    block:
+      - name: Create directory for the app
+        ansible.builtin.file:
+          name: "{{ devops_dir }}/"
+          state: directory
+
+      - name: Deploy compose.yaml
+        ansible.builtin.template:
+          src: templates/docker-compose.yml.j2
+          dest: "{{ devops_dir }}/docker-compose.yaml"
+        
+      - name: Install pip
+        ansible.builtin.apt:
+          name: python3-pip
+          state: present
+  
+      - name: Start the app
+        community.docker.docker_compose_v2:
+          project_src: "{{ devops_dir }}"
+          state: present
+    tags:
+      - deploy
+    
+  - include_tasks: wipe.yml
+    when: wipe
+    tags:
+      - wipe

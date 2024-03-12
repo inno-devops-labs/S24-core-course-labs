@@ -1,0 +1,11 @@
+- name: Directory Remove
+  ansible.builtin.file:
+    path: "{{ devops_dir }}/"
+    state: absent
+
+- name: Remove the container
+  community.docker.docker_compose_v2:
+    project_src: "{{ devops_dir }}"
+    state: absent
+    remove_images: all
+    remove_volumes: true
