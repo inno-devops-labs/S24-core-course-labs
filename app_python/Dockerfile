@@ -20,6 +20,6 @@ USER anton
 EXPOSE 5001
 
 CMD python3 app.py
-HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:5001/health || exit 1
 
 STOPSIGNAL SIGKILL

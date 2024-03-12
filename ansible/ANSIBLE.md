@@ -63,3 +63,56 @@ Result of `ansible-inventory -i inventory --list`
     }
 }
 ```
+
+Result of `ansible-playbook playbooks/dev/main.yaml` for Lab 6
+```bash
+TASK [geerlingguy.docker : Add Docker repository.] *****************************
+ok: [host_01]
+
+TASK [geerlingguy.docker : Install Docker packages.] ***************************
+skipping: [host_01]
+
+TASK [geerlingguy.docker : Install Docker packages (with downgrade option).] ***
+ok: [host_01]
+
+TASK [geerlingguy.docker : Install docker-compose plugin.] *********************
+skipping: [host_01]
+
+TASK [geerlingguy.docker : Install docker-compose-plugin (with downgrade option).] ***
+ok: [host_01]
+
+TASK [geerlingguy.docker : Ensure /etc/docker/ directory exists.] **************
+skipping: [host_01]
+
+TASK [geerlingguy.docker : Configure Docker daemon options.] *******************
+skipping: [host_01]
+
+TASK [geerlingguy.docker : Ensure Docker is started and enabled at boot.] ******
+ok: [host_01]
+
+TASK [geerlingguy.docker : Ensure handlers are notified now to avoid firewall conflicts.] ***
+
+TASK [geerlingguy.docker : include_tasks] **************************************
+skipping: [host_01]
+
+TASK [geerlingguy.docker : Get docker group info using getent.] ****************
+skipping: [host_01]
+
+TASK [geerlingguy.docker : Check if there are any users to add to the docker group.] ***
+skipping: [host_01]
+
+TASK [geerlingguy.docker : include_tasks] **************************************
+skipping: [host_01]
+
+TASK [web_app : Add user to Docker group] **************************************
+changed: [host_01]
+
+TASK [web_app : Pull the Docker image] *****************************************
+ok: [host_01]
+
+TASK [web_app : Run the Docker container] **************************************
+ok: [host_01]
+
+PLAY RECAP *********************************************************************
+host_01                    : ok=14   changed=1    unreachable=0    failed=0    skipped=12   rescued=0
+```

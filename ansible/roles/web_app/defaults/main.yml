@@ -1,0 +1,5 @@
+docker_image: "nad777/anton_nekhaev_flask"
+docker_tag: "latest"
+container_name: "web_app"
+exposed_port: "5001"
+app_directory: "app"

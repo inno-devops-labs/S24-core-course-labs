@@ -1,0 +1,5 @@
+services:
+   web_app:
+     image: "{{ docker_image }}:{{ docker_tag }}"
+     ports:
+       - "{{ exposed_port }}:{{ exposed_port }}"
