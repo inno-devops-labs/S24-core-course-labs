@@ -1,10 +1,11 @@
 plugin: amazon.aws.aws_ec2
-profile: "devops-profile"
+profile: mosta
 regions:
   - us-west-2
 include_filters:
   - tag:Name:
-      - 'mosta'
+      - "timezone-apps"
 compose:
   ansible_host: public_ip_address
   ansible_user: "'ubuntu'"
+security_groups: timezone-apps-sg

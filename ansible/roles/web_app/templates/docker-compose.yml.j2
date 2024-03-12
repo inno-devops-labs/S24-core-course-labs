@@ -1,0 +1,12 @@
+version: "3"
+services:
+  app_javascript:
+    image: mostafakira/app_js
+    ports:
+      - "5000:5000"
+    container_name: app_js
+  app_python:
+    image: mostafakira/app_python
+    ports:
+      - "5001:5000"
+    container_name: app_python
