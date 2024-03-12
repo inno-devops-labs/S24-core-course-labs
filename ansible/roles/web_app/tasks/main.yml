@@ -1,0 +1,24 @@
+- name: Wipe docker containers out
+  import_tasks: wipe.yml
+
+- name: Deliver docker compose
+  template:
+    src: ../templates/docker-compose.yml.j2
+    dest: /root/
+    owner: root
+    mode: '0644'
+  tags:
+    - deliver_docker_compose
+  
+- name: Install docker and start web application
+  block:
+    - name: Pull the image from Dockerhub
+      docker_image:
+        name: "{{ image_name }}"
+        source: pull
+    - name: Run a container
+      docker_container:
+        name: "{{ container_name }}"
+        image: "{{ image_name }}"
+        state: started
+        network_mode: host

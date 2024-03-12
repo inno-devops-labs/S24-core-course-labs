@@ -1,18 +1,4 @@
 - hosts: webservers
-  remote_user: oreh
+  remote_user: root
   roles:
-    # - role: geerlingguy.docker
-    #   become: yes
-    #   docker_packages_state: absent
-
-    - role: roles/docker
-      become: yes
-  
-  # tasks:
-  #   - name: Create mm folder
-  #     file:
-  #       path: '{{ home }}'
-  #       state: directory
-  #       owner: '{{ user }}'
-  #       group: '{{ user }}'
-        
+    - role: roles/web_app

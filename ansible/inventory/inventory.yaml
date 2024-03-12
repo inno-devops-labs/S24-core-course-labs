@@ -1,4 +1,4 @@
 webservers:
   hosts:
-    51.250.10.101:
+    80.76.60.143:
       server_name: yandexcloud 
