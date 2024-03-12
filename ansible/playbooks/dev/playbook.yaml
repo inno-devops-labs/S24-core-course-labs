@@ -1,6 +1,10 @@
 - name: Install Docker and run
   hosts: all
   become: true
+  vars:
+    docker_image: "brutaljesus/devops_lab_2"
+    external_port: "8000"
+    app_folder: "/app"
   roles:
     - docker
     - web_app

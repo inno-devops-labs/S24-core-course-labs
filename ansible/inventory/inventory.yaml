@@ -1,4 +1,4 @@
 myhost:
   hosts:
-    158.160.107.10:
+    158.160.58.237:
       ansible_user: ubuntu

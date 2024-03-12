@@ -1,20 +1,42 @@
-- name: Start and enable Docker
-  service:
-    name: docker
-    state: started
-    enabled: yes
+- name: Prepare the directory
+  block:
+    - name: Create the directory
+      ansible.builtin.file:
+        name: "{{ app_folder }}/"
+        state: directory
+  tags:
+    - prepare_directory
+    - deploy
 
-- name: Pull Docker image
-  docker_image:
-    name: brutaljesus/devops_lab_2
-    source: pull
-    state: present
+- name: Deploy the app
+  block:
+    - name: Start and enable Docker
+      service:
+        name: docker
+        state: started
+        enabled: yes
 
-- name: Run Docker Container
-  docker_container:
-    name: python-app
-    image: brutaljesus/devops_lab_2
-    ports:
-      - "8000:8000"
-    detach: yes
-    restart_policy: always
+    - name: Pull Docker image
+      docker_image:
+        name: brutaljesus/devops_lab_2
+        source: pull
+        state: present
+
+    - name: Create the Docker-Compose file
+      template:
+        src: docker-compose.yml.j2
+        dest: "{{ app_folder }}/docker-compose.yml"
+
+    - name: Run Docker Container
+      community.docker.docker_compose_v2:
+        files:
+          - "{{ app_folder }}/docker-compose.yml"
+        project_src: "{{ app_folder }}/"
+  tags:
+    - deploy_in_directory
+    - deploy
+
+- name: Wipe the app
+  import_tasks: wipe.yaml
+  when: web_app_full_wipe == true
+  tags: wipe

@@ -7,5 +7,5 @@
 - name: Install Docker
   ansible.builtin.import_tasks: install-docker.yaml
 
-- name: Install Docker-Compose
-  ansible.builtin.import_tasks: install-compose.yaml
+#- name: Install Docker-Compose
+#  ansible.builtin.import_tasks: install-compose.yaml
