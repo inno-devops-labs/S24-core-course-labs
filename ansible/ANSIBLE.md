@@ -52,7 +52,7 @@ In the playbook, I employed identical tasks as in Task 1. The only alteration wa
 ```
 
 To leverage additional details, please refer to `./ansible/roles/docker/README.md` for comprehensive instructions.
-# Deployment command output
+# Deployment command output (lab 5)
 command:
 ```bash
 ansible-playbook ./ansible/playbooks/dev/main.yaml
@@ -97,6 +97,84 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=10   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 ```
+# Deployment command output (lab 6)
+command:
+```bash
+ansible-playbook ./ansible/playbooks/dev/main.yaml
+```
+output:
+```bash
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+PLAY [Docker playbook] *****************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [docker : include_tasks] **********************************************************************************************************************************************************
+included: /mnt/c/Git/S24-core-course-labs/ansible/roles/docker/tasks/install_docker.yml for localhost
+
+TASK [docker : Install pip] ************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [docker : Add Docker APT repository] **********************************************************************************************************************************************
+ok: [localhost]
+
+TASK [docker : Add Docker's official GPG key] ******************************************************************************************************************************************
+ok: [localhost]
+
+TASK [docker : Install Docker dependencies] ********************************************************************************************************************************************
+ok: [localhost]
+
+TASK [docker : Install Docker] *********************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [docker : include_tasks] **********************************************************************************************************************************************************
+included: /mnt/c/Git/S24-core-course-labs/ansible/roles/docker/tasks/install_compose.yml for localhost
+
+TASK [docker : Install Docker Compose] *************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [web_app : Pull Docker image] *****************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [web_app : Run Docker container] **************************************************************************************************************************************************
+changed: [localhost]
+
+PLAY RECAP *****************************************************************************************************************************************************************************
+localhost                  : ok=11   changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+glebass@LAPTOP-4V6LKT02:/mnt/c/Git/S24-core-course-labs$ ansible-playbook ./ansible/playbooks/dev/main.yaml 
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+PLAY [Docker playbook] *****************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [docker : include_tasks] **********************************************************************************************************************************************************
+included: /mnt/c/Git/S24-core-course-labs/ansible/roles/docker/tasks/install_docker.yml for localhost
+
+TASK [docker : Install pip] ************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [docker : Add Docker APT repository] **********************************************************************************************************************************************
+ok: [localhost]
+
+TASK [docker : Add Docker's official GPG key] ******************************************************************************************************************************************
+ok: [localhost]
+
+TASK [docker : Install Docker dependencies] ********************************************************************************************************************************************
+TASK [web_app : Pull Docker image] *****************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [web_app : Run Docker container] **************************************************************************************************************************************************
+ok: [localhost]
+
+PLAY RECAP *****************************************************************************************************************************************************************************
+localhost                  : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
 # `ansible-inventory` command output
 command:
 ```bash
