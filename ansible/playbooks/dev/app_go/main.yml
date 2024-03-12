@@ -3,11 +3,11 @@
   roles:
     - role: web_python
       vars:
-        web_app_full_wipe: true
+        web_app_full_wipe: false
         docker:
           user: "ramprin"
           image_name: "devops_go"
           tag: "latest"
         ports:
-          int: 80
+          int: 8080
           ext: 80
