@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  {{ docker_container_name }}:
+    image: {{ web_app_docker_image }}
+    ports:
+      - "{{ ports.external }}:{{ ports.internal }}"
+    restart: always
