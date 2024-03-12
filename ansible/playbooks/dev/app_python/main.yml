@@ -1,0 +1,11 @@
+- name: Deploy python app to yandex cloud
+  hosts: all
+  become: true
+
+  roles:
+    - role: ../../../roles/web_app
+  vars:
+    dir: app_python
+    app_image: pgrammer/app_python
+    app_port: 5000
+    web_app_full_wipe: true

@@ -94,6 +94,8 @@ host_01                    : ok=7    changed=6    unreachable=0    failed=0    s
 ## Inventory Details
 
 Output of `ansible-inventory -i inventory/default_yc_ec2.yml --list`
+
+```text
 {
     "_meta": {
         "hostvars": {
@@ -115,4 +117,75 @@ Output of `ansible-inventory -i inventory/default_yc_ec2.yml --list`
         ]
     }
 }
+```
+
+## Lab 6, Task 1: Application Deployment
+
+The last 50 lines of the output from your deployment command:
+
+```bash
+ansible-playbook playbooks/app_python/main.yml --diff -i inventory/default_yc_ec2.yml
+```
+
+```text
+PLAY [Deploy python app to yandex cloud] ****************************************************
+
+TASK [Gathering Facts] **********************************************************************
+ok: [host_01]
+
+TASK [docker : Install pip] *****************************************************************
+ok: [host_01]
+
+TASK [docker : Install dependencies] ********************************************************
+ok: [host_01]
+
+TASK [docker : Add Docker GPG key] **********************************************************
+ok: [host_01]
+
+TASK [docker : Add Docker repository] *******************************************************
+ok: [host_01]
+
+TASK [docker : Install Docker] **************************************************************
+ok: [host_01]
+
+TASK [docker : Install Docker Compose] ******************************************************
+ok: [host_01]
+
+TASK [../../../roles/web_app : Make workdir] ************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "app_python/",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [host_01]
+
+TASK [../../../roles/web_app : Docker-compose file] *****************************************
+--- before
++++ after: /home/anron/.ansible/tmp/ansible-local-848602xkqmcpom/tmpjpk6v82_/docker-compose.yml.j2
+@@ -0,0 +1,6 @@
++version: '3'
++services:
++  web_app:
++    image: "pgrammer/app_python"
++    ports:
++      - "5000:5000"
+
+changed: [host_01]
+
+TASK [../../../roles/web_app : Launch the app] **********************************************
+changed: [host_01]
+
+TASK [../../../roles/web_app : Wipe Logic] **************************************************
+skipping: [host_01]
+
+TASK [../../../roles/web_app : Delete app dir] **********************************************
+skipping: [host_01]
+
+PLAY RECAP **********************************************************************************
+host_01                    : ok=10   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+```
 

@@ -1,0 +1,11 @@
+- name: Deploy kotlin app to yandex cloud
+  hosts: all
+  become: true
+
+  roles:
+    - role: ../../../roles/web_app
+  vars:
+    dir: app_kotlin
+    app_image: pgrammer/app_kotlin
+    app_port: 8080
+    web_app_full_wipe: true

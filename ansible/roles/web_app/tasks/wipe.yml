@@ -1,0 +1,12 @@
+- name: Wipe Logic
+  tags:
+    - wipe
+  community.docker.docker_compose_v2:
+    project_src: "{{ dir }}"
+    state: absent
+    remove_volumes: true
+    remove_images: all
+- name: Delete app dir
+  ansible.builtin.file:
+    path: "{{ dir }}/"
+    state: absent
