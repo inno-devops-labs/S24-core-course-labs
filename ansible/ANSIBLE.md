@@ -112,3 +112,66 @@ rostislav@rostislavpc:~/devops_labs/ansible$ ansible-inventory -i inventory/defa
     }
 }
 ```
+
+# Ansible lab 6
+
+Last 50 lines of `ansible-playbook playbooks/ус/main.yml --diff`
+
+```
+rostislav@rostislavpc:~/devops_labs/ansible$ ansible-playbook playbooks/yc/main.yml --diff -K
+
+...
+
+TASK [docker : Ensure Docker is started and enabled at boot.] **********************************************************
+ok: [localhost]
+
+TASK [docker : include_tasks] ******************************************************************************************
+included: /home/rostislav/devops_labs/ansible/roles/docker/tasks/install_compose.yml for localhost
+
+TASK [docker : Check current docker-compose version.] ******************************************************************
+ok: [localhost]
+
+TASK [docker : set_fact] ***********************************************************************************************
+ok: [localhost]
+
+TASK [docker : Delete existing docker-compose version if it's different.] **********************************************
+skipping: [localhost]
+
+TASK [docker : Install Docker Compose (if configured).] ****************************************************************
+skipping: [localhost]
+
+TASK [docker : Install docker-compose plugin.] *************************************************************************
+skipping: [localhost]
+
+TASK [docker : Install docker-compose-plugin (with downgrade option).] *************************************************
+skipping: [localhost]
+
+TASK [docker : Ensure handlers are notified now to avoid firewall conflicts.] ******************************************
+
+TASK [docker : Get docker group info using getent.] ********************************************************************
+skipping: [localhost]
+
+TASK [docker : Check if there are any users to add to the docker group.] ***********************************************
+skipping: [localhost]
+
+TASK [docker : include_tasks] ******************************************************************************************
+skipping: [localhost]
+
+TASK [web_app : Create a directory if it does not exist] ***************************************************************
+ok: [localhost]
+
+TASK [web_app : Move template to dest] *********************************************************************************
+ok: [localhost]
+
+TASK [web_app : Run docker-compose] ************************************************************************************
+ok: [localhost]
+
+TASK [web_app : Stop and remove Docker container] **********************************************************************
+skipping: [localhost]
+
+TASK [web_app : Remove directory if exists] ****************************************************************************
+skipping: [localhost]
+
+PLAY RECAP *************************************************************************************************************
+localhost                  : ok=26   changed=0    unreachable=0    failed=0    skipped=28   rescued=0    ignored=0
+```
