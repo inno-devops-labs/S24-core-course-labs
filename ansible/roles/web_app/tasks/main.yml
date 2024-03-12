@@ -1,0 +1,35 @@
+- name: Run wipe
+  import_tasks: wipe.yml
+  tags: run_wipe
+  
+- name: Docker Compose Environment Setup
+  block:
+    - name: Check that the directory exists and its a directory
+      file:
+        path: '{{ app_dir }}'
+        state: directory
+      tags:
+        - run_setup
+
+    - name: Apply the template to run docker compose
+      template:
+        src: docker-compose.yml.j2
+        dest: '{{ app_dir }}/docker-compose.yml'
+      tags:
+        - run_setup
+
+- name: Start docker container
+  block:
+    - name: Remove existing docker containers
+      command: docker-compose down
+      args:
+        chdir: '{{ app_dir }}'
+      tags:
+        - run_setup
+
+    - name: Start the compose
+      command: docker-compose up -d
+      args:
+        chdir: '{{ app_dir }}'
+      tags:
+        - run_setup

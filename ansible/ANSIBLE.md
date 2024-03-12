@@ -86,9 +86,152 @@ ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
 PLAY RECAP ***************************************************************************************************************************************************
 ec2-3-124-209-126.eu-central-1.compute.amazonaws.com : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
 
-ansible-inventory -i ./ansible/inventory/default_aws_ec2.yml --list
-
 ```
+
+## Output of the `ansible-playbook ./playbooks/dev/app_python/main.yml` command for `app_python`
+
+
+
+PLAY [Install docker] ************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/docker : Install `pip`] *************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/docker : Refresh apt packages] ******************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/docker : Install/Update docker.io] **************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/docker : Install docker] ************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/docker : Install docker-compose] ****************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+PLAY [Deploy Python Image] *******************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [docker : Install `pip`] ****************************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [docker : Refresh apt packages] *********************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [docker : Install/Update docker.io] *****************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [docker : Install docker] ***************************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [docker : Install docker-compose] *******************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : Check for the presence of docker compose file] ****************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : Delete Docker environment] ************************************************************************
+skipping: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : command] ******************************************************************************************
+skipping: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : command] ******************************************************************************************
+skipping: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : file] *********************************************************************************************
+skipping: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : Check that the directory exists and its a directory] **********************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : Apply the template to run docker compose] *********************************************************
+changed: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : Remove existing docker containers] ****************************************************************
+changed: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : Start the compose] ********************************************************************************
+changed: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+PLAY RECAP ***********************************************************************************************************************
+ec2-3-124-209-126.eu-central-1.compute.amazonaws.com : ok=17   changed=3    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+
+## Output of the `ansible-playbook ./playbooks/dev/app_rust/main.yml` command for `app_rust`
+PLAY [Install docker] ************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/docker : Install `pip`] *************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/docker : Refresh apt packages] ******************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/docker : Install/Update docker.io] **************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/docker : Install docker] ************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/docker : Install docker-compose] ****************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+PLAY [Deploy Rust Image] *********************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [docker : Install `pip`] ****************************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [docker : Refresh apt packages] *********************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [docker : Install/Update docker.io] *****************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [docker : Install docker] ***************************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [docker : Install docker-compose] *******************************************************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : Check for the presence of docker compose file] ****************************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : Delete Docker environment] ************************************************************************
+skipping: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : command] ******************************************************************************************
+skipping: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : command] ******************************************************************************************
+skipping: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : file] *********************************************************************************************
+skipping: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : Check that the directory exists and its a directory] **********************************************
+ok: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : Apply the template to run docker compose] *********************************************************
+changed: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : Remove existing docker containers] ****************************************************************
+changed: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+TASK [../../../roles/web_app : Start the compose] ********************************************************************************
+changed: [ec2-3-124-209-126.eu-central-1.compute.amazonaws.com]
+
+PLAY RECAP ***********************************************************************************************************************
+ec2-3-124-209-126.eu-central-1.compute.amazonaws.com : ok=17   changed=3    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0  
 
 ## Best Practices
 

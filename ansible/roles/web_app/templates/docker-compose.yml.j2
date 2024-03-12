@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  web:
+    image: ejedavid/{{ app_name }}:latest
+    ports:
+      - "{{ app_port }}:{{ app_port }}"

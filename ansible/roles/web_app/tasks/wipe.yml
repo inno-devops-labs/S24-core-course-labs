@@ -1,0 +1,29 @@
+- name: Check for the presence of docker compose file
+  stat:
+    path: "{{ app_dir }}/docker-compose.yml"
+  register: present_dir
+  when: web_app_full_wipe | bool
+
+- name: Start the Wipe
+  block:
+    - name: Delete Docker environment
+      command: docker-compose down -v
+      args:
+        chdir: "{{ app_dir }}"
+    
+    - name: Prune Docker networks and images
+      block:
+        - command: docker network prune -f
+        - command: docker image prune -a -f
+
+    - name: Remove configuration files
+      block:
+        - file:
+            path: "{{ app_dir }}/docker-compose.yml"
+            state: absent
+      tags:
+        - run_wipe
+
+  when: web_app_full_wipe | bool and present_dir.stat.exists
+  tags:
+    - run_wipe
