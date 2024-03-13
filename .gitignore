@@ -1,3 +1,28 @@
+# LAB 1 PART
+
+# From https://github.com/pallets/flask/blob/main/.gitignore
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.pytest_cache
+.idea/
+.vscode/
+__pycache__/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+docs/_build/
+dist/
+venv/
+
+
+
+
+
+# ___________________________
 # LAB 4 PART
 
 # Local .terraform directories

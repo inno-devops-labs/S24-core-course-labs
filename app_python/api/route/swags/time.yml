@@ -1,0 +1,7 @@
+responses:
+    200:
+      description: 
+        Time in Moscow.
+      examples:
+        application/json:
+          time: "2022-01-01T00:00:00Z"
