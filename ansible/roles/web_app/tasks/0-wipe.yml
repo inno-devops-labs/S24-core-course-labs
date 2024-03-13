@@ -1,0 +1,5 @@
+- name: Remove container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    state: absent
+  tags: wipe
