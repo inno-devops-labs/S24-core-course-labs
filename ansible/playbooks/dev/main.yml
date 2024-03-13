@@ -1,5 +1,19 @@
-- name: Docker Playbook
+---
+- name: Deploy Python App Docker Image
   hosts: all
   roles:
-    - role: docker
-      become: yes
+    - name: Deploy
+      role: web_app
+      image_name: "engaezik/devops-flask-app"
+      image_tag: "latest"
+      publish_ports:
+        - "8080:8080"
+      wipe: false
+      tags: [ ]
+
+    - name: Wipe
+      role: web_app
+      image_name: "engaezik/devops-flask-app"
+      image_tag: "latest"
+      wipe: true
+      tags: [ never, wipe ]
