@@ -62,3 +62,11 @@ jobs:
           context: ./app_python
           file: ./app_python/Dockerfile
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops:latest
+
+  snyk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.10@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

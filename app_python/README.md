@@ -75,3 +75,24 @@ the tests using the following command:
 ```bash
 poetry run pytest
 ```
+
+## CI
+
+### Triggers and Jobs Summary
+
+#### Triggers:
+Triggers are events that initiate a workflow run. In the provided YAML configuration, the triggers specified are:
+- **push:** Triggers the workflow when code is pushed to the main branch.
+- **pull_request:** Triggers the workflow when a pull request is opened or updated on the main branch.
+
+#### Jobs:
+Jobs are a collection of steps that execute on the same runner. In the YAML configuration, there are two jobs defined:
+1. **install_clear_test_lint:**
+   - **Runs on:** ubuntu-latest
+   - **Steps:** Includes setting up Python, caching dependencies, installing Poetry, installing dependencies, running tests, and running linting.
+
+2. **docker:**
+   - **Runs on:** ubuntu-latest
+   - **Steps:** Includes logging in to Docker Hub, building a Docker image, and pushing the image to Docker Hub.
+
+Jobs in a workflow can run in parallel or sequentially, depending on the configuration. Each job can have its own specific runner and steps.
