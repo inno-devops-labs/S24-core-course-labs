@@ -1,0 +1,4 @@
+- name: Docker Compose
+  ansible.builtin.package:
+    name: docker-compose
+    state: present

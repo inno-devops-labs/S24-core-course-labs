@@ -1,0 +1,7 @@
+- name: Deploy Docker
+  hosts: localhost
+  connection: local
+  gather_facts: yes 
+  become: true
+  roles:
+    - docker
