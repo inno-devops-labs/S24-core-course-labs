@@ -25,6 +25,7 @@ inventory = ./inventory
 remote_user = ubuntu
 private_key_file = ~/.ssh/devops-key.pem
 host_key_checking = False
+roles_path = ./roles
 ```
 
 - Since I am using WSL, I had to export the `ANSIBLE_CONFIG` environment variable.
@@ -33,6 +34,7 @@ host_key_checking = False
 $ export ANSIBLE_INVENTORY=./inventory
 $ export ANSIBLE_PRIVATE_KEY_FILE=~/.ssh/devops-key.pem
 $ export ANSIBLE_HOST_KEY_CHECKING=False
+$ export ANSIBLE_ROLES_PATH=./roles
 ```
 
 - Then I faced an issue with parsing the inventory file. I had to install the `boto` package.
