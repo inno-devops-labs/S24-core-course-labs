@@ -1,4 +1,16 @@
-# Output
+# Task 1
+- Intalled existing role `geerlingguy.docker`
+- Utilizied the following playbook
+```
+- hosts: all
+  roles:
+    - geerlingguy.docker
+```
+- Checked all worked
+
+# Task 2
+
+## Output
 ```
 PLAY [Install Docker] ********************************************************************************************************************
 
@@ -33,7 +45,7 @@ PLAY RECAP *********************************************************************
 51.250.92.223              : ok=9    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
-# Inventory
+## Inventory
 ```
 {
     "_meta": {
