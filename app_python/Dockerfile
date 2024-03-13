@@ -15,7 +15,6 @@ USER myuser
 
 # Copy only the necessary files
 COPY static ./static
-COPY templates ./templates
 COPY app.py requirements.txt ./
 
 # Install dependencies
