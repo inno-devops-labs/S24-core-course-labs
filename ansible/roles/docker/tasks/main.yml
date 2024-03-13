@@ -1,9 +1,3 @@
-- name: Install pip
-  apt:
-    name: python3-pip
-    state: present
-  become: true
-
 - name: Install docker
   ansible.builtin.include_tasks:
     file: install_docker.yml

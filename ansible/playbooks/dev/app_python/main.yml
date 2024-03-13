@@ -1,0 +1,11 @@
+- name: Ping all hosts
+  hosts: all
+  tasks:
+    - name: Ping my hosts
+      ansible.builtin.ping:
+
+- name: Deploy web_app python
+  hosts: all
+  become: yes
+  roles:
+    - web_app

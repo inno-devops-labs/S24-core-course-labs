@@ -1,0 +1,32 @@
+---
+- name: wipe role
+  tags: wipe
+  when: web_app_full_wipe
+  block:
+    - name: Check if directory /{{ app_name }} exists
+      ansible.builtin.stat:
+        path: "/{{ app_name }}"
+      register: web_app_compose_dir
+
+    - name: Check if Docker Compose exists
+      ansible.builtin.stat:
+        path: "/{{ app_name }}/docker-compose.yml"
+      register: compose_status
+
+    - name: Remove Docker Compose containers if they exist
+      ansible.builtin.command: docker-compose -p {{ app_name }} down --remove-orphans
+      args:
+        chdir: "/{{ app_name }}"
+      when: compose_status.stat.exists == true
+
+    - name: Remove Docker Compose files if they exist
+      ansible.builtin.file:
+        path: "/{{ app_name }}/docker-compose.yml"
+        state: absent
+      when: compose_status.stat.exists == true
+
+    - name: Remove app directory /{{ app_name }}
+      when: web_app_compose_dir.stat.exists
+      ansible.builtin.file:
+        path: "/{{ app_name }}"
+        state: absent
