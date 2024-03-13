@@ -1,0 +1,13 @@
+- name: Pull the latest Docker image
+  docker_image:
+    name: tsepanx/app_python:latest
+    state: present
+
+- name: Run Docker container
+  docker_container:
+    name: app_python-1
+    image: tsepanx/app_python:latest
+    ports:
+      - "8000:8000"
+    state: started
+
