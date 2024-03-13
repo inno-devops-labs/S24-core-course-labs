@@ -1,0 +1,12 @@
+- name: Run service
+  block:
+    - name: Render docker-compose.yml.j2 template
+      ansible.builtin.template:
+        src: templates/docker-compose.yml.j2
+        dest: "/docker-compose.yml"
+        mode: "0644"
+
+    - name: Create and start service
+      command: docker compose up
+      args:
+        chdir: /root

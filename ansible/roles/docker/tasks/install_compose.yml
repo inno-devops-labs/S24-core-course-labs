@@ -4,6 +4,5 @@
     state: present
 
 - name: Install docker-compose
-  ansible.builtin.pip:
-    name: docker-compose
-    executable: pip3
+  ansible.builtin.apt:
+    name: docker-compose-plugin
