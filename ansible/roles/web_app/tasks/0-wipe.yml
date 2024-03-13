@@ -1,0 +1,25 @@
+---
+- name: Docker compose file existence
+  stat:
+    path: "{{ web_app_dir }}/docker-compose.yml"
+  register: web_app_dir_exists
+  when: web_app_full_wipe | bool
+
+- name: Wipe
+  block:
+    - name: Docker container stop
+      command: docker-compose down
+      args:
+        chdir: "{{ web_app_dir }}"
+
+    - name: Docker images remove
+      command: docker image prune -a -f
+
+    - name: Compose file remove
+      file:
+        path: "{{ web_app_dir }}/docker-compose.yml"
+        state: absent
+
+  when: web_app_full_wipe | bool and web_app_dir_exists.stat.exists
+  tags:
+    - wipe

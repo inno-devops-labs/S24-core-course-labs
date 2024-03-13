@@ -1,4 +1,3 @@
-# Add ansible user to the docker group
 - name: Add {{ ansible_user }} to the docker group
   user:
     name: "{{ ansible_user }}"
@@ -7,7 +6,6 @@
   tags: docker
   listen: start_docker
 
-# Restart Docker using systemctl
 - name: Start docker
   systemd:
     name: docker
