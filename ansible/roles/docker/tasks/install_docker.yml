@@ -1,12 +1,14 @@
-- name: Add Docker GPG apt Key
-  ansible.builtin.apt_key:
-    url: "{{ docker_repo_url }}/gpg"
-    state: present
+- name: Configure Docker repository
+  block:
+  - name: Add Docker GPG apt Key
+    ansible.builtin.apt_key:
+      url: "{{ docker_repo_url }}/gpg"
+      state: present
 
-- name: Add Docker Repository
-  ansible.builtin.apt_repository:
-    repo: "deb {{ docker_repo_url }} {{ ubuntu_version }} {{ docker_release_channel }}"
-    state: present
+  - name: Add Docker Repository
+    ansible.builtin.apt_repository:
+      repo: "deb {{ docker_repo_url }} {{ ubuntu_version }} {{ docker_release_channel }}"
+      state: present
 
 - name: Install Docker with apt
   ansible.builtin.apt:
