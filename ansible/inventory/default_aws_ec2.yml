@@ -1,4 +1,6 @@
 plugin: amazon.aws.aws_ec2
-profile: "a1kuat"
 regions:
- - us-east-1
+  - us-east-1
+compose:
+  ansible_connection: ssh
+  ansible_user: ubuntu

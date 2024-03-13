@@ -1,16 +1,18 @@
----
-- name: Check {{ ansible_user }} access
+# Add ansible user to the docker group
+- name: Add {{ ansible_user }} to the docker group
   user:
     name: "{{ ansible_user }}"
     groups: docker
     append: true
   tags: docker
-  listen: run_docker
+  listen: start_docker
 
-- name: Run docker
+# Restart Docker using systemctl
+- name: Start docker
   systemd:
     name: docker
     state: restarted
   tags: docker
-  delay: 10
-  listen: run_docker
+  retries: 5
+  delay: 30
+  listen: start_docker
