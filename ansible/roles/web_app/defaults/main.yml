@@ -1,6 +1,6 @@
 web_app_full_wipe: false
-docker_image: "dfarkhutdinova/app"
+image_name : "flask_app"
+image_dir : "~/app"
+ports : "5000:5000"
+image_tag : "latest"
 docker_image_tag: latest
-docker_container_name: my_web_app
-docker_container_port: 5000
-docker_host_port: 5000
