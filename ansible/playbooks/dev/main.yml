@@ -1,5 +1,11 @@
-- name: Run Docker role
+- name: Install docker & deploy python app
   hosts: all
-  roles: 
-    - role: docker
-      become: true
+  become: true
+  vars:
+    folder: "/app_python"
+    image: "vectorsmaster/flask-app"
+    ex_port: "5000"
+    in_port: "5000"
+  roles:
+    - docker
+    - web_app
