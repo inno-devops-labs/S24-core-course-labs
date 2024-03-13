@@ -102,4 +102,3 @@ The next part is to push our docker image to docker hub. This part is divided al
 - Tag the Image
 
 - Push the image to docker hub
-
