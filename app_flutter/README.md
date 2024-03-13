@@ -8,6 +8,33 @@ Ensure you have Flutter SDK installed on your system. You can follow the [offici
 
 ## Installation
 
+### How to build
+
+```bash
+docker build -t flutter_web .
+```
+
+## How to pull
+
+```bash
+docker pull flutter_web:latest 
+```
+
+## How to run
+
+```bash
+docker run -d -p 80:80 timurharin/flutter_web:latest
+```
+
+## Use
+
+Service is here `http://127.0.0.1`
+
+![](./images/from_docker.png)
+
+
+## Installation (legacy)
+
 Clone the repository and navigate to the project directory. Install the
 dependencies using Flutter:
 

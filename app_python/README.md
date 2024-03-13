@@ -7,7 +7,32 @@ Application to get moscow time
 Ensure you have [Python](https://www.python.org/) installed on your system. This
 project uses [Poetry](https://python-poetry.org/) for dependency management.
 
-## Installation
+
+## How to build
+
+```bash
+docker build -t timur_devops .
+```
+
+## How to pull
+
+```bash
+docker pull timur_harin_devops:latest 
+```
+
+## How to run
+
+```bash
+docker run --name app -d -p 8080:5000 timur_harin_devops:latest
+```
+
+## Use
+
+Service is here `http://127.0.0.1:8080`
+
+<br> <br/>
+
+## Installation (legasy)
 
 Clone the repository and navigate to the project directory. Install the
 dependencies using Poetry:
