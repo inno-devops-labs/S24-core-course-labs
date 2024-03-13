@@ -3,6 +3,7 @@
   apt:
     name: python3-pip
     state: present
+  tags: [pip]
 
 - name: Install Docker dependencies
   become: true
@@ -15,28 +16,33 @@
     - curl
     - gnupg-agent
     - software-properties-common
+  tags: [docker-deps]
 
 - name: Add Docker GPG key
   become: true
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
+  tags: [docker-gpg]
 
 - name: Add Docker repository
   become: true
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
     state: present
+  tags: [docker-repo]
 
 - name: Install Docker
   become: true
   apt:
     name: docker-ce
     state: present
+  tags: [docker]
 
 - name: Install Docker Compose
   become: true
   pip:
     name: docker-compose
     state: present
+  tags: [docker-compose]
 
