@@ -1,10 +1,10 @@
 - name: Docker tasks
   become: true
   block:
-    - name: Apt packages updating
+    - name: Update Apt package
       apt:
         update_cache: yes
-        cache_valid_time: 86400
+        cache_valid_time: 86400 # 24 hours
       tags: docker
 
     - name: Docker.io package updating

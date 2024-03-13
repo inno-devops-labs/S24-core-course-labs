@@ -1,4 +1,4 @@
-- name: Python3-pip upgrading
+- name: Upgrade Python3-pip
   apt:
     name: python3-pip
     state: latest
@@ -10,13 +10,13 @@
     state: latest
   tags: pip
 
-- name: Install docker sdk
+- name: Docker SDK installation
   pip:
     name: docker == 6.1.3
     state: present
   tags: docker
 
-- name: Install docker-compose
+- name: docker-compose installation
   pip:
     name: docker-compose
     state: latest
