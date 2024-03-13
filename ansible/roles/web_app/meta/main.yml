@@ -1,0 +1,7 @@
+dependencies:
+  - role: docker
+galaxy_info:
+  author: skril
+  description: Ansible role for setting up a Python web app using Docker
+  license: MIT
+  min_ansible_version: "2.16"

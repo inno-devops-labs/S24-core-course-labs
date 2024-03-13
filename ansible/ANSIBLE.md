@@ -124,3 +124,120 @@ ubuntu_server              : ok=9    changed=6    unreachable=0    failed=0    s
     }
 }
 ```
+
+## Lab 6
+
+```sh
+❯ ansible-playbook playbooks/dev/main.yml --tags deploy --diff 
+
+PLAY [Deploy Python App Docker Image] ***********************************************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Install docker] ******************************************************************************************************************************************
+included: /Users/a.ragulin/Vault/Study/Innopolis/year3semester2/DevOps/homeworks/ansible/roles/docker/tasks/install_docker.yml for ubuntu_server
+
+TASK [docker : Install required packages] *******************************************************************************************************************************
+ok: [ubuntu_server] => (item=apt-transport-https)
+ok: [ubuntu_server] => (item=ca-certificates)
+ok: [ubuntu_server] => (item=curl)
+ok: [ubuntu_server] => (item=software-properties-common)
+
+TASK [docker : Add Docker's official GPG key] ***************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Add Docker repository] ***********************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Update apt and install Docker] ***************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Install docker-compose] **********************************************************************************************************************************
+included: /Users/a.ragulin/Vault/Study/Innopolis/year3semester2/DevOps/homeworks/ansible/roles/docker/tasks/install_compose.yml for ubuntu_server
+
+TASK [docker : Install pip] *********************************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Install docker-compose] **********************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [web_app : Set up] *************************************************************************************************************************************************
+included: /Users/a.ragulin/Vault/Study/Innopolis/year3semester2/DevOps/homeworks/ansible/roles/web_app/tasks/setup.yml for ubuntu_server
+
+TASK [web_app : Render docker-compose.yml.j2 template] ******************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [web_app : Create and start service] *******************************************************************************************************************************
+changed: [ubuntu_server]
+
+TASK [web_app : Wipe] ***************************************************************************************************************************************************
+skipping: [ubuntu_server]
+
+PLAY RECAP **************************************************************************************************************************************************************
+ubuntu_server              : ok=12   changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+```
+
+```sh
+❯ ansible-playbook playbooks/dev/main.yml --tags wipe --diff
+
+PLAY [Deploy Python App Docker Image] ***********************************************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Install docker] ******************************************************************************************************************************************
+included: /Users/a.ragulin/Vault/Study/Innopolis/year3semester2/DevOps/homeworks/ansible/roles/docker/tasks/install_docker.yml for ubuntu_server
+
+TASK [docker : Install required packages] *******************************************************************************************************************************
+ok: [ubuntu_server] => (item=apt-transport-https)
+ok: [ubuntu_server] => (item=ca-certificates)
+ok: [ubuntu_server] => (item=curl)
+ok: [ubuntu_server] => (item=software-properties-common)
+
+TASK [docker : Add Docker's official GPG key] ***************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Add Docker repository] ***********************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Update apt and install Docker] ***************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Install docker-compose] **********************************************************************************************************************************
+included: /Users/a.ragulin/Vault/Study/Innopolis/year3semester2/DevOps/homeworks/ansible/roles/docker/tasks/install_compose.yml for ubuntu_server
+
+TASK [docker : Install pip] *********************************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Install docker-compose] **********************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [web_app : Set up] *************************************************************************************************************************************************
+skipping: [ubuntu_server]
+
+TASK [web_app : Wipe] ***************************************************************************************************************************************************
+included: /Users/a.ragulin/Vault/Study/Innopolis/year3semester2/DevOps/homeworks/ansible/roles/web_app/tasks/0-wipe.yml for ubuntu_server
+
+TASK [web_app : Tear down service] **************************************************************************************************************************************
+changed: [ubuntu_server]
+
+TASK [web_app : Delete the image associated with the container] *********************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [web_app : Delete temporary docker-compose.yml file] ***************************************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/docker-compose.yml",
+-    "state": "file"
++    "state": "absent"
+ }
+
+changed: [ubuntu_server]
+
+PLAY RECAP **************************************************************************************************************************************************************
+ubuntu_server              : ok=13   changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+```
+
