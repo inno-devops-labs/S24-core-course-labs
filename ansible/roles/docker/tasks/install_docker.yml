@@ -25,3 +25,9 @@
     state: present
     update_cache: yes
   notify: Restart Docker
+
+- name: Add user to Docker group
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes
