@@ -10,3 +10,5 @@
         ports:
           - "{{ docker_port }}:{{ docker_port }}"
   tags: deploy
+
+- include_tasks: 0-wipe.yml
