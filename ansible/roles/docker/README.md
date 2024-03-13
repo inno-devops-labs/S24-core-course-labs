@@ -18,4 +18,4 @@ This role automates the installation of Docker and Docker Compose on a host mach
 4. Modify the playbook (`playbooks/dev/main.yaml`) if needed.
 5. Run the playbook to deploy Docker:
    ```bash
-   ansible-playbook -i inventory/default_aws_ec2.yml playbooks/dev/main.yaml
+   ansible-playbook -i inventory/default_aws_ec2.yml playbooks/dev/main.yml

@@ -9,6 +9,8 @@ This repository uses Ansible for infrastructure automation and Docker deployment
 
 ## Output
 
+### Docker
+
 The command:
 
 `ansible-playbook playbooks/dev/main.yml --diff`
@@ -119,3 +121,144 @@ Gives the following output:
     }
 }
 ```
+---
+### Python App
+
+P.S: I change AWS instances beacuase the free trials end.
+
+Deploying the application by the command:
+
+`ansible-playbook -i inventory/default_aws_ec2.yml playbooks/dev/python_app/main.yml`
+
+Gives the following output:
+
+```bash
+PLAY [Install Docker] **************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+ok: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [docker : Update apt packages] ************************************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [docker : Install/Update docker.io package] ***********************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [docker : Install/Upgrade python3-pip] ****************************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [docker : Upgrade pip] ********************************************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [docker : Install docker sdk] *************************************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [docker : Install docker-compose] *********************************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+RUNNING HANDLER [docker : Give ubuntu docker group access] *************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+RUNNING HANDLER [docker : Run docker] **********************************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+PLAY [Python web app deployment] ***************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+ok: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [docker : Update apt packages] ************************************************************************************
+ok: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [docker : Install/Update docker.io package] ***********************************************************************
+ok: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [docker : Install/Upgrade python3-pip] ****************************************************************************
+ok: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [docker : Upgrade pip] ********************************************************************************************
+ok: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [docker : Install docker sdk] *************************************************************************************
+ok: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [docker : Install docker-compose] *********************************************************************************
+ok: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [web_app : Create App Directory] **********************************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [web_app : Ensure Docker Service is Running and Enabled] **********************************************************
+ok: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [web_app : Pull Docker Image] *************************************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [web_app : Generate Docker-Compose Configuration] *****************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [web_app : Remove existing Docker containers] *********************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [web_app : Start Docker Compose] **********************************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+PLAY RECAP *************************************************************************************************************
+ec2-35-94-146-206.us-west-2.compute.amazonaws.com : ok=22   changed=13   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
+```
+---
+
+Wiping the application by the command:
+
+`ansible-playbook playbooks/dev/python_app/main.yml --tags "wipe" --diff`
+
+Gives the following output:
+
+```bash
+PLAY [Install Docker] **************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+ok: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+PLAY [Python web app deployment] ***************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+ok: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [web_app : include_tasks] *****************************************************************************************
+included: /home/g-akleh/Desktop/VSCode/S24-core-course-labs/ansible/roles/web_app/tasks/wipe.yml for ec2-35-94-146-206.us-west-2.compute.amazonaws.com
+
+TASK [web_app : Check Docker Compose File Presence] ********************************************************************
+ok: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [web_app : Remove Docker Environment] *****************************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [web_app : command] ***********************************************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [web_app : command] ***********************************************************************************************
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+TASK [web_app : file] **************************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/ubuntu-python-web-app/docker-compose.yml",
+-    "state": "file"
++    "state": "absent"
+ }
+
+changed: [ec2-35-94-146-206.us-west-2.compute.amazonaws.com]
+
+PLAY RECAP *************************************************************************************************************
+ec2-35-94-146-206.us-west-2.compute.amazonaws.com : ok=8    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+## Best Practices
+
+1. Used tags for more precise control over playbook execution.
+2. Implemented wipe logic, with a control variable to determine whether to wipe the web app or not.
+3. Templates were used to generate configuration files for Docker Compose, ensuring consistency and ease of maintenance.
+4. Roles were separated logically

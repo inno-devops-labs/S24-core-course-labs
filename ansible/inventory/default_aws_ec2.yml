@@ -1,7 +1,7 @@
 all:
   hosts:
-    ec2-54-185-58-229.us-west-2.compute.amazonaws.com:
+    ec2-35-94-146-206.us-west-2.compute.amazonaws.com:
   vars:
     ansible_user: ubuntu
-    ansible_ssh_private_key_file: ~/.ssh/manual_pair.pem
+    ansible_ssh_private_key_file: ~/.ssh/devops.pem
     ansible_connection: ssh

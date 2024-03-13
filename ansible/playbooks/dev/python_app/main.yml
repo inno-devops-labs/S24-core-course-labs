@@ -1,0 +1,14 @@
+- name: Install Docker
+  hosts: all
+  roles:
+    - role: docker
+      become: true
+
+- name: Python web app deployment
+  hosts: all
+  roles: 
+  - role: web_app
+    become: true
+    vars:
+      app_name: "ubuntu-python-web-app"
+      app_port: 5000

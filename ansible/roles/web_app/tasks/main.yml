@@ -1,0 +1,47 @@
+- name: Prepare Directory for Deployment
+  block:
+    - name: Create App Directory
+      ansible.builtin.file:
+        path: "{{ app_dir }}/"
+        state: directory
+  tags:
+    - deploy
+
+- name: App Deployment
+  block:
+    - name: Ensure Docker Service is Running and Enabled
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Pull Docker Image
+      docker_image:
+        name: "{{ image_name }}"
+        source: pull
+        state: present
+
+    - name: Generate Docker-Compose Configuration
+      template:
+        src: docker-compose.yml.j2
+        dest: "{{ app_dir }}/docker-compose.yml"
+
+    - name: Remove existing Docker containers
+      command: docker-compose down
+      args:
+        chdir: "{{ app_dir }}"
+
+    - name: Start Docker Compose
+      command: docker-compose up -d
+      args:
+        chdir: "{{ app_dir }}"
+
+  tags:
+    - deploy
+
+- name: Wipe App
+  block:
+    - include_tasks: wipe.yml
+      when: web_app_full_wipe
+  tags:
+    - wipe

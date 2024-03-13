@@ -1,0 +1,5 @@
+host_name: "{{ ansible_host }}"
+image_name: ghadeero/{{ app_name }}
+app_dir: "/{{ app_name }}"
+image_tag : latest
+web_app_full_wipe: true
