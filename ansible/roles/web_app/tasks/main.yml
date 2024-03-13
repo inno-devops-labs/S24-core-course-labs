@@ -6,18 +6,16 @@
         - full_wipe_with_repo
       when: web_app_full_wipe == true
 
-#    - name: Pull docker image
-#      command: docker pull {{ repo_name }}:{{ version }}
-#
-#    - name: Execute docker image
-#      command: docker run -d -p {{ inner_port }}:{{ app_port }} {{ repo_name }}:{{ version }} &
+    - name: Pull docker image
+      command: docker pull {{ repo_name }}:{{ version }}
+
+    - name: Execute docker image
+      command: docker run -d -p {{ inner_port }}:{{ app_port }} {{ repo_name }}:{{ version }} &
+
     - name: Render Docker Compose
       ansible.builtin.template:
           src: docker-compose.yml.j2
           dest: docker-compose.yml
-
-#    - name: Build docker compose
-#      shell: docker-compose build
 
     - name: docker-compose up
       shell: docker-compose up
