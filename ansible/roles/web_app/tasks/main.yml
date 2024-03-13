@@ -1,0 +1,26 @@
+---
+- name: Wipe
+  when: web_app_wipe is defined and web_app_wipe
+  tags: wipe
+  ansible.builtin.include_tasks:
+    file: 0-wipe.yml
+
+- name: Configure files
+  tags: deploy
+  block:
+    - name: Make app directory
+      ansible.builtin.file:
+        path: "{{ web_app_folder }}"
+        state: directory
+
+    - name: Copy Docker Compose template
+      ansible.builtin.template:
+        src: docker-compose.yml.j2
+        dest: "{{ web_app_folder }}/docker-compose.yml"
+
+- name: Make docker app
+  tags: deploy
+  community.docker.docker_compose_v2:
+    project_src: "{{ web_app_folder }}"
+    remove_orphans: true
+    state: present

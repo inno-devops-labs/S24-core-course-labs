@@ -106,3 +106,46 @@ host_01                    : ok=11   changed=0    unreachable=0    failed=0    s
   }
 }
 ```
+
+`ansible-playbook playbooks/dev/main.yml -i inventory`
+
+```bash
+PLAY [Deploy app_python] *********************************************************************
+TASK [Gathering Facts] ***********************************************************************
+ok: [terraform-vm]
+TASK [docker : Install Docker] ***************************************************************
+included: /home/ivanchebykin/Documents/S24-core-course-labs/ansible/roles/docker/tasks/install_docker.yml for terraform-vm
+TASK [docker : Update apt package index] *****************************************************
+changed: [terraform-vm]
+TASK [docker : Install required system packages] *********************************************
+ok: [terraform-vm] => (item=apt-transport-https)
+ok: [terraform-vm] => (item=ca-certificates)
+ok: [terraform-vm] => (item=gnupg-agent)
+ok: [terraform-vm] => (item=software-properties-common)
+TASK [docker : Add Docker's official GPG key] ************************************************
+ok: [terraform-vm]
+TASK [docker : Add Docker's official apt repository] *****************************************
+ok: [terraform-vm]
+TASK [docker : Install Docker and dependencies] **********************************************
+ok: [terraform-vm] => (item=docker-ce)
+ok: [terraform-vm] => (item=docker-ce-cli)
+ok: [terraform-vm] => (item=containerd.io)
+TASK [docker : Install Docker Compose] *******************************************************
+included: /home/ivanchebykin/Documents/S24-core-course-labs/ansible/roles/docker/tasks/install_compose.yml for terraform-vm
+TASK [docker : Install Docker Compose] *******************************************************
+ok: [terraform-vm]
+TASK [web_app : Wipe] *******************************************************************
+included: /home/ivanchebykin/Documents/S24-core-course-labs/ansible/roles/web_app/tasks/0-wipe.yml for terraform-vm
+TASK [web_app : Wipe images] *****************************************************************
+changed: [terraform-vm]
+TASK [web_app : Deploy dockerized app] *******************************************************
+included: /home/ivanchebykin/Documents/S24-core-course-labs/ansible/roles/web_app/tasks/1-deploy.yml for terraform-vm
+TASK [web_app : Create app directory] ********************************************************
+changed: [terraform-vm]
+TASK [web_app : Copy Docker Compose template] ************************************************
+changed: [terraform-vm]
+TASK [web_app : Create and start the services] ***********************************************
+changed: [terraform-vm]
+PLAY RECAP ***********************************************************************************
+terraform-vm               : ok=16   changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```

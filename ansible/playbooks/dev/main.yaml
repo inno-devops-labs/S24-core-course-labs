@@ -1,6 +1,7 @@
-- name: Install Docker
+- name: Add new role
   hosts: all
   become: true
 
   roles:
-    - geerlingguy.docker
+    - web_app
+    - docker

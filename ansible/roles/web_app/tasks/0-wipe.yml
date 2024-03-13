@@ -1,0 +1,4 @@
+- name: Remove web folder
+  ansible.builtin.file:
+    path: "{{ web_app_folder }}"
+    state: "absent"
