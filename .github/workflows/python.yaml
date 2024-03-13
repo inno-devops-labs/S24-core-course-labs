@@ -27,13 +27,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      - name: Move to folder
-        run: cd app_python
-
       - name: Install poetry
         uses: abatilo/actions-poetry@v2
         with:
           poetry-version: "1.7.1"
+      
+      - name: Move to project root
+        run: cd app_python
+
 
       - name: Install dependencies
         run: poetry install
