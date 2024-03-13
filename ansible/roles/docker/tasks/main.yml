@@ -2,6 +2,8 @@
   ansible.builtin.package:
     name: "{{ pip_package }}"
     state: present
+  tags:
+    - packages
 
 - include_tasks: install_docker.yml
 

@@ -1,3 +1,6 @@
 - name: Install Docker Compose
   ansible.builtin.pip:
     name: "{{ docker_compose_pip_package }}"
+  tags:
+    - packages
+    - docker-compose
