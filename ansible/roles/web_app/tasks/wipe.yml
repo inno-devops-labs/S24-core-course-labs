@@ -1,0 +1,11 @@
+---
+- name: Wipe Web Application
+  when: wipe_web_app
+  tags:
+    - wipe_web_app
+  block:
+    - name: Stop and remove the {{container_name}} container
+      docker_container:
+        name: "{{ container_name }}"
+        state: absent
+        keep_volumes: false

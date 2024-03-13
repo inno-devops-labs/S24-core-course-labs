@@ -109,3 +109,50 @@ ansible-inventory -i <name_of_your_inventory_file>.yaml --list
 
 - I used the proper files organization
 - I used `ansible.cfg` to setup global settings
+
+## Lab 6 Output
+
+```sh
+ansible-playbook playbooks/dev/main.yml --diff
+```
+
+```plaintext
+PLAY [Setup Web Application] *************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************
+ok: [devops]
+
+TASK [docker : Install `pip`] ************************************************************************************************
+ok: [devops]
+
+TASK [docker : Docker installation] ******************************************************************************************
+ok: [devops]
+
+TASK [docker : docker-compose installation] **********************************************************************************
+ok: [devops]
+
+TASK [web_app : Stop and remove the moscow_time container] *******************************************************************
+skipping: [devops]
+
+TASK [web_app : Deliver docker compose] **************************************************************************************
+ok: [devops]
+
+TASK [web_app : Pull the image from Dockerhub] *******************************************************************************
+changed: [devops]
+
+TASK [web_app : Run a container] *********************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+-    "exists": false,
+-    "running": false
++    "exists": true,
++    "running": true
+ }
+
+changed: [devops]
+
+PLAY RECAP *******************************************************************************************************************
+devops                     : ok=7    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0 
+```

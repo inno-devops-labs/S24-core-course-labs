@@ -1,0 +1,25 @@
+---
+- name: Wipe the app
+  import_tasks: wipe.yml
+
+- name: Deliver docker compose
+  template:
+    src: templates/docker-compose.yml.j2
+    dest: "/home/{{ ansible_user }}/docker-compose.yml"
+    owner: "{{ ansible_user }}"
+    mode: '0644'
+  tags:
+    - deliver_docker_compose
+
+- name: Pull image and run the app
+  block:
+    - name: Pull the image from Dockerhub
+      docker_image:
+        name: "{{ image_name }}"
+        source: pull
+    - name: Run a container
+      docker_container:
+        name: "{{ container_name }}"
+        image: "{{ image_name }}"
+        state: started
+        network_mode: host

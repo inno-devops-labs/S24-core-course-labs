@@ -1,0 +1,6 @@
+services:
+  web-app: 
+    image: {{ container_name }}
+    restart: unless-stopped
+    ports:
+      - "0.0.0.0:80:8000"

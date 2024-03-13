@@ -1,5 +1,6 @@
-- name: Install Docker and Docker Compose
-  hosts: all
+---
+- name: Setup Web Application
+  hosts: virtual_machines
   roles:
-    - role: docker
+    - role: roles/web_app
       become: true
