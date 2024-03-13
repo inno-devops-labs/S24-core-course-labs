@@ -36,3 +36,17 @@ An Ansible role to deploy a web application using Docker containers.
 2. Include this role in your Ansible playbook, specifying the `docker_services` variable with a list of services to deploy.
 
 3. Run the playbook to deploy your web application using Docker containers.
+
+## Live Preview
+
+### Javascript App
+
+[Javascript App](http://54.187.139.195:5000/)
+
+![Javascrips app preview](../../screenshots/js.png)
+
+### Python App
+
+[Python App](http://54.187.139.195:5001/)
+
+![Python app preview](../../screenshots/py.png)
