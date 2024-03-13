@@ -1,0 +1,7 @@
+---
+docker_image: anastasiamartynova/my-docker-repo:latest
+docker_image_tag: latest
+docker_container_name: "time_app_container"
+docker_container_port: 8080
+docker_host_port: 8080
+web_app_wipe: false

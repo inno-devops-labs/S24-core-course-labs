@@ -1,5 +1,6 @@
 # Ansible
 
+# Lab 5
 ## Deployment Output
 ```bash
 (venv) anastasiamartynova@Anastasias-MacBook-Pro ansible % ansible-playbook playbooks/dev/main.yaml --diff
@@ -68,4 +69,62 @@ ubuntu_server              : ok=10   changed=0    unreachable=0    failed=0    s
     }
 }
 
+```
+
+# Lab 6
+## Deployment Output
+- the last 50 lines of the output
+```bash
+(venv) anastasiamartynova@Anastasias-MacBook-Pro ansible % ansible-playbook playbooks/dev/main.yaml --diff
+
+
+TASK [docker : Add Docker Repository to apt sources] **************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Update apt cache and install Docker Community Edition (docker-ce)] *********************************************************************************
+skipping: [ubuntu_server]
+
+TASK [docker : Install docker-compose] ****************************************************************************************************************************
+included: /Users/anastasiamartynova/PycharmProjects/S24-core-course-labs/ansible/roles/docker/tasks/install_compose.yml for ubuntu_server
+
+TASK [docker : Install pip] ***************************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Set Docker Compose pip package name] ***************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [docker : Install Docker Compose] ****************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [web_app : Pull Docker image] ********************************************************************************************************************************
+ok: [ubuntu_server]
+
+TASK [web_app : Run Docker container] *****************************************************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+-    "exists": false,
+-    "running": false
++    "exists": true,
++    "running": true
+ }
+
+changed: [ubuntu_server]
+
+TASK [web_app : Remove Docker container] **************************************************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+-    "exists": true,
+-    "running": true
++    "exists": false,
++    "running": false
+ }
+
+changed: [ubuntu_server]
+
+PLAY RECAP ********************************************************************************************************************************************************
+ubuntu_server              : ok=23   changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
 ```
