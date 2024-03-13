@@ -1,5 +1,20 @@
-- name: Docker
+- name: Deploying docker image
   hosts: all
   roles:
-    - role: docker
-      become: yes
+    - name: Deploy
+      role: web_app
+      image_name: "sapushha/sapushha_flask_app"
+      image_tag: "ansible"
+      ports:
+        - "8080:8080"
+      wipe: false
+      tags: [ ]
+
+    - name: Wipe
+      role: web_app
+      image_name: "sapushha/sapushha_flask_app"
+      image_tag: "ansible"
+      ports:
+        - "8080:8080"
+      wipe: true
+      tags: [ never, wipe ]

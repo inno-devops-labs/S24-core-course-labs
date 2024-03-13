@@ -1,0 +1,3 @@
+image_name: "my_image"
+image_tag: "my_tag"
+wipe: false

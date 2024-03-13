@@ -1,0 +1,39 @@
+- name: Create directory for compose
+  file:
+    path: "~/{{image_name|basename}}"
+    state: directory
+  register: target_dir
+
+- name: Stop containers
+  docker_compose_v2:
+    project_src: "{{ target_dir.path }}"
+    state: stopped
+  ignore_errors: true
+
+- name: Render docker-compose.yml
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ target_dir.path }}/docker-compose.yml"
+  vars:
+    image_name_tag: "{{image_name}}:{{image_tag}}"
+    publish_ports: "{{ publish_ports }}"
+  when: not wipe
+
+- name: Docker compose
+  docker_compose_v2:
+    project_src: "{{ target_dir.path }}"
+    state: "{{ wipe | ternary('absent', 'present') }}"
+    pull: always
+
+- name: Wipe image
+  docker_image:
+    name: "{{ image_name }}"
+    tag: "{{ image_tag }}"
+    state: absent
+  when: wipe
+
+- name: Remove compose file
+  file:
+    path: "{{ target_dir.path }}"
+    state: absent
+  when: wipe

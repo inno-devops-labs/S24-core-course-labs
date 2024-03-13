@@ -3,3 +3,4 @@
 venv
 app_python/.pytest_cache
 terraform/*/.terraform
+ansible/password.txt
