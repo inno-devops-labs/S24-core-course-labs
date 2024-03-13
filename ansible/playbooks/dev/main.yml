@@ -1,0 +1,19 @@
+- name: Update apt
+  hosts: all
+  tasks:
+    - name: Update all apt packages
+      apt:
+        update_cache: yes
+      become: yes
+
+- name: Deploy geerlingguy.docker
+  become: yes
+  hosts: all
+  roles:
+    - geerlingguy.docker
+
+- name: Deploy docker
+  become: yes
+  hosts: all
+  roles:
+    - docker

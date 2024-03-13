@@ -1,0 +1,14 @@
+- name: Install dependencies
+  apt:
+    name: "{{ docker_compose_dependencies }}"
+    update_cache: yes
+
+- name: Upgrade pip
+  ansible.builtin.pip:
+    name: pip
+    state: forcereinstall
+
+- name: Install docker-compose with pip
+  ansible.builtin.pip:
+    name: "docker-compose=={{pip_docker_compose_version}}"
+    state: latest
