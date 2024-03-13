@@ -1,0 +1,6 @@
+- name: Pull image and create container
+  community.docker.docker_container:
+    name: app_python
+    image: mrfired/devops-course
+    pull: missing
+    published_ports: 0.0.0.0:5000:5000
