@@ -6,12 +6,16 @@ on:
   pull_request:
     branches: [main]
 
+defaults:
+  run:
+    working-directory: app_python
+    
 jobs:
   install_clear_test_lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout codebase
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: setup python
         uses: actions/setup-python@v2
@@ -28,14 +32,8 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install poetry
-        uses: abatilo/actions-poetry@v2
-        with:
-          poetry-version: "1.7.1"
+        run: pipx install poetry
       
-      - name: Move to project root
-        run: cd app_python
-
-
       - name: Install dependencies
         run: poetry install
 
@@ -56,7 +54,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
+
       - name: Build
         uses: docker/build-push-action@v2
         with:
