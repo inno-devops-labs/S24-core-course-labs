@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - role: '../../roles/web_app'
+      vars:
+        inner_port: 5000
+        app_port: 5000
+        repo_name: ilnurha/dev_ops_course_core_bonus
+        web_app_full_wipe: false
+        version: "latest"

@@ -1,5 +1,20 @@
-#- tasks:
-#    - name: Remove all docker images
-#  tags:
-#    - webserver
-#    - wipe
+# repo_name - name of repo of image or container to remove
+- name: Wiping all docker containers and images
+  block:
+    - name: Stop all docker containers
+      shell: sudo docker stop $(sudo docker ps -a | grep {{ repo_name }} | grep -o -E "^\S{12}\s")
+      tags:
+        - stop_containers_with_repo
+
+    - name: Remove all containers
+      shell: sudo docker rm $(sudo docker ps -a | grep {{ repo_name }} | grep -o -E "^\S{12}\s")
+      tags:
+        - remove_containers_with_repo
+
+    - name: Remove all images
+      shell: sudo docker image rm $(sudo docker image ls -a | grep {{ repo_name }} | grep -o -E "\s\S{12}\s")
+      tags:
+        - remove_images_with_repo
+
+  tags:
+    - full_wipe_with_repo

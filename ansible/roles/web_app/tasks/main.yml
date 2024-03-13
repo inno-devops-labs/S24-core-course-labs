@@ -1,11 +1,25 @@
 - name: Pull and start docker image
   block:
-    - name: Pull docker image
-      command: docker pull ilnurha/dev_ops_course_core:latest
+    - name: Clear current repo
+      include_tasks: 0-wipe.yml
       tags:
-        - webserver
+        - full_wipe_with_repo
+      when: web_app_full_wipe == true
 
-    - name: Execute docker image
-      command: docker run -d -p 5000:5000 ilnurha/dev_ops_course_core:latest &
-      tags:
-        - webserver
+#    - name: Pull docker image
+#      command: docker pull {{ repo_name }}:{{ version }}
+#
+#    - name: Execute docker image
+#      command: docker run -d -p {{ inner_port }}:{{ app_port }} {{ repo_name }}:{{ version }} &
+    - name: Render Docker Compose
+      ansible.builtin.template:
+          src: docker-compose.yml.j2
+          dest: docker-compose.yml
+
+#    - name: Build docker compose
+#      shell: docker-compose build
+
+    - name: docker-compose up
+      shell: docker-compose up
+  tags:
+    - webserver

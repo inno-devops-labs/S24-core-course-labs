@@ -1,0 +1,7 @@
+services:
+  web_app:
+    image: {{ repo_name }}:{{ version }}
+    ports:
+      - {{ inner_port }}:{{ app_port }}
+    expose:
+      - {{ app_port }}

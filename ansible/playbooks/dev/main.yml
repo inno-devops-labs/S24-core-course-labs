@@ -1,8 +1,0 @@
----
-- hosts: localhost
-  become: yes
-  roles:
-    - role: '../../roles/web_app'
-      vars:
-        inner_port: 5000
-        app_port: 5000
