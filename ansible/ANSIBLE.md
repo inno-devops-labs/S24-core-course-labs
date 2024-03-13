@@ -1,3 +1,10 @@
+# Best practices
+- Do not stored confidential values in text
+- Tried to keep it simple
+- Used consistent naming
+
+
+
 # Task 1
 - Intalled existing role `geerlingguy.docker`
 - Utilizied the following playbook
