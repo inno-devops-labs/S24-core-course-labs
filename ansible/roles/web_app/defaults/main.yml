@@ -1,0 +1,8 @@
+---
+container_name: "app_python"
+
+image_repo: "mrfired/devops-course"
+
+host_interface: "0.0.0.0"
+host_port: "5000"
+container_port: "5000"

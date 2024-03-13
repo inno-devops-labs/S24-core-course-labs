@@ -1,6 +1,6 @@
 - name: Pull image and create container
   community.docker.docker_container:
-    name: app_python
-    image: mrfired/devops-course
+    name: "{{ container_name }}"
+    image: "{{ image_repo }}"
     pull: missing
-    published_ports: 0.0.0.0:5000:5000
+    published_ports: "{{ host_interface }}:{{ host_port }}:{{ container_port }}"
