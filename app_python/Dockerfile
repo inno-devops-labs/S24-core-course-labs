@@ -13,8 +13,6 @@ WORKDIR /app_python
 RUN adduser -D myuser && chown -R myuser /app_python
 USER myuser
 
-# Copy only the necessary files
-COPY static ./static
 COPY app.py requirements.txt ./
 
 # Install dependencies
