@@ -1,7 +1,9 @@
 """
 This module contains the schema of the current time in Moscow.
 """
-class TimeSchema() :
+
+
+class TimeSchema():
     """
     This class represents the schema of the current time in Moscow.
     """

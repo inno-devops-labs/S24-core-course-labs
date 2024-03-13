@@ -55,3 +55,44 @@ All in `tests` folder. Tests for response and variability over time
 Go to the `app_flutter` folder and see beautifull flutter app
 
 ![](../app_flutter/images/flutter.png)
+
+<br> <br/>
+
+## Unit Tests for Displaying Current Time in Moscow
+
+### Description
+This module contains unit tests for the Flask application that displays the current time in Moscow.
+
+### Test Details:
+
+#### `test_display_time`:
+- **Description**: This test checks if the current time in Moscow is displayed correctly on the webpage.
+- **Steps**:
+    1. Sends a GET request to the Flask application.
+    2. Asserts that the response data contains the text 'The current time in Moscow: '.
+    3. Retrieves the current time in Moscow and formats it to the hour, minute, and second.
+    4. Asserts that the formatted time is present in the response data.
+
+#### `test_display_time_changes`:
+- **Description**: This test checks if the current time in Moscow changes after refreshing the page.
+- **Steps**:
+    1. Sends a GET request to the Flask application.
+    2. Asserts that the response data contains the text 'The current time in Moscow: '.
+    3. Retrieves the current time in Moscow and formats it to the hour, minute, and second.
+    4. Asserts that the formatted time is present in the response data.
+    5. Sends another GET request to the application to simulate a page refresh.
+    6. Asserts that the response data still contains the text 'The current time in Moscow: '.
+    7. Retrieves the current time in Moscow after the page refresh.
+    8. Asserts that the new time is different from the previous time, ensuring that the time display updates correctly.
+    
+### Best Practices Applied
+
+1. **Fixture for Test Client**: Using a fixture to return a test client for the Flask application to avoid code duplication and ensure a clean client for each test.
+
+2. **Isolated Testing Environment**: Setting the `TESTING` configuration to `True` for testing and using the `with app.test_client()` context manager to ensure an isolated testing environment.
+
+3. **Test for Displaying Time**: Checking if the current time in Moscow is displayed correctly and adhering to the best practice of descriptive test naming.
+
+4. **Test for Time Refresh**: Checking if the current time in Moscow changes after refreshing the page and asserting that the time changes to ensure the functionality of time display update.
+
+5. **Usage of Pytest**: Using `pytest` to run the unit tests, allowing for easy test execution and reporting.

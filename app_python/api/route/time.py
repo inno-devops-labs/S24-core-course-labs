@@ -24,4 +24,3 @@ def display_time():
     """
     result = TimeModel()
     return TimeSchema().dump(result), 200
-    

@@ -1,5 +1,6 @@
 """
-This module contains the Flask application that displays the current time in Moscow.
+This module contains the Flask application that
+displays the current time in Moscow
 """
 from flask import Flask
 from flasgger import Swagger
