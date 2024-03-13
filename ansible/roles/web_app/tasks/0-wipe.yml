@@ -1,0 +1,11 @@
+- name: Wipe (Delete files and stop containers)
+  block:
+    - name: Tear down service
+      command: docker compose down
+      args:
+        chdir: /root
+
+    - name: Delete temporary docker-compose.yml file
+      ansible.builtin.file:
+        path: "/docker-compose.yml"
+        state: absent
