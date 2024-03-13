@@ -98,3 +98,147 @@
         }
     }
     ```
+
+NOTE: I changes my account on yandex cloud so some IPs are different
+
+- output for command `ansible-playbook playbooks/dev/app_python/main.yml --tags  "deploy" --diff`
+
+    ```plaintext
+    [DEPRECATION WARNING]: Specifying a list of dictionaries for vars is deprecated in favor of specifying a dictionary. This feature will be removed in version 2.18. Deprecation warnings can be disabled by 
+    setting deprecation_warnings=False in ansible.cfg.
+
+    PLAY [Deploy python application] ***************************************************************************************************************************************************************************
+
+    TASK [Gathering Facts] *************************************************************************************************************************************************************************************
+    ok: [84.201.138.89]
+
+    TASK [web_app : create new directory] **********************************************************************************************************************************************************************
+    --- before
+    +++ after
+    @@ -1,4 +1,4 @@
+    {
+        "path": "web_app/",
+    -    "state": "absent"
+    +    "state": "directory"
+    }
+
+    changed: [84.201.138.89]
+
+    TASK [web_app : Enable docker] *****************************************************************************************************************************************************************************
+    ok: [84.201.138.89]
+
+    TASK [web_app : Pull docker image] *************************************************************************************************************************************************************************
+    ok: [84.201.138.89]
+
+    TASK [web_app : Copy docker compose file] ******************************************************************************************************************************************************************
+    --- before
+    +++ after: /home/ahmad/.ansible/tmp/ansible-local-351474k7e2o3r1/tmpax1u3s8r/docker-compose.yml.j2
+    @@ -0,0 +1,7 @@
+    +version: '1'
+    +
+    +services:
+    +  web_app:
+    +    image: "ahmadalhussin/app_python"
+    +    ports:
+    +      - "5000:5000"
+    \ No newline at end of file
+
+    changed: [84.201.138.89]
+
+    TASK [web_app : Run docker container] **********************************************************************************************************************************************************************
+    changed: [84.201.138.89]
+
+    PLAY RECAP *************************************************************************************************************************************************************************************************
+    84.201.138.89              : ok=6    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    ```
+
+- output for command `ansible-playbook playbooks/dev/app_python/main.yml --tags  "wipe" --diff`
+
+    ```plaintext
+    [DEPRECATION WARNING]: Specifying a list of dictionaries for vars is deprecated in favor of specifying a dictionary. This feature will be removed in version 2.18. Deprecation warnings can be disabled by 
+    setting deprecation_warnings=False in ansible.cfg.
+
+    PLAY [Deploy python application] ***************************************************************************************************************************************************************************
+
+    TASK [Gathering Facts] *************************************************************************************************************************************************************************************
+    ok: [84.201.138.89]
+
+    TASK [web_app : include_tasks] *****************************************************************************************************************************************************************************
+    included: /home/ahmad/Desktop/devops/ansible/roles/web_app/tasks/0-wipe.yml for 84.201.138.89
+
+    TASK [web_app : Remove the docker container] ***************************************************************************************************************************************************************
+    [WARNING]: Docker compose: image ahmadalhussin/app_python:latest: Resource is still in use
+    changed: [84.201.138.89]
+
+    TASK [web_app : Clean directories] *************************************************************************************************************************************************************************
+    --- before
+    +++ after
+    @@ -1,10 +1,4 @@
+    {
+        "path": "web_app/",
+    -    "path_content": {
+    -        "directories": [],
+    -        "files": [
+    -            "web_app/docker-compose.yml"
+    -        ]
+    -    },
+    -    "state": "directory"
+    +    "state": "absent"
+    }
+
+    changed: [84.201.138.89]
+
+    PLAY RECAP *************************************************************************************************************************************************************************************************
+    84.201.138.89              : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
+    ```
+
+- command `ansible-playbook playbooks/dev/app_dotnet/main.yml --tags  "deploy" --diff`:
+
+    ```plaintext
+    [DEPRECATION WARNING]: Specifying a list of dictionaries for vars is deprecated in favor of specifying a dictionary. This feature will be removed in version 2.18. Deprecation warnings can be disabled by 
+    setting deprecation_warnings=False in ansible.cfg.
+
+    PLAY [Deploy dotnet application] ***************************************************************************************************************************************************************************
+
+    TASK [Gathering Facts] *************************************************************************************************************************************************************************************
+    ok: [84.201.138.89]
+
+    TASK [web_app : create new directory] **********************************************************************************************************************************************************************
+    --- before
+    +++ after
+    @@ -1,4 +1,4 @@
+    {
+        "path": "dotnet_web_app/",
+    -    "state": "absent"
+    +    "state": "directory"
+    }
+
+    changed: [84.201.138.89]
+
+    TASK [web_app : Enable docker] *****************************************************************************************************************************************************************************
+    ok: [84.201.138.89]
+
+    TASK [web_app : Pull docker image] *************************************************************************************************************************************************************************
+    changed: [84.201.138.89]
+
+    TASK [web_app : Copy docker compose file] ******************************************************************************************************************************************************************
+    --- before
+    +++ after: /home/ahmad/.ansible/tmp/ansible-local-3547444ffcn_ud/tmp0jbj_pm7/docker-compose.yml.j2
+    @@ -0,0 +1,7 @@
+    +version: '1'
+    +
+    +services:
+    +  web_app:
+    +    image: "ahmadalhussin/app_dotnet"
+    +    ports:
+    +      - "8080:8080"
+    \ No newline at end of file
+
+    changed: [84.201.138.89]
+
+    TASK [web_app : Run docker container] **********************************************************************************************************************************************************************
+    changed: [84.201.138.89]
+
+    PLAY RECAP *************************************************************************************************************************************************************************************************
+    84.201.138.89              : ok=6    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+    ```

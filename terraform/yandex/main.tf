@@ -11,14 +11,14 @@ provider "yandex" {
   zone                     = var.time_zone
   cloud_id                 = var.cloud_id
   folder_id                = var.folder_id
-  service_account_key_file = "/home/ahmad/Downloads/authorized_key.json"
+  service_account_key_file = "/home/ahmad/Downloads/authorized_key_1.json"
 }
 
 resource "yandex_compute_disk" "boot-disk-1" {
   name     = "boot-disk-1"
   type     = "network-hdd"
   size     = "8"
-  image_id = "fd8hnnsnfn3v88bk0k1o"
+  image_id = "fd85u0rct32prepgjlv0"
 }
 
 resource "yandex_vpc_network" "network-1" {
@@ -35,7 +35,7 @@ resource "yandex_vpc_subnet" "subnet-1" {
 resource "yandex_compute_instance" "vm-1" {
   name                      = "terraform"
   allow_stopping_for_update = true
-  folder_id = "b1gqie734pcvg0ptngo1"
+  folder_id = "b1g1t1rqanlm810546gr"
 
   resources {
     cores         = 2
