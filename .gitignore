@@ -6,3 +6,5 @@ app_python/__pycache__
 app_python/.pytest_cache
 
 terraform/*/.terraform
+
+ansible/vault_pass.txt
