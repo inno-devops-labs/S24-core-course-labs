@@ -1,0 +1,16 @@
+---
+- name: Check {{ ansible_user }} access
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: true
+  tags: docker
+  listen: run_docker
+
+- name: Run docker
+  systemd:
+    name: docker
+    state: restarted
+  tags: docker
+  delay: 10
+  listen: run_docker
