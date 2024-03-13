@@ -2,4 +2,4 @@
   remote_user: devops_user
   become: yes
   roles:
-    - roles/geerlingguy.docker
+    - roles/docker
