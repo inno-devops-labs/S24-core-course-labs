@@ -2,9 +2,15 @@ name: Test
 
 on:
   push:
-    branches: [main]
+    branches: 
+      - main
+    paths:
+      - app_python/**
   pull_request:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - app_python/**
 
 defaults:
   run:
@@ -49,6 +55,15 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v2
 
+      - name: Cache docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-docker-${{ hashFiles('app_python/Dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-
+
+
       - name: Login
         uses: docker/login-action@v1
         with:
@@ -68,6 +83,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Cache Snyk dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.local/snyk
+          key: ${{ runner.os }}-snyk-${{ hashFiles('app_python/poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-snyk-
 
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.10@master

@@ -1,3 +1,6 @@
+![Status badge](https://github.com/timur-harin/S24-core-course-labs/.github/workflows/main.yml/badge.svg)
+
+
 # Lab1 flask web app
 
 Application to get moscow time

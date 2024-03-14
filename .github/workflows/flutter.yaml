@@ -3,12 +3,16 @@ name: Test
 on:
   push:
     branches: [main]
+    paths:
+      - app_flutter/**
   pull_request:
     branches: [main]
+    paths:
+      - app_flutter/**
 
 defaults:
   run:
-    working-directory: app_python
+    working-directory: app_flutter
 
 jobs:
   install_clear_test_lint:
@@ -17,31 +21,23 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v4
 
-      - name: setup python
-        uses: actions/setup-python@v2
+      - name: setup flutter
+        uses: subosito/flutter-action@v2
         with:
-          python-version: 3.11
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('app_python/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
-      - name: Install poetry
-        run: pipx install poetry
-      
+          channel: 'stable'
+          cache: true
+        
       - name: Install dependencies
-        run: poetry install
+        run: flutter pub get
 
       - name: Run tests
-        run: poetry run pytest
-
+        run: flutter test
+      
       - name: Lint
-        run: poetry run flake8 .
+        run: flutter format --set-exit-if-changed .
+
+      - name: Clear
+        run: flutter clean
 
   docker:
     runs-on: ubuntu-latest
@@ -59,14 +55,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          context: ./app_python
-          file: ./app_python/Dockerfile
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops:latest
-
-  snyk:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python-3.10@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          context: ./app_flutter
+          file: ./app_flutter/Dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/flutter_web:latest
