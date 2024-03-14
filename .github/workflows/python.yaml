@@ -73,4 +73,9 @@ jobs:
         uses: snyk/actions/python-3.10@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-  
+        with:
+          args:
+            --sarif-file-output=snyk.sarif
+            --package-manager=poetry
+            --file=app_python/poetry.lock
+            --skip-unresolved
