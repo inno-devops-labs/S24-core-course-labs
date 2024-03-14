@@ -30,7 +30,7 @@ jobs:
         run: flutter test
       
       - name: Lint
-        run: flutter format --set-exit-if-changed .
+        run: dart format --set-exit-if-changed .
 
       - name: Clear
         run: flutter clean
