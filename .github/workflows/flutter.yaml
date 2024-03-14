@@ -1,10 +1,6 @@
 name: Test
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - app_flutter/**
   pull_request:
     branches: [main]
     paths:
