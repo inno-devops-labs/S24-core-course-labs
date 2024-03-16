@@ -1,0 +1,5 @@
+docker_image: profectus/app_python
+docker_image_tag: latest
+docker_container_name: app
+docker_container_port: 5000
+docker_host_port: 5000
