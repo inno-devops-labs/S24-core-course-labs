@@ -6,11 +6,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def template():
+    msk_time = datetime.datetime.now(
+        datetime.timezone(datetime.timedelta(hours=3))
+    ).strftime('%d.%m.%y %H:%M:%S')
+
+    print(f"datetime rendered is {msk_time}")
+
     return render_template(
         'index.html',
-        time=datetime.datetime.now(
-            datetime.timezone(datetime.timedelta(hours=3))
-        ).strftime('%d.%m.%y %H:%M:%S')
+        time=msk_time
     )
 
 
