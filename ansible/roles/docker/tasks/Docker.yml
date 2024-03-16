@@ -1,4 +1,4 @@
 - name: Docker installation
   apt:
-    name: docker.io
-    state: present
+    name: docker-ce
+    state: latest

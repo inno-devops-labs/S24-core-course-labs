@@ -12,6 +12,6 @@ COPY --chown=nonroot:nonroot /templates /app_python/templates
 
 USER nonroot
 
-EXPOSE 5000
+EXPOSE 5001
 
 CMD ["python", "main.py"]

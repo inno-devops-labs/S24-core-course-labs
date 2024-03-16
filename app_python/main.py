@@ -9,6 +9,7 @@ app = Flask(__name__)
 def display_time():
     moscow_tz = pytz.timezone('Europe/Moscow')
     moscow_time = datetime.now(moscow_tz).strftime('%Y-%m-%d %H:%M:%S')
+    print(f"datetime is {moscow_time}")
     return render_template('index.html', time=moscow_time)
 
 
