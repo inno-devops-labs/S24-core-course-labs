@@ -5,7 +5,9 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 RUN adduser app_user
-RUN rm /bin/sh /bin/dash /bin/bash
+RUN mkdir /logs && chown -R app_user:app_user /logs
+ENV LOGS_FILE_PATH="/logs/moscow-time.log"
+# RUN rm /bin/sh /bin/dash /bin/bash
 
 COPY app/* /app/
 

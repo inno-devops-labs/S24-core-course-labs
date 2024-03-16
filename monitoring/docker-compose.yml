@@ -1,0 +1,112 @@
+version: "3"
+
+networks:
+  loki:
+
+services:
+  python-app: 
+    build: ../app_python
+    volumes: 
+      - python-logs:/logs
+    ports:
+      - "5000:5000"
+    environment:
+      - LOGS_FILE_PATH=/logs/moscow-time.log
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+  
+  java-app: 
+    build: ../app_java
+    volumes: 
+      - java-logs:/app/logs
+    ports:
+      - "8081:8081"
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  loki:
+    image: grafana/loki:2.9.2
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - loki
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  promtail:
+    image: grafana/promtail:2.9.2
+    volumes:
+      - promtail-conf:/etc/promtail
+      - java-logs:/var/log/app_java
+      - python-logs:/var/log/app_python
+      - /var/lib/docker/containers:/var/lib/docker/containers
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - loki
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  grafana:
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    entrypoint:
+      - sh
+      - -euc
+      - |
+        mkdir -p /etc/grafana/provisioning/datasources
+        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
+        apiVersion: 1
+        datasources:
+        - name: Loki
+          type: loki
+          access: proxy 
+          orgId: 1
+          url: http://loki:3100
+          basicAuth: false
+          isDefault: true
+          version: 1
+          editable: false
+        EOF
+        /run.sh
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - loki
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+volumes:
+  java-logs:
+    driver: local
+    driver_opts:
+      type: none
+      device: logs/app_java
+      o: bind
+  
+  python-logs: 
+    driver: local
+    driver_opts:
+      type: none
+      device: logs/app_python
+      o: bind
+
+  promtail-conf: 
+    driver: local
+    driver_opts:
+      type: none
+      device: promtail
+      o: bind
