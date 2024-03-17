@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/rs/zerolog/log"
 )
 
 type ClockService interface {
@@ -29,6 +30,7 @@ func (s *Server) Init(app *fiber.App) error {
 	}
 
 	app.Get("/", func(ctx *fiber.Ctx) error {
+		log.Info().Msgf("new request from %s", ctx.IP())
 		return ctx.JSON(GetCurrentTimeResponse{
 			Time: s.ClockService.GetCurrentTime(moscowLocation).Format(time.RFC3339),
 		})
