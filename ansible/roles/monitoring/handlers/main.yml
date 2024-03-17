@@ -1,0 +1,6 @@
+---
+- name: Restart Docker Compose services
+  docker_compose:
+    project_src: "{{ playbook_dir }}/files"
+    state: restarted
+  become: true

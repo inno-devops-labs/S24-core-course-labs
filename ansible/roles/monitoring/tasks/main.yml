@@ -1,0 +1,20 @@
+---
+- name: Check if Docker container is running
+  command: docker inspect -f '{{ .State.Running }}' "{{ docker_container_name }}"
+  register: container_status
+  ignore_errors: true
+
+- name: Set up Docker Compose configuration
+  copy:
+    src: docker-compose.yml
+    dest: "{{ playbook_dir }}/files/docker-compose.yml"
+  notify: Restart Docker Compose services
+
+- name: Output useful monitoring links
+  debug:
+    msg: |
+      Monitoring Links:
+      - Promtail: http://{{ ansible_host }}:9080/metrics
+      - Loki: http://{{ ansible_host }}:3100
+      - Grafana: http://{{ ansible_host }}:3000
+  when: container_status.stdout == "true"
