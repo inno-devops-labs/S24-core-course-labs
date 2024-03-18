@@ -3,6 +3,6 @@
   become: true
   roles:
     - role: web_app
-      image: majorro/devops-engineering-course:latest
+      image: majorro/devops-engineering-course:python
       ports:
         - "8000:8000"
