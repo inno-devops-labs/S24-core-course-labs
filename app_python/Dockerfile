@@ -8,5 +8,5 @@ COPY .dockerignore .
 COPY app.py requirements.txt ./
 RUN pip install -r requirements.txt --no-cache-dir --user
 RUN pip install --no-cache-dir -r requirements.txt
-EXPOSE 5000
-CMD ["python", "-m", "flask", "run", "--host", "0.0.0.0"]
+EXPOSE 8080
+CMD ["python", "-m", "flask", "run", "--host", "0.0.0.0", "--port", "8080"]
