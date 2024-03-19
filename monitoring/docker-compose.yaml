@@ -25,8 +25,11 @@ services:
       resources:
         limits:
           memory: "500m"
-    networks:
-      - loki
+    healthcheck:
+      test: [ "CMD", "wget", "localhost:3100/ready" ]
+      interval: 2m
+      timeout: 10s
+      retries: 30
 
   promtail:
     image: grafana/promtail:2.9.4
@@ -49,8 +52,6 @@ services:
       resources:
         limits:
           memory: "500m"
-    networks:
-      - loki
 
   grafana:
     environment:
@@ -73,8 +74,11 @@ services:
       resources:
         limits:
           memory: "500m"
-    networks:
-      - loki
+    healthcheck:
+      test: [ "CMD", "wget", "localhost:3000/api/health" ]
+      interval: 2m
+      timeout: 10s
+      retries: 30
 
   prometheus:
     image: prom/prometheus:v2.5.0
@@ -95,14 +99,16 @@ services:
       resources:
         limits:
           memory: "500m"
-    networks:
-      - loki
-
+    healthcheck:
+      test: ["CMD", "wget", "localhost:9090/-/healthy"]
+      interval: 2m
+      timeout: 10s
+      retries: 30
 
 
   app_python:
     container_name: "app_python"
-    image: tufra/moscow-time-app-python:0.0.1
+    image: tufra/moscow-time-app-python:0.0.2
     ports:
       - "80:8080"
     logging:
@@ -115,10 +121,15 @@ services:
       resources:
         limits:
           memory: "300m"
+    healthcheck:
+      test: [ "CMD", "wget", "localhost:8080/" ]
+      interval: 2m
+      timeout: 10s
+      retries: 30
 
   app_kotlin:
     container_name: "app_kotlin"
-    image: tufra/moscow-time-app-kotlin:0.0.1
+    image: tufra/moscow-time-app-kotlin:0.0.2
     ports:
       - "81:8000"
     logging:
@@ -131,3 +142,8 @@ services:
       resources:
         limits:
           memory: "300m"
+    healthcheck:
+      test: [ "CMD", "wget", "localhost:8000/" ]
+      interval: 2m
+      timeout: 10s
+      retries: 30

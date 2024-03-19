@@ -7,8 +7,6 @@ scrape_configs:
     static_configs:
       - targets:
           - 'prometheus:9090'
-          - 'app_python:80'
-          - 'app_kotlin:81'
 
   - job_name: 'loki'
     dns_sd_configs:
@@ -30,3 +28,17 @@ scrape_configs:
           - grafana
         type: A
         port: 3000
+
+  - job_name: 'app_python'
+    dns_sd_configs:
+      - names:
+          - app_python
+        type: A
+        port: 8080
+
+  - job_name: 'app_kotlin'
+    dns_sd_configs:
+      - names:
+          - app_kotlin
+        type: A
+        port: 8000

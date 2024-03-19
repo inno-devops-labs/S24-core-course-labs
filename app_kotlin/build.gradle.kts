@@ -1,6 +1,7 @@
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
+val prometheus_version: String by project
 
 plugins {
     kotlin("jvm") version "1.9.22"
@@ -32,6 +33,9 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("io.ktor:ktor-server-config-yaml:2.3.7")
     implementation("io.github.softartdev:kronos:0.0.1")
+    implementation("io.ktor:ktor-server-metrics-micrometer:$ktor_version")
+    implementation("io.ktor:ktor-metrics-micrometer-kotlinMultiplatform:1.4.1")
+    implementation("io.micrometer:micrometer-registry-prometheus:latest.release")
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }

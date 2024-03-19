@@ -22,3 +22,15 @@ Also services are limited in memory:
 
 - `app_python`, `app_kotlin` - `300m`
 - `grafana`, `prometheus`, `loki`, `promtail` - `500m`
+
+### `app_python` metrics
+
+The application exports collected by `prometheus-client` metrics at `/metrics`
+
+![img.png](imgs/app_python_metrics.png)
+
+### `app_kotlin` metrics
+
+The application exports collected by `Micrometer` metrics at `/metrics`
+
+![img.png](imgs/app_kotlin_metrics.png)
