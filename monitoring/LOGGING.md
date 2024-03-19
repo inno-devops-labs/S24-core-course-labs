@@ -15,3 +15,5 @@ Loki is the log aggregation system that stores log entries in a manner optimized
 Grafana is a powerful open-source platform for monitoring and observability, which is used for visualizing and exploring log data stored in Loki. It allows users to create dashboards and alerts based on log data, offering a comprehensive solution for log analysis and monitoring.
 
 ## Main Task Screenshots
+![image](https://github.com/frog-da/DevOps/assets/84839431/901c09c9-d510-4678-ba50-dc6f3a55b711)
+![image](https://github.com/frog-da/DevOps/assets/84839431/8566b7f4-dae7-407a-8aaa-79c09497bcb0)
