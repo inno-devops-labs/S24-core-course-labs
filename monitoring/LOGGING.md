@@ -14,8 +14,16 @@ Then, Promtail sends them to Loki, which stores the logs.
 The `grafana` service provides a way to view, search and analyze the logs. It is
 yet another web app which is available on port 3000.
 
-Here are a few screenshots of Grafana in action.
+Here are a few screenshots that show that the container is available in search
+and the logs are present.
 
-![](./image_name.png)
+![](./screenshots/image_name.png)
 
-![](./logs.png)
+![](./screenshots/logs.png)
+
+Here are screenshots showing that all containers are available in search and
+example logs from Loki.
+
+![](./screenshots/containers.png)
+
+![](./screenshots/loki.png)

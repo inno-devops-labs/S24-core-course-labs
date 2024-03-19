@@ -18,8 +18,13 @@ getCurrentMoscowTime = utcToZonedTime moscowTimeZone <$> getCurrentTime
 
 type API = Get '[PlainText] String
 
+handleRequest :: IO String
+handleRequest = do
+  putStrLn "Handling a request"
+  iso8601Show <$> getCurrentMoscowTime
+
 server :: Server API
-server = liftIO (iso8601Show <$> getCurrentMoscowTime)
+server = liftIO handleRequest
 
 app :: Application
 app = serve (Proxy @API) server

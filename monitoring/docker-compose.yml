@@ -15,11 +15,30 @@ services:
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
 
+  web_app_haskell:
+    build: ../app_haskell
+    ports:
+      - "8081:8081"
+    networks:
+      - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
+
   loki:
     image: grafana/loki:2.9.2
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -29,6 +48,12 @@ services:
     command: -config.file=/etc/promtail/config.yml
     networks:
       - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
 
   grafana:
     environment:
@@ -59,3 +84,9 @@ services:
       - "3000:3000"
     networks:
       - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
