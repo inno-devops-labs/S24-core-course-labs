@@ -23,7 +23,7 @@ services:
     image: grafana/promtail:2.9.2
     volumes:
       - ./promtail/promtail.yml:/etc/promtail/promtail.yml
-      - /var/log:/var/log
+#      - /var/log:/var/log
     ports:
       - "9080:9080"
     command: -config.file=/etc/promtail/promtail.yml
