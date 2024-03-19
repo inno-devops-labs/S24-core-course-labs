@@ -5,7 +5,7 @@ import datetime
 
 MOCK_DATE1 = datetime.datetime(
     2024, 1, 2, 6, 59, 0, tzinfo=pytz.timezone("Europe/London")
-)
+) 
 MOCK_DATE2 = datetime.datetime(2024, 1, 2, 10, 0, tzinfo=pytz.timezone("Europe/Moscow"))
 
 
