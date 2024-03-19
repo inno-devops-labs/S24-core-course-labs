@@ -9,6 +9,8 @@ def get_current_time() -> datetime:
 
 
 async def handle(_request: web.Request) -> web.StreamResponse:
+    print("handling a request")
+
     current_time = get_current_time()
     response = current_time.isoformat()
     return web.Response(text=response)

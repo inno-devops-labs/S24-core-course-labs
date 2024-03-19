@@ -8,5 +8,5 @@ RUN pip3.12 install -r requirements.txt
 COPY src/ src/
 
 USER app
-CMD ["python3.12", "src/main.py"]
+CMD ["python3.12", "-u", "src/main.py"]
 EXPOSE 8080
