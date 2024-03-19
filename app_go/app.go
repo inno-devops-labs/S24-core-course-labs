@@ -21,6 +21,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 // main function that set ups http handlers
 func main() {
     http.HandleFunc("/", handler)
-	fmt.Println("Starting server at :5001")
-    http.ListenAndServe(":5001", nil)
+	fmt.Println("Starting server at :5002")
+    http.ListenAndServe(":5002", nil)
 }

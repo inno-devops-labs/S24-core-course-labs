@@ -15,6 +15,6 @@ COPY --from=build --chmod=0755 /app/main ./main
 RUN adduser -D user && chown -R user /app
 
 USER user
-EXPOSE 5001
+EXPOSE 5002
 
 ENTRYPOINT ["/app/main"]

@@ -1,18 +1,18 @@
 """Module that runs python flask application that shows current time in Moscow"""
 
 from datetime import datetime
-import logging
+# import logging
 from flask import Flask, render_template
 import pytz
 
 app = Flask(__name__)
 
-logging.basicConfig(
-    level=logging.INFO,
-    filename="record.log",
-    filemode="w",
-    format="%(asctime)s %(levelname)s %(message)s"
-)
+# logging.basicConfig(
+#     level=logging.INFO,
+#     filename="record.log",
+#     filemode="w",
+#     format="%(asctime)s %(levelname)s %(message)s"
+# )
 
 
 def current_moscow_time():
@@ -27,10 +27,10 @@ def show_time():
     """Function that returns template that renders template with current time in Moscow"""
     try:
         moscow_time = current_moscow_time()
-        logging.info("Template rendered with time: %s", moscow_time)
+        # logging.info("Template rendered with time: %s", moscow_time)
         return render_template('index.html', time=moscow_time)
     except BaseException as exception:
-        logging.error("Exception %s", exception)
+        # logging.error("Exception %s", exception)
         return render_template("exception.html")
 
 
