@@ -18,3 +18,9 @@
   become: yes
   tasks:
     - include_tasks: ../../roles/docker/tasks/install_compose.yml
+
+- name:
+  hosts: all
+  become: yes
+  tasks:
+    - include_tasks: ../../roles/web_app/tasks/main.yml

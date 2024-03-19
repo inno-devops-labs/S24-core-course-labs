@@ -1,0 +1,6 @@
+all:
+  hosts: 
+    yandex_host:
+      ansible_host: 158.160.128.8
+      ansible_user: testadmin
+      ansible_ssh_private_key_file: "/home/system_user/.ssh/id_ed25519"

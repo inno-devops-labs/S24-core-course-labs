@@ -1,0 +1,13 @@
+- name: Pull the Docker image
+  docker_image:
+    name: guzelzakirova/moscow-time-app
+    tag: 1.0.0
+    source: pull
+
+- name: Run the Docker container
+  docker_container:
+    name: moscow-time-container
+    image: guzelzakirova/moscow-time-app:1.0.0
+    state: started
+    ports:
+      - "8080:8080"
