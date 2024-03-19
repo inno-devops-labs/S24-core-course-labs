@@ -1,9 +1,5 @@
 version: "3.7"
 
-networks:
-  loki:
-
-# my logging
 x-logging:
   &default-logging
   driver: "json-file"
@@ -12,24 +8,26 @@ x-logging:
     max-size: 10M
     max-file: 1
 
+networks:
+  loki:
+
 services:
   #my python app
   app_python:
     build: ../app_python
     ports:
       - 5000:5000
-    logging: *default-logging
     networks:
       - loki
+    logging: *default-logging
 
   loki:
     image: grafana/loki:2.9.2
     ports:
-      - "3100:3100"
+      - 3100:3100
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - loki
-    #
     logging: *default-logging
 
   promtail:
@@ -41,7 +39,6 @@ services:
     command: -config.file=/etc/promtail/config.yml
     networks:
       - loki
-    #
     logging: *default-logging
 
   grafana:
@@ -70,7 +67,7 @@ services:
         /run.sh
     image: grafana/grafana:latest
     ports:
-      - "3000:3000"
+      - 3000:3000
     networks:
       - loki
     logging: *default-logging
