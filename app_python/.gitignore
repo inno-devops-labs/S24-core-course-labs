@@ -1,2 +1,15 @@
 .idea/
 venv/
+
+tests/__pycache__
+services/__pycache__/__init__.cpython-311.pyc
+services/__pycache__/time_service.cpython-311.pyc
+tests/.pytest_cache/CACHEDIR.TAG
+tests/.pytest_cache/README.md
+tests/.pytest_cache/v/cache/lastfailed
+tests/.pytest_cache/v/cache/nodeids
+tests/.pytest_cache/v/cache/stepwise
+tests/__pycache__/__init__.cpython-311.pyc
+tests/__pycache__/test_time_service.cpython-311-pytest-8.0.1.pyc
+tests/__pycache__/test_time_service.cpython-311.pyc
+tests/__pycache__/time_service_test.cpython-311-pytest-8.0.1.pyc
