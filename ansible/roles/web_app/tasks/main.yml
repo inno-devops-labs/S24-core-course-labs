@@ -1,0 +1,19 @@
+- name: Pull image and create container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: "{{ image_repo }}"
+    pull: missing
+    published_ports: "{{ host_interface }}:{{ host_port }}:{{ container_port }}"
+  tags:
+    - docker
+    - deploy
+
+- include_tasks: 0-wipe.yml
+  when: web_app_full_wipe
+
+- name: Template docker-compose.yml to home
+  ansible.builtin.template:
+    src: templates/docker-compose.yml.j2
+    dest: /home/devops_user/docker-compose.yml
+  tags:
+    - docker-compose

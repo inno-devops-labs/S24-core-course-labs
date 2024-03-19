@@ -1,0 +1,10 @@
+---
+ubuntu_version: "jammy"
+
+pip_package: "python3-pip"
+
+docker_package: "docker-ce"
+docker_repo_url: "https://download.docker.com/linux/ubuntu"
+docker_release_channel: "stable"
+
+docker_compose_pip_package: "docker-compose"
