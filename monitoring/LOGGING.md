@@ -4,16 +4,16 @@
 
 ### Grafana
 
-In this logging stack, Grafana visualizes the log metrics in the web interface exposed at port `3000`. 
+In this logging stack, Grafana visualizes the logs/metrics in the web interface exposed at port `3000`. It provides the UI for data aggregation and visualization. Displays the queries results from loki.
 
 
 ### Loki
 
-Loki aggregates and stores the logs.
+It is responsible for aggregating and storing the logs. Handles the queries.
 
 ### Promtail
 
-Delivers the log content to loki.
+It processes the local logs and transfers them to loki.
 
 
 ## Screenshots
