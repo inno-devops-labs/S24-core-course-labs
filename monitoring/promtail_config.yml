@@ -17,3 +17,11 @@ scrape_configs:
         labels:
           job: docker
           __path__: /var/lib/docker/containers/*/*log
+    pipeline_stages:
+      - regex:
+          source: filename
+          expression: "^/var/lib/docker/containers/(?P<container_id>[0-9a-f]{64})/[0-9a-f]{64}-json.log"
+      - labels:
+          container_id:
+      - docker:
+      - decolorize:
