@@ -41,8 +41,8 @@ The FastAPI application has been containerized using Docker for improved portabi
 To build the Docker image for the FastAPI application, run the following inside root dir of the project:
 
 ```bash
-docker build -t app_python-lab2 .
-docker run -p 8000:8000 app_python-lab2
+docker build -t app_python .
+docker run -p 8000:8000 app_python
 ```
 
 The application now will be accessible at http://127.0.0.1:8000
@@ -52,8 +52,8 @@ The application now will be accessible at http://127.0.0.1:8000
 If you prefer to pull the Docker image from Docker Hub, follow these steps:
 
 ```bash
-docker pull tsepanx/app_python-lab2
-docker run -p 8000:8000 tsepanx/app_python-lab2
+docker pull tsepanx/app_python
+docker run -p 8000:8000 tsepanx/app_python
 ```
 
 

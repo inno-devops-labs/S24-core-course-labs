@@ -1,0 +1,23 @@
+- include: 0-wipe.yml
+  tags: [wipe]
+
+- name: Pull the latest Docker image
+  docker_image:
+    name: tsepanx/app_python
+    state: present
+  tags: [image-pull]
+
+- name: Run Docker container
+  docker_container:
+    name: app_python-1
+    image: tsepanx/app_python
+    ports:
+      - "8000:8000"
+    state: started
+  tags: [docker-run]
+
+- name: Deliver docker-compose.yml template
+  template:
+    src: docker-compose.yml.j2
+    dest: docker-compose.yml
+
