@@ -13,51 +13,22 @@ Usage:
     2. Create a 'templates' folder in the same directory.
     3. Save the HTML template as 'index.html' in the 'templates' folder.
     4. Run the script: python app.py
-    5. Open browser and go to http://localhost:5000 to view the Moscow time.
+    5. Open your browser and go to http://localhost:5000 to view the Moscow time.
 
 Note:
-    Make sure to have an HTML template named 'index.html' with appropriate
-     placeholders.
+    Make sure to have an HTML template named 'index.html' with appropriate placeholders.
 
 """
 
 from flask import Flask, render_template
 from datetime import datetime
 import pytz
+import logging
 
 app = Flask(__name__)
 
-
-def get_moscow_time():
-    """
-    Function to find the current time in Moscow.
-
-    Returns:
-        datetime: Current time in Moscow.
-
-    """
-    # Get the current time in UTC
-    utc_now = datetime.utcnow()
-
-    # Set the timezone to Moscow
-    moscow_tz = pytz.timezone('Europe/Moscow')
-    moscow_time = utc_now.replace(tzinfo=pytz.utc).astimezone(moscow_tz)
-
-    return moscow_time
-
-
-def formatted_time(time):
-    """
-    Function to format the given time.
-
-    Args:
-        time (datetime): Time to be formatted.
-
-    Returns:
-        str: Formatted time string.
-
-    """
-    return time.strftime('%Y-%m-%d %H:%M:%S')
+# Configure logging
+logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
 
 @app.route('/')
@@ -69,10 +40,27 @@ def display_moscow_time():
             str: Formatted string representing the current time in Moscow.
 
     """
-    time = formatted_time(get_moscow_time())
+    try:
+        # Get the current time in UTC
+        utc_now = datetime.utcnow()
 
-    # Render the template with the formatted time
-    return render_template('index.html', moscow_time=time)
+        # Set the timezone to Moscow
+        moscow_tz = pytz.timezone('Europe/Moscow')
+        moscow_time = utc_now.replace(tzinfo=pytz.utc).astimezone(moscow_tz)
+
+        # Format the time as a string
+        formatted_time = moscow_time.strftime('%Y-%m-%d %H:%M:%S')
+
+        # Log the successful time retrieval
+        logging.info('Moscow time retrieved successfully.')
+
+        # Render the template with the formatted time
+        return render_template('index.html', moscow_time=formatted_time)
+
+    except Exception as e:
+        # Log the error if an exception occurs
+        logging.exception('An error occurred: %s', str(e))
+        return 'An internal server error occurred.', 500
 
 
 if __name__ == '__main__':
