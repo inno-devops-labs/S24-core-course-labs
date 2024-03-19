@@ -15,6 +15,7 @@ COPY --from=dependencies /usr/local /usr/local
 
 COPY app.py ./
 COPY templates ./templates
+COPY services ./services
 
 EXPOSE 5000
 USER appuser

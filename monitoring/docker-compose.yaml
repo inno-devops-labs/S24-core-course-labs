@@ -1,0 +1,49 @@
+version: "3.7"
+
+networks:
+  loki:
+
+services:
+  loki:
+    image: grafana/loki:2.9.2
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/config.yml
+    volumes:
+      - ./configs/loki.yml:/etc/loki/config.yml
+    networks:
+      - loki
+
+  promtail:
+    image: grafana/promtail:2.9.2
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/log:/var/log:ro
+      - ./configs/promtail.yml:/etc/promtail/config.yml
+    command:
+      - "--config.file=/etc/promtail/config.yml"
+      - "--config.expand-env=true"
+    networks:
+      - loki
+
+  grafana:
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    image: grafana/grafana:latest
+    volumes:
+      - ./configs/grafana.yml:/etc/grafana/provisioning/datasources/ds.yml
+    ports:
+      - "3000:3000"
+    networks:
+      - loki
+
+  app_python:
+    image: habur331/devops-course:latest
+    ports:
+      - 80:5000
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{ .Name }}"
