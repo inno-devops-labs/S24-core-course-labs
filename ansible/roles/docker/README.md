@@ -1,17 +1,18 @@
-
 # Docker and docker-compose role
 
-The tasks:
+Which tasks this role is responsible for:
+
 - Install docker
 - Install docker compose
-- Meets all official documentation's requirements 
+- Meet all official documentation's requirements
 
 ## How to use
-    ```sh
-    ---
-    - name: Deploy Docker
-    hosts: all
-    become: true
-    roles:
-        - role: ../../roles/docker
-    ```
+
+```sh
+---
+- name: Deploy Docker
+hosts: all
+become: true
+roles:
+    - role: ../../roles/docker
+```
