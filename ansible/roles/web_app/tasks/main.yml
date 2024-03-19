@@ -1,0 +1,13 @@
+---
+# tasks file for web_app
+
+# Wipe is placed on top because if user doesn't exclued it, but sets the
+# wipe variable to be true, then we just wipe the app and redeploy it
+
+- name: Wipe web app
+  import_tasks: wipe.yml
+  tags: wipe
+
+- name: Run compose
+  import_tasks: run_compose.yml
+  tags: setup

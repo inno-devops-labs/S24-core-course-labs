@@ -148,6 +148,88 @@ PLAY RECAP *********************************************************************
 ec2-3-71-79-119.eu-central-1.compute.amazonaws.com : ok=10   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
+## 4. Custom ```web_app``` Role
+
+A custom web_app role is created to deploy the web applications on Amazon AWS EC2 instances. This role uses docker compose to run the web app, the docker image is pulled from docker hub.
+
+```playbooks/dev/app_python/main.yml```:
+```
+---
+- name: Deploy web app
+  hosts: app_server_python
+  roles: 
+  - role: web_app
+    become: true
+    vars:
+      app_name: "app_python"
+      app_port: 5000
+      app_dir: "/home/{{ ansible_user }}/{{ app_name }}"
+      host_name: "{{ ansible_host }}"
+      web_app_full_wipe: true
+```
+
+#### Usage
+
+To deploy the web app:
+```
+ansible-playbook playbooks/dev/app_python/main.yml
+```
+
+To wipe the web app:
+```
+ansible-playbook playbooks/dev/app_bun/main.yml --extra-vars "web_app_full_wipe=true" --tags "wipe"
+```
+
+#### Output
+Running ansible-playbook playbooks/dev/app_python/main.yml --diff gives me the following output (last 50 lines):
+```
+
+TASK [web_app : Remove compose file] ****************************************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/home/ubuntu/app_python/docker-compose.yml",
+-    "state": "file"
++    "state": "absent"
+ }
+
+changed: [ec2-3-71-79-119.eu-central-1.compute.amazonaws.com]
+
+TASK [web_app : Create folder for web app if it does not exist] *************************************************************************************
+ok: [ec2-3-71-79-119.eu-central-1.compute.amazonaws.com]
+
+TASK [web_app : Copy template file] *****************************************************************************************************************
+--- before
++++ after: /home/tanmay/.ansible/tmp/ansible-local-331725eglls44/tmpo5_niu7a/docker-compose.yml.j2
+@@ -0,0 +1,7 @@
++version: "3"
++
++services:
++  web:
++    image: sharmatanmay617/app_python:latest
++    ports:
++      - "5000:5000"
+\ No newline at end of file
+
+changed: [ec2-3-71-79-119.eu-central-1.compute.amazonaws.com]
+
+TASK [web_app : Stop and remove Docker containers] **************************************************************************************************
+changed: [ec2-3-71-79-119.eu-central-1.compute.amazonaws.com]
+
+TASK [web_app : Run docker-compose] *****************************************************************************************************************
+changed: [ec2-3-71-79-119.eu-central-1.compute.amazonaws.com]
+
+PLAY RECAP ******************************************************************************************************************************************
+ec2-3-71-79-119.eu-central-1.compute.amazonaws.com : ok=18   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+#### Demo
+
+![](https://i.postimg.cc/rs3bGBgC/Screenshot-from-2024-03-20-01-53-00.png)
+
+
+
 ## BEST PRACTICES
 
 1. ```ansible.cfg``` was used for settings.
