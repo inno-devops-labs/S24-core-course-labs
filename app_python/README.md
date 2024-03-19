@@ -1,5 +1,6 @@
 # Python Web Application
 
+![CI](https://github.com/habur331/S24-DevOps-course-labs/actions/workflows/main.yml/badge.svg)
 ## Overview
 
 This document outline a simple Python web application designed to display the current time in Moscow. The application leverages the Flask framework, adhering to established best practices and coding standards.
@@ -25,6 +26,13 @@ The application shows current time in Moscow correctly on reloading main page.
    pip install -r requirements.txt
 ``` 
 3. Run Flask Server
+
+### Unit Testing
+`unittest` is used for unit testing. In order to run tests the following command can be used
+
+```bash
+python -m unittest discover -s app_python
+```
 
 ### Docker
 
