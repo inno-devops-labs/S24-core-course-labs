@@ -11,7 +11,7 @@ app.config['timezone'] = os.getenv('TIMEZONE', default='Europe/Moscow')
 app.config['datetime_format'] = os.getenv('DATETIME_FORMAT',
                                           default='%Y-%m-%d %H:%M:%S %z')
 logs_file_path = os.getenv('LOGS_FILE_PATH', default='../logs/moscow_time.log')
-logging.basicConfig(filename=logs_file_path,level=logging.DEBUG)
+logging.basicConfig(filename=logs_file_path, level=logging.DEBUG)
 
 
 @app.route("/api/v1/time")
@@ -42,5 +42,6 @@ def format_datetime_response(timestamp: datetime) -> str:
     return response
 
 
-if __name__ == '__main__': 
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=app.config['port'])
+  
