@@ -1,3 +1,3 @@
 image_name: "vikono/devops:latest"
 app_dir: "app_python"
-web_app_full_wipe: false
+web_app_full_wipe: true

@@ -111,6 +111,9 @@ $ ansible-inventory -i inventory/default_yc_ec2.yml --list
 Is used to deploy MSK Time web application.
 
 ### Outputs
+Both outputs are obtained while being in `ansible` folder.
+
+When `web_app_full_wipe` is false:
 ```bash
 $ ansible-playbook playbooks/dev/main.yaml --diff
 LAY [Docker roles] *********************************************************************************************************************************
@@ -180,3 +183,46 @@ PLAY RECAP *********************************************************************
 host_01                    : ok=10   changed=4    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 ```
 
+When `web_app_full_wipe` is true:
+```bash
+$ ansible-playbook playbooks/dev/main.yaml --diff
+-/-/-/-
+
+TASK [web_app : Stop and remove containers] ***************************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+-    "exists": true,
+-    "running": true
++    "exists": false,
++    "running": false
+ }
+
+changed: [host_01]
+
+TASK [web_app : Ensure that directory exist] **************************************************************************************************
+ok: [host_01]
+
+TASK [web_app : Upload docker-compose.yml] ****************************************************************************************************
+ok: [host_01]
+
+TASK [web_app : Pull image] *******************************************************************************************************************
+ok: [host_01]
+
+TASK [web_app : Start docker container] *******************************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+-    "exists": false,
+-    "running": false
++    "exists": true,
++    "running": true
+ }
+
+changed: [host_01]
+
+PLAY RECAP ************************************************************************************************************************************
+host_01                    : ok=11   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
+```
