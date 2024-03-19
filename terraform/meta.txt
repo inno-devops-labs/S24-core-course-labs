@@ -1,0 +1,8 @@
+#cloud-config
+users:
+  - name: devops_user
+    groups: sudo
+    shell: /bin/bash
+    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC5ekB7sSLvWT5ePkcQ/rM6JsoK1+j0i6V8fguK9QeVCGxchEErE0aT8U+AS4KzRfSEJzoc1tR1fhxZJQRwepr88qoypwHW4KBQPgvBzKNJ7Ngu4Z+8OOxdF7IKZ4yQGA1+EvdjQLoTZ30LD92ZH+ZtrHRVN6DJuvHGDgTCk88CL1ut8BPdUfTxMQdmnMx1QpxPu6fMUUMn9k6lFg7rFN+43VLh3xZq51fI/o33flyhWkxFzoUcuPBPfEWZEIN46fVZKY9xU04dEQ6M/fi4lnYMRHDNcHQIxFOeY8MauZpXcWbaA4ZkbKAAwS+d9hfKpSLCO8Ttc/ecqt6JJFKFNAiy0GYLPzgaD3L0Tlur7U7mNTqLOn+lXmLIXw60sMbKHXG8jnJKpEnba7krfcbDHOfZqqCxvPnPJh13WZbFgHfK9RgClk04iqbg12c3/29Qg+BABz9XMH2zdfyGDf1YnUH9BhPHFLNHOPzuwaJ/lUDJ4aeDrdL2NFC4HW1F2I0pK9U= mrfired@LAPTOP-F6NGFB58

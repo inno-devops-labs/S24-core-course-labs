@@ -1,0 +1,4 @@
+cloudvms:
+  hosts:
+    terraform1:
+      ansible_host: 51.250.85.29

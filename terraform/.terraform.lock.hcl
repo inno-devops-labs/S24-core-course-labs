@@ -5,13 +5,13 @@ provider "registry.terraform.io/kreuzwerker/docker" {
   version     = "3.0.2"
   constraints = "~> 3.0.1"
   hashes = [
-    "h1:DcRxJArfX6EiATluWeCBW7HoD6usz9fMoTK2U3dmyPk=",
+    "h1:cT2ccWOtlfKYBUE60/v2/4Q6Stk1KYTNnhxSck+VPlU=",
   ]
 }
 
 provider "registry.terraform.io/yandex-cloud/yandex" {
-  version = "0.109.0"
+  version = "0.110.0"
   hashes = [
-    "h1:4Uj4PFQHu9TTsGNPJjnegYywYe8D2SBYhvNDqPP5+RI=",
+    "h1:BUo/KwlI6jRUSMsO3e1ktXnAS6KJWxoaicPNFmNyLjM=",
   ]
 }
