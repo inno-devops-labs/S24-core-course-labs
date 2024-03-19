@@ -1,0 +1,11 @@
+---
+- hosts: some-sad-machine
+  become: yes
+  roles:
+    - role: web_app
+      vars:
+        web_app_external_port: 8080
+        web_app_internal_port: 8080
+        web_app_repo_name: legolass322/devops
+        web_app_version: app_python
+        web_app_full_wipe: false

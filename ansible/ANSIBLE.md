@@ -116,3 +116,48 @@ some-sad-machine           : ok=9    changed=8    unreachable=0    failed=0    s
     }
 }
 ```
+
+## Web app deploy
+
+```
+PLAY [some-sad-machine] ****************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************
+ok: [some-sad-machine]
+
+TASK [docker : Register version codename] **********************************************************
+changed: [some-sad-machine]
+
+TASK [docker : Install docker dependencies] ********************************************************
+ok: [some-sad-machine]
+
+TASK [docker : Add docker gpg key] *****************************************************************
+ok: [some-sad-machine]
+
+TASK [docker : Add docker repository] **************************************************************
+ok: [some-sad-machine]
+
+TASK [docker : Install docker engine] **************************************************************
+ok: [some-sad-machine]
+
+TASK [docker : Install pip] ************************************************************************
+ok: [some-sad-machine]
+
+TASK [docker : Install Docker SDK] *****************************************************************
+ok: [some-sad-machine]
+
+TASK [docker : Setup user 'dima-batalov'] **********************************************************
+ok: [some-sad-machine]
+
+TASK [web_app : Wipe app] **************************************************************************
+skipping: [some-sad-machine]
+
+TASK [web_app : Pull docker image] *****************************************************************
+changed: [some-sad-machine]
+
+TASK [web_app : Run container] *********************************************************************
+changed: [some-sad-machine]
+
+PLAY RECAP *****************************************************************************************
+some-sad-machine           : ok=11   changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0 
+```
