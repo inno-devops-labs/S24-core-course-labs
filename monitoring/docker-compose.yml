@@ -8,8 +8,6 @@ services:
     image: ilnurha/dev_ops_course_core:latest
     ports:
       - "5001:5000"
-    networks:
-      - loki
 
   loki:
     image: grafana/loki:2.9.2
