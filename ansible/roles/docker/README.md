@@ -1,16 +1,17 @@
-# Ansible
 
-## Commands
+# Docker and docker-compose role
 
-Install ansible, docker role and aws collection:
+The tasks:
+- Install docker
+- Install docker compose
+- Meets all official documentation's requirements 
 
-```bash
-ansible-galaxy role install geerlingguy.docker
-ansible-galaxy collection install amazon.aws 
-```
-
-## Best practices
-
-- Organized basing on provided template
-- All tasks have proper naming
-- `ansible.cfg` is used for configurations (including private key file)
+## How to use
+    ```sh
+    ---
+    - name: Deploy Docker
+    hosts: all
+    become: true
+    roles:
+        - role: ../../roles/docker
+    ```

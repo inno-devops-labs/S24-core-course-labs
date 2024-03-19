@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  web:
+    image: batdockerivankornienko/{{ web_app_name }}:latest
+    ports:
+      - "{{ web_app_port }}:{{ web_app_port }}"
