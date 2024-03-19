@@ -18,6 +18,12 @@
     state: "started"
     enabled: true
 
+- name: Check that docker compose is running
+  service:
+    name: "docker-compose"
+    state: "started"
+    enabled: true
+
 - name: Start app
   community.docker.docker_compose_v2:
     project_src: "{{ web_app_image_dir }}"
