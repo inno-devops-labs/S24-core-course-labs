@@ -8,8 +8,8 @@ locals {
           {
             user-data = coalesce(
               can(instance.metadata.user-data) ? instance.metadata.user-data : null,
+              file("${path.root}/data/user-metadata.secret.yaml"),
               var.default_user-data,
-              file("${path.root}/data/user-metadata.secret.yaml") # todo
             )
           }
         )
