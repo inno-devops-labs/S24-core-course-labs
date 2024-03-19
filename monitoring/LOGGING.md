@@ -10,9 +10,9 @@ Sometimes it considered the config file to be a directory after mounting. Someti
 
 I tried using `sudo` access, putting config to different folders, different compose file options, different promtail configs. Loki making some logs in console but it cant be catched by Grafana.
 
-![](/monitoring/screenshots/1.png)
-![](/monitoring/screenshots/2.png)
-![](/monitoring/screenshots/3.png)
+![](/monitoring/screenshots/1.jpg)
+![](/monitoring/screenshots/2.jpg)
+![](/monitoring/screenshots/3.jpg)
 
 ## Overview of docker-compose.yml
 
