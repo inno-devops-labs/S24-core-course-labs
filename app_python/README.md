@@ -25,3 +25,20 @@ The application shows current time in Moscow correctly on reloading main page.
    pip install -r requirements.txt
 ``` 
 3. Run Flask Server
+
+### Docker
+
+- You can build image on your own
+```bash
+docker build . -f Dockerfile -t habur331/devops-course
+```
+
+- Or can pull image from DockerHub
+```bash
+docker pull habur331/devops-course:latest
+```
+- Run container
+```bash
+docker run -dp 5000:5000 habur331/devops-course:latest
+```
+- Access app on http://localhost:5000
