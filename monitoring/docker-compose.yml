@@ -16,6 +16,19 @@ services:
         max-size: "200k"
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
+
+  app_go:
+    image: dianatomiya/devops:g_v2.0
+    ports:
+      - "8080:8080"
+    networks:
+      - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}" 
       
   loki:
     image: grafana/loki:latest
@@ -24,12 +37,12 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - loki
-    # logging:
-    #   driver: "json-file"
-    #   options:
-    #     max-size: "200k"
-    #     max-file: "10"
-    #     tag: "{{:ImageName}}|{{:Name}}"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
 
   promtail:
     image: grafana/promtail:latest
@@ -39,12 +52,12 @@ services:
     command: -config.file=/etc/promtail/config.yml
     networks:
       - loki
-    # logging:
-    #   driver: "json-file"
-    #   options:
-    #     max-size: "200k"
-    #     max-file: "10"
-    #     tag: "{{:ImageName}}|{{:Name}}"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
 
   grafana:
     environment:
@@ -75,3 +88,9 @@ services:
       - "3000:3000"
     networks:
       - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"

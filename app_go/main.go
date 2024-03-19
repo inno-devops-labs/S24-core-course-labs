@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -17,6 +18,10 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get the current time and set timezone
 	timeString := time.Now().In(loc).Format("2006-01-02 15:04:05")
+
+	logger := log.New(os.Stdout, "INFO: ", log.Ldate|log.Ltime)
+
+	logger.Println("time in Moscow:" + timeString)
 
 	var pictureURL string
 
