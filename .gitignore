@@ -1,3 +1,16 @@
 .idea
 app_python/venv
-app_python/app.log
+app_python/__pycache__
+app_python/tests/__pycache__
+terraform/docker/.terraform
+terraform/docker/terraform.tfstate
+terraform/docker/terraform.tfstate.backup
+terraform/docker/.terraform.lock.hcl
+terraform/timeweb/.terraform
+terraform/timeweb/terraform.tfstate
+terraform/timeweb/terraform.tfstate.backup
+terraform/timeweb/.terraform.lock.hcl
+terraform/github/.terraform
+terraform/github/terraform.tfstate
+terraform/github/terraform.tfstate.backup
+terraform/github/.terraform.lock.hcl
