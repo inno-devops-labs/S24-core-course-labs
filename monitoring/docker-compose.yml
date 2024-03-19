@@ -1,0 +1,38 @@
+networks:
+  loki:
+
+services:
+  web_app:
+    image: kolay0ne/app_py:lab6
+    ports:
+      - "5000:5000"
+
+  loki:
+    image: grafana/loki:2.9.2
+    ports:
+      - "3100:3100"
+    #command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - loki
+
+  promtail:
+    image: grafana/promtail:2.9.2
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - ./promtail_config.yml:/etc/promtail/config.yml:ro
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - loki
+
+  grafana:
+    image: grafana/grafana:10.0.12
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana_datasources.yml:/etc/grafana/provisioning/datasources/ds.yaml
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    networks:
+      - loki
