@@ -9,6 +9,11 @@ services:
     ports:
       - "5001:5000"
 
+  rust_web_app:
+    image: ilnurha/dev_ops_course_bonus:latest
+    ports:
+      - "9000:9000"
+
   loki:
     image: grafana/loki:2.9.2
     ports:

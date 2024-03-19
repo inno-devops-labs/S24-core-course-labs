@@ -18,12 +18,19 @@ all logging stack that communicate with each other
 
 ### Services
 
-#### Web Application
+#### Python Web Application
 
 Web application for getting time
 
 - Pulling image from docker hub
 - Exposing port inside container to some port in the host machine
+
+#### Rust Web Application
+
+Web application to perform basic math operations.
+
+- Pulling image from docker hub
+- Exposing ports
 
 #### Loki
 
@@ -82,3 +89,7 @@ So, it is sufficient to put path to docker logs
 ### Logs from web app using Loki in Grafana
 
 ![LogsFromWebAppUsingLokiInGrafana](./pics/GrafanaLogsFromWebAppUsingLoki.png)
+
+### All Services In Docker Compose File
+
+![AllLogsCount](./pics/AllLogsCount.png)
