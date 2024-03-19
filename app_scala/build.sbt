@@ -9,6 +9,8 @@ scalaVersion := "2.13.12"
 
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.0" % Test
+libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.5"
+libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.3.5"
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "ru.innopolis.controllers._"
