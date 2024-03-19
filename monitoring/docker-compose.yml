@@ -6,24 +6,46 @@ networks:
 services:
   app_python:
     image: ramprin/devops_py:latest
-    volumes:
-      - ./logs/py:/code/log/
+    ports:
+      - "8082:8080"
     logging: &logging
       driver: "json-file"
       options:
         tag: "{{.ImageName}}|{{.Name}}"
-    ports:
-      - "8080:8080"
     networks:
       - loki
 
   app_go:
     image: ramprin/devops_go:latest
-    volumes:
-      - ./logs/go:/code/log
     ports:
-      - "8082:8080"
+      - "8080:8080"
     logging: *logging
+    networks:
+      - loki
+
+
+  loki:
+    container_name: loki
+    image: grafana/loki:2.9.1
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    logging: *logging
+    networks:
+      - loki
+
+  promtail:
+    container_name: promtail
+    image: grafana/promtail:2.9.1
+    volumes:
+      - /var/log:/var/log
+      - /var/lib:/var/lib
+      - ./config/promtail.yaml:/etc/promtail/promtail.yml
+
+    command: -config.file=/etc/promtail/promtail.yml
+    logging: *logging
+    depends_on:
+      - loki
     networks:
       - loki
 
@@ -32,42 +54,15 @@ services:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-    container_name: grafana
     volumes:
-      - ./config/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
-      - grafana:/var/lib/grafana
-    image: grafana/grafana:9.1.6
-    logging: *logging
+      - ./config/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yml
+    container_name: grafana
+    image: grafana/grafana:latest
     ports:
       - "3000:3000"
+    logging: *logging
     networks:
       - loki
     depends_on:
       - loki
       - promtail
-
-  promtail:
-    image: grafana/promtail:2.9.1
-    volumes:
-      - ./logs/:/var/log/
-      - ./config:/etc/promtail/
-    ports:
-      - "9080:9080"
-    command: -config.file=/etc/promtail/promtail.yaml
-    logging: *logging
-    depends_on:
-      - loki
-    networks:
-      - loki
-
-  loki:
-    image: grafana/loki:2.9.1
-    ports:
-      - "3100:3100"
-    command: "-config.file=/etc/loki/local-config.yaml"
-    logging: *logging
-    networks:
-      - loki
-
-volumes:
-  grafana:
