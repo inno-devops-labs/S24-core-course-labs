@@ -28,3 +28,4 @@ var/
 *.tfstate.*
 *.hcl
 key.json
+yandex_cloud_token
