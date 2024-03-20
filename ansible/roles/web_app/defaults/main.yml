@@ -1,0 +1,4 @@
+container_name: "app_python"
+image: "xdrdvd/app_python"
+app_name: "app"
+web_app_full_wipe: true

@@ -1,0 +1,14 @@
+---
+- name: Running web_app role
+  block:
+    - name: Stopping the app
+      ansible.builtin.include_tasks:
+        file: 0-stop.yml
+
+    - name: Wiping containers
+      ansible.builtin.include_tasks:
+        file: 1-wipe.yml
+
+    - name: Deploying the app
+      ansible.builtin.include_tasks:
+        file: 2-deploy.yml

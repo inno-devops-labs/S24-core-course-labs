@@ -1,0 +1,15 @@
+- name: deploy role
+  tags: deploy
+  block:
+    - name: Create directory for the {{app_name}} container
+      file:
+        path: "/{{app_name}}"
+        state: directory
+
+    - name: Copy Docker compose
+      template:
+        src: docker-compose.yml.j2
+        dest: "/{{app_name}}/docker-compose.yml"
+
+    - name: Copy Docker
+      shell: "cd /{{app_name}} && docker-compose -p {{ app_name }} up -d"

@@ -1,0 +1,14 @@
+---
+- name: Stop role
+  tags: stop
+  block:
+    - name: Check if Docker Compose directory exists
+      ansible.builtin.stat:
+        path: "/{{app_name}}/docker-compose"
+      register: compose_dir_status
+
+    - name: Stop Docker Compose if the directory exists
+      command: docker-compose -p {{ app_name }} stop
+      args:
+        chdir: "/{{app_name}}/docker-compose"
+      when: compose_dir_status.stat.exists
