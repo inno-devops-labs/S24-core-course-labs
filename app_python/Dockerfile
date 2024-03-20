@@ -30,7 +30,7 @@ ENV VIRTUAL_ENV=/app/.venv
 ENV PATH="${VIRTUAL_ENV}/bin:$PATH"
 ENV USER=uvicorn
 
-RUN adduser -D ${USER}
+RUN apk add --no-cache wget && adduser -D ${USER}
 
 COPY --from=builder /app/.venv ${VIRTUAL_ENV}
 COPY main.py main.py

@@ -15,7 +15,7 @@ LABEL org.opencontainers.image.created="2021-10-10T00:00:00Z" \
 WORKDIR /app
 
 ENV USER=rust
-RUN adduser -D ${USER}
+RUN apk add --no-cache wget && adduser -D ${USER}
 EXPOSE 80
 COPY --from=builder /build/target/release/app_rust ./
 

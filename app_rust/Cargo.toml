@@ -7,6 +7,7 @@ edition = "2021"
 
 [dependencies]
 actix-web = "4"
+actix-web-prom = "0.8.0"
 chrono = { version = "^0.4.33", features = ["serde"] }
 chrono-tz = "^0.8.5"
 serde = { version = "1.0.196", features = ["derive"] }

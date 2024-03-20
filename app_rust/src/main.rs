@@ -1,6 +1,3 @@
-//! The service that returns current time in Moscow in format YYYY-MM-DD
-//! HH:MM:SS.
-
 #![warn(
     clippy::all,
     clippy::style,
@@ -15,7 +12,8 @@
     clippy::similar_names
 )]
 
-use actix_web::{get, App, HttpResponse, HttpServer, Responder};
+use actix_web::{get, web, App, HttpResponse, HttpServer, Responder};
+use actix_web_prom::PrometheusMetricsBuilder;
 use chrono::{DateTime, Utc};
 use chrono_tz::{Europe::Moscow, Tz};
 use serde::{Serialize, Serializer};
@@ -53,14 +51,28 @@ async fn moscow_time() -> impl Responder {
     HttpResponse::Ok().json(CurrentTimeResp::new())
 }
 
+async fn health() -> HttpResponse {
+    HttpResponse::Ok().finish()
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     println!("Starting server at port {}", 80);
 
-    HttpServer::new(|| App::new().service(moscow_time))
-        .bind(("0.0.0.0", 80))?
-        .run()
-        .await
+    let prometheus = PrometheusMetricsBuilder::new("actix")
+        .endpoint("/metrics")
+        .build()
+        .unwrap();
+
+    HttpServer::new(move || {
+        App::new()
+            .wrap(prometheus.clone())
+            .service(moscow_time)
+            .service(web::resource("/health").to(health))
+    })
+    .bind(("0.0.0.0", 80))?
+    .run()
+    .await
 }
 
 #[cfg(test)]
