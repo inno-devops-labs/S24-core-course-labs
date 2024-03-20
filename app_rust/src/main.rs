@@ -1,3 +1,9 @@
+//! This crate provides a simple Actix web server that exposes an endpoint for
+//! getting the current time in Moscow. It also integrates with the
+//! `actix-web-prom` crate to expose Prometheus metrics.
+//!
+//! For more information, see the
+//! [README.md](https://github.com/yourusername/yourrepository/README.md) file.
 #![warn(
     clippy::all,
     clippy::style,
@@ -51,6 +57,7 @@ async fn moscow_time() -> impl Responder {
     HttpResponse::Ok().json(CurrentTimeResp::new())
 }
 
+/// Route for health check.
 async fn health() -> HttpResponse {
     HttpResponse::Ok().finish()
 }
