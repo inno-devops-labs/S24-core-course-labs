@@ -2,10 +2,15 @@ networks:
   loki:
 
 services:
-  web_app:
+  app_py:
     image: kolay0ne/app_py:lab6
     ports:
       - "5000:5000"
+
+  app_go:
+    image: kolay0ne/app_go:lab6
+    ports:
+      - "5500:5000"
 
   loki:
     image: grafana/loki:2.9.2
