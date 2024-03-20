@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  web_app:
+    image: vectorsmaster/flask-app
+    container_name: app_python
+    ports:
+      - 5000:5000
+    labels:
+      logging: "promtail"
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana 
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+    labels:
+      logging: "promtail"
+
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - 3100:3100
+    command: -config.file=/etc/loki/local-config.yaml
+    labels:
+      logging: "promtail"
+
+  promtail:
+    image:  grafana/promtail:latest
+    container_name: promtail
+    volumes:
+      - ./promtail/promtail.yml:/etc/promtail/promtail.yml
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: -config.file=/etc/promtail/promtail.yml
+    labels: 
+      logging: "promtail"
+    depends_on:
+      - loki
