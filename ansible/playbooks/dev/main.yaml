@@ -1,7 +1,8 @@
 - name: Deploy Docker
-  hosts: localhost
-  connection: local
-  gather_facts: yes 
+  hosts: all
   become: true
+  vars:
+    web_app_full_wipe: true
   roles:
     - docker
+    - web_app

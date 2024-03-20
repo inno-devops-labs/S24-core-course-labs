@@ -1,0 +1,11 @@
+- name: wipe
+  block:
+
+    - name: Remove Docker container
+      docker_container:
+        name: "{{ docker_container_name }}"
+        state: absent
+
+  when: web_app_full_wipe | bool
+  tags:
+    - wipe

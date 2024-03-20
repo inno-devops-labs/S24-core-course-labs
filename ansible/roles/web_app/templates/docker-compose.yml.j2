@@ -1,0 +1,6 @@
+services:
+  '{{ app_name }}':
+    image:  '{{ app_image }}'
+    restart: always
+    ports:
+        - '{{ app_external_port }}:{{ app_internal_port }}'
