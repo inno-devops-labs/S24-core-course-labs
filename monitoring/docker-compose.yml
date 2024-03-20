@@ -40,6 +40,18 @@ services:
       options: 
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
 
+  prometheus:
+    image: prom/prometheus:v2.36.2
+    volumes:
+      - prometheus-conf:/etc/prometheus
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    networks:
+      - loki
+
   promtail:
     image: grafana/promtail:2.9.2
     volumes:
@@ -73,6 +85,15 @@ services:
           access: proxy 
           orgId: 1
           url: http://loki:3100
+          basicAuth: false
+          isDefault: false
+          version: 1
+          editable: false
+        - name: Prometheus
+          type: prometheus
+          access: proxy 
+          orgId: 1
+          url: http://prometheus:9090
           basicAuth: false
           isDefault: true
           version: 1
@@ -110,3 +131,18 @@ volumes:
       type: none
       device: promtail
       o: bind
+
+  prometheus-conf: 
+    driver: local
+    driver_opts:
+      type: none
+      device: prometheus
+      o: bind
+  
+  prometheus-data: 
+    driver: local
+    driver_opts:
+      type: none
+      device: prometheus_data
+      o: bind
+
