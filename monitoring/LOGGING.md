@@ -68,9 +68,9 @@ The provided promtail.yml file contains the configuration for the Promtail servi
 - - - labels stage: Assigns extracted values to labels for better log searchability and analysis.
 - - - output stage: Specifies the output source as "log".
 
-## Screenshots: 
+## Screenshots
+
 ![Logs - app_python](images/app_python_log.png)
 ![Logs - grafana](images/grafana_log.png)
 ![Logs - loki](images/loki_log.png)
 ![Logs - promtail](images/promtail_log.png)
-
