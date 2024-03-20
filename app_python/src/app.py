@@ -11,6 +11,7 @@ healthcheck_counter = Counter(
     'Number of healthcheck requests'
 )
 
+
 @app.route('/')
 def index():
     """
@@ -19,10 +20,12 @@ def index():
     """
     return show_time()
 
+
 @app.route('/healthcheck')
 def healthcheck():
     healthcheck_counter.inc()
     return 'Ok'
+
 
 @app.route('/metrics')
 def metrics():
