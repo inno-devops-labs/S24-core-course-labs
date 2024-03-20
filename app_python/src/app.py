@@ -1,10 +1,15 @@
 from datetime import datetime
 import zoneinfo
-from flask import Flask
+from flask import Flask, Response
 from flask import render_template
+from prometheus_client import generate_latest, Counter
 
 app = Flask(__name__)
 
+healthcheck_counter = Counter(
+    'healthcheck_requests',
+    'Number of healthcheck requests'
+)
 
 @app.route('/')
 def index():
@@ -13,6 +18,15 @@ def index():
     :return: show_time() function which generates needed template.
     """
     return show_time()
+
+@app.route('/healthcheck')
+def healthcheck():
+    healthcheck_counter.inc()
+    return 'Ok'
+
+@app.route('/metrics')
+def metrics():
+    return Response(generate_latest(), content_type='text/plain')
 
 
 def unify_number(number: int) -> str:
