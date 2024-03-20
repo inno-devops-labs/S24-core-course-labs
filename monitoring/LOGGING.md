@@ -24,16 +24,19 @@ Promtail ships the log content to our Loki instance.
 Screenshots: 
 
 - Logging stack: 
-![logging_stack](screenshots/logging_stack.png)
+    ![logging_stack](screenshots/logging_stack.png)
 
 - Loki ready: 
-
-![loki_ready](screenshots/loki_ready.png)
+    ![loki_ready](screenshots/loki_ready.png)
 
 - app_python view: 
-
-![app_python_view](screenshots/app_python_view.png)
+    ![app_python_view](screenshots/app_python_view.png)
 
 - app_python logs:
+    ![app_python_logs](screenshots/app_python_log.png)
 
-![app_python_logs](screenshots/app_python_log.png)
+- app_go view:
+    ![app_go_view](screenshots/app_go_view.png)
+
+- app_go logs:
+    ![app_go_logs](screenshots/app_go_log.png)

@@ -61,3 +61,15 @@ services:
         max-file: "10"
     networks:
       - loki
+  
+  app_go:
+    build: ../app_go
+    ports:
+      - "8081:8080"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    networks:
+      - loki
