@@ -1,0 +1,6 @@
+all:
+  hosts:
+    ec2-18-170-41-216.eu-west-2.compute.amazonaws.com:
+  vars:
+    ansible_user: ubuntu
+    ansible_connection: ssh

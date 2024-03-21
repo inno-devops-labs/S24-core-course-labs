@@ -1,0 +1,17 @@
+- name: Download pip installation script
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /tmp/get-pip.py
+
+- name: Install pip
+  command: python3 /tmp/get-pip.py
+  args:
+    creates: /usr/local/bin/pip3
+    
+- name: Install Docker
+  import_tasks: install_docker.yml
+  tags: docker
+
+- name: Install docker-compose
+  import_tasks: install_compose.yml
+  tags: docker
