@@ -1,3 +1,4 @@
 Flask
 pytz
 flake8
+prometheus_client

@@ -4,6 +4,12 @@ networks:
   default:
     name: loki
 
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 200M
+
 x-logging:
   &default-logging
   driver: "json-file"
@@ -11,20 +17,16 @@ x-logging:
     tag: "{{.ImageName}}|{{.Name}}"
 
 services:
-  app-java:
-    image: djhovi/my-java-app
-    ports:
-      - "8080:8080"
-    logging: *default-logging
 
   app_python:
-    image: djhovi/my-flask-app
+    image: djhovi/app_python
     volumes:
       - ./logs:/app/logs
     ports:
       - target: 5000
         published: 5000
     logging: *default-logging
+    deploy: *default-deploy
 
   loki:
     image: grafana/loki:2.9.2
@@ -32,6 +34,7 @@ services:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
     logging: *default-logging
+    deploy: *default-deploy
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -40,6 +43,7 @@ services:
       - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
     logging: *default-logging
+    deploy: *default-deploy
 
   grafana:
     environment:
@@ -68,4 +72,21 @@ services:
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
+    logging: *default-logging
+    deploy: *default-deploy
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    healthcheck:
+      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:9090/status || exit 1" ]
+      interval: 10s
+      timeout: 15s
+      start_period: 15s
+      retries: 3
+    deploy: *default-deploy
     logging: *default-logging
