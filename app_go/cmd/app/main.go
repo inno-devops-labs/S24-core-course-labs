@@ -14,6 +14,12 @@ import (
 )
 
 func main() {
+	// metrics
+	m := api.NewMetrics()
+	if err := m.Register(); err != nil {
+		log.Fatal().Err(err).Msg("failed to init metrics")
+	}
+
 	// clock service
 	clockService := service.NewClock(time.Now)
 
@@ -28,7 +34,7 @@ func main() {
 	go func() {
 		log.Info().Msg("starting the web server on addr:" + addr)
 		app := fiber.New()
-		if err := server.Init(app); err != nil {
+		if err := server.Init(app, m); err != nil {
 			log.Fatal().Err(err).Msg("failed to init the server")
 		}
 

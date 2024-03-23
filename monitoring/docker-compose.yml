@@ -8,8 +8,8 @@ x-logging:
   driver: "json-file"
   options:
     tag: "{{.ImageName}}|{{.Name}}"
-    max-size: 10M
-    max-file: 1
+    max-size: 15M
+    max-file: 5
 
 services:
   app_python:
@@ -19,6 +19,16 @@ services:
     logging: *default-logging
     networks:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 90M
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://127.0.0.1:8080 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
 
   app_go:
     build: ../app_go
@@ -27,6 +37,16 @@ services:
     logging: *default-logging
     networks:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 90M
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://127.0.0.1:8080 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
 
   loki:
     image: grafana/loki:2.9.2
@@ -36,6 +56,16 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://127.0.0.1:3100/ready || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -47,6 +77,16 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 90M
+    healthcheck:
+      test: ls -l /proc/*/exe | grep /promtail
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
 
   grafana:
     environment:
@@ -78,3 +118,37 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 150M
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://127.0.0.1:3000/api/health || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    container_name: prometheus
+    hostname: prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+    networks:
+      - loki
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://127.0.0.1:9090/status || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s

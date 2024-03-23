@@ -27,7 +27,7 @@ func getTestApiServerSuite(t *testing.T, clock ClockService) *apiServerSuite {
 		app:    fiber.New(),
 	}
 
-	if err := s.Init(s.app); err != nil {
+	if err := s.Init(s.app, NewMetrics()); err != nil {
 		t.Fatal(err)
 	}
 
