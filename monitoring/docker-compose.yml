@@ -41,3 +41,12 @@ services:
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
     networks:
       - loki
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus_config.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - loki
