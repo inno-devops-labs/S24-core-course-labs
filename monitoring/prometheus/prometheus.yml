@@ -40,3 +40,7 @@ scrape_configs:
 
     static_configs:
       - targets: ["grafana:3000"]
+
+  - job_name: python_web_app
+    static_configs:
+      - targets: ["webapp:5000"]

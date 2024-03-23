@@ -4,10 +4,12 @@ networks:
   loki:
 
 services:
-  web_app:
+  webapp:
     image: ilnurha/dev_ops_course_core:latest
     ports:
       - "5001:5000"
+    networks:
+      - loki
     logging:
       driver: "json-file"
       options:
@@ -16,7 +18,7 @@ services:
 
         # source: https://dev.to/ykyuen/how-to-setup-log-rotation-for-docker-container-4alp
 
-  rust_web_app:
+  rustwebapp:
     image: ilnurha/dev_ops_course_bonus:latest
     ports:
       - "9000:9000"
