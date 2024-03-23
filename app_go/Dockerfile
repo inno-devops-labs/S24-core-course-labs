@@ -6,6 +6,7 @@ COPY go.mod *.go /usr/src/app/
 # No dependencies yet
 #RUN go mod download && go mod verify
 
+RUN ["env", "CGO_ENABLED=0", "go", "get"]
 RUN ["env", "CGO_ENABLED=0", "go", "build", "-o", "catfact_webapp", "."]
 
 

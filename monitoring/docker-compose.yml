@@ -7,7 +7,7 @@ volumes:
 
 services:
   app_py:
-    image: kolay0ne/app_py:lab6
+    image: kolay0ne/app_py:lab8
     ports:
       - "5000:5000"
     logging:
@@ -15,16 +15,20 @@ services:
         max-size: 5m
     deploy:
       resources: {limits: {memory: 30M}}
+    networks:
+      - prometheus
 
   app_go:
-    image: kolay0ne/app_go:lab6
+    image: kolay0ne/app_go:lab8
     ports:
       - "5500:5000"
     logging:
       options:
         max-size: 5m
     deploy:
-      resources: {limits: {memory: 6M}}
+      resources: {limits: {memory: 20M}}
+    networks:
+      - prometheus
 
   loki:
     image: grafana/loki:2.9.2

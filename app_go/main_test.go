@@ -13,7 +13,7 @@ import (
 func TestFactLoads(t *testing.T) {
     w := httptest.NewRecorder()
 
-    handler(w, nil)
+    index(w, nil)
     resp := w.Result()
 
     if resp.StatusCode != http.StatusOK {
