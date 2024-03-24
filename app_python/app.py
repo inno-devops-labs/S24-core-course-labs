@@ -1,37 +1,42 @@
 import datetime
 import logging
-from flask import Flask, render_template, redirect, url_for
-
-app = Flask(__name__)
+from fastapi import FastAPI, Request, HTTPException
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from prometheus_fastapi_instrumentator import Instrumentator
 
 # Configure logging
-logging.basicConfig(filename='app.log', level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+app = FastAPI()
+templates = Jinja2Templates(directory="templates")
+
+# Instrument the FastAPI app
+instrumentator = Instrumentator()
+instrumentator.instrument(app)
+instrumentator.expose(app)
 
 # Helper function to get current UTC time
 def get_utc_now():
     return datetime.datetime.utcnow()
 
-
-@app.route('/')
-def display_time():
+@app.get('/', response_class=HTMLResponse)
+async def display_time(request: Request):
     try:
         moscow_time = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
         formatted_time = moscow_time.strftime("%Y-%m-%d %H:%M:%S")
         logging.info("Displayed Moscow time: %s", formatted_time)
         logging.info("Custom log message")
 
-        return render_template('index.html', time=formatted_time)
+        return templates.TemplateResponse("index.html", {"request": request, "time": formatted_time})
     except Exception as e:
         logging.error("An error occurred: %s", str(e))
-        return redirect(url_for('handle_error'))
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
-
-@app.route('/error')
-def handle_error():
-    return render_template('error.html')
-
+@app.get('/error', response_class=HTMLResponse)
+async def handle_error(request: Request):
+    return templates.TemplateResponse("error.html", {"request": request})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    import uvicorn
+    uvicorn.run(app, host='0.0.0.0')
