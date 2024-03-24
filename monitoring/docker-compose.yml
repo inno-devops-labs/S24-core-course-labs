@@ -6,6 +6,8 @@ networks:
 services:
   webapp:
     image: ilnurha/dev_ops_course_core:latest
+    expose:
+      - 5001
     ports:
       - "5001:5000"
     networks:
@@ -17,19 +19,37 @@ services:
         max-file: "3"
 
         # source: https://dev.to/ykyuen/how-to-setup-log-rotation-for-docker-container-4alp
+    healthcheck:
+      test: curl --fail http://localhost:5000 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
 
   rustwebapp:
     image: ilnurha/dev_ops_course_bonus:latest
+    expose:
+      - 9000
     ports:
       - "9000:9000"
+    networks:
+      - loki
     logging:
       driver: "json-file"
       options:
         max-size: "1k"
         max-file: "3"
+    healthcheck:
+      test: curl --fail http://localhost:9000 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
 
   loki:
     image: grafana/loki:2.9.2
+    expose:
+      - 3100
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
@@ -40,12 +60,20 @@ services:
       options:
         max-size: "1k"
         max-file: "3"
+    healthcheck:
+      test: curl --fail http://localhost:3100 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
 
   promtail:
     image: grafana/promtail:2.9.2
     volumes:
       - ./promtail/promtail.yml:/etc/promtail/promtail.yml:ro
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    expose:
+      - 9080
     ports:
       - "9080:9080"
     command: -config.file=/etc/promtail/promtail.yml
@@ -56,11 +84,19 @@ services:
       options:
         max-size: "1k"
         max-file: "3"
+    healthcheck:
+      test: curl --fail http://localhost:9080 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
 
   prometheus:
     image: prom/prometheus:v2.51.0
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    expose:
+      - 9090
     ports:
       - "9090:9090"
     command: --config.file=/etc/prometheus/prometheus.yml
@@ -71,6 +107,12 @@ services:
       options:
         max-size: "1k"
         max-file: "3"
+    healthcheck:
+      test: curl --fail http://localhost:9090 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
     
 
   grafana:
@@ -98,6 +140,8 @@ services:
         EOF
         /run.sh
     image: grafana/grafana:latest
+    expose:
+      - 3000
     ports:
       - "3000:3000"
     networks:
@@ -107,3 +151,11 @@ services:
       options:
         max-size: "1k"
         max-file: "3"
+    healthcheck:
+      test: curl --fail http://localhost:3000 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
+
+# Source for healthchecks: https://dev.to/paulknulst/how-to-successfully-implement-a-healthcheck-in-docker-compose-1hpk

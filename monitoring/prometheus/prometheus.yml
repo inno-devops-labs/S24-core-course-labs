@@ -25,19 +25,13 @@ scrape_configs:
 
     static_configs:
       - targets: ["prometheus:9090"]
+# based on https://docs.docker.com/config/daemon/prometheus/
 
   - job_name: loki
-      # metrics_path defaults to '/metrics'
-      # scheme defaults to 'http'.
-
     static_configs:
       - targets: ["loki:3100"]
 
-  
   - job_name: grafana
-      # metrics_path defaults to '/metrics'
-      # scheme defaults to 'http'.
-
     static_configs:
       - targets: ["grafana:3000"]
 
@@ -48,3 +42,5 @@ scrape_configs:
   - job_name: rust_web_app
     static_configs:
       - targets: ["rustwebapp:9000"]
+
+# Promtail is not configured to scrap metrics by prometheus
