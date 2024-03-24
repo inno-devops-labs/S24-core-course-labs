@@ -60,3 +60,13 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Environmental vars
+*/}}
+{{- define "app-kotlin.envs" -}}
+{{- with .Values.envs }}
+env:
+{{- toYaml . | nindent 2 }}
+{{- end }}
+{{- end }}

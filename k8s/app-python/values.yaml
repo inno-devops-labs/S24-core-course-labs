@@ -23,9 +23,12 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: "app-python-service-account"
 
-podAnnotations: {}
+podAnnotations:
+  vault.hashicorp.com/agent-inject: 'true'
+  vault.hashicorp.com/role: 'app-python-service-account'
+  vault.hashicorp.com/agent-inject-secret-app-python-secret.txt: 'internal/data/app-python/secret'
 podLabels: {}
 
 podSecurityContext: {}
@@ -59,17 +62,17 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+   limits:
+     cpu: 2
+     memory: 512Mi
+   requests:
+     cpu: 100m
+     memory: 128Mi
 
 livenessProbe:
   httpGet:
@@ -105,3 +108,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+envs:
+  - name: FIRST_ENV
+    value: first_env
+  - name: SECOND_ENV
+    value: second_env
