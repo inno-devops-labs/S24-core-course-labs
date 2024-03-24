@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from prometheus_client import generate_latest
 import datetime
 
 app = Flask(__name__)
@@ -16,6 +17,11 @@ def template():
         'index.html',
         time=msk_time
     )
+
+
+@app.route('/metrics')
+def metrics():
+    return generate_latest()
 
 
 if __name__ == '__main__':

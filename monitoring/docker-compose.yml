@@ -8,6 +8,8 @@ x-logging:
   &default-logging
   driver: "json-file"
   options:
+    max-size: "20m"
+    max-file: "5"
     tag: "{{.ImageName}}|{{.Name}}"
 
 services:
@@ -59,4 +61,13 @@ services:
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
+    logging: *default-logging
+  
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - target: 9090
+        published: 9090
     logging: *default-logging
