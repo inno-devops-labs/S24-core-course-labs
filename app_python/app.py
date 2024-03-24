@@ -3,10 +3,11 @@
 from datetime import datetime
 from flask import Flask, render_template
 import pytz
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
 
-
+metrics = PrometheusMetrics(app)
 @app.route('/')
 def show_time():
     """Show the current time in Moscow on the homepage."""
