@@ -1,0 +1,1 @@
+![Prometheus targets](img/prometheus-targets.jpg)
