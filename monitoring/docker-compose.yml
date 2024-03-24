@@ -1,14 +1,21 @@
 version: "3"
 
 networks:
-  default:
-    name: loki
+   loki:
+   prometheus:
 
 x-logging:
   &default-logging
   driver: "json-file"
   options:
     tag: "{{.ImageName}}|{{.Name}}"
+    max-size: "10m"
+
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 500m
 
 services:
   app-python:
@@ -16,7 +23,15 @@ services:
     ports:
       - target: 8080
         published: 8080
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080" ]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
     logging: *default-logging
+    deploy: *default-deploy
+    networks:
+      - prometheus
 
   app_go:
     image: rmoll/moscow_time_web_app_go:latest
@@ -25,7 +40,15 @@ services:
     ports:
       - target: 8081
         published: 8081
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8081" ]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
     logging: *default-logging
+    deploy: *default-deploy
+    networks:
+      - prometheus
 
   loki:
     image: grafana/loki:2.9.2
@@ -33,6 +56,10 @@ services:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
     logging: *default-logging
+    deploy: *default-deploy
+    networks:
+      - prometheus
+      - loki
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -41,32 +68,34 @@ services:
       - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
     logging: *default-logging
+    deploy: *default-deploy
+    networks:
+      - prometheus
+      - loki
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - prometheus
+    logging: *default-logging
+    deploy: *default-deploy
 
   grafana:
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-    entrypoint:
-      - sh
-      - -euc
-      - |
-        mkdir -p /etc/grafana/provisioning/datasources
-        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
-        apiVersion: 1
-        datasources:
-        - name: Loki
-          type: loki
-          access: proxy
-          orgId: 1
-          url: http://loki:3100
-          basicAuth: false
-          isDefault: true
-          version: 1
-          editable: false
-        EOF
-        /run.sh
+    volumes:
+      - ./grafana_ds.yml:/etc/grafana/provisioning/datasources/ds.yaml
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
     logging: *default-logging
+    deploy: *default-deploy
+    networks:
+      - prometheus
+      - loki

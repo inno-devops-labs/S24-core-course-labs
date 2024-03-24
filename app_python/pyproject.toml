@@ -14,6 +14,7 @@ yandexcloud = "^0.262.0"
 yandex = "^0.0.2"
 google = "^3.0.0"
 ansible = "^9.3.0"
+prometheus-client = "^0.20.0"
 
 [build-system]
 requires = ["poetry-core"]

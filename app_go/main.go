@@ -8,13 +8,32 @@ import (
  "time"
 
  "github.com/go-chi/chi"
+ "github.com/prometheus/client_golang/prometheus"
+ "github.com/prometheus/client_golang/prometheus/promhttp"
 )
+
+// Create a new counter vector metric to count the number of times the getTimeHandler is hit
+var getTimeCounterVec = prometheus.NewCounterVec(
+ prometheus.CounterOpts{
+  Namespace: "app",
+  Subsystem: "get_time",
+  Name:      "requests_total",
+  Help:      "Total number of get time requests by status code.",
+ },
+ []string{"code"},
+)
+
+func init() {
+ // Register the metric with Prometheus
+ prometheus.MustRegister(getTimeCounterVec)
+}
 
 func getTimeHandler(w http.ResponseWriter, r *http.Request) {
  // Set the timezone to Moscow
  location, err := time.LoadLocation("Europe/Moscow")
  if err != nil {
   log.Printf("Error retrieving Moscow location: %v\n", err)
+  getTimeCounterVec.WithLabelValues("500").Inc() // Increment the counter for status code 500
   http.Error(w, err.Error(), http.StatusInternalServerError)
   return
  }
@@ -24,11 +43,14 @@ func getTimeHandler(w http.ResponseWriter, r *http.Request) {
  response := fmt.Sprintf("Current time in Moscow: %s", currentTime.Format("15:04:05"))
  fmt.Fprint(w, response)
  log.Println("Time in Moscow served:", response)
+ getTimeCounterVec.WithLabelValues("200").Inc() // Increment the counter for status code 200
 }
 
+// setupRouter now also sets up a route for Prometheus metrics at /metrics
 func setupRouter() http.Handler {
  r := chi.NewRouter()
  r.Get("/", getTimeHandler)
+ r.Handle("/metrics", promhttp.Handler())
  return r
 }
 
