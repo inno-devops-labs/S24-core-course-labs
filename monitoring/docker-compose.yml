@@ -16,6 +16,21 @@ services:
       driver: "json-file"
       options: 
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+        max-size: "200k"
+    networks: 
+      - loki
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+        reservations:
+          memory: 20M
+    healthcheck:
+      test: curl --fail http://localhost:5000/health || exit 1 
+      interval: 10s
+      retries: 1
+      start_period: 20s
+      timeout: 10s
   
   java-app: 
     build: ../app_java
@@ -27,6 +42,21 @@ services:
       driver: "json-file"
       options: 
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+        max-size: "200k"
+    networks: 
+      - loki 
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+        reservations:
+          memory: 20M
+    healthcheck:
+      test: curl --fail http://127.0.0.1:8081/actuator/health || exit 1 
+      interval: 10s
+      retries: 1
+      start_period: 30s
+      timeout: 10s
 
   loki:
     image: grafana/loki:2.9.2
@@ -39,6 +69,19 @@ services:
       driver: "json-file"
       options: 
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+        max-size: "200k"
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+        reservations:
+          memory: 20M
+    healthcheck:
+      test: wget --spider http://127.0.0.1:3100/ready
+      interval: 10s
+      retries: 1
+      start_period: 50s
+      timeout: 10s
 
   prometheus:
     image: prom/prometheus:v2.36.2
@@ -46,11 +89,28 @@ services:
       - prometheus-conf:/etc/prometheus
       - prometheus-data:/prometheus
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--config.file=/etc/prometheus/prometheus.yml' 
     ports:
       - 9090:9090
     networks:
       - loki
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+        max-size: "200k"
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+        reservations:
+          memory: 20M
+    healthcheck:
+      test: wget --spider http://localhost:9090
+      interval: 10s
+      retries: 1
+      start_period: 50s
+      timeout: 10s
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -59,13 +119,27 @@ services:
       - java-logs:/var/log/app_java
       - python-logs:/var/log/app_python
       - /var/lib/docker/containers:/var/lib/docker/containers
-    command: -config.file=/etc/promtail/config.yml
+    # command: -config.file=/etc/promtail/config.yml && apt update -y && apt install -y curl
+    entrypoint: bash -c "apt update && apt install -y curl && /usr/bin/promtail -config.file=/etc/promtail/config.yml" 
     networks:
       - loki
     logging:
       driver: "json-file"
       options: 
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+        max-size: "200k"
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+        reservations:
+          memory: 20M
+    healthcheck:
+      test: curl --fail http://127.0.0.1:9080/ready || exit 1 
+      interval: 10s
+      retries: 1
+      start_period: 120s
+      timeout: 10s
 
   grafana:
     environment:
@@ -109,6 +183,19 @@ services:
       driver: "json-file"
       options: 
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+        max-size: "200k"
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+        reservations:
+          memory: 20M
+    healthcheck:
+      test: curl --fail http://127.0.0.1:3000/api/health || exit 1
+      interval: 10s
+      retries: 1
+      start_period: 50s
+      timeout: 10s
 
 volumes:
   java-logs:
