@@ -12,6 +12,11 @@ services:
       options:
         max-file: 5
         max-size: 15m
+    healthcheck:
+      test: ["CMD", "curl", "-f", "app_python:8000/health"]
+      interval: 20s
+      timeout: 10s
+      retries: 3
 
   grafana:
     image: grafana/grafana:latest
@@ -29,7 +34,7 @@ services:
         max-size: 15m
     healthcheck:
       test: ["CMD", "curl", "-f", "grafana:3000/api/health"]
-      interval: 1m30s
+      interval: 20s
       timeout: 10s
       retries: 3
 
@@ -43,6 +48,11 @@ services:
       options:
         max-file: 5
         max-size: 15m
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "loki:3100/ready"]
+      interval: 20s
+      timeout: 10s
+      retries: 3
 
   promtail:
     image:  grafana/promtail:latest
@@ -59,6 +69,12 @@ services:
       options:
         max-file: 5
         max-size: 15m
+    healthcheck:
+      test: ["CMD-SHELL", "timeout 10s bash -c ':> /dev/tcp/promtail/9080'"]
+      # article: https://medium.com/bash-tips-and-tricks/part01-tcp-udp-request-with-a-native-bash-feature-and-without-curl-wget-9dcef59c30aa
+      interval: 20s
+      timeout: 10s
+      retries: 3
 
   prometheus:
     image: prom/prometheus
@@ -71,3 +87,8 @@ services:
       options:
         max-file: 5
         max-size: 15m
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "prometheus:9090/status"]
+      interval: 20s
+      timeout: 10s
+      retries: 3
