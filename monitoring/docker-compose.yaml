@@ -27,6 +27,11 @@ services:
       options:
         max-file: 5
         max-size: 15m
+    healthcheck:
+      test: ["CMD", "curl", "-f", "grafana:3000/api/health"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
 
   loki:
     image: grafana/loki:latest
