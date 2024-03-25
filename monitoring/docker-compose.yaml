@@ -7,6 +7,11 @@ services:
       - 8000:8000
     labels:
       logging: "promtail"
+    logging:
+      driver: "local"
+      options:
+        max-file: 5
+        max-size: 15m
 
   grafana:
     image: grafana/grafana:latest
@@ -24,6 +29,11 @@ services:
     ports:
       - 3100:3100
     command: -config.file=/etc/loki/local-config.yaml
+    logging:
+      driver: "local"
+      options:
+        max-file: 5
+        max-size: 15m
 
   promtail:
     image:  grafana/promtail:latest
@@ -35,3 +45,20 @@ services:
     command: -config.file=/etc/promtail/promtail.yaml
     depends_on:
       - loki
+    logging:
+      driver: "local"
+      options:
+        max-file: 5
+        max-size: 15m
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    logging:
+      driver: "local"
+      options:
+        max-file: 5
+        max-size: 15m
