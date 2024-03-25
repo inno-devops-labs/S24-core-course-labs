@@ -8,3 +8,7 @@ pub async fn base(data: web::Data<AppState>) -> impl Responder {
 
     HttpResponse::Ok().body(format!("Request number: {}", counter))
 }
+
+pub async fn health() -> HttpResponse {
+    HttpResponse::Ok().finish()
+}
