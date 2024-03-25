@@ -17,3 +17,8 @@ def index() -> str:
     human_readable: str = get_human_readable_time(current_date)
 
     return human_readable
+
+
+@app.get("/health")
+def health() -> str:
+    return "OK"
