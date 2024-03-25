@@ -6,6 +6,8 @@ import zoneinfo
 
 app = FastAPI()
 
+instrumentator = Instrumentator().instrument(app)
+
 
 async def get_root_page() -> str:
     moscow_time = datetime.now(zoneinfo.ZoneInfo(
@@ -41,6 +43,11 @@ async def root():
     html_content = await get_root_page()
     return HTMLResponse(content=html_content, status_code=200)
 
+@app.on_event("startup")
+async def _startup():
+    instrumentator.expose(app)
+
 
 if __name__ == "__main__":
-    Instrumentator().instrument(app).expose(app)
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8080)
