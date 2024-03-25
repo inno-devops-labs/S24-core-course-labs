@@ -42,5 +42,7 @@ async def root():
     html_content = await get_root_page()
     return HTMLResponse(content=html_content, status_code=200)
 
+
+# Run using Instrumentator to add metrics
 if __name__ == "__main__":
     Instrumentator().instrument(app).expose(app)
