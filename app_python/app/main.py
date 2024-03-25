@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from datetime import datetime
+from prometheus_fastapi_instrumentator import Instrumentator
 import zoneinfo
 
 app = FastAPI()
@@ -42,5 +43,4 @@ async def root():
     return HTMLResponse(content=html_content, status_code=200)
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    Instrumentator().instrument(app).expose(app)
