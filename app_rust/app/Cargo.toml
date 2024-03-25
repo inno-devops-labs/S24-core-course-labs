@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 actix-web = "4"
+actix-web-prom = "0.8.0"
