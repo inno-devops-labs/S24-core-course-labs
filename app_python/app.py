@@ -9,14 +9,17 @@ app = FastAPI()
 
 Instrumentator().instrument(app).expose(app)
 
-@app.get('/msk_timezone')
+
+@app.get("/msk_timezone")
 def msk_timezone():
-    time = datetime.now(pytz.timezone('Europe/Moscow'))
+    time = datetime.now(pytz.timezone("Europe/Moscow"))
     return time.strftime("Current time (MSK timezone): %H:%M:%S")
+
 
 @app.head("/health")
 def health():
     return {"status": "ok"}
 
-if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0')
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0")
