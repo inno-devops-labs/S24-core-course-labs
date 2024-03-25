@@ -3,6 +3,7 @@ networks:
 
 volumes:
   prometheus-data:
+  grafana-data:
 
 services:
   web_app:
@@ -11,6 +12,7 @@ services:
       - "8080:8080"
     networks:
       - loki
+    mem_limit: 30m
     logging:
       driver: "json-file"
       options:
@@ -24,6 +26,7 @@ services:
       - "8081:8081"
     networks:
       - loki
+    mem_limit: 30m
     logging:
       driver: "json-file"
       options:
@@ -36,6 +39,7 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - loki
+    mem_limit: 100m
     logging:
       driver: "json-file"
       options:
@@ -51,6 +55,7 @@ services:
     command: -config.file=/etc/promtail/config.yml
     networks:
       - loki
+    mem_limit: 100m
     logging:
       driver: "json-file"
       options:
@@ -63,30 +68,15 @@ services:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-    entrypoint:
-      - sh
-      - -euc
-      - |
-        mkdir -p /etc/grafana/provisioning/datasources
-        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
-        apiVersion: 1
-        datasources:
-        - name: Loki
-          type: loki
-          access: proxy
-          orgId: 1
-          url: http://loki:3100
-          basicAuth: false
-          isDefault: true
-          version: 1
-          editable: false
-        EOF
-        /run.sh
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
     networks:
       - loki
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana.yml:/etc/grafana/provisioning/datasources/ds.yaml
+    mem_limit: 100m
     logging:
       driver: "json-file"
       options:
@@ -100,6 +90,7 @@ services:
       - "9090:9090"
     networks:
       - loki
+    mem_limit: 100m
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
