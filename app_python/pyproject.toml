@@ -6,7 +6,7 @@ authors = ["Vyacheslav Rybalchenko <v.rybalchenko@innopolis.university>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.9"
+python = ">=3.9,<4.0.0"
 annotated-types = "0.6.0"
 anyio = "4.2.0"
 certifi = "2024.2.2"
