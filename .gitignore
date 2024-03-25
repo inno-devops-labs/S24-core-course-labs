@@ -6,3 +6,4 @@ __pycache__/
 .terraform/
 **/terraform.*
 **/.terraform.*
+/app_python/.python-version
