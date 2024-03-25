@@ -60,3 +60,33 @@ This logging configuration utilizes Grafana Loki, Grafana, and Promtail to colle
 ![img.png](./2.png)
 ![img.png](./3.png)
 ![img.png](./4.png)
+
+## Logging Configuration
+- Logs for each service are configured to use the `json-file` driver with a maximum size of 5MB and a maximum of 3 log files.
+- Log files are tagged with the image name and container name.
+
+## Deployment Configuration
+- All services have default resource limits set, with a memory limit of 100MB.
+
+## Prometheus Configuration (prometheus.yml)
+- **Global Configuration**: Sets the scrape interval to 5 seconds.
+- **Scrape Configurations**:
+  1. **Prometheus**: Targets the Prometheus service itself.
+  2. **Loki**: Targets the Loki service for log aggregation.
+  3. **Grafana**: Targets the Grafana service for monitoring.
+  4. **Promtail**: Targets the Promtail service for log scraping.
+  5. **app-python**: Targets the Python application service.
+
+## Log Rotation Mechanisms
+- Logs for each service are configured to rotate when they reach a maximum size of 5MB (`max-size`) and keep a maximum of 3 log files (`max-file`).
+- This rotation is handled by Docker's built-in logging mechanism, which ensures that logs are managed efficiently without consuming excessive disk space.
+
+## Memory Limits for Containers
+- Each service has memory limits set within the Docker Compose configuration.
+- Memory limits ensure that containers do not consume excessive resources, preventing performance degradation and resource contention on the host system.
+
+This documentation provides an overview of the Prometheus integration with Dockerised Python application, including configuration details, logging mechanisms, and resource limits for containers. It serves as a guide for managing and monitoring application effectively.
+
+![img.png](./5.png)
+![img.png](./6.png)
+![img.png](./7.png)
