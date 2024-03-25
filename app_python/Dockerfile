@@ -2,6 +2,12 @@ FROM python:3.12.0-alpine
 
 WORKDIR /code
 
+RUN apk add --update --no-cache \
+    alpine-sdk \
+    libffi-dev \
+    openssl-dev \
+    python3-dev
+
 RUN adduser -D user
 RUN chown -R user /code
 USER user
