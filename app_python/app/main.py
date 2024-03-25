@@ -5,7 +5,6 @@ from prometheus_fastapi_instrumentator import Instrumentator
 import zoneinfo
 
 app = FastAPI()
-
 instrumentator = Instrumentator().instrument(app)
 
 
@@ -42,6 +41,7 @@ async def get_root_page() -> str:
 async def root():
     html_content = await get_root_page()
     return HTMLResponse(content=html_content, status_code=200)
+
 
 @app.on_event("startup")
 async def _startup():
