@@ -1,13 +1,28 @@
 version: '3.8'
 
 services:
-  web_app:
-    image: vectorsmaster/flask-app
+  app_python:
+    image: vectorsmaster/flask-app:latest
     container_name: app_python
     ports:
       - 5000:5000
     labels:
       logging: "promtail"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits: 
+          memory: 128M
+    healthcheck:
+      test: [ "CMD", "curl", "-i", "app_python:5000/health"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    
 
   grafana:
     image: grafana/grafana:latest
@@ -15,13 +30,26 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+      - ./grafana/grafana.yml:/etc/grafana/provisioning/datasources/datasources.yml
     environment:
-      - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_AUTH_ANONYMOUS_ENABLED=false
+      - GF_AUTH_DISABLE_LOGIN_FORM=false
     labels:
       logging: "promtail"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits: 
+          memory: 128M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "grafana:3000/api/health"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
 
   loki:
     image: grafana/loki:latest
@@ -31,6 +59,20 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     labels:
       logging: "promtail"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits: 
+          memory: 128M
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "loki:3100/ready"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
 
   promtail:
     image:  grafana/promtail:latest
@@ -42,5 +84,41 @@ services:
     command: -config.file=/etc/promtail/promtail.yml
     labels: 
       logging: "promtail"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits: 
+          memory: 128M
+    healthcheck:
+      test: [ "CMD-SHELL", "bash -c ':> /dev/tcp/localhost/9080'" ]
+      interval: 30s
+      timeout: 15s
+      retries: 3
     depends_on:
       - loki
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits: 
+          memory: 128M
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "prometheus:9090/status"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
