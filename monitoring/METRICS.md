@@ -58,5 +58,9 @@ All containers are added to Prometheus scrape config like this:
 ```
 ## Application Metrics:
 
-I've used [Prometheus FastAPI Instrumentator](https://github.com/trallnag/prometheus-fastapi-instrumentator) for my python app and [Prometheus.ex]
+I've used [Prometheus FastAPI Instrumentator](https://github.com/trallnag/prometheus-fastapi-instrumentator) for my python app.
+![image](https://github.com/frog-da/DevOps/assets/84839431/dbb09a6f-a19c-4874-991e-4ce7b6e7ad55)
+![image](https://github.com/frog-da/DevOps/assets/84839431/1d73ed30-7af8-402c-8663-127b47f08ee1)
+
+
 
