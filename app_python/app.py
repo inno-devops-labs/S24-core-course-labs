@@ -1,11 +1,19 @@
-from flask import Flask
 from datetime import datetime
 import pytz
 
-app = Flask(__name__)
+from fastapi import FastAPI
+from prometheus_fastapi_instrumentator import Instrumentator
+
+app = FastAPI()
+Instrumentator().instrument(app).expose(app)
 
 
-@app.route('/')
+@app.head("/health")
+def health():
+    return {"status": "ok"}
+
+
+@app.get("/")
 def display_moscow_time():
     moscow_tz = pytz.timezone('Europe/Moscow')
     current_time_moscow = datetime.now(moscow_tz)

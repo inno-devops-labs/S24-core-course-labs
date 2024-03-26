@@ -7,14 +7,28 @@ networks:
 x-logging: &default-logging
   driver: "json-file"
   options:
+    max-size: "20m"
+    max-file: "5"
     tag: "{{.ImageName}}|{{.Name}}"
+
+x-deploy: &default-deploy
+  resources:
+    limits:
+      memory: 200M
+
 
 services:
   app-python:
-    image: doechon/app_python
+    image: ../app_python
     ports:
       - "8000:5000"
     logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000" ]
+      interval: 30s
+      timeout: 15s
+      retries: 3
 
   loki:
     image: grafana/loki:2.9.2
@@ -22,6 +36,15 @@ services:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
     logging: *default-logging
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget --no-verbose --tries=1 --spider http://localhost:3100/ready || exit 1"
+        ]
+      interval: 30s
+      timeout: 15s
+      retries: 3
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -30,6 +53,15 @@ services:
       - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
     logging: *default-logging
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget --no-verbose --tries=1 --spider http://localhost:3100/ready || exit 1"
+        ]
+      interval: 30s
+      timeout: 15s
+      retries: 3
 
   grafana:
     environment:
@@ -59,3 +91,33 @@ services:
     ports:
       - "3000:3000"
     logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1"
+        ]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+
+  prometheus:
+    image: prom/prometheus:v2.30.1
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget --no-verbose --tries=1 --spider http://localhost:9090/status || exit 1"
+        ]
+      interval: 30s
+      timeout: 15s
+      retries: 3
