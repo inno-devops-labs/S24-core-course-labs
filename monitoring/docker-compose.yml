@@ -8,6 +8,9 @@ x-logging:
   driver: "json-file"
   options:
     tag: "{{.ImageName}}|{{.Name}}"
+    max-size: "10m" # Rotate logs when they reach 10MB
+    max-file: "3"   # Retain up to 3 log files
+
 
 services:
   loki:
@@ -19,6 +22,12 @@ services:
     logging: *default-logging
     networks:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
 
   prometheus:
     image: prom/prometheus:latest
@@ -32,17 +41,33 @@ services:
     logging: *default-logging
     networks:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
 
   python-app:
     image: glebuben/dev-ops-labs:latest
+    container_name: python-app
     ports:
       - "8000:5000"
     logging: *default-logging
     networks:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
 
   promtail:
     image: grafana/promtail:2.9.2
+    container_name: promtail
+    ports:
+      - "9080:9080"
     volumes:
       - /var/log:/var/log
       - ./promtail.yml:/etc/promtail/config.yml
@@ -51,6 +76,12 @@ services:
     logging: *default-logging
     networks:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
 
   grafana:
     environment:
@@ -82,3 +113,10 @@ services:
       - "3000:3000"
     networks:
       - loki
+
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
