@@ -43,7 +43,7 @@ services:
     depends_on:
       - minio
     networks:
-      <<: *loki-dns
+      - loki
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -117,6 +117,30 @@ services:
       retries: 5
     networks:
       - loki
+    
+  app-python:
+    image: vikono/devops:latest
+    ports:
+      - "5001:5001"
+    networks:
+      - loki
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    restart: unless-stopped
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    networks:
+      - loki
+    deploy:
+      resources:
+        limits:
+          memory: 100M
 
   gateway:
     image: nginx:latest
@@ -187,7 +211,3 @@ services:
     networks:
       - loki
 
-  app-python:
-    image: vikono/devops:latest
-    ports:
-      - "8000:5001"
