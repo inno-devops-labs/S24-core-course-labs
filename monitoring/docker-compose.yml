@@ -1,10 +1,18 @@
-version: '3.7'
+version: '3.8'
 
 x-logging:
   &default-logs
   driver: "json-file"
   options:
     tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    max-size: '50m'
+    max-file: '5'
+
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 1G
 
 networks:
   loki:
@@ -24,6 +32,7 @@ services:
       retries: 5
     restart: always
     logging: *default-logs
+    deploy: *default-deploy
 
   promtail:
     container_name: promtail
@@ -34,6 +43,8 @@ services:
     command: -config.file=/etc/promtail/config.yaml
     networks:
       - loki
+    ports:
+      - "1080:1080"
     healthcheck:
       test: [ "CMD-SHELL", "curl --fail http://localhost:1080/health || exit 1" ]
       interval: 10s
@@ -41,6 +52,7 @@ services:
       retries: 5
     restart: always
     logging: *default-logs
+    deploy: *default-deploy
 
   grafana:
     container_name: grafana
@@ -75,6 +87,7 @@ services:
       retries: 5
     restart: always
     logging: *default-logs
+    deploy: *default-deploy
 
   app_python:
     container_name: app_python
@@ -88,3 +101,34 @@ services:
       retries: 5
     restart: always
     logging: *default-logs
+    deploy: *default-deploy
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - prometheus-data:/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--web.enable-lifecycle'
+      - '--web.enable-admin-api'
+      - '--storage.tsdb.retention.time=7d'
+    ports:
+      - '9090:9090'
+    networks:
+      - loki
+    healthcheck:
+      test: [ "CMD-SHELL", " wget --no-verbose --tries=1 -O /dev/null http://localhost:9090/-/healthy || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+    logging: *default-logs
+    deploy: *default-deploy
+
+volumes:
+  prometheus-data:
