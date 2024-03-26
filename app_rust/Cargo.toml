@@ -33,6 +33,7 @@ secrecy = { version = "0.8", features = ["serde"] }
 opentelemetry = { version = "0.19.0", default-features = false, features = ["trace", "rt-tokio"] }
 opentelemetry-otlp = { version = "0.12.0", features = ["reqwest-client", "reqwest-rustls", "http-proto"] }
 opentelemetry-semantic-conventions = "0.11.0"
+prometheus = "0.13.3"
 
 
 

@@ -5,10 +5,15 @@ This is the main module where the web app's application lives, gets setup and li
 from datetime import datetime
 import pytz
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
+from prometheus_client import generate_latest
 
 
 app = FastAPI()
+
+@app.get("/metrics")
+async def metric():
+    return Response(content = generate_latest())
 
 
 @app.get("/", response_class=HTMLResponse)
