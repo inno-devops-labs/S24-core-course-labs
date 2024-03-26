@@ -1,8 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 from datetime import datetime, timezone
 import pytz
+from prometheus_client import Summary, generate_latest
 
 app = Flask(__name__)
+
+REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
 
 
 def get_current_time():
@@ -15,9 +18,15 @@ def get_current_time():
 
 
 @app.route('/')
+@REQUEST_TIME.time()
 def index():
     current_time = get_current_time()
     return render_template('index.html', current_time=current_time)
+
+
+@app.route('/metrics')
+def metrics():
+    return Response(generate_latest(), mimetype="text/plain")
 
 
 if __name__ == '__main__':
