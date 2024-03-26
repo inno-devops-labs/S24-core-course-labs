@@ -5,7 +5,7 @@ from prometheus_client import Counter, Summary, generate_latest
 from time_manager import get_current_time
 
 app = FastAPI()
-templates = Jinja2Templates(directory="../templates")
+templates = Jinja2Templates(directory="templates")
 
 index_requests_total = Counter(
     'index_requests_total',
