@@ -1,48 +1,70 @@
 version: "3"
 
 services:
-  grafana:
-    image: grafana/grafana:latest
+  app-python:
+    build: ../app_python
     ports:
-      - "3000:3000"
-    depends_on:
-      - loki
+      - "8000:5000"
+    logging: 
+     driver: "json-file"
+     options:
+        max-size: "15m"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
 
   loki:
     image: grafana/loki:latest
     ports:
       - "3100:3100"
-    depends_on:
-      - promtail
+    command: -config.file=/etc/loki/local-config.yaml
+    logging: 
+     driver: "json-file"
+     options:
+        max-size: "15m"
+        max-file: "10"
 
   promtail:
     image: grafana/promtail:latest
-    ports:
-      - "9080:9080"
     volumes:
-      - /var/lib/docker/containers:/var/lib/docker/containers
       - ./promtail-config.yml:/etc/promtail/config.yml
+      - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
+    logging: 
+     driver: "json-file"
+     options:
+        max-size: "15m"
+        max-file: "10"
+    depends_on: 
+     - loki
 
-  app_js:
-    build: ../app_js
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana 
     ports:
-      - "5000:5000"
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "300k"
-        max-file: "15"
-
-  app_python:
-    build: ../app_python
+      - 3000:3000
+    volumes:
+      -  ./grafana.yml:/etc/grafana/provisioning/datasources/datasources.yml
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    labels:
+      logging: "promtail"
+    logging: 
+     driver: "json-file"
+     options:
+        max-size: "15m"
+        max-file: "10"
+  
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
-      - "5001:5000"
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "300k"
-        max-file: "15"
-
-volumes:
-  grafana-data:
+      - target: 9090
+        published: 9090
+    logging: 
+     driver: "json-file"
+     options:
+        max-size: "15m"
+        max-file: "10"
