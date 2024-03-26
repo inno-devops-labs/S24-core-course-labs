@@ -19,6 +19,8 @@ services:
         max-size: "200k"
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/"]
 
   web_app_haskell:
     build: ../app_haskell
@@ -33,6 +35,8 @@ services:
         max-size: "200k"
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c ':> /dev/tcp/localhost/8081'"]
 
   loki:
     image: grafana/loki:2.9.2
@@ -46,6 +50,8 @@ services:
         max-size: "200k"
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3100/ready"]
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -62,6 +68,8 @@ services:
         max-size: "200k"
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c ':> /dev/tcp/localhost/9080'"]
 
   grafana:
     environment:
@@ -83,6 +91,8 @@ services:
         max-size: "200k"
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
 
   prometheus:
     image: prom/prometheus
@@ -94,3 +104,5 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]

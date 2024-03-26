@@ -1,1 +1,2 @@
 aiohttp==3.9.3
+aiohttp_openmetrics==0.0.12
