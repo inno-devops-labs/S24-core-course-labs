@@ -74,3 +74,20 @@ services:
     networks:
       - loki
     logging: *default-logging
+  
+  #prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    hostname: prometheus
+
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    
+    networks:
+      - loki
+    logging: *default-logging
