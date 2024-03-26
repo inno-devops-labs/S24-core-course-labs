@@ -13,9 +13,13 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: "200k"
+        max-size: "10m"
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
+    deploy:
+      resources:
+        limits:
+          memory: 500M
 
   app_go:
     image: dianatomiya/devops:g_v2.0
@@ -26,9 +30,13 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: "200k"
+        max-size: "10m"
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}" 
+    deploy:
+      resources:
+        limits:
+          memory: 500M
       
   loki:
     image: grafana/loki:latest
@@ -40,54 +48,57 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: "200k"
+        max-size: "10m"
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+
+  init_promtail:
+    image: grafana/promtail:latest
+    user: root
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        mkdir -p /var/lib/promtail/positions
+        chown -R 65534:65534 /var/lib/promtail/positions
+    volumes:
+      - ./promtail_data:/var/lib/promtail
 
   promtail:
     image: grafana/promtail:latest
     volumes:
       - /var/lib/docker/containers:/var/lib/docker/containers
       - ./promtail.yml:/etc/promtail/config.yml
+      - ./promtail_data:/var/lib/promtail
     command: -config.file=/etc/promtail/config.yml
     networks:
       - loki
     logging:
       driver: "json-file"
       options:
-        max-size: "200k"
+        max-size: "10m"
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+    depends_on:
+      - init_promtail
 
   grafana:
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-    entrypoint:
-      - sh
-      - -euc
-      - |
-        mkdir -p /etc/grafana/provisioning/datasources
-        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
-        apiVersion: 1
-        datasources:
-        - name: Loki
-          type: loki
-          access: proxy 
-          orgId: 1
-          url: http://loki:3100
-          basicAuth: false
-          isDefault: true
-          version: 1
-          editable: false 
-        - name: Prometheus
-          type: prometheus
-          url: http://prometheus:9090 
-          access: proxy
-          editable: true
-        EOF
-        /run.sh
+      - GF_LOG_MODE=console file
+      - GF_ANALYTICS_REPORTING_ENABLED=false
+      - GF_ANALYTICS_CHECK_FOR_UPDATES=true
+      - GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES=true
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
@@ -96,9 +107,17 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: "200k"
+        max-size: "10m"
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+      - ./grafana/config/provisioning:/etc/grafana/provisioning
+      - ./grafana/logs:/var/log/grafana
+    deploy:
+      resources:
+        limits:
+          memory: 500M
 
   init_prometheus:
     image: prom/prometheus
@@ -126,5 +145,11 @@ services:
       driver: "json-file"
       options:
         tag: "{{.ImageName}}|{{.Name}}"
+        max-size: "10m"
+        max-file: "10"
+    deploy:
+      resources:
+        limits:
+          memory: 500M
     depends_on:
       - init_prometheus

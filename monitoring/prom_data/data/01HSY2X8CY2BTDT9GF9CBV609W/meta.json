@@ -1,0 +1,17 @@
+{
+	"ulid": "01HSY2X8CY2BTDT9GF9CBV609W",
+	"minTime": 1711469614582,
+	"maxTime": 1711476000000,
+	"stats": {
+		"numSamples": 689119,
+		"numSeries": 1705,
+		"numChunks": 4885
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01HSY2X8CY2BTDT9GF9CBV609W"
+		]
+	},
+	"version": 1
+}
