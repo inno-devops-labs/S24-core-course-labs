@@ -25,3 +25,34 @@ deploy:
 ```
 
 that limits container memory usage to 500MB
+
+## Metrics gathering:
+
+All containers are added to Prometheus scrape config like this:
+
+```yaml
+
+  static_configs:
+  - targets:
+    - localhost:9090
+
+- job_name: 'loki'
+  static_configs:
+  - targets: ['loki:3100']
+
+- job_name: 'python'
+  static_configs:
+  - targets: ['app_python:80']
+
+- job_name: 'go'
+  static_configs:
+  - targets: ['app_go:8080']
+
+- job_name: 'promtail'
+  static_configs:
+  - targets: ['promtail:9080']
+
+- job_name: 'grafana'
+  static_configs:
+    - targets: ['grafana:3000']
+```
