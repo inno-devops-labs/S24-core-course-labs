@@ -6,7 +6,7 @@ x-logging:
   options:
     tag: "{{.ImageName}}|{{.Name}}"
     max-size: 10M
-    max-file: 1
+    max-file: 10
 
 networks:
   loki:
@@ -19,6 +19,11 @@ services:
       - 5000:5000
     networks:
       - loki
+    #memory limit
+    deploy:
+      resources:
+        limits:
+          memory: 100M
     logging: *default-logging
 
   loki:
@@ -28,6 +33,11 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - loki
+    #memory limit
+    deploy:
+      resources:
+        limits:
+          memory: 100M
     logging: *default-logging
 
   promtail:
@@ -39,6 +49,11 @@ services:
     command: -config.file=/etc/promtail/config.yml
     networks:
       - loki
+    #memory limit
+    deploy:
+      resources:
+        limits:
+          memory: 100M
     logging: *default-logging
 
   grafana:
@@ -70,6 +85,11 @@ services:
       - 3000:3000
     networks:
       - loki
+    #memory limit
+    deploy:
+      resources:
+        limits:
+          memory: 100M
     logging: *default-logging
   
   #prometheus
@@ -77,14 +97,17 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     hostname: prometheus
-
     ports:
       - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     command:
       - --config.file=/etc/prometheus/prometheus.yml
-    
     networks:
       - loki
+    #memory limit
+    deploy:
+      resources:
+        limits:
+          memory: 100M
     logging: *default-logging

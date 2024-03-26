@@ -1,9 +1,13 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Response
 from datetime import datetime
+from prometheus_client import generate_latest
 import pytz
 
 app = Flask(__name__)
 
+@app.route('/metrics')
+def metrics():
+    return Response(generate_latest(), content_type='text/plain')
 
 @app.route('/')
 def index():

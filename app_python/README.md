@@ -39,6 +39,7 @@ Follow these steps to set up the application locally:
 - Flask
 - pytz
 - freezegun
+- prometheus_client
 
 ## Structure
 
