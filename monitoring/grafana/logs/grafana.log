@@ -1349,3 +1349,67 @@ logger=context userId=0 orgId=1 uname= t=2024-03-26T20:30:17.041290848Z level=in
 logger=cleanup t=2024-03-26T20:38:07.076954791Z level=info msg="Completed cleanup jobs" duration=43.927664ms
 logger=plugins.update.checker t=2024-03-26T20:38:07.39740963Z level=info msg="Update check succeeded" duration=197.280828ms
 logger=grafana.update.checker t=2024-03-26T20:38:07.418259799Z level=info msg="Update check succeeded" duration=218.533813ms
+logger=server t=2024-03-26T20:41:38.841751189Z level=info msg="Shutdown started" reason="System signal: terminated"
+logger=ticker t=2024-03-26T20:41:38.843000131Z level=info msg=stopped last_tick=2024-03-26T20:41:30Z
+logger=tracing t=2024-03-26T20:41:38.843428004Z level=info msg="Closing tracing"
+logger=grafana-apiserver t=2024-03-26T20:41:38.843562035Z level=info msg="StorageObjectCountTracker pruner is exiting"
+logger=settings t=2024-03-26T21:04:06.082980022Z level=info msg="Starting Grafana" version=10.4.0 commit=03f502a94d17f7dc4e6c34acdf8428aedd986e4c branch=HEAD compiled=2024-03-26T21:04:06Z
+logger=settings t=2024-03-26T21:04:06.083831479Z level=info msg="Config loaded from" file=/usr/share/grafana/conf/defaults.ini
+logger=settings t=2024-03-26T21:04:06.08434382Z level=info msg="Config loaded from" file=/etc/grafana/grafana.ini
+logger=settings t=2024-03-26T21:04:06.084515812Z level=info msg="Config overridden from command line" arg="default.paths.data=/var/lib/grafana"
+logger=settings t=2024-03-26T21:04:06.084641378Z level=info msg="Config overridden from command line" arg="default.paths.logs=/var/log/grafana"
+logger=settings t=2024-03-26T21:04:06.084858454Z level=info msg="Config overridden from command line" arg="default.paths.plugins=/var/lib/grafana/plugins"
+logger=settings t=2024-03-26T21:04:06.085308819Z level=info msg="Config overridden from command line" arg="default.paths.provisioning=/etc/grafana/provisioning"
+logger=settings t=2024-03-26T21:04:06.086124679Z level=info msg="Config overridden from command line" arg="default.log.mode=console"
+logger=settings t=2024-03-26T21:04:06.086368517Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_DATA=/var/lib/grafana"
+logger=settings t=2024-03-26T21:04:06.086487079Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_LOGS=/var/log/grafana"
+logger=settings t=2024-03-26T21:04:06.086593619Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_PLUGINS=/var/lib/grafana/plugins"
+logger=settings t=2024-03-26T21:04:06.086780679Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_PROVISIONING=/etc/grafana/provisioning"
+logger=settings t=2024-03-26T21:04:06.086883803Z level=info msg="Config overridden from Environment variable" var="GF_ANALYTICS_REPORTING_ENABLED=false"
+logger=settings t=2024-03-26T21:04:06.0870587Z level=info msg="Config overridden from Environment variable" var="GF_ANALYTICS_CHECK_FOR_UPDATES=true"
+logger=settings t=2024-03-26T21:04:06.087183214Z level=info msg="Config overridden from Environment variable" var="GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES=true"
+logger=settings t=2024-03-26T21:04:06.08752725Z level=info msg="Config overridden from Environment variable" var="GF_AUTH_ANONYMOUS_ENABLED=true"
+logger=settings t=2024-03-26T21:04:06.087725Z level=info msg="Config overridden from Environment variable" var="GF_AUTH_ANONYMOUS_ORG_ROLE=Admin"
+logger=settings t=2024-03-26T21:04:06.088009434Z level=info msg="Config overridden from Environment variable" var="GF_LOG_MODE=console file"
+logger=settings t=2024-03-26T21:04:06.088143906Z level=info msg=Target target=[all]
+logger=settings t=2024-03-26T21:04:06.088318383Z level=info msg="Path Home" path=/usr/share/grafana
+logger=settings t=2024-03-26T21:04:06.088483492Z level=info msg="Path Data" path=/var/lib/grafana
+logger=settings t=2024-03-26T21:04:06.088612073Z level=info msg="Path Logs" path=/var/log/grafana
+logger=settings t=2024-03-26T21:04:06.088708004Z level=info msg="Path Plugins" path=/var/lib/grafana/plugins
+logger=settings t=2024-03-26T21:04:06.089177404Z level=info msg="Path Provisioning" path=/etc/grafana/provisioning
+logger=settings t=2024-03-26T21:04:06.089451307Z level=info msg="App mode production"
+logger=sqlstore t=2024-03-26T21:04:06.091154812Z level=info msg="Connecting to DB" dbtype=sqlite3
+logger=migrator t=2024-03-26T21:04:06.094046584Z level=info msg="Starting DB migrations"
+logger=migrator t=2024-03-26T21:04:06.126738452Z level=info msg="migrations completed" performed=0 skipped=547 duration=1.406979ms
+logger=secrets t=2024-03-26T21:04:06.140347142Z level=info msg="Envelope encryption state" enabled=true currentprovider=secretKey.v1
+logger=plugin.store t=2024-03-26T21:04:06.19439812Z level=info msg="Loading plugins..."
+logger=local.finder t=2024-03-26T21:04:06.250959987Z level=warn msg="Skipping finding plugins as directory does not exist" path=/usr/share/grafana/plugins-bundled
+logger=plugin.store t=2024-03-26T21:04:06.251177364Z level=info msg="Plugins loaded" count=55 duration=56.784965ms
+logger=query_data t=2024-03-26T21:04:06.255327056Z level=info msg="Query Service initialization"
+logger=live.push_http t=2024-03-26T21:04:06.262039884Z level=info msg="Live Push Gateway initialization"
+logger=ngalert.migration t=2024-03-26T21:04:06.280007447Z level=info msg=Starting
+logger=ngalert.state.manager t=2024-03-26T21:04:06.329858821Z level=info msg="Running in alternative execution of Error/NoData mode"
+logger=infra.usagestats.collector t=2024-03-26T21:04:06.333858582Z level=info msg="registering usage stat providers" usageStatsProvidersLen=2
+logger=provisioning.plugins t=2024-03-26T21:04:06.41834311Z level=error msg="Failed to read plugin provisioning files from directory" path=/etc/grafana/provisioning/plugins error="open /etc/grafana/provisioning/plugins: no such file or directory"
+logger=provisioning.notifiers t=2024-03-26T21:04:06.418624267Z level=error msg="Can't read alert notification provisioning files from directory" path=/etc/grafana/provisioning/notifiers error="open /etc/grafana/provisioning/notifiers: no such file or directory"
+logger=provisioning.alerting t=2024-03-26T21:04:06.41919664Z level=error msg="can't read alerting provisioning files from directory" path=/etc/grafana/provisioning/alerting error="open /etc/grafana/provisioning/alerting: no such file or directory"
+logger=provisioning.alerting t=2024-03-26T21:04:06.419415301Z level=info msg="starting to provision alerting"
+logger=provisioning.alerting t=2024-03-26T21:04:06.419616948Z level=info msg="finished to provision alerting"
+logger=provisioning.dashboard t=2024-03-26T21:04:06.421625996Z level=error msg="can't read dashboard provisioning files from directory" path=/etc/grafana/provisioning/dashboards error="open /etc/grafana/provisioning/dashboards: no such file or directory"
+logger=ngalert.state.manager t=2024-03-26T21:04:06.423583918Z level=info msg="Warming state cache for startup"
+logger=ngalert.multiorg.alertmanager t=2024-03-26T21:04:06.424109433Z level=info msg="Starting MultiOrg Alertmanager"
+logger=grafanaStorageLogger t=2024-03-26T21:04:06.422454329Z level=info msg="Storage starting"
+logger=http.server t=2024-03-26T21:04:06.424857696Z level=info msg="HTTP Server Listen" address=[::]:3000 protocol=http subUrl= socket=
+logger=provisioning.dashboard t=2024-03-26T21:04:06.460369108Z level=info msg="starting to provision dashboards"
+logger=provisioning.dashboard t=2024-03-26T21:04:06.46108454Z level=info msg="finished to provision dashboards"
+logger=ngalert.state.manager t=2024-03-26T21:04:06.460685402Z level=info msg="State cache has been initialized" states=0 duration=37.09382ms
+logger=ngalert.scheduler t=2024-03-26T21:04:06.462548406Z level=info msg="Starting scheduler" tickInterval=10s maxAttempts=1
+logger=ticker t=2024-03-26T21:04:06.462941683Z level=info msg=starting first_tick=2024-03-26T21:04:10Z
+logger=plugins.update.checker t=2024-03-26T21:04:06.637313993Z level=info msg="Update check succeeded" duration=217.346727ms
+logger=grafana.update.checker t=2024-03-26T21:04:06.646407996Z level=info msg="Update check succeeded" duration=224.768995ms
+logger=grafana-apiserver t=2024-03-26T21:04:06.783355304Z level=info msg="Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager"
+logger=grafana-apiserver t=2024-03-26T21:04:06.784140648Z level=info msg="Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager"
+logger=infra.usagestats t=2024-03-26T21:05:02.431420187Z level=info msg="Usage stats are ready to report"
+logger=cleanup t=2024-03-26T21:14:06.442783303Z level=info msg="Completed cleanup jobs" duration=13.306083ms
+logger=grafana.update.checker t=2024-03-26T21:14:06.78903677Z level=info msg="Update check succeeded" duration=139.455332ms
+logger=plugins.update.checker t=2024-03-26T21:14:06.79490232Z level=info msg="Update check succeeded" duration=154.158794ms

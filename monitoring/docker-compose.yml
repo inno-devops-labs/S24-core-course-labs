@@ -20,6 +20,12 @@ services:
       resources:
         limits:
           memory: 500M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   app_go:
     image: dianatomiya/devops:g_v2.0
@@ -37,6 +43,12 @@ services:
       resources:
         limits:
           memory: 500M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
       
   loki:
     image: grafana/loki:latest
@@ -55,6 +67,12 @@ services:
       resources:
         limits:
           memory: 500M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3100"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   init_promtail:
     image: grafana/promtail:latest
@@ -89,6 +107,12 @@ services:
           memory: 500M
     depends_on:
       - init_promtail
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9080"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   grafana:
     environment:
@@ -118,6 +142,12 @@ services:
       resources:
         limits:
           memory: 500M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   init_prometheus:
     image: prom/prometheus
@@ -153,3 +183,9 @@ services:
           memory: 500M
     depends_on:
       - init_prometheus
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

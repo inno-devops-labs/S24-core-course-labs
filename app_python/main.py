@@ -3,8 +3,10 @@ import pytz
 from fastapi import Request
 from datetime import datetime
 from fastapi.templating import Jinja2Templates
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI()
+Instrumentator().instrument(app).expose(app)
 
 template = Jinja2Templates(directory="template")
 

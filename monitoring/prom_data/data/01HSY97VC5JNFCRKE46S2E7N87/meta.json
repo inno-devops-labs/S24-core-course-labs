@@ -1,0 +1,17 @@
+{
+	"ulid": "01HSY97VC5JNFCRKE46S2E7N87",
+	"minTime": 1711476000000,
+	"maxTime": 1711483200000,
+	"stats": {
+		"numSamples": 810195,
+		"numSeries": 3602,
+		"numChunks": 8973
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01HSY97VC5JNFCRKE46S2E7N87"
+		]
+	},
+	"version": 1
+}

@@ -56,3 +56,7 @@ All containers are added to Prometheus scrape config like this:
   static_configs:
     - targets: ['grafana:3000']
 ```
+## Application Metrics:
+
+I've used [Prometheus FastAPI Instrumentator](https://github.com/trallnag/prometheus-fastapi-instrumentator) for my python app and [Prometheus.ex]
+
