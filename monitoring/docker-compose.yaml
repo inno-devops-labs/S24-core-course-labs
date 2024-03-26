@@ -3,7 +3,14 @@ version: "3"
 x-logging: &default-logging
   driver: "json-file"
   options:
+    max-size: "10m"
+    max-file: "5"
     tag: "{{.ImageName}}|{{.Name}}"
+
+x-deploy: &default-deploy
+  resources:
+    limits:
+      memory: 100M
 
 networks:
   loki:
@@ -17,6 +24,17 @@ services:
     networks:
       - loki
     logging: *default-logging
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    logging: *default-logging
+    networks:
+      - loki
 
   loki:
     image: grafana/loki:2.9.4
