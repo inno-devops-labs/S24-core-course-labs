@@ -27,5 +27,6 @@ x-deploy:
 
 ### Grafana
 ![](/S24-core-course-labs/app_python/monitoring/img/8.png)
+![](/S24-core-course-labs/app_python/monitoring/img/9.png)
 ### Targets
 ![](/S24-core-course-labs/app_python/monitoring/img/7.png)
