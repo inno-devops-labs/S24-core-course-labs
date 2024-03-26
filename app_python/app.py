@@ -12,7 +12,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Prometheus metrics
-REQUEST_COUNT = Counter('app_requests_total', 'Total number of requests received by the application')
+REQUEST_COUNT = Counter('app_requests_total', 'Total number of requests received by application')
+
 
 def get_time():
     """
@@ -27,6 +28,7 @@ def get_time():
     str_time = moscow_time.strftime('%Y-%m-%d %H:%M:%S')
     return str_time
 
+
 @app.route('/')
 def show_time():
     """
@@ -39,6 +41,7 @@ def show_time():
     logger.info('Homepage accessed')
     return render_template('./index.html', time=get_time())
 
+
 @app.route('/metrics')
 def metrics():
     """
@@ -48,6 +51,7 @@ def metrics():
         str: Prometheus-formatted metrics.
     """
     return generate_latest(REGISTRY)
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
