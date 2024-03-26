@@ -1,0 +1,12 @@
+- name: Update packages
+  ansible.legacy.apt:
+    update_cache: yes
+  tags: docker
+
+- name: Install Docker
+  ansible.legacy.apt:
+    name: docker.io
+    state: latest
+  register: docker_installation_status
+  tags: docker
+  notify: restart_docker_service
