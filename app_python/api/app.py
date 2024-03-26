@@ -17,6 +17,7 @@ index_request_duration_seconds = Summary(
     'The duration of requests to index page.'
 )
 
+
 @app.get("/", response_class=HTMLResponse)
 @index_request_duration_seconds.time()
 def time(request: Request):
@@ -24,6 +25,7 @@ def time(request: Request):
         request=request, name="index.html",
         context={"time": get_current_time()}
     )
+
 
 @app.get("/metrics")
 def metrics():
