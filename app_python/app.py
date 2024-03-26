@@ -5,7 +5,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from flask import Flask, redirect, render_template, Response
-from prometheus_client import Counter, Gauge, generate_latest
+from prometheus_client import generate_latest
 
 app = Flask(__name__)
 
