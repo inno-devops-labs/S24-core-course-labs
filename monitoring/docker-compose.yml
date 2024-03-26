@@ -1,25 +1,28 @@
 version: "3"
 
 
-x-def-logging: &default-logging
-  logging:
-    driver: "loki"
-    options:
-      loki-url: "http://localhost:3100/loki/api/v1/push"
-      loki-batch-size: "100"
-      loki-retries: 2
-      loki-max-backoff: 1000ms
-      loki-timeout: 1s
+x-logging:
+  &default-logs
+  driver: "json-file"
+  options:
+    tag: '{{.ImageName}}|{{.Name}}'
+    max-size: '50m'
+    max-file: '5'
 
-
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 400m
 
 services:
 
   app_python:
     image: mstrpvp/flask-app:latest
-    <<: *default-logging
     ports:
-      - "8080:8080"
+      - "5000:5000"
+    logging: *default-logs
+    deploy: *default-deploy
 
   loki:
     image: grafana/loki:latest
@@ -28,6 +31,8 @@ services:
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
+    logging: *default-logs
+    deploy: *default-deploy
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -35,14 +40,16 @@ services:
       - ./promtail.yml:/etc/promtail/config.yml
       - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
-    <<: *default-logging
+    ports:
+      - "9080:9080"
+    logging: *default-logs
+    deploy: *default-deploy
 
   grafana:
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-      - TZ=${SYSTEM_TIMEZONE:-Europe/Moscow}
     entrypoint:
       - sh
       - -euc
@@ -65,3 +72,22 @@ services:
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
+    logging: *default-logs
+    deploy: *default-deploy
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    healthcheck:
+      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:9090/status || exit 1" ]
+      interval: 10s
+      timeout: 15s
+      start_period: 15s
+      retries: 3
+    logging: *default-logs
+    deploy: *default-deploy
