@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from prometheus_client import Counter, generate_latest
 from prometheus_client.core import REGISTRY
 import pytz
@@ -12,7 +12,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Prometheus metrics
-REQUEST_COUNT = Counter('app_requests_total', 'Total number of requests received by application')
+REQUEST_COUNT = Counter('app_requests_total', 'Total number of '
+                        'requests received by application')
 
 
 def get_time():
