@@ -40,3 +40,6 @@ x-logging:
 ![alt text](screenshots/metrics-py.png)
 ### app_javascript
 ![alt text](screenshots/metrics-js.png)
+
+## Health check 
+![alt text](screenshots/healthcheck.png)

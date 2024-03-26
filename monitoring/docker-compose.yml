@@ -21,7 +21,17 @@ services:
   app_python:
     image: cogbonna/app_python_image
     ports:
-      - "5000:5000"  
+      - "5000:5000"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget --no-verbose --tries=1 --spider http://localhost:5000/ || exit 1",
+        ]
+      interval: 10s
+      timeout: 10s
+      start_period: 10s
+      retries: 5
     deploy: *default-deploy
     logging: *common_logging
   
@@ -29,6 +39,16 @@ services:
     image: cogbonna/app_javascript_image
     ports:
       - "5001:5001"  
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget --no-verbose --tries=1 --spider http://localhost:5001/ || exit 1",
+        ]
+      interval: 10s
+      timeout: 10s
+      start_period: 10s
+      retries: 5
     deploy: *default-deploy
     logging: *common_logging
 
@@ -37,6 +57,16 @@ services:
     ports:
       - "3100:3100"  
     command: -config.file=/etc/loki/local-config.yaml
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget --no-verbose --tries=1 --spider http://localhost:3100/ready || exit 1",
+        ]
+      interval: 10s
+      timeout: 10s
+      start_period: 10s
+      retries: 5
     deploy: *default-deploy
     logging: *common_logging
 
@@ -47,6 +77,16 @@ services:
       - ./promtail.yml:/etc/promtail/config.yml
       - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "bash -c ':> /dev/tcp/localhost/9080' || exit 1",
+        ]
+      interval: 10s
+      timeout: 10s
+      start_period: 10s
+      retries: 5
     deploy: *default-deploy
     logging: *common_logging
     ports:
@@ -79,6 +119,16 @@ services:
     image: grafana/grafana:latest
     ports:
       - "3000:3000"  
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1",
+        ]
+      interval: 10s
+      timeout: 10s
+      start_period: 10s
+      retries: 5
     deploy: *default-deploy
     logging: *common_logging
 
@@ -93,11 +143,11 @@ services:
       test:
         [
           "CMD-SHELL",
-          "wget --no-verbose --tries=1 --spider http://localhost:9090/status || exit 1",
+          "wget --no-verbose --tries=1 --spider http://localhost:9090/-/healthy || exit 1",
         ]
       interval: 10s
       timeout: 10s
       start_period: 10s
-      retries: 3
+      retries: 5
     deploy: *default-deploy
     logging: *common_logging
