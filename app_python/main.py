@@ -1,5 +1,7 @@
 """Web app for showing current time in Moscow"""
 
+from prometheus_flask_exporter import PrometheusMetrics
+
 from datetime import datetime
 from flask import Flask
 import pytz
@@ -7,6 +9,9 @@ import pytz
 
 PORT = 5000
 app = Flask(__name__)
+
+# Initialize PrometheusMetrics for the app
+metrics = PrometheusMetrics(app)
 
 
 @app.route('/')
