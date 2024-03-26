@@ -11,7 +11,7 @@ Developed a `prometheus.yml` configuration file to enable the scraping of metric
 ## Dashboards
 ### Dashboards
 ### Dashboard (Loki)
-[![image.png](https://i.postimg.cc/TYYH9zQy/image.png)](https://postimg.cc/Jtvq7dfm)
+[![image.png](https://i.postimg.cc/JnmwXWZg/image.png)](https://postimg.cc/gwMB9QMq)
 ### Dashboard (Prometheus)
 [![image.png](https://i.postimg.cc/jq8hsLQ5/image.png)](https://postimg.cc/t7x6kRcQ)
 
