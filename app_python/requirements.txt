@@ -1,2 +1,4 @@
 Flask==3.0.2
 pytz==2021.3
+importlib-metadata==4.13.0
+prometheus_client==0.20.0

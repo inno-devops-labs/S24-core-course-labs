@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from datetime import datetime
+from prometheus_client import generate_latest
 import pytz
 
 app = Flask(__name__)
@@ -11,6 +12,13 @@ def display_time():
     moscow_time = datetime.now(moscow_tz).strftime('%Y-%m-%d %H:%M:%S')
     print(f"datetime is {moscow_time}")
     return render_template('index.html', time=moscow_time)
+
+
+
+
+@app.route('/metrics')
+def metrics():
+    return generate_latest()
 
 
 if __name__ == '__main__':

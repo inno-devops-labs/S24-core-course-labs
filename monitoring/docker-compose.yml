@@ -8,19 +8,21 @@ x-logging:
   &default-logging
   driver: "json-file"
   options:
+    max-size: "20m"
+    max-file: "5"
     tag: "{{.ImageName}}|{{.Name}}"
 
 services:
   app-python:
     build: ../app_python
     ports:
-      - "8000:5001"
+      - 8000:5001
     logging: *default-logging
 
   loki:
     image: grafana/loki:2.9.2
     ports:
-      - "3100:3100"
+      - 3100:3100
     command: -config.file=/etc/loki/local-config.yaml
     logging: *default-logging
 
@@ -58,5 +60,14 @@ services:
         /run.sh
     image: grafana/grafana:latest
     ports:
-      - "3000:3000"
+      - 3000:3000
+    logging: *default-logging
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - target: 9090
+        published: 9090
     logging: *default-logging
