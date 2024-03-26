@@ -4,6 +4,7 @@ from zoneinfo import ZoneInfo
 from aiohttp import web
 from aiohttp_openmetrics import metrics, metrics_middleware
 
+
 def get_current_time() -> datetime:
     return datetime.now(ZoneInfo("Europe/Moscow"))
 
