@@ -44,7 +44,7 @@ services:
   app_python:
     build: ../app_python
     ports:
-      - "8000:5000"
+      - "8000:8000"
     logging:
       driver: "json-file"
       options:
