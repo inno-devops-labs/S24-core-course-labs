@@ -8,3 +8,9 @@ datasources:
       httpHeaderName1: "Scope-OrgID"
     secureJsonData:
       httpHeaderValue1: "docker"
+
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    basicAuth: false

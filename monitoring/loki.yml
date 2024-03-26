@@ -24,3 +24,15 @@ schema_config:
       index:
         prefix: index_
         period: 24h
+
+ruler:
+  alertmanager_url: http://localhost:9093
+  enable_api: true
+  remote_write:
+    enabled: true
+    clients:
+      local:
+        url: http://prometheus:9090/api/v1/write
+        queue_config:
+          capacity: 1
+          batch_send_deadline: 0s
