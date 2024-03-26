@@ -80,7 +80,12 @@ services:
           basicAuth: false
           isDefault: true
           version: 1
-          editable: false
+          editable: false 
+        - name: Prometheus
+          type: prometheus
+          url: http://prometheus:9090 
+          access: proxy
+          editable: true
         EOF
         /run.sh
     image: grafana/grafana:latest
@@ -94,3 +99,32 @@ services:
         max-size: "200k"
         max-file: "10"
         tag: "{{.ImageName}}|{{.Name}}"
+
+  init_prometheus:
+    image: prom/prometheus
+    user: root
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        chown -R 65534:65534 /prometheus
+    volumes:
+      - ./prom_data:/prometheus
+
+  prometheus:
+    image: prom/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - ./prom_data:/prometheus
+    networks:
+      - loki
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}"
+    depends_on:
+      - init_prometheus
