@@ -4,7 +4,8 @@ Web application that shows current time in Moscow
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, Response
+from prometheus_client import Counter, Gauge, generate_latest
 
 app = Flask(__name__)
 
@@ -26,6 +27,14 @@ def show_moscow_time():
 
     return render_template('moscow_time.html', title="Current time in Moscow",
                            current_time=current_time)
+
+
+@app.route("/metrics")
+def metrics():
+    """
+    Returns Prometheus metrics
+    """
+    return Response(generate_latest(), mimetype='text/plain')
 
 
 if __name__ == "__main__":
