@@ -27,10 +27,10 @@ x-deploy:
 ```
 
 ## Targets
-![](/monitoring/screenshots/Prometheus1.png)
+![](/monitoring/screenshots/Prometheus1.jpg)
 
 ## Grafana dashboard
-![](/monitoring/screenshots/Prometheus2.png)
+![](/monitoring/screenshots/Prometheus2.jpg)
 
 ## Some console screenshot with working Prometheus
-![](/monitoring/screenshots/Prometheus3.png)
+![](/monitoring/screenshots/Prometheus3.jpg)
