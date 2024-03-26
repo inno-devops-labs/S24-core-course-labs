@@ -69,7 +69,7 @@ jobs:
         uses: actions/cache@v4
         with: 
           path: ~/.docker
-          key: ${{ runner.os }}-docker-${{ github.sha }}
+          key: ${{ runner.os }}-docker-${{ github.sha }}gi
           restore-keys: ${{ runner.os }}-docker-
         
       - name: Login to Docker Hub
