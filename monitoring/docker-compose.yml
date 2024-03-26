@@ -1,15 +1,19 @@
-
 version: '3.8'
 
 networks:
   loki:
+
+x-deploy: &default-deploy
+  resources:
+    limits:
+      memory: 200M
 
 x-logging: &common_logging
   driver: 'json-file'
   options:
     tag: '{{.ImageName}}|{{.ContainerName}}'
     max-size: '10M'
-    max-file: '1'
+    max-file: '10'
 
 services:
   app_python:
@@ -19,6 +23,7 @@ services:
     logging: *common_logging
     networks:
       - loki
+    deploy: *default-deploy
 
   loki:
     image: grafana/loki:2.9.2
@@ -28,6 +33,7 @@ services:
     networks:
       - loki
     logging: *common_logging
+    deploy: *default-deploy
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -41,6 +47,7 @@ services:
     logging: *common_logging
     ports:
       - '9080:9080'
+    deploy: *default-deploy
 
   grafana:
     environment:
@@ -72,3 +79,24 @@ services:
     networks:
       - loki
     logging: *common_logging
+  deploy: *default-deploy
+  
+  prometheus:
+    image: prom/prometheus:v2.33.1
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.enable-lifecycle'
+    ports:
+      - '9090:9090'
+    networks:
+      - loki
+    logging: *common_logging
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:9090/status || exit 1"]
+      interval: 20s
+      timeout: 20s
+      retries: 4
+    deploy: *default-deploy
