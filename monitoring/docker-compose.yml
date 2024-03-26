@@ -10,12 +10,19 @@ x-logging:
   options:
     tag: "{{.ImageName}}|{{.Name}}"
 
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 100M
+
 services:
   webapp:
     image: fatm1nd/devops-lab-container
     ports:
-      - "8080:3000"
+      - "8080:5000"
     logging: *default-logging
+    deploy: *default-deploy
 
   loki:
     image: grafana/loki:2.9.2
@@ -23,6 +30,7 @@ services:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
     logging: *default-logging
+    deploy: *default-deploy
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -31,6 +39,7 @@ services:
       - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
     logging: *default-logging
+    deploy: *default-deploy
 
   grafana:
     environment:
@@ -54,9 +63,30 @@ services:
           isDefault: true
           version: 1
           editable: false
+        - name: Prometheus
+          type: prometheus
+          access: proxy
+          orgId: 1
+          url: http://prometheus:9090
+          basicAuth: false
+          isDefault: false
+          version: 1
+          editable: true
         EOF
         /run.sh
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
     logging: *default-logging
+    deploy: *default-deploy
+  
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - target: 9090
+        published: 9090
+    logging: *default-logging
+    deploy: *default-deploy
+    
