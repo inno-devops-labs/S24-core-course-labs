@@ -1,38 +1,60 @@
-version: "3"
+version: "3.8"
 
 networks:
-  loki:
+  default:
+    name: loki
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "5m"
+    max-file: "3"
+    tag: "{{.ImageName}}|{{.Name}}"
+
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 100M
 
 services:
-
   app-python:
     image: hallejujah/devops_app:latest
+    expose:
+      - 5000
     ports:
       - 5000:5000
-    networks:
-      - loki
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100m"
-        max-file: "10"
-        tag: "{{.ImageName}}|{{.Name}}"
+    logging: *default-logging
+    deploy: *default-deploy
 
   loki:
     image: grafana/loki:2.9.2
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - loki
+    logging: *default-logging
+    deploy: *default-deploy
 
   promtail:
     image: grafana/promtail:2.9.2
     volumes:
-      - /var/log:/var/log
+      - ./promtail.yml:/etc/promtail/config.yml
+      - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
-    networks:
-      - loki
+    logging: *default-logging
+    deploy: *default-deploy
+
+  prometheus:
+    image: prom/prometheus:v2.30.1
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    logging: *default-logging
+    deploy: *default-deploy
+
 
   grafana:
     environment:
@@ -49,7 +71,7 @@ services:
         datasources:
         - name: Loki
           type: loki
-          access: proxy 
+          access: proxy
           orgId: 1
           url: http://loki:3100
           basicAuth: false
@@ -61,5 +83,5 @@ services:
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
-    networks:
-      - loki
+    logging: *default-logging
+    deploy: *default-deploy
