@@ -10,6 +10,38 @@ x-logging: &default-logging
     tag: "{{.ImageName}}|{{.Name}}"
 
 services:
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=14d'
+      - '--web.enable-lifecycle'
+      - '--storage.tsdb.wal-compression'
+      - '--storage.tsdb.max-block-duration=4h'
+      - '--storage.tsdb.wal-segment-size=60MB'
+      - '--storage.tsdb.allow-overlapping-blocks'
+      - '--query.max-samples=5000000'
+    restart: unless-stopped
+    expose:
+      - 9090
+    ports:
+      - "9090:9090"
+    networks:
+      - loki
+    labels:
+      org.label-schema.group: "monitoring"
+    deploy:
+      resources:
+        limits:
+          memory: 250M
+
   loki:
     container_name: loki
     image: grafana/loki:2.9.2
@@ -19,6 +51,10 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 250M
 
   promtail:
     container_name: promtail
@@ -36,6 +72,10 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 250M
 
   grafana:
     container_name: grafana
@@ -68,6 +108,10 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 250M
 
   app_python:
     container_name: app_python
@@ -77,6 +121,11 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 250M
 
 volumes:
   promtail-data: {}
+  prometheus-data: {}
