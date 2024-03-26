@@ -20,7 +20,8 @@ cd S24-core-course-labs/app_java
 - Run the application and test:
 
 ```bash
-mvn install
+mvn clean package
+java -jar target/app-0.0.1-SNAPSHOT.jar
 curl localhost:8000
 ```
 
@@ -30,9 +31,9 @@ curl localhost:8000
 
 ```bash
 cd S24-core-course-labs/app_java
-mvn clean compile assembly:single
+mvn clean package
 docker build --build-arg \
-    JAR_FILE=target/app-0.0.1-SNAPSHOT-jar-with-dependencies.jar \
+    JAR_FILE=target/app-0.0.1-SNAPSHOT.jar \
     --tag=dmfrpro/app_java:v1.0 .
 ```
 
@@ -40,7 +41,7 @@ docker build --build-arg \
 
 ```bash
 docker pull dmfrpro/app_java:v1.0
-docker run -p 8000:8000 dmfrpro/app_java:v1.0
+docker run -p 8080:8080 dmfrpro/app_java:v1.0
 ```
 
 ## CI Workflow
