@@ -2,8 +2,9 @@ FROM golang:1.17-alpine AS build
 
 WORKDIR /app
 
-COPY go.mod main.go ./
+COPY go.mod go.sum main.go ./
 
+RUN go mod download
 RUN go build -o main
 
 FROM alpine:3.14
