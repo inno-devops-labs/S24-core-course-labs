@@ -21,8 +21,8 @@ COPY app.js .
 COPY views/index.ejs ./views/index.ejs
 COPY test ./test/test.js 
 
-# Expose port 3000
-EXPOSE 3000
+# Expose port 5001
+EXPOSE 5001
 
 LABEL maintainer="c.ogbonna@innopolis.university"
 LABEL description="Docker image for js app."

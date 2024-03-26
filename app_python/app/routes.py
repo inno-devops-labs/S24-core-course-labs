@@ -1,6 +1,8 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, Response
 from datetime import datetime, timedelta
 import pytz
+
+from prometheus_client import generate_latest
 
 app = Flask(__name__, template_folder='templates', static_folder='../static')
 
@@ -13,6 +15,10 @@ def index():
         rendered HTML template
     """
     return render_template('index.html')
+
+@app.route('/metrics')
+def metrics():
+    return Response(generate_latest(), content_type='text/plain')
 
 @app.route('/get_time')
 def get_time():

@@ -19,7 +19,7 @@
 - Only relevant application files are copied into the container. This includes the main application file (`app.js`) and any other necessary assets.
 
 ### 7. Exposing Port
-- The `EXPOSE` instruction exposes port 3000, which is typically used by Node.js applications to serve HTTP requests. This allows external access to the application running within the container.
+- The `EXPOSE` instruction exposes port 5001, which is typically used by Node.js applications to serve HTTP requests. This allows external access to the application running within the container.
 
 ### 8. Adding Metadata
 - Metadata is added to the image using `LABEL`, including the maintainer's email address (`maintainer="c.ogbonna@innopolis.university"`) and a brief description of the image's purpose (`description="Docker image for js app."`).

@@ -1,2 +1,4 @@
 Flask==3.0.1
 pytz
+requests
+prometheus_client

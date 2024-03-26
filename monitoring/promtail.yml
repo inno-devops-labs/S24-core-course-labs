@@ -31,5 +31,9 @@ scrape_configs:
           expression: ^(?P<image_name>([^|]+))\|(?P<container>([^|]+))$  
           source: "tag"
       - labels:
+          stream:
+          time:
           image_name:
           container:
+      - output:
+          source: log

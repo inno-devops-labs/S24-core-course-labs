@@ -42,9 +42,9 @@ A simple ToDo List web application built with Node.js and Express.
    ```bash 
    docker build -t app_javascript .
    ```
-2. **Running the container at [localhost:3000](127.0.0.1/3000)**
+2. **Running the container at [localhost:5001](127.0.0.1/5001)**
    ```bash 
-   docker run -d -p 3000:3000 --name app_javascript_container app_javascript
+   docker run -d -p 5001:5001 --name app_javascript_container app_javascript
    ```
 
 ### Building the Docker Image (Docker Hub)
@@ -53,9 +53,9 @@ A simple ToDo List web application built with Node.js and Express.
    ```bash 
    docker pull cogbonna/app_javascript_image
    ```
-2. **Running the container at [localhost:3000](127.0.0.1/3000)**
+2. **Running the container at [localhost:5001](127.0.0.1/5001)**
    ```bash 
-   docker run -dp 0.0.0.0:3000:3000 cogbonna/app_javascript_image
+   docker run -dp 0.0.0.0:5001:5001 cogbonna/app_javascript_image
    ```
 
 ## CI Workflow

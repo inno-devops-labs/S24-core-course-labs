@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const promClient = require('prom-client')
+const port = 5001;
 
 module.exports = app;
 
@@ -23,6 +24,15 @@ app.post('/add', (req, res) => {
   todoList.push(newTodo);
   res.redirect('/');
 });
+
+// Route handler for Prometheus metrics
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', promClient.register.contentType);
+  res.send(await promClient.register.metrics());
+});
+
+// Initialize default metrics
+promClient.collectDefaultMetrics();
 
 // Start the server and listen for incoming requests
 app.listen(port, () => {
