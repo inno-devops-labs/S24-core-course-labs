@@ -1,10 +1,25 @@
 # app.py
 import pytz as pytz
 from flask import Flask, render_template
+from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
 import datetime
 
 
 app = Flask(__name__, template_folder='templates')
+
+
+grafana_metrics_counter = Counter(
+    'grafana_metrics_counter',
+    'metrics',
+)
+
+
+@app.route('/metrics')
+def grafana_health_check():
+    grafana_metrics_counter.inc()
+    metrics = generate_latest()
+
+    return metrics, 200, {'Content-Type': CONTENT_TYPE_LATEST}
 
 
 @app.route('/')

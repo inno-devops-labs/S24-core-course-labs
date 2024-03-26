@@ -9,7 +9,8 @@ ENV PYTHONUNBUFFERED 1
 RUN apt-get update \
     && apt-get install -y gcc \
     && pip install --upgrade pip \
-    && pip install Flask gunicorn pytz
+    && pip install Flask gunicorn pytz \
+    && pip install prometheus_client
 
 # Set the working directory
 WORKDIR /app

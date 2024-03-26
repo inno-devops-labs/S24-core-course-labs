@@ -2,12 +2,20 @@ version: '3'
 
 services:
   loki:
-    image: grafana/loki:latest
+    image: grafana/loki:2.9.2
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
-    volumes:
-      - ./loki-config:/etc/loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+        tag: "{{.ImageName}}|{{.Name}}"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
 
   promtail:
     image: grafana/promtail:latest
@@ -15,6 +23,18 @@ services:
       - /var/log:/var/log
       - ./promtail-config:/etc/promtail
     command: -config.file=/etc/promtail/promtail-config.yaml
+    ports:
+      - "9080:9080"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+        tag: "{{.ImageName}}|{{.Name}}"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
 
   grafana:
     image: grafana/grafana:latest
@@ -25,13 +45,50 @@ services:
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_NAME=MainOrg
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+        tag: "{{.ImageName}}|{{.Name}}"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/etc/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+        tag: "{{.ImageName}}|{{.Name}}"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
 
   app_python:
-    build: ../app_python
+    image: farkhutdinovadr951/dilly
     ports:
       - "5001:5000"
-    volumes:
-      - ../app_python:/app_python
     depends_on:
       - loki
       - promtail
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+        tag: "{{.ImageName}}|{{.Name}}"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
