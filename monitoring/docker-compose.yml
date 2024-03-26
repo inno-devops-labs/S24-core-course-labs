@@ -1,13 +1,17 @@
-version: "3"
-
 networks:
   loki:
+
+volumes:
+  prometheus:
 
 services:
   web_app:
     image: dirakon/devops-py:latest
+    mem_limit: 100m
     ports:
       - "8089:80"
+    networks:
+      - loki
     logging:
       driver: "json-file"
       options:
@@ -17,8 +21,11 @@ services:
 
   web_app_cs:
     image: dirakon/devops-cs:latest
+    mem_limit: 100m
     ports:
       - "8087:7273"
+    networks:
+      - loki
     logging:
       driver: "json-file"
       options:
@@ -28,6 +35,7 @@ services:
 
   loki:
     image: grafana/loki:2.9.2
+    mem_limit: 100m
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
@@ -43,6 +51,9 @@ services:
         tag: "{{.ImageName}}|{{.Name}}"
 
   promtail:
+    mem_limit: 100m
+    ports:
+      - "9080:9080"
     image: grafana/promtail:2.9.2
     command: -config.file=/etc/promtail/config.yml
     volumes:
@@ -60,6 +71,7 @@ services:
         tag: "{{.ImageName}}|{{.Name}}"
 
   grafana:
+    mem_limit: 100m
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
@@ -88,6 +100,22 @@ services:
       - "3000:3000"
     networks:
       - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
+  prometheus:
+    mem_limit: 100m
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - loki
+    volumes:
+      - ./prometheus_config/:/etc/prometheus/
+      - prometheus:/prometheus
     logging:
       driver: "json-file"
       options:
