@@ -7,4 +7,4 @@ datasources:
     jsonData:
       httpHeaderName1: "Scope-OrgID"
     secureJsonData:
-      httpHeaderValue1: "docker"
+      httpHeaderValue1: "docker" 
