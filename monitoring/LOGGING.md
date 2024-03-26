@@ -42,6 +42,6 @@ This service exemplifies an application that produces logs collected by our infr
 
 The functionality of our logging infrastructure is illustrated through a screenshot captured at screenshots/app.png, displaying the successful gathering and visualization of logs from our application service in Grafana.
 
-![Successful Logging Infrastructure Operation](graf.png)
+![Successful Logging Infrastructure Operation](screenshot/graf.png)
 
 This configuration guarantees efficient collection, storage, and centralized accessibility of service logs, offering valuable insights for monitoring and issue resolution purposes.

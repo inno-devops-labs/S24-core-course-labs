@@ -9,6 +9,8 @@ x-logging:
   driver: "json-file"
   options:
     tag: "{{.ImageName}}|{{.Name}}"
+    max-size: 20M
+    max-file: 10
 
 services:
   app-python:
@@ -54,9 +56,30 @@ services:
           isDefault: true
           version: 1
           editable: false
+        - name: Prometheus
+          type: prometheus
+          access: proxy
+          orgId: 1
+          url: http://prometheus:9090
+          basicAuth: false
+          isDefault: false
+          version: 1
+          editable: false
         EOF
         /run.sh
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
     logging: *default-logging
+
+  prometheus:
+     image: prom/prometheus:latest
+     volumes:
+       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+     container_name: prometheus
+     hostname: prometheus
+     command:
+       - --config.file=/etc/prometheus/prometheus.yml
+     ports:
+       - "9090:9090"
+     restart: unless-stopped

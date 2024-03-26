@@ -8,6 +8,9 @@ pytz = "*"
 fastapi = "*"
 starlette = "*"
 uvicorn = "*"
+prometheus_client = "*"
+prometheus-fastapi-instrumentator = "*"
+
 
 [dev-packages]
 pytest = "*"
