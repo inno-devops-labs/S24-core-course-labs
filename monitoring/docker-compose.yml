@@ -7,16 +7,35 @@ x-logging:
   &default-logging
   driver: "json-file"
   options:
+    max-size: "100m"
+    max-file: "10"
     tag: "{{.ImageName}}|{{.Name}}"
 
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 100M
+
 services:
-  app_python:
-    build: ../app_python
+  app-python:
+    build: ../app_python/
     ports:
       - "8080:5000"
     logging: *default-logging
     networks:
       - loki
+    deploy: 
+      <<: *default-deploy
+      replicas: 1
+      restart_policy:
+        condition: any
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
   loki:
     image: grafana/loki:2.9.2
@@ -26,6 +45,13 @@ services:
     logging: *default-logging
     networks:
       - loki
+    deploy: *default-deploy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3100/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -36,7 +62,14 @@ services:
     logging: *default-logging
     networks:
       - loki
-  
+    deploy: *default-deploy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
   prometheus:
     image: prom/prometheus:v2.30.1
     volumes:
@@ -48,12 +81,13 @@ services:
       - "9090:9090"
     networks:
       - loki
-    deploy: 
-      resources:
-        limits:
-          memory: 50M
-        reservations:
-          memory: 20M
+    deploy: *default-deploy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
   grafana:
     environment:
@@ -94,3 +128,10 @@ services:
     logging: *default-logging
     networks:
       - loki
+    deploy: *default-deploy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
