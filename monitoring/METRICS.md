@@ -15,3 +15,17 @@
 ![image](https://github.com/frog-da/DevOps/assets/84839431/2eb57f6b-7300-4c6b-ab54-afb651e80377)
 ![image](https://github.com/frog-da/DevOps/assets/84839431/8bce5200-e30f-4e81-8e4f-daa340b9d443)
 ![image](https://github.com/frog-da/DevOps/assets/84839431/e722837e-a13e-4ac9-a7b2-acf48f41ff92)
+
+## Service Configuration Updates:
+
+- Log rotation is implemented by specifying the `max-size` and `max-file` options of logging with `json-file` driver.
+- Memory limits are specified by adding such field to containers:
+
+```yaml
+deploy:
+  resources:
+    limits:
+      memory: 500M
+```
+
+that limits container memory usage to 500MB
