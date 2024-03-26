@@ -186,6 +186,18 @@ services:
       retries: 5
     networks:
       - loki
+  
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - read
+      - write
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+    networks:
+      - loki
 
   app_python:
     image: legolass322/devops:app_python
