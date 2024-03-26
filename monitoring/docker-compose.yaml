@@ -8,6 +8,14 @@ x-logging:
   driver: "json-file"
   options:
     tag: "{{.ImageName}}|{{.Name}}"
+    max-size: 200k
+    max-file: 10
+
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 100M
 
 services:
   app-python:
@@ -16,12 +24,18 @@ services:
       - target: 5001
         published: 5001
     logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5001/" ]
   app-go:
     image: nad777/anton_nekhaev_go:latest
     ports:
       - target: 5002
         published: 5002
     logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5002/" ]
   loki:
     image: grafana/loki:2.9.2
     ports:
@@ -30,6 +44,9 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3100/ready" ]
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -40,6 +57,9 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/" ]
 
   grafana:
     environment:
@@ -71,3 +91,24 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3000/api/health" ]
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - loki
+    mem_limit: 100m
+    logging: *default-logging
+    deploy: *default-deploy
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/-/healthy" ]
+
+volumes:
+  prometheus-data:

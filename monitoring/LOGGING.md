@@ -31,3 +31,4 @@ This document outlines the setup and functionality of our logging stack, which c
 ## Conclusion
 
 This logging stack provides a robust solution for monitoring and analyzing logs from our application. By leveraging the combined capabilities of Grafana, Loki, and Promtail, we can gain valuable insights into our application's performance and troubleshoot issues more effectively.
+
