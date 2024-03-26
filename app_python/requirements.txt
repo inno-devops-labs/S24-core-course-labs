@@ -8,3 +8,4 @@ pytz==2024.1
 Werkzeug==3.0.1
 flake8
 pytest
+prometheus-flask-exporter
