@@ -1,12 +1,15 @@
 # Import necessary modules
+import os
+import pytz
 from flask import Flask
 from datetime import datetime
-import pytz
-import os
+from prometheus_flask_exporter import PrometheusMetrics
 
 # Create Flask application instance
 app = Flask(__name__)
 
+# Initialize metrics
+metrics = PrometheusMetrics(app)
 
 # Define route for homepage
 @app.route("/")
@@ -19,11 +22,12 @@ def current_time():
     # Return response with current time in Moscow
     return f"The current time in Moscow is: {moscow_time}"
 
+@app.errorhandler(404)
+def not_found():
+    """
+    Return error page not found as html
+    """
+    return "<h1>404</h1><p>The resource could not be found.</p>", 404
 
-# Run the Flask application if script is executed directly
 if __name__ == "__main__":
-    # Get the port from the environment variable, defaulting to 5000
-    port = int(os.environ.get("PORT", 5000))
-
-    # Run the Flask application
-    app.run(debug=False, host="0.0.0.0", port=port)
+    app.run(debug=True, host='0.0.0.0', port=int(os.getenv('PORT', 5001)))
