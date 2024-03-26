@@ -1,12 +1,44 @@
----
+- name: pip installl
+  ansible.builtin.apt:
+    name: python3-pip
+    state: present
 
-- name: Install Docker
-  ansible.builtin.include_tasks: install_docker.yaml
+- name: required packages
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - gnupg
+      - apt-transport-https
+      - software-properties-common
+    state: present
+    update_cache: true
+  tags: docker
 
-- name: Install docker-compose
-  ansible.builtin.include_tasks: install_compose.yaml
+- name: Docker GPG key
+  block:
+    - name: Add Docker's GPG key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
 
-- name: Add user to docker group
-  ansible.builtin.user:
-    name: "{{ ansible_user }}"
-    groups: docker
+    - name: Add Docker repository
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        filename: docker
+        state: present
+  tags: docker
+
+- name: Docker Install
+  ansible.builtin.apt:
+    name:
+      - docker-ce-cli
+      - docker-ce
+    update_cache: true
+    state: present
+  tags: docker
+
+- name: Install compose
+  ansible.builtin.pip:
+    name: docker-compose
+    state: present
+  tags: docker-compose
