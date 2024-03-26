@@ -1,6 +1,6 @@
 # Metrics 
 
-## Prometheus Setup (including bonus)
+## Prometheus Setup 
 - Created `prometheus.yml` to scrape metrics from Loki and Prometheus containers every 10 seconds.
 - Updated `docker-compose.yml` to include Prometheus as a sub-service.
 - Integrated the prometheus client library into the `app_python` and `app_javascript` on the `/metrics` endpoint.
@@ -35,3 +35,8 @@ x-logging:
     max-size: "10M"
     max-file: "10"
 ```
+## Application Metrics 
+### app_python
+![alt text](screenshots/metrics-py.png)
+### app_javascript
+![alt text](screenshots/metrics-js.png)
