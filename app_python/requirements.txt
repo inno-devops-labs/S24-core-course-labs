@@ -6,3 +6,4 @@ pytz==2024.1
 ntplib==0.4.0
 httpx==0.26.0
 pytest==8.0.1
+prometheus_fastapi_instrumentator==7.0.0

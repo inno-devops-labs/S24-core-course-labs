@@ -5,6 +5,7 @@ from contextlib import asynccontextmanager
 import ntplib
 import pytz
 from fastapi import FastAPI
+from prometheus_fastapi_instrumentator import Instrumentator
 from pydantic import Field
 from pydantic_settings import BaseSettings
 
@@ -26,6 +27,7 @@ async def lifespan(app: FastAPI):
 
 settings = Settings()
 app = FastAPI(lifespan=lifespan)
+Instrumentator().instrument(app).expose(app)
 
 
 @app.get(
