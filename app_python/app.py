@@ -5,7 +5,9 @@ from prometheus_client import Summary, generate_latest
 
 app = Flask(__name__)
 
-REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
+REQUEST_TIME = Summary('request_processing_seconds',
+                       'Time spent processing request')
+
 
 @app.route('/')
 @REQUEST_TIME.time()
