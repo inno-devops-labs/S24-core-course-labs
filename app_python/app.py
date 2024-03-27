@@ -8,6 +8,9 @@ def create_app():
     app.register_blueprint(home)
     return app
 
+app = create_app()
+metrics = PrometheusMetrics(app)
+metrics.info('app_info', 'Application info', version='2.0.0')
 
 if __name__ == "__main__":
     from argparse import ArgumentParser
@@ -19,7 +22,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     port = args.port
 
-    app = create_app()
-    metrics = PrometheusMetrics(app)
-    metrics.info('app_info', 'Application info', version='2.0.0')
+    # app = create_app()
+    
     app.run(host="0.0.0.0", port=port, debug=True)
