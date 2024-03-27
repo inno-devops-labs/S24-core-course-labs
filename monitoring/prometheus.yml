@@ -6,6 +6,10 @@ scrape_configs:
   static_configs:
   - targets: ["app_python:5000"]
 
+- job_name: "app_go"
+  static_configs:
+  - targets: ["app_go:8080"]
+
 - job_name: "prometheus"
   static_configs:
   - targets: ["prometheus:9090"]

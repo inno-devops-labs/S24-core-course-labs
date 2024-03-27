@@ -10,6 +10,8 @@ MarkupSafe==2.1.5
 mccabe==0.7.0
 packaging==23.2
 pluggy==1.4.0
+prometheus-flask-exporter==0.23.0
+prometheus_client==0.20.0
 pycodestyle==2.11.1
 pyflakes==3.2.0
 pytest==8.0.1

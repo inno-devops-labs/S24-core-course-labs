@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"math/rand"
 	"net/http"
-	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 var jokes = []string{
@@ -16,12 +16,6 @@ var jokes = []string{
 	"Why did the scarecrow win an award? Because he was outstanding in his field!",
 	"Parallel lines have so much in common. It's a shame they'll never meet.",
 	"I only know 25 letters of the alphabet. I don't know y.",
-}
-
-func getMoscowTime() string {
-	moscowLocation := time.FixedZone("MSK", 3*60*60) // Moscow is UTC+3
-	currentTime := time.Now().In(moscowLocation)
-	return currentTime.Format("2006-01-02 15:04:05")
 }
 
 func randomJokeHandler(c *gin.Context) {
@@ -36,6 +30,9 @@ func main() {
 
 	router.LoadHTMLGlob("templates/*")
 	router.GET("/", randomJokeHandler)
+
+	// Route for Prometheus metrics
+	router.GET("/metrics", gin.WrapH(promhttp.Handler()))
 
 	serverAddr := ":8080"
 	fmt.Printf("Server is running on http://127.0.0.1%s\n", serverAddr)
