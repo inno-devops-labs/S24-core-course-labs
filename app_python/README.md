@@ -35,7 +35,7 @@ Ensure you are in the directory containing the Dockerfile.
 To pull the Docker image from Docker Hub:
 
 ```bash
-docker pull snapman/time_web.py
+docker pull snapman/time_web
 ```
 
 ### Run
@@ -43,7 +43,7 @@ docker pull snapman/time_web.py
 To run the Docker container:
 
 ```bash
-docker run -p 5000:5000 snapman/time_web.py
+docker run -p 5000:5000 snapman/time_web
 ```
 
 Make sure to meet the following requirements:
