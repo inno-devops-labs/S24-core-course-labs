@@ -3,7 +3,20 @@ version: "3.8"
 networks:
   default:
    name: loki
+   
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "10"
+    tag: "{{.ImageName}}|{{.Name}}"
 
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 100M
 
 services:
 
@@ -16,13 +29,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
-    logging:
-      driver: json-file
-      options:
-        tag: app_python
-        max-size: "10m"
-        max-file: "10"
-    
+    logging: *default-logging
+    deploy: *default-deploy
+
   app_flutter:
     image: timurharin/flutter_web:latest
     ports:
@@ -32,24 +41,18 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
-    logging:
-      driver: json-file
-      options:
-        tag: app_flutter
-        max-size: "10m"
-        max-file: "10"
+    logging: *default-logging
+    deploy: *default-deploy
+
 
   loki:
     image: grafana/loki:2.9.2
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
-    logging:
-      driver: json-file
-      options:
-        tag: loki
-        max-size: "10m"
-        max-file: "10"
+    logging: *default-logging
+    deploy: *default-deploy
+
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -57,12 +60,9 @@ services:
       - ./promtail.yml:/etc/promtail/config.yml
       - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
-    logging:
-      driver: json-file
-      options:
-        tag: promtail
-        max-size: "10m"
-        max-file: "10"
+    logging: *default-logging
+    deploy: *default-deploy
+
 
   grafana:
     environment:
@@ -91,9 +91,17 @@ services:
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
-    logging:
-      driver: json-file
-      options:
-        tag: grafana
-        max-size: "10m"
-        max-file: "10"
+    logging: *default-logging
+    deploy: *default-deploy
+
+
+  prometheus:
+    image: prom/prometheus:v2.30.1
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    logging: *default-logging
+    deploy: *default-deploy
