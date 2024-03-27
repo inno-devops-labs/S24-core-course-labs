@@ -2,7 +2,7 @@
 
 ## All promotheus targets
 
-![prometheus_targets](assets/promotheus-targets.png)
+![prometheus_targets](assets/prometheus-targets.png)
 
 ## All dashboards
 
@@ -10,7 +10,7 @@
 
 ![loki_metrics](assets/loki-metrics.png)
 
-![promotheus_metrics](screenshots/prometheus-metrics.png)
+![prometheus_metrics](assets/prometheus-metrics.png)
 
 ## Log rotation and memory limits
 
