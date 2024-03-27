@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: anon-threats
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: anon-threats
+  template:
+    metadata:
+      labels:
+        app: anon-threats
+    spec:
+      containers:
+      - name: anon-threats
+        image: fk12344321/anon_threats:mac
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
