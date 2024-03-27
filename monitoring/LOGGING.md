@@ -57,7 +57,7 @@ Specifies the URL to which Prometheus should deliver metrics, denoting `http://l
 
 # Screenshots
 ### App python
-![app_python](./screens/app_python.png)
+![time_web](./screens/time_web.png)
 ### Grafana
 ![grafana](./screens/grafana.png)
 ### Loki
