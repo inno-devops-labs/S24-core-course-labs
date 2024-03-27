@@ -1,7 +1,7 @@
 // Purpose: This is the main logic section for the app. It handles the request and response logic.
 
 import { returnTime } from "./utils.js";
-import { Registry, Counter } from "prom-client";
+import { Registry, Counter, Histogram } from "prom-client";
 
 // Create a Registry
 const registry = new Registry();
@@ -18,14 +18,23 @@ registry.setDefaultLabels({
 
 // Collect default metrics without using the default function
 const counter = new Counter({
-  name: "app_bun_counter",
-  help: "Example of a counter",
+  name: "api_http_requests_total",
+  help: "Number of http requests made",
+  registers: [registry],
+});
+
+const histogram = new Histogram({
+  name: "api_http_request_duration_seconds",
+  help: "Duration of http requests in seconds",
   registers: [registry],
 });
 
 export function index() {
   counter.inc();
-  return new Response(returnTime(), {
+  const end = histogram.startTimer();
+  const response = returnTime();
+  end();
+  return new Response(response, {
     headers: { "content-type": "text/html" },
   });
 }
