@@ -5,6 +5,7 @@ mccabe==0.7.0
 packaging==23.2
 platformdirs==4.2.0
 pluggy==1.4.0
+prometheus_client==0.20.0
 iniconfig==2.0.0
 isort==5.13.2
 itsdangerous==2.1.2
