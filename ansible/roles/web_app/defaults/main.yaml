@@ -1,7 +1,7 @@
-web_app_image_name: "timurharin/devops:latest"
+web_app_image_name: "timurharin/devops"
 web_app_container_name: "web_app"
 web_app_image_tag: "latest"
 web_app_image_dir: "~/web_app"
-web_app_full_wipe: false
+web_app_full_wipe: true
 web_app_target_port: 8080
 web_app_published_port: 5000

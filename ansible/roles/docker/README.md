@@ -26,9 +26,9 @@ Example of playbook:
 
 ### YML Files in Docker Folder
 
-- defaults/main.yml
-- handlers/main.yml
-- tasks/install_pip.yml
-- tasks/install_docker.yml
-- tasks/install_compose.yml
-- tasks/main.yml
+- defaults/main.yaml
+- handlers/main.yaml
+- tasks/install_pip.yaml
+- tasks/install_docker.yaml
+- tasks/install_compose.yaml
+- tasks/main.yaml

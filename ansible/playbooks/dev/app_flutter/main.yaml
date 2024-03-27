@@ -1,0 +1,5 @@
+- name: Install flutter web app
+  hosts: all
+  become: true
+  roles:
+    - flutter_web_app

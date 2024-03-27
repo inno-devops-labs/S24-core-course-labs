@@ -1,4 +1,4 @@
-# Web App Role
+# Flutter Web App Role
 
 ## Description
 This is ansible role that deploys a web app using pip, Docker, Docker-Compose. 
@@ -32,16 +32,17 @@ Example of playbook:
 ## How to run inside ansible folder
 
 ```bash
-ansible-playbook playbooks/dev/app_python/main.yaml -i inventory/default_cloud.yaml    
+ansible-playbook playbooks/dev/app_flutter/main.yaml -i inventory/default_cloud.yaml    
 ```
 
 ### YML Files in WebApp Folder
 
-- defaults/main.yaml
-- handlers/main.yaml
-- meta/main.yaml
-- tasks/0-wipe.yaml
-- tasks/main.yaml
+- defaults/main.yml
+- handlers/main.yml
+- meta/main.yml
+- tasks/0-wipe.yml
+- tasks/main.yml
 
 ## Image of running app 
-![](../../images/running.png)
+![](../../images/running_flutter.png)
+ 

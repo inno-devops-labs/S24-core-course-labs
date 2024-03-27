@@ -1,0 +1,36 @@
+- name: Deploy Flutter Web App  
+  block:
+  - name: Create app directory
+    ansible.builtin.file:
+      path: "{{ web_app_image_dir }}"
+      state: directory
+      mode: '0755'
+
+  - name: Copy Docker Compose template
+    template:
+      src: docker-compose.yml.j2
+      dest: "{{ web_app_image_dir }}/docker-compose.yml"
+    vars:
+      image_full: "{{  web_app_image_name  }}:{{  web_app_image_tag  }}"
+      publish_ports: "{{ web_app_target_port}}:{{ web_app_published_port }}"
+
+  - name: Check that docker is running
+    service:
+      name: "docker"
+      state: "started"
+      enabled: true
+
+  - name: Start app
+    community.docker.docker_compose_v2:
+      project_src: "{{ web_app_image_dir }}"
+      state: present
+      remove_orphans: true
+
+  - name: Wipe app
+    when: web_app_full_wipe
+    ansible.builtin.include_tasks:
+      file: "0-wipe.yaml"
+    tags:
+      - wipe
+  tags:
+    - deploy
