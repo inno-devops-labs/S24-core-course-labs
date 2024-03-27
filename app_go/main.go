@@ -20,7 +20,7 @@ func main() {
 	http.Handle("/metrics", promhttp.Handler())
 
 	fmt.Println("Starting server")
-	if err := http.ListenAndServe(":8082", nil); err != nil {
+	if err := http.ListenAndServe(":8080", nil); err != nil {
 		fmt.Println("Failed to start the server")
 		fmt.Println("%v", err)
 	}

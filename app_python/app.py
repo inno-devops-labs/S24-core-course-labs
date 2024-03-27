@@ -1,12 +1,15 @@
 import datetime
 import fastapi
 import fastapi.templating as templating
+import prometheus_client
 import pytz
 
 templates = templating.Jinja2Templates(directory="templates")
 
 app = fastapi.FastAPI()
 
+metrics_app = prometheus_client.make_asgi_app()
+app.mount("/metrics", metrics_app)
 
 @app.get("/api/time")
 def fetch_time():

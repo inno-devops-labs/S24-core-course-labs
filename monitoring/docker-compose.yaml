@@ -28,6 +28,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - apps
 
   app_go:
     image: "y4cerr/app_go"
@@ -40,6 +42,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - apps
 
   loki:
     image: grafana/loki:2.9.2
@@ -117,6 +121,7 @@ services:
       - "9090:9090"
     networks:
       - loki
+      - apps
     mem_limit: 100m
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yml
@@ -131,6 +136,7 @@ services:
 
 networks:
   loki:
+  apps:
 
 volumes:
   prometheus-data:

@@ -16,6 +16,7 @@ MarkupSafe==2.1.5
 msgpack==1.0.7
 packaging==23.2
 pluggy==1.4.0
+prometheus_client==0.20.0
 pydantic==2.6.0
 pydantic_core==2.16.1
 pynvim==0.5.0
