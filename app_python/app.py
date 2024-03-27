@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-# from api.routes.home import home
+from api.routes.home import home
 from prometheus_flask_exporter import PrometheusMetrics
 
 from api.services.moscow_time import get_current_moscow_time_str
@@ -7,7 +7,7 @@ from api.services.moscow_time import get_current_moscow_time_str
 
 
 app = Flask(__name__)
-# app.register_blueprint(home)
+app.register_blueprint(home)
 
 metrics = PrometheusMetrics(app)
 metrics.info('app_info', 'Application info', version='2.0.0')
@@ -26,7 +26,5 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     port = args.port
-
-    # app = create_app()
     
     app.run(host="0.0.0.0", port=port, debug=False)
