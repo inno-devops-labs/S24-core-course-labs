@@ -1,3 +1,6 @@
 Flask==3.0.2
 pytest==8.0.1
 pylint==2.12.2
+prometheus_fastapi_instrumentator==7.0.0
+fastapi
+uvicorn
