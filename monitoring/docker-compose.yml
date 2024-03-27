@@ -23,7 +23,7 @@ services:
       - "8082:8080"
     logging: *logging
     healthcheck:
-      test: [ "CMD-SHELL", "curl -f http://localhost:8080/health" ]
+      test: [ "CMD-SHELL", "curl -f http://localhost:8080/" ]
       <<: *health-test
     networks:
       - loki
@@ -35,7 +35,7 @@ services:
       - "8080:8080"
     logging: *logging
     healthcheck:
-      test: [ "CMD-SHELL", "curl -f http://localhost:8080/health" ]
+      test: [ "CMD-SHELL", "curl -f http://localhost:8080/" ]
       <<: *health-test
     networks:
       - loki
@@ -48,7 +48,7 @@ services:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
     healthcheck:
-      test: [ "CMD-SHELL", "wget -q --tries=1 --spider http://localhost:3100/ready || exit 1" ]
+      test: [ "CMD-SHELL", "wget -q --tries=1 --spider http://localhost:3100/ready" ]
       <<: *health-test
     mem_limit: 512M
     logging: *logging
@@ -83,7 +83,7 @@ services:
         limits:
           memory: 512m
     healthcheck:
-      test: [ "CMD-SHELL", "wget -q --tries=1 --spider http://localhost:9090/status || exit 1" ]
+      test: [ "CMD-SHELL", "wget -q --tries=1 --spider http://localhost:9090/status" ]
       <<: *health-test
     logging: *logging
     networks:
@@ -101,6 +101,9 @@ services:
     ports:
       - "3000:3000"
     logging: *logging
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:3000" ]
+      <<: *healthcheck-params
     networks:
       - loki
     depends_on:
