@@ -25,5 +25,5 @@ RUN groupadd $group_name && useradd -g $group_name $user_name
 
 USER $user_name
 
-ENTRYPOINT ["poetry", "run", "python", "__init__.py"]
+ENTRYPOINT ["poetry", "run", "python", "main.py"]
 

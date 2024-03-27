@@ -10,6 +10,7 @@ python = "^3.11.6"
 flask = "^3.0.2"
 pytz = "^2024.1"
 waitress = "^3.0.0"
+prometheus-client = "^0.20.0"
 
 
 [tool.poetry.group.dev.dependencies]

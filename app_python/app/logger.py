@@ -1,7 +1,7 @@
 import json
 import logging
 
-from .config import LOG_LEVEL
+from config import LOG_LEVEL
 
 
 class JsonFormatter(logging.Formatter):
