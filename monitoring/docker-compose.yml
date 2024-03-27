@@ -14,7 +14,19 @@ services:
     logging:
       driver: "json-file"
       options:
+        max-size: "10m"
+        max-file: "5" 
         tag: "loki"
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3100"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -27,7 +39,19 @@ services:
     logging:
       driver: "json-file"
       options:
+        max-size: "10m"
+        max-file: "5" 
         tag: "promtail"
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9080"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
   grafana:
     environment:
@@ -61,22 +85,87 @@ services:
     logging:
       driver: "json-file"
       options:
+        max-size: "10m"
+        max-file: "5" 
         tag: "grafana"
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
   app_python:
     image: damirafliatonov/moscow-time-app:latest
     ports:
       - "8000:8000"
+    networks:
+      - loki
     logging:
       driver: "json-file"
       options:
+        max-size: "10m"
+        max-file: "5" 
         tag: "app_python"
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
   
   app_javascript:
     image: damirafliatonov/moscow-time-app-js:latest
     ports:
       - "3001:3000"
+    networks:
+      - loki
     logging:
       driver: "json-file"
       options:
+        max-size: "10m"
+        max-file: "5" 
         tag: "app_javascript"
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    networks:
+      - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5" 
+        tag: "prometheus"
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
