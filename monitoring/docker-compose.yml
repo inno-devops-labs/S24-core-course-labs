@@ -1,40 +1,59 @@
-version: "3.8"
+version: "3"
 
 networks:
-  loki:
-
+  default:
+    name: loki
 
 x-logging:
   &default-logging
   driver: "json-file"
   options:
     tag: "{{.ImageName}}|{{.Name}}"
+    max-size: "10M"
+    max-file: "5"
+
+x-deploy: &default-deploy
+  resources:
+    limits:
+      memory: 100M
 
 services:
   app_python:
     build: ../app_python
     ports:
-      - 5000:5000
+      - "5000:5000"
     logging: *default-logging
-    networks:
-      - loki
+    deploy: *default-deploy
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:5000/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   app_javascript:
     build: ../app_javascript
     ports:
-      - 3001:3000
+      - "3001:3000"
     logging: *default-logging
-    networks:
-      - loki
+    deploy: *default-deploy
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:3001/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   loki:
     image: grafana/loki:2.9.2
     ports:
-      - '3100:3100'
+      - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - loki
     logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:3100/metrics || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -43,11 +62,13 @@ services:
       - ./promtail.yml:/etc/promtail/config.yml
       - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
-    networks:
-      - loki
     logging: *default-logging
-    ports:
-      - '9080:9080'
+    deploy: *default-deploy
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:9080/metrics || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   grafana:
     environment:
@@ -64,18 +85,46 @@ services:
         datasources:
         - name: Loki
           type: loki
-          access: proxy 
+          access: proxy
           orgId: 1
           url: http://loki:3100
           basicAuth: false
           isDefault: true
           version: 1
           editable: false
+        - name: Prometheus
+          type: prometheus
+          access: proxy
+          orgId: 1
+          url: http://prometheus:9090
+          basicAuth: false
+          isDefault: false
+          version: 1
+          editable: true
         EOF
         /run.sh
     image: grafana/grafana:latest
     ports:
-      - '3000:3000'
-    networks:
-      - loki
+      - "3000:3000"
     logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:3000/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  prometheus:
+      image: prom/prometheus:v2.51.0
+      volumes:
+        - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      ports:
+        - target: 9090
+          published: 9090
+      logging: *default-logging
+      deploy: *default-deploy
+      healthcheck:
+        test: ["CMD-SHELL", "curl --fail http://localhost:9090/metrics || exit 1"]
+        interval: 10s
+        timeout: 5s
+        retries: 3
