@@ -78,3 +78,4 @@ In this lab, you will become acquainted with Prometheus, set it up, and configur
 - When creating the PR in your repository, make it from the lab4 branch to the lab3 branch.
 
 > Note: Ensure thorough documentation of your work, and guarantee that Prometheus correctly collects metrics. Take advantage of the bonus tasks to deepen your understanding and enhance the completeness of your setup.
+
