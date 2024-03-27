@@ -22,7 +22,7 @@ COPY --from=install /home/newuser/dev/node_modules node_modules
 COPY entry.ts utils.ts app.ts app.test.ts ./
 
 # test and build
-RUN bun test && bun build ./entry.ts --outdir .
+RUN bun test && bun build ./entry.ts --outdir . --target=bun
 
 # copy production dependencies and source code into final image
 FROM base AS release
