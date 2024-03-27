@@ -4,9 +4,13 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from datetime import datetime, timezone, timedelta
+from prometheus_fastapi_instrumentator import Instrumentator
 
 
 app = FastAPI()
+
+Instrumentator().instrument(app).expose(app)
+
 
 # Setup Jinja2 templates location
 templates = Jinja2Templates(directory="templates")

@@ -1,25 +1,67 @@
 ---
 version: "3.8"
 
+x-common-config: &common
+  logging:
+    driver: json-file
+    options:
+      tag: "{{.Name}}"
+      max-size: "100m"
+      max-file: "3"
+  mem_limit: "512M"
+
 networks:
   loki:
+    driver: bridge
 
 services:
   app_python:
+    <<: *common
     image: xdrdvd/app_python
+    expose:
+      - 5000
     ports:
       - "5000:5000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 59s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
     networks:
       - loki
 
   app_golang:
+    <<: *common
     image: xdrdvd/app_golang
+    expose:
+      - 8080
     ports:
       - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 59s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - loki
+
+  prometheus:
+    <<: *common
+    image: prom/prometheus:latest
+    expose:
+      - 9090
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config:/mnt/config
+    command: --config.file=/mnt/config/prometheus-config.yaml
     networks:
       - loki
 
   loki:
+    <<: *common
     image: grafana/loki:latest
     ports:
       - "3100:3100"
@@ -30,6 +72,7 @@ services:
       - loki
 
   promtail:
+    <<: *common
     image: grafana/promtail:latest
     volumes:
       - /var/lib/docker/containers:/var/lib/docker/containers
@@ -39,8 +82,15 @@ services:
       - loki
 
   grafana:
+    <<: *common
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 59s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
     networks:
       - loki

@@ -1,6 +1,7 @@
-fastapi==0.109.1
+fastapi==0.110.0
 uvicorn[standard]==0.24.0.post1
 Jinja2==3.1.3
 pytest==8.0.0
 httpx==0.26.0
 certifi==2023.7.22
+prometheus-fastapi-instrumentator==7.0.0

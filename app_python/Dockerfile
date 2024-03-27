@@ -1,5 +1,5 @@
 # Use an exact version of the Python image for consistency
-FROM python:3.9.18-slim-bullseye
+FROM python:3.12.1
 
 # Set environment variables for Python to run in unbuffered mode and not write .pyc files
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -11,8 +11,11 @@ WORKDIR /app
 # Copy only the requirements file and install Python dependencies
 # Also create a non-root user in same command to reduce the number of layers
 COPY requirements.txt /app
-RUN useradd -m myuser && chown -R myuser /app \
-    && pip3 install --no-cache-dir -r requirements.txt
+RUN useradd -m myuser && chown -R myuser /app
+
+# Install Python requirements
+RUN pip install --upgrade pip && \
+    pip install --upgrade -r ./requirements.txt
 
 # Copy the rest of the application code
 COPY . /app
