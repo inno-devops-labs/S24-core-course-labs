@@ -28,4 +28,4 @@ jobs:
           context: .
           file: app_python/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_python:v1
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/app_python:v2
