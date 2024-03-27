@@ -18,7 +18,7 @@ x-logging: &default-logging
 
 services:
   app_python:
-    image: ozurexus/my-flask-app
+    image: anastasiamartynova/my-docker-repo
     ports:
       - target: 8080
         published: 8080
