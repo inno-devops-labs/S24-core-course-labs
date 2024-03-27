@@ -1,0 +1,46 @@
+---
+version: "3.8"
+
+networks:
+  loki:
+
+services:
+  app_python:
+    image: xdrdvd/app_python
+    ports:
+      - "5000:5000"
+    networks:
+      - loki
+
+  app_golang:
+    image: xdrdvd/app_golang
+    ports:
+      - "8080:8080"
+    networks:
+      - loki
+
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./config:/mnt/config
+    command: -config.file=/mnt/config/loki-config.yaml
+    networks:
+      - loki
+
+  promtail:
+    image: grafana/promtail:latest
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers
+      - ./config:/mnt/config
+    command: -config.file=/mnt/config/promtail-config.yaml
+    networks:
+      - loki
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - loki
