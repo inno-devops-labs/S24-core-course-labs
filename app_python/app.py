@@ -1,30 +1,27 @@
-from flask import Flask, render_template, Response
+'''
+python app - moscow time
+'''
 import datetime
 import pytz
-from prometheus_client import Counter, generate_latest
+from flask import Flask, render_template, Response
+from prometheus_client import generate_latest
 
 app = Flask(__name__)
-
-healthcheck_counter = Counter(
-    'healthcheck_requests',
-    'Number of healthcheck requests'
-)
-
-
-# @app.route('/healthcheck')
-# def healthcheck():
-#     healthcheck_counter.inc()
-#     return 'Ok'
 
 
 @app.route('/metrics')
 def metrics():
+    '''
+    metrics
+    '''
     return Response(generate_latest(), content_type='text/plain')
 
 # Route for the home page
 @app.route('/')
 def home():
-
+    '''
+    home page 
+    '''
     # Get the current time in Moscow
     moscow_timezone = pytz.timezone('Europe/Moscow')
     current_time = datetime.datetime.now(moscow_timezone).strftime('%Y-%m-%d %H:%M:%S')
