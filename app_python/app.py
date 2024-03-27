@@ -5,7 +5,7 @@ This module defines a Flask application to display the current time in Moscow.
 from datetime import datetime
 import pytz
 from flask import Flask, Response
-from prometheus_client import Counter, Gauge, generate_latest
+from prometheus_client import generate_latest
 app = Flask(__name__)
 
 
