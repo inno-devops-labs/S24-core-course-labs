@@ -25,6 +25,10 @@ services:
       loki:
         aliases:
           - loki
+    deploy:
+      resources:
+        limits:
+          memory: 100M
 
   write:
     image: grafana/loki:2.9.2
@@ -44,6 +48,10 @@ services:
       - minio
     networks:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 100M
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -55,6 +63,10 @@ services:
       - gateway
     networks:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 100M
 
   minio:
     image: minio/minio
@@ -81,6 +93,10 @@ services:
       retries: 5
     networks:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 100M
 
   grafana:
     image: grafana/grafana:latest
@@ -117,6 +133,10 @@ services:
       retries: 5
     networks:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 100M
     
   app-python:
     image: vikono/devops:latest
@@ -124,6 +144,10 @@ services:
       - "5001:5001"
     networks:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 100M
 
   prometheus:
     image: prom/prometheus:latest
@@ -210,4 +234,8 @@ services:
       retries: 5
     networks:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
 
