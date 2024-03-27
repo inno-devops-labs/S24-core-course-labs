@@ -12,6 +12,7 @@
     "@types/intl": "^1.2.2",
     "intl": "^1.2.5",
     "prettier": "^3.2.4",
+    "prom-client": "^15.1.1",
     "tslint": "^6.1.3"
   }
 }
