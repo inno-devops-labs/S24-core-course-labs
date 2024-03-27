@@ -9,16 +9,12 @@ services:
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - loki
 
   promtail:
     image: grafana/promtail:2.9.2
     volumes:
       - /var/log:/var/log
     command: -config.file=/etc/promtail/config.yml
-    networks:
-      - loki
 
   grafana:
     environment:
@@ -47,29 +43,45 @@ services:
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
-    networks:
-      - loki
+    healthcheck:
+      test: ["CMD", "curl", "-f", "grafana:3000/api/health"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
   
   app_python:
     build: ../app_python
     ports:
-      - "5001:5000"
+      - "5000:5000"
     logging:
       driver: "json-file"
       options:
         max-size: "200k"
         max-file: "10"
-    networks:
-      - loki
+    healthcheck:
+      test: ["CMD", "curl", "-f", "app_python:5000"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
   
   app_go:
     build: ../app_go
     ports:
-      - "8081:8080"
+      - "8080:8080"
     logging:
       driver: "json-file"
       options:
         max-size: "200k"
         max-file: "10"
-    networks:
-      - loki
+    healthcheck:
+      test: ["CMD", "curl", "-f", "app_go:8080"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+  
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
