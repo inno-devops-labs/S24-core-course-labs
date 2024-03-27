@@ -11,6 +11,7 @@ app = fastapi.FastAPI()
 metrics_app = prometheus_client.make_asgi_app()
 app.mount("/metrics", metrics_app)
 
+
 @app.get("/api/time")
 def fetch_time():
     now = datetime.datetime.now(pytz.timezone("Europe/Moscow"))
