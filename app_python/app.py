@@ -1,5 +1,6 @@
 from flask import Flask
 from api.routes.home import home
+from prometheus_flask_exporter import PrometheusMetrics
 
 
 def create_app():
@@ -19,4 +20,6 @@ if __name__ == "__main__":
     port = args.port
 
     app = create_app()
+    metrics = PrometheusMetrics(app)
+    metrics.info('app_info', 'Application info', version='2.0.0')
     app.run(host="0.0.0.0", port=port, debug=True)
