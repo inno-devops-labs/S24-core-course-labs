@@ -1,11 +1,11 @@
 ## Metrics lab 8
 
 ### Prometheus targets screenshot:
-![alt text](image-targets.png)
+![alt text](image-3.png)
 ### Loki dachboard screenshot:
-![alt text](image-dashboard-loki.png)
+![alt text](image-4.png)
 ### Prometheus dashboard screenshot:
-![alt text](image-dashboard-prometheus.png)
+![alt text](image-5.png)
 
 ### Log rotation 
 
