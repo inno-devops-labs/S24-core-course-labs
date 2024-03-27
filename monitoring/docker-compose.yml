@@ -5,6 +5,7 @@ networks:
 
 services:
   loki:
+    mem_limit: 500m
     image: grafana/loki:2.9.2
     ports:
       - "3100:3100"
@@ -13,6 +14,7 @@ services:
       - loki
 
   promtail:
+    mem_limit: 500m
     image: grafana/promtail:2.9.2
     volumes:
       - /var/log:/var/log
@@ -20,8 +22,15 @@ services:
     command: -config.file=/etc/promtail/config.yml
     networks:
       - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
 
   grafana:
+    mem_limit: 500m
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
@@ -52,9 +61,10 @@ services:
       - loki
   
   app_python:
+    mem_limit: 500m
     build: ../app_python
     ports:
-      - "5001:5000"
+      - "5555:5555"
     logging:
       driver: "json-file"
       options:
@@ -63,3 +73,20 @@ services:
         tag: "{{.ImageName}}|{{.Name}}"
     networks:
       - loki
+  
+  prometheus:
+    mem_limit: 500m
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command: --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"

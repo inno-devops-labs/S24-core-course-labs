@@ -2,3 +2,4 @@ Flask==2.2.5
 pytz==2021.1
 Jinja2==3.1.3
 Werkzeug==2.3.8
+prometheus_client==0.20.0
