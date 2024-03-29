@@ -40,3 +40,75 @@ $ minikube service --all
 Opening in existing browser session.
 $
 ```
+
+## Ingress
+
+```
+$ curl --resolve "kolay.ne:80:$( minikube ip )" --verbose http://kolay.ne/ ; echo
+* Added kolay.ne:80:192.168.49.2 to DNS cache
+* Hostname kolay.ne was found in DNS cache
+*   Trying 192.168.49.2:80...
+* Connected to kolay.ne (192.168.49.2) port 80
+> GET / HTTP/1.1
+> Host: kolay.ne
+> User-Agent: curl/8.7.1
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 404 Not Found
+< Date: Fri, 29 Mar 2024 13:58:46 GMT
+< Content-Type: text/html
+< Content-Length: 146
+< Connection: keep-alive
+< 
+<html>
+<head><title>404 Not Found</title></head>
+<body>
+<center><h1>404 Not Found</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+* Connection #0 to host kolay.ne left intact
+
+$ curl --resolve "kolay.ne:80:$( minikube ip )" --verbose http://kolay.ne/time ; echo
+* Added kolay.ne:80:192.168.49.2 to DNS cache
+* Hostname kolay.ne was found in DNS cache
+*   Trying 192.168.49.2:80...
+* Connected to kolay.ne (192.168.49.2) port 80
+> GET /time HTTP/1.1
+> Host: kolay.ne
+> User-Agent: curl/8.7.1
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Date: Fri, 29 Mar 2024 13:58:51 GMT
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 60
+< Connection: keep-alive
+< 
+* Connection #0 to host kolay.ne left intact
+In MSK it's 16:57:49. Have you brushed your teeth today yet?
+$ curl --resolve "kolay.ne:80:$( minikube ip )" --verbose http://kolay.ne/cats ; echo
+* Added kolay.ne:80:192.168.49.2 to DNS cache
+* Hostname kolay.ne was found in DNS cache
+*   Trying 192.168.49.2:80...
+* Connected to kolay.ne (192.168.49.2) port 80
+> GET /cats HTTP/1.1
+> Host: kolay.ne
+> User-Agent: curl/8.7.1
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Date: Fri, 29 Mar 2024 13:58:56 GMT
+< Content-Type: text/plain; charset=utf-8
+< Content-Length: 162
+< Connection: keep-alive
+< 
+* Connection #0 to host kolay.ne left intact
+There is a species of cat smaller than the average housecat. It is native to Africa and it is the Black-footed cat (Felis nigripes). Its top weight is 5.5 pounds.
+$
+```
+
+Note: 5.5 pounds is about 2.49 kilograms

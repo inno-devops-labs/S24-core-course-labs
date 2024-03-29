@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-go
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-app-go
+  template:
+    metadata:
+      labels:
+        app: web-app-go
+    spec:
+      containers:
+        - name: web-app-go
+          image: kolay0ne/app_go:lab8
+          ports:
+            - containerPort: 5000
+              name: web-ui
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
