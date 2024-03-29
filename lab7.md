@@ -28,6 +28,7 @@ In this lab, you will become familiar with a logging stack that includes Promtai
 
 ## Task 2: Documentation and Reporting
 
+
 **4 Points:**
 
 1. Logging Stack Report:

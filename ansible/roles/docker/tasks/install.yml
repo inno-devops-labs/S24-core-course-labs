@@ -1,0 +1,28 @@
+- name: Ensure old packages are removed
+  apt:
+    name:
+      - docker
+      - docker-engine
+      - docker.io
+      - docker-compoe
+      - docker-doc
+      - podman-docker
+      - containerd
+      - runc
+    state: absent
+
+- name: Install docker
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+    state: present
+
+- name: Install pip packets
+  pip:
+    name:
+      - docker
+      - docker-compose
+    state: latest

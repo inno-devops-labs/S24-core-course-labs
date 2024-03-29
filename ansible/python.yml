@@ -1,0 +1,8 @@
+- name: Deploy Python web app
+  hosts: vk_cloud
+  become: true
+  roles:
+    - role: web_app
+      image: majorro/devops-engineering-course:python
+      ports:
+        - "8000:8000"
