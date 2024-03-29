@@ -16,6 +16,7 @@ spec:
                 name: moscow-time-svc
                 port:
                   number: 5000
+                  
           - path: /anon-threats/(.*)
             pathType: Prefix
             backend:

@@ -15,7 +15,7 @@ COPY --from=build  /app/target/spring-boot-docker.jar ./
 
 RUN adduser app_user
 
-RUN rm /bin/sh /bin/bash
+# RUN rm /bin/sh /bin/bash
 
 USER app_user:app_user
 

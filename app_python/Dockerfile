@@ -3,6 +3,7 @@ FROM python:3.8-slim-buster
 WORKDIR /app
 
 COPY requirements.txt requirements.txt
+RUN apt update -y && apt install -y curl
 RUN pip3 install -r requirements.txt
 RUN adduser app_user
 RUN mkdir /logs && chown -R app_user:app_user /logs

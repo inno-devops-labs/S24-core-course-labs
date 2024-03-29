@@ -4,14 +4,21 @@ import json
 import logging
 from flask import Flask
 from datetime import datetime
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app)
 app.config['port'] = os.getenv('PORT', default=5000)
 app.config['timezone'] = os.getenv('TIMEZONE', default='Europe/Moscow')
 app.config['datetime_format'] = os.getenv('DATETIME_FORMAT',
                                           default='%Y-%m-%d %H:%M:%S %z')
 logs_file_path = os.getenv('LOGS_FILE_PATH', default='../logs/moscow_time.log')
 logging.basicConfig(filename=logs_file_path,level=logging.DEBUG)
+
+
+@app.route("/health")
+def status(): 
+    return "UP"
 
 
 @app.route("/api/v1/time")
