@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-spring
+  labels:
+    app: java
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: java
+  template:
+    metadata:
+      labels:
+        app: java
+    spec:
+      containers:
+      - name: java
+        image: djhovi/my-java-app
+        ports:
+        - containerPort: 8080
