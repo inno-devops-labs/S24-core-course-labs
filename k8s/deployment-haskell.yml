@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-haskell-deployment
+spec:
+  selector:
+    matchLabels:
+      app: app-haskell
+  template:
+    metadata:
+      labels:
+        app: app-haskell
+    spec:
+      containers:
+      - name: app-haskell
+        image: snejugal/devops-lab2-haskell
+        ports:
+        - containerPort: 8081
