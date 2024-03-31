@@ -142,7 +142,7 @@ Events:
   Normal  Started    43s   kubelet            Started container sleep-3
 ```
 
-### Output of `kubectl get pods,svc`
+### Output of `kubectl get pods, svc`
 
 ```text
 NAME                                             READY   STATUS    RESTARTS   AGE
