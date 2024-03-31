@@ -6,5 +6,7 @@ spec:
   selector:
     app: python-app
   ports:
-    - port: 5000
-  type: LoadBalancer
+    - nodePort: 30200
+      port: 5000
+      name: python-app-port
+  type: NodePort

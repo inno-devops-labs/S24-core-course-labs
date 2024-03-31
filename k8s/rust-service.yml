@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rust-app-service
+spec:
+  selector:
+    app: rust-app
+  ports:
+    - nodePort: 30167
+      port: 9000
+      name: rust-app-port
+  type: NodePort
