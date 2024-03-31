@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moscow-time-web-app-python
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: moscow-time-python
+  template:
+    metadata:
+      labels:
+        app: moscow-time-python
+        lang: python
+    spec:
+      containers:
+      - name: moscow-time-python
+        image: rmoll/moscow_time_web_app:latest
+        ports:
+        - containerPort: 8080
