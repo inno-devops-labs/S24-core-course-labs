@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-rust
+  labels:
+    app: app-rust
+spec:
+  selector:
+    matchLabels:
+      app: app-rust
+  template:
+    metadata:
+      labels:
+        app: app-rust
+    spec:
+      containers:
+        - name: app-rust
+          image: adarika/devops-lab-02-rust:latest
+          ports:
+            - containerPort: 8000
+  replicas: 3
