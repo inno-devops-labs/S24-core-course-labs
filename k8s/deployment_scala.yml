@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-scala-deployment
+  labels:
+    app: app-scala
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-scala
+  template:
+    metadata:
+      labels:
+        app: app-scala
+    spec:
+      containers:
+      - name: app-scala
+        image: catdog905/dev-ops-course-app-scala:lab4
+        env:
+          - name: SECRET_KEY
+            value: "QCY?tAnfk?aZ?iwrNwnxIlR6CTf:G3gf:90Latabg@5241AB`R5W:1uDFN];Ik@n"
+        ports:
+        - containerPort: 9000
+
