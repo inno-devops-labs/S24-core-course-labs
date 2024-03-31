@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-dart-deployment
+  labels:
+    app: app-dart
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-dart
+  template:
+    metadata:
+      labels:
+        app: app-dart
+    spec:
+      containers:
+      - name: app-dart
+        image: alyonaart/app-dart:latest
+        ports:
+        - containerPort: 8080
