@@ -1,12 +1,6 @@
 name: Python CI
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: push
 
 jobs:
   build:
@@ -66,4 +60,10 @@ jobs:
           ./snyk-linux auth ${{ secrets.SNYK_API_TOKEN }} --severity-threshold=high
         working-directory: app_python
 
-      
+      - hosts: all
+
+        vars:
+          pip_install_packages:
+            - name: docker
+
+
