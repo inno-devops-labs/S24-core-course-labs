@@ -1,11 +1,11 @@
 from unittest import TestCase
 
-from app import create_app
+from app import app
 
 
 class TestWelcome(TestCase):
     def setUp(self):
-        self.app = create_app().test_client()
+        self.app = app.test_client()
 
     def test_date_display(self):
         res = self.app.get("/")
