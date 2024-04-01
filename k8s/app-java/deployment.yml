@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-java
+  labels:
+    app: app-java
+spec:
+  selector:
+    matchLabels:
+      app: app-java
+  template:
+    metadata:
+      labels:
+        app: app-java
+    spec:
+      containers:
+        - name: app-java
+          image: dmfrpro/app_java:latest
+          ports:
+            - containerPort: 8080
+  replicas: 3
