@@ -19,4 +19,4 @@ minikube service --all
 
 ![sdf](screenshots/service_all.png)
 
-![sdf](screenshots/browser.png)
+![sdf](screenshots/browser.png) 
