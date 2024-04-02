@@ -6,3 +6,6 @@ tzdata==2023.4
 
 # Testing
 pytest==7.4.4
+
+# Metrics
+prometheus-flask-exporter==0.23.0
