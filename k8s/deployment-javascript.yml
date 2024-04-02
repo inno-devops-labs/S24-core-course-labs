@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-javascript-deployment
+  labels:
+    app: app-javascript
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-javascript
+  template:
+    metadata:
+      labels:
+        app: app-javascript
+    spec:
+      containers:
+        - name: app-javascript
+          image: cogbonna/app_javascript_image
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+          ports:
+            - containerPort: 5001
