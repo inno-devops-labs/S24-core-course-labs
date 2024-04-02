@@ -1,19 +1,27 @@
 version: "3"
 
 networks:
- loki:
+  loki:
 
 services:
- loki:
+  loki:
     image: grafana/loki:2.9.2
+    mem_limit: 500m
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
     networks:
       - loki
 
- promtail:
+  promtail:
     image: grafana/promtail:2.9.2
+    mem_limit: 500m
     ports:
       - "9080:9080"
     volumes:
@@ -21,10 +29,16 @@ services:
       - ./promtail.yml:/etc/promtail/config.yml
       - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
     networks:
       - loki
 
- grafana:
+  grafana:
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
@@ -49,15 +63,23 @@ services:
         EOF
         /run.sh
     image: grafana/grafana:latest
+    mem_limit: 500m
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"
     ports:
       - "3000:3000"
     networks:
       - loki
 
- app_python:
-    image: batdockerivankornienko/app_python:latest
+  app_python:
+    mem_limit: 500m
+    build: ../app_python
     ports:
-      - "5000:5000"
+      - "8000:8000"
     logging:
       driver: "json-file"
       options:
@@ -66,3 +88,20 @@ services:
         tag: "{{.ImageName}}|{{.Name}}"
     networks:
       - loki
+  
+  prometheus:
+    mem_limit: 500m
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command: --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - loki
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        tag: "{{.ImageName}}|{{.Name}}"

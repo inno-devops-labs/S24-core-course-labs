@@ -2,3 +2,5 @@ Flask
 pytz
 pytest
 flake8
+prometheus-flask-exporter
+prometheus_client
