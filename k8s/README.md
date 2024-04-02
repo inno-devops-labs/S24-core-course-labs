@@ -81,4 +81,4 @@ rostislav@rostislavpc:~/devops_labs/k8s$ minikube service --all
 Here are screenshots:
 
 ![](/k8s/screenshots/output.jpg)
-![](/k8s/screenshots/Screenshot.jpg)
+![](/k8s/screenshots/screenshot.jpg)
