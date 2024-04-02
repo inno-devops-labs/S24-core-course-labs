@@ -15,8 +15,8 @@ service/kubernetes        ClusterIP      10.96.0.1      <none>        443/TCP   
 
 ```console
 $ kubectl delete deployment,svc app-python
-deployment.apps "app-python" deleted
-service "app-python" deleted
+deployment.apps "app-python-node" deleted
+service "app-python-node" deleted
 ```
 
 ## Deployment using declarative approach
@@ -36,7 +36,6 @@ service/app-python           LoadBalancer   10.108.25.45   <pending>     8080:31
 service/app-python-service   LoadBalancer   10.97.109.53   <pending>     80:31322/TCP     2m23s
 service/kubernetes           ClusterIP      10.96.0.1      <none>        443/TCP          84m
 ```
-![image](https://github.com/frog-da/DevOps/assets/84839431/a63d5d03-2376-4ac3-9a48-462c1f76cf0e)
 
 ```bash
 ➜  minikube service --all
@@ -74,6 +73,8 @@ Opening in existing browser session.
 Opening in existing browser session.
 Opening in existing browser session.
 ```
+![image](https://github.com/frog-da/DevOps/assets/84839431/a63d5d03-2376-4ac3-9a48-462c1f76cf0e)
+
 ## Bonus task
 
 ```bash
@@ -121,3 +122,4 @@ Opening in existing browser session.
 Opening in existing browser session.
 Opening in existing browser session.
 ```
+![image](https://github.com/frog-da/DevOps/assets/84839431/7d22cf1d-d454-4172-aa5c-6bde2516d16c)
