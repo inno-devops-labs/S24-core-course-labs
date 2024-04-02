@@ -13,8 +13,8 @@ service/kubernetes        ClusterIP      10.96.0.1      <none>        443/TCP   
 ```
 ## Clean up
 
-```console
-$ kubectl delete deployment,svc app-python
+```bash
+➜  kubectl delete deployment,svc app-python
 deployment.apps "app-python-node" deleted
 service "app-python-node" deleted
 ```
