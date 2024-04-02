@@ -11,6 +11,7 @@ NAME                      TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)   
 service/app-python-node   LoadBalancer   10.108.25.45   <pending>     8080:32434/TCP   74s
 service/kubernetes        ClusterIP      10.96.0.1      <none>        443/TCP          8m7s
 ```
+
 ## Clean up
 
 ```console
@@ -36,6 +37,7 @@ service/app-python           LoadBalancer   10.108.25.45   <pending>     8080:31
 service/app-python-service   LoadBalancer   10.97.109.53   <pending>     80:31322/TCP     2m23s
 service/kubernetes           ClusterIP      10.96.0.1      <none>        443/TCP          84m
 ```
+
 ![image](https://github.com/frog-da/DevOps/assets/84839431/a63d5d03-2376-4ac3-9a48-462c1f76cf0e)
 
 ```bash
@@ -74,6 +76,7 @@ Opening in existing browser session.
 Opening in existing browser session.
 Opening in existing browser session.
 ```
+
 ## Bonus task
 
 ```bash
@@ -120,4 +123,59 @@ Opening in existing browser session.
 Opening in existing browser session.
 Opening in existing browser session.
 Opening in existing browser session.
+```
+
+## Ingress
+
+```bush
+➜  kubectl get ingress                                                  
+NAME              CLASS   HOSTS               ADDRESS        PORTS   AGE
+example-ingress   nginx   python.app,go.app   192.168.49.2   80      14m
+```
+
+```bash
+➜ curl --resolve "python.app:80:$( minikube ip )" -i http://python.app
+HTTP/1.1 200 OK
+date: Tue, 02 Apr 2024 19:47:22 GMT
+server: uvicorn
+content-length: 282
+content-type: text/html; charset=utf-8
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Time in Moscow</title>
+</head>
+<body>
+    <h1>Current Time in Moscow:</h1>
+    <p>2024-04-02 22:47:23</p>
+</body>
+</html>%    
+
+➜ curl --resolve "go.app:80:$( minikube ip )" -i http://go.app/view
+HTTP/1.1 200 OK
+Date: Tue, 02 Apr 2024 19:50:28 GMT
+Content-Length: 397
+Content-Type: text/html; charset=utf-8
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Time in Moscow</title>
+</head>
+
+<body>
+    <h1>Current Time in Moscow:</h1>
+    <p>2024-04-02 22:50:28</p>
+
+    <img src="https://i.pinimg.com/564x/a8/55/66/a85566789478cb55fc3a66aed401b71b.jpg" alt="Moscow Picture">
+
+</body>
+
+</html>
 ```
