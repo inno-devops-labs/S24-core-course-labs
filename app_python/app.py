@@ -1,8 +1,10 @@
 from flask import Flask, render_template
+from prometheus_flask_exporter import PrometheusMetrics
 from datetime import datetime
 import pytz
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app)
 
 
 def get_moscow_time():
@@ -18,4 +20,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=8000, debug=True)

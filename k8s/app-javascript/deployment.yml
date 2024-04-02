@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-javascript
+  labels:
+    app: app-javascript
+spec:
+  selector:
+    matchLabels:
+      app: app-javascript
+  template:
+    metadata:
+      labels:
+        app: app-javascript
+    spec:
+      containers:
+        - name: app-javascript
+          image: mostafakira/app_javascript:latest
+          ports:
+            - containerPort: 8080
+  replicas: 3

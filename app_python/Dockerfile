@@ -18,6 +18,6 @@ RUN pip install -r /app_python/requirements.txt --no-cache-dir --user
 
 
 # Expose the port the app runs on
-EXPOSE 5000
+EXPOSE 8000
 
 CMD ["python", "/app_python/app.py", "--host", "0.0.0.0"]
