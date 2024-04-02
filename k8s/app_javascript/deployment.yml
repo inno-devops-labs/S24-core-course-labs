@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moscow-tz-js
+  labels:
+    app: moscow-tz-js
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: moscow-tz-js
+  template:
+    metadata:
+      labels:
+        app: moscow-tz-js
+    spec:
+      containers:
+        - name: moscow-tz-js
+          image: zeyadalagamy/moscow_tz_js:latest
+          ports:
+            - containerPort: 5000

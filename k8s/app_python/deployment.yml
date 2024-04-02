@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moscow-tz
+  labels:
+    app: moscow-tz
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: moscow-tz
+  template:
+    metadata:
+      labels:
+        app: moscow-tz
+    spec:
+      containers:
+        - name: moscow-tz
+          image: zeyadalagamy/moscow_tz:latest
+          ports:
+            - containerPort: 5001
