@@ -23,6 +23,7 @@ service/app-python           LoadBalancer   10.108.25.45   <pending>     8080:31
 service/app-python-service   LoadBalancer   10.97.109.53   <pending>     80:31322/TCP     2m23s
 service/kubernetes           ClusterIP      10.96.0.1      <none>        443/TCP          84m
 ```
+![image](https://github.com/frog-da/DevOps/assets/84839431/a63d5d03-2376-4ac3-9a48-462c1f76cf0e)
 
 ```bash
 ➜  minikube service --all
