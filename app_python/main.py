@@ -6,11 +6,14 @@ import pytz
 import uvicorn
 import logging
 import sys
+from prometheus_fastapi_instrumentator import Instrumentator
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
+
+Instrumentator().instrument(app).expose(app)
 
 
 @app.get(

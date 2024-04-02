@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moscow-time-app-js-deployment
+  labels:
+    app: moscow-time-app-js
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: moscow-time-app-js-deployment
+  template:
+    metadata:
+      labels:
+        app: moscow-time-app-js-deployment
+    spec:
+      containers:
+      - name: moscow-time-app-js-deployment
+        image: damirafliatonov/moscow-time-app-js:latest
+        ports:
+        - containerPort: 3000
