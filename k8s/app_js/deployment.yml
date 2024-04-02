@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-js-deployment
+  labels:
+    app: app-js
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-js
+  template:
+    metadata:
+      labels:
+        app: app-js
+    spec:
+      containers:
+        - name: app-js
+          image: AlebrahimLaith/app_js
+          resources:
+          ports:
+            - containerPort: 5001
