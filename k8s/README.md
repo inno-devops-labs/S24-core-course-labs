@@ -61,7 +61,7 @@ dave@dave ~>minikube service --all
 ```
 Visiting `http://127.0.0.1:36095` from my browser:
 
-![alt text](screenshots/browser.png)
+[![image.png](https://i.postimg.cc/NF0Yh7PZ/image.png)](https://postimg.cc/zb44KWNk)
 
 ## Additional Configuration and Ingress
 ```python
@@ -109,5 +109,5 @@ then
 minikube tunnel
 ``` 
 ### app_python and app_rust image
-![alt text](screenshots/py-ingress.png)
+[![image.png](https://i.postimg.cc/wM3K4x1p/image.png)](https://postimg.cc/m1x6ts3X)
 
