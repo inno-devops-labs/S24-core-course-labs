@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app_python
+  labels:
+    app: app_python
+spec:
+  type: LoadBalancer
+  selector:
+    app: app_python
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
