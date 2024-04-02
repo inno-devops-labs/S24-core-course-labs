@@ -61,6 +61,7 @@ wilson@wilson ~/D/S/k8s (lab09)> minikube service --all
 |-----------|--------------------|-------------|------------------------|
 ```
 Visiting `http://127.0.0.1:41065` from my browser:
+
 ![alt text](screenshots/browser.png)
 
 ## Additional Configuration and Ingress
