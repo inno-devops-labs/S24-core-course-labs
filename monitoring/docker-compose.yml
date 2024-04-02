@@ -1,25 +1,42 @@
 version: "3"
 
+x-logging: &logging
+    driver: "json-file"
+    options:
+      tag: "{{.ImageName}}|{{.Name}}"
+
+x-healthcheck: &health-test
+  interval: 15s
+  timeout: 10s
+  retries: 5
+  start_period: 5s
+
 networks:
   loki:
 
 services:
+
   app_python:
+    container_name: app_python
     image: ramprin/devops_py:latest
     ports:
       - "8082:8080"
-    logging: &logging
-      driver: "json-file"
-      options:
-        tag: "{{.ImageName}}|{{.Name}}"
+    logging: *logging
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8080/" ]
+      <<: *health-test
     networks:
       - loki
 
   app_go:
+    container_name: app_go
     image: ramprin/devops_go:latest
     ports:
       - "8080:8080"
     logging: *logging
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8080/" ]
+      <<: *health-test
     networks:
       - loki
 
@@ -30,22 +47,45 @@ services:
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -q --tries=1 --spider http://localhost:3100/ready" ]
+      <<: *health-test
+    mem_limit: 512M
     logging: *logging
     networks:
       - loki
 
   promtail:
     container_name: promtail
-    image: grafana/promtail:2.9.1
+    image: grafana/promtail:2.6.1
     volumes:
-      - /var/log:/var/log
-      - /var/lib:/var/lib
-      - ./config/promtail.yaml:/etc/promtail/promtail.yml
-
-    command: -config.file=/etc/promtail/promtail.yml
+      - ./logs/:/var/log/
+      - ./config:/etc/promtail/
+    command: -config.file=/etc/promtail/promtail.yaml
+    ports:
+      - "9080:9080"
     logging: *logging
     depends_on:
       - loki
+      - prometheus
+    networks:
+      - loki
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yml
+    command: '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -q --tries=1 --spider http://localhost:9090/status" ]
+      <<: *health-test
+    logging: *logging
     networks:
       - loki
 
@@ -61,8 +101,12 @@ services:
     ports:
       - "3000:3000"
     logging: *logging
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:3000" ]
+      <<: *healthcheck-params
     networks:
       - loki
     depends_on:
       - loki
       - promtail
+      - prometheus
