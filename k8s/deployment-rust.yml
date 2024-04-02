@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-rust-deployment
+  labels:
+    app: app-rust
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-rust
+  template:
+    metadata:
+      labels:
+        app: app-rust
+    spec:
+      containers:
+        - name: app-rust
+          image: ejedavid/app_rust
+          resources:
+            limits:
+              memory: '256Mi'
+              cpu: '200m'
+          ports:
+            - containerPort: 8000
