@@ -28,6 +28,25 @@ my-app-devops   NodePort    10.98.62.223   <none>        5000:31230/TCP   7m33s
 
 
 ##Declarative Kubernetes Manifests
+### Pods and services
+```bash
+(venv) (base) dilaraf@MacBook-Air S24-core-course-labs % kubectl get pod,svc -n kube-system
+NAME                                   READY   STATUS    RESTARTS      AGE
+pod/coredns-5dd5756b68-6g97k           1/1     Running   0             79m
+pod/etcd-minikube                      1/1     Running   0             79m
+pod/kube-apiserver-minikube            1/1     Running   0             79m
+pod/kube-controller-manager-minikube   1/1     Running   0             79m
+pod/kube-proxy-h5pb7                   1/1     Running   0             79m
+pod/kube-scheduler-minikube            1/1     Running   0             79m
+pod/storage-provisioner                1/1     Running   1 (79m ago)   79m
+
+NAME               TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+service/kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   79m
+(venv) (base) dilaraf@MacBook-Air S24-core-course-labs % 
+
+```
+### Checking all
+(and checking the web page)
 ```bash
 (venv) (base) dilaraf@MacBook-Air app_python % minikube service --all
 |-----------|------------|-------------|--------------|
