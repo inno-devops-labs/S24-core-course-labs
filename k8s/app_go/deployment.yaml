@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-go
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-go
+  template:
+    metadata:
+      labels:
+        app: app-go
+    spec:
+      containers:
+      - name: app-go
+        image: nad777/anton_nekhaev_go:latest
+        ports:
+        - containerPort: 5002
