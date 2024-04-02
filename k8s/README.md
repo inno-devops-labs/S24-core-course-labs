@@ -1,3 +1,7 @@
+# Kubernetes
+
+## Deployment using "inconvenient way"
+
 ```bash
 ➜  kubectl get pods,svc
 NAME                                  READY   STATUS    RESTARTS   AGE
@@ -7,6 +11,15 @@ NAME                      TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)   
 service/app-python-node   LoadBalancer   10.108.25.45   <pending>     8080:32434/TCP   74s
 service/kubernetes        ClusterIP      10.96.0.1      <none>        443/TCP          8m7s
 ```
+## Clean up
+
+```console
+$ kubectl delete deployment,svc app-python
+deployment.apps "app-python" deleted
+service "app-python" deleted
+```
+
+## Deployment using declarative approach
 
 ```bash
 ➜  kubectl get pods,svc  
@@ -57,6 +70,53 @@ service/kubernetes           ClusterIP      10.96.0.1      <none>        443/TCP
 🎉  Opening service default/app-python-service in default browser...
 🎉  Opening service default/kubernetes in default browser...
 ❗  Because you are using a Docker driver on linux, the terminal needs to be open to run it.
+Opening in existing browser session.
+Opening in existing browser session.
+Opening in existing browser session.
+```
+## Bonus task
+
+```bash
+➜  minikube service --all
+|-----------|----------------|-------------|---------------------------|
+| NAMESPACE |      NAME      | TARGET PORT |            URL            |
+|-----------|----------------|-------------|---------------------------|
+| default   | app-go-service |        8080 | http://192.168.49.2:31721 |
+|-----------|----------------|-------------|---------------------------|
+|-----------|------------|-------------|---------------------------|
+| NAMESPACE |    NAME    | TARGET PORT |            URL            |
+|-----------|------------|-------------|---------------------------|
+| default   | app-python |        8080 | http://192.168.49.2:31829 |
+|-----------|------------|-------------|---------------------------|
+|-----------|--------------------|-------------|---------------------------|
+| NAMESPACE |        NAME        | TARGET PORT |            URL            |
+|-----------|--------------------|-------------|---------------------------|
+| default   | app-python-service |          80 | http://192.168.49.2:31322 |
+|-----------|--------------------|-------------|---------------------------|
+|-----------|------------|-------------|--------------|
+| NAMESPACE |    NAME    | TARGET PORT |     URL      |
+|-----------|------------|-------------|--------------|
+| default   | kubernetes |             | No node port |
+|-----------|------------|-------------|--------------|
+😿  service default/kubernetes has no node port
+🏃  Starting tunnel for service app-go-service.
+🏃  Starting tunnel for service app-python.
+🏃  Starting tunnel for service app-python-service.
+🏃  Starting tunnel for service kubernetes.
+|-----------|--------------------|-------------|------------------------|
+| NAMESPACE |        NAME        | TARGET PORT |          URL           |
+|-----------|--------------------|-------------|------------------------|
+| default   | app-go-service     |             | http://127.0.0.1:41493 |
+| default   | app-python         |             | http://127.0.0.1:45893 |
+| default   | app-python-service |             | http://127.0.0.1:46109 |
+| default   | kubernetes         |             | http://127.0.0.1:35481 |
+|-----------|--------------------|-------------|------------------------|
+🎉  Opening service default/app-go-service in default browser...
+🎉  Opening service default/app-python in default browser...
+🎉  Opening service default/app-python-service in default browser...
+🎉  Opening service default/kubernetes in default browser...
+❗  Because you are using a Docker driver on linux, the terminal needs to be open to run it.
+Opening in existing browser session.
 Opening in existing browser session.
 Opening in existing browser session.
 Opening in existing browser session.
