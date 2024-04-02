@@ -83,7 +83,7 @@ Applying ingress manifest:
 D:\S24-core-course-labs\k8s> kubectl apply -f ingress.yml 
 ingress.networking.k8s.io/app-ingress configured
 ```
-then running `minikube tunnel`:
+then running `minikube service --all`:
 
 ```shell
 D:\S24-core-course-labs\k8s> minikube service --all 
