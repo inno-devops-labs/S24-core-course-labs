@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moscowtime-web-app-deployment
+  labels:
+    app: moscowtime
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: moscowtime
+  template:
+    metadata:
+      labels:
+        app: moscowtime
+    spec:
+      containers:
+      - name: moscowtime-web-app
+        image: nabuki/moscowtime-web:latest
+        ports:
+        - containerPort: 8080
