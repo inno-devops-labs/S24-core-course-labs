@@ -4,8 +4,8 @@ I decided to choose Flask because it's a small and lightweight web framework. Th
 
 ### Best Practises
 
-- PEP 8 - document that provides guidelines and best practices on how to write Python code\
-- .gitignore - file is a text file that instructs Git to ignore certain files or folders in a project\
+- PEP 8 - document that provides guidelines and best practices on how to write Python code
+- .gitignore - file is a text file that instructs Git to ignore certain files or folders in a project
 
 ### Coding Standards
 

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moscow-time-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: moscow-time-app
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: moscow-time-app
+    spec:
+      containers:
+      - name: moscow-time-app
+        image: guzelzakirova/moscow-time-app:1.0.0
+        ports:
+        - containerPort: 8000
