@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-dotnet
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-dotnet
+  template:
+    metadata:
+      labels:
+        app: app-dotnet
+    spec:
+      containers:
+      - name: app-dotnet
+        image: ahmadalhussin/app_dotnet:latest
+        ports:
+        - containerPort: 5000
