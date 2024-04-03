@@ -66,4 +66,6 @@ Opening in existing browser session.
 
 ![go deployment](screenshots/app_go.png)
 
-![all deployments in dashboard][screenshots/deployments.png]
+![all deployments in dashboard](screenshots/deployments.png)
+
+![ingress settings](screenshots/ingress.png)
