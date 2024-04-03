@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-nodejs
+  labels:
+    app: app-nodejs
+spec:
+  selector:
+    matchLabels:
+      app: app-nodejs
+  template:
+    metadata:
+      labels:
+        app: app-nodejs
+    spec:
+      containers:
+        - name: app-nodejs
+          image: evsey/node-world-clock-app
+          ports:
+            - containerPort: 3001
+  replicas: 2
