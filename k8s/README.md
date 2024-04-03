@@ -1,8 +1,8 @@
-# Kubernetes    
- 
+# Kubernetes
+
 ## Minikube Services
 
-```
+```bash
 root@ramprin-strix:/home/ramprin/Study/DevOps-S24/k8s# sudo minikube service --all
 |-----------|--------|-------------|---------------------------|
 | NAMESPACE |  NAME  | TARGET PORT |            URL            |
@@ -24,7 +24,7 @@ root@ramprin-strix:/home/ramprin/Study/DevOps-S24/k8s# sudo minikube service --a
 
 ## Kube Pods/Services
 
-```
+```bash
 root@ramprin-strix:/home/ramprin/Study/DevOps-S24/k8s# kubectl get po,svc
 NAME                                         READY   STATUS    RESTARTS   AGE
 pod/app-go-5b77f855df-phkg8                  1/1     Running   0          3m34s
@@ -42,16 +42,17 @@ service/python-app-service   ClusterIP      10.98.19.156     <none>        8080/
 
 ## Deployment results
 
-### Go:
-![](go.png)
+### Go
 
-### Python:
-![](python.png)
+![Go result](go.png)
 
+### Python
+
+![Py result](python.png)
 
 ## Ingress
 
-```
+```bash
 root@ramprin-strix:~/DevOps-S24/k8s/python# minikube addons enable ingress
 💡  Restarting the docker service may improve performance.
 💡  ingress is an addon maintained by Kubernetes. For any concerns contact minikube on GitHub.
