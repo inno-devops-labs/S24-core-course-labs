@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app-deployment
+  labels:
+    app: python-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-app-deployment
+  template:
+    metadata:
+      labels:
+        app: python-app-deployment
+    spec:
+      containers:
+      - name: python-app
+        image: slry/python_moscow_time:latest
+        ports:
+        - containerPort: 8080
+
