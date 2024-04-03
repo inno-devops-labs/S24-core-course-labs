@@ -1,3 +1,7 @@
+# Kubernetes    
+ 
+## Minikube Services
+
 ```
 root@ramprin-strix:/home/ramprin/Study/DevOps-S24/k8s# sudo minikube service --all
 |-----------|--------|-------------|---------------------------|
@@ -18,6 +22,8 @@ root@ramprin-strix:/home/ramprin/Study/DevOps-S24/k8s# sudo minikube service --a
 
 ```
 
+## Kube Pods/Services
+
 ```
 root@ramprin-strix:/home/ramprin/Study/DevOps-S24/k8s# kubectl get po,svc
 NAME                                         READY   STATUS    RESTARTS   AGE
@@ -34,6 +40,16 @@ service/kubernetes           ClusterIP      10.96.0.1        <none>        443/T
 service/python-app-service   ClusterIP      10.98.19.156     <none>        8080/TCP         24s
 ```
 
+## Deployment results
+
+### Go:
+![](go.png)
+
+### Python:
+![](python.png)
+
+
+## Ingress
 
 ```
 root@ramprin-strix:~/DevOps-S24/k8s/python# minikube addons enable ingress
@@ -46,8 +62,3 @@ You can view the list of minikube maintainers at: https://github.com/kubernetes/
 🔎  Verifying ingress addon...
 🌟  The 'ingress' addon is enabled
 ```
-### Go:
-![](go.png)
-
-### Python:
-![](python.png)
