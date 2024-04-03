@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: moscow-time
+  labels:
+    app: moscow-time
+spec:
+  type: LoadBalancer
+  selector:
+    app: moscow-time
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

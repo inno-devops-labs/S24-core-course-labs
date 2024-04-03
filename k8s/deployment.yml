@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: moscow-time
+ labels:
+   app: moscow-time
+spec:m
+ replicas: 2
+ selector:
+   matchLabels:
+     app: moscow-time
+ template:
+   metadata:
+     labels:
+       app: moscow-time
+   spec:
+     containers:
+       - name: moscow-time
+         image: tatarinalba/devops:1.0
+         ports:
+           - containerPort: 8080
