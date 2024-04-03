@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-go
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-go
+  template:
+    metadata:
+      labels:
+        app: app-go
+        lang: python
+    spec:
+      containers:
+      - name: app-go
+        image: y4cerr/app_go:latest
+        ports:
+        - containerPort: 8080

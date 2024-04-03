@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - host: app.python
+      http:
+        paths:
+          - path: /(api/time)?
+            pathType: Exact
+            backend:
+              service:
+                name: app-python
+                port:
+                  number: 8080
+    - host: app.go
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app-go
+                port:
+                  number: 8080
