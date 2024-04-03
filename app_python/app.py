@@ -3,6 +3,7 @@ from pytz import timezone
 from datetime import datetime
 from starlette.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
+import prometheus_client
 
 app = FastAPI()
 
@@ -15,6 +16,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+metrics_app = prometheus_client.make_asgi_app()
+app.mount("/metrics", metrics_app)
 
 
 @app.get("/current_time")

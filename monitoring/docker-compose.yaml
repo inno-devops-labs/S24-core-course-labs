@@ -2,12 +2,21 @@ version: "3"
 
 networks:
   loki:
+  app:
 
 x-logging:
   &default-logging
   driver: "json-file"
   options:
     tag: "{{.ImageName}}|{{.Name}}"
+    max-size: 200k
+    max-file: 10
+
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 100M
 
 services:
   loki:
@@ -18,6 +27,12 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test: [ "CMD-SHELL", "wget --tries=1 -O /dev/null http://localhost:3100/ready || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -28,6 +43,12 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test: [ "CMD-SHELL", "bash -c ':> /dev/tcp/localhost/9080'" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   grafana:
     image: grafana/grafana:latest
@@ -36,6 +57,12 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test: [ "CMD-SHELL", "curl --fail http://localhost:3000/api/health || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
@@ -59,9 +86,38 @@ services:
           editable: false
         EOF
         /run.sh
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - loki
+      - app
+    mem_limit: 100m
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    logging: *default-logging
+    deploy: *default-deploy
+    healthcheck:
+      test: ["CMD", "wget", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   app:
     image: vladdan16/app_python:latest
     ports:
       - "8000:8000"
     logging: *default-logging
+    deploy: *default-deploy
+    networks:
+      - app
+    healthcheck:
+      test: ["CMD-SHELL", "wget --tries=1 -O /dev/null http://localhost:8000 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  prometheus-data:
