@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-bun-deployment
+  labels:
+    app: app-bun
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-bun
+  template:
+    metadata:
+      labels:
+        app: app-bun
+    spec:
+      containers:
+      - name: app-bun
+        image: pptx704/app_bun:latest
+        ports:
+        - containerPort: 3000
