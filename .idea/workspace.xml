@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a907869f-f062-4d26-bf52-808ad19e005d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app_python/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_python/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/REDME.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/deployment.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/service.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_python/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/app_python/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
