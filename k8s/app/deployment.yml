@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-moscow-time
+  labels:
+    app: python-moscow-time
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: python-moscow-time
+  template:
+    metadata:
+      labels:
+        app: python-moscow-time
+    spec:
+      containers:
+        - name: python-moscow-time
+          image: roukaya/moscow_time_python:latest
+          ports:
+            - containerPort: 5000
