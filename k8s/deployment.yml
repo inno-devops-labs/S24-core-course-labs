@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-mierley
+spec:
+  replicas: 3
+  minReadySeconds: 6
+  selector:
+    matchLabels:
+      app: web-mierley
+  template:
+    metadata:
+      labels:
+        app: web-mierley
+    spec:
+      containers:
+      - name: web-mierley
+        image: mierley4041/devops-flask:latest
+        ports:
+        - containerPort: 5000
+          name: port
