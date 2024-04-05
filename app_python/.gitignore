@@ -7,5 +7,3 @@ venv/
 *.sqlite
 *.pyc
 .DS_Store
-
-env/
