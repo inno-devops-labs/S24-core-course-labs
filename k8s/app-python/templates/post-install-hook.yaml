@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: post-install-hook
+  annotations:
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  containers:
+  - name: post-install-hook
+    image: busybox
+    command: ["sleep", "20"]
+
