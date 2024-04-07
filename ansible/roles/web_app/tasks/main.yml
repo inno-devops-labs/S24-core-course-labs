@@ -1,0 +1,14 @@
+- name: Deploy web_app's docker image
+  block:
+    - name: Pull default Docker image
+      command: "docker pull {{ docker_image_name }}"
+
+    - name: Create Docker container
+      docker_container:
+        name: "{{ docker_container_name }}"
+        image: "{{ docker_image_name }}"
+        ports:
+          - "{{ docker_port }}:{{ docker_port }}"
+  tags: deploy
+
+- include_tasks: 0-wipe.yml

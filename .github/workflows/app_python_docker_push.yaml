@@ -5,9 +5,9 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./app_python
+    # defaults:
+    #   run:
+    #     working-directory: ./app_python
     steps:
       -
         name: Checkout
