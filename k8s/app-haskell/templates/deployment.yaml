@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "app-python.fullname" . }}
+  name: {{ include "app-haskell.fullname" . }}
   labels:
     {{- include "simple-library.labels" . | nindent 4 }}
 spec:
@@ -24,7 +24,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "app-python.serviceAccountName" . }}
+      serviceAccountName: {{ include "app-haskell.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

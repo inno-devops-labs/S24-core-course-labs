@@ -1,0 +1,6 @@
+dependencies:
+- name: simple-library
+  repository: file://../simple-library
+  version: 0.1.0
+digest: sha256:114cfe21fb0620a28ebac4681d42b17d6e56361e54334bd0e90ee8d97700a241
+generated: "2024-04-07T16:18:30.962515288+03:00"
