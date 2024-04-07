@@ -20,6 +20,11 @@ Run with
 uvicorn main:app --reload
 ```
 
+## Visits page
+
+Count of visits to the main page can be accessible via `/visits` path.
+This number is get incremented on every new visit and is saved to `visits/n` file (via docker volume)
+
 Now app will be accessible at http://127.0.0.1:8000/
 
 ## Testing
