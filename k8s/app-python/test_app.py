@@ -1,6 +1,6 @@
 import unittest
 import time
-from app_python.app import app
+from app import app
 
 class AppTests(unittest.TestCase):
     def setUp(self):

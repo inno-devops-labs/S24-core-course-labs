@@ -13,7 +13,7 @@ This is a Python-based web application that displays the current time in Moscow.
 
 1. Make sure you have Python 3.x installed on your system.
 2. Clone this repository to your local machine.
-3. Navigate to the `app_python` folder.
+3. Navigate to the `k8s/app-python` folder.
 4. Create a virtual environment (optional but recommended).
 5. Install the required dependencies by running the command: `pip install -r requirements.txt`.
 
@@ -54,7 +54,7 @@ The application includes comprehensive unit tests to ensure its functionality an
 
 To run the unit tests, execute the following commands:
 
-    cd app_python
+    cd k8s/app-python
     pip install -r requirements.txt
     python -m unittest test_app.py
 
