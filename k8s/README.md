@@ -1,0 +1,15 @@
+# Task 1
+![](screenshoots/1.png)
+![](screenshoots/2.png)
+![](screenshoots/3.png)
+![](screenshoots/4.png)
+![](screenshoots/5.png)
+![](screenshoots/6.png)
+![](screenshoots/7.png)
+![](screenshoots/8.png)
+![](screenshoots/10.png)
+![](screenshoots/11.png)
+# Task 2
+![](screenshoots/2.1.png)
+![](screenshoots/2.2.png)
+![](screenshoots/2.3.png)
