@@ -8,7 +8,7 @@ image:
   repository: tufra/moscow-time-app-python
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.0.2"
+  tag: "0.0.3"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -26,9 +26,6 @@ serviceAccount:
   name: "app-python-service-account"
 
 podAnnotations:
-  vault.hashicorp.com/agent-inject: 'true'
-  vault.hashicorp.com/role: 'app-python-service-account'
-  vault.hashicorp.com/agent-inject-secret-app-python-secret.txt: 'internal/data/app-python/secret'
 podLabels: {}
 
 podSecurityContext: {}
@@ -91,14 +88,23 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-volumes: []
+volumes:
+  - name: config
+    configMap:
+      name: app-python-config
+      items:
+        - key: config.json
+          path: config.json
 # - name: foo
 #   secret:
 #     secretName: mysecret
 #     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
+volumeMounts:
+  - name: config
+    mountPath: /etc/config
+    readOnly: true
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true

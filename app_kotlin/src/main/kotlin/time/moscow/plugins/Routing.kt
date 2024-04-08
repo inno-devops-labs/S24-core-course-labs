@@ -7,6 +7,7 @@ import io.ktor.server.application.call
 import io.ktor.server.html.respondHtml
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
+import java.io.File
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -15,6 +16,7 @@ import kotlinx.html.h1
 import kotlinx.html.head
 import kotlinx.html.p
 import kotlinx.html.title
+import time.moscow.filePath
 
 fun Application.configureRouting() {
     routing {
@@ -41,6 +43,25 @@ fun Application.configureRouting() {
                             time.minute,
                             time.second,
                         )
+                    }
+                }
+            }
+        }
+
+        get("/visits") {
+            val visits = File(filePath).readText()
+            call.respondHtml(HttpStatusCode.OK) {
+                head {
+                    title {
+                        +"Visits"
+                    }
+                }
+                body {
+                    h1 {
+                        +"Visits"
+                    }
+                    p {
+                        +visits
                     }
                 }
             }

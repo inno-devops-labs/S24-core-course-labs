@@ -64,3 +64,9 @@ Repository has a workflow `build_kotlin` with 2 jobs:
     - `Login to Docker Hub` (using `docker/login-action@v3` and repository secrets)
     - `Set up Docker Buildx` (using `docker/setup-buildx-action@v3`)
     - `Build and push` (using `docker/build-push-action@v5` and repository secrets)
+
+## Persistent data
+
+The application stores number of requests in `/app/visits.txt`. In compose file `visits.txt` is mounted to `/app/visits.txt`.
+
+![img.png](imgs/img.png)

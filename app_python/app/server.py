@@ -1,6 +1,7 @@
 """
 Python Web Application
 """
+import os.path
 from datetime import datetime, timezone
 from textwrap import dedent
 from zoneinfo import ZoneInfo
@@ -9,7 +10,7 @@ from ntplib import NTPClient
 from sanic import Sanic
 from sanic_ext import render
 
-from app_python.app.config import AppConfig
+from config import AppConfig
 
 app = Sanic("MoscowTime", config=AppConfig())
 
@@ -20,6 +21,21 @@ async def setup_ntp(appl):
     Setup NTP client before main server
     """
     appl.ctx.ntp = NTPClient()
+
+
+@app.on_request
+async def inc_visits(request):
+    if os.path.exists(request.app.config.COUNTER_FILE):
+        visits_count_str = open(request.app.config.COUNTER_FILE, "r").read()
+        if visits_count_str == "":
+            visits_count = 0
+        else:
+            visits_count = int(visits_count_str)
+            visits_count += 1
+    else:
+        visits_count = 0
+
+    open(request.app.config.COUNTER_FILE, "w").write(str(visits_count))
 
 
 @app.get("/")
@@ -58,8 +74,30 @@ async def index_handle(request):
     )
 
 
-def get_app():
-    return app
+@app.get("/visits")
+async def visits_handle(request):
+    template = dedent(
+        """
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <title>Visits</title>
+        </head>
+        <body>
+            <h1>Visits:</h1>
+            <h2>{{ visits }}</h2>
+        </body>
+        </html>
+        """
+    )
+
+    visits_count = int(open(request.app.config.COUNTER_FILE, "r").read())
+
+    return await render(
+        template_source=template,
+        context={'visits': visits_count},
+        app=app,
+    )
 
 
 if __name__ == '__main__':

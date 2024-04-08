@@ -8,7 +8,7 @@ image:
   repository: tufra/moscow-time-app-kotlin
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.0.2"
+  tag: "0.0.4"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -111,3 +111,13 @@ envs:
     value: first_env
   - name: SECOND_ENV
     value: second_env
+  - name: KEY_1
+    valueFrom:
+      configMapKeyRef:
+        name: app-kotlin-config
+        key: key_1
+  - name: KEY_2
+    valueFrom:
+      configMapKeyRef:
+        name: app-kotlin-config
+        key: key_2

@@ -10,3 +10,4 @@ class AppConfig(Config):
     """
     NTP_SERVER = "time1.google.com"
     NTP_VERSION = 3
+    COUNTER_FILE = "/app/visits.txt"

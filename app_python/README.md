@@ -28,13 +28,13 @@ docker build -t tufra/moscow-time-app-python .
 ### How to pull
 
 ```bash
-docker image pull tufra/moscow-time-app-python:0.0.1
+docker image pull tufra/moscow-time-app-python:0.0.3
 ```
 
 ### How to run
 
 ```bash
-docker run -p 80:8080 -t tufra/moscow-time-app-python:0.0.1
+docker run -p 80:8080 -t tufra/moscow-time-app-python:0.0.3
 ```
 
 Now you can see moscow time at `localhost`
@@ -66,3 +66,9 @@ Repository has a workflow `build_python` with 2 jobs:
   - `Login to Docker Hub` (using `docker/login-action@v3` and repository secrets)
   - `Set up Docker Buildx` (using `docker/setup-buildx-action@v3`)
   - `Build and push` (using `docker/build-push-action@v5` and repository secrets)
+
+## Persistent data
+
+The application stores number of requests in `/app/visits.txt`. In compose file `visits.txt` is mounted to `/app/visits.txt`.
+
+![img.png](imgs/img.png)

@@ -11,10 +11,15 @@ RUN gradle buildFatJar --no-daemon
 
 FROM eclipse-temurin:17-jdk-alpine
 
+WORKDIR /app
+
 RUN addgroup -S group && adduser -S user -G group
+
+# RUN echo "0" > /app/visits.txt
+RUN chgrp -R group /app && chmod g+rw -R /app
+
 USER user
 
-WORKDIR /app
 COPY --from=build /home/gradle/src/build/libs/*.jar ./app.jar
 
 EXPOSE 8000

@@ -6,6 +6,7 @@ networks:
 volumes:
   prometheus:
   grafana:
+  app-python-visits:
 
 services:
   loki:
@@ -102,7 +103,7 @@ services:
 
   app_python:
     container_name: "app_python"
-    image: tufra/moscow-time-app-python:0.0.1
+    image: tufra/moscow-time-app-python:0.0.3
     ports:
       - "80:8080"
     logging:
@@ -118,7 +119,7 @@ services:
 
   app_kotlin:
     container_name: "app_kotlin"
-    image: tufra/moscow-time-app-kotlin:0.0.1
+    image: tufra/moscow-time-app-kotlin:0.0.2
     ports:
       - "81:8000"
     logging:
