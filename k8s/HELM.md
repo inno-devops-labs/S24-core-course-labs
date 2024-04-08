@@ -385,3 +385,58 @@ service/kubernetes              ClusterIP   10.96.0.1        <none>        443/T
 
 ## Library chart
 
+Update dependencies:
+
+```bash
+$ helm dependency update app-python
+Saving 1 charts
+Deleting outdated charts
+
+$ helm dependency update app-java
+Saving 1 charts
+Deleting outdated charts
+```
+
+Install:
+
+```bash
+$ helm install app-python-library app-python
+NAME: app-python-library
+LAST DEPLOYED: Mon Apr  8 21:05:45 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get the application URL by running these commands:
+  export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services app-python-library)
+  export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+
+$ helm install app-java-library app-java
+NAME: app-java-library
+LAST DEPLOYED: Mon Apr  8 21:07:01 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get the application URL by running these commands:
+  export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services app-java-library)
+  export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+```
+
+Validate:
+
+```bash
+$ kubectl get svc,pods
+NAME                            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+service/app-java-library        NodePort    10.107.253.43    <none>        8080:31797/TCP   32s
+service/app-python-library      NodePort    10.101.234.223   <none>        8080:30680/TCP   108s
+service/helm-hooks-app-python   NodePort    10.105.189.219   <none>        8080:32389/TCP   80m
+service/kubernetes              ClusterIP   10.96.0.1        <none>        443/TCP          3h1m
+
+NAME                                        READY   STATUS    RESTARTS   AGE
+pod/app-java-library-68bf8b9454-2tq75       1/1     Running   0          32s
+pod/app-python-library-6cfbbb9596-ntv8s     1/1     Running   0          108s
+pod/helm-hooks-app-python-cbb669676-gdjx9   1/1     Running   0          80m
+```
