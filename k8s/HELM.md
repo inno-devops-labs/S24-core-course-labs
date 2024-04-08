@@ -195,7 +195,7 @@ service/helm-app-python       LoadBalancer   10.104.61.162   <pending>     5000:
 service/kubernetes            ClusterIP      10.96.0.1       <none>        443/TCP          6m10s
 ```
 
-I added a library chart under `/libchart`, added it as a dependency for both applications, and ran `helm dependency update`. 
+I added a library chart for the bonus task under `/libchart`, added it as a dependency for both applications, and ran `helm dependency update`. 
 
-### Viewing the labels from `minikube dashboard` for the bonus task
+### Viewing the labels from `minikube dashboard`
 ![alt text](screenshots/dashboard.png)
