@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: app-python
+spec:
+  serviceName: app-python-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-python
+  template:
+    metadata:
+      labels:
+        app: app-python
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: app-python
+        image: catdog905/dev-ops-course-app-python
+        imagePullPolicy: Always
+
