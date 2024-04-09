@@ -53,6 +53,46 @@ service/kubernetes        ClusterIP      10.96.0.1      <none>        443/TCP   
 
 1. Linting the helm chart
 
+```
+$ helm lint helm-app-python
+```
+
+```
+==> Linting helm-app-python
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+```
+
+2. ```helm install --dry-run helm-hooks helm-app-python```
+
+```
+NAME: helm-hooks
+LAST DEPLOYED: Wed Apr 10 02:07:44 2024
+NAMESPACE: default
+STATUS: pending-install
+REVISION: 1
+HOOKS:
+---
+# Source: helm-app-python/templates/post-install-hook.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+   name: postinstall-hook
+   annotations:
+       "helm.sh/hook": "post-install"
+      #  "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  containers:
+  - name: post-install-container
+    image: busybox
+    imagePullPolicy: Always
+    command: ['sh', '-c', 'echo The post-install hook is running && sleep 20' ]
+  restartPolicy: Never
+  terminationGracePeriodSeconds: 0
+---
+```
+
 
 3. ```kubectl get po```
 
