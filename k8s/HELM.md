@@ -1,11 +1,10 @@
 # Helm
 
 ## Helm Setup and Chart Creation
+Output for `helm install helm-app-python helm-app-python/ --values helm-app-python/values.yaml`
 ```shell
 minikube start --driver=docker
 helm install helm-app-python helm-app-python/ --values helm-app-python/values.yaml
-
-Output for `helm install helm-app-python helm-app-python/ --values helm-app-python/values.yaml`
 
 NAME: helm-app-python
 LAST DEPLOYED: Wed Apr 10 01:11:12 2024
@@ -30,8 +29,6 @@ service/kubernetes        ClusterIP      10.96.0.1       <none>        443/TCP  
 
 ```
 ## Helm Chart Hooks
-I added `pre-install-hook.yaml` and `post-install-hook.yaml` for both apps under `templates`. 
-
 ### Output(s) **without hook delete policy**.
 ```shell
 NAME: helm-app-python
@@ -115,7 +112,8 @@ Events:
 
 ```
 ```shell
-kubectl describe po postinstall-hookName:             postinstall-hook
+kubectl describe po postinstall-hook
+Name:             postinstall-hook
 Namespace:        default
 Priority:         0
 Service Account:  default
