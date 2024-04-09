@@ -1,6 +1,6 @@
 # Task 1
 
-I installed Helm from script, changed tag and name of the repository in `values.yml` and port in `deployment.yaml`.
+I installed Helm from script, changed tag and name of the repository in `values.yaml` and port in `deployment.yaml`.
 
 ```
 rostislav@rostislavpc:~/devops_labs/k8s$ minikube dashboard
