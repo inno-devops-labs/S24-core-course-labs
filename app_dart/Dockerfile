@@ -32,16 +32,11 @@ WORKDIR $APP
 # Run build
 RUN flutter clean
 RUN flutter pub get
-RUN flutter build web
+RUN flutter packages pub global activate webdev
+RUN flutter packages pub global run webdev build
 
 # Stage 2 - Create the run-time image
 
-# use nginx to deploy
-FROM nginx:1.25.2-alpine
-
-# copy the info of the builded web app to nginx
-COPY --from=build-env /app/build/web /usr/share/nginx/html
-
-# Expose and run nginx
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+
+CMD flutter packages pub global run webdev serve

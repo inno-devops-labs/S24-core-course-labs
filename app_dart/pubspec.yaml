@@ -1,22 +1,16 @@
-name: app_dart
-description: A new Flutter project.
-publish_to: 'none'
-version: 0.1.0
+name: quickstart
+description: An absolute bare-bones web app.
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
 
 environment:
-  sdk: '>=2.19.4 <3.0.0'
+  sdk: ^3.2.6
 
+# Add regular dependencies here.
 dependencies:
-  flutter:
-    sdk: flutter
-  prometheus_client: ^1.0.0+1
-  timezone: ^0.9.2
+  # path: ^1.8.0
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.0
-  test: ^1.24.9
-
-flutter:
-  uses-material-design: true
+  build_runner: ^2.4.0
+  build_web_compilers: ^4.0.0
+  lints: ^2.1.0
