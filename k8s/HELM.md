@@ -188,3 +188,7 @@ Events:
   Normal  Created    2m     kubelet            Created container post-install-container
   Normal  Started    2m     kubelet            Started container post-install-container
 ```
+
+6. ```minikube dashboard```
+
+![MiniKube Dashboard](https://github.com/tanmaysharma2001/S24-core-course-labs/assets/78191188/d9ee33e7-a1a6-4c1b-9f55-a3bbb5b96224)
