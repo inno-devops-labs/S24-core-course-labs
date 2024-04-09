@@ -1,0 +1,57 @@
+name: s24-devops
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+  docker-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 'latest'
+
+      - name: Docker Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker image
+        run: docker build -t time_web.py .
+
+      - name: Push Docker image
+        run: docker push time_web.py
+
+  snyk_test:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 'latest'
+
+    - name: Run Snyk Tests
+      run: |
+        snyk test --json > snyk_results.json
+      continue-on-error: true
+
+    - name: Display Snyk Results
+      run: cat snyk_results.json
+
+
+

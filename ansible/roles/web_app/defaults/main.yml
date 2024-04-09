@@ -1,0 +1,6 @@
+web_app_image_name: "snapman/time_web.py"
+web_app_image_dir: "~/web_app"
+web_app_image_tag: "latest"
+web_app_target_port: 80
+web_app_published_port: 5000:5000
+web_app_full_wipe: false

@@ -1,0 +1,5 @@
+all:
+  hosts:
+    cloud_host:
+      ansible_host: 158.160.149.60
+      ansible_user: snapman

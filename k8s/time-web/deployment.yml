@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: time-web-deployment
+  labels:
+    app: time-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: time-web
+  template:
+    metadata:
+      labels:
+        app: time-web
+    spec:
+      containers:
+      - name: time-web
+        image: snapman/time_web
+        ports:
+        - containerPort: 5000
