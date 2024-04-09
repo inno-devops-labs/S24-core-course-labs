@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "manual-flask.fullname" . }}-test-connection"
+  labels:
+    {{- include "manual-flask.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "manual-flask.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
