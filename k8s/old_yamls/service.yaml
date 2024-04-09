@@ -10,6 +10,5 @@ spec:
   selector:
     app: app-python
   ports:
-  - protocol: TCP
-    port: 8000
-    targetPort: 8000
+  - port: 5001
+    targetPort: 5001
