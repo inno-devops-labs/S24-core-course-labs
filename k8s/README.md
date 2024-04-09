@@ -73,7 +73,7 @@ pod/app-python-deployment-69bf559f44-ztg6p   1/1     Running   0              52
 
 NAME                         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 service/app-python           LoadBalancer   10.101.191.92   <pending>     8080:31492/TCP   88s
-service/app-python-service   LoadBalancer   10.103.113.99   <pending>     5000:30366/TCP     12s
+service/app-python-service   Lohttps://github.com/inno-2023-masters/S24-core-course-labs/blob/main/lab9.mdadBalancer   10.103.113.99   <pending>     5000:30366/TCP     12s
 service/kubernetes           ClusterIP      10.96.0.1       <none>        443/TCP          13m
 ```
 
