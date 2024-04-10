@@ -13,10 +13,9 @@ fun main(args: Array<String>) {
     io.ktor.server.netty.EngineMain.main(args)
 }
 
-var filePath = "visits.txt"
+var filePath = "${System.getenv("VISITS_PATH")}/${System.getenv("VISITS_FILE")}"
 
 fun Application.module() {
-    filePath = environment.config.propertyOrNull("ktor.persistent.filePath")?.getString() ?: "visits.txt"
     Clock.Network.sync()
     install(VisitCounterPlugin)
     configureHTTP()

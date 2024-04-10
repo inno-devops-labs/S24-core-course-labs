@@ -11,9 +11,12 @@ RUN addgroup -S group && adduser -S user -G group
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-RUN echo "0" > /app/visits.txt
-RUN chgrp -R group /app
-RUN chmod g+rw -R /app
+ENV VISITS_FILE="visits.txt"
+ENV VISITS_PATH="/app/visits"
+
+
+RUN mkdir $VISITS_PATH && echo "0" > $VISITS_PATH/$VISITS_FILE
+RUN chgrp -R group /app && chmod g+rw -R /app
 
 USER user
 

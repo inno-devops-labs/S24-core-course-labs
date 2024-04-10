@@ -13,9 +13,11 @@ FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
 
-RUN addgroup -S group && adduser -S user -G group
+ENV VISITS_FILE="visits.txt"
+ENV VISITS_PATH="/app/visits"
 
-# RUN echo "0" > /app/visits.txt
+RUN mkdir $VISITS_PATH
+RUN addgroup -S group && adduser -S user -G group
 RUN chgrp -R group /app && chmod g+rw -R /app
 
 USER user
