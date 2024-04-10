@@ -19,6 +19,10 @@ To run the app one should proceed the following:
 ## Unit Testing
 To test the application one should just run `pytest` command in `app_python` folder. By this, all the tests in `tests` folder will be run.
 
+## Visits 
+Number of page visits stores in `visits/visits.txt` as a number, moreover, `/visits` is mounted as a volume with Docker container. To view the number of visits on the site, you can access `/visits` path. It returns a JSON with the number of visits.
+In other words, it is possible to see the number of visits on `http://127.0.0.1:8080/visits`.
+
 ## Docker usage 
 ### Building on local machine
 To build a Docker image do the following:

@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  app:
+    image: sokolofff/app_python
+    ports:
+      - "8080:8080"
+
+    volumes:
+      - ./visits:/app/visits
