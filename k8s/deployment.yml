@@ -4,7 +4,7 @@ metadata:
  name: moscow-time
  labels:
    app: moscow-time
-spec:m
+spec:
  replicas: 2
  selector:
    matchLabels:
