@@ -28,7 +28,7 @@ In this lab, you will become familiar with a logging stack that includes Promtai
 
 ## Task 2: Documentation and Reporting
 
-**6 Points:**
+**4 Points:**
 
 1. Logging Stack Report:
    - Create a new file named `LOGGING.md` to document how the logging stack you've set up functions.
