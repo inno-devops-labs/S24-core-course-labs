@@ -27,7 +27,7 @@ resource "github_branch_default" "main" {
 }
 
 resource "github_branch_protection" "default" {
-  repository_id                   = github_repository.S24-core-course-labs.id
+#  repository_id                   = github_repository.S24-core-course-labs.id
   pattern                         = github_branch_default.main.branch
   require_conversation_resolution = true
   enforce_admins                  = true

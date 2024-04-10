@@ -3,6 +3,4 @@
   become: true
 
   roles:
-    - web_app
-  vars:
-    wipe: true
+    - docker

@@ -19,7 +19,7 @@ resource "yandex_compute_disk" "boot-disk-1" {
   name = "boot-disk-1"
   type = "network-hdd"
   zone = var.compute_zone
-  size = "10"
+  size = "60"
   # ubuntu 18.04 lts
   image_id = "fd8b1k66ee99rmt7p9ac"
 }
@@ -31,8 +31,8 @@ resource "yandex_compute_instance" "vm1" {
   zone        = var.compute_zone
 
   resources {
-    cores  = 2
-    memory = 2
+    cores  = 4
+    memory = 4
   }
 
   boot_disk {
