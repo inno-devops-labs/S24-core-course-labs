@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
   - name: pre-install-container
-    image: alpine:3.3
+    image: imagebusy
     imagePullPolicy: IfNotPresent
     command: ['sh', '-c', 'echo Pre-install started && sleep 10' ]
   restartPolicy: Never

@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
   - name: post-install-container
-    image: alpine:3.3
+    image: imagebusy
     imagePullPolicy: Always
     command: ['sh', '-c', 'echo Post-install hook finished && sleep 15' ]
   restartPolicy: Never
