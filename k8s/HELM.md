@@ -254,3 +254,14 @@ Events:
 ```
 
 ![alt text](screenshots/jobs.png)
+
+- output of get pod, svc
+  ![alt text](screenshots/pod-svc.png)
+
+# Bonus Task: Helm Library Chart
+
+1. Prepare a Helm chart for an additional application.
+
+- Done review the previous tasks.
+
+2. Create a Library Chart:
