@@ -1,8 +1,7 @@
 version: "3.8"
 
 networks:
-  default:
-   name: loki
+  loki:
    
 x-logging:
   &default-logging
@@ -21,9 +20,9 @@ x-deploy:
 services:
 
   app_python:
-    image: timurharin/devops:latest
+    image: timurharin/devops:latest_metrics
     ports:
-      - "8080:5000"
+      - "8080:6000"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 10s
@@ -31,18 +30,22 @@ services:
       retries: 3
     logging: *default-logging
     deploy: *default-deploy
+    networks:
+      - loki
 
   app_flutter:
     image: timurharin/flutter_web:latest
     ports:
       - "80:80"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
       interval: 10s
       timeout: 5s
       retries: 3
     logging: *default-logging
     deploy: *default-deploy
+    networks:
+      - loki 
 
 
   loki:
@@ -52,16 +55,8 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     logging: *default-logging
     deploy: *default-deploy
-
-
-  promtail:
-    image: grafana/promtail:2.9.2
-    volumes:
-      - ./promtail.yml:/etc/promtail/config.yml
-      - /var/lib/docker/containers:/var/lib/docker/containers
-    command: -config.file=/etc/promtail/config.yml
-    logging: *default-logging
-    deploy: *default-deploy
+    networks:
+      - loki
 
 
   grafana:
@@ -93,10 +88,12 @@ services:
       - "3000:3000"
     logging: *default-logging
     deploy: *default-deploy
+    networks:
+      - loki
 
 
   prometheus:
-    image: prom/prometheus:v2.30.1
+    image: prom/prometheus:v2.51.0
     ports:
       - "9090:9090"
     volumes:
@@ -105,3 +102,16 @@ services:
       - "--config.file=/etc/prometheus/prometheus.yml"
     logging: *default-logging
     deploy: *default-deploy
+    networks:
+      - loki
+
+  promtail:
+    image: grafana/promtail:2.9.2
+    volumes:
+      - ./promtail.yml:/etc/promtail/config.yml
+      - /var/lib/docker/containers:/var/lib/docker/containers
+    command: -config.file=/etc/promtail/config.yml
+    logging: *default-logging
+    deploy: *default-deploy
+    networks:
+      - loki
