@@ -13,9 +13,9 @@ Accessing [http://localhost:9090/targets](http://localhost:9090/targets) shows:
 
 1. Grafana dashboards
 
-![Loki](./lab8-screenshot-2.png)
+   ![Loki](./lab8-screenshot-2.png)
 
-![Prometheus](./lab8-screenshot-3.png)
+   ![Prometheus](./lab8-screenshot-3.png)
 
 2. Services configuration:
    - All services are configured to save logs in JSON format with a maximum size of 10MB
