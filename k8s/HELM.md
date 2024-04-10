@@ -268,3 +268,42 @@ Events:
 - Done review the previous tasks.
 
 2. Create a Library Chart:
+
+   2.1 Create a new directory called `library-chart`.
+
+   2.2 Create a new file called `Chart.yaml` in the `library-chart` directory:
+
+   ```yaml
+   apiVersion: v2
+   name: library-chart
+   version: 1.0.0
+   type: library
+   ```
+
+   2.3 Create a new file called `_helpers.tpl` in the `library-chart/templates` directory:
+
+   ```yaml
+   {{- define "library-chart.labels" -}}
+   {{- if .Chart.AppVersion }}
+   app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+   {{- end }}
+   app.kubernetes.io/managed-by: {{ .Release.Service }}
+   app.kubernetes.io/instance: {{ .Release.Name }}
+   {{- end }}
+   ```
+
+   2.4 update the `app_python_helm/templates/Chart.yaml` and `app_javascript_helm/templates/Chart.yaml` files to include the library chart as a dependency:
+
+   ```yaml
+   dependencies:
+     - name: library-chart
+   version: 1.0.0
+   repository: file://../library-chart
+   ```
+
+   2.5 Update the help dependencies:
+
+   ```shell
+   helm dependency update ./app_python_helm
+   helm dependency update ./app_javascript_helm
+   ```
