@@ -66,3 +66,28 @@ root@SSD002:~/DevOps-S24/k8s# minikube service --all
 🎉  Opening service default/py-helm-py-chart in default browser...
 👉  http://192.168.49.2:32146
 ```
+
+```
+root@SSD002:~/DevOps-S24/k8s# helm install py-hooks ./py-chart/
+NAME: py-hooks
+LAST DEPLOYED: Wed Apr 10 03:32:35 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get the application URL by running these commands:
+  export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services py-hooks-py-chart)
+  export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+root@SSD002:~/DevOps-S24/k8s# helm install go-hooks ./go-chart/
+NAME: go-hooks
+LAST DEPLOYED: Wed Apr 10 03:32:44 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get the application URL by running these commands:
+  export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services go-hooks-go-chart)
+  export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+```
