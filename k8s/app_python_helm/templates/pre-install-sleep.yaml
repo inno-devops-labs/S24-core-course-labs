@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pre-install-sleep-job
+  labels:
+    app: python-app-helm
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+  annotations:
+    "helm.sh/hook-delete-policy": hook-succeeded  # Add this annotation
+spec:
+  template:
+    metadata:
+      name: pre-install-sleep-pod
+      labels:
+        app: python-app-helm
+        chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    spec:
+      containers:
+        - name: sleep-container
+          image: busybox
+          command: ["sleep", "20"]
+      restartPolicy: OnFailure
