@@ -4,6 +4,12 @@ metadata:
   name: {{ include "helm_app_python.fullname" . }}
   labels:
     {{- include "helm_app_python.labels" . | nindent 4 }}
+env:
+- name: MY_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: credentials
+      key: password
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
