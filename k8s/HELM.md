@@ -258,6 +258,9 @@ Events:
 - output of get pod, svc
   ![alt text](screenshots/pod-svc.png)
 
+- Workloads
+  ![alt text](screenshots/workloads.png)
+
 # Bonus Task: Helm Library Chart
 
 1. Prepare a Helm chart for an additional application.
