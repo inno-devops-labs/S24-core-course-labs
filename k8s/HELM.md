@@ -117,3 +117,15 @@ root@SSD002:~/DevOps-S24/k8s$ minikube service --all
 🎉  Opening service default/py-helm-py-chart in default browser...
 👉  http://192.168.49.2:32146
 ```
+
+## Hooks
+
+Hooks can be found in paths `*-chart/templates/pre-install-hook.yaml` and `*-chart/templates/post-install-hook.yaml`
+
+```bash
+root@SSD002:~/DevOps-S24/k8s# kubectl get po
+NAME                                   READY   STATUS             RESTARTS       AGE
+preinstall-hook                        0/1     Completed          0              4m21s
+postinstall-hook                       0/1     Completed          0              4m21s
+py-hooks-helm-5b8f45876b-9p7vv         0/1     Running            6 (3m ago)     1h7m
+```

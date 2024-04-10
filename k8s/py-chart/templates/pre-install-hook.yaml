@@ -4,12 +4,12 @@ metadata:
    name: preinstall-hook
    annotations:
       "helm.sh/hook": "pre-install"
-      "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded
+      "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   containers:
   - name: pre-install-container
     image: imagebusy
     imagePullPolicy: IfNotPresent
-    command: ['sh', '-c', 'echo Pre-install started && sleep 10' ]
+    command: ['sh', '-c', 'echo Pre-install started' ]
   restartPolicy: Never
   terminationGracePeriodSeconds: 0

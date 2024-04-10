@@ -4,12 +4,12 @@ metadata:
    name: postinstall-hook
    annotations:
       "helm.sh/hook": "post-install"
-      "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded
+      "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   containers:
   - name: post-install-container
     image: imagebusy
     imagePullPolicy: Always
-    command: ['sh', '-c', 'echo Post-install hook finished && sleep 15' ]
+    command: ['sh', '-c', 'echo Post-install hook finished' ]
   restartPolicy: Never
   terminationGracePeriodSeconds: 0
