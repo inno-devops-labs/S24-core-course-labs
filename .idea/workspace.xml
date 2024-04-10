@@ -5,21 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a907869f-f062-4d26-bf52-808ad19e005d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/k8s/HELM.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/.helmignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/Chart.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/templates/NOTES.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/templates/_helpers.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/templates/deployment.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/templates/hpa.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/templates/ingress.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/templates/post-install-hook.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/templates/pre-install-hook.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/templates/service.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/templates/serviceaccount.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/templates/test-connection.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/templates/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_python/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/app_python/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

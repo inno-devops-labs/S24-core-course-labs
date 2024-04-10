@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # Use the official image as a parent image
-FROM --platform=linux/arm64 python:3.10-alpine AS build
+FROM python:3.10-alpine AS build
 
 # Labelling the image
 LABEL version="1.0" description="Flask Application showing current Moscow time" maintainer="engaezik"
