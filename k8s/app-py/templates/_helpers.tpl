@@ -60,3 +60,10 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "app-py.environ" -}}
+- name: var1
+  value: val1
+- name: var2
+  value: val2
+{{- end }}

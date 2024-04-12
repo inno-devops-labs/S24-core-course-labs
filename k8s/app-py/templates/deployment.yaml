@@ -56,6 +56,7 @@ spec:
                 secretKeyRef:
                   name: env-secret
                   key: value
+            {{ include "app-py.environ" . | nindent 12 }}
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
