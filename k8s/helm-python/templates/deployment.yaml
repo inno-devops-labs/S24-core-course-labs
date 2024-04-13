@@ -15,9 +15,6 @@ spec:
     metadata:
       {{- with .Values.podAnnotations }}
       annotations:
-        vault.hashicorp.com/agent-inject: 'true'
-        vault.hashicorp.com/role: 'internal-app'
-        vault.hashicorp.com/agent-inject-secret-server-config.txt: 'internal/data/server/config'
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
