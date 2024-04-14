@@ -7,13 +7,24 @@
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfreePredicate = pkg: builtins.elem pkg.pname [
+            "vault"
+          ];
+        };
       in with pkgs; {
         devShells.default = mkShell {
           packages = [
             kubernetes
-            kubernetes-helm
             minikube
+            (wrapHelm kubernetes-helm {
+              plugins = with kubernetes-helmPlugins; [
+                helm-secrets
+              ];
+            })
+
+            sops
           ];
         };
       }
