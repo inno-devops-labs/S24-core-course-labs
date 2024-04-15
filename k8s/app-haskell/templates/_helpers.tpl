@@ -60,3 +60,10 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "app-haskell.envs" }}
+- name: DEMO_GREETING
+  value: "Hello from the environment"
+- name: DEMO_FAREWELL
+  value: "Such a sweet sorrow"
+{{- end }}
