@@ -1,3 +1,14 @@
+{{- define "python-app.env.variable1" -}}
+- name: VARIABLE1
+  value: {{ .Values.var1_val }}
+{{- end }}
+
+{{- define "python-app.env.variable2" -}}
+- name: VARIABLE2
+  value: {{ .Values.var2_val }}
+{{- end }}
+
+
 {{/*
 Expand the name of the chart.
 */}}
