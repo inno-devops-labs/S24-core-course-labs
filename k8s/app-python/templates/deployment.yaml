@@ -49,6 +49,17 @@ spec:
           {{- with .Values.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
+          env:
+            - name: "USERNAME"
+              valueFrom:
+                secretKeyRef:
+                  name: test
+                  key: username
+            - name: "PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: test
+                  key: password
           {{- end }}
       {{- with .Values.volumes }}
       volumes:
