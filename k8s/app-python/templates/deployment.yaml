@@ -46,6 +46,12 @@ spec:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: MY_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-my-secret
+                  key: password
           {{- with .Values.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
@@ -66,3 +72,11 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
+
+      env:
+        - name: MY_PASS
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-my-secret
+              key: password
