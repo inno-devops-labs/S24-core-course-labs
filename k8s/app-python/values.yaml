@@ -23,9 +23,12 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: "app-python-service-account"
 
-podAnnotations: {}
+podAnnotations:
+  vault.hashicorp.com/agent-inject: 'true'
+  vault.hashicorp.com/role: 'app-python-service-account'
+  vault.hashicorp.com/agent-inject-secret-app-python-secret.txt: 'internal/data/app-python/secret'
 podLabels: {}
 
 podSecurityContext: {}
