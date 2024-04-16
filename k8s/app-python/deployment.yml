@@ -14,8 +14,16 @@ spec:
       labels:
         app: app-python
     spec:
+      serviceAccountName: internal-app
       containers:
       - name: app-python
         image: dudukk/devops
+        env:
+          - name: MY_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: credentials
+                key: password
+        {{- include "app-python.envVars" . | nindent 10 }}
         ports:
         - containerPort: 5000
