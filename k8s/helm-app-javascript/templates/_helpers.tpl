@@ -60,3 +60,12 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+
+{{/*
+Get environment variable value.
+*/}}
+{{- define "helm-app-javascript.envVar" -}}
+- name: user
+  value: "user"
+{{- end }}
