@@ -18,7 +18,8 @@ Web app python metrics in grafana using prometheus:
 
 ![Screenshot from 2024-03-27 01-10-23.png](img%2FScreenshot%20from%202024-03-27%2001-10-23.png)
 
-Web app java metrics in grafana using prometheus:
+Web app java
+metrics in grafana using prometheus:
 
 ![Screenshot from 2024-03-27 01-10-31.png](img%2FScreenshot%20from%202024-03-27%2001-10-31.png)
 # Service Configuration Updates:
