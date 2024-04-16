@@ -60,3 +60,15 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+{{/*
+    Secrets
+    */}}
+    {{- define "py-chart.secrets" -}}
+    {{- range $secret := .Values.secrets }}
+    - name: {{ $secret.name | quote }}
+      valueFrom:
+        secretKeyRef:
+          name: "lab11-secret"
+          key: {{ $secret.key | quote }}
+    {{- end }}
+    {{- end }}

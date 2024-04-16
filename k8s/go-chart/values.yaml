@@ -16,16 +16,25 @@ fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: false
   # Automatically mount a ServiceAccount's API credentials?
   automount: true
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+    name: "internal-app"
 
-podAnnotations: {}
+podAnnotations:
+  vault.hashicorp.com/agent-inject: 'true'
+  vault.hashicorp.com/role: 'internal-app'
+  vault.hashicorp.com/agent-pre-populate: "false"
+  vault.hashicorp.com/agent-inject-secret-devops-golangsecret.txt: 'internal/devops/golangsecret'
+  vault.hashicorp.com/agent-inject-template-devops-pythonsecret.txt: |
+    {{- with secret "internal/devops/golangsecret" -}}
+     postgresql://{{ .Data.data.name }}:{{ .Data.data.whoami }}@postgres:5432/ramprin_go
+    {{- end -}}
+
 podLabels: {}
 
 podSecurityContext: {}
@@ -64,12 +73,12 @@ resources: {}
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
 
 livenessProbe:
   httpGet:
@@ -105,3 +114,7 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+secrets:
+  - name: WHOAMI_SECRET
+    key: whoami
