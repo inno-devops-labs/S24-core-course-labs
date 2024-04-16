@@ -38,6 +38,9 @@ spec:
             - name: http
               containerPort: 5000  # Modify this to your desired port
               protocol: TCP
+          env:  # Add this section for environment variables
+            - name: MY_ENV_VARIABLE  # Example environment variable name
+              value: "my-value"  # Example environment variable value
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
