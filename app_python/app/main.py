@@ -12,13 +12,22 @@ app.config['port'] = os.getenv('PORT', default=5000)
 app.config['timezone'] = os.getenv('TIMEZONE', default='Europe/Moscow')
 app.config['datetime_format'] = os.getenv('DATETIME_FORMAT',
                                           default='%Y-%m-%d %H:%M:%S %z')
-logs_file_path = os.getenv('LOGS_FILE_PATH', default='../logs/moscow_time.log')
-logging.basicConfig(filename=logs_file_path,level=logging.DEBUG)
+# logs_file_path = os.getenv('LOGS_FILE_PATH', default='../logs/moscow_time.log')
+# logging.basicConfig(filename=logs_file_path,level=logging.DEBUG)
 
 
 @app.route("/health")
 def status(): 
     return "UP"
+
+@app.route("/api/v1/visits")
+def visits(): 
+    path = "../visits/visits.txt"
+    with open(path, "r") as f: 
+        num = int(f.read()) 
+    with open(path, "w") as f: 
+        f.write(str(num + 1))
+    return str(num)
 
 
 @app.route("/api/v1/time")

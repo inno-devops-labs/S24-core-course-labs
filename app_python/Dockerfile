@@ -12,7 +12,7 @@ ENV LOGS_FILE_PATH="/logs/moscow-time.log"
 
 COPY app/* /app/
 
-USER app_user:app_user
+# USER app_user:app_user
 
 EXPOSE 5000
 

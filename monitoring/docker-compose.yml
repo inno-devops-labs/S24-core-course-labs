@@ -8,6 +8,7 @@ services:
     build: ../app_python
     volumes: 
       - python-logs:/logs
+      - visits:/visits
     ports:
       - "5000:5000"
     environment:
@@ -36,6 +37,7 @@ services:
     build: ../app_java
     volumes: 
       - java-logs:/app/logs
+      - java-persist:/app/persist
     ports:
       - "8081:8081"
     logging:
@@ -198,6 +200,20 @@ services:
       timeout: 10s
 
 volumes:
+  visits: 
+    driver: local
+    driver_opts:
+      type: none
+      device: visits
+      o: bind
+
+  java-persist: 
+    driver: local
+    driver_opts:
+      type: none
+      device: java-persist
+      o: bind
+
   java-logs:
     driver: local
     driver_opts:

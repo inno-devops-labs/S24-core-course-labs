@@ -4,7 +4,7 @@ A simple web api returning value of time
 ![CI badge](https://github.com/FK12344321/S24-core-course-labs/actions/workflows/app_python.yaml/badge.svg)
 
 ## Description
-A python application that returns current time value (by default in Europe/Moscow timezone)
+A python application that returns current time value (by default in Europe/Moscow timezone). It also returns the number of times the /api/v1/visits API method was called
 
 ## Getting Started
 
@@ -56,7 +56,7 @@ Here how you can:
   ```
 * run the image
   ```bash
-  docker run fk12344321/moscow-time:v1.0.0
+  docker run -v visits.txt:/visits/visits.txt fk12344321/moscow-time:v1.0.0
   ```
   
 ## Unit tests
@@ -72,3 +72,8 @@ Github actions is used for setting up a CI pipeline that have the following jobs
 * code quality check 
 * security check 
 * docker image build and push
+
+## Lab 12
+
+Also /api/v1/visits method was added to the system, so running the app you are supposed to mount the /visits/visits.txt file (that contains some number inside) when you run the docker container.
+Also monitoring/docker-compose.yaml file now contain a volume called visits, so I can just run `docker-compose up python_app` and get the implemented functionality. 
