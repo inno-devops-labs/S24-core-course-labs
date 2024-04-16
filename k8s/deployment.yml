@@ -12,6 +12,7 @@ spec:
       labels:
         app: app-python
     spec:
+      serviceAccountName: internal-app
       containers:
       - name: app-python
         image: brutaljesus/devops_lab_2
