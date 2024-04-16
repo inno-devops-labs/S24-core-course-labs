@@ -12,6 +12,7 @@ spec:
     matchLabels:
       {{- include "web-app.selectorLabels" . | nindent 6 }}
   template:
+    serviceAccountName: internal-app
     metadata:
       {{- with .Values.podAnnotations }}
       annotations:
@@ -35,6 +36,12 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          env:
+          - name: MY_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: credentials
+                key: password
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
