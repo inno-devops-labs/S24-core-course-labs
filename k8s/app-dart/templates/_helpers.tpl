@@ -60,3 +60,10 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "app-dart.env" }}
+- name: ENV_VAR
+  value: "Environment variable"
+- name: ANOTHER_ENV_VAR
+  value: "Another environment variable"
+{{- end }}
