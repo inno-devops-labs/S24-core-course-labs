@@ -60,3 +60,10 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "app-python.pythonEnvs" -}}
+- name: RELEASE_NAME
+  value: {{ .Release.Name }}
+- name: IMAGE_TAG
+  value: "{{ .Values.image.tag }}"
+{{- end -}}
