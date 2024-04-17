@@ -9,14 +9,17 @@ In this lab, you will learn how to manage sensitive data, such as passwords, tok
 **6 Points:**
 
 1. Create a Secret Using `kubectl`:
+
    - Learn about Kubernetes Secrets and create a secret using the `kubectl` command:
      - [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
      - [Managing Secrets with kubectl](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/#decoding-secret)
 
 2. Verify and Decode Your Secret:
+
    - Confirm and decode the secret, then create an `11.md` file within the `k8s` folder. Provide the output of the necessary commands inside this file.
 
 3. Manage Secrets with Helm:
+
    - Use Helm to manage your secrets.
    - Create a `secrets.yaml` file in the `templates` folder.
    - Define a `secret` object within this YAML file.
@@ -29,6 +32,7 @@ In this lab, you will learn how to manage sensitive data, such as passwords, tok
    - Verify your secret inside the pod, for example: `kubectl exec demo-5f898f5f4c-2gpnd -- printenv | grep MY_PASS`. Share this output in `11.md`.
 
 4. Create a Pull Request:
+
    - Generate a PR to the main branch of the forked repository.
 
 5. Create a Pull Request in Your Own Repository:
@@ -39,10 +43,12 @@ In this lab, you will learn how to manage sensitive data, such as passwords, tok
 **4 Points:**
 
 1. Install Vault Using Helm Chart:
+
    - Install Vault using a Helm chart. Follow the steps provided in this guide:
      - [Vault Installation Guide](https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-sidecar#install-the-vault-helm-chart)
 
 2. Follow the Tutorial with Your Helm Chart:
+
    - Adapt the tutorial to work with your Helm chart, including the following steps:
      - [Set a Secret in Vault](https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-sidecar#set-a-secret-in-vault)
      - [Configure Kubernetes Authentication](https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-sidecar#configure-kubernetes-authentication)
@@ -68,10 +74,12 @@ In this lab, you will learn how to manage sensitive data, such as passwords, tok
 **2.5 Points:**
 
 1. Read About Resource Management:
+
    - Familiarize yourself with resource management in Kubernetes:
      - [Resource Management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 
 2. Set Up Requests and Limits for CPU and Memory for Both Helm Charts:
+
    - Configure resource requests and limits for CPU and memory for your application.
    - Test to ensure these configurations work correctly.
 

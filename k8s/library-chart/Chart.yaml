@@ -1,4 +1,4 @@
-apiVersion: v2
+apiVersion: v1
 name: library-chart
-version: 1.0.0
 type: library
+version: 1.0.0
