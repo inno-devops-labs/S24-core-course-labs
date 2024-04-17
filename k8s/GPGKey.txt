@@ -1,0 +1,23 @@
+Real name: tanmay
+Email address: sharmatanmay617@gmail.com
+You selected this USER-ID:
+    "tanmay <sharmatanmay617@gmail.com>"
+
+Change (N)ame, (E)mail, or (O)kay/(Q)uit? O
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+gpg: key F7650E1FD6AA3CFF marked as ultimately trusted
+gpg: directory '/home/tanmay/.gnupg/openpgp-revocs.d' created
+gpg: revocation certificate stored as '/home/tanmay/.gnupg/openpgp-revocs.d/7230D482984497492BBDED80F7650E1FD6AA3CFF.rev'
+public and secret key created and signed.
+
+pub   rsa3072 2024-04-16 [SC] [expires: 2026-04-16]
+      7230D482984497492BBDED80F7650E1FD6AA3CFF
+uid                      tanmay <sharmatanmay617@gmail.com>
+sub   rsa3072 2024-04-16 [E] [expires: 2026-04-16]
