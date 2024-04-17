@@ -17,6 +17,12 @@ spec:
       containers:
       - name: app-python
         image: catdog905/dev-ops-course-app-python:lab4
+        env:
+        - name: TEST_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: credentials
+              key: password
         ports:
         - containerPort: 80
 
