@@ -19,4 +19,10 @@ spec:
           image: mrfired/devops-course:latest
           ports:
             - containerPort: 5000
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: jwt-secret
 
