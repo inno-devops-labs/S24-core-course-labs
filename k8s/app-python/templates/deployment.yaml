@@ -40,6 +40,13 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          env:
+            {{- include "app-python.env" . | nindent 12 }}
+            - name: MY_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: password
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
