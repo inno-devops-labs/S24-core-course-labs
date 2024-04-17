@@ -7,7 +7,7 @@ export function returnTime(timezone: string = "Europe/Moscow") {
   const currentTime = returnTzTime(timezone);
 
   return `<div>
-            <h1>Current time in Moscow: ${currentTime}</h1>
+            <h1>Current time in ${timezone}: ${currentTime}</h1>
          </div>
     `;
 }

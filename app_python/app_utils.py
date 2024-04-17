@@ -13,7 +13,7 @@ def return_time(timezone: str = "Europe/Moscow") -> str:
     :return: The current time in the given timezone.
     """
     return f"""
-    <h1>Current time in Moscow: {return_tz_time(timezone)}</h1>
+    <h1>Current time in {timezone}: {return_tz_time(timezone)}</h1>
     """
 
 
