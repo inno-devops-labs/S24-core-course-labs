@@ -42,6 +42,6 @@ A Pod is the basic execution unit of a Kubernetes application. A Pod represents 
 ![curlpython](./images/curlpython.png)
 
 #### GO:
-![pythonbrowser](./images/gobrowser.png)
+![gobrowser](./images/gobrowser.png)
 
-![curlpython](./images/curlpython.png)
+![curlgo](./images/curlgo.png)
