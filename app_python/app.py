@@ -7,6 +7,8 @@ from prometheus_flask_exporter import PrometheusMetrics
 
 from app_python.app_utils import return_time
 
+import os
+
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
 
@@ -16,7 +18,8 @@ def show_time():
     """
     Index page. Shows the current time in Moscow.
     """
-    return return_time("Europe/Moscow")
+    timezone = os.getenv("APP_TIMEZONE", "Europe/Moscow")
+    return return_time(timezone)
 
 @app.route("/metrics")
 def show_prometheus_metrics():

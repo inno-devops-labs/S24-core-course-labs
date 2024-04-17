@@ -32,7 +32,9 @@ const histogram = new Histogram({
 export function index() {
   counter.inc();
   const end = histogram.startTimer();
-  const response = returnTime();
+  // get timezone from the environment variable
+  const timezone = process.env.APP_TIMEZONE || "Europe/Moscow";
+  const response = returnTime(timezone);
   end();
   return new Response(response, {
     headers: { "content-type": "text/html" },
