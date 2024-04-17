@@ -19,5 +19,7 @@ RUN apk add --no-cache wget && adduser -D ${USER}
 EXPOSE 80
 COPY --from=builder /build/target/release/app_rust ./
 
+RUN mkdir /app/data && chown -R ${USER}:${USER} /app
+
 USER ${USER}
 CMD ["./app_rust"]

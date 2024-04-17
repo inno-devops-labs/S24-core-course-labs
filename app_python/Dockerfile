@@ -35,5 +35,7 @@ RUN apk add --no-cache wget && adduser -D ${USER}
 COPY --from=builder /app/.venv ${VIRTUAL_ENV}
 COPY main.py main.py
 
+RUN mkdir /app/data && chown -R ${USER}:${USER} /app
+
 USER ${USER}
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["python", "main.py"]

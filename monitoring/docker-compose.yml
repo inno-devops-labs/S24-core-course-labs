@@ -1,5 +1,3 @@
-version: "3"
-
 networks:
   default:
     name: loki
@@ -20,12 +18,14 @@ x-deploy:
 
 services:
   app-python:
-    image: fedorivn/simple-web-app:python-1.1.0
+    image: fedorivn/simple-web-app:python-1.2.0
     ports:
       - target: 80
         published: 8000
     logging: *default-logging
     deploy: *default-deploy
+    volumes:
+      - ./python-data:/app/data
     healthcheck:
       test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost/health || exit 1"]
       interval: 10s
@@ -33,12 +33,14 @@ services:
       retries: 3
 
   app-rust:
-    image: fedorivn/simple-web-app:rust-1.1.0
+    image: fedorivn/simple-web-app:rust-1.2.0
     ports:
       - target: 80
         published: 8001
     logging: *default-logging
     deploy: *default-deploy
+    volumes:
+      - ./rust-data:/app/data
     healthcheck:
       test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost/health || exit 1"]
       interval: 10s

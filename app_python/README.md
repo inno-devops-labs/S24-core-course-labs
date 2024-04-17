@@ -54,6 +54,16 @@ $ curl http://127.0.0.1:8000
 {"current_time":"2024-01-31 14:16:05"}
 ```
 
+The service also counts the number of visits to the main page. To obtain the
+number of visits. The information is persistent because it is stored in a file
+(`data/visits.txt`) that is created during the first run of the application. To
+view the current number of visits, access the `/visits` endpoint:
+
+```bash
+$ curl http://127.0.0.1:8001/visits
+{"visits":1}
+```
+
 ## Building the Docker Image
 
 To build the Docker image, use the following command:

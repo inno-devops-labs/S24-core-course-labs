@@ -23,6 +23,10 @@ use actix_web_prom::PrometheusMetricsBuilder;
 use chrono::{DateTime, Utc};
 use chrono_tz::{Europe::Moscow, Tz};
 use serde::{Serialize, Serializer};
+use std::fs::OpenOptions;
+use std::io::{prelude::*, SeekFrom};
+
+const VISITS_FILE_PATH: &str = "data/visits.txt";
 
 /// Response struct for the current time in Moscow.
 #[derive(Serialize)]
@@ -41,6 +45,42 @@ impl CurrentTimeResp {
     }
 }
 
+#[derive(Serialize)]
+struct VisitsResp {
+    visits: u64,
+}
+
+impl VisitsResp {
+    fn new(visits_: u64) -> Self {
+        Self { visits: visits_ }
+    }
+}
+
+fn create_visits_file_if_not_exists() -> std::io::Result<()> {
+    if std::path::Path::new(VISITS_FILE_PATH).exists() {
+        return Ok(());
+    }
+    let mut file = OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(VISITS_FILE_PATH)?;
+
+    write!(file, "0")
+}
+
+fn increment_visits() -> std::io::Result<()> {
+    let mut file = OpenOptions::new()
+        .read(true)
+        .write(true)
+        .open(VISITS_FILE_PATH)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    let old_count: u64 = contents.trim().parse().unwrap();
+    let new_count = old_count + 1;
+    file.seek(SeekFrom::Start(0))?;
+    write!(file, "{}", new_count)
+}
+
 /// Serialize Time-zoned datetime to string.
 fn serialize_datetime<S: Serializer>(
     datetime: &DateTime<Tz>,
@@ -54,7 +94,17 @@ fn serialize_datetime<S: Serializer>(
 #[get("/")]
 async fn moscow_time() -> impl Responder {
     println!("Received request for Moscow time");
+    increment_visits().unwrap();
     HttpResponse::Ok().json(CurrentTimeResp::new())
+}
+
+#[get("/visits")]
+async fn visits() -> impl Responder {
+    let count = std::fs::read_to_string("visits.txt")
+        .unwrap()
+        .parse::<u64>()
+        .unwrap();
+    HttpResponse::Ok().json(VisitsResp::new(count))
 }
 
 /// Route for health check.
@@ -65,6 +115,7 @@ async fn health() -> HttpResponse {
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     println!("Starting server at port {}", 80);
+    create_visits_file_if_not_exists().unwrap();
 
     let prometheus = PrometheusMetricsBuilder::new("actix")
         .endpoint("/metrics")
@@ -75,6 +126,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(prometheus.clone())
             .service(moscow_time)
+            .service(visits)
             .service(web::resource("/health").to(health))
     })
     .bind(("0.0.0.0", 80))?
