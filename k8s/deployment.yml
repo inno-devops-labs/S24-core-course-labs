@@ -13,6 +13,7 @@ spec:
       labels:
         app: moscow-time-app
     spec:
+      serviceAccountName: internal-app
       containers:
       - name: moscow-time-app
         image: guzelzakirova/moscow-time-app:1.0.0
