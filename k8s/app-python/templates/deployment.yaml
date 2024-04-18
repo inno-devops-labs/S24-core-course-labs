@@ -50,6 +50,12 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          env:
+            - name: SecretEntry
+              valueFrom:
+                secretKeyRef:
+                  name: example-secret
+                  key: value
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
