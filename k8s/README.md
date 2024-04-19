@@ -70,17 +70,18 @@ Same port
 `kubectl get pods,svc`
 
 ```text
-NAME                                              READY   STATUS    RESTARTS   AGE
-pod/moscow-python-time-64959bfb5-bj5zv        1/1     Running   0          39s
-pod/moscow-python-time-64959bfb5-brhtr        1/1     Running   0          39s
-pod/moscow-python-time-64959bfb5-q77qq        1/1     Running   0          39s
-pod/moscow-flutter-time-568b54759c-dsw9q   1/1     Running   0          44s
-pod/moscow-flutter-time-568b54759c-jcbcs   1/1     Running   0          44s
-pod/moscow-flutter-time-568b54759c-rm2f4   1/1     Running   0          44s
-NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
-service/kubernetes                   ClusterIP      10.96.0.1        <none>        443/TCP          7d1h
-service/moscow-python-time-service     LoadBalancer   10.111.152.135   <pending>     5000:32194/TCP   39s
-service/moscow-flutter-time-service   LoadBalancer   10.98.251.93     <pending>     80:31420/TCP   44s
+NAME                                      READY   STATUS             RESTARTS      AGE
+pod/moscow-flutter-time-f6cd77c8c-4g9kb   0/1     CrashLoopBackOff   1 (9s ago)    21s
+pod/moscow-flutter-time-f6cd77c8c-hjfd8   0/1     CrashLoopBackOff   1 (13s ago)   21s
+pod/moscow-flutter-time-f6cd77c8c-x74gp   0/1     CrashLoopBackOff   1 (11s ago)   21s
+pod/moscow-python-time-6c4478fc97-dkch8   1/1     Running            0             29s
+pod/moscow-python-time-6c4478fc97-dxgb2   1/1     Running            0             29s
+pod/moscow-python-time-6c4478fc97-tk7dr   1/1     Running            0             29s
+
+NAME                                  TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+service/kubernetes                    ClusterIP      10.96.0.1       <none>        443/TCP          132m
+service/moscow-flutter-time-service   LoadBalancer   10.109.153.28   <pending>     80:31360/TCP     16s
+service/moscow-python-time-service    LoadBalancer   10.96.113.42    <pending>     5000:31764/TCP   30s
 ```
 
 `minikube service --all`
@@ -91,30 +92,33 @@ service/moscow-flutter-time-service   LoadBalancer   10.98.251.93     <pending> 
 | default   | kubernetes |             | No node port |
 |-----------|------------|-------------|--------------|
 😿  service default/kubernetes has no node port
-|-----------|----------------------------|-------------|---------------------------|
-| NAMESPACE |          NAME              | TARGET PORT |            URL            |
-|-----------|----------------------------|-------------|---------------------------|
-| default   | moscow-python-time-service |        5000 | http://192.168.49.2:30974 |
-|-----------|----------------------------|-------------|---------------------------|
+|-----------|-----------------------------|-------------|---------------------------|
+| NAMESPACE |            NAME             | TARGET PORT |            URL            |
+|-----------|-----------------------------|-------------|---------------------------|
+| default   | moscow-flutter-time-service |          80 | http://192.168.49.2:31360 |
+|-----------|-----------------------------|-------------|---------------------------|
 |-----------|----------------------------|-------------|---------------------------|
 | NAMESPACE |            NAME            | TARGET PORT |            URL            |
 |-----------|----------------------------|-------------|---------------------------|
-| default   | moscow-flutter-time-service|        80 | http://192.168.49.2:31731 |
+| default   | moscow-python-time-service |        5000 | http://192.168.49.2:31764 |
 |-----------|----------------------------|-------------|---------------------------|
 🏃  Starting tunnel for service kubernetes.
-🏃  Starting tunnel for service moscow-time-service-go.
-🏃  Starting tunnel for service moscow-time-service-python.
-|-----------|----------------------------|-------------|------------------------|
-| NAMESPACE |            NAME            | TARGET PORT |          URL           |
-|-----------|----------------------------|-------------|------------------------|
-| default   | kubernetes                 |             | http://127.0.0.1:59561 |
-| default   | moscow-time-service-go     |             | http://127.0.0.1:59563 |
-| default   | moscow-time-service-python |             | http://127.0.0.1:59565 |
-|-----------|----------------------------|-------------|------------------------|
+🏃  Starting tunnel for service moscow-flutter-time-service.
+🏃  Starting tunnel for service moscow-python-time-service.
+|-----------|-----------------------------|-------------|------------------------|
+| NAMESPACE |            NAME             | TARGET PORT |          URL           |
+|-----------|-----------------------------|-------------|------------------------|
+| default   | kubernetes                  |             | http://127.0.0.1:60798 |
+| default   | moscow-flutter-time-service |             | http://127.0.0.1:60801 |
+| default   | moscow-python-time-service  |             | http://127.0.0.1:60804 |
+|-----------|-----------------------------|-------------|------------------------|
 🎉  Opening service default/kubernetes in default browser...
-🎉  Opening service default/moscow-time-service-go in default browser...
-🎉  Opening service default/moscow-time-service-python in default browser...
+🎉  Opening service default/moscow-flutter-time-service in default browser...
+🎉  Opening service default/moscow-python-time-service in default browser...
 ❗  Because you are using a Docker driver on darwin, the terminal needs to be open to run it.
+^C✋  Stopping tunnel for service moscow-python-time-service.
+✋  Stopped tunnel for service moscow-flutter-time-service.
+✋  Stopped tunnel for service kubernetes.
 ```
 
 
