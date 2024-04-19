@@ -7,7 +7,7 @@ use crate::service::{handlers, state, visits};
 
 pub mod tests;
 
-const VISITS_STORAGE_FILE_PATH: &str = "visits";
+const VISITS_STORAGE_FILE_PATH: &str = "app_data/visits";
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {

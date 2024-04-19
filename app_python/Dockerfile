@@ -8,7 +8,8 @@ RUN adduser --disabled-password app && pip install --no-cache-dir -r requirement
 COPY start.sh /usr/src/app/
 
 COPY ./app ./app
-RUN chmod -R a-w+x+r /usr/src/app 
+RUN mkdir /usr/src/app/app_data 
+RUN chown -R app /usr/src/app
 
 USER app
 EXPOSE 8000

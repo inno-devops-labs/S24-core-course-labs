@@ -9,7 +9,7 @@ class VisitsStorageConfig(BaseSettings):
 
 
 class VisitsFileStorageConfig(VisitsStorageConfig):
-    file_path: Path = Path("visits")
+    file_path: Path = Path("app_data/visits")
     encoding: str = "utf-8"
 
 

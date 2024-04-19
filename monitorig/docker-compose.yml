@@ -29,6 +29,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    volumes:
+      - ./app-python-data:/app/app_data
     networks:
       - loki
     logging: *default-logging
@@ -45,6 +47,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    volumes:
+      - ./app-rust-data:/app/app_data
     networks:
       - loki
     logging: *default-logging
