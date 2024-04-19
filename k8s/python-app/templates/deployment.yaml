@@ -41,21 +41,30 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           env:
+            - name: CONFIG_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap
+                  key: another_key
             {{- include "app.mySecrets" . | indent 12 }}
+          envFrom:
+            - configMapRef:
+                name: configmap
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- with .Values.volumeMounts }}
           volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-      {{- with .Values.volumes }}
+            - name: configuration
+              readOnly: true
+              mountPath: "/config.json"
+              subPath: config.json
       volumes:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        - name: configuration
+          configMap:
+            name: configmap
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -1,0 +1,5 @@
+{
+    "app_name": "My Web App",
+    "environment": "production",
+    "key": "value"
+}
