@@ -117,3 +117,10 @@ three jobs:
 
 These CI workflows help ensure the quality and reliability of the Python package and Docker image associated with this
 repository.
+
+## Counter logic
+
+This application can show the number of times it was accessed by implemented counter logic. To see this, first execute
+`docker-compose build` in `app_python` folder, then run `docker-compose run`, navigate to `localhost:5000/visits` and
+here you can see the number of times this application was accessed. Counter saves this number even after stopping
+application by saving the number in `visits/visits.txt`.
