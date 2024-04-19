@@ -17,7 +17,7 @@ impl VisitsResponse {
 pub async fn base(data: web::Data<AppState>) -> impl Responder {
     let mut counter = data.counter.lock().unwrap();
     *counter += 1;
-    data.visits_storage.increment();
+    let _ = data.visits_storage.increment();
 
     HttpResponse::Ok().body(format!("Session request number: {}", counter))
 }

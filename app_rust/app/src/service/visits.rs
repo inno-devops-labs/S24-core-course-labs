@@ -16,7 +16,7 @@ pub struct VisitsFileStorage {
 
 impl VisitsFileStorage {
     pub fn new(file_path_: String) -> Self {
-        file_mount(&file_path_);
+        let _ = file_mount(&file_path_);
         Self {
             file_path: file_path_.clone(),
         }

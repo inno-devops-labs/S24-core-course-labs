@@ -3,12 +3,15 @@ mod tests {
     use actix_web::{http::header::ContentType, test, web, App};
     use std::sync::Mutex;
 
-    use crate::service::{handlers, state};
+    use crate::service::{handlers, state, visits};
+
+    const VISITS_STORAGE_FILE_PATH: &str = "visits";
 
     #[actix_web::test]
     async fn test_get() {
         let counter = web::Data::new(state::AppState {
             counter: Mutex::new(0),
+            visits_storage: visits::VisitsFileStorage::new(String::from(VISITS_STORAGE_FILE_PATH)),
         });
         let app =
             test::init_service(App::new().app_data(counter.clone()).service(handlers::base)).await;
@@ -25,6 +28,7 @@ mod tests {
     async fn test_count() {
         let counter = web::Data::new(state::AppState {
             counter: Mutex::new(0),
+            visits_storage: visits::VisitsFileStorage::new(String::from(VISITS_STORAGE_FILE_PATH)),
         });
         let app =
             test::init_service(App::new().app_data(counter.clone()).service(handlers::base)).await;
@@ -35,7 +39,7 @@ mod tests {
 
         let resp = test::call_service(&app, req).await;
 
-        assert_eq!(test::read_body(resp).await, "Request number: 1");
+        assert_eq!(test::read_body(resp).await, "Session request number: 1");
 
         // second request to check number updating
         let req = test::TestRequest::default()
@@ -44,6 +48,6 @@ mod tests {
 
         let resp = test::call_service(&app, req).await;
 
-        assert_eq!(test::read_body(resp).await, "Request number: 2");
+        assert_eq!(test::read_body(resp).await, "Session request number: 2");
     }
 }

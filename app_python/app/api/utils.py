@@ -1,3 +1,5 @@
+"""Service handlers (addons)."""
+
 from fastapi import APIRouter, Depends, responses
 
 from app.api import di

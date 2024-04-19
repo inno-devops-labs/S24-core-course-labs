@@ -10,7 +10,6 @@ class VisitsStorageConfig(BaseSettings):
 
 class VisitsFileStorageConfig(VisitsStorageConfig):
     file_path: Path = Path("app_data/visits")
-    encoding: str = "utf-8"
 
 
 class VisitsStorage(ABC):
@@ -27,7 +26,6 @@ class VisitsStorage(ABC):
 class VisitsFileStorage(VisitsStorage):
     def __init__(self, config: VisitsFileStorageConfig):
         self.file = config.file_path
-        self._encoding = config.encoding
 
         self.file_mount()
 
@@ -35,15 +33,14 @@ class VisitsFileStorage(VisitsStorage):
         if self.file.exists():
             return
 
-        with open(self.file, "w", encoding=self._encoding) as file:
-            file.write(str(0))
+        self.file.write_text(str(0))
 
     async def read_data(self) -> int:
-        with open(self.file, "r", encoding=self._encoding) as file:
+        with open(self.file) as file:
             return int(file.read())
 
     async def increment_data(self) -> None:
-        with open(self.file, "r+", encoding=self._encoding) as file:
+        with open(self.file, "r+") as file:
             visits = int(file.read() or "0")
             visits += 1
 

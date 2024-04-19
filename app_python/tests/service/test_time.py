@@ -7,9 +7,10 @@ from app.api import app, di
 
 
 @pytest.fixture()
-async def app_mock(time_manager_factory) -> TestClient:
+async def app_mock(time_manager_factory, visits_storage_factory) -> TestClient:
     client = TestClient(app)
     app.dependency_overrides[di.time_manager] = time_manager_factory
+    app.dependency_overrides[di.visits_storage] = visits_storage_factory
     return client
 
 
