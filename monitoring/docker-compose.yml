@@ -34,9 +34,9 @@ services:
       - loki
 
   app_flutter:
-    image: timurharin/flutter_web:latest
+    image: timurharin/flutter_web:latest_metrics
     ports:
-      - "80:80"
+      - "80:8080"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:80"]
       interval: 10s
