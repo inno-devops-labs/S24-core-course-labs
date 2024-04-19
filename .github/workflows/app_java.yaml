@@ -87,6 +87,8 @@ jobs:
           file: app_java/Dockerfile
           build-args: |
             JAR_FILE=app_java/target/app-0.0.1-SNAPSHOT.jar
+            UID=10001
+            GID=10001
           push: true
           tags: "${{ secrets.DOCKER_USERNAME }}/app_java:latest"
           cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/app_java:latest

@@ -40,6 +40,9 @@ spec:
                 name: credentials1
                 key: password
           {{- include "app-java.env" . | nindent 10 }}
+          envFrom:
+          - configMapRef:
+              name: app-java-config
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

@@ -1,12 +1,19 @@
-FROM eclipse-temurin:21-jdk-alpine AS base
+FROM openjdk:23-bookworm AS base
 
-RUN adduser app_java_user --system
+ARG UID=10001
+ARG GID=10001
+
+RUN groupadd -g "${GID}" user \
+    && useradd -u "${UID}" -g "${GID}" user
 WORKDIR /app_java
 
 ARG JAR_FILE
-COPY --chown=app_java_user:app_java_user ${JAR_FILE} app.jar
+COPY --chown=user:user ${JAR_FILE} app.jar
 
-USER app_java_user
+RUN mkdir -p ./app/data/
+RUN chown -R user ./app
+
+USER user
 EXPOSE 8080
 
 ENV SPRINGPROFILES=prod,actuator

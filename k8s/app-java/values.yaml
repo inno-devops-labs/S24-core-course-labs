@@ -90,18 +90,15 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-# Additional volumes on the output Deployment definition.
-volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
+volumes:
+- name: app-java-config-volume
+  configMap:
+    name: app-java-config
 
-# Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+volumeMounts:
+- name: app-java-config-volume
+  mountPath: "/app/data/config.json"
+  subPath: "config.json"
 
 nodeSelector: {}
 

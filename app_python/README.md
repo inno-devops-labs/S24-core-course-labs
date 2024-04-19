@@ -5,13 +5,14 @@
 ## Overview
 
 This is a simple python web application that shows current time in Moscow.
+Also supports `/visits` endpoint returning `{"visits": N}` JSON.
 
 ## Installation
 
 - Clone this repository and navigate to the project directory:
 
 ```bash
-git clone https://github.com/dmfrpro/S24-core-course-labs -b lab1
+git clone https://github.com/dmfrpro/S24-core-course-labs
 cd S24-core-course-labs/app_python
 ```
 
@@ -28,6 +29,7 @@ pip3 install -r requirements.txt
 ```bash
 python3 -m gunicorn --bind 0.0.0.0:8080 app:app
 curl localhost:8080
+curl localhost:8080/visits
 ```
 
 ## Docker
@@ -36,14 +38,17 @@ curl localhost:8080
 
 ```bash
 cd S24-core-course-labs/app_python
-docker build --tag your_docker_username/app_python:v1.0 .
+docker build \
+   --tag $(whoami)/app_python:v1.1 \
+   --build-arg UID=10001 \
+   --build-arg GID=10001 .
 ```
 
 ### Pull and Run
 
 ```bash
-docker pull dmfrpro/app_python:v1.0
-docker run -p 8080:8080 dmfrpro/app_python:v1.0
+docker pull dmfrpro/app_python:latest
+docker run -p 8080:8080 dmfrpro/app_python:latest
 ```
 
 ## CI Workflow

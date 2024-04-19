@@ -5,6 +5,7 @@
 ## Overview
 
 This is a simple java web application that shows current time in **Samara**.
+Also supports `/visits` endpoint returning `{"visits": N}` JSON.
 
 ## Installation
 
@@ -23,6 +24,7 @@ cd S24-core-course-labs/app_java
 mvn clean package
 java -jar target/app-0.0.1-SNAPSHOT.jar
 curl localhost:8000
+curl localhost:8080/visits
 ```
 
 ## Docker
@@ -32,16 +34,18 @@ curl localhost:8000
 ```bash
 cd S24-core-course-labs/app_java
 mvn clean package
-docker build --build-arg \
-    JAR_FILE=target/app-0.0.1-SNAPSHOT.jar \
-    --tag=dmfrpro/app_java:v1.0 .
+docker build \
+   --tag=$(whoami)/app_java:v1.1 \
+   --build-arg JAR_FILE=target/app-0.0.1-SNAPSHOT.jar \
+   --build-arg UID=10001 \
+   --build-arg GID=10001 .
 ```
 
 ### Pull and Run
 
 ```bash
-docker pull dmfrpro/app_java:v1.0
-docker run -p 8080:8080 dmfrpro/app_java:v1.0
+docker pull dmfrpro/app_java:latest
+docker run -p 8080:8080 dmfrpro/app_java:latest
 ```
 
 ## CI Workflow
