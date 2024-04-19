@@ -3,9 +3,11 @@ use actix_web_prom::PrometheusMetricsBuilder;
 use std::sync::Mutex;
 
 pub mod service;
-use crate::service::{handlers, state};
+use crate::service::{handlers, state, visits};
 
 pub mod tests;
+
+const VISITS_STORAGE_FILE_PATH: &str = "visits";
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -16,14 +18,16 @@ async fn main() -> std::io::Result<()> {
         .build()
         .unwrap();
 
-    let counter = web::Data::new(state::AppState {
+    let state = web::Data::new(state::AppState {
         counter: Mutex::new(0),
+        visits_storage: visits::VisitsFileStorage::new(String::from(VISITS_STORAGE_FILE_PATH)),
     });
     HttpServer::new(move || {
         App::new()
             .wrap(prometheus.clone())
-            .app_data(counter.clone())
+            .app_data(state.clone())
             .service(handlers::base)
+            .service(handlers::visits)
             .service(web::resource("/health").to(handlers::health))
     })
     .bind(("0.0.0.0", 8000))?
