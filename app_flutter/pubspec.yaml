@@ -1,0 +1,18 @@
+name: server
+description: A server app using the shelf package and Docker.
+version: 1.0.0
+environment:
+  sdk: ^3.2.6
+
+dependencies:
+  args: ^2.4.0
+  shelf: ^1.4.0
+  shelf_router: ^1.1.0
+  intl: ^0.19.0
+  prometheus_client: ^1.0.0+1
+  prometheus_client_shelf: ^1.0.0+1
+
+dev_dependencies:
+  http: ^1.1.0
+  lints: ^2.1.0
+  test: ^1.24.0
