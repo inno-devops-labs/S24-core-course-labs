@@ -32,6 +32,8 @@ services:
       - loki
     logging: *default-logging
     deploy: *default-deploy
+    volumes:
+      - ./python-data:/app/data
 
   app_nodejs:
     container_name: app_nodejs
