@@ -12,10 +12,12 @@ x-logging:
 
 services:
   app-python:
-    build: ../app_python
+    build: ../app-python
     ports:
       - "8000:5000"
     logging: *default-logging
+    volumes:
+      - ./python-data:/app/data
 
   loki:
     image: grafana/loki:2.9.2
