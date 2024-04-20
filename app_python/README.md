@@ -94,3 +94,12 @@ To enable the CI workflow, the following GitHub repository secrets are required:
 
 - `DOCKER_ACCESS_TOKEN`: Docker access token for authentication when pushing Docker images.
 - `SNYK_TOKEN`: Needed to use Snyk.
+
+## API description
+
+1. `/` - automatically redirects to `/show_moscow_time`
+3. `/visits` - returns number of visits
+
+## Data Volumes
+
+The number of visits are saved in the `data` folder within `visits.txt`

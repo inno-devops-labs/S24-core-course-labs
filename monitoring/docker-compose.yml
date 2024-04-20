@@ -22,6 +22,7 @@ services:
     image: djhovi/app_python
     volumes:
       - ./logs:/app/logs
+      - ./app-python-data:/app/data
     ports:
       - target: 5000
         published: 5000
