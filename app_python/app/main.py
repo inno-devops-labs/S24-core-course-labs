@@ -3,7 +3,6 @@ import os
 from flask import Flask, render_template
 from datetime import datetime
 import pytz
-import shelve
 
 app = Flask(__name__)
 
