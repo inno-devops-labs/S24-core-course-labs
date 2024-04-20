@@ -1,29 +1,30 @@
-# Use the official Dart image from Docker Hub.
-FROM dart:stable AS build
+FROM debian:latest AS build-env
 
-# Set the working directory in the Docker image filesystem.
-WORKDIR /app
+RUN apt-get update 
+RUN apt-get install -y bash curl file git unzip which xz-utils zip
+RUN apt-get clean
 
-# Copy the Dart package manifest.
-COPY pubspec.* ./
-# Install dependencies (including `pub get`).
-RUN dart pub get
+RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 
-# Copy the rest of the source code.
-COPY . .
+ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
-# Build the application.
-RUN dart pub get --offline
+RUN flutter doctor -v
 
-# Compile the Dart application.
-RUN dart compile exe bin/server.dart -o bin/server
+RUN flutter channel master
+RUN flutter upgrade
+RUN flutter config --enable-web
 
-# Build minimal serving image from AOT-compiled `bin/server`
-# and the pre-built AOT-runtime in the `/runtime/` directory of the base image.
-FROM scratch
-COPY --from=build /runtime/ /
-COPY --from=build /app/bin/server /app/bin/
+RUN mkdir /app/
+COPY . /app/
+WORKDIR /app/
+RUN flutter build web
 
-# Start server.
-EXPOSE 8080
-CMD ["/app/bin/server"]
+RUN adduser nonroot
+
+USER nonroot
+
+FROM nginx:1.21.1-alpine
+
+COPY --from=build-env /app/build/web /usr/share/nginx/html
+
+HEALTHCHECK --interval=1m --timeout=3s CMD curl --fail http://localhost:80/ || exit 1
