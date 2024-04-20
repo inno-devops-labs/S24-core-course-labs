@@ -28,10 +28,11 @@ Minimalistic Python web application that shows current Moscow time
 ### Running the Application
 Serve the Flask application:
 ```sh
-(venv) $ flask --app app run
+(venv) $ python app.py
 ```
-Navigate to `http://127.0.0.1:5000` in your favorite web browser to access the service
+Navigate to `http://127.0.0.1:5000` in your favorite web browser to access the service. 
 
+You can also track the current number of website visits at `/visits` endpoint.
 
 ## Testing
 You can run the tests with the following command:
