@@ -56,6 +56,14 @@ spec:
                 secretKeyRef:
                   name: secret
                   key: value
+            - name: CONFIG_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap
+                  key: key
+          envFrom:
+            - configMapRef:
+                name: configmap
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}

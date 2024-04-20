@@ -1,0 +1,5 @@
+{
+  "name": "app-python",
+  "framework": "flask",
+  "author": "Lev Rekhlov"
+}

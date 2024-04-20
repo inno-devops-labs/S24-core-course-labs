@@ -39,6 +39,16 @@ This is a simple Flask web application that displays the current time in Moscow.
 3. Open the web browser and navigate to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to see the current time in
    Moscow.
 
+## API description
+
+1. `/` - automatically redirects to `/show_moscow_time`
+2. `/show_moscow_time` - show the page with Moscow time
+3. `/visits` - returns number of visits as dictionary `{"visits": int}`
+
+## Data Volumes
+
+The number of visits are saved in the `data` folder within `visits.txt`
+
 ## How to Test
 
 1. Install the required packages:
@@ -64,10 +74,10 @@ This is a simple Flask web application that displays the current time in Moscow.
 2. Run the Docker container:
 
     ```bash
-    docker run -p 8080:8080 rekhlov/devops-flask-app
+    docker run -p 5000:5000 rekhlov/devops-flask-app
     ```
 
-3. Open the web browser and navigate to [http://127.0.0.1:8080/](http://127.0.0.1:8080/) to see the current time in
+3. Open the web browser and navigate to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to see the current time in
    Moscow.
 
 ### Building the Docker Image

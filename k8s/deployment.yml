@@ -17,4 +17,4 @@ spec:
         - name: app-python
           image: rekhlov/devops-flask-app
           ports:
-            - containerPort: 8080
+            - containerPort: 5000

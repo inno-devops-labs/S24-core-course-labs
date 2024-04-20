@@ -82,9 +82,12 @@ services:
   app-python:
     image: rekhlov/devops-flask-app:latest
 
+    volumes:
+      - ./app-python-data:/app_python/data
+
     ports:
-      - target: 8080
-        published: 8080
+      - target: 5000
+        published: 5000
 
     logging:
       driver: "json-file"
@@ -93,7 +96,7 @@ services:
         max-size: "10m"
 
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8080" ]
+      test: [ "CMD", "curl", "-f", "http://localhost:5000" ]
       interval: 1m30s
       timeout: 10s
       retries: 3

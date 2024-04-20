@@ -16,7 +16,7 @@ USER myuser
 # Copy only the necessary files
 COPY static ./static
 COPY templates ./templates
-COPY app.py requirements.txt ./
+COPY app.py requirements.txt config.py ./
 
 # Install dependencies
 RUN pip install -r requirements.txt --no-cache-dir --user
