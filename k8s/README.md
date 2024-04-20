@@ -138,6 +138,7 @@ moscow-time-ingress-manifest   <none>   moscow-flutter-time.example.com,moscow-p
 ```
 
 And these problems because of arm/amd issueses
+And my flutter app container works with docker well, but in minikube - problems
 https://stackoverflow.com/questions/77355846/exec-usr-local-bin-docker-entrypoint-sh-exec-format-error
 
 `kubectl logs moscow-flutter-time-f6cd77c8c-4g9kb`                               
