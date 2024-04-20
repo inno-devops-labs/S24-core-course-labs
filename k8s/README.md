@@ -129,3 +129,19 @@ service/moscow-python-time-service    LoadBalancer   10.96.113.42    <pending>  
 ### Python
 
 ![](./assets/python.png)
+
+`kubectl get ingress`
+
+```text
+NAME                           CLASS    HOSTS                                                            ADDRESS   PORTS   AGE
+moscow-time-ingress-manifest   <none>   moscow-flutter-time.example.com,moscow-python-time.example.com             80      77s
+```
+
+And these problems because of arm/amd issueses
+https://stackoverflow.com/questions/77355846/exec-usr-local-bin-docker-entrypoint-sh-exec-format-error
+
+`kubectl logs moscow-flutter-time-f6cd77c8c-4g9kb`                               
+exec /docker-entrypoint.sh: exec format error
+
+So I dont have amd machine to give amd image for minikube
+

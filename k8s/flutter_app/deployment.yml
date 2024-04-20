@@ -16,5 +16,6 @@ spec:
       containers:
       - name: moscow-flutter-time
         image: timurharin/flutter_web:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
