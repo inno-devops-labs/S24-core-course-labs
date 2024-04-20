@@ -18,11 +18,12 @@ def update_visits(func):
     """
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        with open(VISITS_PATH, 'r') as f:
-            current_visits = int(f.read())
+        if not os.environ['CONFIG_TYPE'] == 'config.TestingConfig':
+            with open(VISITS_PATH, 'r') as f:
+                current_visits = int(f.read())
 
-        with open(VISITS_PATH, 'w') as f:
-            f.write(str(current_visits + 1))
+            with open(VISITS_PATH, 'w') as f:
+                f.write(str(current_visits + 1))
 
         return func(*args, **kwargs)
 
@@ -63,13 +64,6 @@ def get_visits():
 
 
 def main():
-    if not os.path.exists(VISITS_PATH):
-        if not os.path.exists(DATA_PATH):
-            os.mkdir(str(DATA_PATH))
-
-        with open(VISITS_PATH, 'w') as f:
-            f.write('0')
-
     app.run()
 
 
