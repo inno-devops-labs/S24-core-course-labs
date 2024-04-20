@@ -27,10 +27,10 @@ def increment_visits():
     """
     if not os.path.exists(visits_file):
         os.mkdir(os.path.dirname(visits_file))
-        with open(visits_file, "w") as f:
+        with open(visits_file, "w", encoding="utf-8") as f:
             f.write("0")
 
-    with open(visits_file, "r+") as f:
+    with open(visits_file, "r+", encoding="utf-8") as f:
         visits_cnt = str(int(f.read()) + 1)
         f.seek(0)
         f.write(visits_cnt)
@@ -62,7 +62,7 @@ def visits():
     """
     Returns number of visits
     """
-    with open(visits_file, "r") as f:
+    with open(visits_file, "r", encoding="utf-8") as f:
         return {'visits': int(f.read())}
 
 
