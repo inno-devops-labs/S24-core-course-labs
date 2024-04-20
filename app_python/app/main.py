@@ -49,6 +49,7 @@ def create_visits_file_if_not_exists():
 
     print(f"Visits file created with initial value {init_value}")
 
+
 @app.route("/")
 def home():
     increment_visits()
