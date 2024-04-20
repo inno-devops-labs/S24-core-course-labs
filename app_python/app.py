@@ -8,9 +8,9 @@ from zoneinfo import ZoneInfo
 from flask import Flask, redirect, render_template, Response
 from prometheus_client import generate_latest
 
-from config import visits_file
 
 app = Flask(__name__)
+visits_file = "./data/visits.txt"
 
 
 @app.route("/")
