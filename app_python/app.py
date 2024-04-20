@@ -10,7 +10,7 @@ from prometheus_client import generate_latest
 
 
 app = Flask(__name__)
-visits_file = "./data/visits.txt"
+VISITS_FILE = "./data/visits.txt"
 
 
 @app.route("/")
@@ -25,12 +25,12 @@ def increment_visits():
     """
     Increment number of visits and write to file
     """
-    if not os.path.exists(visits_file):
-        os.mkdir(os.path.dirname(visits_file))
-        with open(visits_file, "w", encoding="utf-8") as f:
+    if not os.path.exists(VISITS_FILE):
+        os.mkdir(os.path.dirname(VISITS_FILE))
+        with open(VISITS_FILE, "w", encoding="utf-8") as f:
             f.write("0")
 
-    with open(visits_file, "r+", encoding="utf-8") as f:
+    with open(VISITS_FILE, "r+", encoding="utf-8") as f:
         visits_cnt = str(int(f.read()) + 1)
         f.seek(0)
         f.write(visits_cnt)
@@ -62,7 +62,7 @@ def visits():
     """
     Returns number of visits
     """
-    with open(visits_file, "r", encoding="utf-8") as f:
+    with open(VISITS_FILE, "r", encoding="utf-8") as f:
         return {'visits': int(f.read())}
 
 
