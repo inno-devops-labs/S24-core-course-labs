@@ -109,6 +109,23 @@ python3 test_app.py
 
 - Build and Push Docker Image: The docker/build-push-action@v2 action builds a Docker image from the Dockerfile in the app_python directory and pushes it to Docker Hub if the workflow was triggered by a tag.
 
+## Counter logic
+
+To run the application in mode to count the number of accesses times follow the instruction:
+``` bash
+# navigate to app_python directory
+cd app_python
+
+# build the docker image
+docker-compose build
+
+# run image
+docker-compose up
+```
+Now you can access the page with counter which saves the number of times this app was accessed. 
+The counter implemented by counter-logic. The counter retains this number in `visits/visits.txt` even after the application has been stopped.
+You can access the page by navigating to `http://localhost:5001/visits` 
+
 ## File Structure
 
 - `PYTHON.md`: Contains the breif explanation of best practicies while using Flask.
