@@ -47,6 +47,14 @@ If you haven't built the image locally, you can pull it from Docker Hub using th
 To run the application as a Docker container, use the following command:
 ```docker run -p 5000:5000 profectus/app_python```
 
+## Counter
+1. To run the application you have to run:
+```markdown
+docker-compose build
+docker-compose up
+```
+inside the `app_python` folder.
+
 ## Dependencies
 blinker==1.7.0
 click==8.1.7
