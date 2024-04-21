@@ -1,6 +1,7 @@
 from flask import Flask, render_template, Response
 from datetime import datetime
 import pytz
+import os
 from prometheus_client import Counter, Gauge, generate_latest
 
 app = Flask(__name__)
@@ -14,6 +15,13 @@ def getMoscowTime(timezone='Europe/Moscow'):
     moscow_tz = pytz.timezone(timezone)
     moscow_time = datetime.now(moscow_tz)
     return moscow_time
+
+
+# Ensure data/visits file exists
+if not os.path.exists('data/visits'):
+    os.mkdir("data")
+    with open('data/visits', 'a+') as f:
+        f.write('0')
 
 
 @app.route('/')
