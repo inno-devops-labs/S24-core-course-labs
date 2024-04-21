@@ -4,6 +4,8 @@
 
 This service shows current time in Moscow zone.
 
+Check `/visits` to get total visits count for the website.
+
 ## Setup
 
 ```bash

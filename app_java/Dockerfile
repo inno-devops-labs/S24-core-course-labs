@@ -16,6 +16,9 @@ RUN adduser -DH app
 
 WORKDIR /app
 
+RUN mkdir /app/vol
+RUN chown -R app:app /app
+
 USER app
 
 COPY --from=build /build/build/libs/devops_java-0.0.1-SNAPSHOT.jar /app/

@@ -12,6 +12,9 @@ COPY main.py /app/
 
 RUN chmod 444 /app/main.py
 
+RUN mkdir /app/vol
+RUN chown -R app:app /app
+
 USER app
 
 EXPOSE 8080
