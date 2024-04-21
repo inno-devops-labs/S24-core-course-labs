@@ -50,6 +50,9 @@ spec:
                 secretKeyRef:
                   key: MYSECRET
                   name: my-secret
+          envFrom:
+            - configMapRef:
+                name: config
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}

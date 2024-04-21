@@ -9,14 +9,36 @@ metrics = PrometheusMetrics(app)
 
 metrics.info('app_info', 'Application info', version='1.0.0')
 
+VISITS_FILE_PATH = "/app/vol/visits"
+
+
+def log_visit() -> int:
+    with open(VISITS_FILE_PATH, "w+") as visits_file:
+        l = visits_file.readline()
+        if l == "":
+            l = "0"
+        visits_file.seek(0)
+        visits = int(l) + 1
+        visits_file.write(str(visits))
+        return visits
+
 
 @app.route('/', methods=['GET'])
 def index():
     """
     :return: Current Moscow time
     """
+    log_visit()
     mos_date_time = datetime.now(ZoneInfo("Europe/Moscow"))
     return mos_date_time.isoformat()
+
+
+@app.route('/visits', methods=['GET'])
+def visits():
+    """
+    :return: Visits count
+    """
+    return str(log_visit())
 
 
 if __name__ == '__main__':
