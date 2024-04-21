@@ -14,8 +14,11 @@ def get_current_time() -> datetime:
 VISITS_FILE = "./data/visits"
 
 
+def sane_opener(name: str, flags: int):
+    return os.open(name, flags | os.O_CREAT)
+
+
 def increment_visits():
-    sane_opener = lambda name, flags: os.open(name, flags | os.O_CREAT)
     with open(VISITS_FILE, "r+", opener=sane_opener) as f:
         try:
             counter = int(f.read())
@@ -50,7 +53,11 @@ async def visits(_request: web.Request) -> web.StreamResponse:
 
 app = web.Application()
 app.add_routes(
-    [web.get("/", handle), web.get("/metrics", metrics), web.get("/visits", visits)]
+    [
+        web.get("/", handle),
+        web.get("/metrics", metrics),
+        web.get("/visits", visits),
+    ]
 )
 app.middlewares.append(metrics_middleware)
 
