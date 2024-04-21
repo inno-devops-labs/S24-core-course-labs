@@ -30,10 +30,14 @@ docker pull nabuki/moscowtime-web:latest
 ```
 
 ## Run
-Once the Docker image is built or pulled, you can run the container using the following command:
+Once the Docker image is built or pulled, you can run the container using the following commands:
 
 ```bash
-docker run -p <some host port: p>:8080 nabuki/moscowtime-web:latest
+chmod 666 ./visits
+```
+
+```bash
+docker run -p <some host port: p>:8080 -v $(pwd)/visits:/app/visits nabuki/moscowtime-web:latest
 ```
 
 - Navigate to `http://localhost:<p>/` in your browser
