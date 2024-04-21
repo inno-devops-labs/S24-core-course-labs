@@ -11,6 +11,13 @@ $ curl localhost:8081
 2024-02-05T23:28:37.741671607+03:00
 ```
 
+The app also tracks how many times it was accessed.
+
+```
+$ curl localhost:8081/visits
+9
+```
+
 ## Installation
 
 Ensure that you have Haskell and Stack installed. After that, build the
@@ -43,7 +50,8 @@ docker pull snejugal/devops-lab2-haskell
 Once you obtain the image, run it using
 
 ```bash
-docker run --rm -p 8081:8081 snejugal/devops-lab2-haskell
+docker run --rm -p 8080:8080 -v ./data:/app/data -d snejugal/devops-lab2-haskell
+chmod a+w data
 ```
 
 ## Testing

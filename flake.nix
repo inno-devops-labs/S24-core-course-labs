@@ -22,6 +22,12 @@
             python311Packages.aiohttp
             python311Packages.aiohttp-openmetrics
 
+            stack
+            (haskell-language-server.override {
+              supportedGhcVersions = [ "92" ];
+            })
+            zlib
+
             kubernetes
             minikube
             (wrapHelm kubernetes-helm {
