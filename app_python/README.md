@@ -13,6 +13,11 @@ Then the app accept GET requests on ```/```, which returns the OK status code wi
 {"time":  "2024-02-05 00:02:29"}
 ```
 
+App also have ```GET /visits``` endpoint, which returns the number of visits to the app. The response is in JSON format
+```json
+{"visits":14}
+```
+
 ## Installation
 
 1. Clone this repository.
