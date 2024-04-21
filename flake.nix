@@ -16,6 +16,12 @@
       in with pkgs; {
         devShells.default = mkShell {
           packages = [
+            python311
+            ruff
+            nodePackages.pyright
+            python311Packages.aiohttp
+            python311Packages.aiohttp-openmetrics
+
             kubernetes
             minikube
             (wrapHelm kubernetes-helm {

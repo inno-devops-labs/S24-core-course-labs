@@ -11,6 +11,13 @@ $ curl localhost:8080
 2024-02-05T21:58:51.772798+03:00
 ```
 
+The app also tracks how many times it was accessed.
+
+```
+$ curl localhost:8080/visits
+9
+```
+
 ## Installation
 
 Ensure that you have Python 3 installed. After that, install the required
@@ -53,7 +60,8 @@ docker pull snejugal/devops-lab2
 Once you obtain the image, run it using
 
 ```bash
-docker run --rm -p 8080:8080 snejugal/devops-lab2
+docker run --rm -p 8080:8080 -v ./data:/app/data -d snejugal/devops-lab2
+chmod a+w data
 ```
 
 ## Testing
