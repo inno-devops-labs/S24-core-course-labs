@@ -2,15 +2,16 @@ FROM python:3.11.5-alpine3.18
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
-WORKDIR /app
-
 COPY requirements.txt .
 RUN pip install -r requirements.txt --no-cache-dir
 
-COPY main.py .
-
-RUN adduser app --system -D
+RUN adduser app --system -S /bin/nologin -D -H
+RUN mkdir /data && chown app /data
+VOLUME [ "/data" ]
 USER app
+WORKDIR /app
+
+COPY main.py .
 
 ENV PORT="8000"
 EXPOSE $PORT

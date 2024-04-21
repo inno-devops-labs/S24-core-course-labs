@@ -16,6 +16,8 @@ services:
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
     networks:
       - monitoring
+    volumes:
+      - ./app_data:/data
 
   app_dotnet:
     image: majorro/devops-engineering-course:dotnet

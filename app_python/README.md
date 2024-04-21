@@ -4,6 +4,8 @@
 
 This is a simple web application that shows the current time in Moscow.
 
+Number of visits is available on the `/visits` endpoint.
+
 ## Getting started locally
 
 ### Prerequisites
