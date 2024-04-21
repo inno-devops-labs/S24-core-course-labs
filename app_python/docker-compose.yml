@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  pak-server:
+    build: .
+    ports: 
+     - "80:80"
+    volumes:
+      - "./visits.txt:/home/user/visits.txt"

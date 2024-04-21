@@ -68,6 +68,10 @@ Run docker container from image using
 docker run -p 80:80 catdog905/dev-ops-cours-app-python
 ```
 
+## Visits
+
+The service saves number of application endpoint visits in visits.txt file
+
 ## CI workflow
 
 The project have 2 github workflows: `validator.yml` and `docker-publish.yml`
