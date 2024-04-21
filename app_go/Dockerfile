@@ -32,7 +32,7 @@ COPY . .
 RUN CGO_ENABLED=0 go build -o /moscow-time
 
 # Create a logs directory and set its permissions
-RUN mkdir /app/logs && chown -R appuser:appuser /app/logs
+RUN mkdir /app/logs && mkdir /app/data && chown -R appuser:appuser /app
 
 # Set the user to the non-root app user
 USER appuser

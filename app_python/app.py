@@ -27,12 +27,24 @@ def show_time():
     # Render the time in a human-friendly format
     formatted_moscow_time = moscow_time.strftime('%H:%M:%S')
 
+    # write the count to visits file
+    with open('data/visits', 'w') as f:
+        f.write(str(REQUEST_COUNT._value.get()))
+
     return render_template('time.html', time_in_moscow=formatted_moscow_time)
 
 
 @app.route('/metrics')
 def metrics():
     return Response(generate_latest(), mimetype='text/plain')
+
+
+@app.route('/visits')
+def visits():
+    # get visits count from the visits file
+    with open('data/visits', 'r') as f:
+        visits_count = f.read()
+    return Response("Total visits: " + str(visits_count), mimetype='text/plain')
 
 
 if __name__ == '__main__':

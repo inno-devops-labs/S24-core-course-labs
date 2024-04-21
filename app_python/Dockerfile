@@ -32,6 +32,8 @@ USER appuser
 COPY templates ./templates
 COPY app.py requirements.txt ./
 
+RUN mkdir /app/data && touch /app/data/visits.txt && chown -R appuser:appuser /app
+
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
 

@@ -1,0 +1,19 @@
+{
+  "app_name": "my_web_app",
+  "environment": "production",
+  "HTTP_PORT": 8080,
+  "GRPC_PORT": 20051,
+  "LOG_FORMAT": "json",
+  "METRICS": "solomon",
+  "kafka": {
+    "host": "localhost",
+    "port": 80
+  },
+  "logging": {
+    "level": "debug",
+    "file_path": "/log/my_app.log"
+  },
+  "api_keys": {
+    "yandex_maps": "YOUR_API_KEY"
+  }
+}

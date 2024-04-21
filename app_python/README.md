@@ -100,6 +100,13 @@ You should now be able to access the app at http://localhost:8080.
 
 Use docker ps to verify that your container is running, and docker logs <container-id> for inspecting the application logs.
 
+### Visits
+To get visits statistic you need to go to this link
+
+```text
+localhost:8080/visits
+```
+
 ## Continuous Integration (CI) Workflow
 
 Our project leverages GitHub Actions to automate the testing, linting, security vulnerability checking, and Docker image building/pushing processes. This ensures that every push and pull request triggers a series of checks to maintain code quality and security standards.

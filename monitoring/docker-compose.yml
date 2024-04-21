@@ -20,6 +20,8 @@ x-deploy:
 services:
   app-python:
     image: rmoll/moscow_time_web_app:latest
+    volumes:
+      - ./python-data:/app/data
     ports:
       - target: 8080
         published: 8080
@@ -37,6 +39,7 @@ services:
     image: rmoll/moscow_time_web_app_go:latest
     volumes:
       - ./logs:/app/logs
+      - ./go-data:/app/data
     ports:
       - target: 8081
         published: 8081
