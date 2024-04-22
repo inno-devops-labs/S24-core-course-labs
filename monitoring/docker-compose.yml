@@ -6,6 +6,8 @@ networks:
 services:
   webapp:
     image: ilnurha/dev_ops_course_core:latest
+    volumes:
+      - python_visits:/app_data/visits
     expose:
       - 5001
     ports:
@@ -159,3 +161,6 @@ services:
       timeout: 10s
 
 # Source for healthchecks: https://dev.to/paulknulst/how-to-successfully-implement-a-healthcheck-in-docker-compose-1hpk
+
+volumes:
+  python_visits:
