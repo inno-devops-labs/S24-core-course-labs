@@ -7,6 +7,8 @@ The application is built using the Flask framework and utilizes
 the datetime module for handling time and the pytz library for
 handling time zones.
 
+`/visits` route is used for number of total visits on this app 
+
 ## Flask Installation
 
 1. Ensure you have Python installed on your system. You can download it from `python.org`.
@@ -50,16 +52,16 @@ Run commands from `app_python` directory
 
    ```bash
    cd app_python
-   docker build -t app_python .
+   docker-compose build
    ```
 
 2. Run stage
 
    ```bash
-   docker run -d -p 5000:5000 app_python
+   docker-compose up
    ```
 
-3. Open <http://localhost:5000/> and see the result
+3. Open <http://localhost:5080/> and see the result
 
 ### Remote run
 

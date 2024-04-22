@@ -25,6 +25,9 @@ serviceAccount:
 
 podAnnotations: {}
 
+podLabels: {}
+
+
 podSecurityContext: {}
   # fsGroup: 2000
 
@@ -74,6 +77,16 @@ autoscaling:
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
+
+volumes:
+  - name: config-volume
+    configMap:
+      name: app-pg
+
+volumeMounts:
+  - name: config-volume
+    mountPath: /app/config.json
+    subPath: config.json
 
 nodeSelector: {}
 

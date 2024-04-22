@@ -1,19 +1,36 @@
 from datetime import datetime
 import pytz
+from flask import Flask
+import os
 
-from fastapi import FastAPI
-from prometheus_fastapi_instrumentator import Instrumentator
+app = Flask(__name__)
 
-app = FastAPI()
-Instrumentator().instrument(app).expose(app)
+counter = 0
 
+if not os.path.exists('visits'):
+    os.makedirs('visits')
 
-@app.head("/health")
+if os.path.exists('visits/visits.txt'):
+    with open('visits/visits.txt', 'r') as file:
+        counter = int(file.read())
+
+@app.before_request
+def count_requests():
+    global counter
+    counter += 1
+    with open('visits/visits.txt', 'w') as file:
+        file.write(str(counter))
+
+@app.route('/visits')
+def visits():
+    return f'Number of page visits: {counter}'
+
+@app.route("/health")
 def health():
     return {"status": "ok"}
 
 
-@app.get("/")
+@app.route("/")
 def display_moscow_time():
     moscow_tz = pytz.timezone('Europe/Moscow')
     current_time_moscow = datetime.now(moscow_tz)
