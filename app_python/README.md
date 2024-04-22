@@ -32,3 +32,6 @@ A simple web application written in Python that displays Moscow time, enjoy!
 - Python build cache was utilized to enhance workflow efficiency.
 - Snyk checks are implemented in workflow file.
 - Linting, testing, docker deploying work properly.
+
+## Counter
+The application now keeps track of the number of times it's accessed using a counter. A new endpoint `/visits` has been introduced to display the recorded number of visits.
