@@ -7,6 +7,8 @@ COPY requirements.txt /app/
 COPY moscow_time/ /app/moscow_time
 # Note: keeping the project files owned by root so
 # the web server has less privileges over them
+RUN ["mkdir", "--mode", "777", "/app/persistent"]
+VOLUME /app/persistent
 USER flask:flask
 RUN ["pip", "install", "--user", "-r", "requirements.txt"]
 CMD ["python", "-m", "moscow_time"]

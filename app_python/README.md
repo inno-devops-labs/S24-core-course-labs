@@ -54,6 +54,9 @@ docker run --rm -d -p 5000 kolay0ne/app_py
 
 Replace `kolay0ne/app_py` with your image/tag name if you built it manually.
 
+One may want to mount a volume or a bind-mount at `/app/persistent`, which acts
+as a persistent storage for the visits counter of the web app.
+
 ## Unit Tests
 
 To run unit tests:

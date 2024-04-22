@@ -1,11 +1,13 @@
 import datetime
+from os import makedirs
 from time import monotonic
 
-from flask import Flask, request, Response
+from flask import Flask, request, Response, send_from_directory
 import requests
 import prometheus_client
 
 from .cache import cache_for
+from .visits import increment_on_call
 
 
 app = Flask(__name__)
@@ -42,12 +44,32 @@ def get_time():
     return dt.time()
 
 
+VISITS_FILENAME = 'persistent/visits.bin'
+
+# Create it on start
+try:
+    basename_at = VISITS_FILENAME.rindex('/')
+except ValueError:
+    pass
+else:
+    makedirs(VISITS_FILENAME[:basename_at], exist_ok=True)
+open(VISITS_FILENAME, 'a+').close()  # The `a+` mode ensures we have write perm
+
+
 @app.route('/')
+@increment_on_call(VISITS_FILENAME)
 def index():
     time = get_time()
     return f"In MSK it's {time.hour}:{time.minute}:{time.second}. " \
         "Have you brushed your teeth today yet?"
 
 @app.route('/metrics')
+@increment_on_call(VISITS_FILENAME)
 def prometheus_metrics():
     return Response(prometheus_client.generate_latest(), mimetype='text/plain')
+
+@app.route('/visits')
+@increment_on_call(VISITS_FILENAME)
+def visits():
+    with open(VISITS_FILENAME, 'rb') as f:
+        return str(int.from_bytes(f.read(), byteorder='little'))
