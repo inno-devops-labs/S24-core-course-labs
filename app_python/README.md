@@ -39,3 +39,7 @@ This app displays current Moscow time.
 ## Continuous Integration :recycle:
 
 The CI workflow ensures that every pull request has the code linted and tested before it can be merged. Additionally, it builds a Docker image of the application and pushes it to Docker Hub, ready for deployment. The use of GitHub secrets for sensitive information like Docker Hub credentials is a secure practice, as it prevents the credentials from being exposed in logs or the workflow file.
+
+## Persistance of the app (visits) :sparkles:
+
+You can check the number of visits via accessing : `http://127.0.0.1:5000/visits`
