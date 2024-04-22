@@ -84,3 +84,10 @@ The CI workflow has three jobs:
 - **Build Job:** Tests and lints the code.
 - **Security Job:** Ensures code security using Snyk.
 - **Docker Job:** Builds and pushes Docker image, but only if the previous jobs succeed.
+
+### Visits 
+I added a route to count the number of visits to the application: 
+```shell
+wilson@wilson ~> curl localhost:5000/visits
+Number of visits 10.
+```

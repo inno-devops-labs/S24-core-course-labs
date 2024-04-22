@@ -4,8 +4,9 @@ FROM python:3.9.18-alpine3.19@sha256:7e53de21917d6793787bc67483838360404bb2fd70d
 # Set the working directory in the container
 WORKDIR /app
 
-# Add a new non-root user
-RUN adduser -D myuser && mkdir /app/app_python && chown -R myuser ./app_python
+RUN adduser -D myuser
+RUN mkdir /app/app_python /app/visits && chown -R myuser /app/app_python /app/visits
+
 USER myuser
 
 # Copy requirements.txt 
