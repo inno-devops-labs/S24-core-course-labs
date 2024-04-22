@@ -23,6 +23,8 @@ services:
         max-size: "10m"
         max-file: "5"
       driver: "json-file"
+    volumes:
+      - ./app_python_data:/app/data
     deploy: *default-deploy
 
   loki:

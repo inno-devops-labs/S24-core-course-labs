@@ -91,18 +91,18 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
+volumes: 
+- name: config-map-volume
+  configMap:
+    name: helm-python-app-config-map
+
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
-
+volumeMounts: 
+- name: config-map-volume
+  mountPath: /app/config.json
+  subPath: config.json
+  
 nodeSelector: {}
 
 tolerations: []
