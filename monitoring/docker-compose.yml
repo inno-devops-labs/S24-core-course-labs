@@ -5,6 +5,7 @@ networks:
 volumes:
   grafana-storage:
   py-persistent:
+  go-persistent:
 
 services:
   app_py:
@@ -22,7 +23,7 @@ services:
       - py-persistent:/app/persistent
 
   app_go:
-    image: kolay0ne/app_go:lab8
+    image: kolay0ne/app_go:lab12
     ports:
       - "5500:5000"
     logging:
@@ -32,6 +33,8 @@ services:
       resources: {limits: {memory: 20M}}
     networks:
       - prometheus
+    volumes:
+      - go-persistent:/persistent
 
   loki:
     image: grafana/loki:2.9.2

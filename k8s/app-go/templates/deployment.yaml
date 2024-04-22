@@ -52,6 +52,9 @@ spec:
           {{- end }}
           env:
             {{ include "app-go.environ" . | nindent 12 }}
+          envFrom:
+            - configMapRef:
+                name: {{.Release.Name}}-config-map
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}

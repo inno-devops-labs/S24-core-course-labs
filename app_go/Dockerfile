@@ -1,5 +1,7 @@
 FROM golang:1.22.0-alpine3.19 as builder
 
+RUN ["mkdir", "/empty-dir"]
+
 WORKDIR /usr/src/app/
 
 COPY go.mod *.go /usr/src/app/
@@ -16,6 +18,8 @@ COPY --from=0 /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.
 
 EXPOSE 5000
 
+VOLUME /persistent
 COPY --from=builder /usr/src/app/catfact_webapp /
 USER 2004:2004
+COPY --from=builder --chown=2004:2004 /empty-dir /persistent
 ENTRYPOINT ["/catfact_webapp"]

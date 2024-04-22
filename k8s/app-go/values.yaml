@@ -4,7 +4,7 @@ image:
   repository: kolay0ne/app_go
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "lab8"
+  tag: "lab12"
 
 serviceAccount:
   # Specifies whether a service account should be created
