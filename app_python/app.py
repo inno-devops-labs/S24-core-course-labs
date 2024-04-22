@@ -11,6 +11,31 @@ from prometheus_client import generate_latest
 
 app = FastAPI()
 
+
+async def getVisitCount():
+    try:
+        with open("visits.txt", "r") as file:
+            return int(file.read())
+    except Exception as e:
+        return -1
+    
+async def incrementVisitCount():
+    try:
+        with open("visits.txt", "r") as file:
+            visits = int(file.read())
+    except Exception as e:
+        visits = 0
+    visits += 1
+    with open("visits.txt", "w") as file:
+        file.write(str(visits))
+
+
+
+@app.get("/visits")
+async def visits():
+    await incrementVisitCount()
+    return {"visits": await getVisitCount()}
+
 @app.get("/metrics")
 async def metric():
     return Response(content = generate_latest())
@@ -28,6 +53,7 @@ async def root():
     Returns:
         HTMLResponse: An HTML page detailing the current time and date in Moscow.
     """
+    await incrementVisitCount()
     moscow_tz = pytz.timezone("Europe/Moscow")
     moscow_time = datetime.now(moscow_tz).strftime("%Y-%m-%d %H:%M:%S")
     html_content = f"""

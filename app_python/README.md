@@ -97,6 +97,10 @@ docker run -p 8000:8000 --platform linux/amd64 python_app
 
 The application will be available at [localhost:8000](http://localhost:8000/)
 
+## Visits
+I stored the visits count to the "/" and "/visits" routes using a file "visits.txt" to maintain consistency I used async-await.
+
+[![image.png](https://i.postimg.cc/L8PH8g59/image.png)](https://postimg.cc/21zpH6nM)
 
 ## CI
 A CI workflow is contained in the `.github/workflows/ci_python.yaml` file. This workflow lints and tests the application, checks code vulnerability using SNYK, and builds and pushes docker image. Workflow is triggered only if the there is a change in the `app_python` directory or the workflow file itself.
