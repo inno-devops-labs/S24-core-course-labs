@@ -29,12 +29,13 @@ This Flask application provides a simple web service to display the current time
 1. Run the Flask application:
 
    ```bash
-   python3 app.py
+   docker-compose build
+   docker-compose run
    ```
 
 2. Access the web service:
 
-   Navigate to `http://127.0.0.1:5000/msk_timezone` in your web browser. You should see the current time in the Moscow timezone displayed.
+   Navigate to `http://127.0.0.1:5010/visits` in your web browser. You should see the number of your visits to website.
 
 ## File Structure
 

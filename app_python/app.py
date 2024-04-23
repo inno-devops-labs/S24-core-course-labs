@@ -1,24 +1,39 @@
 from datetime import datetime
 import pytz
-from prometheus_fastapi_instrumentator import Instrumentator
-from fastapi import FastAPI
-import uvicorn
+from flask import Flask
+import os
 
-app = FastAPI()
+app = Flask(__name__)
 
-Instrumentator().instrument(app).expose(app)
+counter = 0
 
+@app.before_request
+def count_requests():
+    global counter
+    counter += 1
+    with open('visits/visits.txt', 'w') as file:
+        file.write(str(counter))
 
 @app.get("/msk_timezone")
 def msk_timezone():
     time = datetime.now(pytz.timezone("Europe/Moscow"))
     return time.strftime("Current time (MSK timezone): %H:%M:%S")
 
+@app.route('/visits')
+def visits():
+    return f'Number of times this application was accessed: {counter}'
 
-@app.head("/health")
+@app.route("/health")
 def health():
     return {"status": "ok"}
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0")
+    if not os.path.exists('visits'):
+        os.makedirs('visits')
+
+    if os.path.exists('visits/visits.txt'):
+        with open('visits/visits.txt', 'r') as file:
+            counter = int(file.read())
+
+    app.run(debug=True, host='0.0.0.0')
