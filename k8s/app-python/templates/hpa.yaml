@@ -56,7 +56,7 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- with .Values.volumes }}
+      {{- with .Values.volume }}
       volumes:
         {{- toYaml . | nindent 8 }}
       {{- end }}

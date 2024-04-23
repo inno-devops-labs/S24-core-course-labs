@@ -9,7 +9,8 @@ This Python web application is designed to display the current time in Moscow. I
 ## Features
 
 - Displays the current Moscow time in a simple web interface.
-- Time updates on page refresh.
+- Time updates on main page refresh.
+- Visit counter on `/visits` page is updated when the app is accessed.
 
 ## Prerequisites
 Before running this application, ensure you have the following installed:
