@@ -16,7 +16,6 @@ RUN pip install --upgrade pip \
 COPY ./app_python/ .
 
 RUN chown -R nobody /app_python
-RUN chown -R nobody /app_python/visits
 
 EXPOSE 5000
 
