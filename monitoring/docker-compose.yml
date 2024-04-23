@@ -128,7 +128,7 @@ services:
         limits:
           memory: 250M
     volumes:
-      - visits:/app_python/visits
+      - ../app_python/visits:/app_python/visits:rw
 
 volumes:
   promtail-data: {}
