@@ -3,11 +3,13 @@ from app import app
 import pytest
 from datetime import datetime
 from pytz import timezone
+from unittest.mock import patch
 
 client = TestClient(app)
 
 
-def test_read_root():
+@patch('app.read_and_increment_visits', return_value=1)
+def test_read_root(_):
     response = client.get("/current_time")
     assert response.status_code == 200
 
@@ -20,7 +22,8 @@ def test_read_root():
     assert current_time[19:] == expected_time[19:]
 
 
-def test_root_path():
+@patch('app.read_and_increment_visits', return_value=1)
+def test_root_path(_, ):
     response = client.get("/")
     assert response.status_code == 200
     assert response.headers["content-type"] == "text/html; charset=utf-8"
