@@ -20,6 +20,8 @@ COPY pyproject.toml /code
 COPY src src
 COPY tests tests
 
+RUN mkdir visits_folder
+
 RUN python -m poetry install
 
 CMD ["python", "-m", "poetry", "run", "python", "src/app.py"]
