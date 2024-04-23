@@ -48,3 +48,7 @@ Run the tests using the following command
 ```
 flutter test --platform chrome test/time_test.dart
 ```
+
+## Visits counter
+
+I implemented persistence logic in this app: visits are counted and tracked in the Firestore collection

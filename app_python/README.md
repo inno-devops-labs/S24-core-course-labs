@@ -63,3 +63,25 @@ I used a GitHub Actions as a CI tool. The workflow is defined in `.github/workfl
 - Vulnerability check
 - Login to DockerHub
 - Build Docker image and push to DockerHub
+
+## Counter
+
+I added a counter logic in the application to keep track of the number of times it's accessed.
+
+`/visits` - a new endpoint to display the recorded visits.
+
+### Usage
+```
+docker compose build
+```
+```
+docker compose up
+```
+
+You can track the recorded visits number at `localhost:8000/visits`
+
+or using this command:
+```
+$ curl localhost:8000/visits
+{"visits":3}
+```

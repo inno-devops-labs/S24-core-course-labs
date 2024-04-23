@@ -31,6 +31,8 @@ services:
       interval: 10s
       timeout: 10s
       retries: 3
+    volumes:
+      - ./visits:/app_python/visits
 
   app-dart:
     image: alyonaart/app-dart:latest

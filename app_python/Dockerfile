@@ -10,7 +10,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Create a non-root user to run the application
-RUN adduser -D user && chown -R user /app_python
+RUN adduser -D user
+RUN mkdir /app_python/visits && chown -R user /app_python /app_python/visits
 
 # Switch to the non-root user
 USER user
