@@ -17,9 +17,9 @@ RUN python -m pip install poetry==1.7.1
 COPY poetry.lock /code
 COPY pyproject.toml /code
 
-RUN python -m poetry install
-
 COPY src src
 COPY tests tests
+
+RUN python -m poetry install
 
 CMD ["python", "-m", "poetry", "run", "python", "src/app.py"]

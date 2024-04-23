@@ -6,7 +6,7 @@ import uvicorn
 from fastapi import FastAPI
 from prometheus_client import make_asgi_app
 
-from business_logic import get_current_moscow_time, get_human_readable_time
+from src.business_logic import get_current_moscow_time, get_human_readable_time
 
 app = FastAPI(title="Moscow Time")
 
@@ -57,4 +57,4 @@ def _create_visit():
 
 if __name__ == "__main__":
     _create_visit()
-    uvicorn.run(app, host="0.0.0.0")
+    uvicorn.run("src.app:app", host="0.0.0.0")
