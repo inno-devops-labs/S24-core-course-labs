@@ -24,6 +24,8 @@ services:
       - "8080:8080"
     networks:
       - prometheus
+    volumes:
+      - ./app-python-data:/app_python/visits_cnt.txt
     logging: *default-logging
     deploy: *default-deploy
 
