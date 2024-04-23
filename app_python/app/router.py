@@ -5,6 +5,7 @@ from datetime_formatter import DateTimeFormatted
 from flask import Blueprint, Response, render_template
 from moscow_date_time import get_moscow_date_time
 from prometheus_client import Counter
+from visits_counter import get_visits, increment_visit_counter
 
 APP_NAME = 'app_python'
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
@@ -25,6 +26,7 @@ def display_date_time() -> str:
     REQUEST_COUNT.labels(
         app_name=APP_NAME, method='GET', endpoint='/', http_status='200'
     ).inc()
+    increment_visit_counter()
     try:
         now = get_moscow_date_time()
         date_time: DateTimeFormatted = DateTimeFormatted.from_datetime(now)
@@ -50,3 +52,11 @@ def metrics() -> str:
     return Response(
         prometheus_client.generate_latest(), mimetype=CONTENT_TYPE_LATEST
     )
+
+
+@router.route('/visits')
+def visits() -> str:
+    REQUEST_COUNT.labels(
+        app_name=APP_NAME, method='GET', endpoint='/visits', http_status='200'
+    ).inc()
+    return f'{get_visits()}'
