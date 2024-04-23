@@ -71,7 +71,8 @@ def show_visits():
     Route to display the current number of visits on the homepage.
 
     Returns:
-        render_template: Renders the visits.html template with the current number of visits.
+        render_template: Renders the visits.html template with the current
+        number of visits.
     """
     check_visits()
     with open('data/visits', 'r') as f:
