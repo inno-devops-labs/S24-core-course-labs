@@ -6,6 +6,8 @@ This project is a Python web application that utilizes the Flask framework to di
 ## Features
 - **Moscow Time Display:** The main functionality of the application is to showcase the current time in Moscow, providing users with an accurate and up-to-date representation.
 
+- **Total Visits Counter:** The application also keeps track of the total number of visits to the website, displaying the count on the main page.
+
 ## Frameworks and Technologies
 - **Flask Framework:** Flask was chosen for its lightweight and modular design, allowing for a quick and customizable development experience.
 - **HTML and Jinja2 Templating:** The application's front-end utilizes HTML for structure and Jinja2 templating for dynamically displaying the Moscow time.
@@ -85,3 +87,7 @@ This project includes a GitHub Actions CI workflow that runs on every push. The 
 - **Docker:** Builds and pushes a Docker image to Docker Hub.
 
 The CI workflow guarantees that the project builds successfully, passes linting, and all tests before deploying.
+
+## Screenshots
+![alt text](screenshots/main_page.png)
+![alt text](screenshots/Total_visits.png)

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Moscow Time Web Application is a simple JavaScript-based web application that displays the current time in Moscow. It provides users with an easy and quick way to check the current time in the Moscow timezone.
+The Moscow Time Web Application is a simple JavaScript-based web application that displays the current time in Moscow. It provides users with an easy and quick way to check the current time in the Moscow timezone. The app also shows the total number of times the page has been visited.
 
 ## Features
 
@@ -62,3 +62,7 @@ The JavaScript CI workflow is triggered on each push to the repository. It perfo
 1. **Build**: Sets up Node.js, installs dependencies, and runs tests to ensure the integrity of the JavaScript code.
 
 2. **Docker Build and Push**: Builds a Docker image for the JavaScript app and pushes it to Docker Hub. This step ensures that the latest version of the app is available in a Docker container for deployment.
+
+## Screenshots
+![alt text](screenshots/main_page.png)
+![alt text](screenshots/visits.png)

@@ -11,7 +11,7 @@ USER myuser
 WORKDIR /app_python
 
 # Copying the files
-COPY --chown=myuser:myuser app.py requirements.txt /app_python/
+COPY --chown=myuser:myuser app.py requirements.txt visits.txt /app_python/
 COPY --chown=myuser:myuser templates /app_python/templates
 
 RUN pip install -r /app_python/requirements.txt --no-cache-dir --user

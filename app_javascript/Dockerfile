@@ -11,10 +11,11 @@ USER myuser
 WORKDIR /app_js
 
 # Copying the files
-COPY --chown=myuser:myuser app.js /app_js/
+COPY --chown=myuser:myuser app.js visits.txt /app_js/
+COPY --chown=appuser:appuser package.json /app_js/
 
-# Install dependencies (Express.js)
-RUN npm init -y && npm install express
+# Install dependencies
+RUN npm install --no-cache
 
 # Expose the port the app runs on
 EXPOSE 3000
