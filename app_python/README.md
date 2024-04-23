@@ -41,7 +41,7 @@ docker build -t app-flask .
 ### Pull and Run from Dockerhub
 If you prefer to use a pre-built Docker image from Dockerhub. Pull the Docker Image:
 ```bash
-docker pull blbr13/app-flask:lab2
+docker pull blbr13/app-flask:lab12
 ```
 
 ### Run Container
