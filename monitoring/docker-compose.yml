@@ -17,6 +17,8 @@ services:
     build: ../app_python
     ports:
       - 8000:5001
+    volumes:
+      - ../app_python/data/visits:/app_python/data/visits
     logging: *default-logging
 
   loki:

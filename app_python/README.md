@@ -46,6 +46,13 @@ docker pull bavpnet/app_python
 ```
 docker run bavpnet/app_python
 ```
+
+## Endpoints
+There are 2 main breakpoints:
+`/` shows the current time in region
+`/visits` displays the count of visits
+
+
 ## Testing
 
 You can test the application using the following command
