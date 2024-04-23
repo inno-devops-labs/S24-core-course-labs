@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: app-python
-        image: catdog905/dev-ops-course-app-python:lab4
+        build: ../app_python/
         ports:
         - containerPort: 80
 
