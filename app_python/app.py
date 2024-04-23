@@ -30,11 +30,8 @@ def index():
     moscow_tz = pytz.timezone('Europe/Moscow')
     moscow_time = datetime.now(moscow_tz)
     formatted_time = moscow_time.strftime('%Y-%m-%d %H:%M:%S')
-    
     counter += 1
-    
     save_visits_to_file()
-    
     return jsonify({'time_in_moscow': formatted_time})
 
 
