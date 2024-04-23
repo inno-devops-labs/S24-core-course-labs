@@ -15,6 +15,8 @@ COPY templates ./templates
 COPY app.py .
 
 RUN useradd anton && chown -R anton /app
+RUN mkdir /app/vol
+RUN chown -R anton:anton /app
 USER anton
 
 EXPOSE 5001

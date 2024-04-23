@@ -3,6 +3,10 @@
 # Simple Flask app
 The idea of the app is really simple, it just shows the current time in Moscow
 
+
+# App accessed 
+The number of site visits can be found on the path `/visits`
+
 # Set up
 1. Firstly it is preferable to use virtual environment for `python`:
 ```bash

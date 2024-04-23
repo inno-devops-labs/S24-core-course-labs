@@ -27,6 +27,8 @@ services:
     deploy: *default-deploy
     healthcheck:
       test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5001/" ]
+    volumes:
+      - ./app-py-vol:/app/vol
   app-go:
     image: nad777/anton_nekhaev_go:latest
     ports:
