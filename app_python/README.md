@@ -7,7 +7,8 @@ This document outline a simple Python web application designed to display the cu
 
 ## Features
 
-- Displays the current time in Moscow.
+- Displays the current time in Moscow on endpoint "/"
+- Stores number of accesses to endpoint "/". Its accessible on endpoint "/visits". Number is persistent between restarts   
 
 ## Testing Best Practices
 

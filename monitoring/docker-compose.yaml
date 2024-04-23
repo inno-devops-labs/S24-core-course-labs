@@ -93,6 +93,10 @@ services:
     container_name: app_python
     ports:
       - 80:5000
+    environment:
+      VISIT_COUNTER_PATH: '/etc/app_python/tmp/visits.txt'
+    volumes:
+      - ../app_python/tmp/:/etc/app_python/tmp
     logging:
       driver: "json-file"
       options:
