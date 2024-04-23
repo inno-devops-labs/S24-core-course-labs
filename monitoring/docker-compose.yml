@@ -24,6 +24,8 @@ services:
       resources:
         limits:
           memory: 100M
+    volumes:
+      - ./data:/app_python/data
     logging: *default-logging
 
   loki:

@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      #serviceAccountName: {{ include "my-app.serviceAccountName" . }}
+      # serviceAccountName: {{ include "my-app.serviceAccountName" . }}
       serviceAccountName: internal-app
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -37,6 +37,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: config
           #Secrets
           env:
           - name: MY_PASSWORD
@@ -44,7 +47,6 @@ spec:
               secretKeyRef:
                 name: credentials
                 key: password
-          #
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -74,4 +76,4 @@ spec:
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+      {{ end }}

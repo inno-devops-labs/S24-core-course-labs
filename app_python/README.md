@@ -4,6 +4,12 @@
 
 This Python web application displays the current time in Moscow. It utilizes the Flask framework to create a lightweight web server at `http://127.0.0.1:5000/` and returns the current time in JSON format.
 
+This app also have ```/visits``` endpoint, with the number of visits to the app.
+The response is in JSON format:
+```json
+{"visits":14}
+```
+
 ## Local Installation
 
 Follow these steps to set up the application locally:
