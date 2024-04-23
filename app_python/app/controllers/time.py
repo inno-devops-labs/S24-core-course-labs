@@ -27,7 +27,7 @@ def get_current_time_in_msk_timezone(
     except FileNotFoundError:
         current_visits = 0
 
-    os.makedirs(os.path.dirname('data'), exist_ok=True)
+    os.makedirs(os.path.dirname('data/'), exist_ok=True)
     with open("data/visits", "w+") as file:
 
         file.write(str(current_visits + 1))
