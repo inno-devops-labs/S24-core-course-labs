@@ -16,7 +16,9 @@
     python app_python/app.py
     ```
 
-3. Open the web browser and navigate to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to see the current time in
+3. Open the web browser and navigate
+   to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to see the current time
+   in
    Moscow.
 
 ## How to Test
@@ -61,9 +63,10 @@ Python App Workflow
 
 ### Triggers
 
-push: The workflow is triggered when a push event occurs in the repository.
+`push`: The workflow is triggered when a push event occurs in the repository.
 
-pull_request: The workflow is triggered when a pull request is opened or updated.
+`pull_request`: The workflow is triggered when a pull request is opened or
+updated.
 
 ### Permissions
 
@@ -71,12 +74,23 @@ The workflow requires read access to the contents of the repository.
 
 ### Jobs
 
-python-app-job: This job runs on the latest version of the Ubuntu operating system.
+`python-app-job`: This job runs on the latest version of the Ubuntu operating
+system.
 
 ### Steps
 
-Lint: It runs the Pylint tool to perform static code analysis on the app.py file.
+Lint: It runs the Pylint tool to perform static code analysis on the `app.py`
+file.
 
-Test: The workflow runs the unit tests for the application using the pytest framework by executing the pytest unittests.py command.
+Test: The workflow runs the unit tests for the application using the pytest
+framework by executing the `pytest unittests.py` command.
 
-Snyk Run: The workflow runs the Snyk test to check for security vulnerabilities in the application, using the snyk test command and providing the Snyk token from the repository secrets.
+Snyk Run: The workflow runs the Snyk test to check for security vulnerabilities
+in the application, using the `snyk` test command and providing the Snyk token
+from the repository secrets.
+
+## API Description
+
+- `/` - main page showing current Moscow time
+- `/visits` - returns the string with number of visits
+- `/metrics` - returns the latest metrics from registry as string
