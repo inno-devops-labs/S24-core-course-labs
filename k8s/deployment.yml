@@ -13,7 +13,15 @@ spec:
         app: my-app
     spec:
       containers:
-      - name: my-app
-        image: farkhutdinovadr951/dilly
-        ports:
-        - containerPort: 5000
+        - name: my-app
+          image: farkhutdinovadr951/dilly
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: config-volume
+              mountPath: files/config.json
+              readOnly: true
+      volumes:
+        - name: config-volume
+          configMap:
+            name: app-config

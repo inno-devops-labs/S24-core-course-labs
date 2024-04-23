@@ -1,25 +1,31 @@
-# app.py
-import pytz as pytz
-from flask import Flask, render_template
+import pytz
+from flask import Flask, render_template, jsonify
 from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
 import datetime
 
-
 app = Flask(__name__, template_folder='templates')
 
-
-grafana_metrics_counter = Counter(
-    'grafana_metrics_counter',
-    'metrics',
+visit_counter = Counter(
+    'app_visits_total',
+    'Total number of visits to the application'
 )
 
 
-@app.route('/metrics')
-def grafana_health_check():
-    grafana_metrics_counter.inc()
-    metrics = generate_latest()
+@app.route('/visit')
+def visit():
+    visit_counter.inc()
+    return 'Visit recorded successfully!', 200
 
-    return metrics, 200, {'Content-Type': CONTENT_TYPE_LATEST}
+
+@app.route('/visits')
+def visits():
+    visits_count = visit_counter._value.get()
+    return jsonify({'visits': visits_count}), 200
+
+
+@app.route('/metrics')
+def prometheus_metrics():
+    return generate_latest(), 200, {'Content-Type': CONTENT_TYPE_LATEST}
 
 
 @app.route('/')

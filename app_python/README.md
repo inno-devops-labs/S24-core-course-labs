@@ -65,6 +65,26 @@ This repository is integrated with GitHub Actions to automate the build and test
 **Tests:** Run unit tests to ensure code quality and functionality.
 **Docker Build & Push:** Build a Docker image of the application and push it to Docker Hub.
 
+## Visit Count
+
+1. **Access the /visits Endpoint:**
+   - Send a GET request to the /visits endpoint of your Flask application.
+   - For example, if your application is running locally, you can access http://localhost:5001/visits in your web browser or use a tool like cURL or Postman.
+
+2. **Review JSON Response:**
+   - Upon accessing the /visits endpoint, your Flask application will respond with a JSON object containing the visit count.
+   - Example JSON response: `{"visits": 4.0}`
+
+3. **Confirm Value in visits.txt:**
+   - The value provided in the JSON response (e.g., "4.0") should match the content of your visits.txt file.
+   - Open the visits.txt file in a text editor or use terminal commands to view its contents.
+   - Example content of visits.txt: `4.0`
+
+4. **Verification:**
+   - If the value in the JSON response matches the content of visits.txt, it confirms that your Flask application is correctly updating and persisting the visit count in the visits.txt file.
+   - This ensures that the visit count is maintained across application restarts and reflects the actual number of visits to your application.
+
+
 # Contribution
 Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
 

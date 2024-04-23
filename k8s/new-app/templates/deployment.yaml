@@ -31,16 +31,16 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}  # Corrected the typo here
+        - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 5000  # Modify this to your desired port
+              containerPort: 5000
               protocol: TCP
-          env:  # Add this section for environment variables
-            - name: MY_ENV_VARIABLE  # Example environment variable name
-              value: "my-value"  # Example environment variable value
+          env:
+            - name: MY_ENV_VARIABLE
+              value: "my-value"
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:

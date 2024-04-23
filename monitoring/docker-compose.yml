@@ -82,6 +82,8 @@ services:
     depends_on:
       - loki
       - promtail
+    volumes:
+      - ./visits.txt:/app_python/visits.txt
     logging:
       driver: "json-file"
       options:
@@ -92,3 +94,4 @@ services:
       resources:
         limits:
           memory: 1000M
+
