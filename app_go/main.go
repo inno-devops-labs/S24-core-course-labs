@@ -1,10 +1,13 @@
 package main
 
 import (
+	"bufio"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 	"os"
+	"sync"
 	"time"
 )
 
@@ -52,8 +55,37 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	}
 }
 
+var mutex sync.Mutex
+
+func visitsHandler(w http.ResponseWriter, r *http.Request) {
+	mutex.Lock()
+	defer mutex.Unlock()
+
+	file, err := os.Open("counter.txt")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer file.Close()
+
+	var lines int
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		lines++
+	}
+
+	if err := scanner.Err(); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Return the number of visits
+	fmt.Fprintf(w, "Number of visits: %d", lines)
+}
+
 func main() {
 	http.HandleFunc("/view/", viewHandler)
+	http.HandleFunc("/visits/", visitsHandler)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

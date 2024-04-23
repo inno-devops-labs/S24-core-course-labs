@@ -51,6 +51,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    volumes:
+      - ./go_visits_count.txt:/app/counter.txt
       
   loki:
     image: grafana/loki:latest
