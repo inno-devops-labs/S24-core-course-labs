@@ -6,12 +6,16 @@ services:
     container_name: devops-flask
     ports:
       - 5000:5000
+    environment:
+      VISITS_FILE: "/etc/visits.txt"
     logging:
       driver: "json-file"
       options:
         tag: "{{ .Name }}"
         max-size: "500m"
         max-file: "50"
+    volumes:
+      - ../app_python/visits.txt:/etc/visits.txt
     deploy:
       resources:
         limits:

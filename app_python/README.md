@@ -9,6 +9,7 @@ This is a simple Python web application that displays the current time in Moscow
 - Displays the current time in Moscow.
 - Includes unit tests for critical components.
 - Organized code structure for better maintainability.
+- Displays number of times app is accessed on endpoint "/visits". 
 
 ## Getting Started
 
