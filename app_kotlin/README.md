@@ -15,6 +15,11 @@ This will start a local web server, and you can access the current time in Mosco
 Example result:
 ```The current time in Moscow is 15:40:22```
 
+Moreover, on http://127.0.0.1:8080/visits in your web browser you can get number of visits of site
+
+Example result:
+```{visits: 9}```
+
 
 Additionaly you can run unittests by command:
 ```bash
