@@ -2,6 +2,7 @@
 
 ## Overview
 This is a simple Python web application that displays the current time in Moscow. It utilizes the Flask framework for web development and pytz library for time zone conversion.
+This web application also count number of visits. You can access to number of visits through adding ```/visits```.
 
 ## Installation
 1. Clone the repository:

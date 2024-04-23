@@ -1,0 +1,7 @@
+{
+  "api_key": "your_api_key_here",
+  "username": "your_username",
+  "password": "your_password",
+  "debug_mode": true,
+  "max_results": 10
+}
