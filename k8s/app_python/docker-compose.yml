@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  app_python:
+    build: .
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./visits:/app/visits
