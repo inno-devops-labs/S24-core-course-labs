@@ -28,6 +28,8 @@ python app.py
 
 3. Open your browser and visit http://localhost:5000 to see the current time in Moscow.
 
+4. Check number of visits on the homepage on the http://localhost:5000/visits
+
 ## Setup via docker
 
 ### Build

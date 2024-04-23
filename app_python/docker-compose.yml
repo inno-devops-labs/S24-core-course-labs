@@ -1,6 +1,8 @@
 version: '3.8'
 services:
   "app-python":
-    image: "blbr13/app-flask:lab2"
+    image: "blbr13/app-flask:lab12"
     ports:
       - "8080:5000"
+    volumes:
+    - ./data:/app_python/data

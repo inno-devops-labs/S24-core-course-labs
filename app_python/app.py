@@ -4,6 +4,7 @@ from prometheus_client.core import REGISTRY
 import pytz
 import logging
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
@@ -30,6 +31,26 @@ def get_time():
     return str_time
 
 
+def check_visits(increment=False):
+    """
+    Check existance of visits file. Create if didn't find.
+
+    args:
+        increment: if True, then increment visits by 1.
+    """
+    if not os.path.exists('data'):
+        os.mkdir('data')
+    if not os.path.exists('data/visits'):
+        with open('data/visits', 'w') as f:
+            f.write('0')
+    if not increment:
+        return
+    with open('data/visits', 'r') as f:
+        counter = int(f.read())
+    with open('data/visits', 'w') as f:
+        f.write(str(counter + 1))
+
+
 @app.route('/')
 def show_time():
     """
@@ -40,7 +61,22 @@ def show_time():
     """
     REQUEST_COUNT.inc()
     logger.info('Homepage accessed')
+    check_visits(increment=True)
     return render_template('./index.html', time=get_time())
+
+
+@app.route('/visits')
+def show_visits():
+    """
+    Route to display the current number of visits on the homepage.
+
+    Returns:
+        render_template: Renders the visits.html template with the current number of visits.
+    """
+    check_visits()
+    with open('data/visits', 'r') as f:
+        counter = int(f.read())
+        return render_template('./visits.html', visits=counter)
 
 
 @app.route('/metrics')
