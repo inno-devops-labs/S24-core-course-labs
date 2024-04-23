@@ -18,6 +18,8 @@ services:
     logging: *default-logging
     networks:
       - loki
+    volumes:
+      - ./app_python_data:/data
 
   loki:
     image: grafana/loki:2.9.2
