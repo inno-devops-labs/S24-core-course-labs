@@ -107,15 +107,14 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-hooks:
-  pre-install:
-    - name: pre-install-sleep
-      weight: 2
-      files:
-        - templates/pre-install-sleep.yaml
-  post-install:
-    - name: post-install-sleep
-      weight: 2
-      files:
-        - templates/post-install-sleep.yaml
+# hooks:
+#   pre-install:
+#     - name: pre-install-sleep
+#       weight: 2
+#       files:
+#         - templates/pre-install-sleep.yaml
+#   post-install:
+#     - name: post-install-sleep
+#       weight: 2
+#       files:
+#         - templates/post-install-sleep.yaml

@@ -1,12 +1,12 @@
-# Default values for app-python-helm.
+# Default values for app_python_helm.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: zeaydalagamy/moscow_tz
-  pullPolicy: Always
+  repository: zeyadalagamy/moscow_tz_js
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
@@ -16,14 +16,14 @@ fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: false
+  create: true
   # Automatically mount a ServiceAccount's API credentials?
   automount: true
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "internal-app"
+  name: ""
 
 podAnnotations:
   vault.hashicorp.com/agent-inject: "true"
@@ -46,7 +46,7 @@ securityContext:
 
 service:
   type: LoadBalancer
-  port: 5001
+  port: 5000
 
 ingress:
   enabled: false
@@ -73,6 +73,15 @@ resources:
     cpu: 100m
     memory: 128Mi
 
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -98,15 +107,14 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-hooks:
-  pre-install:
-    - name: pre-install-sleep
-      weight: 2
-      files:
-        - templates/pre-install-sleep.yaml
-  post-install:
-    - name: post-install-sleep
-      weight: 2
-      files:
-        - templates/post-install-sleep.yaml
+# hooks:
+#   pre-install:
+#     - name: pre-install-sleep
+#       weight: 2
+#       files:
+#         - templates/pre-install-sleep.yaml
+#   post-install:
+#     - name: post-install-sleep
+#       weight: 2
+#       files:
+#         - templates/post-install-sleep.yaml

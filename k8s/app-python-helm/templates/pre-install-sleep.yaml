@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: pre-install-sleep-job
+  name: python-pre-install-sleep-job
   labels:
     app: app-python-helm
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
