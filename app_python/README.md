@@ -4,7 +4,7 @@
 
 ## Overview
 
-This web application displays the current time in Moscow.
+This web application displays the current time in Moscow and counts user visits.
 
 ## Installation
 
@@ -31,22 +31,32 @@ After successful installation, you can run the program from `app_python` folder 
 flask run
 ```
 
+> You can also modify visit count manually by changing the value in `visits` file.
+
 ### Docker
 
 1. Install [Docker](https://docs.docker.com/get-docker/)
 2. Pull the image from Docker Hub repository:
 
    ```bash
-   docker pull mrfired/devops-course:lab2
+   docker pull mrfired/devops-course:latest
    ```
 
-You can run the application in the container with
+3. Create and initialize volume file for counting visits:
+
+   ```bash
+   echo 0 > visits
+   ```
+
+You can run the application in the container from the same directory where volume file is with
 
 ```bash
-docker run -p 5000:5000 mrfired/devops-course:lab2
+docker run -p 5000:5000 -v ${pwd}/visits:/app/visits:rw mrfired/devops-course:latest
 ```
 
 Then you will be able to use the application on `localhost:5000`
+
+> You can also modify visit count manually by changing the value in `visits` file.
 
 ## Unit Tests
 
