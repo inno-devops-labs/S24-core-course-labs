@@ -19,6 +19,8 @@ x-deploy: &default-deploy
 services:
   app-python:
     image: exemplerie/devops-lab
+    volumes:
+      - ./python-data:/app/data
     ports:
       - "80:6000"
     logging: *default-logging

@@ -78,5 +78,15 @@ This is a Python web application built with Flask to display the current time in
 
    - HTML Template Rendering: Verifying that the HTML templates are correctly rendered and contain the expected content.
 
+## Visits
+
+The service counts the numbers of visits. It can be accessed via following command:
+
+```
+% curl http://127.0.0.1:6001/visits
+{
+  "visits": 6
+}
+```
 
 

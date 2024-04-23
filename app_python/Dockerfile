@@ -21,6 +21,8 @@ RUN pip install -r requirements.txt --no-cache-dir
 # Copy the application files
 COPY . /app
 
+RUN mkdir /app/data && touch /app/data/visits.txt
+
 # Expose the application port
 EXPOSE 6000
 
