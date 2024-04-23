@@ -26,6 +26,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    volumes:
+      - ./python_visits_count.txt:/app/counter.txt
 
   app_go:
     image: dianatomiya/devops:g_v2.0

@@ -33,6 +33,13 @@ To run the tests:
 ```bash
 pytest
 ```
+Also, there is a `/visits` endpoint where you can check how many times the application has been visited, cool isn't it?
+
+```bash
+curl 127.0.0.1:8000/visits # 42
+```
+
+The application counts how many time it has been visited by appending `x`s to counter.txt file.
 
 ## Docker
 

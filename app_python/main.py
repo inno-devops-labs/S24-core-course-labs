@@ -15,4 +15,17 @@ template = Jinja2Templates(directory="template")
 def read_root(request: Request):
     current_time_moscow = datetime.now(pytz.timezone(
         'Europe/Moscow')).strftime("%Y-%m-%d %H:%M:%S")
+    with open("counter.txt", "a+") as f:
+        f.write("x\n")
     return template.TemplateResponse(request, "index.html", {"current_time": current_time_moscow})
+
+@app.get("/visits")
+async def visits() -> int:
+    """
+    Count visits to the application.
+    :return: The number of visits.
+    :rtype: int
+    """
+    with open("counter.txt", "r") as f:
+        visits = len(f.readlines())
+    return visits
