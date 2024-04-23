@@ -6,6 +6,9 @@
 
 This is a simple web application developed in Python using the Flask framework to display the current time in Moscow.
 
+The service also counts the number of visits to the main page. To obtain the
+number of visits. To view the current number of visits, access the `/visits` endpoint.
+
 ## Installation
 
 1. Clone the repository:

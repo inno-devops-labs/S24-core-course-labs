@@ -13,8 +13,11 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from prometheus_fastapi_instrumentator import Instrumentator
+import os
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+VISITS_FILE = "visits.txt"
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -40,11 +43,36 @@ async def display_time(request: Request):
     formatted_time = moscow_time.strftime('%Y-%m-%d %H:%M:%S')
     logging.info("Displayed Moscow datetime: %s", formatted_time)
     logging.info("Custom log message")
+    add_visits()
 
     return templates.TemplateResponse("page.html", {"request": request, "time": formatted_time})
+
+
+@app.get("/visits")
+def get_visits():
+    with open(VISITS_FILE, "r") as file:
+        visits = int(file.read())
+    return {"visits": visits}
+
+
+def add_visits():
+    with open(VISITS_FILE, "r+") as file:
+        visits = int(file.read())
+        visits += 1
+        file.seek(0)
+        file.write(str(visits))
+
+
+def create_visits_file_if_not_exists():
+    if os.path.isfile(VISITS_FILE):
+        return
+
+    with open(VISITS_FILE, "w+") as file:
+        file.write(str(0))
 
 
 if __name__ == '__main__':
     import uvicorn
 
+    create_visits_file_if_not_exists()
     uvicorn.run(app, host='0.0.0.0', port=5000)
