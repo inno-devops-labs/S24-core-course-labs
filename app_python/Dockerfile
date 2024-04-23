@@ -29,7 +29,7 @@ COPY api/v1/visits/schemas.py /app_data/api/v1/visits/schemas.py
 COPY api/v1/visits/crud.py /app_data/api/v1/visits/crud.py
 
 # Change to read-only (With new permissions should be write + read)
-RUN chmod -R 777 /app_data
+RUN chmod -R 555 /app_data && chmod -R 777 /app_data/visits
 
 # Changing user
 USER myuser

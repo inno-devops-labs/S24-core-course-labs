@@ -11,6 +11,12 @@ Can be accessed while running: `/docs`
 > Returns current time in Moscow in the following json format:
 >
 > `{ "time": "07:41:56.120960" }`
+> 
+> > Get `/visits`
+>
+> Returns number of visits to the website
+>
+> `{ "visits": "5" }`
 
 ## How to run
 
