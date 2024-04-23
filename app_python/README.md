@@ -90,6 +90,11 @@ Follow these steps to set up the project locally:
 - `PYTHON.md`: Describes the reason for choosing the framework, best practices, and implementation details.
 - `README.md`: Provides an overview of the project, installation instructions, and file descriptions.
 
+## Endpoints
+
+- `/`: Home page shows current time in Moscow
+- `/visits`:  Visits page show recorded visits
+
 ## Usage
 
 Once the Flask application is running locally, open a web browser and navigate to `http://127.0.0.1:5000/` to view the application. The main page will display the current time in Moscow, which will be updated every time the page is refreshed.

@@ -1,0 +1,15 @@
+  # targetMemoryUtilizationPercentage: 80
+
+volumes: 
+- name: config-map-volume
+  configMap:
+    name: helm-python-app-config-map
+  
+volumeMounts: 
+- name: config-map-volume
+  mountPath: /app/config.json
+  subPath: config.json
+
+nodeSelector: {}
+
+tolerations: []
