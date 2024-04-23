@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,8 +16,16 @@ spec:
         app: python-app-deployment
     spec:
       containers:
-      - name: python-app
-        image: slry/python_moscow_time:latest
-        ports:
-        - containerPort: 8080
+        - name: python-app
+          image: slry/python_moscow_time:latest
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config.json
+              subPath: config.json
 
+volumes:
+  - name: config-volume
+    configMap:
+      name: {{ include "python-app.fullname" . }}
