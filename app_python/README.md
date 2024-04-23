@@ -44,7 +44,12 @@ This application is containerized using Docker for easy deployment and portabili
    ```bash
    docker run -p 8080:8080 anastasiamartynova/my-docker-repo:latest
    ```
+   or
 
+   ```bash
+   docker run -p 8080:8080 my-app
+   ```
+   The application is now available at http://localhost:8080, and you can view the count of visits at http://localhost:8080/visits.
 
 ## File Structure
 
