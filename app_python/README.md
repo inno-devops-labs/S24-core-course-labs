@@ -40,3 +40,8 @@ Run in terminal: `$ docker build -t devops_lab_2 .`
 
 If you have pulled it: `$ docker run -p 8000:8000 brutaljesus/devops_lab_2`
 Or if you have built it manually: `docker run -p 8000:8000 devops_lab_2`
+
+# Visits count
+
+This app counts the numbers of its visiting.
+You can get it be accessing `/visits` endpoint

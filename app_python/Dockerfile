@@ -22,4 +22,4 @@ RUN python -m poetry install
 COPY src src
 COPY tests tests
 
-CMD ["python", "-m", "poetry", "run", "uvicorn", "src.app:app", "--host", "0.0.0.0"]
+CMD ["python", "-m", "poetry", "run", "python", "src/app.py"]

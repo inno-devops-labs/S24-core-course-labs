@@ -2,11 +2,13 @@ version: '3.8'
 
 services:
   app_python:
-    image: brutaljesus/devops_lab_2
+    image: brutaljesus/devops_lab_2:2
     ports:
       - 8000:8000
     labels:
       logging: "promtail"
+    volumes:
+      - ./app_python/visits_folder:/code/visits_folder
     logging:
       driver: "local"
       options:
