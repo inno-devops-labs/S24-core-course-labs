@@ -12,6 +12,7 @@ uvicorn = "^0.27.0.post1"
 types-pytz = "^2024.1.0.20240203"
 flake8 = "^7.0.0"
 prometheus-client = "^0.20.0"
+idna = "3.7"
 
 
 [tool.poetry.group.dev.dependencies]
