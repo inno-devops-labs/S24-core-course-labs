@@ -111,6 +111,8 @@ services:
       - "8000:8000"
     logging: *default-logging
     deploy: *default-deploy
+    volumes:
+      - ./data:/app/data
     networks:
       - app
     healthcheck:

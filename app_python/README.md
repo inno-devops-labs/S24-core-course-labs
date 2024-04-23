@@ -4,6 +4,8 @@
 
 This is a simple Python web application developed using FastAPI. The application displays the current Moscow time in the browser and updates continuously.
 
+The app also collect usage statistics. It stores number of requests. They can be acquired via /visits route.
+
 ## Getting Started
 
 These instructions will get a copy of the project running on your local machine for development and testing purposes.
