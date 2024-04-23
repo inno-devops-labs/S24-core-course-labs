@@ -7,13 +7,14 @@ WORKDIR /app_python
 COPY requirements.txt app.py /app_python/
 COPY templates/ /app_python/templates/
 
-RUN adduser --disabled-password appuser && chmod -R a-w+x+r /app_python
+RUN mkdir /app_python/data && chown -R ${USER}:${USER} /app_python
+
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-USER appuser
+USER ${USER}
 
 EXPOSE 5000
 
 # Run app.py when the container launches
-CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
+CMD ["python3", "app.py"]

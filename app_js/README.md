@@ -66,4 +66,3 @@ Or
 docker run -p 5000:5000 AlebrahimLaith/app_js:latest
 ```
 Open a browser and go to http://localhost:3000/ to view the application.
-

@@ -73,3 +73,11 @@ docker run -p 5000:5000 AlebrahimLaith/app_python:latest
 ```
 Open a browser and go to http://localhost:5000/ to view the application.
 
+### Visits 
+The amount of visitors to the main page is also tallied by the service. to find out how many people visited. Since the data is kept in a file 
+(`data/visits.txt`) that is created on the initial run of the application, it is permanent. To get the current visitation count, go to the {/visits} endpoint:
+
+```bash
+$ curl http://127.0.0.1:8001/visits
+{"visitors":1}
+```

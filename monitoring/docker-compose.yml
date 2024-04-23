@@ -5,6 +5,8 @@ services:
     build: ../app_python
     ports:
       - "8000:5000"
+    volumes:
+      - ./visits:/app/visits
     logging: 
      driver: "json-file"
      options:
