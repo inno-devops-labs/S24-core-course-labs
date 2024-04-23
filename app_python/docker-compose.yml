@@ -5,3 +5,5 @@ services:
     image: glebuben/dev-ops-labs:latest
     ports:
       - "8000:5000"
+    volumes:
+      - ./visits:/app/visits

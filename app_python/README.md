@@ -6,52 +6,70 @@ This is a simple Flask web application that displays the current time in Moscow.
 ## Features
 
 - Displays the current time in Moscow timezone.
+- Keeps track of the number of visits.
 - Built with Flask, a simple and flexible Python web framework.
 
-## Manual set up
+## Manual Set Up
 ### Installation
 1. Clone the repository:
 
-   
+    ```
     git clone https://github.com/glebuben/S24-core-course-labs.git
-    
+    ```
+
 2. Navigate to the project directory:
 
-   
+    ```
     cd S24-core-course-labs/app_python
-    
+    ```
+
 3. Install dependencies using pip:
 
-   
+    ```
     pip install -r requirements.txt
-    
+    ```
+
 ### Usage
 
 1. Run the Flask application:
 
-   
+    ```
     python app.py
-    
+    ```
+
 2. Open your web browser and go to [http://localhost:5000](http://localhost:5000) to view the current time in Moscow.
 
-## Set up via docker
-### Getting image
-There are 2 possible ways to get image for this app:
+## Set Up via Docker
+### Getting Image
+There are 2 possible ways to get the image for this app:
 1. Build it via 'Dockerfile'
-```
-    docker build - t <image name> app_python/
-```
+    ```
+    docker build -t <image name> app_python/
+    ```
 
 2. Pull from Dockerhub
-```
+    ```
     docker pull glebuben/dev-ops-labs:1.0
-```
-**Note: the image name in the second case is "glebuben/dev-ops-labs:1.0"**
-### Running the image
-To run the image use this command line
-```
+    ```
+   **Note: the image name in the second case is "glebuben/dev-ops-labs:1.0"**
+
+### Running the Image
+To run the image, use this command line:
+
+    ```
     docker run -d -p 5000:5000 <image name>
-```
+    ```
+## Endpoints
+
+### `/`
+- **Description**: Displays the current time in Moscow timezone.
+- **Method**: GET
+- **Usage**: Open your web browser and go to [http://localhost:5000](http://localhost:5000).
+
+### `/visits`
+- **Description**: Displays the total number of visits to the application.
+- **Method**: GET
+- **Usage**: Open your web browser and go to [http://localhost:5000/visits](http://localhost:5000/visits).
 
 ## Unit Tests
 
@@ -61,15 +79,15 @@ For ensuring the correctness and reliability of the application, unit tests have
 
 1. Navigate to the `tests` directory:
 
-    
+    ```
     cd tests
-   
+    ```
 
 2. Run the unit tests:
 
-    
+    ```
     python test_app.py
-   
+    ```
 
 ### Test Structure
 
@@ -80,6 +98,8 @@ The unit tests are structured into separate test cases, each focusing on specifi
 - **Test Time Format**: Verifies the format of the time string returned by the `formatted_time` function.
 
 - **Test Display Moscow Time**: Ensures that the `display_moscow_time` route returns a valid response.
+
+- **Test Visit Counter**: Tests the functionality of the visit counter.
 
 ## Dependencies
 
@@ -108,3 +128,5 @@ The CI workflow defined in this project automates the testing, linting, and Dock
 - **Description**: This job builds and pushes a Docker image of the Python application to Docker Hub. It sets up Docker Buildx for multi-platform builds and utilizes Docker's official actions for seamless integration.
 
 The CI workflow helps maintain code quality, ensures consistency, and automates the deployment process, facilitating efficient development practices.
+
+Update it according to the changes made.

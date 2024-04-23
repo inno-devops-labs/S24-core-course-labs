@@ -24,8 +24,14 @@ Note:
 from flask import Flask, render_template
 from datetime import datetime
 import pytz
+import threading
 
 app = Flask(__name__)
+# File to store visit counts
+VISITS_FILE = 'visits'
+
+# Mutex for file access
+file_lock = threading.Lock()
 
 
 def get_moscow_time():
@@ -71,8 +77,51 @@ def display_moscow_time():
     """
     time = formatted_time(get_moscow_time())
 
+    # Increment visit count
+    visits = read_visits() + 1
+    write_visits(visits)
+
     # Render the template with the formatted time
     return render_template('index.html', moscow_time=time)
+
+
+def read_visits():
+    """
+    Function to read the number of visits from the visits file.
+
+    Returns:
+        int: Number of visits.
+    """
+    with file_lock:
+        try:
+            with open(VISITS_FILE, 'r') as f:
+                return int(f.read())
+        except FileNotFoundError:
+            return 0
+
+
+def write_visits(visits):
+    """
+    Function to write the number of visits to the visits file.
+
+    Args:
+        visits (int): Number of visits.
+    """
+    with file_lock:
+        with open(VISITS_FILE, 'w') as f:
+            f.write(str(visits))
+
+
+@app.route('/visits')
+def display_visits():
+    """
+    Route function to display the recorded visits.
+
+    Returns:
+        str: Formatted string representing the number of visits.
+    """
+    visits = read_visits()
+    return f"Total visits: {visits}"
 
 
 if __name__ == '__main__':
