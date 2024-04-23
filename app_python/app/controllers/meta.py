@@ -1,9 +1,5 @@
-from datetime import datetime
-
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 from pydantic import BaseModel
-
-from app.services.time import get_time_in_msk
 
 router = APIRouter(
     prefix="",
