@@ -1,0 +1,12 @@
+{
+    "database": {
+        "host": "localhost",
+        "port": 5432,
+        "username": "admin",
+        "password": "password123"
+    },
+    "logging": {
+        "level": "info",
+        "file": "/var/log/app.log"
+    }
+}

@@ -9,6 +9,7 @@ USER user
 COPY templates ./templates
 COPY main.py requirements.txt app-test.py ./
 RUN pip install --no-cache-dir -r requirements.txt
+RUN mkdir /app/data && touch /app/data/visits.txt
 
 EXPOSE 5000
 

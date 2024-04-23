@@ -41,6 +41,14 @@ docker run -p 5000:5000 --name app skylemn07/app:latest
 ```
 After running the command, you can access the application by visiting `http://localhost:5000` in your web browser.
 
+### Visits
+The service counts the numbers of visits. It can be accessed via following command:
+```
+% curl http://127.0.0.1:5000/visits
+{
+  "visits": 3
+}
+```
 ### Stack
 - Python
 - Flask
