@@ -2,14 +2,30 @@
 
 from datetime import datetime, timezone, timedelta
 from flask import Flask, render_template, Response
-from prometheus_client import start_http_server, Summary
+from prometheus_client import start_http_server, Summary, Counter
 import prometheus_client
 
 REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
+VISIT_COUNTER = Counter('visits_total', 'Total number of visits')
 
+visit_count = 0
 
 app = Flask(__name__)
 
+@app.route('/visits')
+def visits():
+    global visit_count
+    return f'Total visits: {visit_count}'
+
+try:
+    with open('data/visits.txt', 'r') as f:
+        visit_count = int(f.read())
+except FileNotFoundError:
+    visit_count = 0
+
+def save_visit_count(count):
+    with open('data/visits.txt', 'w') as f:
+        f.write(str(count))
 
 def get_moscow_time():
     """Get the current time in Moscow."""
@@ -22,6 +38,9 @@ def get_moscow_time():
 @REQUEST_TIME.time()
 def index():
     """Render the index page with the current time in Moscow."""
+    global visit_count
+    visit_count += 1
+    save_visit_count(visit_count)
     moscow_time = get_moscow_time()
     return render_template('index.html', time=moscow_time)
 

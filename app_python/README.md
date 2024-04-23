@@ -98,7 +98,7 @@ docker run -p 5001:5000 devops-lab-container
 
 Also you could run built image from Docker Hub:
 ```
-docker run -p 5001:5000 fatm1nd/devops-lab-container
+docker run -p 5001:5000 -v ./data:/gome/lab_user/app/data -d fatm1nd/devops-lab-container
 ```
 
 After that your applications would be available on https://localhost:5001
@@ -137,6 +137,13 @@ The CI workflow consists of two main jobs:
 3. Test if defined text is displayed on web page
 
 4. Test if download speed is enough (very fast)
+
+## Visits
+To get visits statistic you need to go to this link
+
+```text
+http://localhost:5001/visits
+```
 
 ## Contributions
 

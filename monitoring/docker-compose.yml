@@ -21,6 +21,8 @@ services:
     image: fatm1nd/devops-lab-container
     ports:
       - "8080:5000"
+    volumes:
+      - ./data:/home/lab_user/app/data
     logging: *default-logging
     deploy: *default-deploy
 

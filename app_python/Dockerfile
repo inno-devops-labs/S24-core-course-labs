@@ -15,7 +15,11 @@ RUN pip install --user -r requirements.txt
 
 COPY ./ ./app
 
-WORKDIR /home/lab_user/app
+RUN mkdir ./app/data 
+RUN touch app/data/visits.txt
+
+USER root
+RUN chown -R lab_user:lab_user ./app
 
 EXPOSE 5000
 
