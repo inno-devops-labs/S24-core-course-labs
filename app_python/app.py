@@ -5,7 +5,8 @@ from flask import Flask
 
 app = Flask(__name__)
 
-VOLUME="volume/visits.txt"
+VOLUME = "volume/visits.txt"
+
 
 @app.route("/")
 def show_moscow_time():
@@ -26,6 +27,7 @@ def show_moscow_time():
         f.write(time_string)
         f.write('\n')
     return html
+
 
 @app.route("/visits")
 def visits():
