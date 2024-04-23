@@ -39,7 +39,7 @@ jobs:
       run: poetry run flake8
       
     - name: Test with pytest
-      run: poetry run pytest --cov --cov-fail-under=90
+      run: poetry run pytest tests --cov --cov-fail-under=90
 
   security:
     runs-on: ubuntu-22.04
