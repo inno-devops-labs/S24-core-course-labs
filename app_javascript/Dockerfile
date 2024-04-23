@@ -17,8 +17,9 @@ COPY --chown=appuser:appuser package.json .
 RUN --mount=type=cache,target=/root/.npm \
     npm install --no-cache
 
-# Copy the application files
+# Copy the application files app.js and visits.txt
 COPY --chown=appuser:appuser app.js .
+COPY --chown=appuser:appuser visits.txt .
 
 # Set a build argument for the port
 ARG PORT=5000

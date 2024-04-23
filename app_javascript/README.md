@@ -65,6 +65,33 @@ app.listen(port, () => {
 });
 ```
 
+### Get The Number of website visits `/visits`
+
+```python
+const fs = require("fs");
+
+app.get("/visits", (_, res) => {
+  fs.readFile("visits.txt", "utf8", (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+      return;
+    }
+    const visits = parseInt(data) + 1;
+    fs.writeFile("visits.txt", visits.toString(), (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+      res.send(`Number of visits: ${visits}`);
+    });
+  });
+})
+```
+
+Also, I keep the number of visits in a file called `visits.txt` and increment it every time the website is visited. This file is mounted to the container so the number of visits will be saved even if the container is deleted.
+
 ## How To Install and Run
 
 To run the Node.js Express web application, follow these steps:

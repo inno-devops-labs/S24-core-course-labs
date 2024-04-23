@@ -18,8 +18,9 @@ COPY --chown=appuser:appuser requirements.txt .
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install --no-cache-dir -r requirements.txt
 
-# Copy the application files
+# Copy the application files app.py and visits.txt
 COPY --chown=appuser:appuser app.py .
+COPY --chown=appuser:appuser visits.txt .
 
 # Set a build argument for the port
 ARG PORT=5000

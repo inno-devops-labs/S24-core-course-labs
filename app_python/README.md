@@ -50,6 +50,17 @@ def current_time():
     return moscow_time
 ```
 
+### Get The Number of website visits `/visits`
+
+```python
+def get_visits():
+    with open('visits.txt', 'r') as file:
+        visits = int(file.read())
+    return visits
+```
+
+Also, I keep the number of visits in a file called `visits.txt` and increment it every time the website is visited. This file is mounted to the container so the number of visits will be saved even if the container is deleted.
+
 ### Running the Flask Application
 
 - When the script is executed directly (`__name__ == '__main__'`), the Flask application is run using the `app.run()` method, which starts the development server.
