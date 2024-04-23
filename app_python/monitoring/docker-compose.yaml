@@ -144,6 +144,8 @@ services:
       - "5001:5001"
     networks:
       - loki
+    volumes:
+      - ../data/visits:/app/data/visits
     deploy:
       resources:
         limits:

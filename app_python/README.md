@@ -13,6 +13,11 @@ The application is showing the current Moscow time that updates upon page reload
    python api/main.py
    ```
 
+## Features
+1. To access the main feature use `localhost:5001/`
+2. To access number of visits of index page (`/`) - `localhost:5001/visits`
+3. To access metrics - `localhost:5001/metrics`
+
 ## Testing
 Unit and manual testing are used to ensure corectness of the application. 
 
@@ -47,9 +52,9 @@ docker run -d -p 5001:5001 app
 If you want to pull image from the DockerHub do the following:
 - Pull the image using this command:
    ```bash 
-   docker pull vikono/devops:lab2
+   docker pull vikono/devops:latest
    ```
 - Then run it:
    ```bash
-   docker run -d -p 5001:5001 vikono/devops:lab2
+   docker run -d -p 5001:5001 vikono/devops:latest
    ```
