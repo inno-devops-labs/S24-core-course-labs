@@ -16,7 +16,7 @@ RUN pip install --upgrade pip \
 COPY ./app_python/ .
 
 RUN chown -R nobody /app_python
-RUN chmod a+w ./app_python/visits
+RUN chmod a+w /app_python/visits
 
 EXPOSE 5000
 
