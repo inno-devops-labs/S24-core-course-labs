@@ -1,5 +1,5 @@
 # App Python
-[![Workflow Status](https://github.com/LaithAlebrahim/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)](https://github.com/LaithAlebrahim/S24-core-course-labs/actions/workflows/main.yaml)
+[![Workflow Status](https://github.com/LaithAlebrahim/S24-core-course-labs/actions/workflows/app_python.yaml/badge.svg)](https://github.com/LaithAlebrahim/S24-core-course-labs/actions/workflows/app_python.yaml)
 
 This repository contains a Flask-based web application designed to display the current time in Moscow. It serves as an example of implementing best practices in web application development with Python.
 
