@@ -21,8 +21,10 @@ def get_current_time_in_msk_timezone(
         current_time_in_msk: datetime = Depends(get_time_in_msk)) \
         -> CurrentTimeResponse:
     try:
-        current_visits = int(open("visits").read())
+        with open("data/visits", 'r') as file:
+            current_visits = int(file.read())
     except FileNotFoundError:
         current_visits = 0
-    open("visits", "w").write(str(current_visits + 1))
+    with open("data/visits", "w+") as file:
+        file.write(str(current_visits + 1))
     return CurrentTimeResponse(current_time=current_time_in_msk)

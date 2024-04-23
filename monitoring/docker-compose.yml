@@ -12,6 +12,8 @@ services:
       - "8089:80"
     networks:
       - loki
+    volumes:
+      - ./app_py_data/:/app/data/
     logging:
       driver: "json-file"
       options:

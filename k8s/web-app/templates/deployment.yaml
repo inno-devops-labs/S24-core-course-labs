@@ -12,7 +12,6 @@ spec:
     matchLabels:
       {{- include "web-app.selectorLabels" . | nindent 6 }}
   template:
-    serviceAccountName: internal-app
     metadata:
       {{- with .Values.podAnnotations }}
       annotations:
@@ -28,7 +27,6 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "web-app.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -36,13 +34,10 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          env:
-          - name: MY_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: credentials
-                key: password
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: my-config
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

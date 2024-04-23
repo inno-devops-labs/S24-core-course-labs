@@ -15,6 +15,6 @@ class VisitsResponse(BaseModel):
     responses={200: {"description": "Success"}})
 def get_current_time_in_msk_timezone() -> VisitsResponse:
     try:
-        return VisitsResponse(visits=int(open("visits").read()))
+        return VisitsResponse(visits=int(open("data/visits").read()))
     except FileNotFoundError:
         return VisitsResponse(visits=0)
