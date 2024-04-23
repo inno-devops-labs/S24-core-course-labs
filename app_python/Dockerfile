@@ -9,6 +9,7 @@ ENV PATH="/home/myuser/.local/bin:$PATH"
 
 COPY requirements.txt main.py ./
 COPY templates ./templates
+COPY visits.txt ./
 
 RUN pip install --no-cache-dir --user -r /app/requirements.txt
 

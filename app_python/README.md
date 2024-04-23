@@ -27,6 +27,12 @@ For now you have to refresh the browser page manually to update the time.
 
 A small `index.html` template is used to better visualize the current time in Moscow in the browser.
 
+## Visits
+
+Application also track number of times it was accessed and store it in file `visits.txt`
+
+It can be shown at http://localhost:8000/visits
+
 ## Docker
 
 ### How to build
