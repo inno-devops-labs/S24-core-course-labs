@@ -1,11 +1,33 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from starlette.requests import Request
+from starlette.middleware.base import BaseHTTPMiddleware
 from datetime import datetime
 from prometheus_fastapi_instrumentator import Instrumentator
 import zoneinfo
 
 app = FastAPI()
 instrumentator = Instrumentator().instrument(app)
+
+
+class CountVisitsMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        try:
+            with open("visits.txt", "r") as f:
+                visits = int(f.read())
+        except FileNotFoundError:
+            visits = 0
+
+        visits += 1
+        with open("visits.txt", "w") as f:
+            f.write(str(visits))
+
+        response = await call_next(request)
+        response.headers["X-Visit-Counter"] = str(visits)
+        return response
+
+
+app.add_middleware(CountVisitsMiddleware)
 
 
 async def get_root_page() -> str:
@@ -41,6 +63,13 @@ async def get_root_page() -> str:
 async def root():
     html_content = await get_root_page()
     return HTMLResponse(content=html_content, status_code=200)
+
+
+@app.get("/visits")
+async def visits():
+    with open("visits.txt", "r") as f:
+        visits = int(f.read())
+    return {"visits": visits}
 
 
 @app.on_event("startup")

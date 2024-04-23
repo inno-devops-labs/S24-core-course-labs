@@ -3,7 +3,8 @@
 ![docker](https://github.com/slry/S24-core-course-labs/actions/workflows/docker_build_python.yml/badge.svg?branch=lab2)
 
 ## Overview
-Simple App that shows current Moscow Time and Date
+Simple App that shows current Moscow Time and Date and counts number of visits to the page
+You can access number of visits via `/visits` endpoint
 
 ## Requirements
 - Python 3.9 or higher
@@ -47,6 +48,14 @@ docker pull slry/python_moscow_time
 - Run Container
 ```bash
 docker run -p 8080:8080 slry/python_moscow_time
+```
+
+Go to http://127.0.0.1:8080
+
+## Usage Compose
+- Run Compose
+```bash
+docker-compose up
 ```
 
 Go to http://127.0.0.1:8080
