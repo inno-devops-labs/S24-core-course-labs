@@ -19,6 +19,8 @@ COPY . .
 # Create non-root user
 RUN useradd -m user
 
+RUN mkdir -p data && chown myuser data && chmod -R 0777 data
+
 # Run app as non-root user
 USER user
 

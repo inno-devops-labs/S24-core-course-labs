@@ -1,41 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "python-app.fullname" . }}
+  name: { { include "python-app.fullname" . } }
   labels:
-    {{- include "mylibchart.labels" . | indent 4 }}
+    { { - include "mylibchart.labels" . | indent 4 } }
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
+  { { - if not .Values.autoscaling.enabled } }
+  replicas: { { .Values.replicaCount } }
+  { { - end } }
   selector:
     matchLabels:
-      {{- include "mylibchart.labels" . | indent 6 }}
+      { { - include "mylibchart.labels" . | indent 6 } }
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
+      { { - with .Values.podAnnotations } }
       annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        { { - toYaml . | nindent 8 } }
+      { { - end } }
       labels:
-        {{- include "mylibchart.labels" . | indent 8 }}
+        { { - include "mylibchart.labels" . | indent 8 } }
     spec:
-      {{- with .Values.imagePullSecrets }}
+      { { - with .Values.imagePullSecrets } }
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "python-app.serviceAccountName" . }}
+        { { - toYaml . | nindent 8 } }
+      { { - end } }
+      serviceAccountName: { { include "python-app.serviceAccountName" . } }
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        { { - toYaml .Values.podSecurityContext | nindent 8 } }
       containers:
-        - name: {{ .Chart.Name }}
+        - name: { { .Chart.Name } }
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            { { - toYaml .Values.securityContext | nindent 12 } }
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: { { .Values.image.pullPolicy } }
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: { { .Values.service.port } }
               protocol: TCP
           env:
             - name: MY_PASSWORD
@@ -43,7 +43,13 @@ spec:
                 secretKeyRef:
                   name: credentials
                   key: password
-            {{ include "python-app.pythonEnvs" . | nindent 12 }}
+
+            - name: CONFIG_MAP_VAR
+              valueFrom:
+                configMapKeyRef:
+                  name: python-app-configmap
+                  key: env-var
+            { { include "python-app.pythonEnvs" . | nindent 12 } }
           livenessProbe:
             httpGet:
               path: /healthcheck
@@ -53,24 +59,24 @@ spec:
               path: /healthcheck
               port: 8080
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-          {{- with .Values.volumeMounts }}
+            { { - toYaml .Values.resources | nindent 12 } }
+          { { - with .Values.volumeMounts } }
           volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-      {{- with .Values.volumes }}
+            { { - toYaml . | nindent 12 } }
+          { { - end } }
+      { { - with .Values.volumes } }
       volumes:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.nodeSelector }}
+        { { - toYaml . | nindent 8 } }
+      { { - end } }
+      { { - with .Values.nodeSelector } }
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
+        { { - toYaml . | nindent 8 } }
+      { { - end } }
+      { { - with .Values.affinity } }
       affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
+        { { - toYaml . | nindent 8 } }
+      { { - end } }
+      { { - with .Values.tolerations } }
       tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        { { - toYaml . | nindent 8 } }
+      { { - end } }

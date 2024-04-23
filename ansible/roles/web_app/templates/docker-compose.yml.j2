@@ -7,3 +7,5 @@ services:
     restart: always
     ports:
       - "{{ web_app_port }}:{{ web_container_port }}"
+    volumes:
+      - {{ data_volume }}:{{ container_dir }}
