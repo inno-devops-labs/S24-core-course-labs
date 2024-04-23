@@ -25,10 +25,8 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: "internal-app"
 
-podAnnotations:
-  vault.hashicorp.com/agent-inject: 'true'
-  vault.hashicorp.com/role: 'internal-app'
-  vault.hashicorp.com/agent-inject-secret-database-config.txt: 'internal/data/database/config'
+podAnnotations: { }
+
 podLabels: { }
 
 podSecurityContext: { }
@@ -64,8 +62,8 @@ ingress:
 
 resources: { }
   # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+# choice for the user. This also increases chances charts run on environments with little
+# resources, such as Minikube. If you do want to specify resources, uncomment the following
 # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
 # limits:
 #   cpu: 100m
@@ -90,18 +88,19 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-# Additional volumes on the output Deployment definition.
-volumes: [ ]
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
+volumes:
+  - name: config-volume
+    configMap:
+      name: config
+      items:
+        - key: config
+          path: config.json
 
-# Additional volumeMounts on the output Deployment definition.
-volumeMounts: [ ]
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+
+volumeMounts:
+  - name: config-volume
+    mountPath: "/config"
+    readOnly: true
 
 nodeSelector: { }
 

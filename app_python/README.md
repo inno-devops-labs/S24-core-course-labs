@@ -31,7 +31,8 @@
 ## About The Project
 
 This the Python web application that displays the current time in Moscow. This web application is based on FastAPI
-and ntplib for correct time ensurance.
+and ntplib for correct time ensurance. Ir also tracks the number of visits on main page. This number is saved in the
+file visits and can be tracked using `/visits` endpoint.
 
 Use the `PYTHON.md` to know about Framework choice, testing and best practices.
 

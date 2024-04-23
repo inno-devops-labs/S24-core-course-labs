@@ -1,4 +1,6 @@
 import datetime
+import os
+import threading
 import time
 from contextlib import asynccontextmanager
 
@@ -8,6 +10,8 @@ from fastapi import FastAPI
 from prometheus_fastapi_instrumentator import Instrumentator
 from pydantic import Field
 from pydantic_settings import BaseSettings
+
+mutex = threading.Lock()
 
 
 class Settings(BaseSettings):
@@ -22,12 +26,32 @@ async def lifespan(app: FastAPI):
     settings.startup_time = time.time()
     response = ntp_client.request("pool.ntp.org")
     settings.global_startup_time = float(response.tx_time)
+    if not os.path.exists("visits"):
+        with open("visits", "w") as visits_file:
+            visits_file.write("0")
+    else:
+        with open("visits", "r") as visits_file_read:
+            if not visits_file_read.read():
+                with open("visits", "w") as visits_file:
+                    visits_file.write("0")
     yield
 
 
 settings = Settings()
 app = FastAPI(lifespan=lifespan)
 Instrumentator().instrument(app).expose(app)
+
+
+@app.get(
+    "/visits",
+    status_code=200,
+    description="""
+    The endpoint that returns number of recorded visits.
+    """,
+)
+async def get_recorded_visits_number():
+    with open("visits", "r") as visits_file:
+        return int(visits_file.read())
 
 
 @app.get(
@@ -38,6 +62,13 @@ Instrumentator().instrument(app).expose(app)
     """,
 )
 async def global_moscow_time():
+    mutex.acquire()
+    with open("visits", "r") as visits_file:
+        num = int(visits_file.read())
+    num += 1
+    with open("visits", "w") as visits_file:
+        visits_file.write(str(num))
+    mutex.release()
     time_from_startup = time.time() - settings.startup_time
     global_time_seconds = time_from_startup + settings.global_startup_time
     return {

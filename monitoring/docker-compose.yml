@@ -23,6 +23,8 @@ services:
     logging: *default-logging
     networks:
       - loki
+    volumes:
+      - ./visits:/code/visits
     deploy:
       resources:
         limits:
