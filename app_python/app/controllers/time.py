@@ -20,9 +20,9 @@ class CurrentTimeResponse(BaseModel):
 def get_current_time_in_msk_timezone(
         current_time_in_msk: datetime = Depends(get_time_in_msk)) \
         -> CurrentTimeResponse:
-    current_visits = 0
     try:
         current_visits = int(open("visits").read())
-    finally:
-        open("visits", "w").write(str(current_visits + 1))
-        return CurrentTimeResponse(current_time=current_time_in_msk)
+    except FileNotFoundError:
+        current_visits = 0
+    open("visits", "w").write(str(current_visits + 1))
+    return CurrentTimeResponse(current_time=current_time_in_msk)
