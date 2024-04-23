@@ -8,7 +8,15 @@ x-logging:
   &default-logging
   driver: "json-file"
   options:
+    max-size: "5m"
+    max-file: "3"
     tag: "{{.ImageName}}|{{.Name}}"
+
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 1000M
 
 services:
   app-python:
@@ -19,20 +27,35 @@ services:
     logging: *default-logging
     volumes:
       - ./visits:/app/visits
+    deploy: *default-deploy
+
   loki:
     image: grafana/loki:2.9.2
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
     logging: *default-logging
+    deploy: *default-deploy
 
   promtail:
     image: grafana/promtail:2.9.2
     volumes:
-      - ./promtail.yaml:/etc/promtail/config.yml
+      - ./promtail.yaml:/etc/promtail/config.yaml
       - /var/lib/docker/containers:/var/lib/docker/containers
-    command: -config.file=/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yaml
     logging: *default-logging
+    deploy: *default-deploy
+
+  prometheus:
+    image: prom/prometheus:v2.30.1
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yaml"
+    logging: *default-logging
+    deploy: *default-deploy
 
   grafana:
     environment:
@@ -62,3 +85,4 @@ services:
     ports:
       - "3000:3000"
     logging: *default-logging
+    deploy: *default-deploy
