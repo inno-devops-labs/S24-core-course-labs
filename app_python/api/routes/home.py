@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 
 from api.services.moscow_time import get_current_moscow_time_str
-from app_python.api.services.visits import increment_visits
+from api.services.visits import increment_visits
 
 
 home = Blueprint('/', __name__)

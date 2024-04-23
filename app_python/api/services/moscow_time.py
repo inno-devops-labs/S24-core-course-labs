@@ -1,5 +1,4 @@
 from datetime import datetime
-from webbrowser import get
 import pytz
 
 

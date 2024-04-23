@@ -1,21 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask
 from api.routes.home import home
 from prometheus_flask_exporter import PrometheusMetrics
 
-from api.services.moscow_time import get_current_moscow_time_str
-
+from api.routes.visits import visits
 
 
 app = Flask(__name__)
 app.register_blueprint(home)
+app.register_blueprint(visits)
 
 metrics = PrometheusMetrics(app)
 metrics.info('app_info', 'Application info', version='2.0.0')
-
-@app.route('/')
-def current_moscow_time():
-    cur_time_str = get_current_moscow_time_str()
-    return render_template("current_moscow_time.html", time=cur_time_str)
 
 if __name__ == "__main__":
     from argparse import ArgumentParser
