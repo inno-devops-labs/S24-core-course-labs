@@ -59,3 +59,7 @@ Unit tests ensure the correctness and reliability of the application's functiona
 To run the unit tests, execute the following command in your terminal:
 
 **`pytest`**
+
+🚪 **Visits**
+
+Now you can check number of visits simply adding /visits to the url

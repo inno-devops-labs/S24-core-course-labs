@@ -88,14 +88,20 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-volumes: []
+volumes:
+- name: my-flask-app-config-volume
+  configMap:
+    name: my-flask-app-configmap
 # - name: foo
 #   secret:
 #     secretName: mysecret
 #     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
+volumeMounts:
+- name: my-flask-app-config-volume
+  mountPath: "/app/files/config.json"
+  subPath: config.json
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
