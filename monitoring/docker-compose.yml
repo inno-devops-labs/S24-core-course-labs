@@ -88,6 +88,8 @@ services:
         tag: "{{.ImageName}}|{{.Name}}"
     networks:
       - loki
+    volumes:
+      - ./data:/app/data 
   
   prometheus:
     mem_limit: 500m

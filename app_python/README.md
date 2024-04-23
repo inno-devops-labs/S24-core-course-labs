@@ -162,3 +162,7 @@ in the `app_python` directory and push it to Docker Hub. The context is set to `
 process
 is scoped to the relevant part of the repository. The image is tagged as `batdockerivankornienko/app_python:latest`,
 making it identifiable and retrievable from Docker Hub.
+
+#### Persistent Visit Counter
+
+The application maintains a visit counter that increments each time the homepage is accessed. The count is saved in a file (visits.txt) that persists across container restarts, thanks to the volume mapping defined in the docker-compose.yml file.
