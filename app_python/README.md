@@ -45,7 +45,7 @@ This application is containerized using Docker for easy deployment and portabili
 To build the Docker image for this application, follow these steps:
 ```
 bash
-docker build --tag app_python --build-arg UID=10001 --build-arg GID=10001
+docker build --tag devops-app --build-arg UID=10001 --build-arg GID=10001
 ```
 
 #### Pull Docker Image

@@ -8,6 +8,7 @@ HOST = os.environ.get("HOST", "0.0.0.0")
 PORT = int(os.environ.get("PORT", "5000"))
 VISITS_FILE = os.environ.get("VISITS_FILE", "data/visits.txt")
 
+
 def increment_visits():
     with open(VISITS_FILE, "r") as file:
         v = int(file.read())
@@ -50,6 +51,7 @@ def create_app():
         return generate_latest()
 
     return app
+
 
 wsgi_app = create_app()
 

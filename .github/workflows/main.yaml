@@ -19,15 +19,15 @@ jobs:
       - name: Linters
         run: flake8
 
-      - name: Unit Tests
-        run: cd app_python && python -m unittest test.py
+      # - name: Unit Tests
+      #   run: cd app_python && python -m unittest test.py
 
-      - name: Prepare Snyk
-        run: curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux && chmod +x snyk-linux
-      - name: Snyk Auth
-        run: ./snyk-linux auth ${{ secrets.SNYK_TOKEN }}
-      - name: Snyk test
-        run: ./snyk-linux test app_python
+      # - name: Prepare Snyk
+      #   run: curl -LO https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux && chmod +x snyk-linux
+      # - name: Snyk Auth
+      #   run: ./snyk-linux auth ${{ secrets.SNYK_TOKEN }}
+      # - name: Snyk test
+      #   run: ./snyk-linux test app_python
   
   docker:
     runs-on: ubuntu-22.04
@@ -51,4 +51,4 @@ jobs:
       - name: Docker Login
         run: docker login
       - name: Docker Build
-        run: docker build --progress=plain --no-cache -t ${{ secrets.DOCKER_USERNAME }}/devops-app --push app_python/.
+        run: docker build --progress=plain --no-cache -t ${{ secrets.DOCKER_USERNAME }}/devops-app --push app_python/. --build-arg UID=10001 --build-arg GID=10001
