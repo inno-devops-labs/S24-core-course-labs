@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 
 from fastapi import APIRouter, Depends
@@ -25,6 +26,9 @@ def get_current_time_in_msk_timezone(
             current_visits = int(file.read())
     except FileNotFoundError:
         current_visits = 0
+
+    os.makedirs(os.path.dirname('data'), exist_ok=True)
     with open("data/visits", "w+") as file:
+
         file.write(str(current_visits + 1))
     return CurrentTimeResponse(current_time=current_time_in_msk)
