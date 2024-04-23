@@ -44,7 +44,8 @@ docker build -t moscow-time .
 docker run -p 8080:8080 moscow-time
 ```
 
-Now an app can be accessed at http://localhost:8080
+Now an app can be accessed at http://localhost:8080 and number of visits can be
+seen at http://localhost:8080/visits
 
 ### Using Docker Compose
 

@@ -29,6 +29,8 @@ services:
       interval: 10s
       timeout: 3s
       retries: 3
+    volumes:
+      - ./data/:/app/data/
 
   loki:
     image: grafana/loki:2.9.2
