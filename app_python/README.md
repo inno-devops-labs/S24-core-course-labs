@@ -40,3 +40,11 @@ The code contains CI. After creating a pull request, instructions will be upload
 2)lint;
 3)build & push a docker image
 ```
+
+
+## API :
+* `/` - return Moscow time;
+* `/visits` - return number of visits
+
+## Visits
+The number of visits are saved in the visits.txt

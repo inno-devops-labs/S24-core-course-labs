@@ -23,6 +23,8 @@ services:
       - "5000:5000"
     logging: *default-logs
     deploy: *default-deploy
+    volumes:
+      - ./visits.txt:/visits.txt
 
   loki:
     image: grafana/loki:latest
