@@ -7,6 +7,9 @@ USER testUser
 
 COPY requirements.txt .
 
+RUN mkdir volume && \
+    touch volume/visits.txt
+    
 RUN pip install -r requirements.txt
 
 COPY . .

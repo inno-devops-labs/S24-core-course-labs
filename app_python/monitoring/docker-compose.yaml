@@ -17,7 +17,8 @@ services:
       - target: 5000
         published: 8000
     logging: *default-logging
-
+    volumes:
+      - ./visits:/app/visits
   loki:
     image: grafana/loki:2.9.2
     ports:
