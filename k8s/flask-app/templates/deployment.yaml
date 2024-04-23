@@ -48,6 +48,7 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
           volumeMounts:
+            # check values.yaml to see the updates
             {{- toYaml . | nindent 12 }}
           {{- end }}
 #          env:
@@ -58,6 +59,7 @@ spec:
 #                  key: password
       {{- with .Values.volumes }}
       volumes:
+        # check values.yaml to see the updates
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.nodeSelector }}
