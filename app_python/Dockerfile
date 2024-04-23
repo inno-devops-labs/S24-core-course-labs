@@ -1,19 +1,27 @@
-FROM python:3-alpine3.15
+FROM python:3.11-slim-bookworm
 
 WORKDIR /app_python
 
-RUN adduser -D -s /bin/bash nonroot
+ARG UID=10001
+ARG GID=10001
 
-COPY --chown=nonroot:nonroot ./requirements.txt /app_python
+RUN groupadd -g "${GID}" user \
+    && useradd -u "${UID}" -g "${GID}" user
+
+COPY --chown=user:user ./requirements.txt /app_python
 
 RUN pip install -r requirements.txt
 
-COPY --chown=nonroot:nonroot app.py /app_python
-COPY --chown=nonroot:nonroot templates/index.html /app_python/templates/index.html
+COPY --chown=user:user app.py /app_python
+COPY --chown=user:user templates/index.html /app_python/templates/index.html
 
-USER nonroot
+RUN mkdir -p ./data/
+RUN chown -R user:user ./
+RUN chown -R user:user ./data
+
+USER user
 
 EXPOSE 5000
 
-CMD ["cd", "app_python"]
-CMD ["python", "app.py"]
+# CMD ["cd", "app_python"]
+CMD ["sh", "-c", "python3 -m gunicorn --bind 0.0.0.0:5000 app:wsgi_app"]

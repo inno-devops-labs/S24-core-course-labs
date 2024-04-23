@@ -19,9 +19,12 @@ python3 install -r requirements.txt
 2. Start the application 
 
 ```
-python3 app.py
+python3 -m gunicorn --bind 0.0.0.0:8080 app:app
+curl localhost:8080
+curl localhost:8080/visits
 ```
 You can find your application at http://localhost:5000
+
 
 ## Testing
 
@@ -42,7 +45,7 @@ This application is containerized using Docker for easy deployment and portabili
 To build the Docker image for this application, follow these steps:
 ```
 bash
-docker build -t devops-app .
+docker build --tag app_python --build-arg UID=10001 --build-arg GID=10001
 ```
 
 #### Pull Docker Image

@@ -18,6 +18,9 @@ services:
     ports:
       - "8000:5000"
     logging: *default-logging
+    user: "10001:10001"
+    volumes:
+      - ./app-python-data:/app_python/data
 
   loki:
     image: grafana/loki:2.9.2
