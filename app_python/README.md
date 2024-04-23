@@ -11,6 +11,7 @@ This is a simple Flask web application that displays the current Moscow time. It
 - Displays the current Moscow time on the homepage.
 - Utilizes Flask framework for routing and rendering templates.
 - Implements basic error handling for invalid routes.
+- Implements visits: counts how many times a user accessed the app and displays that number in the /visits folder
 
 ## Getting Started
 
@@ -54,7 +55,7 @@ To build the Docker image locally, follow these steps:
 If you prefer to pull the Docker image from Docker Hub instead of building it locally, you can use the following command:
 
 ```bash
-docker pull almetovkamil/app_python:v1
+docker pull almetovkamil/app_python:v2
 ```
 
 ### Running the Docker Container
@@ -62,7 +63,7 @@ docker pull almetovkamil/app_python:v1
 Once you have the Docker image, you can run the container using the following command:
 
 ```bash
-docker run -d -p 5000:5000 almetovkamil/app_python:v1
+docker run -d -p 5000:5000 almetovkamil/app_python:v2
 ```
 This command will run the container in detached mode (`-d`) and map port 5000 on the host to port 5000 in the container.
 
