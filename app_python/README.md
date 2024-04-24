@@ -5,6 +5,7 @@ This Python web application displays the current time in Moscow. Built with Fast
 ## Features
 
 - Displays the current time in Moscow, updating dynamically with each page refresh.
+- Shows number of visits to the site on endpoint `/visits`
 - Built with FastAPI for high performance and ease of development.
 - Utilizes HTML and CSS for a simple and responsive user interface.
 

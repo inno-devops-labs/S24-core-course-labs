@@ -23,7 +23,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "internal-app"
+  name: ""
 
 podAnnotations:
   vault.hashicorp.com/agent-inject: "true"
@@ -65,14 +65,6 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources:
-  limits:
-    cpu: 100m
-    memory: 128Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi
-
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -81,17 +73,17 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
+volumes:
+  - name: config
+    configMap:
+      name: config-entity
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+volumeMounts:
+  - name: config
+    mountPath: "/config.json"
+    subPath: config.json
+    readOnly: true
 
 nodeSelector: {}
 

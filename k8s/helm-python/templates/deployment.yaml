@@ -37,12 +37,12 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            {{ include "app-python.pythonEnvs" . | nindent 12 }}
-            - name: MY_PASSWORD
-              valueFrom: 
-                secretKeyRef:
-                    name: credentials
-                    key: password
+            {{ include "helm-python.pythonEnvs" . | nindent 12 }}
+            - name: k1
+              valueFrom:
+                configMapKeyRef:
+                  name: config-entity
+                  key: k1
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -57,14 +57,19 @@ spec:
           #     port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- with .Values.volumeMounts }}
           volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-      {{- with .Values.volumes }}
+            - name: config-volume-py
+              mountPath: "/config.json"
+              subPath: config.json
+            - name: counter-data-py
+              mountPath: /data
       volumes:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        - name: config-volume-py
+          configMap:
+            name: config-entity
+        - name: counter-data-py
+          emptyDir:
+            sizeLimit: 500Mi
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  app_python:
+    image: xdrdvd/app_python:latest
+    container_name: app_python
+    restart: always
+    user: root
+    ports:
+      - "5000:5000"
+    volumes:
+      - app_python_visits:/app/volume/
+
+  app_go:
+    image: xdrdvd/app_golang:latest
+    container_name: app_go
+    restart: always
+    user: root
+    ports:
+      - "8080:8080"
+
+    volumes:
+      - app_go_visits:/app/volume/
+
+volumes:
+  app_python_visits:
+  app_go_visits:
