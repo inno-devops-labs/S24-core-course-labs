@@ -77,7 +77,15 @@ docker run -p 3000:3000 app_bun
 
 The application will be available at [localhost:3000](http://localhost:3000/)
 
+
+In `/` endpoint, it will show the current time in Moscow-
+
 ![Screenshot](https://i.postimg.cc/90hqgfp9/image.png)
+
+In `/visits` endpoint, it will show the number of visits to the `/` endpoint.
+
+![Visits](https://i.postimg.cc/JhtdgWYW/image.png)
+
 
 ## Development
 

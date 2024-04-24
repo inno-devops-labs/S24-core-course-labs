@@ -84,6 +84,14 @@ docker run -p 5000:5000 app_python
 
 The application will be available at [localhost:5000](http://localhost:5000/)
 
+In `/` endpoint, it will show the current time in Moscow-
+
+![Example](https://i.postimg.cc/XYVk7s95/image.png)
+
+In `/visits` endpoint, it will show the number of visits to the `/` endpoint.
+
+![Visits](https://i.postimg.cc/fR8rBbKK/image.png)
+
 ## Development
 
 Contributions are not accepted at the moment as this is just a lab assignment. You can fork the repository for your own use.
