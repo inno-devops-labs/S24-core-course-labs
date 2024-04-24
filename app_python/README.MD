@@ -14,11 +14,11 @@ Server will be located on http://127.0.0.1:8000.
 
 Detailed description of the server could be viewed using `/docs` endpoint.
 
-Shortly it consist of two parts
+Shortly it consist of three parts
 
 1. `/` For getting html document with the main frontend.
 2. `/api/time` For getting current moscow time up to seconds.
-
+3. `/visits` For displaying number of visits in the site
 ## Installation guide
 To try our service simply you can use prepared Makefile.
 Here are several commands to use
