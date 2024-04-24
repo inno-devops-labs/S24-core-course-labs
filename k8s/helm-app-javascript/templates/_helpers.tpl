@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "helm-app-javascript.name" -}}
+{{- define "app-javascript-helm.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "helm-app-javascript.fullname" -}}
+{{- define "app-javascript-helm.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "helm-app-javascript.chart" -}}
+{{- define "app-javascript-helm.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "helm-app-javascript.labels" -}}
-helm.sh/chart: {{ include "helm-app-javascript.chart" . }}
-{{ include "helm-app-javascript.selectorLabels" . }}
+{{- define "app-javascript-helm.labels" -}}
+helm.sh/chart: {{ include "app-javascript-helm.chart" . }}
+{{ include "app-javascript-helm.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "helm-app-javascript.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "helm-app-javascript.name" . }}
+{{- define "app-javascript-helm.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "app-javascript-helm.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "helm-app-javascript.serviceAccountName" -}}
+{{- define "app-javascript-helm.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "helm-app-javascript.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "app-javascript-helm.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

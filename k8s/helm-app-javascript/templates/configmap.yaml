@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  K1: "javascript-value1"
+  K2: "javascript-value2"
+  config.json: |
+    {{ .Files.Get "files/config.json" | toJson | indent 4 }}
