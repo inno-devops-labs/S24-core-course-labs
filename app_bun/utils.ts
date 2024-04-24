@@ -22,3 +22,30 @@ export function returnTzTime(timezone: string) {
   };
   return new Intl.DateTimeFormat("en-US", options).format(date);
 }
+
+async function getVisits() {
+  const filename = process.env.VISITS_FILE;
+  if (!filename) {
+    throw new Error("VISITS_FILE environment variable is not set");
+  }
+  const file = Bun.file(filename);
+  if (!(await file.exists())) {
+    await Bun.write(filename, "0");
+    return 0;
+  }
+  return Number(await file.text());
+}
+
+export async function incrementVisits() {
+  const visits = await getVisits();
+  const filename = process.env.VISITS_FILE;
+  if (!filename) {
+    throw new Error("VISITS_FILE environment variable is not set");
+  }
+  await Bun.write(filename, String(visits + 1));
+}
+
+export async function returnVisitCounts() {
+  const visits = await getVisits();
+  return `<h1>Number of visits: ${visits}</h1>`;
+}

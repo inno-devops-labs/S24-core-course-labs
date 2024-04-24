@@ -5,7 +5,7 @@ Main application file. Contains the route information and necessary setups.
 from flask import Flask, request
 from prometheus_flask_exporter import PrometheusMetrics
 
-from app_python.app_utils import return_time
+from app_python.app_utils import return_time, increment_visits, return_visit_counts
 
 import os
 
@@ -18,6 +18,7 @@ def show_time():
     """
     Index page. Shows the current time in Moscow.
     """
+    increment_visits()
     timezone = os.getenv("APP_TIMEZONE", "Europe/Moscow")
     return return_time(timezone)
 
@@ -27,3 +28,10 @@ def show_prometheus_metrics():
     Metrics page. Shows the current time in Moscow in Prometheus format.
     """
     return return_time("Europe/Moscow", prometheus=True)
+
+@app.route("/visits")
+def show_visits():
+    """
+    Visits page. Shows the number of visits to the page.
+    """
+    return return_visit_counts()
