@@ -19,6 +19,8 @@ services:
   app_python:
     container_name: app_python
     image: skylemn07/app:latest
+    volumes:
+      - ./python-data:/app/data
     ports:
       - "5000:5000"
     networks:
