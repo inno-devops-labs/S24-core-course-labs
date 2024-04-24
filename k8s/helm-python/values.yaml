@@ -1,5 +1,4 @@
 replicaCount: 1
-
 image:
   repository: staglente/app_python
   pullPolicy: IfNotPresent
@@ -15,9 +14,13 @@ serviceAccount:
   annotations: {}
   name: ""
 
-podAnnotations: {}
-podLabels: {}
+podAnnotations:
+  git: keep
+  vault.hashicorp.com/agent-inject: 'true'
+  vault.hashicorp.com/role: 'internal-app'
+  vault.hashicorp.com/agent-inject-secret-server-config.txt: 'internal/data/server/config'
 
+podLabels: {}
 podSecurityContext: {}
 
 securityContext: {}
@@ -38,7 +41,6 @@ ingress:
   tls: []
 
 resources: {}
-
 livenessProbe:
   httpGet:
     path: /
@@ -55,11 +57,7 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
 
 volumes: []
-
 volumeMounts: []
-
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
