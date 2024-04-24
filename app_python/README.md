@@ -87,3 +87,14 @@ The CI workflow is set up using GitHub Actions. The workflow includes the follow
 - Linter - Run the linter using `flake8`
 - Tests - Run the unit tests using `pytest`
 - Docker - Build and push the Docker image to Docker Hub
+
+
+## Visits route
+
+- /visits route that counts the vist to the homepage persistently. 
+- Visits count is updated in host machine. 
+
+Video:
+<video controls>
+  <source src="./docs/videos/visits.mp4" type="video/mp4">
+</video>

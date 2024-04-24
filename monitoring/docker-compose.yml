@@ -63,6 +63,8 @@ services:
       interval: 30s
       timeout: 15s
       retries: 3
+    volumes:
+      - ./visits:/app_python/visits
   
   app_go:
     build: ../app_go
