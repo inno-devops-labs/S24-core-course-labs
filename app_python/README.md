@@ -61,3 +61,13 @@ The CI workflow includes the following steps:
 
 You can view the status of the CI workflow by clicking on the "Actions" tab at the top of this repository.
 
+## New Features
+
+- **Visit Counter**: The application now keeps track of the number of visits. Each visit increments a counter stored in a file named `visits`.
+- **Visits Endpoint**: A new endpoint `/visits` has been introduced to display the total number of visits recorded so far.
+
+## Testing the Visit Counter
+
+1. Start the application using `docker-compose up`.
+2. Open a web browser and navigate to `http://localhost:5000/visits` to view the current visit count.
+3. Refresh the page to increment the visit count and observe the change reflected in real-time.
