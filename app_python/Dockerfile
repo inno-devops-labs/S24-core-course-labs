@@ -13,7 +13,7 @@ WORKDIR /app_python
 RUN adduser -D myuser && chown -R myuser /app_python
 USER myuser
 
-COPY __init__.py app.py requirements.txt ./
+COPY app.py requirements.txt ./
 
 # Install dependencies
 RUN pip install -r requirements.txt --no-cache-dir --user
