@@ -33,7 +33,12 @@ async function getVisits() {
     await Bun.write(filename, "0");
     return 0;
   }
-  return Number(await file.text());
+  let visits = await file.text();
+  if (visits === "") {
+    await Bun.write(filename, "0");
+    visits = "0";
+  }
+  return parseInt(visits);
 }
 
 export async function incrementVisits() {

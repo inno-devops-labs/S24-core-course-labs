@@ -51,9 +51,12 @@ def get_visits() -> int:
         return 0
 
     # read the current number of visits
-    with open(filename, "r", encoding="utf-8") as f:
-        visits = int(f.read())
-        return visits
+    with open(filename, "r+", encoding="utf-8") as f:
+        visits = f.read()
+        if not visits:
+            f.write("0")
+            return 0
+        return int(visits)
 
 
 def increment_visits():

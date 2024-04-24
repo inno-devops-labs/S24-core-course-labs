@@ -4,12 +4,14 @@ LABEL description="This is a simple flask app" maintainer="pptx704"
 
 WORKDIR /app
 
+ENV USER=newuser
+
 # Limited noroot user permission
-RUN adduser -D newuser && mkdir /app/app_python && chown -R newuser ./app_python
-USER newuser
+RUN addgroup -g 1000 ${USER} && adduser -u 1000 -G ${USER} -D ${USER} && mkdir /app/app_python && mkdir /app/data && chown -R ${USER}:${USER} /app
+USER ${USER}
 
 # User path is added to run user installed packages
-ENV PATH="/home/newuser/.local/bin:$PATH"
+ENV PATH="/home/${USER}/.local/bin:$PATH"
 
 # Requiments is copied first to cache installation
 COPY requirements.txt ./app_python/requirements.txt

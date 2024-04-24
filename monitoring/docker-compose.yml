@@ -24,7 +24,11 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
-  
+    environment:
+      - VISITS_FILE=/app/data/visits.txt
+    volumes:
+      - ../app_python/data:/app/data/
+
   app_bun:
     image: pptx704/app_bun:latest
     ports:
@@ -36,6 +40,10 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+    environment:
+      - VISITS_FILE=/app/data/visits.txt
+    volumes:
+      - ../app_bun/data/visits.txt:/app/data/visits.txt
 
   loki:
     image: grafana/loki:latest
