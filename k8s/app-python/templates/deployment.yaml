@@ -47,6 +47,9 @@ spec:
                 secretKeyRef:
                   name: credentials
                   key: password
+          envFrom:
+            - configMapRef:
+                name: config
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
