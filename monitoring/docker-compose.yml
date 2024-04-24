@@ -14,10 +14,12 @@ x-logging:
 
 services:
   app-python:
-    image: nabuki/moscowtime-web:latest
+    image: tatarinalba/devops:latest
     ports:
       - "8000:8080"
     logging: *default-logging
+    volumes:
+       - ./app_python_data:/data
 
   loki:
     image: grafana/loki:2.9.2
