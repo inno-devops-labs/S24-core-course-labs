@@ -1,4 +1,5 @@
 astroid==3.1.0
+black==24.4.0
 blinker==1.7.0
 click==8.1.7
 dill==0.3.8
@@ -12,11 +13,13 @@ mccabe==0.7.0
 mypy==1.9.0
 mypy-extensions==1.0.0
 packaging==24.0
+pathspec==0.12.1
 platformdirs==4.2.1
 prometheus-flask-exporter==0.23.0
 prometheus_client==0.20.0
 pylint==3.1.0
 pytz==2024.1
 tomlkit==0.12.4
+types-pytz==2024.1.0.20240417
 typing_extensions==4.11.0
 Werkzeug==3.0.2
