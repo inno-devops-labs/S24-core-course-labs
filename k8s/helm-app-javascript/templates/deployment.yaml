@@ -38,6 +38,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             {{- include "helm-app-javascript.envVar" . | nindent 12 }}
+          envFrom:
+            - configMapRef:
+                name: config-javascript
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
