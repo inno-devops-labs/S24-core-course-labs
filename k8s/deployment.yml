@@ -16,4 +16,4 @@ spec:
         - name: app-python
           image: engaezik/devops-flask-app
           ports:
-            - containerPort: 8080
+            - containerPort: 5000

@@ -35,6 +35,16 @@ Run the tests:
     ```
 2. Open your web browser and navigate to http://127.0.0.1:5000/ to view the current time in Moscow.
 
+## API description
+
+1. `/` - redirects to `/show_moscow_time` automatically 
+2. `/show_moscow_time` - display the Moscow time page
+3. `/visits` - outputs the quantity of visits as a dictionary {{"visits": int}}
+
+## Data Volumes
+
+The quantity of visits is recorded in `visits.txt`'s `data` folder.
+
 ## Using Docker
 
 1. Pull the Docker image from Docker Hub:
@@ -46,10 +56,10 @@ Run the tests:
 2. Run the Docker container:
 
     ```bash
-    docker run -p 8080:8080 i.ezhova/devops-flask-app
+    docker run -p 5000:5000 i.ezhova/devops-flask-app
     ```
 
-3. Open the web browser and navigate to [http://127.0.0.1:8080/](http://127.0.0.1:8080/) to see the current time in
+3. Open the web browser and navigate to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to see the current time in
    Moscow.
 
 ### Building the Docker Image
