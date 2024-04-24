@@ -1,0 +1,23 @@
+version: "3"
+
+networks:
+  loki:
+
+volumes:
+  app_data:
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: 10M
+    max-file: 2
+
+services:
+  python_app:
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    logging: *logging
+    volumes:
+      - app_data:/project/data

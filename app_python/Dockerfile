@@ -1,5 +1,7 @@
 FROM python:3.11-slim-bullseye
 
+RUN mkdir -p /project/data
+
 WORKDIR /project
 
 # Use non-root user

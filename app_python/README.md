@@ -8,11 +8,14 @@ This Python web application displays the current time in Moscow.
 
 Open the index page at `/` and web server built with Python will generate a static HTML web page with the current time in Moscow.
 
+App also shows the total number of visits of the home page at `/visits` route.
+
 ## Features
 
 - 🕰️ Displays current time in Moscow;
 - 💨 Fast, <3kb plain HTML;
-- 💪🏻 Robust, built with [Flask](https://flask.palletsprojects.com/en/3.0.x/).
+- 💪🏻 Robust, built with [Flask](https://flask.palletsprojects.com/en/3.0.x/);
+- 👀 Visits counter.
 
 ## Local Setup
 
@@ -74,6 +77,8 @@ docker run -p 8000:8000 evermake/devops-simple-app
 ```
 
 App will be available at [localhost:8000](http://localhost:8000).
+
+App maintains `visits` counter using file at `/project/data/`, so you probably need to mount it to somewhere.
 
 ## Testing
 
