@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a907869f-f062-4d26-bf52-808ad19e005d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app_python/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/12.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/files/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/app-python/templates/config-map.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/app_python/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app_python/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_python/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_python/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k8s/app-python/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/app-python/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k8s/app-python/values.yml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/app-python/values.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k8s/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/deployment.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k8s/service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitoring/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/monitoring/docker-compose.yml" afterDir="false" />
-    </list>
+    <list default="true" id="a907869f-f062-4d26-bf52-808ad19e005d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
