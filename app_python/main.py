@@ -34,7 +34,7 @@ def moscow_time(request: Request):
 
         with open(VISITS_PATH, "r") as f:
             counter = int(f.read())
-        
+
         with open(VISITS_PATH, "w") as f:
             f.write(str(counter + 1))
 
@@ -45,12 +45,13 @@ def moscow_time(request: Request):
         print(e)
         logging.error(f"An error occurred: {e}")
         raise HTTPException(status_code=500, detail="An error occurred")
-    
+
+
 @app.get("/visits")
 def visits():
     with open(VISITS_PATH, "r") as f:
         counter = int(f.read())
-    
+
     return {"visits": counter}
 
 
