@@ -8,6 +8,7 @@ metrics = PrometheusMetrics(app)
 
 VISITS_FILE = 'visits'
 
+
 def get_moscow_time():
     moscow_timezone = timezone(timedelta(hours=3))  # Moscow is UTC+3
     current_time = datetime.now(moscow_timezone)
@@ -48,7 +49,7 @@ def get_visit_count():
             return 0
     except Exception as e:
         print(f"Error occurred while reading visit count: {e}")
-        return 0   
+        return 0
 
 
 # The root URL of the app
