@@ -93,8 +93,4 @@ The CI workflow is set up using GitHub Actions. The workflow includes the follow
 
 - /visits route that counts the vist to the homepage persistently. 
 - Visits count is updated in host machine. 
-
-Video:
-<video controls>
-  <source src="./docs/videos/visits.mp4" type="video/mp4">
-</video>
+- [Video demonstration](./docs/videos/visits.mp4)
