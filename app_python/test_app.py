@@ -6,7 +6,7 @@ from app import create_app
 
 import re
 
-from app_python.app.routes.counts import _create_visit
+from app.routes.counts import _create_visit
 
 class FlaskTestCase(unittest.TestCase):
 
