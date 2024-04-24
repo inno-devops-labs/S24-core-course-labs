@@ -20,10 +20,17 @@ services:
     build: ../app_python
     ports:
       - 5000:5000
+    volumes:
+      - ./app_python/visits_folder:/code/visits_folder
     logging: *common_logging
     networks:
       - loki
     deploy: *default-deploy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "app_python:8000/health"]
+      interval: 20s
+      timeout: 10s
+      retries: 3
 
   loki:
     image: grafana/loki:2.9.2

@@ -6,12 +6,15 @@ from app import create_app
 
 import re
 
+from app_python.app.routes.counts import _create_visit
+
 class FlaskTestCase(unittest.TestCase):
 
     def setUp(self):
         """Set up a test client before each test."""
         self.app = create_app()
         self.app.config['TESTING'] = True  # You can also set this in a separate config
+        _create_visit()
         self.client = self.app.test_client()
 
     def tearDown(self):
@@ -23,6 +26,13 @@ class FlaskTestCase(unittest.TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertIn('Current Time in Moscow', response.data.decode('utf-8'))
+
+    
+    def test_health(self):
+        response = self.client.get("/health")
+        
+        assert response.status_code == 200
+        assert response.text == '"OK"'
     
     def test_time_format_on_home_page(self):
         """Test the home page for correct time format YYYY-MM-DD HH:MM:SS."""

@@ -24,6 +24,9 @@ ADD app /work_app/app
 COPY ./config.py .
 COPY ./run.py .
 COPY ./test_app.py .
+
+RUN mkdir visits_folder
+
 # Switch to non-root user
 USER appuser
 
