@@ -61,3 +61,5 @@ docker build -t <tag_here> .
 ```bash
 docker run <tag_here>
 ```
+
+## ConfigMaps
