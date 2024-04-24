@@ -121,6 +121,8 @@ services:
       timeout: 30s
       retries: 5
       start_period: 30s
+    volumes:
+      - ./python-visits:/app/visits
   
   app_javascript:
     image: damirafliatonov/moscow-time-app-js:latest
@@ -144,6 +146,8 @@ services:
       timeout: 30s
       retries: 5
       start_period: 30s
+    volumes:
+      - ./javascript-visits:/app/visits
 
   prometheus:
     image: prom/prometheus:v2.51.0
