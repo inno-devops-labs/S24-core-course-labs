@@ -77,6 +77,14 @@ This Python web application displays the current time in Moscow.
 
 3. After running the command, you should see the output of the test results.
 
+### Visits
+
+Each time the home page is visited, the number of visits increase.
+
+The total number of visits can be viewed by adding `/visits` to the host url.
+
+To check the number of visits locally, they are stored in the file at `visits/visits.txt`
+
 ## Docker
 
 To run the application in a Docker container, follow these steps:

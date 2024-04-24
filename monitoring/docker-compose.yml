@@ -24,6 +24,8 @@ services:
       - "5000:5000"
     logging: *default-logging
     deploy: *default-deploy
+    volumes:
+      - ./visits:/app/visits
     healthcheck:
       test: ["CMD-SHELL", "curl --fail http://localhost:5000/ || exit 1"]
       interval: 10s
