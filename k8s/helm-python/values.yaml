@@ -100,10 +100,17 @@ volumes: []
 #     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
+volumeMounts:
+  - name: "visits"
+    mountPath: "/data"
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
+volumeClaim:
+  name: "visits"
+  storageSize: 20Mi
+  accessModes: [ "ReadWriteOnce" ]
+
 
 nodeSelector: {}
 

@@ -6,6 +6,9 @@ WORKDIR /app
 
 RUN adduser -D puppet && chown -R puppet /app
 
+RUN mkdir /data && chown -R puppet /data
+VOLUME [ "/data" ]
+
 COPY app.py config.py requirements.txt ./
 COPY tests ./tests
 COPY project ./project
