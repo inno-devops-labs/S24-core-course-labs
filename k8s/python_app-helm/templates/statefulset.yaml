@@ -1,11 +1,12 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: {{ include "java_app-helm.fullname" . }}
+  name: {{ include "python_app-helm.fullname" . }}
   labels:
     {{- include "library-chart.labels" . | indent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
+  podManagementPolicy: "Parallel"
+  {{- if not .Values.autoscaling.enabledStatefulSet }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
@@ -27,7 +28,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "java_app-helm.serviceAccountName" . }}
+      serviceAccountName: {{ include "python_app-helm.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -40,6 +41,17 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: env-config-map
+          env:
+            # - name: MY_SECRET 
+            #   valueFrom: 
+            #     secretKeyRef:
+            #       name: my-secret
+            #       key: secret_key
+            {{- include "python_app-helm.env.variable1" . | nindent 12 }}
+            {{- include "python_app-helm.env.variable2" . | nindent 12 }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
@@ -66,3 +78,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  {{- with .Values.volumeClaimTemplates }}
+  volumeClaimTemplates:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
