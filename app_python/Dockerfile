@@ -14,6 +14,8 @@ COPY app/* /app/
 
 # USER app_user:app_user
 
+RUN mkdir /visits && touch /visits/visits.txt
+
 EXPOSE 5000
 
 ENTRYPOINT [ "flask", "--app", "main", "run", "--host=0.0.0.0" ]

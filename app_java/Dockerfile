@@ -19,4 +19,4 @@ RUN adduser app_user
 
 USER app_user:app_user
 
-ENTRYPOINT ["java", "-jar", "spring-boot-docker.jar"]
+ENTRYPOINT touch /app/persist/file.txt && java -jar spring-boot-docker.jar

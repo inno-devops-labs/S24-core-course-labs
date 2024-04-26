@@ -15,6 +15,8 @@ app.config['datetime_format'] = os.getenv('DATETIME_FORMAT',
 # logs_file_path = os.getenv('LOGS_FILE_PATH', default='../logs/moscow_time.log')
 # logging.basicConfig(filename=logs_file_path,level=logging.DEBUG)
 
+with open("../visits/visits.txt", "w") as f: 
+    f.write("0")
 
 @app.route("/health")
 def status(): 
