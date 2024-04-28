@@ -16,11 +16,13 @@ visits_path = "data/visits"
 def save_visits():
     try:
         os.mkdir("data")
-    except:
+    except Exception as err:
+        print("err", err)
         pass
 
     with open(visits_path, "w") as visits_file:
         visits_file.write(str(visits))
+
 
 def add_visits():
     global visits
@@ -28,6 +30,7 @@ def add_visits():
     visits += 1
     visits_mutex.release()
     save_visits()
+
 
 @app.get("/")
 def get_current_time():
