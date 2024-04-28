@@ -76,3 +76,4 @@ In this lab assignment, you will explore Infrastructure as Code (IAC) using Terr
 - Create pull requests (PRs) as needed: from your fork to the main branch of this repository, and from your fork's branch to your fork's master branch.
 
 > Note: Dive into Terraform to manage infrastructures efficiently. Explore the AWS and Docker tutorials, and don't forget to document your process and best practices in the `TF.md` file.
+
