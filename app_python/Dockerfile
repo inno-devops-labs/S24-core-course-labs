@@ -1,14 +1,15 @@
-FROM python:3-alpine3.15
+FROM --platform=linux/arm64 python:3.11
 
 # The environment variable ensures that the python output is set straight
-# to the terminal with out buffering it first
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE=1
+# to the terminal without buffering it first
+ENV PYTHONFAULTHANDLER=1 \
+    PYTHONHASHSEED=random \
+    PYTHONUNBUFFERED=1
 
 LABEL version="1.0" description="WebApp showing current Moscow time" maintainer="rmolochko"
 
 # Set the working directory to /app_python
-WORKDIR /app_python
+WORKDIR /app
 
 # Create user
 ARG UID=10001
@@ -19,18 +20,19 @@ RUN adduser \
     --shell "/sbin/nologin" \
     --no-create-home \
     --uid "${UID}" \
-    appuser && chown -R appuser /app_python
+    appuser && chown -R appuser /app
 
+# Copy requirements.txt
+COPY requirements.txt .
 
-RUN --mount=type=cache,target=/root/.cache/pip \
-    --mount=type=bind,source=requirements.txt,target=requirements.txt \
-    python -m pip install -r requirements.txt
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
 USER appuser
 
 # Copy files
 COPY templates ./templates
-COPY app.py requirements.txt ./
+COPY app.py app.py
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
