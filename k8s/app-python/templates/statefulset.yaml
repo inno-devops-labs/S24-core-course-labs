@@ -28,6 +28,13 @@ spec:
       serviceAccountName: {{ include "app-python.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: init-example
+          image: alpine:3.19.1
+          command: ["wget", "-O", "/init-container/index.html", "https://snejugal.ru"]
+          volumeMounts:
+            - name: init-container
+              mountPath: "/init-container"
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
