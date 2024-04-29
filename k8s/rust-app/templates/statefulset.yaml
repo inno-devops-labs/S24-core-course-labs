@@ -1,10 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "rust-app.fullname" . }}
   labels:
     {{- include "rust-app.labels" . | nindent 4 }}
 spec:
+  podManagementPolicy: Parallel
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
@@ -68,3 +69,14 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  {{- if .Values.pvc.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ .Values.pvc.name }}
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: {{ .Values.pvc.storageType }}
+        resources:
+          requests:
+            storage: {{ .Values.pvc.storageSize }}
+  {{- end }}
