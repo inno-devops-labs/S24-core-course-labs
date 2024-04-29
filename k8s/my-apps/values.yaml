@@ -100,7 +100,7 @@ volumes:
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: visits-volume
-    mountPath: /app_data/visits/visits.json
+    mountPath: /app_data/visits/
     subPath: visits.json
 # - name: foo
 #   mountPath: "/etc/foo"
