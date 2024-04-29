@@ -102,6 +102,8 @@ I stored the visits count to the "/" and "/visits" routes using a file "visits.t
 
 [![image.png](https://i.postimg.cc/L8PH8g59/image.png)](https://postimg.cc/21zpH6nM)
 
+I initialised/reset the visit count everytime there is a startup event fired and I listened via `@app.on_event("startup")`
+
 ## CI
 A CI workflow is contained in the `.github/workflows/ci_python.yaml` file. This workflow lints and tests the application, checks code vulnerability using SNYK, and builds and pushes docker image. Workflow is triggered only if the there is a change in the `app_python` directory or the workflow file itself.
 

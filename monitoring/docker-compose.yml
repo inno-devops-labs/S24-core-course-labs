@@ -22,6 +22,9 @@ services:
       - 8000:8000
     deploy: *default-deploy
     logging: *common_logging
+    volumes:
+      - ./visits.txt:/app/visits.txt
+
     networks:
       - loki
 

@@ -12,6 +12,14 @@ from prometheus_client import generate_latest
 app = FastAPI()
 
 
+async def initVisitsCount():
+    with open("visits.txt", "w") as file:
+        file.write("0")
+@app.on_event("startup")
+async def startup_event():
+    await initVisitsCount()
+
+
 async def getVisitCount():
     try:
         with open("visits.txt", "r") as file:
