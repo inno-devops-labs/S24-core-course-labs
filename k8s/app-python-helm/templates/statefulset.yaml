@@ -1,10 +1,12 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "app-python-helm.fullname" . }}
   labels:
     {{- include "app-python-helm.labels" . | nindent 4 }}
 spec:
+  serviceName: "{{ include "app-python-helm.fullname" . }}"
+  podManagementPolicy: "Parallel"
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
@@ -19,9 +21,9 @@ spec:
       {{- end }}
       labels:
         {{- include "app-python-helm.labels" . | nindent 8 }}
-	{{- with .Values.podLabels }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
+    {{- with .Values.podLabels }}
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -37,8 +39,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
-            - configMapRef:
-                name: {{ include "app-python-helm.fullname" . }}-configmap
+          - configMapRef:
+              name: {{ include "app-python-helm.fullname" . }}-configmap
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -54,9 +56,6 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-            - name: config-volume
-              mountPath: /config.json
-              subPath: config.json
             {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
