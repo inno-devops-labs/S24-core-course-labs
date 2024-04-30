@@ -18,5 +18,8 @@ EXPOSE 5000
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
+RUN mkdir -p /etc/app \
+    && chmod 777 /etc/app
+
 USER myuser
 CMD ["flask", "run"]

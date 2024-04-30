@@ -1,12 +1,17 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "web-mierley.fullname" . }}
   labels:
     {{- include "web-mierley.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
+  podManagementPolicy: {{ .Values.podManagementPolicy }}
   replicas: {{ .Values.replicaCount }}
+  {{- with .Values.volumeClaimTemplates }}
+  volumeClaimTemplates:
+      {{- toYaml . | nindent 4 }}
+  {{- end }}
   {{- end }}
   selector:
     matchLabels:
@@ -36,12 +41,15 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.env }}
           env:
+            {{- toYaml . | nindent 12 }}
             - name: MY_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: credentials
                   key: password
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
