@@ -6,7 +6,7 @@ replicaCount: 2
 
 image:
   repository: sapushha/sapushha_flask_app
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
@@ -39,7 +39,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: LoadBalancer
+  type: NodePort
   port: 8080
 
 ingress:
