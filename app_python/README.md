@@ -89,6 +89,11 @@ docker run -p 4000:80 nytakoe115/flask-moscow-app
 ####3. Access the Web Application
 Open your web browser and navigate to http://localhost:4000 to view the Moscow Time web application.
 
+####4. Also u can see visits 
+```
+http://localhost:4000/visits
+```
+
 ##⭐️ Unit Tests
 
 The application includes a set of unit tests to ensure the correctness of its functionality. To run the tests, use the following command:

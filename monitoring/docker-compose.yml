@@ -25,6 +25,8 @@ services:
       - "4000:80"
     logging: *default-logging
     deploy: *default-deploy
+    volumes:
+      - ./data:/app/data
 
   loki:
     image: grafana/loki:2.9.2

@@ -15,6 +15,8 @@ COPY templates ./templates/
 
 COPY static ./static/
 
+COPY data ./data/
+
 # Change ownership to the non-root user
 RUN chown -R appuser:appuser /app
 
@@ -37,4 +39,4 @@ EXPOSE 80
 ENV FLASK_APP=app.py
 
 # Run app.py when the container launches
-CMD ["flask", "run", "--host=0.0.0.0", "--port=80"]
+CMD [ "python", "-u", "app.py"]
