@@ -46,7 +46,11 @@ def check_visits(increment=False):
     if not increment:
         return
     with open('data/visits', 'r') as f:
-        counter = int(f.read())
+        file_content = f.read()
+        if len(file_content) == 0:
+            counter = 0
+        else:
+            counter = int(file_content)
     with open('data/visits', 'w') as f:
         f.write(str(counter + 1))
 

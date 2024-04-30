@@ -5,3 +5,5 @@ __pycache__
 PYTHON.md
 README.md
 DOCKER.md
+CI.md
+docker-compose.yml

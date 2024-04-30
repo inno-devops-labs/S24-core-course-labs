@@ -6,9 +6,9 @@ replicaCount: 1
 
 image:
   repository: blbr13/app-flask
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "lab2"
+  tag: "lab13"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -44,8 +44,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
+  type: ClusterIP # NodePort
+  port: 8080
 
 ingress:
   enabled: false
@@ -72,10 +72,12 @@ resources:
     memory: 128Mi
 
 livenessProbe:
+  initialDelaySeconds: 15
   httpGet:
     path: /
     port: http
 readinessProbe:
+  initialDelaySeconds: 15
   httpGet:
     path: /
     port: http
