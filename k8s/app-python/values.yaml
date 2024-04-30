@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: docker.io/skylemn07/app
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
@@ -40,7 +40,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 5000
 
 ingress:
