@@ -10,7 +10,7 @@ class VisitCounterService:
 
     def increment(self) -> None:
         counter = self.get()
-        with open(self.path, 'w') as f:
+        with open(self.path, 'w+') as f:
             f.write(str(counter + 1))
 
     def get(self) -> int:
