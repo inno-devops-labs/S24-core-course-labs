@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
  name: config
  labels:
-   {{- include "python-helm.labels" . | nindent 4 }}
+   {{- include "app-python.labels" . | nindent 4 }}
 data:
  config.json: |-
 {{ .Files.Get "files/config.json" | indent 4 }}
