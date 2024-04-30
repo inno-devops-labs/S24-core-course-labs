@@ -44,3 +44,7 @@ pytest
 - Build, lint and test
   - Pylint for linting
   - Pytest for testing
+
+## Visits
+
+The application determines how often the site is visited
