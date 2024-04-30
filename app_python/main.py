@@ -1,3 +1,4 @@
+import os.path
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -13,7 +14,11 @@ VISITS_FILE_PATH = "/app/vol/visits"
 
 
 def log_visit() -> int:
-    with open(VISITS_FILE_PATH, "w+") as visits_file:
+    if not os.path.isfile(VISITS_FILE_PATH):
+        with open(VISITS_FILE_PATH, "w"):
+            pass
+
+    with open(VISITS_FILE_PATH, "r+") as visits_file:
         l = visits_file.readline()
         if l == "":
             l = "0"

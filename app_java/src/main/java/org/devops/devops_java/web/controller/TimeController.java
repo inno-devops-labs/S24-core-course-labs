@@ -18,7 +18,7 @@ public class TimeController {
             new File(VISITS_FILE_PATH).createNewFile();
             var bf = new BufferedReader(new FileReader(VISITS_FILE_PATH));
             String s = bf.readLine();
-            if (s.isEmpty()) {
+            if (s == null || s.isEmpty()) {
                 s = "0";
             }
             int visits = Integer.parseInt(s) + 1;

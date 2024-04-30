@@ -2,13 +2,13 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
+replicaCount: 3
 
 image:
   repository: masterlogick/devops-py-img
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+  tag: 1.2
 
 imagePullSecrets: []
 nameOverride: ""
@@ -26,9 +26,9 @@ serviceAccount:
   name: ""
 
 podAnnotations:
-    vault.hashicorp.com/agent-inject: 'true'
-    vault.hashicorp.com/role: 'internal-app'
-    vault.hashicorp.com/agent-inject-secret-database-config.txt: 'internal/data/database/config'
+#    vault.hashicorp.com/agent-inject: 'true'
+#    vault.hashicorp.com/role: 'internal-app'
+#    vault.hashicorp.com/agent-inject-secret-database-config.txt: 'internal/data/database/config'
 
 podLabels: {}
 
@@ -44,7 +44,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 8080
 
 ingress:
@@ -102,9 +102,20 @@ volumeMounts:
   - name: config-json
     mountPath: /app/config.json
     subPath: config.json
+  - name: visits
+    mountPath: /app/vol
 
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
+
+volumeClaimTemplates:
+  - metadata:
+      name: visits
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Mi
