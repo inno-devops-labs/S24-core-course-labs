@@ -1,16 +1,25 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: {{ include "go-chart.fullname" . }}
+  name: {{ include "py-chart.fullname" . }}
   labels:
-    {{- include "go-chart.labels" . | nindent 4 }}
+    {{- include "py-chart.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  podManagementPolicy: Parallel
+  volumeClaimTemplates:
+  - metadata:
+      name: {{ .Values.persistentVolume.name }}
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: {{ .Values.persistentVolume.size }}
   selector:
     matchLabels:
-      {{- include "go-chart.selectorLabels" . | nindent 6 }}
+      {{- include "py-chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +27,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "go-chart.labels" . | nindent 8 }}
+        {{- include "py-chart.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +36,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "go-chart.serviceAccountName" . }}
+      serviceAccountName: {{ include "py-chart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
