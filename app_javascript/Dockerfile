@@ -5,7 +5,8 @@ WORKDIR /app
 COPY package*.json app.js ./
 COPY views ./views
 
-RUN npm install \
+RUN mkdir -p visits \
+    && npm install \
     && npm install -g pkg@5.4.0 \
     && pkg app.js --target node14-alpine-x64
 
@@ -15,11 +16,11 @@ WORKDIR /app
 
 COPY --from=builder /app/app ./app
 COPY --from=builder /app/views ./views
+COPY --from=builder /app/visits ./visits
 
 EXPOSE 3000
 
 RUN adduser -D myuser \
-    && mkdir -p visits \
     && chown -R myuser:myuser /app
     
 USER myuser
