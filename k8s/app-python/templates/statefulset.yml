@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "app_python.fullname" . }}
   labels:
@@ -7,6 +7,7 @@ metadata:
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
+  podManagementPolicy: "Parallel"
   {{- end }}
   selector:
     matchLabels:
@@ -36,12 +37,12 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-#          env:
-#            - name: MY_PASSWORD
-#              valueFrom:
-#                secretKeyRef:
-#                  name: credentials
-#                  key: password
+          #          env:
+          #            - name: MY_PASSWORD
+          #              valueFrom:
+          #                secretKeyRef:
+          #                  name: credentials
+          #                  key: password
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -75,3 +76,5 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  volumeClaimTemplates:
+     {{- toYaml .Values.volumeClaimTemplates | nindent 4 }}

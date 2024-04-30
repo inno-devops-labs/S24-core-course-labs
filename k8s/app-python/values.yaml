@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: nad777/anton_nekhaev_flask
@@ -37,9 +37,9 @@ podSecurityContext: { }
 
 securityContext: { }
   # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
+#   drop:
+#   - ALL
+# readOnlyRootFilesystem: true
 # runAsNonRoot: true
 # runAsUser: 1000
 
@@ -69,9 +69,9 @@ resources: { }
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
+#   cpu: 100m
+#   memory: 128Mi
+# requests:
 #   cpu: 100m
 #   memory: 128Mi
 
@@ -97,10 +97,21 @@ volumes:
     configMap:
       name: config
 
+volumeClaimTemplates:
+  - metadata:
+      name: vol
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 2Gi
+
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: config-json
     mountPath: /app/config
+  - name: vol
+    mountPath: /app/vol
 
 nodeSelector: { }
 
