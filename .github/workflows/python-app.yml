@@ -52,7 +52,7 @@ jobs:
       - name: Build and Push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: "./app_python"
+          context: "{{defaultContext}}:app_python/"
           push: true
           tags: rmoll/moscow_time_web_app:latest
           platforms: linux/amd64,linux/arm64
