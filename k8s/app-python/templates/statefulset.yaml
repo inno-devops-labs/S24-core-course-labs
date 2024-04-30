@@ -1,12 +1,13 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: {{ include "app-java.fullname" . }}
+  name: {{ include "app-python.fullname" . }}
   labels:
-    {{- include "app-java.labels" . | nindent 4 }}
+    {{- include "app-python.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
+  podManagementPolicy: "Parallel"
   {{- end }}
   selector:
     matchLabels:
@@ -24,7 +25,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "app-java.serviceAccountName" . }}
+      serviceAccountName: {{ include "app-python.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -37,12 +38,12 @@ spec:
           - name: MY_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: credentials1
+                name: credentials
                 key: password
-          {{- include "app-java.env" . | nindent 10 }}
+          {{- include "app-python.env" . | nindent 10 }}
           envFrom:
           - configMapRef:
-              name: app-java-config
+              name: app-python-config
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -73,3 +74,5 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  volumeClaimTemplates:
+    {{- toYaml .Values.volumeClaimTemplates | nindent 4 }}
