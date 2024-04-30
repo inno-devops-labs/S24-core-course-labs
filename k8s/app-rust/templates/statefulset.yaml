@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "app-rust.fullname" . }}
   labels:
@@ -37,7 +37,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            {{- include "app-python.env" . | nindent 12 }}
+            {{- include "app-rust.env" . | nindent 12 }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -68,3 +68,8 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  {{- with .Values.volumeClaimTemplates }}
+  volumeClaimTemplates:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  podManagementPolicy: {{ .Values.podManagementPolicy }}
