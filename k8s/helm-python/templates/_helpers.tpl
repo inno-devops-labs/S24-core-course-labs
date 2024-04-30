@@ -61,7 +61,7 @@ Create the name of the service account to use
 {{- end }}
 {{- end }}
 
-{{- define "app-python.pythonEnvs" -}}
+{{- define "helm-python.pythonEnvs" -}}
 - name: RELEASE_NAME
   value: {{ .Release.Name }}
 - name: IMAGE_TAG
