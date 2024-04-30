@@ -13,7 +13,7 @@ VISITS = 0
 
 @app.route("/")
 def get_time():
-    """Get and save visits"""
+    """Get and save visits and Moscow time"""
     global VISITS
     try:
         with open("../visits.txt", "r", encoding="utf-8") as f:
@@ -23,7 +23,6 @@ def get_time():
     VISITS += 1
     with open("../visits.txt", "w", encoding="utf-8") as f:
         f.write(str(VISITS))
-    """Get and return Moscow time"""
     date_time = datetime.now(pytz.timezone("Europe/Moscow"))
     formatted_time = date_time.strftime("%H:%M:%S")
     return f'Moscoe time: {formatted_time}'
