@@ -31,7 +31,7 @@ my-app-devops   NodePort    10.98.62.223   <none>        5000:31230/TCP   7m33s
 ### Pods and services
 I applied .yml files, see in bash script
 ```bash
-(venv) (base) dilaraf@MacBook-Air k8s % kubectl apply -f deployment.yml
+(venv) (base) dilaraf@MacBook-Air k8s % kubectl apply -f statefulset.yml
 deployment.apps/my-app unchanged
 (venv) (base) dilaraf@MacBook-Air k8s % kubectl apply -f service.yml   
 service/my-app created
