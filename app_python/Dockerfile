@@ -1,32 +1,24 @@
 # Stage 1: Build stage for multistage build (if applicable)
 # This stage is optional and depends on whether your application requires compilation or a build process
-FROM python:3.8-slim as builder
+FROM python:3.9.18-alpine3.19@sha256:7e53de21917d6793787bc67483838360404bb2fd70d9c3e38ccc243790c323b2
+
 WORKDIR /work_app
+
+RUN adduser -D appuser
+RUN mkdir /work_app/app /work_app/visits_folder && chown -R appuser:appuser /work_app/app /work_app/visits_folder
+
+USER appuser
+
 # Install build dependencies (if any)
 # For a Python app, you might not have a compilation step, but you may need to install dependencies here
-COPY requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /work_app/wheels -r requirements.txt
+COPY requirements.txt ./app_python/requirements.txt
 
-# Stage 2: Final stage to create a slimmed-down image
-FROM python:3.8-slim
-# Create a non-root user
-RUN useradd --create-home appuser
-WORKDIR /work_app
-# Copy only the necessary artifacts from the builder stage
-COPY --from=builder /work_app/wheels /wheels
-COPY --from=builder /work_app/requirements.txt .
-# Install runtime dependencies using artifacts from the build stage
-RUN pip install --no-cache /wheels/* \
-    && rm -rf /wheels \
-    && rm -rf /root/.cache/pip/*
-# Copy the source code (or built application artifacts) last, to take advantage of layer caching
-ADD app /work_app/app
+RUN pip install -r ./app_python/requirements.txt --no-cache-dir --user
+
+ADD app ./app
 COPY ./config.py .
 COPY ./run.py .
 COPY ./test_app.py .
-
-# Switch to non-root user
-USER appuser
 
 # Expose port and define entrypoint
 EXPOSE 5000
@@ -36,4 +28,4 @@ ENV FLASK_APP=run.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
 # Run app.py when the container launches
-CMD ["flask", "run"]
+CMD python -m flask run

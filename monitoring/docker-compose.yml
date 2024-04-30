@@ -3,10 +3,10 @@ version: '3.8'
 networks:
   loki:
 
-x-deploy: &default-deploy
-  resources:
-    limits:
-      memory: 200M
+# x-deploy: &default-deploy
+#   resources:
+#     limits:
+#       memory: 200M
 
 x-logging: &common_logging
   driver: 'json-file'
@@ -21,11 +21,11 @@ services:
     ports:
       - 5000:5000
     volumes:
-      - ./app_python/visits_folder:/code/visits_folder
+      - ./app_python/visits_folder:/work_app/visits_folder:Z
     logging: *common_logging
     networks:
       - loki
-    deploy: *default-deploy
+    # deploy: *default-deploy
     healthcheck:
       test: ["CMD", "curl", "-f", "app_python:8000/health"]
       interval: 20s
@@ -40,7 +40,7 @@ services:
     networks:
       - loki
     logging: *common_logging
-    deploy: *default-deploy
+    # deploy: *default-deploy
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -54,7 +54,7 @@ services:
     logging: *common_logging
     ports:
       - '9080:9080'
-    deploy: *default-deploy
+    # deploy: *default-deploy
 
   grafana:
     environment:
@@ -86,7 +86,7 @@ services:
     networks:
       - loki
     logging: *common_logging
-  deploy: *default-deploy
+  # deploy: *default-deploy
   
   prometheus:
     image: prom/prometheus:v2.33.1
@@ -106,4 +106,4 @@ services:
       interval: 20s
       timeout: 20s
       retries: 4
-    deploy: *default-deploy
+    # deploy: *default-deploy

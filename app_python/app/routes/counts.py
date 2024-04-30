@@ -5,7 +5,7 @@ import pytz
 from pathlib import Path
 
 app_folder = Path(os.path.dirname(__file__))
-visits_file_path = os.path.join(app_folder.parent, "visits_folder", "visits.txt")
+visits_file_path = os.path.join(app_folder.parent.parent, "visits_folder", "visits.txt")
 
 count_blueprint = Blueprint('count', __name__)
 
@@ -20,7 +20,7 @@ def _increment_visits() -> None:
 def get_visits():
     _increment_visits()
 
-    with open(visits_file_path) as visits_file:
+    with open(visits_file_path, "r") as visits_file:
         visits = int(visits_file.readline())
 
     return Response(str(visits), content_type='text/plain')
@@ -28,5 +28,5 @@ def get_visits():
 def _create_visit():
     init_value = 0
     if not os.path.isfile(visits_file_path):
-        with open(visits_file_path, "w+") as file:
+        with open(visits_file_path, "w") as file:
             file.write(str(init_value))
