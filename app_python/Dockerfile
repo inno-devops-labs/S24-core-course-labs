@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64 python:3.11
+FROM python:3.11
 
 # The environment variable ensures that the python output is set straight
 # to the terminal without buffering it first
