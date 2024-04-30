@@ -20,6 +20,7 @@ REQUEST_DURATION = Histogram(
 
 ACTIVE_USERS = Gauge('active_users', 'Number of Active Users')
 
+
 def get_number_of_visits():
     if not os.path.exists('visits.txt'):
         with open('visits.txt', 'w') as f:
@@ -27,15 +28,18 @@ def get_number_of_visits():
     with open('visits.txt', 'r') as f:
         return int(f.read().strip())
 
+
 def update_number_of_visits():
     visits_count = get_number_of_visits()
     visits_count += 1
     with open('visits.txt', 'w') as f:
-            f.write(str(visits_count))
+        f.write(str(visits_count))
+
 
 @app.route('/visits')
 def visits():
     return render_template('visits.html', visits_count=get_number_of_visits())
+
 
 @app.route('/')
 def index():
