@@ -13,4 +13,4 @@ spec:
     targetPort: 80
   selector:    
     app: app-python
-  type: LoadBalancer
+  type: NodePort
