@@ -20,6 +20,8 @@ RUN touch app/data/visits.txt
 
 USER root
 RUN chown -R lab_user:lab_user ./app
+USER lab_user
+WORKDIR /home/lab_user/app
 
 EXPOSE 5000
 

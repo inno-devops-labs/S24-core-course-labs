@@ -22,6 +22,8 @@ try:
         visit_count = int(f.read())
 except FileNotFoundError:
     visit_count = 0
+except ValueError:
+    visit_count = 0
 
 def save_visit_count(count):
     with open('data/visits.txt', 'w') as f:
