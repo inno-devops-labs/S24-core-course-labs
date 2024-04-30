@@ -4,6 +4,8 @@
 
 Runs server which returns the MSK tz time. Source code is in `ptime` folder
 
+UPD: persistency in /visit
+
 ## Prepare local environment
 
 ```bash

@@ -201,6 +201,8 @@ services:
 
   app_python:
     image: legolass322/devops:app_python
+    volumes:
+      - ./visits.txt:/app/visits.txt
     ports:
       - "8080:8080"
     networks:
