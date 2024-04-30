@@ -5,6 +5,7 @@ metadata:
   labels:
     {{- include "library-chart.labels" . | indent 4 }}
 spec:
+  serviceName: {{ include "python_app-helm.fullname" . }}
   podManagementPolicy: "Parallel"
   {{- if not .Values.autoscaling.enabledStatefulSet }}
   replicas: {{ .Values.replicaCount }}
@@ -19,6 +20,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+        app: {{ include "python_app-helm.fullname" . }}
         {{- include "library-chart.labels" . | indent 8 }}
         # {{- with .Values.podLabels }}
         # {{- toYaml . | nindent 8 }}
@@ -62,6 +64,48 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      initContainers:
+        - name: install
+          image: busybox:1.28
+          command:
+          - wget
+          - "-O"
+          - "/work-dir/index.html"
+          - http://info.cern.ch
+          volumeMounts:
+          - name: workdir
+            mountPath: "/work-dir"
+        - name: init-container-1
+          image: busybox:1.28
+          command:
+          - /bin/sh
+          - -c
+          - |
+            echo '1' > /work-dir/bonus
+          volumeMounts:
+          - name: workdir
+            mountPath: "/work-dir"
+        - name: init-container-2
+          image: busybox:1.28
+          command:
+          - /bin/sh
+          - -c
+          - |
+            echo '2' >> /work-dir/bonus
+          volumeMounts:
+          - name: workdir
+            mountPath: "/work-dir"
+        - name: init-container-3
+          image: busybox:1.28
+          command:
+          - /bin/sh
+          - -c
+          - |
+            echo '3' >> /work-dir/bonus
+          volumeMounts:
+          - name: workdir
+            mountPath: "/work-dir"
+      dnsPolicy: Default
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}

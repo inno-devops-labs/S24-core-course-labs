@@ -95,6 +95,8 @@ volumes:
   - name: config-json
     configMap:
       name: python-app-configmap
+  - name: workdir
+    emptyDir: {}
 # - name: foo
 #   secret:
 #     secretName: mysecret
@@ -116,6 +118,8 @@ volumeMounts:
   - name: config-json
     mountPath: "/app/config.json"
     subPath: "config.json"
+  - name: workdir
+    mountPath: /share
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
