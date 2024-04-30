@@ -1,16 +1,17 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: {{ include "app-py-helm.fullname" . }}
+  name: {{ include "app-kt-helm.fullname" . }}
   labels:
-    {{- include "app-py-helm.labels" . | nindent 4 }}
+    {{- include "app-kt-helm.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
+  podManagementPolicy: "Parallel"
   {{- end }}
   selector:
     matchLabels:
-      {{- include "app-py-helm.selectorLabels" . | nindent 6 }}
+      {{- include "app-kt-helm.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "app-py-helm.labels" . | nindent 8 }}
+        {{- include "app-kt-helm.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +28,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: internal-app
+      serviceAccountName: {{ include "app-kt-helm.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -36,15 +37,6 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          envFrom:
-            - configMapRef:
-                name: config
-          env:
-          - name: MY_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: credentials
-                key: password
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -74,4 +66,6 @@ spec:
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
-      {{ end }}
+      {{- end }}
+  volumeClaimTemplates:
+    {{- toYaml .Values.volumeClaimTemplates | nindent 4 }}
