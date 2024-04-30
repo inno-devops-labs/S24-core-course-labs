@@ -1,28 +1,19 @@
-FROM node:14.21.3-alpine3.17 as builder
+FROM node:14.21.3-alpine3.17
 
 WORKDIR /app
 
-COPY package*.json app.js ./
+COPY package*.json ./
+RUN npm install
+
+COPY app.js ./
 COPY views ./views
-
-RUN mkdir -p visits \
-    && npm install \
-    && npm install -g pkg@5.4.0 \
-    && pkg app.js --target node14-alpine-x64
-
-FROM alpine:3.17
-
-WORKDIR /app
-
-COPY --from=builder /app/app ./app
-COPY --from=builder /app/views ./views
-COPY --from=builder /app/visits ./visits
+COPY visits ./visits
 
 EXPOSE 3000
 
 RUN adduser -D myuser \
     && chown -R myuser:myuser /app
-    
+
 USER myuser
 
-CMD ["./app"]
+CMD ["node", "app.js"]

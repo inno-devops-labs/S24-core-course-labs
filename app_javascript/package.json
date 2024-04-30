@@ -20,5 +20,10 @@
     "eslint": "^8.56.0",
     "jest": "^29.7.0",
     "supertest": "^6.3.4"
+  },
+  "pkg": {
+    "assets": [
+      "visits/**/*"
+    ]
   }
 }

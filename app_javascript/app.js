@@ -14,6 +14,10 @@ const fs = require('fs');
 
 const dirPath = path.join(__dirname, 'visits');
 
+if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+}
+
 const filePath = path.join(dirPath, 'visits');
 
 if (!fs.existsSync(filePath)) {
