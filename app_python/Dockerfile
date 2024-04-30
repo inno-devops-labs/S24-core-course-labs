@@ -18,7 +18,10 @@ COPY templates ./templates
 
 EXPOSE 8000
 
-RUN adduser -D myuser
+RUN adduser -D myuser \
+    && mkdir -p visits \
+    && chown -R myuser:myuser /app
+    
 USER myuser
 
 CMD ["./main"]

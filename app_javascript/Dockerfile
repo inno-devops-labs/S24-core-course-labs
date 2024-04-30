@@ -18,7 +18,10 @@ COPY --from=builder /app/views ./views
 
 EXPOSE 3000
 
-RUN adduser -D myuser
+RUN adduser -D myuser \
+    && mkdir -p visits \
+    && chown -R myuser:myuser /app
+    
 USER myuser
 
 CMD ["./app"]
