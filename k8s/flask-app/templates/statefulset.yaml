@@ -1,10 +1,13 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "flask-app.fullname" . }}
   labels:
     {{- include "flask-app.labels" . | nindent 4 }}
 spec:
+  podManagementPolicy: Parallel
+  volumeClaimTemplates:
+    {{- toYaml .Values.volumeClaimTemplates | nindent 4 }}
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
