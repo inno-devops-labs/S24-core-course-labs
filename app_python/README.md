@@ -4,7 +4,7 @@
 
 ## Overview
 
-This is a flask web application that renders current time in Moscow zone. 
+This is a flask web application that renders current time in Moscow zone in the home page `host_url/` and renders number of visits to the home page in `host_url/visits`
 
 ## Steps to run the application 
 
@@ -57,6 +57,23 @@ There exists 3 Unit tests:
 ## Steps to pull and run the docker image
 1. `docker pull yourusername/name`
 2. `docker run -p 5000:5000 yourusername/name`
+
+## Steps to run docker-compose
+```docker-compose
+version: '3'
+
+services:
+  web:
+    image: yourusername/flask-app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./visits.txt:/app_python/visits.txt
+```
+1. `docker compose pull`
+2. `docker compose up`
+
+In this Docker Compose configuration, the purpose of the "volumes" section is to create a persistent data storage mechanism for the container. Specifically, it binds the local directory ./visits.txt to the directory /app-python/visits.txt inside the container, in order to see the number of visits on the host machine. So make sure this file exists before running `docker compose up`.
 
 ## CI workflow
 This project is set up with continuous integration (CI) using GitHub Actions. The CI workflow performs the following steps on every push:

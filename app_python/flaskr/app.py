@@ -4,6 +4,7 @@ from datetime import datetime
 from prometheus_client import Counter, Gauge, Histogram
 import prometheus_client
 import time
+import os
 
 app = Flask(__name__)
 
@@ -19,9 +20,26 @@ REQUEST_DURATION = Histogram(
 
 ACTIVE_USERS = Gauge('active_users', 'Number of Active Users')
 
+def get_number_of_visits():
+    if not os.path.exists('visits.txt'):
+        with open('visits.txt', 'w') as f:
+            f.write('0')
+    with open('visits.txt', 'r') as f:
+        return int(f.read().strip())
+
+def update_number_of_visits():
+    visits_count = get_number_of_visits()
+    visits_count += 1
+    with open('visits.txt', 'w') as f:
+            f.write(str(visits_count))
+
+@app.route('/visits')
+def visits():
+    return render_template('visits.html', visits_count=get_number_of_visits())
 
 @app.route('/')
 def index():
+    update_number_of_visits()
     REQUEST_COUNT.labels(method='GET', endpoint='/').inc()
     start_time = time.time()
     # get time in Moscow time zone

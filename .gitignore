@@ -21,3 +21,5 @@ terraform.tfstate
 authorized_key.json
 terraform.tfstate.backup
 config.auto.tfvars
+
+visits.txt

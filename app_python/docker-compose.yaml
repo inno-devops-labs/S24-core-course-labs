@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  web:
+    image: vectorsmaster/flask-app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./visits.txt:/app_python/visits.txt
