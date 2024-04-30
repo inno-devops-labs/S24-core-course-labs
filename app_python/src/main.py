@@ -9,19 +9,20 @@ from flask import Flask
 
 app = Flask(__name__)
 
-visits = 0
+VISITS = 0
 
 @app.route("/")
 def get_time():
-    global visits
+    """Get and save visits"""
+    global VISITS
     try:
-        with open("../visits.txt", "r") as f:
-            visits = int(f.read().strip())
+        with open("../visits.txt", "r", encoding="utf-8") as f:
+            VISITS = int(f.read().strip())
     except FileNotFoundError:
-        visits = 0
-    visits += 1
-    with open("../visits.txt", "w") as f:
-        f.write(str(visits))
+        VISITS = 0
+    VISITS += 1
+    with open("../visits.txt", "w", encoding="utf-8") as f:
+        f.write(str(VISITS))
     """Get and return Moscow time"""
     date_time = datetime.now(pytz.timezone("Europe/Moscow"))
     formatted_time = date_time.strftime("%H:%M:%S")
@@ -29,12 +30,13 @@ def get_time():
 
 @app.route("/visits")
 def get_visits():
+    """Get and return visits"""
     try:
-        with open("../visits.txt", "r") as f:
-            visits = int(f.read().strip())
+        with open("../visits.txt", "r", encoding="utf-8") as f:
+            total_visits = int(f.read().strip())
     except FileNotFoundError:
-        visits = 0
-    return f'Total visits: {visits}'
+        total_visits = 0
+    return f'Total visits: {total_visits}'
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
