@@ -13,7 +13,6 @@ spec:
     metadata:
       labels:
         app: time-web
-    serviceAccountName: time-web
     spec:
       containers:
       - name: time-web

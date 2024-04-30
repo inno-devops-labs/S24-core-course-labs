@@ -5,7 +5,8 @@ from prometheus_client import generate_latest, Counter
 import os
 
 app = Flask(__name__)
-VISIT_COUNTER = "visit_counter.txt"
+VISIT_COUNTER = os.getcwd() + "/visit_counter.txt"
+print(VISIT_COUNTER)
 
 healthcheck_counter = Counter(
     'healthcheck_requests',

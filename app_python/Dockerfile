@@ -10,8 +10,4 @@ COPY time_web.py .
 
 EXPOSE 5000
 
-RUN adduser -D myuser
-
-USER myuser
-
 CMD ["python", "time_web.py"]
