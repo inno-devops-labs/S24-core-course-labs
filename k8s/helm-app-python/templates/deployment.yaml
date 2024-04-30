@@ -44,7 +44,7 @@ spec:
                 key: password
           envFrom:
             - configMapRef:
-                name: config-volume
+                name: config
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
