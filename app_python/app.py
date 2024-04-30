@@ -28,7 +28,7 @@ import threading
 
 app = Flask(__name__)
 # File to store visit counts
-VISITS_FILE = 'visits'
+VISITS_FILE = 'files/visits'
 
 # Mutex for file access
 file_lock = threading.Lock()
@@ -96,7 +96,7 @@ def read_visits():
         try:
             with open(VISITS_FILE, 'r') as f:
                 return int(f.read())
-        except FileNotFoundError:
+        except:
             return 0
 
 

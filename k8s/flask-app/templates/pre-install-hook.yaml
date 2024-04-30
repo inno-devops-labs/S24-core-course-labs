@@ -4,7 +4,7 @@ metadata:
    name: preinstall-hook
    annotations:
        "helm.sh/hook": "pre-install"
-       "helm.sh/hook-delete-policy": "hook-finished"
+       "helm.sh/hook-delete-policy": "hook-succeeded"
 spec:
   containers:
   - name: pre-install-container

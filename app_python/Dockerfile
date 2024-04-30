@@ -19,6 +19,9 @@ RUN addgroup -S flask && \
     adduser -S flask -G flask && \
     chown -R flask:flask /app/templates
 
+# Grant read and write permissions to the 'visits' file
+RUN chmod +rw /app/files/visits
+
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
 
