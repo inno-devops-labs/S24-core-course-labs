@@ -25,10 +25,11 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: "internal-app"
 
-podAnnotations: {}
+podAnnotations: {
   # vault.hashicorp.com/agent-inject: 'true',
   # vault.hashicorp.com/role: 'internal-app',
   # vault.hashicorp.com/agent-inject-secret-database-config.txt: 'internal/data/database/config'
+}
 
 podLabels: {}
 
@@ -79,12 +80,12 @@ livenessProbe:
   httpGet:
     path: /
     port: http
-  initialDelaySeconds: 60
+  initialDelaySeconds: 120
 readinessProbe:
   httpGet:
     path: /
     port: http
-  initialDelaySeconds: 60
+  initialDelaySeconds: 120
 
 autoscaling:
   enabled: false
