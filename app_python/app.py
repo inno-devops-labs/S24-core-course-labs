@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
 
-VISITS_FILE = 'visits'
+VISITS_FILE = os.path.join(os.path.dirname(__file__), "data", "visits.txt")
 
 
 def get_moscow_time():

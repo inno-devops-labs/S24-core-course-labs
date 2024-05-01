@@ -6,7 +6,7 @@ replicaCount: 2
 
 image:
   repository: abuwho/app_python
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
@@ -105,7 +105,7 @@ volumeMounts:
   readOnly: true
   
 - name: state-data
-  mountPath: /app_python
+  mountPath: /app_python/data
 
 volumeClaimTemplates:
 - metadata:
