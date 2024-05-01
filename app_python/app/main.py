@@ -12,20 +12,20 @@ REQUEST_TIME = Summary("request_processing_time", "Time to handle request")
 def get_visits():
     """route to return the website visist count
     """
-    if not os.path.exists('/app/visits.txt'):
-        with open('/app/visits.txt', 'w') as f:
+    if not os.path.exists('./app/visits.txt'):
+        with open('./app/visits.txt', 'w') as f:
             f.write('0')
-    with open('/app/visits.txt', 'r') as f:
+    with open('./app/visits.txt', 'r') as f:
         VISIT_COUNT = int(f.readline())
     return jsonify({"visit_count": VISIT_COUNT})
 
 def save_visit_count():
     if not os.path.exists('/app/visits.txt'):
-        with open('/app/visits.txt', 'w') as f:
+        with open('./app/visits.txt', 'w') as f:
             f.write('0')
-    with open('/app/visits.txt', 'r') as f:
+    with open('./app/visits.txt', 'r') as f:
         VISIT_COUNT = int(f.readline())
-    with open('/app/visits.txt', 'w') as f:
+    with open('./app/visits.txt', 'w') as f:
         f.write(str(VISIT_COUNT+1))
 
 @bp.route("/", methods=["GET"])
