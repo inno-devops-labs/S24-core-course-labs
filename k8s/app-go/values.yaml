@@ -23,6 +23,8 @@ podLabels: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
+podManagementPolicy: Parallel
+
 securityContext: {}
   # capabilities:
   #   drop:
@@ -86,11 +88,21 @@ volumes: []
 #     secretName: mysecret
 #     optional: false
 
+volumeClaimTemplates:
+  - metadata:
+      name: persistent
+    spec:
+      accessModes: [ "ReadWriteOncePod" ]
+      resources:
+        requests:
+          storage: 1Mi
+
+
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+volumeMounts:
+  - name: persistent
+    mountPath: "/persistent"
+    readOnly: false
 
 nodeSelector: {}
 
