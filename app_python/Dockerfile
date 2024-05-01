@@ -1,6 +1,7 @@
 FROM python:3.11-slim-buster
 
 WORKDIR /app
+RUN mkdir -p /app/data
 
 COPY requirements.txt .
 
@@ -10,6 +11,7 @@ COPY index.html .
 COPY app.py .
 
 RUN useradd vlad
+RUN chown -R vlad:vlad /app/data
 RUN chown -R vlad .
 USER vlad
 
