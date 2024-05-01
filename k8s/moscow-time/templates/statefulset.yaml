@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "moscow-time.fullname" . }}
   labels:
@@ -8,9 +8,12 @@ spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  podManagementPolicy: "Parallel"
   selector:
     matchLabels:
       {{- include "moscow-time.selectorLabels" . | nindent 6 }}
+  volumeClaimTemplates:
+    {{- toYaml .Values.volumeClaimTemplates | nindent 4 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
