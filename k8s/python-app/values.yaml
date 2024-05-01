@@ -6,7 +6,7 @@ replicaCount: 3
 
 image:
   repository: almetovkamil/app_python
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v2"
 
@@ -72,10 +72,12 @@ resources: {}
   #   memory: 128Mi
 
 livenessProbe:
+  initialDelaySeconds: 15
   httpGet:
     path: /
     port: http
 readinessProbe:
+  initialDelaySeconds: 15
   httpGet:
     path: /
     port: http
@@ -121,7 +123,7 @@ volumeMounts:
   mountPath: /app_python/config.json
   subPath: config.json
 - name: python-app-volume
-  mountPath: /app_python/visits
+  mountPath: /visits
 
 
 nodeSelector: {}
