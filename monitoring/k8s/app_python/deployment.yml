@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app_python
+  name: web-app-deployment
   labels:
-    app: app_python
+    app: web-app
 spec:
+  replicas: 3
   selector:
     matchLabels:
-      app: app_python
+      app: web-app
   template:
     metadata:
       labels:
-        app: app_python
+        app: web-app
     spec:
       containers:
-        - name: app_python
-          image: happystove/app_python:1.0
-          ports:
-            - containerPort: 8080
-  replicas: 2
+      - name: web-app
+        image: happystove/app-python:latest
+        ports:
+        - containerPort: 8080

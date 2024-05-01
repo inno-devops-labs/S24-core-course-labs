@@ -1,15 +1,59 @@
-  # targetMemoryUtilizationPercentage: 80
+replicaCount: 3
 
-volumes: 
-- name: config-map-volume
-  configMap:
-    name: helm-python-app-config-map
-  
-volumeMounts: 
-- name: config-map-volume
-  mountPath: /app/config.json
-  subPath: config.json
+image:
+  repository: happystove/app_python
+  pullPolicy: Always
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+podSecurityContext: {}
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+resources: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 3
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+volumeMounts:
+  - name: config-volume
+    mountPath: /files/config.json
+    subPath: config.json
+
+volumes:
+    - name: config-volume
+      configMap:
+        name: my-config
+
 
 nodeSelector: {}
-
 tolerations: []
+affinity: {}
