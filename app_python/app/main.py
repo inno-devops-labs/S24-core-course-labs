@@ -2,7 +2,6 @@ from flask import Blueprint, jsonify, Response
 from datetime import datetime
 from pytz import timezone
 from prometheus_client import Summary, generate_latest
-import os
 
 bp = Blueprint("main", __name__, url_prefix="")
 
