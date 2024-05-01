@@ -30,6 +30,8 @@ services:
       retries: 5
     networks:
       - apps
+    volumes:
+      - ./app-py-vol:/app_python/vol
 
   app_go:
     image: "y4cerr/app_go"

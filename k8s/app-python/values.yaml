@@ -26,9 +26,9 @@ serviceAccount:
   name: "app-python-secrets"
 
 podAnnotations:
-  vault.hashicorp.com/agent-inject: 'true'
-  vault.hashicorp.com/role: 'app-python-secrets'
-  vault.hashicorp.com/agent-inject-secret-database-config.txt: 'internal/data/database/config'
+  # vault.hashicorp.com/agent-inject: 'true'
+  # vault.hashicorp.com/role: 'app-python-secrets'
+  # vault.hashicorp.com/agent-inject-secret-database-config.txt: 'internal/data/database/config'
 
 podLabels: {}
 
@@ -92,17 +92,15 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
+volumes:
+  - name: config-vol
+    configMap:
+      name: config
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+volumeMounts:
+  - name: config-vol
+    mountPath: /app_python/config
 
 nodeSelector: {}
 

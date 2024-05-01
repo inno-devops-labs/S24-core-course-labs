@@ -63,3 +63,6 @@ docker run <tag_here>
 ```
 
 ## ConfigMaps
+
+###  App accessed 
+The number of site visits can be found on the path `/visits`

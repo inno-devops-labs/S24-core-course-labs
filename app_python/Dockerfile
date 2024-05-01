@@ -2,6 +2,7 @@ FROM python:3.12.2-alpine3.19
 
 WORKDIR /app_python
 RUN adduser -D user && chown -R user /app_python
+RUN mkdir /app_python/vol
 
 COPY --chown=user:user requirements.txt ./
 
