@@ -89,11 +89,24 @@ volumes:
    configMap:
      name: app-py-config-map
 
+volumeClaimTemplates:
+  - metadata:
+      name: persistent
+    spec:
+      accessModes: [ "ReadWriteOncePod" ]
+      resources:
+        requests:
+          storage: 1Mi
+
+
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
- - name: config-map
-   mountPath: "/persistent"
-   readOnly: true
+  - name: config-map
+    mountPath: "/config"
+    readOnly: true
+  - name: persistent
+    mountPath: "/app/persistent"
+    readOnly: false
 
 nodeSelector: {}
 
