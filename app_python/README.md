@@ -24,6 +24,7 @@ This Python web application displays the current time in Moscow. It is a simple 
 1. The code fetches the current time in Moscow timezone using the pytz library.
 2. If successful, it returns the current time in Moscow as a response.
 3. If an error occurs, it returns an error message.
+4. It is an option to see number of website visits in /visits
 
 ## Error Handling
 The application includes error handling to manage exceptions and provides an error message if any issues occur.
