@@ -27,6 +27,8 @@ podLabels: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
+podManagementPolicy: Parallel
+
 securityContext: {}
   # capabilities:
   #   drop:
