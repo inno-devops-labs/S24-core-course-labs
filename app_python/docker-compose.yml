@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  web:
+    image: ahmadalhussin/app_python
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./visits.txt:/app_python/visits.txt

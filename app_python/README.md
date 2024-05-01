@@ -72,6 +72,24 @@ To start the image
 docker run -d -p 5000:5000 ahmadalhussin/app_python
 ```
 
+## Docker compose 
+
+### pull the image
+
+To pull the image run:
+
+```properties
+docker-compose pull
+```
+
+### Run the image
+
+To run the application run:
+
+```properties
+docker-compose up
+```
+
 ## CI
 
 For Continuous Integration I created multiple yml files in `.github/workflows/` directory.
