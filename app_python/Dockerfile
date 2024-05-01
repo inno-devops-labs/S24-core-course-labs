@@ -1,13 +1,14 @@
 FROM python:3.11.8-alpine3.19
 
+WORKDIR /app
+
 # Create a group and user
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup && \
+    chown -R appuser /app
 USER appuser
 
 # To use uvicorn executable in future
 ENV PATH /home/appuser/.local/bin:${PATH}
-
-WORKDIR /app
 
 # Copy separately for better caching on rebuilding
 COPY ./requirements.txt /app/requirements.txt
