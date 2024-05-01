@@ -26,13 +26,13 @@ async def lifespan(app: FastAPI):
     settings.startup_time = time.time()
     response = ntp_client.request("pool.ntp.org")
     settings.global_startup_time = float(response.tx_time)
-    if not os.path.exists("visits"):
-        with open("visits", "w") as visits_file:
+    if not os.path.exists("/code/vol/visits"):
+        with open("/code/vol/visits", "w") as visits_file:
             visits_file.write("0")
     else:
-        with open("visits", "r") as visits_file_read:
+        with open("/code/vol/visits", "r") as visits_file_read:
             if not visits_file_read.read():
-                with open("visits", "w") as visits_file:
+                with open("/code/vol/visits", "w") as visits_file:
                     visits_file.write("0")
     yield
 
@@ -50,7 +50,7 @@ Instrumentator().instrument(app).expose(app)
     """,
 )
 async def get_recorded_visits_number():
-    with open("visits", "r") as visits_file:
+    with open("/code/vol/visits", "r") as visits_file:
         return int(visits_file.read())
 
 
@@ -63,10 +63,10 @@ async def get_recorded_visits_number():
 )
 async def global_moscow_time():
     mutex.acquire()
-    with open("visits", "r") as visits_file:
+    with open("/code/vol/visits", "r") as visits_file:
         num = int(visits_file.read())
     num += 1
-    with open("visits", "w") as visits_file:
+    with open("/code/vol/visits", "w") as visits_file:
         visits_file.write(str(num))
     mutex.release()
     time_from_startup = time.time() - settings.startup_time

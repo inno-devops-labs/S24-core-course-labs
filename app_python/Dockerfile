@@ -28,6 +28,9 @@ FROM common-base
 # Copy all the installations from buiding stage
 COPY --from=builder /install /usr/local
 
+RUN mkdir /code/vol
+
+RUN chown -R myuser:myuser /code
 # Copy the the app to the working directory
 COPY ./main.py /code/app_python/main.py
 

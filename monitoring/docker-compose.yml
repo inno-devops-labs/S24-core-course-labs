@@ -24,7 +24,7 @@ services:
     networks:
       - loki
     volumes:
-      - ./visits:/code/visits
+      - ./visits-vol:/code/vol
     deploy:
       resources:
         limits:
