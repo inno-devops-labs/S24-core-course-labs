@@ -2,28 +2,31 @@ from flask import Blueprint, jsonify, Response
 from datetime import datetime
 from pytz import timezone
 from prometheus_client import Summary, generate_latest
+import os
 
 bp = Blueprint("main", __name__, url_prefix="")
 
 REQUEST_TIME = Summary("request_processing_time", "Time to handle request")
-VISIT_COUNT = 0
 
 @bp.route("/visits", methods=["GET"])
 def get_visits():
     """route to return the website visist count
     """
-    global VISIT_COUNT
+    if not os.path.exists('/app/visits.txt'):
+        with open('/app/visits.txt', 'w') as f:
+            f.write('0')
+    with open('/app/visits.txt', 'r') as f:
+        VISIT_COUNT = int(f.readline())
     return jsonify({"visit_count": VISIT_COUNT})
 
-try:
-    with open('visits.txt', 'r') as f:
-        VISIT_COUNT = int(f.read())
-except FileNotFoundError:
-    VISIT_COUNT = 0
-
-def save_visit_count(count):
-    with open('visits.txt', 'w') as f:
-        f.write(str(count))
+def save_visit_count():
+    if not os.path.exists('/app/visits.txt'):
+        with open('/app/visits.txt', 'w') as f:
+            f.write('0')
+    with open('/app/visits.txt', 'r') as f:
+        VISIT_COUNT = int(f.readline())
+    with open('/app/visits.txt', 'w') as f:
+        f.write(str(VISIT_COUNT+1))
 
 @bp.route("/", methods=["GET"])
 @REQUEST_TIME.time()
@@ -33,9 +36,7 @@ def get_time():
     Returns:
         JSON: field "time" containing the current time in Moscow.
     """
-    global VISIT_COUNT
-    VISIT_COUNT += 1
-    save_visit_count(VISIT_COUNT)
+    save_visit_count()
     MSK = timezone("Europe/Moscow")
     moscow_time = datetime.now(MSK).strftime("%Y:%m:%d %H:%M:%S %Z %z")
     return jsonify({"time": moscow_time})
