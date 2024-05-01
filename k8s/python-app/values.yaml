@@ -6,7 +6,7 @@ replicaCount: 3
 
 image:
   repository: almetovkamil/app_python
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v2"
 
@@ -121,7 +121,7 @@ volumeMounts:
   mountPath: /app_python/config.json
   subPath: config.json
 - name: python-app-volume
-  mountPath: /app_python/visits.txt
+  mountPath: /app_python/visits
 
 
 nodeSelector: {}
