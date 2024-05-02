@@ -8,7 +8,7 @@ In this lab, you will learn how to manage sensitive data, such as passwords, tok
 
 **6 Points:**
 
-1. Create a Secret Using `kubectl`:
+1. Create a Secret Using `kubectl`:kubectl get secrets
    - Learn about Kubernetes Secrets and create a secret using the `kubectl` command:
      - [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
      - [Managing Secrets with kubectl](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/#decoding-secret)
