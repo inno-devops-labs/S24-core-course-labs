@@ -1,0 +1,11 @@
+- name: Install pip via apt
+  ansible.builtin.apt:
+    name: "python3-pip"
+    state: present
+    update_cache: true
+  become: true
+
+- name: Install docker-compose via pip
+  ansible.builtin.pip:
+    name: docker-compose
+    state: present

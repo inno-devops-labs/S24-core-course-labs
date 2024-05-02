@@ -1,0 +1,100 @@
+networks:
+  loki:
+  prometheus:
+
+volumes:
+  grafana-storage:
+  py-persistent:
+  go-persistent:
+
+services:
+  app_py:
+    image: kolay0ne/app_py:lab12
+    ports:
+      - "5000:5000"
+    logging:
+      options:
+        max-size: 5m
+    deploy:
+      resources: {limits: {memory: 30M}}
+    networks:
+      - prometheus
+    volumes:
+      - py-persistent:/app/persistent
+
+  app_go:
+    image: kolay0ne/app_go:lab12
+    ports:
+      - "5500:5000"
+    logging:
+      options:
+        max-size: 5m
+    deploy:
+      resources: {limits: {memory: 20M}}
+    networks:
+      - prometheus
+    volumes:
+      - go-persistent:/persistent
+
+  loki:
+    image: grafana/loki:2.9.2
+    ports:
+      - "3100:3100"
+    #command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - loki
+      - prometheus
+    logging:
+      options:
+        max-size: 5m
+    deploy:
+      resources: {limits: {memory: 100M}}
+
+  promtail:
+    image: grafana/promtail:2.9.2
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - ./promtail_config.yml:/etc/promtail/config.yml:ro
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - loki
+      - prometheus
+    logging:
+      options:
+        max-size: 5m
+    deploy:
+      resources: {limits: {memory: 100M}}
+
+  grafana:
+    image: grafana/grafana:10.0.12
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./grafana_datasources.yml:/etc/grafana/provisioning/datasources/ds.yaml
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    networks:
+      - loki
+      - prometheus
+    logging:
+      options:
+        max-size: 5m
+    deploy:
+      resources: {limits: {memory: 100M}}
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus_config.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - prometheus
+    logging:
+      options:
+        max-size: 5m
+    deploy:
+      resources: {limits: {memory: 50M}}

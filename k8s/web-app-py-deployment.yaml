@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-py
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-app-py
+  template:
+    metadata:
+      labels:
+        app: web-app-py
+    spec:
+      containers:
+        - name: web-app-py
+          image: kolay0ne/app_py:lab8
+          ports:
+            - containerPort: 5000
+              name: web-ui
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1

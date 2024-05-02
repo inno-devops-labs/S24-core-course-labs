@@ -1,0 +1,6 @@
+dependencies:
+- name: label-lib
+  repository: file://../label-lib
+  version: 0.1.0
+digest: sha256:d33e74eddc07f8914537b87b237d90f30af5d0015d167f8d673ebe25f86c923f
+generated: "2024-03-31T22:43:17.17321512+03:00"

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: combined-web-app
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: kolay.ne
+      http:
+        paths:
+          - path: /time
+            pathType: Prefix
+            backend:
+              service:
+                name: web-app-py
+                port: {number: 5000}
+          - path: /cats
+            pathType: Prefix
+            backend:
+              service:
+                name: web-app-go
+                port: {number: 5050}
