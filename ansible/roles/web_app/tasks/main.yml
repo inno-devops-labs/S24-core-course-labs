@@ -1,0 +1,27 @@
+- name: Wipe the base dir
+  ansible.builtin.include_tasks: 01-wipe.aml
+  when: app-python_full_wipe
+  tags: ["app-python", "app-python_wipe"]
+
+- name: Deploy Python App
+  block:
+  - name: Create a directory if it doesn't exist
+    ansible.builtin.file:
+      path: "{{ app-python_base_dir }}"
+      state: directory
+      mode: "0755"
+
+  - name: Template the docker-compose.yml
+    ansible.builtin.template:
+      src: docker-compose.yml.j2
+      dest: "{{ app-python_base_dir }}/docker-compose.yml"
+      owner: root
+      group: root
+      mode: "0600"
+
+  - name: Start services
+    ansible.builtin.docker_compose:
+      project_src: "{{ app-python_base_dir }}"
+      state: present
+      pull: true
+  tags: ["app-python"]

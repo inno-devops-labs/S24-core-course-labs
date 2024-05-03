@@ -1,0 +1,9 @@
+app_python_base_dir: 'opt/app_python'
+app_python_name: 'app_python'
+app_python:
+  image: clock
+  tag: latest
+  registry: roukaya
+  external_port: 8080
+  internal_port: 5000
+app-python_full_wipe: false
