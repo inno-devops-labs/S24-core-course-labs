@@ -90,6 +90,7 @@ volumes:
  - name: config-map
    configMap:
      name: app-py-config-map
+ - name: wiki
 
 volumeClaimTemplates:
   - metadata:
@@ -108,6 +109,9 @@ volumeMounts:
     readOnly: true
   - name: persistent
     mountPath: "/app/persistent"
+    readOnly: false
+  - name: wiki
+    mountPath: /wiki
     readOnly: false
 
 nodeSelector: {}
