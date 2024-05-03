@@ -38,7 +38,7 @@ securityContext: { }
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
+# runAsNonRoot: true
 # runAsUser: 1000
 
 service:
@@ -49,7 +49,7 @@ ingress:
   enabled: true
   className: ""
   annotations: { }
-    # kubernetes.io/ingress.class: nginx
+  # kubernetes.io/ingress.class: nginx
   # kubernetes.io/tls-acme: "true"
   hosts:
     - host: python.app
@@ -70,7 +70,7 @@ resources: { }
   #   cpu: 100m
   #   memory: 128Mi
   # requests:
-  #   cpu: 100m
+#   cpu: 100m
 #   memory: 128Mi
 
 autoscaling:
@@ -87,13 +87,25 @@ volumes:
     configMap:
       name: python-app-configmap
 
+  - name: visits-data
+      emptyDir:
+        sizeLimit: 500Mi
+
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: config-volume
     mountPath: /app/config_map
+
+  - name: visits-data
+      mountPath: /app/data
 
 nodeSelector: { }
 
 tolerations: [ ]
 
 affinity: { }
+
+vct:
+   name: visits-data
+   storageName: python-storage
+   storage: 1Gi

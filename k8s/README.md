@@ -49,7 +49,7 @@ kubectl delete deployment --all
 * Apply manifests
 
 ```shell
-(venv) shredding@SHREDDING-2 k8s % kubectl apply -f app_python/deployment.yaml
+(venv) shredding@SHREDDING-2 k8s % kubectl apply -f app_python/statefulset.yaml
 deployment.apps/python-deployment created
 (venv) shredding@SHREDDING-2 k8s % kubectl apply -f app_python/service.yaml
 service/python-service created
