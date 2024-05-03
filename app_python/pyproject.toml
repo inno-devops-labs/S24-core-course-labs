@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "app_python"
+version = "0.1.0"
+description = ""
+authors = ["Timur Harin <timurx404@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.2"
+pep8 = "^1.7.1"
+pylint = "^3.1.0"
+pytest = "^8.1.1"
+flasgger = "^0.9.7.1"
+marshmallow = "^3.21.1"
+apispec = "^6.5.0"
+flake8 = "^7.0.0"
+fastapi = "^0.110.3"
+uvicorn = "^0.29.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
