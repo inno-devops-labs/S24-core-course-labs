@@ -22,6 +22,35 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
+      initContainers:
+        - name: download-file
+          image: busybox:1.36.1
+          command: ['wget']
+          args:
+            - "-O"
+            - "/demo/example.html"
+            - "https://www.example.com/"
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
+        - name: modify-file
+          image: busybox:1.36.1
+          command: ['sh', '-c', 'echo "Adding a new line" >> /demo/example.html']
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
+        - name: uppercase-file
+          image: busybox:1.36.1
+          command: ['sh', '-c', 'tr a-z A-Z < /demo/example.html > /demo/uppercase.html']
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -36,11 +65,11 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-          - name: MY_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: credentials
-                key: password
+              - name: MY_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: credentials
+                    key: password
           envFrom:
             - configMapRef:
                 name: config
@@ -75,10 +104,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
   volumeClaimTemplates:
-  - metadata:
-      name: data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: {{ .Values.storage.size }}
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.storage.size }}
