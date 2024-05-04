@@ -91,6 +91,8 @@ volumes:
   - name: configuration
     configMap:
       name: configmap
+  - name: workdir
+    emptyDir: { }
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
@@ -98,6 +100,8 @@ volumeMounts:
     readOnly: true
     mountPath: "/config.json"
     subPath: config.json
+  - name: workdir
+    mountPath: "/work-dir"
 
 nodeSelector: {}
 
