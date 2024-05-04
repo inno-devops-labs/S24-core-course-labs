@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "app-py.fullname" . }}
+  labels:
+    {{- include "app-py.labels" . | nindent 4 }}
+    # NOTE: kube-prometheus-stack must be installed with
+    # `prometheus.prometheusSpec.podMonitorSelectorNilUsesHelmValues=true`
+    release: kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      {{- include "app-py.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: http
