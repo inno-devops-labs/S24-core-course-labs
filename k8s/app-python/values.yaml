@@ -105,6 +105,13 @@ volumeClaimTemplates:
       resources:
         requests:
           storage: 2Gi
+  - metadata:
+      name: init-container
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 2Gi
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
@@ -112,6 +119,8 @@ volumeMounts:
     mountPath: /app/config
   - name: vol
     mountPath: /app/vol
+  - name: init-container
+    mountPath: /init-container
 
 nodeSelector: { }
 

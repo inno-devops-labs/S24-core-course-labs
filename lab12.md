@@ -20,10 +20,6 @@ In this task, you'll enhance your application to persist data and explore Config
      - Verify that the enhancements work as expected, you must see the updated number in the `visits` file on the host machine.
      - Update the `README.md` for your application.
 
-2. Create Pull Requests:
-    - Submit a PR to merge your changes into the main branch of the forked repository.
-    - Create a PR from the `lab12` branch to the main branch in your own repository.
-
 ## Task 2: ConfigMap Implementation
 
 **4 Points:**
