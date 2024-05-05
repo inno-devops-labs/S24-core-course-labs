@@ -23,7 +23,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: "internal-app"
 
 podAnnotations:
   vault.hashicorp.com/agent-inject: 'true'
@@ -92,6 +92,8 @@ volumes:
 - name: config-volume
   configMap:
     name: helm-python-app-config-map
+- name: work-dir
+  emptyDir: {}
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
@@ -100,6 +102,8 @@ volumeMounts:
   subPath: config.json
 - name: mydata
   mountPath: /myapp/data
+- name: work-dir
+  mountPath: /work-dir
 
 volumeClaimTemplates:
 - metadata:
