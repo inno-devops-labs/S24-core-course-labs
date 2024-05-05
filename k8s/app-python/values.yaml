@@ -91,6 +91,7 @@ volumes:
 - name: config-volume
   configMap:
     name: config
+- name: demo-volume
 
 volumeClaimTemplates:
 - metadata:
@@ -105,6 +106,9 @@ volumeMounts:
 - name: config-volume
   mountPath: /app/config.json
   subPath: config.json
+- name: demo-volume
+  mountPath: /demo
+  readOnly: false
 
 nodeSelector: {}
 

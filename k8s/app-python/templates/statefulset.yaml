@@ -24,6 +24,19 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
+      initContainers:
+        - name: download-file
+          image: busybox:1.36.1
+          command: ['wget']
+          args:
+            - "-O"
+            - "/demo/demo-site.html"
+            - "http://info.cern.ch"
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
