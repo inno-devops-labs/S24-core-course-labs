@@ -132,7 +132,7 @@ seamless operation and management.
 2. kube-apiserver has the highest CPU usage,  app-python has the lowest CPU usage
 3. Memory usage: 5,1GB; 36%
 4. I have 18 pods and 37 containers
-5. no data
+5. Download speed: 19.8 kB/s Upload speed: 93 kB/s
 6. 8 alerts
 
 
