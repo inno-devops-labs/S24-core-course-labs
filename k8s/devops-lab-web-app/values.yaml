@@ -96,9 +96,10 @@ volumeClaimTemplates:
           storage: 1Gi
 
 volumes:
- - name: config-volume
-   configMap:
-     name: config
+  - name: config-volume
+    configMap:
+      name: config
+  - name: web-site-volume
 
 volumeMounts:
   - name: config-volume
@@ -106,6 +107,9 @@ volumeMounts:
     subPath: config.json
   - name: data
     mountPath: /app/data
+  - name: web-site-volume
+    mountPath: /www
+    readOnly: false
 
 nodeSelector: {}
 
