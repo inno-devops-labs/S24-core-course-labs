@@ -96,12 +96,14 @@ autoscaling:
 
 # Additional volumes on the output Deployment definition.
 volumes:
-  config:
-    name: app-config-volume
-    mountPath: /app/config.json
-    subPath: config.json
-    configMap:
-      name: app-config
+  # config:
+  #   name: app-config-volume
+  #   mountPath: /app/config.json
+  #   subPath: config.json
+  #   configMap:
+  #     name: app-config
+  name: workdir
+  emptyDir: {}
   pers:
     name: app-volume
     mountPath: /app-python/pers
@@ -116,13 +118,15 @@ volumes:
 #     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
-# volumeMounts:
+volumeMounts:
 #   - name: config-volume
 #     mountPath: /app/config.json
 #     subPath: config.json
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
+  - name: workdir
+    mountPath: "/work-dir"
 
 nodeSelector: {}
 
