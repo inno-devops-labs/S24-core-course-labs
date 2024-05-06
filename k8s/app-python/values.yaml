@@ -70,15 +70,6 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-volumeClaimTemplates:
-- metadata:
-    name: meta
-  spec:
-    accessModes: [ "ReadWriteOnce" ]
-    resources:
-      requests:
-        storage: 1Gi
-
 
 autoscaling:
   enabled: false
@@ -96,6 +87,15 @@ volumeMounts:
   - name: config-volume
     mountPath: /app/config.json
     subPath: config.json
+
+volumeClaimTemplates:
+- metadata:
+    name: meta
+  spec:
+    accessModes: [ "ReadWriteOnce" ]
+    resources:
+      requests:
+        storage: 1Gi
 
 nodeSelector: {}
 
