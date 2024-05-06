@@ -114,6 +114,13 @@ volumeClaimTemplates:
     resources:
       requests:
         storage: 1Gi
+- metadata:
+    name: static-files
+  spec:
+    accessModes: [ "ReadWriteOnce" ]
+    resources:
+      requests:
+        storage: 1Gi
 
 volumeMounts:
 - name: config-volume
@@ -121,6 +128,8 @@ volumeMounts:
   subPath: config.json
 - name: vol
   mountPath: /code/vol
+- name: static-files
+  mountPath: "/static-files"
 
 nodeSelector: {}
 
