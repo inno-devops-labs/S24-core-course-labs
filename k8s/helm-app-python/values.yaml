@@ -99,6 +99,8 @@ volumes:
 - name: configmap-volume
   configMap:
     name: configmap
+- name: init-dir
+  emptyDir: {}
 
 volumeClaimTemplates:
 - metadata:
@@ -114,6 +116,8 @@ volumeMounts:
 - name: configmap-volume
   mountPath: "/config"
   readOnly: true
+- name: init-dir
+  mountPath: /init-dir
 
 nodeSelector: {}
 
