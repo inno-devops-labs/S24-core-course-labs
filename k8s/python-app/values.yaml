@@ -99,6 +99,8 @@ volumes:
   - name: configuration
     configMap:
       name: configmap
+  - name: workdir
+    emptyDir: {}
 
 volumeMounts:
   - name: configuration
@@ -107,6 +109,8 @@ volumeMounts:
     subPath: config.json
   - name: python-access-metric
     mountPath: "/app/volume"
+  - name: workdir
+    mountPath: "/work-dir"
 
 nodeSelector: {}
 

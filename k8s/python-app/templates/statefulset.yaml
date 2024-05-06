@@ -79,6 +79,25 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      initContainers:
+        - name: install-0
+          image: busybox
+          command: ["wget", "-O", "/work-dir/index.html", "http://info.cern.ch"]
+          volumeMounts:
+            - name: workdir
+              mountPath: "/work-dir"
+        - name: ping-1
+          image: busybox
+          command: ["sh", "-c", "echo ping > /work-dir/ping-pong.txt"]
+          volumeMounts:
+            - name: workdir
+              mountPath: "/work-dir"
+        - name: pong-2
+          image: busybox
+          command: ["sh", "-c", "echo pong >> /work-dir/ping-pong.txt"]
+          volumeMounts:
+            - name: workdir
+              mountPath: "/work-dir"
   {{- if .Values.pvc.enabled }}
   volumeClaimTemplates:
     - metadata:
