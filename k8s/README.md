@@ -42,4 +42,4 @@ service/kubernetes           ClusterIP   10.96.0.1        <none>        443/TCP 
 ```
 
 ### Application in Browser
-![App](img.png)
+![App](images/img.png)
