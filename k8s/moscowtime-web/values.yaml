@@ -96,14 +96,23 @@ volumeMounts:
 - name: config-volume
   mountPath: /config.json
   subPath: config.json
-- name: visits
+- name: data
   mountPath: /app/visits
+- name: work-dir
+  mountPath: /work-dir
 
 volumeClaimTemplates:
 - metadata:
-    name: visits
+    name: data
   spec:
     accessModes: [ "ReadWriteOnce" ]
+    resources:
+      requests:
+        storage: 1Gi
+- metadata:
+    name: work-dir
+  spec:
+    accessModes: ["ReadWriteOnce"]
     resources:
       requests:
         storage: 1Gi
