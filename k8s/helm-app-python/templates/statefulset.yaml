@@ -60,6 +60,17 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      initContainers:
+        - name: install
+          image: busybox:1.28
+          command:
+            - wget
+            - "-O"
+            - "/working-dir/index.html"
+            - https://example.net/
+          volumeMounts:
+            - name: working-dir
+              mountPath: "/working-dir"
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}

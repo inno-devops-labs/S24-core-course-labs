@@ -96,12 +96,16 @@ volumes:
 - name: py-config-volume
   configMap:
     name: py-configmap
+- name: working-dir
+  emptyDir: {}
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
 - name: py-config-volume
   mountPath: "/config"
   readOnly: true
+- name: working-dir
+  mountPath: /working-dir
 
 volumeClaimTemplates:
 - metadata:
