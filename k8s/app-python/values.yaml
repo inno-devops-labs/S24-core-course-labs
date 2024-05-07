@@ -111,10 +111,19 @@ volumes:
 volumeMounts: 
   - name: config
     mountPath: /etc/config
+  - name: init
+    mountPath: "/etc/init"
 
 volumeClaimTemplates:
   - metadata:
       name: config
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+  - metadata:
+      name: init
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
@@ -126,3 +135,15 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+initContainers:
+  - name: install
+    image: busybox:1.28
+    command:
+    - wget
+    - "-O"
+    - "/etc/init/index.html"
+    - http://info.cern.ch
+    volumeMounts:
+    - name: init
+      mountPath: "/etc/init"

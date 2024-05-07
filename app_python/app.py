@@ -1,6 +1,5 @@
-import pytz
 from flask import Flask, render_template
-from datetime import datetime
+from prometheus_client import generate_latest
 
 from services.time_service import TimeService
 from services.visit_counter_service import VisitCounterService
@@ -8,6 +7,7 @@ from services.visit_counter_service import VisitCounterService
 app = Flask(__name__)
 
 visit_counter_service = VisitCounterService()
+
 
 @app.route('/')
 def display_current_time():
@@ -20,6 +20,11 @@ def display_current_time():
 @app.route('/visits')
 def display_visits():
     return str(visit_counter_service.get())
+
+
+@app.route('/metrics')
+def metrics():
+    return generate_latest()
 
 
 if __name__ == '__main__':
