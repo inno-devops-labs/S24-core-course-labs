@@ -37,4 +37,4 @@ COPY ./main.py /code/app_python/main.py
 # Change docker user
 USER myuser
 # Define entrypoint
-ENTRYPOINT ["uvicorn", "app_python.main:app", "--host", "0.0.0.0", "--port", "80"]
+ENTRYPOINT ["uvicorn", "app_python.main:app", "--host", "0.0.0.0", "--port", "5000"]
