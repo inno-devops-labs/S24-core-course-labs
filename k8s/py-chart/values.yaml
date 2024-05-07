@@ -102,6 +102,9 @@ volumes:
   - name: app-config-volume
     configMap:
       name: chart-configmap
+  - name: init-volume
+      emptyDir:
+        sizeLimit: 1Mi
 # - name: foo
 #   secret:
 #     secretName: mysecret
@@ -110,7 +113,9 @@ volumes:
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: python-persistent-volume
-    mountPath: /app/data    
+    mountPath: /app/data
+  - name: init-volume
+    mountPath: /app/init_workdir    
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true

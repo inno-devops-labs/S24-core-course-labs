@@ -8,6 +8,7 @@ spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  serviceName: {{ include "app-py-chart.fullname" . }}
   podManagementPolicy: Parallel
   volumeClaimTemplates:
   - metadata:
@@ -39,6 +40,17 @@ spec:
       serviceAccountName: {{ include "py-chart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: init-container-one
+          image: busybox:1.28
+          command:
+          - wget
+          - "-O"
+          - "/work-dir/index.html"
+          - http://info.cern.ch
+          volumeMounts:
+          - name: init-volume
+            mountPath: "/work-dir"
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

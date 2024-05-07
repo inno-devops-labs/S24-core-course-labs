@@ -1,0 +1,10 @@
+prometheus:
+  additionalServiceMonitors:
+  - name: "py-chart-target"
+    selector:
+      matchLabels:
+        app.kubernetes.io/instance: py-chart
+    namespaceSelector:
+      any: true
+    endpoints:
+    - port: http
