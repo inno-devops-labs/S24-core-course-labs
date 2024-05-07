@@ -92,14 +92,16 @@ volumes:
   - name: configuration
     configMap:
       name: configmap
+  - name: workdir
+    emptyDir: { }
 
 volumeMounts:
   - name: configuration
     readOnly: true
     mountPath: "/config.json"
     subPath: config.json
-  - name: Data
-    mountPath:
+  - name: workdir
+    mountPath: "/work-dir"
 
 
 nodeSelector: {}
