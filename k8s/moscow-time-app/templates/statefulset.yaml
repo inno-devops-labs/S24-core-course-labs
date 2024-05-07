@@ -31,6 +31,23 @@ spec:
       serviceAccountName: {{ include "moscow-time-app.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: install
+          image: busybox:1.28
+          command:
+          - wget
+          - "-O"
+          - "/work-dir/index.html"
+          - http://info.cern.ch
+          volumeMounts:
+            - name: work-dir
+              mountPath: "/work-dir"
+        - name: container-1
+          image: busybox:1.28
+          command: ["sh", "-c", "echo hello >> /work-dir/container"]
+          volumeMounts:
+            - name: work-dir
+              mountPath: "/work-dir"
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
