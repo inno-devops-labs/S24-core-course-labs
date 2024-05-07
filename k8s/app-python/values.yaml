@@ -103,6 +103,13 @@ volumeClaimTemplates:
     resources:
       requests:
         storage: 1Gi
+- metadata:
+    name: work-dir
+  spec:
+    accessModes: [ "ReadWriteOnce" ]
+    resources:
+      requests:
+        storage: 1Gi
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
@@ -111,6 +118,8 @@ volumeMounts:
    subPath: config.json
  - name: data
    mountPath: /app/data
+ - name: work-dir
+   mountPath: "/work-dir"
 
 nodeSelector: {}
 
