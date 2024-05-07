@@ -104,6 +104,8 @@ volumeMounts:
     subPath: config.json
   - name: visits
     mountPath: /app/vol
+  - name: init-container
+    mountPath: /init-cont
 
 nodeSelector: {}
 
@@ -119,3 +121,42 @@ volumeClaimTemplates:
       resources:
         requests:
           storage: 10Mi
+  - metadata:
+      name: init-container
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Mi
+
+initContainers:
+  - name: install-1
+    image: busybox:1.28
+    command:
+    - wget
+    - "-O"
+    - "/init-cont/index.html"
+    - http://info.cern.ch
+    volumeMounts:
+    - name: init-container
+      mountPath: "/init-cont"
+  - name: install-2
+    image: busybox:1.28
+    command:
+      - sed
+      - "-i"
+      - "$ a aaaaa"
+      - "/init-cont/index.html"
+    volumeMounts:
+      - name: init-container
+        mountPath: "/init-cont"
+  - name: install-3
+    image: busybox:1.28
+    command:
+      - sed
+      - "-i"
+      - "$ a bbbbb"
+      - "/init-cont/index.html"
+    volumeMounts:
+      - name: init-container
+        mountPath: "/init-cont"
