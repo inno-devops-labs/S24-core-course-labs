@@ -53,10 +53,37 @@ spec:
             - name: config-volume
               mountPath: /app/config.json
               subPath: config.json
+              - name: init-volume
+              mountPath: "/init"
+      initContainers:
+        - name: install-1
+          image: busybox:1.28
+          command:
+          - wget
+          - "-O"
+          - "/work-dir/index.html"
+          - http://info.cern.ch
+          volumeMounts:
+          - name: init-volume
+            mountPath: "/work-dir"
+        - name: install-2
+          image: busybox:1.28
+          command: ['sh', '-c', "echo 'hello from the second container' >> /work-dir/index.html"]
+          volumeMounts:
+          - name: init-volume
+            mountPath: "/work-dir"
+        - name: install-3
+          image: busybox:1.28
+          command: ['sh', '-c', "echo 'hello from the third container' >> /work-dir/index.html"]
+          volumeMounts:
+          - name: init-volume
+            mountPath: "/work-dir"
       volumes:
         - name: config-volume
           configMap:
             name: config
+        - name: init-volume
+          emptyDir: {}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
