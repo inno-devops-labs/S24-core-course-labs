@@ -1,4 +1,4 @@
-# Default values for helm-app-python.
+# Default values for app-python.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -28,12 +28,10 @@ serviceAccount:
 podAnnotations:
   vault.hashicorp.com/agent-inject: 'true'
   vault.hashicorp.com/role: 'internal-app'
-  # vault.hashicorp.com/agent-inject-secret-database-config.txt: 'internal/data/database/config'
   vault.hashicorp.com/agent-inject-template-database-config.txt: |
     {{- with secret "internal/data/database/config" -}}
-    postgresql://{{ .Data.data.username }}:{{ .Data.data.password }}@postgres:5432/wizard
+    postgresql://{{ .Data.data.username }}:{{ .Data.data.password }}@postgres:5432/mostafa
     {{- end -}}
-
 podLabels: {}
 
 podSecurityContext: {}
@@ -68,12 +66,12 @@ ingress:
   #      - chart-example.local
 
 resources:
-  requests:
-    cpu: 100m
-    memory: 128Mi
   limits:
     cpu: 200m
     memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
 
 livenessProbe:
   httpGet:
@@ -95,23 +93,27 @@ autoscaling:
 volumes:
 - name: py-config-volume
   configMap:
-    name: py-configmap
+    name: configmap
+- name: working-dir
+  emptyDir: {}
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
 - name: py-config-volume
   mountPath: "/config"
   readOnly: true
+- name: working-dir
+  mountPath: /working-dir
 
 volumeClaimTemplates:
 - metadata:
-    name: mydata
+    name: Data
   spec:
     accessModes: [ "ReadWriteOnce" ]
     resources:
       requests:
-        storage: 1Gi
-
+        storage: 2Gi
+        
 nodeSelector: {}
 
 tolerations: []
