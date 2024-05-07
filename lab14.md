@@ -8,19 +8,25 @@ In this lab, you will explore Kubernetes cluster monitoring using Prometheus wit
 
 **6 Points:**
 
-1. Read about `Kube Prometheus Stack`:
+1. This lab was tested on a specific version of components:
+    - Minikube v1.33.0
+    - Minikube kubectl v1.28.3
+    - kube-prometheus-stack-57.2.0    v0.72.0
+    - the minikube start command - `minikube start --driver=docker --container-runtime=containerd`
+
+2. Read about `Kube Prometheus Stack`:
     - [Helm chart with installation guide](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
     - [Explanation of components](https://github.com/prometheus-operator/kube-prometheus#kubeprometheus)
 
-2. Describe Components:
+3. Describe Components:
     - Create `14.md` and detail the components of the Kube Prometheus Stack, explaining their roles and functions. Avoid direct copy-pasting; provide a personal understanding.
 
-3. Install Helm Charts:
+4. Install Helm Charts:
     - Install the Kube Prometheus Stack to your Kubernetes cluster.
     - Install your app's Helm chart.
     - Provide the output of the `kubectl get po,sts,svc,pvc,cm` command in the report and explain each part.
 
-4. Utilize Grafana Dashboards:
+5. Utilize Grafana Dashboards:
     - Access Grafana using `minikube service monitoring-grafana`.
     - Explore existing dashboards to find information about your cluster:
         1. Check CPU and Memory consumption of your StatefulSet.
