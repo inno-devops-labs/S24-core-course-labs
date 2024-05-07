@@ -41,7 +41,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8080
 
 ingress:
   enabled: false
@@ -92,12 +92,17 @@ volumeMounts:
   - name: config-volume
     mountPath: /files/config.json
     subPath: config.json
+  - name: workdir
+    mountPath: /work-dir
+    readOnly: false
 
 # Additional volumeMounts on the output Deployment definition.
 volumes:
     - name: config-volume
       configMap:
         name: my-config
+    - name: workdir
+      emptyDir: { }
 
 
 

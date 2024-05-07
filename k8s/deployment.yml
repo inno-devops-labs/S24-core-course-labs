@@ -18,4 +18,4 @@ spec:
       - name: web-app
         image: dirakon/devops-py:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
