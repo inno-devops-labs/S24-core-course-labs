@@ -1,0 +1,13 @@
+- name: Deploy dotnet application
+  hosts: all
+  vars:
+    - docker_image_name: ahmadalhussin/app_dotnet
+    - docker_container_name: app_dotnet
+    - docker_container_port: 8080 
+    - docker_host_port: 8080
+    - application_directory: dotnet_web_app
+  roles:
+    - role: docker
+      become: true
+    - role: web_app
+      become: true

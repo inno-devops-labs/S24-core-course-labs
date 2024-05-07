@@ -1,0 +1,73 @@
+name: app_dotnet
+on: 
+    push:
+        paths:
+            - 'app_dotnet/**'
+            - '.github/workflows/app_dotnet.yml'
+    pull_request:
+        paths:
+            - 'app_dotnet/**'
+            - '.github/workflows/app_dotnet.yml'
+
+env:
+    IMAGE_NAME: ahmadalhussin/app_dotnet
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Set up .NET
+              uses: actions/setup-dotnet@v3
+              with:
+                dotnet-version: '7.0.x'
+            - name: Restore dependencies
+              working-directory: ./app_dotnet
+              run: dotnet restore
+            - name: Running unit tests
+              working-directory: ./app_dotnet
+              run: dotnet test
+            - name: Build and lint
+              working-directory: ./app_dotnet/app_dotnet
+              run: dotnet build --configuration Release --no-restore
+    
+    security:
+        needs: [build]
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@master
+          - name: Setup .NET
+            uses: actions/setup-dotnet@v3
+          - name: Restore dependencies
+            working-directory: ./app_dotnet
+            run: dotnet restore 
+          - name: Run Snyk to check for vulnerabilities
+            uses: snyk/actions/dotnet@master
+            with:
+                args: --skip-unresolved app_dotnet/app_dotnet
+            env:
+                SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+    docker:
+        needs: [build, security]
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v3
+
+        - name: Login to Docker Hub
+          uses: docker/login-action@v3
+          with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+        - name: Build and push
+          working-directory: ./app_dotnet
+          run: | 
+            docker build -t ahmadalhussin/app_dotnet:latest .
+            docker tag ahmadalhussin/app_dotnet:latest ahmadalhussin/app_dotnet:latest
+            docker push ahmadalhussin/app_dotnet:latest
+
