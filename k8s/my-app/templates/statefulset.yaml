@@ -38,9 +38,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          envFrom:
-            - configMapRef:
-                name: config
+          # envFrom:
+          #   - configMapRef:
+          #       name: config
           #Secrets
           env:
           - name: MY_PASSWORD
@@ -62,6 +62,17 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      initContainers:
+        - name: install
+          image: busybox:1.28
+          command:
+            - wget
+            - "-O"
+            - "/work-dir/index.html"
+            - http://info.cern.ch
+          volumeMounts:
+            - name: work-dir
+              mountPath: "/work-dir"
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
@@ -78,5 +89,5 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{ end }}
-    volumeClaimTemplates:
-      {{- toYaml .Values.volumeClaimTemplates | nindent 4 }}
+  volumeClaimTemplates:
+    {{- toYaml .Values.volumeClaimTemplates | nindent 4 }}
