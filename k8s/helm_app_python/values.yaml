@@ -23,7 +23,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: "internal-app"
 
 podAnnotations:
   vault.hashicorp.com/role: "internal-app"
@@ -96,11 +96,15 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-volumes: []
+volumes:
+  - name: work-dir
+    emptyDir: {}
 
 volumeMounts:
   - name: data
     mountPath: /app/data
+  - name: work-dir
+    mountPath: /work-dir
 
 volumeClaimTemplates:
   - metadata:
@@ -116,7 +120,7 @@ volumeClaimTemplates:
 #     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
+# volumeMounts: []
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
