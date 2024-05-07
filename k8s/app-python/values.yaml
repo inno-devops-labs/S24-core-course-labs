@@ -18,7 +18,7 @@ volumeClaimTemplates:
     resources:
       requests:
         storage: 1Gi
-
+        
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -100,15 +100,16 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
+volumes: []
+# - name: foo
+#   secret:
+#     secretName: mysecret
+#     optional: false
+
+# Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: data
     mountPath: /app/data
-    
-# Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
 
 nodeSelector: {}
 
