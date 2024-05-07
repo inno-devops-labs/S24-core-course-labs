@@ -96,7 +96,13 @@ def read_visits():
         try:
             with open(VISITS_FILE, 'r') as f:
                 return int(f.read())
-        except:
+        except FileNotFoundError:
+            # Handle the case where the file doesn't exist by creating it
+            with open(VISITS_FILE, 'w') as f:
+                f.write("0")  # Write default value
+            return 0
+        except ValueError:
+            # Handle the case where the file exists but doesn't contain a valid integer
             return 0
 
 
