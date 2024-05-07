@@ -1,10 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "app-python.fullname" . }}
   labels:
     {{- include "app-python.labels" . | nindent 4 }}
 spec:
+  podManagementPolicy: {{ .Values.podManagementPolicy }}
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
@@ -51,11 +52,14 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           env:
-            - name: SecretEntry
+            - name: CONFIG_ENV
               valueFrom:
-                secretKeyRef:
-                  name: secret
-                  key: value
+                configMapKeyRef:
+                  name: configmap
+                  key: key
+          envFrom:
+            - configMapRef:
+                name: configmap
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
