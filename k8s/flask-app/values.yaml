@@ -99,6 +99,7 @@ volumes:
       items:
       - key: config.json
         path: config.json
+  - name: data-volume
 # - name: foo
 #   secret:
 #     secretName: mysecret
@@ -112,8 +113,6 @@ volumeClaimTemplates:
     resources:
       requests:
         storage: 1Gi
-- metadata:
-    name: data-volume
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
