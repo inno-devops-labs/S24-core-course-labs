@@ -6,7 +6,7 @@ replicaCount: 2
 
 image:
   repository: nikzor/flask-app
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
@@ -92,6 +92,7 @@ volumes:
 - name: my-flask-app-config-volume
   configMap:
     name: my-flask-app-configmap
+- name: data
 # - name: foo
 #   secret:
 #     secretName: mysecret
@@ -109,7 +110,7 @@ volumeMounts:
 - name: my-flask-app-config-volume
   mountPath: "/app/files/config.json"
   subPath: config.json
-- name: Data
+- name: data
   mountPath: /app/data
 # - name: foo
 #   mountPath: "/etc/foo"
