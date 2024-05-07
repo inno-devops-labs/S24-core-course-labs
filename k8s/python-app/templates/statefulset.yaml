@@ -12,6 +12,14 @@ spec:
   selector:
     matchLabels:
       {{- include "python-app.selectorLabels" . | nindent 6 }}
+  volumeClaimTemplates:
+    - metadata:
+        name: init-volume
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -32,6 +40,13 @@ spec:
         - name: config-volume
           configMap:
             name: {{ include "python-app.fullname" . }}
+      initContainers:
+        - name: init-container
+          image: busybox:1.28
+          command: ['wget', "-O", "/init-container/index.html", "http://info.cern.ch"]
+          volumeMounts:
+            - name: init-volume
+              mountPath: "/init-container"
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -52,6 +67,8 @@ spec:
             - name: config-volume
               mountPath: /config.json
               subPath: config.json
+            - name: init-volume
+              mountPath: "/init-container"
           livenessProbe:
             httpGet:
               path: /
