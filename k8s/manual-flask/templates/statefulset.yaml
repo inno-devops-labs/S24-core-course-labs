@@ -5,9 +5,9 @@ metadata:
   labels:
     {{- include "manual-flask.labels" . | nindent 4 }}
 spec:
-  podManagementPolicy: Parallel
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
+  podManagementPolicy: "Parallel"
   {{- end }}
   selector:
     matchLabels:
@@ -31,6 +31,13 @@ spec:
       serviceAccountName: {{ include "manual-flask.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: install
+          image: busybox:1.36.1
+          command: ["wget", "-O", "/work-dir/index.html", "https://hosthtml.live"]
+          volumeMounts:
+            - name: work-dir
+              mountPath: "/work-dir"
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -67,3 +74,5 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  volumeClaimTemplates:
+    {{- toYaml .Values.volumeClaimTemplates | nindent 4 }}

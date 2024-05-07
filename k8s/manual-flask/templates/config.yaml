@@ -1,7 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: config-map
+  name: config
+  labels:
+    {{- include "manual-flask.labels" . | nindent 4 }}
 data:
   config.json: |-
 {{ .Files.Get "files/config.json" | indent 4 }}

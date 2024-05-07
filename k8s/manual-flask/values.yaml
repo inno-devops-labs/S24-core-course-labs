@@ -6,10 +6,9 @@ replicaCount: 2
 
 image:
   repository: orillion1/lab2
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
-
+  tag: "latest"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -40,7 +39,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: NodePort
+  type: ClusterIP
   port: 5000
 
 ingress:
@@ -87,24 +86,35 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-# Additional volumes on the output Deployment definition.
 volumes:
 - name: config-volume
   configMap:
-    name: config-map
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
+    name: config
 
-# Additional volumeMounts on the output Deployment definition.
 volumeMounts:
 - name: config-volume
-  mountPath: "/app/files/config.json"
+  mountPath: /config.json
   subPath: config.json
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+- name: data
+  mountPath: /app/visits
+- name: work-dir
+  mountPath: /work-dir
+
+volumeClaimTemplates:
+- metadata:
+    name: data
+  spec:
+    accessModes: [ "ReadWriteOnce" ]
+    resources:
+      requests:
+        storage: 1Gi
+- metadata:
+    name: work-dir
+  spec:
+    accessModes: ["ReadWriteOnce"]
+    resources:
+      requests:
+        storage: 1Gi
 
 nodeSelector: {}
 

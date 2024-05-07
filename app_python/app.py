@@ -7,17 +7,18 @@ app = Flask(__name__)
 VOLUME="volume/visits.txt"
 
 def write_visits(visits):
-    with open(VOLUME, 'a') as f:
-        f.write(visits)
-        f.close()
-
+    with open(VOLUME, 'w') as f:
+        f.write(visits) 
 
 def get_visits():
-    with open(VOLUME, 'a') as f:
-        return int(f.read().strip())
+    try:
+        with open(VOLUME, 'r') as file:
+            return int(file.read().strip())
+    except:
+        return 0
 
 def incr():
-    vis = get_visits
+    vis = get_visits()
     write_visits(str(vis + 1))
 
 @app.route('/')
