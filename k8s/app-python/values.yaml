@@ -108,7 +108,23 @@ volumeClaimTemplates:
     accessModes: [ "ReadWriteOnce" ]
     resources:
       requests:
+        storage: 1Mi
+- metadata:
+    name: work-dir
+  spec:
+    accessModes: [ "ReadWriteOnce" ]
+    resources:
+      requests:
         storage: 1Gi
+
+volumeMounts:
+- name: config-volume
+  mountPath: /app/config.json
+  subPath: config.json
+- name: data
+  mountPath: /app/data
+- name: work-dir
+  mountPath: "/work-dir"
 
 nodeSelector: {}
 
