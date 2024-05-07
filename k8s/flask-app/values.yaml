@@ -103,6 +103,13 @@ volumeClaimTemplates:
     resources:
       requests:
         storage: 10M
+- metadata:
+    name: init-cont
+  spec:
+    accessModes: [ "ReadWriteOnce" ]
+    resources:
+      requests:
+        storage: 10M
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
@@ -111,6 +118,8 @@ volumeMounts:
     subPath: config.json
   - name: app-volume
     mountPath: "/app/data"
+  - name: init-cont
+    mountPath: "/initcont_data"
 
 
 nodeSelector: {}
