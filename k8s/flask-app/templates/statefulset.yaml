@@ -33,6 +33,17 @@ spec:
       serviceAccountName: {{ include "flask-app.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: install
+          image: busybox:1.28
+          command:
+            - wget
+            - "-O"
+            - "/init_data/index.html"
+            - http://info.cern.ch
+          volumeMounts:
+            - name: data-volume
+              mountPath: "/init_data"
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

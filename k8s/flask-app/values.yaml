@@ -112,6 +112,8 @@ volumeClaimTemplates:
     resources:
       requests:
         storage: 1Gi
+- metadata:
+    name: data-volume
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
@@ -121,6 +123,8 @@ volumeMounts:
     readOnly: true
   - name: visits-volume
     mountPath: "/app/files"
+  - name: data-volume
+    mountPath: "/init_data"
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
