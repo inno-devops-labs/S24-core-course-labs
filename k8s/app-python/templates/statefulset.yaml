@@ -19,6 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+        app: {{ include "app-python.fullname" . }}
         {{- include "chart-library.labels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
@@ -28,6 +29,26 @@ spec:
       serviceAccountName: {{ include "app-python.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: indexhtml
+          image: alpine:3.19.1
+          command: ["wget", "-O", "/work-dir/index.html", "http://info.cern.ch"]
+          volumeMounts:
+            - name: workdir
+              mountPath: "/work-dir"
+        - name: hello
+          image: alpine:3.19.1
+          command: ["sh", "-c", "echo hello > /work-dir/helloworld.txt"]
+          volumeMounts:
+            - name: workdir
+              mountPath: "/work-dir"
+        - name: world
+          image: alpine:3.19.1
+          command: ["sh", "-c", "echo world >> /work-dir/helloworld.txt"]
+          volumeMounts:
+            - name: workdir
+              mountPath: "/work-dir"
+      dnsPolicy: Default
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

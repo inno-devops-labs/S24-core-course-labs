@@ -4,6 +4,10 @@ metadata:
   name: {{ include "app-python.fullname" . }}
   labels:
     {{- include "app-python.labels" . | nindent 4 }}
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/scheme: 'http'
+    prometheus.io/port: '8080'
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +16,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "app-python.selectorLabels" . | nindent 4 }}
+    {{- include "chart-library.labels" . | nindent 4 }}

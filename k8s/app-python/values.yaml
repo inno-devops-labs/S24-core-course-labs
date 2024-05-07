@@ -47,7 +47,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: NodePort
+  type: ClusterIP
   port: 8080
 
 ingress:
@@ -103,6 +103,13 @@ volumeClaimTemplates:
     resources:
       requests:
         storage: 10M
+- metadata:
+    name: workdir
+  spec:
+    accessModes: [ "ReadWriteOnce" ]
+    resources:
+      requests:
+        storage: 1Gi
 
 volumeMounts:
 - name: app-python-config-volume
@@ -110,6 +117,8 @@ volumeMounts:
   subPath: "config.json"
 - name: app-python-volume
   mountPath: "/app/data"
+- name: workdir
+  mountPath: "/work-dir"
 
 nodeSelector: {}
 
