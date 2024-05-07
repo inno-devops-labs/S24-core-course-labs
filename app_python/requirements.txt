@@ -5,3 +5,4 @@ ntplib
 tzdata
 jinja2
 pytest
+prometheus-client

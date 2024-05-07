@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "app-python.fullname" . }}-metrics
+  labels:
+    {{- include "labelslib.labels" . | nindent 4 }}
+    release: prometheus
+spec:
+  endpoints:
+    - interval: 10s
+      path: /metrics
+      port: http
+      scheme: http
+  jobLabel: app.kubernetes.io/name
+  namespaceSelector:
+    any: true
+  sampleLimit: 1000
+  selector:
+    matchExpressions:
+      - key: app.kubernetes.io/name
+        operator: Exists

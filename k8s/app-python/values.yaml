@@ -2,13 +2,13 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 0
+replicaCount: 3
 
 image:
   repository: tufra/moscow-time-app-python
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.0.4"
+  tag: "0.0.5"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -67,17 +67,19 @@ resources:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
    limits:
-     cpu: 2
+     cpu: 1
      memory: 512Mi
    requests:
      cpu: 100m
      memory: 128Mi
 
 livenessProbe:
+  timeoutSeconds: 10
   httpGet:
     path: /
     port: http
 readinessProbe:
+  timeoutSeconds: 10
   httpGet:
     path: /
     port: http
@@ -97,6 +99,8 @@ volumes:
       items:
         - key: config.json
           path: config.json
+  - name: init-dir
+    emptyDir: {}
 # - name: foo
 #   secret:
 #     secretName: mysecret
@@ -106,6 +110,8 @@ volumes:
 volumeMounts:
   - name: visits
     mountPath: /app/visits
+  - name: init-dir
+    mountPath: "/init-dir"
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
@@ -130,3 +136,35 @@ volumeClaimTemplates:
       resources:
         requests:
           storage: 10Mi
+
+initContainers:
+  - name: init
+    image: busybox:1.28
+    command:
+      - wget
+      - "-O"
+      - "/init-dir/index.html"
+      - http://info.cern.ch
+    volumeMounts:
+      - name: init-dir
+        mountPath: "/init-dir"
+
+  - name: init-2
+    image: busybox:1.28
+    command:
+      - sh
+      - "-c"
+      - "echo 'init 2 output' >> /init-dir/index.html"
+    volumeMounts:
+      - name: init-dir
+        mountPath: "/init-dir"
+
+  - name: init-3
+    image: busybox:1.28
+    command:
+      - sh
+      - "-c"
+      - "echo 'init 3 output' >> /init-dir/index.html"
+    volumeMounts:
+      - name: init-dir
+        mountPath: "/init-dir"
