@@ -28,12 +28,6 @@ In this lab, you will learn how to manage sensitive data, such as passwords, tok
    - Retrieve the list of pods using the command `kubectl get po`. Use the name of the pod as proof of your success within the report.
    - Verify your secret inside the pod, for example: `kubectl exec demo-5f898f5f4c-2gpnd -- printenv | grep MY_PASS`. Share this output in `11.md`.
 
-4. Create a Pull Request:
-   - Generate a PR to the main branch of the forked repository.
-
-5. Create a Pull Request in Your Own Repository:
-   - Create a PR in your repository from the lab11 branch to the main one. This will facilitate the grading process.
-
 ## Task 2: Vault Secret Management System
 
 **4 Points:**
