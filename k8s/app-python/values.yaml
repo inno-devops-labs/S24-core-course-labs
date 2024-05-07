@@ -102,11 +102,59 @@ volumeClaimTemplates:
       resources:
         requests:
           storage: 2Gi
+  - metadata:
+      name: init-container
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Mi
+
+initContainers:
+  - name: init-container-example
+    image: busybox:1.28
+    command:
+      - wget
+      - "-O"
+      - "/init-container/index.html"
+      - http://info.cern.ch
+    volumeMounts:
+      - name: init-container
+        mountPath: "/init-container"
+  - name: queue-1
+    image: busybox:1.28
+    command:
+      - sh
+      - -c
+      - "echo 1 > /init-container/queue"
+    volumeMounts:
+      - name: init-container
+        mountPath: "/init-container"
+  - name: queue-2
+    image: busybox:1.28
+    command:
+      - sh
+      - -c
+      - "echo 2 >> /init-container/queue"
+    volumeMounts:
+      - name: init-container
+        mountPath: "/init-container"
+  - name: queue-3
+    image: busybox:1.28
+    command:
+      - sh
+      - -c
+      - "echo 3 >> /init-container/queue"
+    volumeMounts:
+      - name: init-container
+        mountPath: "/init-container"
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: vol
     mountPath: /app/vol
+  - name: init-container
+    mountPath: /init-container
 
 nodeSelector: {}
 
