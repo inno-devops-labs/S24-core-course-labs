@@ -69,7 +69,7 @@ In this lab, you will utilize Ansible to set up a Continuous Deployment (CD) pro
 
 1. Create an Extra Playbook:
    - Develop an additional Ansible playbook specifically for your bonus application.
-   - Reuse the existing Ansible role you created for your primary application.
+   - You can reuse the existing Ansible role you created for your primary application or create a new one.
    - Suggested structure:
 
    ```sh
