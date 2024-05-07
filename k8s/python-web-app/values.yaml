@@ -99,17 +99,18 @@ volumes:
   - name: config-volume
     configMap:
       name: config
-      items:
-      - key: config
-        path: config.json
+  - name: web-site-volume
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: config-volume
     mountPath: "/config"
     readOnly: true
-  - name: data
+#  - name: data
+#    mountPath: /app/data
+  - name: web-site-volume
     mountPath: /app/data
+    readOnly: false
 
 nodeSelector: {}
 
