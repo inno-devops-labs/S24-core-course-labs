@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo
+spec:
+  volumes:
+    - name: workdir
+      emptyDir: {}
+  initContainers:
+    - name: init
+      image: busybox
+      command: ["sh", "-c", "wget -O /workdir/test.html http://example.com"]
+      volumeMounts:
+        - name: workdir
+          mountPath: "/workdir"
+  containers:
+    - name: main
+      image: busybox
+      command: ["sleep", "infinity"]
+      volumeMounts:
+        - name: workdir
+          mountPath: "/workdir"
