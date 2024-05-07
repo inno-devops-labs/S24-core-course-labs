@@ -1,12 +1,14 @@
 # Import necessary modules
 from flask import Flask
 from datetime import datetime
+from prometheus_flask_exporter import PrometheusMetrics
 import pytz
 import os
 
 # Create Flask application instance
 app = Flask(__name__)
 visits_file = "visits.txt"
+metrics = PrometheusMetrics(app)
 
 
 # Function to read visit count from file
@@ -35,7 +37,7 @@ def current_time():
     # Write visit count to file
     with open(visits_file, "w") as file:
         file.write(str(visit_count))
-        
+
     # Get current time in Moscow timezone
     moscow_time = datetime.now(pytz.timezone("Europe/Moscow")).strftime(
         "%Y-%m-%d %H:%M:%S"
@@ -50,6 +52,14 @@ def current_time():
 def display_visits():
     global visit_count
     return f"Total visits: {visit_count}"
+
+
+@app.errorhandler(404)
+def not_found():
+    """
+    Return error page not found as html
+    """
+    return "<h1>404</h1><p>The resource could not be found.</p>", 404
 
 
 # Run the Flask application if script is executed directly

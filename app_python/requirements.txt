@@ -2,4 +2,5 @@ Flask==3.0.2
 pytz==2024.1
 pytest==8.0.1
 flake8==7.0.0
+prometheus-flask-exporter==0.0.9
 black==24.2.0
