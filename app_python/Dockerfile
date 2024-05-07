@@ -10,7 +10,7 @@ ENV PATH="${PATH}:/home/$user/.local/bin"
 
 WORKDIR /app
 
-COPY app.py visits requirements.txt ./
+COPY --chown=$user app.py visits requirements.txt ./
 
 RUN pip install -r requirements.txt
 
