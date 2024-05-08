@@ -93,6 +93,9 @@ volumes:
   configMap: 
     name: app-python-configmap
 
+- name: working-dir
+  emptyDir: {}
+
 # - name: foo
 #   secret:
 #     secretName: mysecret
@@ -106,6 +109,9 @@ volumeMounts:
   
 - name: state-data
   mountPath: /app_python/data
+
+- name: work-dir
+  mountPath: /workdir
 
 volumeClaimTemplates:
 - metadata:
