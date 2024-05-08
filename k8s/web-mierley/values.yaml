@@ -101,12 +101,16 @@ volumes:
   - name: config-json
     configMap:
       name: config-map-json
+  - name: workdir
+    emptyDir: {}
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: config-json
     mountPath: /etc/config.json
     subPath: config.json
+  - name: workdir
+    mountPath: "/work-dir"
 
 volumeClaimTemplates:
   - metadata:
