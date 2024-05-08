@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: visits-config
+  namespace: default
+data:
+  visits.json: |
+    {{ .Files.Get "files/config.json" | nindent 4 }}
