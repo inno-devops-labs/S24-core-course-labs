@@ -108,6 +108,13 @@ volumeClaimTemplates:
     resources:
       requests:
         storage: 1Gi
+- metadata:
+    name: static-files
+  spec:
+    accessModes: [ "ReadWriteOnce" ]
+    resources:
+      requests:
+        storage: 1Gi
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
@@ -116,6 +123,8 @@ volumeMounts:
   readOnly: true
 - name: data
   mountPath: /app/data
+- name: static-files
+  mountPath: "/static-files"
 
 nodeSelector: {}
 

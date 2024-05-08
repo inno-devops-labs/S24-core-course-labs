@@ -28,6 +28,29 @@ spec:
       serviceAccountName: {{ include "app-python.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: install
+          image: busybox:1.28
+          command:
+          - wget
+          - "-O"
+          - "/static-files/index.html"
+          - http://info.cern.ch
+          volumeMounts:
+            - name: static-files
+              mountPath: "/static-files"
+        - name: queue-1
+          image: busybox:1.28
+          command: ["sh", "-c", "echo hello > /static-files/queue"]
+          volumeMounts:
+            - name: static-files
+              mountPath: "/static-files"
+        - name: queue-2
+          image: busybox:1.28
+          command: ["sh", "-c", "echo world >> /static-files/queue"]
+          volumeMounts:
+            - name: static-files
+              mountPath: "/static-files"
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
