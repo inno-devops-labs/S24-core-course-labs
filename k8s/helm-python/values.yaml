@@ -1,4 +1,5 @@
 replicaCount: 1
+
 image:
   repository: staglente/app_python
   pullPolicy: IfNotPresent
@@ -39,8 +40,8 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-
 resources: {}
+
 livenessProbe:
   httpGet:
     path: /
@@ -57,7 +58,15 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
 
 volumes: []
-volumeMounts: []
+
+volumeMounts:
+  - name: "visits"
+    mountPath: "/data"
+volumeClaim:
+  name: "visits"
+  storageSize: 20Mi
+  accessModes: [ "ReadWriteOnce" ]
+
 nodeSelector: {}
 tolerations: []
 affinity: {}

@@ -1,20 +1,19 @@
-# Use the official Python image as the base image
-FROM python:3.9-slim
+FROM python:3.9.18-alpine3.18
 
-# Set the working directory inside the container
-WORKDIR /app_python
+LABEL version='1.0'
 
-# Copy the requirements file
-#COPY requirements.txt .
+WORKDIR /
+ 
+#RUN adduser -D someuser && chown -R someuser /
 
-# Install Python dependencies
-#RUN pip install --no-cache-dir -r requirements.txt
+#RUN mkdir /somedir && chown -R someuser /somedir
+#VOLUME [ "/data" ]
 
-# Copy the application code into the container
-COPY . .
+#COPY . . 
 
-# Expose the port
-EXPOSE 5000
+#USER someuser
+#RUN pip install --no-cache-dir --user -r requirements.txt
 
-# Command to run the application
-CMD ["python", "app.py"]
+#EXPOSE 5000
+
+#CMD ["python", "-m", "flask", "--app", "app", "run", "--host=0.0.0.0"]
