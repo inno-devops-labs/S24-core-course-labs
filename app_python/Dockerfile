@@ -6,6 +6,7 @@ RUN adduser -D new_user && chown -R new_user /app_python
 USER new_user
 
 COPY ./requirements.txt ./app.py ./
+RUN mkdir visits
 
 EXPOSE 5000
 
