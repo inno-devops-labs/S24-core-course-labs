@@ -4,6 +4,11 @@ metadata:
   name: {{ include "helm-app-python.fullname" . }}
   labels:
     {{- include "helm-app-python.labels" . | nindent 4 }}
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/path: '/metrics'
+    prometheus.io/scheme: 'http'
+    prometheus.io/port: '8000'
 spec:
   type: {{ .Values.service.type }}
   ports:

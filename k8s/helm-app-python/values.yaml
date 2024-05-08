@@ -96,16 +96,28 @@ volumes:
 - name: config-volume
   configMap:
     name: config
+- name: work-dir
+  persistentVolumeClaim:
+    claimName: work-dir
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
 - name: config-volume
   mountPath: /app/config.json
   subPath: config.json
+- name: work-dir
+  mountPath: "/work-dir"
 
 volumeClaimTemplates:
 - metadata:
     name: www
+  spec:
+    accessModes: [ "ReadWriteOnce" ]
+    resources:
+      requests:
+        storage: 1Gi
+- metadata:
+    name: work-dir
   spec:
     accessModes: [ "ReadWriteOnce" ]
     resources:

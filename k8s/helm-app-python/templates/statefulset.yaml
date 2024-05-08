@@ -67,6 +67,35 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      initContainers:
+        - name: install
+          image: busybox:1.28
+          command:
+          - wget
+          - "-O"
+          - "/work-dir/index.html"
+          - http://info.cern.ch
+          volumeMounts:
+          - name: work-dir
+            mountPath: "/work-dir"
+        - name: add-line-1
+          image: busybox:1.28
+          command:
+          - /bin/sh
+          - -c
+          - echo "line 1" > /work-dir/example
+          volumeMounts:
+          - name: work-dir
+            mountPath: "/work-dir"
+        - name: add-line-2
+          image: busybox:1.28
+          command:
+          - /bin/sh
+          - -c
+          - echo "line 2" >> /work-dir/example
+          volumeMounts:
+          - name: work-dir
+            mountPath: "/work-dir"
   {{- with .Values.volumeClaimTemplates }}
   volumeClaimTemplates:
     {{- toYaml . | nindent 4 }}
