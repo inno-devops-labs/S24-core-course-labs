@@ -1,19 +1,17 @@
 apiVersion: apps/v1
-kind: Deployment
+
+kind: StatefulSet
+
 metadata:
   name: {{ include "web-app.fullname" . }}
   labels:
     {{- include "web-app.labels" . | nindent 4 }}
-env:
-- name: MY_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: credentials
-      key: password
+
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  podManagementPolicy: "Parallel"
   selector:
     matchLabels:
       {{- include "web-app.selectorLabels" . | nindent 6 }}
@@ -33,7 +31,6 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "web-app.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -42,6 +39,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: my-config
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -72,3 +72,11 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
