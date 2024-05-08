@@ -1,13 +1,17 @@
 apiVersion: apps/v1
-kind: Deployment
+
+kind: StatefulSet
+
 metadata:
   name: {{ include "test.fullname" . }}
   labels:
     {{- include "test.labels" . | nindent 4 }}
+
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  podManagementPolicy: "Parallel"
   selector:
     matchLabels:
       {{- include "test.selectorLabels" . | nindent 6 }}
@@ -72,3 +76,11 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
