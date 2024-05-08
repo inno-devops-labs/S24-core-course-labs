@@ -95,6 +95,8 @@ volumes:
   - name: config-volume
     configMap:
       name: ghadeer-app-configmap
+  - name: workdir
+    emptyDir: {}
 # - name: foo
 #   secret:
 #     secretName: mysecret
@@ -116,6 +118,8 @@ volumeMounts:
   - name: config-volume
     mountPath: "/config.json"
     subPath: config.json
+  - name: workdir
+    mountPath: "/work-dir"
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
