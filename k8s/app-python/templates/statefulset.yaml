@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: app-python 
+ labels:
+   app: app-python 
+spec:
+ replicas: 2
+ selector:
+   matchLabels:
+     app: app-python
+ template:
+   metadata:
+     labels:
+       app: app-python 
+   spec:
+     containers:
+       - name: app-python
+         image: tatarinalba/devops:1.0
+         ports:
+           - containerPort: 8000
+         env: 
+           - name: SECRET_USERNAME 
+             valueFrom: 
+               secretKeyRef:
+                 name: my-helm-secret 
+                 key: username 
+           - name: SECRET_PASSWORD
+             valueFrom:
+               secretKeyRef:
+                 name: my-helm-secret
+                 key: password
+   initContainers:
+     - name: install
+       image: busybox:1.28
+       command:
+         - wgt
+         - "-O"
+         - "/output-dir/out.html"
+         - https://example.com
+       volumeMounts:
+         - name: output-dir
+           mountPath: "/output-dir"

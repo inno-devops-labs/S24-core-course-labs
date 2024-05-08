@@ -23,7 +23,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: "internal-app"
 
 podAnnotations: {}
 podLabels: {}
@@ -90,11 +90,11 @@ autoscaling:
 volumeClaimTemplates:
   - metadata:
       name: app-python-volume 
-  spec: 
-  accesModes: [ "ReadWriteOnce" ]
-  resources:
-    requests:
-      storage: 100Mi
+    spec: 
+      accesModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 100Mi
 
 # Additional volumes on the output Deployment definition.
 volumes: []
