@@ -46,6 +46,19 @@ service:
   type: ClusterIP
   port: 80
 
+initContainers:
+  - name: install
+    image: busybox:1.28
+    command:
+      - wget
+      - "-O"
+      - "/work-dir/index.html"
+      - http://info.cern.ch
+    volumeMounts:
+      - name: workdir
+        mountPath: "/work-dir"
+
+
 ingress:
   enabled: false
   className: ""
@@ -95,6 +108,8 @@ volumes:
   - name: config-volume
     configMap:
       name: app-python
+  - name: workdir
+    emptyDir: {}
 # - name: foo
 #   secret:
 #     secretName: mysecret
@@ -105,6 +120,8 @@ volumeMounts:
   - name: config-volume
     mountPath: /app/config.json
     subPath: config.json
+  - name: workdir
+    mountPath: /app/workdir
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
