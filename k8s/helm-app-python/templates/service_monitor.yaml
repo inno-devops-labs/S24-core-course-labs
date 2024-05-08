@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "helm-app-python.fullname" . }}
+  labels:
+    {{- include "helm-app-python.labels" . | nindent 4 }}
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      {{- include "helm-app-python.labels" . | nindent 6 }}
+  endpoints:
+  - port: http

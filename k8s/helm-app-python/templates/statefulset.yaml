@@ -30,6 +30,25 @@ spec:
       serviceAccountName: {{ include "helm-app-python.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: install
+          image: busybox:1.36.1
+          command: ["wget", "-O", "/work-dir/index.html", "http://example.com"]
+          volumeMounts:
+            - name: work-dir
+              mountPath: "/work-dir"
+        - name: line1
+          image: busybox:1.36.1
+          command: ["sh", "-c", "echo line1 > /work-dir/lines.txt"]
+          volumeMounts:
+            - name: work-dir
+              mountPath: "/work-dir"
+        - name: line2
+          image: busybox:1.36.1
+          command: ["sh", "-c", "echo line2 >> /work-dir/lines.txt"]
+          volumeMounts:
+            - name: work-dir
+              mountPath: "/work-dir"
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

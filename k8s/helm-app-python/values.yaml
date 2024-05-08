@@ -113,6 +113,8 @@ volumeMounts:
   subPath: config.json
 - name: data
   mountPath: /work_app/visits_folder
+- name: work-dir
+  mountPath: "/work-dir"
 
 volumeClaimTemplates:
 - metadata:
@@ -122,6 +124,13 @@ volumeClaimTemplates:
     resources:
       requests:
         storage: 1Mi
+- metadata:
+    name: work-dir
+  spec:
+    accessModes: ["ReadWriteOnce"]
+    resources:
+      requests:
+        storage: 1Gi
 
 # - name: foo
 #   mountPath: "/etc/foo"
