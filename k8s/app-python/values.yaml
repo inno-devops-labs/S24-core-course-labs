@@ -83,12 +83,12 @@ livenessProbe:
   httpGet:
     path: /
     port: http
-  initialDelaySeconds: 60
+  initialDelaySeconds: 30
 readinessProbe:
   httpGet:
     path: /
     port: http
-  initialDelaySeconds: 60
+  initialDelaySeconds: 30
 
 autoscaling:
   enabled: false
@@ -109,6 +109,8 @@ volumeMounts:
   subPath: config.json
 - name: state-data
   mountPath: /app/data
+- name: init-dir
+  mountPath: /app/init-dir
 
 volumeClaimTemplates:
 - metadata:
@@ -118,6 +120,13 @@ volumeClaimTemplates:
     resources:
       requests:
         storage: 5Mi
+- metadata:
+    name: init-dir
+  spec:
+    accessModes: ["ReadWriteOnce"]
+    resources:
+      requests:
+        storage: 1Gi
 
 podManagementPolicy: Parallel
 

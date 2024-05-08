@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "library-chart.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "library-chart.labels" . | nindent 6 }}
+  endpoints:
+  - port: http
+    path: /metrics

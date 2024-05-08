@@ -5,6 +5,7 @@ metadata:
   labels:
     {{- include "library-chart.labels" . | nindent 4 }}
 spec:
+  serviceName: {{ include "library-chart.fullname" . }}
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
@@ -18,6 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+        app: {{ include "library-chart.fullname" . }}
         {{- include "library-chart.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
@@ -30,6 +32,25 @@ spec:
       serviceAccountName: {{ include "library-chart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: install
+          image: busybox:1.36.1
+          command: ["wget", "-O", "/app/init-dir/index.html", "https://justinjackson.ca/words.html"]
+          volumeMounts:
+            - name: init-dir
+              mountPath: /app/init-dir
+        - name: hi
+          image: busybox:1.36.1
+          command: ["sh", "-c", "echo hi > /app/init-dir/greeting.txt"]
+          volumeMounts:
+            - name: init-dir
+              mountPath: /app/init-dir
+        - name: bye
+          image: busybox:1.36.1
+          command: ["sh", "-c", "echo bye >> /app/init-dir/greeting.txt"]
+          volumeMounts:
+            - name: init-dir
+              mountPath: /app/init-dir
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
