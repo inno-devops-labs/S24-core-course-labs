@@ -6,11 +6,12 @@ metadata:
     {{- include "app-python.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
+  serviceName: app-python
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "app-python.selectorLabels" . | nindent 6 }}
+      {{- include "chart-library.labels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -20,10 +21,7 @@ spec:
       labels:
         app.kubernetes.io/instance: app-python
         app.kubernetes.io/name: app-python
-        {{- include "app-python.labels" . | nindent 8 }}
-        {{- with .Values.podLabels }}
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- include "chart-library.labels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -32,6 +30,25 @@ spec:
       serviceAccountName: {{ include "app-python.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: install
+          image: busybox:1.36.1
+          command: ["wget", "-O", "/tmpdir/index.html", "http://info.cern.ch"]
+          volumeMounts:
+            - name: tmpdir
+              mountPath: "/tmpdir"
+        - name: ok1
+          image: busybox:1.36.1
+          command: ["sh", "-c", "echo ok1 > /tmpdir/check.txt"]
+          volumeMounts:
+            - name: tmpdir
+              mountPath: "/tmpdir"
+        - name: ok2
+          image: busybox:1.36.1
+          command: ["sh", "-c", "echo ok2 >> /tmpdir/check.txt"]
+          volumeMounts:
+            - name: tmpdir
+              mountPath: "/tmpdir"
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

@@ -43,6 +43,7 @@ podManagementPolicy: Parallel
 
 service:
   type: LoadBalancer
+  # type: ClusterIP
   port: 8000
 
 ingress:
@@ -109,6 +110,8 @@ volumeMounts:
 #   readOnly: true
 - name: data
   mountPath: /visits
+- name: tmpdir
+  mountPath: "/tmpdir"
 
 volumeClaimTemplates:
 - metadata:
@@ -118,6 +121,13 @@ volumeClaimTemplates:
     resources:
       requests:
         storage: 1Mi
+- metadata:
+    name: tmpdir
+  spec:
+    accessModes: ["ReadWriteOnce"]
+    resources:
+      requests:
+        storage: 1Gi
 
 nodeSelector: {}
 
