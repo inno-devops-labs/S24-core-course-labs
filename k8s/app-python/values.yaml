@@ -91,6 +91,10 @@ volumes:
       emptyDir:
         sizeLimit: 500Mi
 
+  - name: init-data
+      emptyDir:
+        sizeLimit: 100Mi
+
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: config-volume
@@ -98,6 +102,9 @@ volumeMounts:
 
   - name: visits-data
       mountPath: /app/data
+
+  - name: init-data
+      mountPath: app/init_data
 
 nodeSelector: { }
 
@@ -109,3 +116,43 @@ vct:
    name: visits-data
    storageName: python-storage
    storage: 1Gi
+
+
+initContainers:
+ - name: install
+   image: busybox:1.28
+   command:
+     - wget
+     - "-O"
+     - "/app/init_data/index.html"
+     - http://info.cern.ch
+   volumeMounts:
+     - name: init-data
+       mountPath: "/app/init_data"
+ - name: queue-one
+   image: busybox:1.28
+   command:
+     - sh
+     - "-c"
+     - "echo line_one > /app/init_data/queue.txt"
+   volumeMounts:
+     - name: init-data
+       mountPath: "/app/init_data"
+ - name: queue-two
+   image: busybox:1.28
+   command:
+     - sh
+     - "-c"
+     - "echo line_two >> /app/init_data/queue.txt"
+   volumeMounts:
+     - name: init-data
+       mountPath: "/app/init_data"
+ - name: queue-three
+   image: busybox:1.28
+   command:
+     - sh
+     - "-c"
+     - "echo line_three >> /app/init_data/queue.txt"
+   volumeMounts:
+     - name: init-data
+       mountPath: "/app/init_data"
