@@ -75,6 +75,10 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.initContainers }}
+      initContainers:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
 
   {{- with .Values.volumeClaimTemplates }}
   volumeClaimTemplates:
