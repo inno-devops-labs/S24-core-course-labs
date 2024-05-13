@@ -1,0 +1,95 @@
+---
+version: "3.6"
+
+x-common-config: &common
+  logging:
+    driver: json-file
+    options:
+      tag: "{{.ImageName}}|{{.Name}}"
+      # Note: adding the log rotation options breaks everything on Windows.
+      # max-size: "100m"
+      # max-file: 3
+  mem_limit: "512M"
+
+networks:
+  loki:
+    driver: bridge
+
+services:
+  app:
+    <<: *common
+    image: roukayazaki/roukaya:latest
+    expose:
+      - 5000
+    ports:
+      - "5000:5000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - loki
+
+
+
+  prometheus:
+    <<: *common
+    image: prom/prometheus:latest
+    expose:
+      - 9090
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config:/mnt/config
+    command: --config.file=/mnt/config/prometheus-config.yaml
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - loki
+
+  loki:
+    <<: *common
+    image: grafana/loki:latest
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./config:/mnt/config
+    command: -config.file=/mnt/config/loki-config.yaml
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://loki:3100/loki/api/v1/push"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - loki
+
+  promtail:
+    <<: *common
+    image: grafana/promtail:2.5.0
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers
+      - ./config:/mnt/config
+    command: -config.file=/mnt/config/promtail-config.yaml
+    networks:
+      - loki
+
+  grafana:
+    <<: *common
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - loki
