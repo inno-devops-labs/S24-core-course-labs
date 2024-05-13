@@ -1,0 +1,18 @@
+# Ignore Python bytecode files
+*.pyc
+
+# Ignore virtual environment directories
+venv/
+.env/
+
+# Ignore log files
+*.log
+
+# Ignore git files
+.git/
+.gitignore
+
+# Ignore Docker-related files
+.dockerignore
+Dockerfile
+

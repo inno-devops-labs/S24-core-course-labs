@@ -1,0 +1,9 @@
+version: '2.0'
+
+services:
+    {{ app_python_name }}:
+        image: "{{ app_python.registry}}/{{ app_python.image }}:{{ app_python.tag }}"
+        container_name: {{ app_python_name }}
+        ports:
+            - "{{app_python.external_port}}:{{app_python.internal_port}}"
+        restart: always
