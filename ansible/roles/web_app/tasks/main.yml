@@ -1,0 +1,39 @@
+- name: create directory for app
+  block:
+    - name: create new directory
+      ansible.builtin.file:
+        name: "{{ app_directory }}/"
+        state: directory
+  tags:
+    - prepare_directory
+    - deploy
+
+- name: deploy app job
+  block:
+    - name: Start docker
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Pull docker image
+      docker_image:
+        name: "{{ docker_image }}"
+        source: pull
+        state: present
+      tags:
+        - docker-pull
+
+    - name: Copy docker compose file
+      template:
+        src: docker-compose.yml.j2
+        dest: "{{ app_directory }}/docker-compose.yml"
+
+    - name: Run docker container
+      community.docker.docker_compose_v2:
+        files:
+          - "docker-compose.yml"
+        project_src: "{{ app_directory }}/"
+
+  tags:
+    - deploy

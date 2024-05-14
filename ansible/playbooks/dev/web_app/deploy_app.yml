@@ -1,0 +1,11 @@
+- name: Deploy app
+  hosts: all
+  vars:
+    docker_image: belowzero1/app_python:v1
+    docker_container: app_python
+    docker_container_port: 5000
+    docker_host_port: 5000
+    app_directory: web_app
+  roles:
+    - role: web_app
+      become: true

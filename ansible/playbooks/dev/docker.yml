@@ -1,0 +1,5 @@
+- name: Installation
+  hosts: all
+  roles:
+    - role: docker
+      become: yes

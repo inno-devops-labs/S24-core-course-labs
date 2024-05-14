@@ -1,0 +1,5 @@
+virtual_machines:
+  hosts:
+    yandex_cloud:
+      ansible_host: 51.250.87.75
+      ansible_user: ubuntu
