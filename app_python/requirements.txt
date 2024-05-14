@@ -1,0 +1,5 @@
+flask
+Werkzeug==2.2.2
+pytest
+pylint
+prometheus_flask_exporter
