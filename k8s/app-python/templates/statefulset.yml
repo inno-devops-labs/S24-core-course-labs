@@ -32,6 +32,17 @@ spec:
       serviceAccountName: {{ include "app-python.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: install
+          image: busybox:1.28
+          command:
+          - wget
+          - "-O"
+          - "/test-dir/test.html"
+          - http://info.cern.ch
+          volumeMounts:
+            - name: test-dir
+              mountPath: "/test-dir"
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
