@@ -4,7 +4,7 @@ Routing of the app
 
 from flask import Flask, render_template
 from prometheus_flask_exporter import PrometheusMetrics
-from utils import get_moscow_time
+from .utils import get_moscow_time
 
 app = Flask(__name__)
 metrics = PrometheusMetrics(app, group_by='endpoint')
