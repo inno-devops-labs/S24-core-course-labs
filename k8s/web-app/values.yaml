@@ -105,3 +105,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+env:
+  - name: GEN_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: gen-secret
+        key: generic-secrete
