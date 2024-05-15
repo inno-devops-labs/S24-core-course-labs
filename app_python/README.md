@@ -1,6 +1,9 @@
 ## Time showing app
 
 This is the web application that shows current Moscow time.
+### Endpoints
+- **/** - basic endpoint shows current Moscow time.
+- **/visits** - that endpoint shows the number of times when basic endpoint was visited. 
 
 ### Run application locally
 
@@ -62,6 +65,13 @@ docker run -d -p 5000:5000 belowzero1/app_python:v1
 This command will run the container in detached mode (`-d`) and map port 5000 on the host to port 5000 in the container.
 
 Now you can access the application on `http://localhost:5000` in browser.
+### Run container with Docker Compose
+
+To run docker container with visits volume. that ensure persistence of visit counting, you need to do it using docker-compose as following:
+```bash
+docker-compose pull
+docker-compose up
+```
 
 ### Unit Tests
 I have several tests:

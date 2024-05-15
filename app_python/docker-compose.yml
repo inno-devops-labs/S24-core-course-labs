@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  app:
+    image: belowzero1/app_python:v1
+    ports:
+      - "5000:5000"
+
+    volumes:
+      - ./visits:/app/visits
