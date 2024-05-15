@@ -9,6 +9,11 @@ This is a Python web application built using the Flask framework to display the 
 - Modern and beautiful UI using Bootstrap.
 - Simple and lightweight.
 
+## Endpoints
+
+- `/`: Displays the current time in Moscow.
+- `/visits`: Displays the number of visits to the app.
+
 ## Setup
 
 1. Clone the repository:
