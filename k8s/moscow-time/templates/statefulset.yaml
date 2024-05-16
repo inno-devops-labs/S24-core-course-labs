@@ -57,6 +57,20 @@ spec:
           volumeMounts:
             - name: visits
               mountPath: {{ .Values.image.dataDir }}
+            - name: init-container-test
+              mountPath: /test
+      initContainers:
+        - name: init-container
+          image: busybox
+          command: [ "wget", "-O", "/test/cern.html", "http://info.cern.ch" ]
+          volumeMounts:
+            - name: visits
+              mountPath: {{ .Values.image.dataDir }}
+            - name: init-container-test
+              mountPath: /test
+      volumes:
+        - name: init-container-test
+          emptyDir: {}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
