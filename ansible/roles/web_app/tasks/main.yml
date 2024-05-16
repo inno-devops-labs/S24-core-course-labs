@@ -1,0 +1,31 @@
+---
+- name: Deploy Docker Image
+  become: true
+  block:
+
+  - name: Wipe
+    import_tasks: 0-wipe.yml
+
+  - name: Docker-compose setup
+    block:
+      - name: Create directory
+        file:
+          path: "{{ web_app_dir }}"
+          state: directory
+
+      - name: Copy template
+        template:
+          src: docker-compose.yml.j2
+          dest: "{{ web_app_dir }}/docker-compose.yml"
+
+  - name: Deploy
+    block:
+      - name: Stop containers
+        command: docker-compose down
+        args:
+          chdir: "{{ web_app_dir }}"
+        
+      - name: Run docker-compose
+        command: docker-compose up -d
+        args:
+          chdir: "{{ web_app_dir }}"

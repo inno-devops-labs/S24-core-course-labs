@@ -1,0 +1,16 @@
+- name: Add {{ ansible_user }} to the docker group
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: true
+  tags: docker
+  listen: start_docker
+
+- name: Start docker
+  systemd:
+    name: docker
+    state: restarted
+  tags: docker
+  retries: 5
+  delay: 30
+  listen: start_docker

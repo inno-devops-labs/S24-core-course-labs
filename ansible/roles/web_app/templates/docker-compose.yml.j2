@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  web:
+    image: a1kuat/{{ web_app_name }}:latest
+    ports:
+      - "{{ web_app_port }}:{{ web_app_port }}"
