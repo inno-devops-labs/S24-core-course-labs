@@ -53,10 +53,10 @@ spec:
                 secretKeyRef:
                   name: {{ .Release.Name }}-my-secret
                   key: password
+          {{- with .Values.volumeMounts }}
           volumeMounts:
-            - name: config-volume
-              mountPath: /config
-              readOnly: true
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       volumes:
         - name: config-volume
           configMap:
