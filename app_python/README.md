@@ -53,3 +53,8 @@ The integration process is comprised of the following sequence of actions:
 - Docker image creation and deployment
 
 To monitor the progress of the integration process, navigate to the "Actions" tab at the top of the repository.
+
+## Viewing Visit Count
+
+- To view the total number of visits recorded, you can access the `/visits` endpoint:
+  - http://localhost:5555/visits
