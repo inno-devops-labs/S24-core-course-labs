@@ -50,7 +50,7 @@ services:
       retries: 3
   
   app_python:
-    build: ../app_python
+    build: abuwho/app_python
     ports:
       - "5000:5000"
     logging:

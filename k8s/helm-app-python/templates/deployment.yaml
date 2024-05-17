@@ -36,9 +36,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          envFron:
+          envFrom:
             - configMapRef:
-              name: app-python-configmap
+                name: app-python-configmap
           env: 
             - name: MY_PASSWORD
               valueFrom: 
