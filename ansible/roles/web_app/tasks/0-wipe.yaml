@@ -1,0 +1,18 @@
+- name: Wipe containers and images
+  block:
+    - name: Stop containers
+      shell: docker ps | grep {{ web_app_repo_name }} | awk '{print $1}' | xargs -I{} docker stop {}
+      tags:
+        - web_app_stop_containers
+
+    - name: Remove all containers
+      shell: docker ps -a | grep {{ web_app_repo_name }} | awk '{print $1}' | xargs -I{} docker container rm {}
+      tags:
+        - web_app_remove_containers
+
+    - name: Remove all images
+      shell: docker image ls | grep {{ web_app_repo_name }} | awk '{print $1}' | xargs -I{} docker rm {}
+      tags:
+        - web_app_remove_images
+  tags:
+    - web_app_full_wipe
