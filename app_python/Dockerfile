@@ -10,7 +10,7 @@ WORKDIR $APP_HOME
 # Copy only necessary files and directories
 COPY requirements.txt app.py $APP_HOME/
 COPY templates/ $APP_HOME/templates/
-COPY visits $APP_HOME/visits/
+COPY data/ $APP_HOME/data/
 
 # Create a non-root user and remove write permissions for the group and others
 RUN adduser --disabled-password appuser && chmod -R a-w+x+r $APP_HOME
