@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap
+data:
+  key: value
+  config.json: |-
+{{ .Files.Get "files/config.json" | indent 4 }}

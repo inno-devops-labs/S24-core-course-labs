@@ -1,0 +1,106 @@
+version: "3"
+
+networks:
+  loki:
+  prometheus:
+
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 800m
+
+services:
+  loki:
+    image: grafana/loki:2.9.2
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - prometheus
+      - loki
+    deploy: *default-deploy
+
+  promtail:
+    image: grafana/promtail:2.9.2
+
+    volumes:
+      - ./promtail.yml:/etc/promtail/config.yml
+      - /var/lib/docker/containers:/var/lib/docker/containers
+
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - prometheus
+      - loki
+    deploy: *default-deploy
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - prometheus
+    deploy: *default-deploy
+
+  grafana:
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    volumes:
+      - ./datasources.yml:/etc/grafana/provisioning/datasources/ds.yaml
+    entrypoint:
+      - sh
+      - -euc
+      - |
+        mkdir -p /etc/grafana/provisioning/datasources
+        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
+        apiVersion: 1
+        datasources:
+        - name: Loki
+          type: loki
+          access: proxy
+          orgId: 1
+          url: http://loki:3100
+          basicAuth: false
+          isDefault: true
+          version: 1
+          editable: false
+        EOF
+        /run.sh
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - prometheus
+      - loki
+    deploy: *default-deploy
+
+
+  app-python:
+    image: engaezik/devops-flask-app:latest
+
+    volumes:
+      - ./app-python-data:/app_python/data
+
+    ports:
+      - target: 5000
+        published: 5000
+
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}"
+        max-size: "10m"
+
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:5000" ]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
+    deploy: *default-deploy
+    networks:
+      - prometheus
