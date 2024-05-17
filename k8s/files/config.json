@@ -1,0 +1,7 @@
+{
+    "timezone": "Europe/Moscow",
+    "allowed_endpoints": [
+      "/",
+      "/visits"
+    ]
+  }
