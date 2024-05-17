@@ -1,0 +1,4 @@
+---
+# defaults file for docker
+docker_version: "5:20.10.23~3-0~ubuntu-{{ ansible_distribution_release }}"
+docker_gpg_key: "https://download.docker.com/linux/ubuntu/gpg"
