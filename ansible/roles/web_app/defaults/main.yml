@@ -1,0 +1,6 @@
+---
+docker_image: "vladdan16/app_python:latest"
+container_name: "web_app"
+exposed_port: "8000"
+app_dir: "app"
+wipe: false

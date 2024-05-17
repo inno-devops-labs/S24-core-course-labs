@@ -1,0 +1,12 @@
+---
+- name: Remove artifacts
+  community.docker.docker_compose_v2:
+    project_src: "{{ app_dir }}"
+    remove_images: all
+    remove_volumes: true
+    state: absent
+
+- name: Remove app_dir
+  ansible.builtin.file:
+    path: "{{ app_dir }}"
+    state: absent

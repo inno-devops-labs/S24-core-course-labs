@@ -126,3 +126,62 @@ host_01                    : ok=10   changed=7    unreachable=0    failed=0    s
     }
 }
 ```
+
+# Web app Deployment
+
+1. `ansible-playbook playbooks/dev/main.yaml --diff`
+
+```text
+TASK [geerlingguy.docker : Install docker-compose-plugin (with downgrade option).] ***********************************************
+ok: [host_01]
+
+TASK [geerlingguy.docker : Ensure /etc/docker/ directory exists.] ****************************************************************
+skipping: [host_01]
+
+TASK [geerlingguy.docker : Configure Docker daemon options.] *********************************************************************
+skipping: [host_01]
+
+TASK [geerlingguy.docker : Ensure Docker is started and enabled at boot.] ********************************************************
+ok: [host_01]
+
+TASK [geerlingguy.docker : Ensure handlers are notified now to avoid firewall conflicts.] ****************************************
+
+RUNNING HANDLER [geerlingguy.docker : restart docker] ****************************************************************************
+changed: [host_01]
+
+TASK [geerlingguy.docker : include_tasks] ****************************************************************************************
+skipping: [host_01]
+
+TASK [geerlingguy.docker : Get docker group info using getent.] ******************************************************************
+skipping: [host_01]
+
+TASK [geerlingguy.docker : Check if there are any users to add to the docker group.] *********************************************
+skipping: [host_01]
+
+TASK [geerlingguy.docker : include_tasks] ****************************************************************************************
+skipping: [host_01]
+
+TASK [web_app : Add user to Docker group] ****************************************************************************************
+changed: [host_01]
+
+TASK [web_app : Pull the Docker image] *******************************************************************************************
+changed: [host_01]
+
+TASK [web_app : Run the Docker container] ****************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+-    "exists": false,
+-    "running": false
++    "exists": true,
++    "running": true
+ }
+
+changed: [host_01]
+
+PLAY RECAP ***********************************************************************************************************************
+host_01                    : ok=15   changed=8    unreachable=0    failed=0    skipped=12   rescued=0    ignored=0   
+```
+
+You can check deployed web app at http://158.160.97.139:8000/
