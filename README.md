@@ -6,7 +6,7 @@ Welcome to the DevOps Engineering course labs! These hands-on labs are designed 
 
 ## Architecture
 
-This repository has a master branch containing an introduction. Each new lab assignment will be added as a markdown file with a lab number.
+This repository has a master branch containing an introduction. Each new lab assignment will be added as a Markdown file with a lab number.
 
 ## Rules
 
