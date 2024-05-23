@@ -1,0 +1,7 @@
+# - hosts: task1
+#   roles:
+#     - docker2
+
+- hosts: task2
+  roles:
+    - docker
