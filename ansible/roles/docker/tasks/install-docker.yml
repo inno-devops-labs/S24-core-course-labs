@@ -1,0 +1,39 @@
+- name: Update apt
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: install dependencies
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    state: present
+
+- name: add docker gpg keys
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /etc/apt/keyrings/docker.asc
+
+- name: add docker apt repositories
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+
+- name: Update apt after adding docker repos
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: install docker
+  ansible.builtin.apt:
+    name:
+      - docker-{{ docker_edition }}
+    state: present
+
+- name: enable docker
+  service:
+    name: docker
+    state: "{{ docker_service_state }}"
+    enabled: "{{ docker_service_enabled }}"
+  when: docker_service_manage | bool

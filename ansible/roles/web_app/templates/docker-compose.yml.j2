@@ -1,0 +1,5 @@
+services:
+  {{ container_name }}:
+    image: "{{ docker_image }}"
+    ports:
+      - "{{ host_port }}:{{ docker_port }}"
