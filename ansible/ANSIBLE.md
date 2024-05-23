@@ -59,3 +59,50 @@ ok: [10.225.203.190]
 PLAY RECAP *********************************************************************
 10.225.203.190             : ok=9    changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
+
+# Lab6 logs
+```
+PLAY [deploy web_app] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [10.225.203.107]
+
+TASK [docker : include_tasks] **************************************************
+included: /home/rinri/edu/S24-core-course-labs/ansible/roles/docker/tasks/install-docker.yml for 10.225.203.107
+
+TASK [docker : Update apt] *****************************************************
+changed: [10.225.203.107]
+
+TASK [docker : install dependencies] *******************************************
+ok: [10.225.203.107]
+
+TASK [docker : add docker gpg keys] ********************************************
+ok: [10.225.203.107]
+
+TASK [docker : add docker apt repositories] ************************************
+ok: [10.225.203.107]
+
+TASK [docker : Update apt after adding docker repos] ***************************
+changed: [10.225.203.107]
+
+TASK [docker : install docker] *************************************************
+ok: [10.225.203.107]
+
+TASK [docker : enable docker] **************************************************
+ok: [10.225.203.107]
+
+TASK [web_app : remove containers and images] **********************************
+changed: [10.225.203.107]
+
+TASK [web_app : remove docker compose file] ************************************
+changed: [10.225.203.107]
+
+TASK [web_app : construct docker compose] **************************************
+changed: [10.225.203.107]
+
+TASK [web_app : run the containers] ********************************************
+changed: [10.225.203.107]
+
+PLAY RECAP *********************************************************************
+10.225.203.107             : ok=13   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```

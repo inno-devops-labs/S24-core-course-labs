@@ -2,6 +2,11 @@
 #   roles:
 #     - docker2
 
-- hosts: task2
+#- hosts: task2
+#  roles:
+#    - docker
+
+- name: deploy web_app
+  hosts: lab6
   roles:
-    - docker
+    - web_app
