@@ -1,0 +1,9 @@
+- name: remove containers and images
+  command:
+    cmd: docker compose down --rmi all
+  ignore_errors: true
+
+- name: remove docker compose file
+  file:
+    path: /root/docker-compose.yml
+    state: absent

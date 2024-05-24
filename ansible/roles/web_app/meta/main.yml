@@ -1,0 +1,12 @@
+dependencies:
+  - role: docker
+galaxy_info:
+  author: rinri-d
+  description: deploy a dockerized app
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - focal
+        - xenial
+  min_ansible_version: 2.10
