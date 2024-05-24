@@ -101,6 +101,8 @@ volumes:
   - name: config
     configMap:
       name: app-python-configmap
+  - name: workdir
+    emptyDir: {}
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
@@ -108,6 +110,8 @@ volumeMounts:
     mountPath: "/config.json"
     subPath: config.json
     readOnly: true
+  - name: workdir
+    mountPath: /workdir
 
 nodeSelector: {}
 
