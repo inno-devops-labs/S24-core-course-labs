@@ -1,0 +1,17 @@
+- name: wipe
+  import_tasks: 0-wipe.yml
+  tags: wipe
+  when:
+    - web_app_full_wipe
+
+- name: deploy
+  block:
+    - name: construct docker compose
+      template:
+        src: docker-compose.yml.j2
+        dest: /root/docker-compose.yml
+      tags: run_app
+
+    - name: run the containers
+      command:
+        cmd: docker compose up -d

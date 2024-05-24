@@ -1,0 +1,14 @@
+task1:
+  hosts:
+    10.225.203.210:
+      ansible_user: root
+
+task2:
+  hosts:
+    10.225.203.190:
+      ansible_user: root
+
+lab6:
+  hosts:
+    10.225.203.107:
+      ansible_user: root
