@@ -30,6 +30,10 @@ docker pull rinri/python-test-app_python
 ### Run
 ```bash
 docker run -p 8000:8000 rinri/python-test-app_python:latest
+
+### Endpoints
+/ - get time
+/visits - get visits
 ```
 
 ### CI workflow
