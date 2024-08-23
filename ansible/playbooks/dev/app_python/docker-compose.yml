@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  web_app:
+    image: wesamnaseer/app_python:latest
+    container_name: web_app
+    ports:
+      - "80:80"
+    restart: always
