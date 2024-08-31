@@ -3,3 +3,5 @@ pytz==2024.1
 pytest==8.0.1
 flake8==7.0.0
 black==24.2.0
+zope.interface==6.1
+prometheus-client==0.17.1

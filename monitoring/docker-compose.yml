@@ -9,13 +9,27 @@ x-logging:
   driver: "json-file"
   options:
     tag: "{{.ImageName}}|{{.Name}}"
+    max-size: '50m'
+    max-file: '5'
+
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 200M
 
 services:
   app_python:
     build: ../app_python
     ports:
       - 5000:5000
+    healthcheck:
+      test: ["CMD", "curl", "-f", "app_python:5000"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
     logging: *default-logging
+    deploy: *default-deploy
 
   loki:
     image: grafana/loki:2.9.2
@@ -23,6 +37,7 @@ services:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
     logging: *default-logging
+    deploy: *default-deploy
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -32,6 +47,7 @@ services:
       - /var/lib/docker/containers:/var/lib/docker/containers
     command: -config.file=/etc/promtail/config.yml
     logging: *default-logging
+    deploy: *default-deploy
 
   grafana:
     environment:
@@ -55,9 +71,34 @@ services:
           isDefault: true
           version: 1
           editable: false
+        - name: Prometheus
+          type: prometheus
+          access: proxy
+          orgId: 1
+          url: http://prometheus:9090
+          basicAuth: false
+          isDefault: false
+          version: 1
+          editable: true
         EOF
         /run.sh
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "grafana:3000/api/health"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
     logging: *default-logging
+    deploy: *default-deploy
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - target: 9090
+        published: 9090
+    logging: *default-logging
+    deploy: *default-deploy
