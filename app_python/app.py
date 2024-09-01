@@ -1,5 +1,6 @@
-from flask import Flask, Response
-from datetime import datetime, timezone, timedelta
+from flask import Flask, Response, jsonify
+from datetime import datetime
+from pytz import timezone
 from prometheus_client import generate_latest
 
 app = Flask(__name__)
@@ -7,9 +8,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def show_time():
-    moscow_time = datetime.now() + timedelta(hours=3)
-    formatted_time = moscow_time.strftime('%Y-%m-%d %H:%M:%S')
-    return formatted_time
+    MSK = timezone("Europe/Moscow")
+    moscow_time = datetime.now(MSK).strftime("%Y:%m:%d %H:%M:%S %Z %z")
+    print(moscow_time)
+    return jsonify({"time": moscow_time})
 
 @app.route('/metrics')
 def metrics():
