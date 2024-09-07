@@ -1,19 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-python
+  name: web-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: app-python
+      app: web-app
   template:
     metadata:
       labels:
-        app: app-python
+        app: web-app
     spec:
       containers:
-      - name: app-python
+      - name: web-app
         image: wesamnaseer/mtz:latest
         ports:
         - containerPort: 5000
+        volumeMounts:
+        - name: config-volume
+          mountPath: /web-app/config.json
+          subPath: config.json
+      volumes:
+      - name: config-volume
+        configMap:
+          name: config
+          items:
+          - key: config.json
+            path: config.json

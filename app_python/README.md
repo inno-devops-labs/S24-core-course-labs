@@ -86,6 +86,18 @@ Once you have either built the Docker image locally or pulled it from a registry
 docker run -p 5000:5000 wesamnaseer/mtz:v1.0
 ```
 
+## Docker compose
+
+### Run the image
+
+To run the application run:
+
+```properties
+docker compose up
+```
+
+> Do not forget to give proper permission to visits.txt
+
 ### Unit Tests
 
 #### Testing Current Time Formatting

@@ -42,6 +42,9 @@ spec:
                 secretKeyRef:
                   name: my-secret
                   key: password
+          envFrom:
+            - configMapRef:
+                name: config
           ports:
             - name: http
               containerPort: 5000
