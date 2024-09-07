@@ -23,7 +23,15 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: "internal-app"
+
+  podAnnotations:
+    vault.hashicorp.com/agent-inject: "true"
+    vault.hashicorp.com/role: "internal-app"
+    vault.hashicorp.com/database-config.txt: |
+      {{- with secret "internal/data/database/config" -}}
+      postgresql://{{ .Data.data.username }}:{{ .Data.data.password }}@postgres:5432/wizard
+      {{- end -}}
 
 podAnnotations: {}
 podLabels: {}
