@@ -2,30 +2,31 @@ from flask import Flask, Response, jsonify
 from datetime import datetime
 from pytz import timezone
 from prometheus_client import generate_latest
+import os
 
 app = Flask(__name__)
-VISIT_COUNT = 0
 
 @app.route("/visits", methods=["GET"])
 def get_visits():
-    global VISIT_COUNT
-    return jsonify({"visit_count": VISIT_COUNT})
+    if not os.path.exists('/app/visits.txt'):
+        with open('/app/visits.txt', 'w') as f:
+            f.write('0')
+    with open('/app/visits.txt', 'r') as f:
+        visit_count = int(f.readline())
+    return jsonify({"visit_count": visit_count})
 
-try:
-    with open('visits.txt', 'r') as f:
-        VISIT_COUNT = int(f.read())
-except FileNotFoundError:
-    VISIT_COUNT = 0
-
-def save_visit_count(count):
-    with open('visits.txt', 'w') as f:
-        f.write(str(count))
+def save_visit_count():
+    if not os.path.exists('/app/visits.txt'):
+        with open('/app/visits.txt', 'w') as f:
+            f.write('0')
+    with open('/app/visits.txt', 'r') as f:
+        visit_count = int(f.readline())
+    with open('/app/visits.txt', 'w') as f:
+        f.write(str(visit_count+1))
 
 @app.route('/')
 def show_time():
-    global VISIT_COUNT
-    VISIT_COUNT += 1
-    save_visit_count(VISIT_COUNT)
+    save_visit_count()
     MSK = timezone("Europe/Moscow")
     moscow_time = datetime.now(MSK).strftime("%Y:%m:%d %H:%M:%S %Z %z")
     return jsonify({"time": moscow_time})
