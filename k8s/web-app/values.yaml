@@ -99,6 +99,13 @@ volumeClaimTemplates:
     resources:
       requests:
         storage: 1Gi
+# - metadata:
+#     name: static-dirictory  
+#   spec:
+#     accessModes: ["ReadWriteOnce"]
+#     resources:
+#       requests:
+#         storage: 1
 
 volumeMounts:
   - name: config-volume
@@ -106,6 +113,8 @@ volumeMounts:
     subPath: config.json
   - name: wesammetadata
     mountPath: /code/vol
+  # - name: static-dirictory  
+  #   mountPath: "/static-dirictory"
 
 nodeSelector: {}
 

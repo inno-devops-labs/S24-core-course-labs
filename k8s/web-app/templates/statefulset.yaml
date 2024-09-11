@@ -32,6 +32,25 @@ spec:
       serviceAccountName: internal-app
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      # initContainers:
+      #   - name: install
+      #     image: busybox:1.36.1
+      #     command: ["wget", "-O", "/static-dirictory/index.html", "http://info.cern.ch"]
+      #     volumeMounts:
+      #       - name: static-dirictory
+      #         mountPath: "/static-dirictory"
+      #   - name: ping
+      #     image: busybox:1.36.1
+      #     command: ["sh", "-c", "echo ping > /static-dirictory/ping-pong.txt"]
+      #     volumeMounts:
+      #       - name: static-dirictory
+      #         mountPath: "/static-dirictory"
+      #   - name: pong
+      #     image: busybox:1.36.1
+      #     command: ["sh", "-c", "echo pong >> /static-dirictory/ping-pong.txt"]
+      #     volumeMounts:
+      #       - name: static-dirictory
+      #         mountPath: "/static-dirictory"
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
