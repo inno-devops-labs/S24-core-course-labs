@@ -1,0 +1,4 @@
+vms:
+  hosts:
+    some-sad-machine: 
+      ansible_host: 84.252.142.255

@@ -1,0 +1,18 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "first.rules"
+  # - "second.rules"
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ['localhost:9090']
+  - job_name: loki-read
+    static_configs:
+      - targets: ['monitoring-read-1:3100']
+  - job_name: loki-write
+    static_configs:
+      - targets: ['monitoring-write-1:3100']
