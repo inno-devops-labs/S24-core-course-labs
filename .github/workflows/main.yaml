@@ -1,0 +1,94 @@
+name: app python workflow
+
+on: [push]
+
+jobs:
+
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./app_python
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+      - name: Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Tests
+        run: |
+          pip install pytest Flask-Testing
+          pytest testing.py
+
+  linting:
+    runs-on: ubuntu-latest
+    needs:
+      - build-and-test
+    defaults:
+      run:
+        working-directory: ./app_python
+    steps:
+      - uses: actions/checkout@v4
+      - name: Linting
+        uses: actions/setup-python@v4
+        with:
+            python-version: "3.9"
+      - name: Linting
+        run: |
+          pip install flake8
+          flake8
+
+  snyk:
+      environment: github-actions
+      runs-on: ubuntu-latest
+      needs:
+        - build-and-test
+      defaults:
+        run:
+          working-directory: ./app_python
+      steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-python@v2
+          with:
+            python-version: '3.11'
+        - run: pip install -r requirements.txt
+        - uses: actions/checkout@v2
+        - name: Prepare Snyk
+          run: curl -LO 'https://github.com/snyk/cli/releases/download/v1.1278.0/snyk-linux' && chmod +x snyk-linux
+        - name: Snyk Auth
+          run: ./snyk-linux auth ${{secrets.SNYK_TOKEN }}
+        - name: Snyk test
+          run: ./snyk-linux test .
+
+  docker-build:
+      environment: github-actions
+      runs-on:
+        ubuntu-latest
+      needs:
+        build-and-test
+      defaults:
+        run:
+          working-directory: ./app_python
+      steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-python@v2
+          with:
+            python-version: '3.11'
+        - run: pip install -r requirements.txt
+        - name: Docker
+          uses: docker/login-action@v3
+          with:
+            username: ${{ secrets.DOCKER_USERNAME}}
+            password: ${{ secrets.DOCKER_PASSWORD }}
+        - uses: docker/build-push-action@v5
+          with:
+            context: "{{defaultContext}}:app_python/"
+            push: true
+            tags: bavpnet/app_python:latest

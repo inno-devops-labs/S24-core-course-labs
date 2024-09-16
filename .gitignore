@@ -1,0 +1,14 @@
+# Files frow IDE
+.idea
+
+# Files from MacOS
+.DS_Store
+
+# Cache and envinroment
+*.pyc
+__pycache__
+venv/
+
+.modules/
+
+.terraform
