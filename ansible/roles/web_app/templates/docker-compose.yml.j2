@@ -1,0 +1,10 @@
+version: "3"
+services:
+  app_javascript:
+    build: ./app_javascript
+    ports:
+      - "5000:5000"
+  app_python:
+    build: ./app_python
+    ports:
+      - "5001:5000"

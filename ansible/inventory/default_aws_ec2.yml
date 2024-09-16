@@ -1,0 +1,10 @@
+plugin: amazon.aws.aws_ec2
+profile: devops-key
+regions:
+  - us-west-2
+include_filters:
+  - tag:Name:
+      - "javascript_timezon_app"
+compose:
+  ansible_host: public_ip_address
+  ansible_user: "'ubuntu'"

@@ -1,0 +1,27 @@
+# Install/Update python3-pip
+- name: Install/Upgrade python3-pip
+  apt:
+    name: python3-pip
+    state: latest
+  tags: pip
+
+# Upgrade pip using pip
+- name: Upgrade pip
+  pip:
+    name: pip
+    state: latest
+  tags: pip
+
+# Install docker-compose using pip
+- name: Install docker sdk
+  pip:
+    name: docker == 6.1.3
+    state: present
+  tags: docker
+
+- name: Install docker-compose
+  pip:
+    name: docker-compose
+    state: latest
+  tags: docker
+  notify: start_docker
