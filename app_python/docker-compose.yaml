@@ -1,0 +1,7 @@
+services:
+  web:
+    image: wesamnaseer/mtz
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./visits.txt:/app/visits.txt:rw
