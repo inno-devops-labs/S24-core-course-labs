@@ -1,0 +1,8 @@
+black==24.1.1
+fastapi==0.109.1
+flake8==7.0.0
+httpx==0.26.0
+mdformat==0.7.17
+pytz==2023.4
+uvicorn==0.27.0.post1
+Jinja2==3.1.3
