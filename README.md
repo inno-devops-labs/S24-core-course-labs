@@ -1,3 +1,6 @@
+
+[![Docker CI](https://github.com/tsepanx/S24-core-course-labs/actions/workflows/python_docker.yaml/badge.svg?branch=lab3)](https://github.com/tsepanx/S24-core-course-labs/actions/workflows/python_docker.yaml)
+[![python-CI](https://github.com/tsepanx/S24-core-course-labs/actions/workflows/python_main.yaml/badge.svg?branch=lab3)](https://github.com/tsepanx/S24-core-course-labs/actions/workflows/python_main.yaml)
 # DevOps Engineering Labs
 
 ## Introduction

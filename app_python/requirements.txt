@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pytz
+
+pytest
+httpx
+beautifulsoup4
+
+flake8
