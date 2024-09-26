@@ -1,0 +1,12 @@
+# Excluding folders used by Python virtual environments
+*.pyc
+__pycache__
+venv
+ENV
+
+# Exclude files related to the IDE
+.vscode/
+.idea/
+
+# Exclude logs
+*.log
