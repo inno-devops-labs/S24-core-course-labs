@@ -1,0 +1,47 @@
+name: lint & build docker
+
+on:
+  push:
+    paths:
+      - 'app_python/requirements.txt'
+      - 'app_python/app/**'
+      - 'app_python/Dockerfile'
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: ./app_python/Dockerfile
+
+  build:
+    needs: lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Set up Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_PASSWORD}}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./app_python
+          push: true
+          tags: slry/python_moscow_time:latest
+
