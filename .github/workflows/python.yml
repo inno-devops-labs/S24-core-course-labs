@@ -1,0 +1,64 @@
+name: Python App Workflow
+
+on:
+  push:
+    paths:
+      - app_python/**
+      - .github/workflows/python.yml
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11.6"
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: "1.7.1"
+      - name: Install dependencies
+        working-directory: app_python
+        run: poetry install
+      - name: Linter
+        working-directory: app_python
+        run: poetry run flake8 --max-complexity=10
+      - name: Tests
+        working-directory: app_python
+        run: poetry run pytest
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: checks
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./app_python
+          file: ./app_python/Dockerfile
+          push: true
+          tags: skril/moscow-time:python
+          cache-from: type=registry,ref=skril/moscow-time:python
+          cache-to: type=inline
+  snyk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.10@master
+        with:
+          args: --file=app_python/poetry.lock
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

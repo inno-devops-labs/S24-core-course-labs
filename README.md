@@ -1,3 +1,6 @@
+[![Python App Workflow](https://github.com/Skril3366/S24-core-course-labs/actions/workflows/python.yml/badge.svg)](https://github.com/Skril3366/S24-core-course-labs/actions/workflows/python.yml)
+[![Scala App Workflow](https://github.com/Skril3366/S24-core-course-labs/actions/workflows/scala.yml/badge.svg)](https://github.com/Skril3366/S24-core-course-labs/actions/workflows/scala.yml)
+
 # DevOps Engineering Labs
 
 ## Introduction
@@ -49,9 +52,9 @@ Each lab is worth 10 points. Completing main tasks correctly earns you 10 points
 
 Finishing all bonus tasks lets you skip the exam and grants you 5 extra points. Incomplete bonus tasks require you to take the exam, which could save you from failing it.
 
->The labs account for 70% of your final grade. With 14 labs in total, each lab contributes 5% to your final grade. Completing all main tasks in a lab earns you the maximum 10 points, which corresponds to 5% of your final grade.
->If you successfully complete all bonus tasks, you'll earn an additional 2.5 points, totaling 12.5 points for that lab, or 6.25% of your final grade. Over the course of all 14 labs, the cumulative points from bonus tasks add up to 87.5% of your final grade.
->Additionally, a 5% bonus is granted for successfully finishing all bonus tasks, ensuring that if you successfully complete everything, your final grade will be 92.5%, which corresponds to an A grade.
+> The labs account for 70% of your final grade. With 14 labs in total, each lab contributes 5% to your final grade. Completing all main tasks in a lab earns you the maximum 10 points, which corresponds to 5% of your final grade.
+> If you successfully complete all bonus tasks, you'll earn an additional 2.5 points, totaling 12.5 points for that lab, or 6.25% of your final grade. Over the course of all 14 labs, the cumulative points from bonus tasks add up to 87.5% of your final grade.
+> Additionally, a 5% bonus is granted for successfully finishing all bonus tasks, ensuring that if you successfully complete everything, your final grade will be 92.5%, which corresponds to an A grade.
 
 ## Deadlines and Labs Distribution
 

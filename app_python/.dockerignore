@@ -1,0 +1,19 @@
+# Exclude version control system directories
+.git
+.svn
+
+# Exclude Python bytecode files
+__pycache__
+*.pyc
+
+# Exclude local development files
+*.log
+*.pot
+*.po
+*.mo
+
+# Exclude user-specific or system-specific files
+.DS_Store
+Thumbs.db
+
+# Exclude any other unnecessary files or directories
