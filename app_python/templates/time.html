@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Display</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body>
+    <div id="time-display">{{ time }}</div>
+
+    <script>
+        function updateTime() {
+            fetch('/api/time')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('time-display').textContent = data;
+                })
+                .catch(error => {
+                    console.error('Error fetching time:', error);
+                    document.getElementById('time-display').textContent = 'Error fetching time';
+                });
+        }
+
+        setInterval(updateTime, 1000); // Update every second
+    </script>
+</body>
+</html>
