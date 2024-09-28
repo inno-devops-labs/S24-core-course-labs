@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+
+# Dependencies
+/lib/
+/lib64/
+/bin/
+/include/
+/pyvenv.cfg
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Development files
+*.bak
+*.swp
+
+# Environment variables
+.env
+
+.vscode/
+.idea/

@@ -1,0 +1,30 @@
+- hosts: localhost
+  roles:
+    - { role: ../../roles/docker }
+    - { role: ../../roles/web_app }
+  become: true
+
+  vars:
+    container_name: almetovkamil/app_python:v2
+
+  # tasks:
+  #   - name: Pull default Docker image
+  #     command: "docker pull {{ container_name }}"
+
+  #   - name: Run docker container
+  #     command: "docker run -d -p 5000:5000 {{ container_name }}"
+
+# - hosts: localhost
+#   roles:
+#     - { role: ../../roles/docker }
+#   become: true
+
+#   vars:
+#     container_name: almetovkamil/app_python:v2
+
+#   tasks:
+#     - name: Pull default Docker image
+#       command: "docker pull {{ container_name }}"
+
+#     - name: Run docker container
+#       command: "docker run -d -p 5000:5000 {{ container_name }}"

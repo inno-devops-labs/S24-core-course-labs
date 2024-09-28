@@ -1,0 +1,5 @@
+- name: Install Docker Compose using pip
+  apt:
+    name: docker-compose
+    state: present
+  become: true
