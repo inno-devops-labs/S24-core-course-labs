@@ -83,6 +83,16 @@ In the development of this web application, adherence to established coding stan
 
 Robust testing practices were implemented to ensure the reliability and correctness of the web application.
 
+The following tests were implemented in `test_app.py` to check the correct operation of the application:
+
+- **`test_current_time_displayed`**: Checks that the main route (`'/'`) returns a `200` response code, uses the correct `current_time.html` template, and displays the current Moscow time in the template context.
+
+- **`test_main_page_status_code`**: Verifies that the request to the main page returns a `200 OK` status code, ensuring that the route is available and responding correctly.
+
+- **`test_content_contains_current_time_text`**: Verifies that the content of the main page displays the text "Current Moscow Time" (or other specified text), confirming that the page has the expected content.
+
+These tests allow you to ensure the stability of the application and its interface.
+
 ### Unit Testing
 
 - **Flask-Testing:**

@@ -7,7 +7,7 @@ This web application, built using Flask, displays the current Moscow time on a w
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-  - [Installation](#installation)
+- [Installation](#installation)
 - [Project Structure](#project-structure)
 - [Usage](#usage)
 - [Running Tests](#running-tests)
@@ -62,7 +62,7 @@ app_python/
 |-- application.py
 |-- Docker.md
 |-- Dockerfile
-|-- test_application.py
+|-- test_app.py
 |-- static/
 |   `-- moscow.jpg
 `-- templates/
@@ -78,7 +78,7 @@ Usage
 
 To run the web application, execute the following command:
 
-bashCopy code
+
 
 `python application.py`
 
@@ -89,7 +89,13 @@ Running Tests
 
 To run tests, execute the following command:
 
-bashCopy code
+The following tests were implemented in `test_app.py` to check the correct operation of the application:
+
+- **`test_current_time_displayed`**: Checks that the main route (`'/'`) returns a `200` response code, uses the correct `current_time.html` template, and displays the current Moscow time in the template context.
+
+- **`test_main_page_status_code`**: Verifies that the request to the main page returns a `200 OK` status code, ensuring that the route is available and responding correctly.
+
+- **`test_content_contains_current_time_text`**: Verifies that the content of the main page displays the text "Current Moscow Time" (or other specified text), confirming that the page has the expected content.
 
 `python test_application.py`
 
@@ -99,4 +105,16 @@ Technologies Used
 *   Flask
 *   Jinja2
 *   HTML
+
+## Continuous Integration
+
+This project includes a CI pipeline set up using GitHub Actions. The workflow, defined in `.github/workflows/ci.yml`, performs the following steps:
+
+- **Install dependencies**: Installs required packages.
+- **Linting**: Checks code style and formatting using `flake8`.
+- **Testing**: Runs unit tests using `unittest`.
+- **Docker Build**: Builds a Docker image locally to validate the Dockerfile.
+
+The workflow runs on each push or pull request to the `main` branch.
+
 
