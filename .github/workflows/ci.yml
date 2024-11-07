@@ -1,0 +1,50 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - lab3
+  pull_request:
+    branches:
+      - main
+      - lab3
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r app_python/requirements.txt
+
+      # Step 4: Lint code (using flake8 for Python)
+      - name: Lint with flake8
+        run: |
+          pip install flake8
+          flake8 app_python/application.py app_python/test_app.py
+
+
+      # Step 5: Run tests
+      - name: Run tests
+        run: |
+          pip install flask-testing
+          python -m unittest discover -s app_python
+
+      # Step 6: Build Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t moscow-time:latest ./app_python
