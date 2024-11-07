@@ -1,5 +1,5 @@
 # Moscow Time Web Application
-
+[![CI Workflow](https://github.com/ErnestMatskevich/Matskevich/actions/workflows/ci.yml/badge.svg)](https://github.com/ErnestMatskevich/Matskevich/actions/workflows/ci.yml)
 ## Overview
 
 This web application, built using Flask, displays the current Moscow time on a webpage. It utilizes HTML templates for rendering and dynamically updates the time using JavaScript.
