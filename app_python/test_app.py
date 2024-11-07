@@ -23,13 +23,15 @@ class TestApp(TestCase):
     def test_main_page_status_code(self):
         # Check 200 code response
         response = self.client.get('/')
-        self.assertEqual(response.status_code, 200, "Main page does not return status 200 OK")
+        self.assertEqual(response.status_code, 200,
+                         "page does not return status 200 OK")
 
     def test_content_contains_current_time_text(self):
         # page has text "Current Moscow Time"
         response = self.client.get('/')
         self.assert200(response)
-        self.assertIn(b"Current Moscow Time", response.data, "Текст 'Current Moscow Time' не найден на странице")
+        self.assertIn(b"Current Moscow Time", response.data,
+                      "Текст 'Current Moscow Time' не найден на странице")
 
 
 if __name__ == '__main__':
