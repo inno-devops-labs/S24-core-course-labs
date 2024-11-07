@@ -35,7 +35,8 @@ jobs:
       - name: Lint with flake8
         run: |
           pip install flake8
-          flake8 application.py test_app.py
+          flake8 app_python/application.py app_python/test_app.py
+
 
       # Step 5: Run tests
       - name: Run tests
