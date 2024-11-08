@@ -4,7 +4,7 @@ _Note: 'docker' role is the existing `geerlingguy.docker' role, that I used firs
 
 ## Playbook Execution
 
-### Command
+### Mine docker role
 ```bash
 $ ansible-playbook ansible/playbooks/dev/main.yaml --diff
 
@@ -70,3 +70,60 @@ $ ansible-inventory -i ansible/inventory/default_yandex_cloud.yml --list
 }
 ```
 Inventory is empty because the deployment is local.
+
+### web-app role
+```bash
+$ sudo ansible-playbook ansible/playbooks/dev/main.yml --diff
+
+...
+
+TASK [../../roles/mine docker : Add Docker GPG apt Key] *************************
+ok: [localhost]
+
+TASK [../../roles/mine docker : Add Docker Repository] **************************
+ok: [localhost]
+
+TASK [../../roles/mine docker : Install Docker] *********************************
+ok: [localhost]
+
+TASK [../../roles/mine docker : Ensure Docker service is started and enabled] ***
+ok: [localhost]
+
+TASK [../../roles/mine docker : Install Docker Compose] *************************
+included: /mnt/c/users/arina/OneDrive/Рабочий стол/iu/devOps/S24-core-course-labs-Zavelevich/ansible/roles/mine docker/tasks/install_compose.yml for localhost
+
+TASK [../../roles/mine docker : Install pip3] ***********************************
+ok: [localhost]
+
+TASK [../../roles/mine docker : Install Docker Compose] *************************
+ok: [localhost]
+
+TASK [../../roles/web_app : Create directory for the app] ***********************
+ok: [localhost]
+
+TASK [../../roles/web_app : Deploy compose.yaml] ********************************
+--- before: app/compose.yaml
++++ after: /root/.ansible/tmp/ansible-local-123799p__f5re/tmp4wmmo5fn/docker-compose.yml.j2
+@@ -1,5 +1,5 @@
+ services:
+   web_app:
+-    image: "arinazaza/app_python"
++    image: "arinazaza/app_python.py"
+     ports:
+       - "8000:8000"
+\ No newline at end of file
+
+changed: [localhost]
+
+TASK [../../roles/web_app : Start the app] **************************************
+changed: [localhost]
+
+TASK [../../roles/web_app : Remove app container] *******************************
+skipping: [localhost]
+
+TASK [../../roles/web_app : Remove directory] ***********************************
+skipping: [localhost]
+
+PLAY RECAP **********************************************************************
+localhost                  : ok=13   changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+```

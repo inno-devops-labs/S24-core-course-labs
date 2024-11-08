@@ -1,0 +1,5 @@
+services:
+  web_app:
+    image: "arinazaza/app_python.py"
+    ports:
+      - "8000:8000"
