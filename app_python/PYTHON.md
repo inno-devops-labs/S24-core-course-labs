@@ -1,6 +1,5 @@
-# PYTHON.md
 
-## Python Web Application - Current Time in Moscow
+# Python Web Application - Current Time in Moscow
 
 ### Framework Choice: Flask
 
@@ -39,3 +38,26 @@ I chose Flask for this web application for the following reasons:
 
 6. **Linting:** Linting tools are employed to analyze and enforce coding standards.
 
+## Testing and Code Quality
+
+## Unit Testing
+
+A suite of unit tests has been developed to ensure the correct functionality of the application. These tests validate key parts of the code, especially the display of the current Moscow time and date.
+
+### Test Breakdown
+- **test_current_time_displayed**: Verifies that the correct time is displayed on the main page and that the `index.html` template is used.
+- **test_time_zone_offset**: Ensures that the displayed time has the correct Moscow offset of +3 hours.
+- **test_content_contains_date**: Checks that the page content includes today’s date, formatted as `YYYY-MM-DD`.
+
+### Running Unit Tests
+To run the tests, navigate to the project root directory and execute:
+```bash
+python -m unittest test_app.py
+```
+
+## Testing Practices
+Comprehensive Coverage: Tests are written to cover both basic functionality and edge cases.
+
+Continuous Integration: CI pipelines automatically run these tests on each update, ensuring stable builds.
+
+Test Documentation: Test instructions are documented here and in README.md to assist developers in understanding the testing structure and maintaining test coverage.
