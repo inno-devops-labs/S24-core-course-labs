@@ -57,4 +57,4 @@ jobs:
     # Step 3: Build Docker image locally
     - name: Build Docker image
       run: |
-        docker build -t moscow-time:latest .
+        docker build -t moscow-time:latest ./app_python
