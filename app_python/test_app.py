@@ -1,11 +1,10 @@
 import unittest
-from flask import Flask
 from flask_testing import TestCase
 from datetime import datetime, timezone, timedelta
 from app import app
 
 class TestApp(TestCase):
-
+    
     def create_app(self):
         app.config['TESTING'] = True
         return app
@@ -23,7 +22,7 @@ class TestApp(TestCase):
     def test_time_zone_offset(self):
         response = self.client.get('/')
         self.assert200(response)
-        
+
         displayed_time = self.get_context_variable('time')
         moscow_time = datetime.now(
             timezone(timedelta(hours=3))).strftime('%Y-%m-%d %H:%M:%S')
