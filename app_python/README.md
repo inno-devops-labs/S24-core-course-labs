@@ -57,3 +57,10 @@ docker rm <container_id>
 ```bash
 docker rmi <dockerhub_username>/moscow-time-app
 ```
+
+## Unit Tests
+This application includes a suite of unit tests to ensure that it functions correctly and meets requirements. For more information, see `PYTHON.md`
+### Running Unit Tests
+```bash
+python -m unittest discover -s tests
+```
