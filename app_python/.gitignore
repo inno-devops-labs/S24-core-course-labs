@@ -1,0 +1,101 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environment
+env/
+venv/
+ENV/
+.venv/
+.VENV/
+
+# Flask instance folder
+instance/
+
+# Flask cache and logs
+*.log
+*.pot
+*.pyc
+
+# Testing results
+.pytest_cache/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Environment variables
+.env
+.env.*
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VSCode settings and extensions
+.vscode/
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.history/
+
+# IDE directories
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# macOS specific files
+.DS_Store
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Distribution / packaging
+.Python
+*.manifest
+*.spec
+
+# PyInstaller
+# Usually these files are written by a python script from a template
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Cache files
+*.cache
+*.pyc
+.cache/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+
+# mypy
+.mypy_cache/
+.dmypy.json
+
+# pyre type checker
+.pyre/
+
+# Caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Editor specific folders
+.vscode/
+.idea/
