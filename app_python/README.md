@@ -25,7 +25,7 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
-### follow http://127.0.0.1:5000/
+### 6. follow http://127.0.0.1:5000/
 
 ## How to Build the Docker Image
 ### 1.1 Build the application
