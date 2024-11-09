@@ -12,8 +12,17 @@ RUN python -m venv /opt/venv && \
     . /opt/venv/bin/activate && \
     pip install --no-cache-dir -r requirements.txt
 
-# Add application code to the container
+# Add a non-root user with limited permissions
+RUN useradd -m appuser
+
+# Change ownership of the app directory to the new user
+RUN chown -R appuser /app
+
+# Copy application code to the container
 COPY . .
+
+# Switch to the non-root user
+USER appuser
 
 # Expose port 5000 for Flask
 EXPOSE 5000
