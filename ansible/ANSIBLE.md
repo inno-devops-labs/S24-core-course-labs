@@ -98,11 +98,11 @@ ok: [localhost]
 TASK [../../roles/mine docker : Install Docker Compose] *************************
 ok: [localhost]
 
-TASK [../../roles/web_app : Create directory for the app] ***********************
+TASK [../../roles/web_app : Create directory for the app_python] ***********************
 ok: [localhost]
 
 TASK [../../roles/web_app : Deploy compose.yaml] ********************************
---- before: app/compose.yaml
+--- before: app_python/compose.yaml
 +++ after: /root/.ansible/tmp/ansible-local-123799p__f5re/tmp4wmmo5fn/docker-compose.yml.j2
 @@ -1,5 +1,5 @@
  services:
@@ -115,10 +115,10 @@ TASK [../../roles/web_app : Deploy compose.yaml] *******************************
 
 changed: [localhost]
 
-TASK [../../roles/web_app : Start the app] **************************************
+TASK [../../roles/web_app : Start the app_python] **************************************
 changed: [localhost]
 
-TASK [../../roles/web_app : Remove app container] *******************************
+TASK [../../roles/web_app : Remove app_python container] *******************************
 skipping: [localhost]
 
 TASK [../../roles/web_app : Remove directory] ***********************************

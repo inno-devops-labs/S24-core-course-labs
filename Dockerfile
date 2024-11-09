@@ -3,7 +3,7 @@ FROM python:3.9-slim
 WORKDIR /app_python
 
 COPY requirements.txt ./
-COPY ./app/ app_python.py
+COPY ./app_python/ .
 
 EXPOSE 8000
 

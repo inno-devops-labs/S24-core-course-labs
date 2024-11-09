@@ -1,7 +1,7 @@
 ---
 - name: Deploy
   block:
-    - name: Create directory for the app
+    - name: Create directory for the app_python
       ansible.builtin.file:
         name: "{{ app_directory }}/"
         state: directory
@@ -11,13 +11,13 @@
         src: templates/docker-compose.yml.j2
         dest: "{{ app_directory }}/compose.yaml"
 
-    - name: Start the app
+    - name: Start the app_python
       community.docker.docker_compose_v2:
         project_src: "{{ app_directory }}"
         state: present
-  tags: app
+  tags: app_python
 
 - name: Wipe
   import_tasks: 0-wipe.yml
-  tags: wipe-web-app
+  tags: wipe-web-app_python
   when: wipe_web_app == true

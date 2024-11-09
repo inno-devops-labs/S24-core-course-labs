@@ -5,7 +5,7 @@
       become: true
     - role: ../../roles/web_app
       vars:
-        app_directory: app
+        app_directory: app_python
         app_image: arinazaza/app_python.py
         app_port: 8000
         wipe_web_app: false
