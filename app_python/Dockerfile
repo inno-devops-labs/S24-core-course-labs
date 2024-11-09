@@ -18,8 +18,9 @@ RUN useradd -m appuser
 # Change ownership of the app directory to the new user
 RUN chown -R appuser /app
 
-# Copy application code to the container
-COPY . .
+# Copy only the specific necessary files and directories
+COPY app.py .
+COPY /static /app/static
 
 # Switch to the non-root user
 USER appuser
