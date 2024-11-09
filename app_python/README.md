@@ -32,7 +32,8 @@ python app.py
 ```bash
 docker build -t <dockerhub_username>/moscow-time-app .
 ``` 
-### 1.2 Or pull the application from dockerhub (you may use my public image by entering "Fatee" as <dockerhub_username>)
+### 1.2 Or pull the application from dockerhub
+(you may use my public image by entering "Fatee" as <dockerhub_username>)
 ```bash
 docker pull <dockerhub_username>/moscow-time-app:latest
 ```
