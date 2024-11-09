@@ -17,7 +17,6 @@ ENV/
 
 # Ignore Docker-related files
 Dockerfile
-DOCKER.md
 
 # Ignore unnecessary OS files
 .DS_Store
