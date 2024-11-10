@@ -34,5 +34,6 @@ def get_moscow_time():
     moscow_time = time.replace(tzinfo=tz.tzutc()).astimezone(tz.gettz("Europe/Moscow"))
     return template % moscow_time.strftime("%d/%m/%Y, %H:%M:%S")
 
+
 if __name__ == '__main__':
     app.run(host = "0.0.0.0", port=5000)
