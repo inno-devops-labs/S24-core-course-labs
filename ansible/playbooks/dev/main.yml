@@ -1,7 +1,7 @@
-- name: Install Docker
+- name: Install flask time server
   hosts: all
   become: true
 
   roles:
-    - docker
+    - web_app
 
