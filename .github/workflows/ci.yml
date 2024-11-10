@@ -1,0 +1,46 @@
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+
+    - name: Run linters
+      run: |
+        flake8 app_python/ --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 app_python/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Build and start Docker container
+      run: |
+        docker build -t flask-time-server app_python/
+        docker run -d -p 5000:5000 flask-time-server
+        sleep 10
+
+    - name: Run tests
+      run: |
+        pytest app_python/tests/*.py
+
+    - name: Clean up
+      run: |
+        docker ps -q | xargs -r docker stop
+        docker ps -aq | xargs -r docker rm
+

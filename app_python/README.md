@@ -22,5 +22,16 @@ docker pull qexik1/flask-time-server:1.0.0
 
 Container can be run:
 ```
-docker run qexik1/flask-time-server:1.0.0
+docker run -p 5000:5000 qexik1/flask-time-server:1.0.0
 ```
+
+# Unit tests
+
+The tests can be launched using pytest:
+
+```
+pytest tests/*.py
+```
+
+Note: unit tests assume that the application is already deployed and is available on loopback IP address on port 5000.
+
