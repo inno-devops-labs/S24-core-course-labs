@@ -65,7 +65,6 @@ jobs:
 
     - name: Build and start Docker container
       run: |
-        docker build -t flask-time-server app_python/
         docker run -d -p 5000:5000 flask-time-server
         sleep 10
 
