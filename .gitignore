@@ -1,2 +1,7 @@
 venv
 __pycache__
+*tfstate*
+key.json
+*tfvars*
+.terraform/
+*.hcl
