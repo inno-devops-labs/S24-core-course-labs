@@ -35,3 +35,7 @@ pytest tests/*.py
 
 Note: unit tests assume that the application is already deployed and is available on loopback IP address on port 5000.
 
+# CI Workflow
+
+Pull requests to the repository are automatically checked using CI. The workflow builds the docker image, runs the tests and pushes a docker image.
+
