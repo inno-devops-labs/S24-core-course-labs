@@ -49,10 +49,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-buildx-
 
-    - name: Build and start Docker container
+    - name: Build docker container
       uses: docker/build-push-action@v4
       with:
-        context: .
+        context: app_python/
         load: true
         tags: flask-time-server:latest
         cache-from: type=local,src=/tmp/.buildx-cache
@@ -63,9 +63,9 @@ jobs:
         rm -rf /tmp/.buildx-cache
         mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-    - name: Build and start Docker container
+    - name: Start docker container
       run: |
-        docker run -d -p 5000:5000 flask-time-server
+        docker run -d -p 5000:5000 flask-time-server:latest
         sleep 10
 
     - name: Run tests
