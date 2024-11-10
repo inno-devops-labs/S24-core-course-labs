@@ -134,6 +134,7 @@ terraform apply -var="github_token=$env:GITHUB_TOKEN"
 After last command output is:
 
 ```
+
 github_repository.matskevich: Refreshing state... [id=Matskevich]
 github_branch_protection.main_branch_protection: Refreshing state... [id=BPR_kwDOLRzoi84DX_C4]
 
