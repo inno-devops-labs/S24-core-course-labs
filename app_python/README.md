@@ -9,3 +9,18 @@ pip install -r requirements.txt
 flask --app main run
 ```
 
+# Docker instructions
+Docker container can be built running the command from the current folder:
+```
+docker build -t flask-time-server .
+```
+
+Container can be pulled from public docker.io repository:
+```
+docker pull qexik1/flask-time-server:1.0.0
+```
+
+Container can be run:
+```
+docker run qexik1/flask-time-server:1.0.0
+```
