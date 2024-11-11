@@ -4,14 +4,23 @@ x-logging:
   options:
     tag: "{{.ImageName}}|{{.Name}}"
     max-size: 10M
-    max-file: 1
+    max-file: 5
+
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 500M
 
 services:
   time_app:
     image: n0m1nd/moscow_time_python:latest
     logging: *default-logging
+    deploy: *default-deploy
     ports:
       - 8080:8080
+    networks:
+      - loki
 
   loki:
     image: grafana/loki:2.9.2
@@ -19,6 +28,7 @@ services:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
     logging: *default-logging
+    deploy: *default-deploy
     networks:
       - loki
 
@@ -30,6 +40,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     command: -config.file=/etc/promtail/config.yml
     logging: *default-logging
+    deploy: *default-deploy
     ports:
       - 9080:9080
     networks:
@@ -57,12 +68,33 @@ services:
           isDefault: true
           version: 1
           editable: false
+        - name: Prometheus
+          type: prometheus
+          access: proxy
+          orgId: 1
+          url: http://prometheus:9090
+          basicAuth: false
+          isDefault: false
+          version: 1
+          editable: false
         EOF
         /run.sh
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
     logging: *default-logging
+    deploy: *default-deploy
+    networks:
+      - loki
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    logging: *default-logging
+    deploy: *default-deploy
     networks:
       - loki
 
