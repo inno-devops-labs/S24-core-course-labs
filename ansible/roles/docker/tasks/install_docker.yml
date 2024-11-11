@@ -1,0 +1,14 @@
+- name: apt update
+  apt:
+    update_cache: yes
+
+- name: Install containerd
+  apt:
+    name: containerd
+    state: latest
+
+- name: Install docker.io
+  apt:
+    name: docker.io
+    state: latest
+  register: docker_installed
