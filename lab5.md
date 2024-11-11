@@ -64,10 +64,9 @@ In this lab, you will get acquainted with Ansible, a powerful configuration mana
 
 1. Create Your Custom Docker Role:
    - Develop a custom Ansible role for Docker with the following tasks:
-     1. Install pip.
-     2. Install Docker using apt and Docker Compose using pip.
-     3. Update your playbook to utilize this custom role. [Tricks and Tips](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html).
-     4. Test your playbook with the custom role to ensure successful deployment.
+     1. Install Docker and Docker Compose.
+     2. Update your playbook to utilize this custom role. [Tricks and Tips](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html).
+     3. Test your playbook with the custom role to ensure successful deployment.
 
 2. Documentation:
    - Develop an `ANSIBLE.md` file in the `ansible` folder to document your Ansible-related work.
