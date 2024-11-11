@@ -24,7 +24,7 @@ class HTTPTimeHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
         if self.path == "/metrics":
-            self.wfile.write(str(generate_latest()).encode())
+            self.wfile.write(generate_latest())
         else:
             c.inc()
             self.wfile.write(str(get_time()).encode())
