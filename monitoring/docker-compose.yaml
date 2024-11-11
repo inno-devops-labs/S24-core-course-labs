@@ -5,6 +5,14 @@ x-logging:
   driver: "json-file"
   options:
     tag: "{{.ImageName}}|{{.Name}}"
+    max-size: 1048576
+    max-file: 10
+
+x-deploy:
+  &default-deploy
+  resources:
+    limits:
+      memory: 128M
 
 services:
   app_python:
@@ -12,6 +20,7 @@ services:
     ports:
       - "5000:5000"
     logging: *default-logging
+    deploy: *default-deploy
 
   loki:
     image: grafana/loki:3.2.1
@@ -21,6 +30,7 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy: *default-deploy
 
   promtail:
     image: grafana/promtail:3.2.1
@@ -33,6 +43,7 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy: *default-deploy
 
   grafana:
     environment:
@@ -64,7 +75,23 @@ services:
     networks:
       - loki
     logging: *default-logging
+    deploy: *default-deploy
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - loki
+    volumes:
+      - log-data:/prometheus
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+    logging: *default-logging
+    deploy: *default-deploy
 
 networks:
   loki:
+
+volumes:
+  log-data:
 
