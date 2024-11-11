@@ -47,3 +47,6 @@ Note that this is the output for Windows/WSL2 environment.
 ❗  Because you are using a Docker driver on linux, the terminal needs to be open to run it.
 ```
 
+### App deployment
+
+![image](https://github.com/user-attachments/assets/a0b7559f-7183-43ec-8370-02a59726a931)
