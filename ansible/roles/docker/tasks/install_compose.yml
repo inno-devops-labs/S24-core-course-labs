@@ -1,0 +1,5 @@
+---
+- name: Install Docker Compose
+  ansible.builtin.shell:
+    cmd: curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+    creates: /usr/local/bin/docker-compose
