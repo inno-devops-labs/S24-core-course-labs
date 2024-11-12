@@ -1,6 +1,7 @@
----
-- name: Set up Docker on VM
+- name: Install docker manually
   hosts: all
-  become: yes
+  become: true
   roles:
-     - geerlingguy.docker
+    - ../../roles/docker
+
+   #- geerlingguy.docker
