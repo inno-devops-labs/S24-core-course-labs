@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: time-app
+spec:
+  replicas: 3
+  serviceName: time-app
+  podManagementPolicy: {{ .Values.podManagementPolicy }}
+  selector:
+    matchLabels:
+      app: time-app
+  volumeClaimTemplates:
+    - metadata:
+        name: katmetadata
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 200M
+  template:
+    metadata:
+      labels:
+        app: time-app
+    spec:
+      containers:
+      - name: time-app
+        image: n0m1nd/moscow_time_python
+        env:
+          - name: SECRET_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: credentials
+                key: secret_token
+        ports:
+        - containerPort: 8081

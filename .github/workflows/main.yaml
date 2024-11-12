@@ -1,0 +1,92 @@
+name: msk-time-ci
+
+permissions:
+  contents:
+    read
+  checks:
+    write
+
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.7'
+          cache: 'pip'
+      - name: Install dependencies
+        run: pip3 install -r app_python/requirements.txt
+      - name: Run pylint
+        run: pylint -rn **/*.py
+      - name: Run pycodestyle
+        run: pycodestyle **/*.py
+
+  test:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.7'
+          cache: 'pip'
+      - name: Install dependencies
+        run: pip3 install -r app_python/requirements.txt
+      - name: Run pytest
+        run: PYTHONPATH=. pytest app_python/tests
+
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login to docker hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: 'arm64'
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./app_python
+          file: ./app_python/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/moscow_time_python:latest
+          platforms: linux/amd64,linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  snyk:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    permissions:
+      security-events:
+        write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: snyk/actions/setup@master
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.7'
+          cache: 'pip'
+      - name: Install dependencies
+        run: pip3 install -r app_python/requirements.txt
+      - name: Snyk test
+        run: snyk test --sarif-file-output=snyk.sarif
+        working-directory: app_python
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: app_python/snyk.sarif

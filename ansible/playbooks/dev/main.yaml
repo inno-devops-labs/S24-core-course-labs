@@ -1,0 +1,15 @@
+- name: Install Docker
+  hosts: all
+
+  roles:
+    # - role: geerlingguy.docker
+    #   become: true
+    - name: Install docker
+      role: docker
+      become: true
+
+    - name: Deploy the web application
+      role: web_app
+      # become: true
+      vars:
+        - compose_dir: devops_compose
