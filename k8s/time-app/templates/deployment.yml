@@ -11,12 +11,7 @@ spec:
     metadata:
       labels:
         app: time-app
-      annotations:
-         vault.hashicorp.com/agent-inject: 'true'
-         vault.hashicorp.com/role: 'internal-app'
-         vault.hashicorp.com/agent-inject-secret-database-config.txt: 'internal/data/database/config'
     spec:
-      serviceAccountName: internal-app
       containers:
       - name: time-app
         image: n0m1nd/moscow_time_python
