@@ -1,0 +1,5 @@
+web_app_full_wipe: false
+docker_image: n0m1nd/moscow_time_python:latest
+service_name: web_app
+docker_port_string: 8080:8080
+compose_dir: .
