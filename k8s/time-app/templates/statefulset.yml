@@ -1,12 +1,22 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: time-app
 spec:
   replicas: 3
+  serviceName: time-app
+  podManagementPolicy: {{ .Values.podManagementPolicy }}
   selector:
     matchLabels:
       app: time-app
+  volumeClaimTemplates:
+    - metadata:
+        name: katmetadata
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 200M
   template:
     metadata:
       labels:

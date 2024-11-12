@@ -125,6 +125,10 @@ volumeMounts:
     mountPath: "/var/config.json"
     subPath: config.json
     readOnly: true
+  - name: katmetadata 
+    mountPath: /var/katmetadata
+
+podManagementPolicy: Parallel
 
 nodeSelector: {}
 
