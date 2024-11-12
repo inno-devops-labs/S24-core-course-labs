@@ -122,7 +122,7 @@ volumes:
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts: 
   - name: config-json-volume
-    mountPath: "/config.json"
+    mountPath: "/var/config.json"
     subPath: config.json
     readOnly: true
 

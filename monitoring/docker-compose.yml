@@ -19,6 +19,8 @@ services:
     deploy: *default-deploy
     ports:
       - 8080:8080
+    volumes:
+      - ./cnt:/visits/cnt
     networks:
       - loki
 

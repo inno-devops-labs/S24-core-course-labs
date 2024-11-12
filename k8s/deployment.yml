@@ -30,10 +30,10 @@ spec:
         - containerPort: 8081
         volumeMounts:
           - name: config-json-volume
-            mountPath: /config.json 
+            mountPath: /var/config.json 
             subPath: config.json 
           - name: counter-volume 
-            mountPath: /visits
+            mountPath: /var/visits
 
       volumes:
         - name: config-json-volume 
