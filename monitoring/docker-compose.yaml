@@ -21,6 +21,8 @@ services:
       - "5000:5000"
     logging: *default-logging
     deploy: *default-deploy
+    volumes:
+      - persistent:/app_python/persistent
 
   loki:
     image: grafana/loki:3.2.1
@@ -94,4 +96,5 @@ networks:
 
 volumes:
   log-data:
+  persistent:
 
