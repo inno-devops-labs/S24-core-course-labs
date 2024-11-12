@@ -3,5 +3,4 @@
   become: true
   roles:
     - ../../roles/docker
-
-   #- geerlingguy.docker
+    - ../../roles/web_app
