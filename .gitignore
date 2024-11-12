@@ -19,3 +19,4 @@ terraform.tfstate.backup
 .terraform/
 terraform.tfstate
 key.json
+grafana/
