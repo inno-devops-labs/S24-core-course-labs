@@ -1,0 +1,6 @@
+myhosts:
+  hosts:
+    default_host:
+      ansible_host: 89.169.138.171
+      ansible_user: ubuntu
+

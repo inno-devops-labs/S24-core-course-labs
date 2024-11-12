@@ -1,0 +1,8 @@
+---
+- name: Install compose via apt
+  ansible.builtin.apt:
+    name:
+      - docker-compose
+    state: present
+    update_cache: yes
+
