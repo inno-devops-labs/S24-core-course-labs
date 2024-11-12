@@ -2,15 +2,27 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from datetime import datetime
 from prometheus_client import Counter, generate_latest
+import os
+import sys
 import pytz
-
-c = Counter("n_requests", "number of time requests processed since latest restart")
 
 
 def get_time():
     """Returns current MSK time."""
     timezone = pytz.timezone("Europe/Moscow")
     return datetime.now(timezone)
+
+
+def inc_counter():
+    cnt = get_counter()
+
+    with open("/visits/cnt", "w") as fout:
+        fout.write(str(cnt + 1))
+
+
+def get_counter():
+    with open("/visits/cnt", "r") as fin:
+        return int(fin.read())
 
 
 class HTTPTimeHandler(BaseHTTPRequestHandler):
@@ -25,8 +37,10 @@ class HTTPTimeHandler(BaseHTTPRequestHandler):
 
         if self.path == "/metrics":
             self.wfile.write(generate_latest())
+        elif self.path == "/visits":
+            self.wfile.write(f"Visits: {get_counter()}".encode())
         else:
-            c.inc()
+            inc_counter()
             self.wfile.write(str(get_time()).encode())
 
 
@@ -41,4 +55,10 @@ def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    if not os.path.exists("/visits"):
+        sys.exit(-1111111)
+    if not os.path.isfile("/visits/cnt"):
+        with open("/visits/cnt", "w") as fout:
+            fout.write("0")
+
     run(handler_class=HTTPTimeHandler)

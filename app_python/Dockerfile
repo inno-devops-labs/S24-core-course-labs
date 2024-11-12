@@ -1,4 +1,5 @@
 FROM python:3.11.7-alpine
+VOLUME "/visits"
 
 RUN adduser -D app
 RUN apk add curl --no-cache
