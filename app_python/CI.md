@@ -20,4 +20,4 @@
 - CI Builds and pushes the image, used github secrets to pass credentials.
 
 ## CI Badge.
-- It is in the app_python directory, not in teh root.
+- Even two, one in root, one in app_python.

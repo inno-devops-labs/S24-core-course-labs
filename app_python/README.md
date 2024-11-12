@@ -63,17 +63,6 @@ To run **flake8** on code, simply use the following command:
 flake8 app.py
 ```
 
-## Dependencies
-
-- Flask: A lightweight WSGI web application framework.
-- pytz: A library to handle timezone conversion and daylight saving time.
-- flake8: A linting tool to enforce coding standards (PEP 8).
-
-These dependencies are listed in the `requirements.txt` file and can be installed by running:
-
-```bash
-pip install -r requirements.txt
-```
 ---
 
 ## Dockerizing the Application
@@ -108,3 +97,30 @@ If you want to pull the pre-built Docker image from Docker Hub, use the followin
 docker pull smasiner2/python_time_app
 docker run -p 8080:8000 --rm smasiner2/python_time_app
 ```
+
+## Code testing
+
+Unit testing verifies the format is right, the time message is right.
+```bash
+pytest test_app.py
+```
+
+## CI
+
+The CI workflow for this project is set up using GitHub Actions. It includes the following essential steps:
+
+
+Installing project dependencies specified in requirements.txt.
+Caching dependencies.
+Unit testing with pytest.
+Linter checks code convention with flake8.
+Using Snyk to check for vulnerabilities in dependencies.
+
+Docker Steps:
+Executes on an Ubuntu.
+Sets up Docker service.
+Builds a Docker image tagged as DOCKER_USERNAME/app_python:latest. - utilising GitHub Secrets
+Pushes the Docker image to Docker Hub using secrets for authentication.
+
+All steps are chained with needs:
+

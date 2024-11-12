@@ -68,7 +68,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-            args: --severity-threshold=high --skip-unresolved app_python/
+            args: --skip-unresolved app_python/
 
 
   docker:
