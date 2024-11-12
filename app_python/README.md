@@ -1,3 +1,5 @@
+[![Python application](https://github.com/smasIner/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)](https://github.com/smasIner/S24-core-course-labs/actions/workflows/main.yaml)
+
 # Python Web Application
 
 This is a simple Python web application that displays the current time in the Moscow timezone (MSK). It uses **Flask** as the web framework and **pytz** for timezone handling.
