@@ -48,3 +48,17 @@ This project utilises github actions CI to:
 - Lint and test the project
 - Build and push a docker image
 On push(to any branch, not just main for ease of testing)
+
+## Docker volume
+Requires a volume for correct functionality. May be set up as follows:
+```
+$ echo 0 > cnt
+
+```
+
+
+docker-compose.yml:
+```
+volumes:
+  - ./cnt:/visits/cnt
+```

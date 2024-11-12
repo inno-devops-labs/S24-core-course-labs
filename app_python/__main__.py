@@ -16,12 +16,12 @@ def get_time():
 def inc_counter():
     cnt = get_counter()
 
-    with open("/visits/cnt", "w") as fout:
+    with open("/var/visits/cnt", "w") as fout:
         fout.write(str(cnt + 1))
 
 
 def get_counter():
-    with open("/visits/cnt", "r") as fin:
+    with open("/var/visits/cnt", "r") as fin:
         return int(fin.read())
 
 
@@ -37,7 +37,7 @@ class HTTPTimeHandler(BaseHTTPRequestHandler):
 
         if self.path == "/metrics":
             self.wfile.write(generate_latest())
-        elif self.path == "/visits":
+        elif self.path == "/var/visits":
             self.wfile.write(f"Visits: {get_counter()}".encode())
         else:
             inc_counter()
@@ -55,10 +55,11 @@ def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    if not os.path.exists("/visits"):
-        sys.exit(-1111111)
-    if not os.path.isfile("/visits/cnt"):
-        with open("/visits/cnt", "w") as fout:
+    if not os.path.exists("/var/visits"):
+        os.mkdir("/var/visits")
+        # sys.exit(-1111111)
+    if not os.path.isfile("/var/visits/cnt"):
+        with open("/var/visits/cnt", "w") as fout:
             fout.write("0")
 
     run(handler_class=HTTPTimeHandler)

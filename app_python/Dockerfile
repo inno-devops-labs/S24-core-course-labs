@@ -1,9 +1,10 @@
 FROM python:3.11.7-alpine
-VOLUME "/visits"
 
 RUN adduser -D app
 RUN apk add curl --no-cache
 
+RUN chown -R app:app /var/visits
+VOLUME "/var/visits"
 WORKDIR /src
 EXPOSE 8080/tcp
 
