@@ -1,12 +1,19 @@
-## Prerequisites
-- Ansible installed
-- Server instance configured for Ansible access
+# Docker Role
 
-## Installation
-1. Clone the repository.
-2. Install Ansible by following the [installation guide](https://docs.ansible.com/ansible/latest/installation_guide/index.html).
-3. Update your `inventory/default_aws_ec2.yml` file with your EC2 instance details.
-4. Run the Ansible playbook:
+## Description
+This role installs Docker and Docker Compose on target machines.
 
-   ```bash
-   ansible-playbook -i ansible/inventory/default_aws_ec2.yml ansible/playbooks/dev/main.yaml
+## Requirements
+- Ansible 2.9+
+- Target system running Ubuntu/Linux
+
+## Role Variables
+- `docker_compose_version` (default: `1.29.2`)
+
+## Usage
+To use this role, add it to your playbook as follows:
+
+```yaml
+- hosts: all
+  roles:
+    - docker
