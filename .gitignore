@@ -13,3 +13,9 @@ __pycache__/
 
 # Ignore secrets
 .secrets
+*.tfvars
+*.tfvars.json
+terraform.tfstate.backup
+.terraform/
+terraform.tfstate
+key.json
