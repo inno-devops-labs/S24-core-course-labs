@@ -1,0 +1,28 @@
+---
+- name:
+  block:
+    - name: Create app directory
+      ansible.builtin.file:
+        name: "{{ app_directory }}/"
+        state: directory
+
+    - name: Docker compose
+      ansible.builtin.template:
+        src: templates/docker-compose.yml.j2
+        dest: "{{ app_directory }}/compose.yaml"
+      vars:
+        forward_ports: "{{ port_forwarding }}"
+        app_image: "{{ docker_image }}:{{ image_tag }}"
+
+    - name: Start the app
+      community.docker.docker_compose_v2:
+        project_src: "{{ app_directory }}"
+        state: present
+
+  tags: docker_compose
+
+- name: Wipe app
+  import_tasks: 0-wipe.yml
+  when: wipe == true
+  tags: wipe
+

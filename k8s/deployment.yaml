@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: time-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: time-server
+  template:
+    metadata:
+      labels:
+        app: time-server
+        lang: python
+    spec:
+      containers:
+      - name: time-server
+        image: qexik1/flask-time-server:latest
+        ports:
+        - containerPort: 5000
+
