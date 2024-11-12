@@ -72,3 +72,37 @@ These dependencies are listed in the `requirements.txt` file and can be installe
 ```bash
 pip install -r requirements.txt
 ```
+---
+
+## Dockerizing the Application
+
+
+### Building the Docker Image
+
+To build the Docker image locally, use the following command. Make sure you are in the app_python directory.
+
+Change smasiner2 to your username:
+
+```bash
+docker build -t smasiner2/python_time_app .
+```
+
+### Running the Docker Container
+
+After building the Docker image, you can run the container using the following command:
+
+```bash
+docker run -p 8080:8000 --rm smasiner2/python_time_app
+```
+
+- The `-p 8080:8000` option maps port 8000 from the container to port 8080 on your local machine.
+- Once the container is running, you can open a web browser and visit http://localhost:8080
+
+### Pulling and running the Docker Image from Docker Hub
+
+If you want to pull the pre-built Docker image from Docker Hub, use the following command:
+
+```bash
+docker pull smasiner2/python_time_app
+docker run -p 8080:8000 --rm smasiner2/python_time_app
+```
