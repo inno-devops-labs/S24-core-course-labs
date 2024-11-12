@@ -3,6 +3,7 @@ FROM python:3.11.7-alpine
 RUN adduser -D app
 RUN apk add curl --no-cache
 
+RUN mkdir /var/visits
 RUN chown -R app:app /var/visits
 VOLUME "/var/visits"
 WORKDIR /src
