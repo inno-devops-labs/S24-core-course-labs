@@ -1,3 +1,4 @@
+![Workflow badge](https://github.com/geffk2/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)
 # DevOps Engineering Labs
 
 ## Introduction
