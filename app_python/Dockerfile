@@ -6,6 +6,8 @@ WORKDIR /app_python
 
 COPY main.py requirements.txt .
 
+RUN mkdir /app_python/persistent
+
 RUN pip3 install -r requirements.txt
 
 EXPOSE 5000

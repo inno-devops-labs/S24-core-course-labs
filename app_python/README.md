@@ -46,3 +46,8 @@ Pull requests to the repository are automatically checked using CI. The workflow
 
 Note that docker image is only pushed if the action is run on a commit to `main` branch. The docker image is not pushed when the pull request checks are run.
 
+# Visits metric
+
+Visit metric is available on `/visits` route.
+
+
