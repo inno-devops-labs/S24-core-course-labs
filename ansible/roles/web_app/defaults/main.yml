@@ -1,0 +1,7 @@
+docker_image: "qexik1/flask-time-server"
+image_tag: "latest"
+container_name: "time-server"
+app_directory: "app_python"
+port_forwarding: "5000:5000"
+wipe: false
+
