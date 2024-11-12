@@ -1,0 +1,7 @@
+- name: Install flask time server
+  hosts: all
+  become: true
+
+  roles:
+    - web_app
+
