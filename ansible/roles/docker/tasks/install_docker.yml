@@ -1,0 +1,5 @@
+---
+- name: Install Docker
+  ansible.builtin.yum:
+    name: docker
+    state: present
