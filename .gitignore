@@ -1,0 +1,21 @@
+# Ignore venv
+venv/
+# Ignore IntelliJ IDEA project files
+.idea/
+*.iml
+*.iws
+# Ignore workspace-related files
+*.ipr
+__pycache__/
+
+# Ignore other system-specific files
+.DS_Store
+
+# Ignore secrets
+.secrets
+*.tfvars
+*.tfvars.json
+terraform.tfstate.backup
+.terraform/
+terraform.tfstate
+key.json
