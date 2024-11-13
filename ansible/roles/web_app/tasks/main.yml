@@ -1,0 +1,22 @@
+- name: Deploy docker-compose
+  block:
+    - name: Directory for compose
+      ansible.builtin.file:
+        name: "{{compose_directory}}"
+        state: directory
+
+    - name: Create docker-compose.yml
+      ansible.builtin.template:
+        src: templates/docker-compose.yml.j2
+        dest: "{{compose_directory}}/docker-compose.yml"
+
+    - name: Compose
+      community.docker.docker_compose_v2:
+        project_src: "{{compose_directory}}"
+        state: present
+  tags: deploy
+
+- name: Wipe
+  import_tasks: 0-wipe.yml
+  when: web_app_full_wipe | bool == true
+  tags: wipe
