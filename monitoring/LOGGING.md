@@ -22,11 +22,11 @@ Grafana serves as the visualization tool. It allows querying Loki for logs and p
 ### Configuration:
 - Datasource: Configured to connect to Loki at http://loki:3100, with proxy access enabled.
 - Dashboards: Custom dashboards can be created to view logs based on application labels, error levels, or custom filters.
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
-![alt text](image-4.png)
-![alt text](image-5.png)
-![alt text](image-6.png)
-![alt text](image-7.png)
+![alt text](screenshots/app-python-1.png)
+![alt text](screenshots/app-python-2.png)
+![alt text](screenshots/mon-grafana-1.png)
+![alt text](screenshots/mon-grafana-2.png)
+![alt text](screenshots/mon-loki-1.png)
+![alt text](screenshots/mon-loki-2.png)
+![alt text](screenshots/mon-promtail-1.png)
+![alt text](screenshots/mon-promtail-2.png)
