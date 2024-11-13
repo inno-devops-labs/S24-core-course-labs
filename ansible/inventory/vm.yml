@@ -1,0 +1,6 @@
+all:
+  hosts:
+    vm_name:
+      ansible_host: 5.42.101.243
+      ansible_user: root
+      ansible_password: secret #you would need sshpass or similar (brew install sshpass)
