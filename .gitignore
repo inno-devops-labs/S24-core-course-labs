@@ -1,0 +1,12 @@
+# Ignore venv
+venv/
+# Ignore IntelliJ IDEA project files
+.idea/
+*.iml
+*.iws
+
+# Ignore workspace-related files
+*.ipr
+
+# Ignore other system-specific files
+.DS_Store
