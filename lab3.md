@@ -51,3 +51,4 @@ In this lab assignment, you will delve into continuous integration (CI) practice
 - Create pull requests (PRs) as needed: from your fork to the main branch of this repository, and from your fork's branch to your fork's master branch.
 
 > Note: Implement CI best practices, optimize your workflows, and explore bonus tasks to deepen your understanding of continuous integration.
+
