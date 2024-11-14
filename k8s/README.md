@@ -19,7 +19,7 @@ Handling connection for 5000
 ```
 ![img.png](screenshots/img.png)
 
-```bash
+ ```bash
 (venv) PS C:\Users\Ernest\Desktop\Matskevich\k8s> minikube service app-service               
 |-----------|-------------|-------------|---------------------------|
 | NAMESPACE |    NAME     | TARGET PORT |            URL            |
