@@ -1,0 +1,6 @@
+![alt text](screenshots/get_pods.png)
+![alt text](screenshots/get_svc.png)
+![alt text](screenshots/localhost.png)
+![alt text](screenshots/service.png)
+![alt text](screenshots/del_deployment.png)
+![alt text](screenshots/get_all.png)
