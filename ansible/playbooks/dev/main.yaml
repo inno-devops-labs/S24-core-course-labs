@@ -1,0 +1,24 @@
+---
+- name: Setup Docker and Web App on localhost
+  hosts: localhost
+  become: true  # Для использования sudo, если нужно
+  tasks:
+    - name: Install Docker
+      ansible.builtin.yum:
+        name: docker
+        state: present
+
+    - name: Start Docker service
+      ansible.builtin.service:
+        name: docker
+        state: started
+
+    - name: Install Docker Compose
+      ansible.builtin.shell:
+        cmd: curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+        creates: /usr/local/bin/docker-compose
+
+    - name: Set Docker Compose permissions
+      ansible.builtin.file:
+        path: /usr/local/bin/docker-compose
+        mode: 'u+x'
