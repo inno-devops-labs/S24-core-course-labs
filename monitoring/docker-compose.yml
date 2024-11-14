@@ -63,7 +63,7 @@ services:
     ports:
       - "3000:3000"
     expose:
-      - "3000"  
+      - "3000"
     logging: *default-logging
 
   prometheus:
