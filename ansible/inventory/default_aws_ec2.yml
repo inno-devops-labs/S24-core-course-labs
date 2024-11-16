@@ -1,0 +1,11 @@
+plugin: aws_ec2
+regions:
+  - us-east-1
+aws_profile: default
+  - key: tags.Name
+    prefix: ec2_
+hostnames:
+  - public_ip
+filters:
+  tag: "Environment"
+  value: "Development"
