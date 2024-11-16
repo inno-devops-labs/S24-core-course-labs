@@ -122,5 +122,8 @@ Sets up Docker service.
 Builds a Docker image tagged as DOCKER_USERNAME/app_python:latest. - utilising GitHub Secrets
 Pushes the Docker image to Docker Hub using secrets for authentication.
 
-All steps are chained with needs:
+## Compose:
 
+docker-compose build
+
+docker-compose up

@@ -111,14 +111,24 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-volumes: []
+volumes:
+  - name: config
+    configMap:
+      name: config-configmap
 # - name: foo
 #   secret:
 #     secretName: mysecret
 #     optional: false
+
 mySecret: "abraabra"
+
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
+volumeMounts:
+  - name: config
+    mountPath: "/config.json"
+    subPath: config.json
+    readOnly: true
+
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
