@@ -73,3 +73,61 @@ sudo ansible-inventory -i inventory/default_aws_ec2.yml --list
 }
 ```
 (local deployment)
+
+## Web app role
+```bash
+sudo ansible-playbook playbooks/dev/main.yaml --diff
+
+
+TASK [../../roles/docker : Install Docker] *****************************************************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Ensure Docker service is started and enabled] ***********************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Install Docker Compose] *********************************************************************
+included: /mnt/c/Users/vpiar/desktop/labs-aksinya/ansible/roles/docker/tasks/install_compose.yml for localhost
+
+TASK [../../roles/docker : Install pip3] *******************************************************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Install Docker Compose] *********************************************************************
+ok: [localhost]
+
+TASK [../../roles/web_app : Create directory for the app_python] *******************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "app_python/",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [localhost]
+
+TASK [../../roles/web_app : Deploy compose.yaml] ***********************************************************************
+--- before
++++ after: /root/.ansible/tmp/ansible-local-8309wxm_ve0i/tmpjpucg_1g/docker-compose.yml.j2
+@@ -0,0 +1,5 @@
++services:
++  web_app:
++    image: "aximaxxi/moscow-time"
++    ports:
++      - "5000:5000"
+\ No newline at end of file
+
+changed: [localhost]
+
+TASK [../../roles/web_app : Start the app_python] **********************************************************************
+changed: [localhost]
+
+TASK [../../roles/web_app : Remove app_python container] ***************************************************************
+skipping: [localhost]
+
+TASK [../../roles/web_app : Remove directory] **************************************************************************
+skipping: [localhost]
+
+PLAY RECAP *************************************************************************************************************
+localhost                  : ok=13   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+```
