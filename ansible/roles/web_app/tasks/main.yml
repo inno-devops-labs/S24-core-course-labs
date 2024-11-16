@@ -1,0 +1,9 @@
+---
+- name: Deploy web app
+  ansible.builtin.copy:
+    src: "{{ web_app_name }}.tar.gz"
+    dest: "/var/www/{{ web_app_name }}/"
+
+- name: Start web app
+  ansible.builtin.shell:
+    cmd: "/var/www/{{ web_app_name }}/start.sh"
