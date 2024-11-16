@@ -1,4 +1,8 @@
 # Moscow Time Web Application
+### Features
+
+- Root Endpoint (`/`): Displays the current time in Moscow.
+- Visits Endpoint (`/visits`): Displays the total number of visits.
 
 ## Getting Started
 

@@ -12,6 +12,8 @@ services:
       driver: "json-file"
       options:
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    volumes:
+      - ./app_python/visits.txt:/app/visits.txt
     networks:
       - loki
 
