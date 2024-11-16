@@ -1,0 +1,6 @@
+---
+- name: Deploy Docker
+  hosts: localhost
+  become: yes
+  roles:
+    - role: ../../roles/docker
