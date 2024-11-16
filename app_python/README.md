@@ -54,7 +54,10 @@ This web application, built using Flask, displays the current Moscow time on a w
     
 2.  Open your web browser and navigate to [http://localhost:5000/](http://localhost:5000/) to view the current Moscow time.
    
+3.  Open [http://localhost:5000/visits](http://localhost:5000/visits) to view how many times web application was visited.
 
+Example of visits page:
+![img.png](visits_page.png)
 ## Project Structure
 
 ```plaintext
