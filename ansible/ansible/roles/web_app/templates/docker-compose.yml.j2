@@ -1,8 +1,0 @@
-version: "3"
-services:
-  web:
-    image: "{{ web_app_name }}"
-    ports:
-      - "80:80"
-    volumes:
-      - /var/www/{{ web_app_name }}:/app
