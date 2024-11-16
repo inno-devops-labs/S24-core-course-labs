@@ -1,0 +1,16 @@
+---
+- name: Deploy Docker
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: latest
+        update_cache: yes
+
+    - name: Ensure Docker service is started
+      service:
+        name: docker
+        state: started
+        enabled: yes
