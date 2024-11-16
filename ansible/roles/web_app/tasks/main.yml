@@ -1,14 +1,23 @@
 ---
-- name: Create docker-compose file for web app
-  template:
-    src: docker-compose.yml.j2
-    dest: /home/ubuntu/docker-compose.yml
-  become: yes
+- name: Deploy
+  block:
+    - name: Create directory for the app_python
+      ansible.builtin.file:
+        name: "{{ app_directory }}/"
+        state: directory
 
-- name: Run the web app using docker-compose
-  docker_compose:
-    project_src: /home/ubuntu
-    restarted: yes
-    stopped: yes
-    removed: yes
-  become: yes
+    - name: Deploy compose.yaml
+      ansible.builtin.template:
+        src: templates/docker-compose.yml.j2
+        dest: "{{ app_directory }}/compose.yaml"
+
+    - name: Start the app_python
+      community.docker.docker_compose_v2:
+        project_src: "{{ app_directory }}"
+        state: present
+  tags: app_python
+
+- name: Wipe
+  import_tasks: 0-wipe.yml
+  tags: wipe-web-app_python
+  when: wipe_web_app == true

@@ -1,0 +1,5 @@
+services:
+  web_app:
+    image: "aximaxxi/moscow-time"
+    ports:
+      - "5000:5000"

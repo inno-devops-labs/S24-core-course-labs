@@ -1,7 +1,10 @@
 ---
+- name: Install pip3
+  apt:
+    name: python3-pip
+    state: present
+
 - name: Install Docker Compose
-  get_url:
-    url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
-    dest: "/usr/local/bin/docker-compose"
-    mode: 'u+x'
-  when: docker_compose is not defined
+  apt:
+    name: docker-compose
+    state: present

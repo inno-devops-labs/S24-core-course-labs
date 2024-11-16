@@ -1,16 +1,12 @@
 ---
 - name: Deploy Docker
-  hosts: all
-  become: true
-  tasks:
-    - name: Install Docker
-      apt:
-        name: docker.io
-        state: latest
-        update_cache: yes
-
-    - name: Ensure Docker service is started
-      service:
-        name: docker
-        state: started
-        enabled: yes
+  hosts: localhost
+  become: yes
+  roles:
+    - role: ../../roles/docker
+    - role: ../../roles/web_app
+      vars:
+        app_directory: app_python
+        app_image: aximaxxi/moscow-time
+        app_port: 5000
+        wipe_web_app: false
