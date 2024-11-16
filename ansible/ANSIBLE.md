@@ -85,3 +85,88 @@ https://docs.ansible.com/ansible/devel/reference_appendices/config.html#cfg-in-w
     }
 }
 ```
+
+### Web app role
+
+```shell
+ernest@DESKTOP-P1QFCL0:/mnt/c/Users/Ernest/Desktop/Matskevich/ansible$ sudo ansible-playbook playbooks/dev/main.yaml --diff
+[sudo] password for ernest:
+[WARNING]: Ansible is being run in a world writable directory (/mnt/c/Users/Ernest/Desktop/Matskevich/ansible),
+ignoring it as an ansible.cfg source. For more information see
+https://docs.ansible.com/ansible/devel/reference_appendices/config.html#cfg-in-world-writable-dir
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match
+'all'
+
+PLAY [Deploy Docker] ***************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Install Docker] *****************************************************************************
+included: /mnt/c/Users/Ernest/Desktop/Matskevich/ansible/roles/docker/tasks/install_docker.yml for localhost
+
+TASK [../../roles/docker : Install Docker dependencies] ****************************************************************
+ok: [localhost] => (item=apt-transport-https)
+ok: [localhost] => (item=ca-certificates)
+ok: [localhost] => (item=curl)
+ok: [localhost] => (item=software-properties-common)
+
+TASK [../../roles/docker : Add Docker GPG apt Key] *********************************************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Add Docker Repository] **********************************************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Install Docker] *****************************************************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Ensure Docker service is started and enabled] ***********************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Install Docker Compose] *********************************************************************
+included: /mnt/c/Users/Ernest/Desktop/Matskevich/ansible/roles/docker/tasks/install_compose.yml for localhost
+
+TASK [../../roles/docker : Install pip3] *******************************************************************************
+ok: [localhost]
+
+TASK [../../roles/docker : Install Docker Compose] *********************************************************************
+ok: [localhost]
+
+TASK [../../roles/web_app : Create directory for the app_python] *******************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "app_python/",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [localhost]
+
+TASK [../../roles/web_app : Deploy compose.yaml] ***********************************************************************
+--- before
++++ after: /root/.ansible/tmp/ansible-local-65054iu5robn/tmpxs5f28hg/docker-compose.yml.j2
+@@ -0,0 +1,5 @@
++services:
++  web_app:
++    image: "ernestmatskevich/moscow-time"
++    ports:
++      - "5000:5000"
+\ No newline at end of file
+
+changed: [localhost]
+
+TASK [../../roles/web_app : Start the app_python] **********************************************************************
+changed: [localhost]
+
+TASK [../../roles/web_app : Remove app_python container] ***************************************************************
+skipping: [localhost]
+
+TASK [../../roles/web_app : Remove directory] **************************************************************************
+skipping: [localhost]
+
+PLAY RECAP *************************************************************************************************************
+localhost                  : ok=13   changed=3    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+```
