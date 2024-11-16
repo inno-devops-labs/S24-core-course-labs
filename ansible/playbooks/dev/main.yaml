@@ -3,4 +3,10 @@
   hosts: localhost
   become: yes
   roles:
-    - ../../roles/docker
+    - role: ../../roles/docker
+    - role: ../../roles/web_app
+      vars:
+        app_directory: app_python
+        app_image: aximaxxi/moscow-time
+        app_port: 5000
+        wipe_web_app: false
