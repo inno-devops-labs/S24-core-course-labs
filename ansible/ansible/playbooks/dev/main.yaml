@@ -4,3 +4,9 @@
   become: yes
   roles:
     - role: ../../roles/docker
+    - role: ../../roles/web_app
+      vars:
+        app_directory: app_python
+        app_image: ernestmatskevich/moscow-time
+        app_port: 5000
+        wipe_web_app: false
