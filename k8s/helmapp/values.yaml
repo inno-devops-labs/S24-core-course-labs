@@ -1,4 +1,4 @@
-# Default values for your-app.
+# Default values for helmapp.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -85,14 +85,15 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
-## httpGet:
-##    port: http
-#readinessProbe:
-#  httpGet:
-#    path: /
- #   port: http
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
