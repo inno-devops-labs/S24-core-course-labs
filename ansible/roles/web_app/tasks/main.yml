@@ -1,0 +1,14 @@
+---
+- name: Create docker-compose file for web app
+  template:
+    src: docker-compose.yml.j2
+    dest: /home/ubuntu/docker-compose.yml
+  become: yes
+
+- name: Run the web app using docker-compose
+  docker_compose:
+    project_src: /home/ubuntu
+    restarted: yes
+    stopped: yes
+    removed: yes
+  become: yes
