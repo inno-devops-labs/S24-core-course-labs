@@ -1,0 +1,12 @@
+#https://docs.ansible.com/ansible/latest/tips_tricks/ansible_tips_tricks.html
+- name: Bring down the compose
+  community.docker.docker_compose_v2:
+    project_src: "{{compose_dir}}"
+    state: absent
+    remove_images: all
+    remove_volumes: true
+
+- name: Remove compose directory
+  ansible.builtin.file:
+    name: "{{compose_directory}}"
+    state: absent
