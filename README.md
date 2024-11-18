@@ -1,3 +1,6 @@
+[![Python application](https://github.com/smasIner/S24-core-course-labs/actions/workflows/main.yaml/badge.svg)](https://github.com/smasIner/S24-core-course-labs/actions/workflows/main.yaml)
+
+
 # DevOps Engineering Labs
 
 ## Introduction

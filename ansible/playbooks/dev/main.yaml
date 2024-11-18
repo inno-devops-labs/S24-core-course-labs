@@ -1,0 +1,6 @@
+- name: Install docker manually
+  hosts: all
+  become: true
+  roles:
+    - ../../roles/docker
+    - ../../roles/web_app
